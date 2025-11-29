@@ -1,0 +1,17 @@
+﻿DATA_BLOCK "TON"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+   VAR 
+      TON {InstructionName := 'TON_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : Array[0..100] of TON_TIME;
+      CTU {InstructionName := 'IEC_DCOUNTER'; LibVersion := '1.0'} : Array[0..20] of IEC_DCOUNTER;
+   END_VAR
+   VAR RETAIN
+      P { S7_SetPoint := 'True'} : Array[0..20] of Bool;
+   END_VAR
+
+
+BEGIN
+
+END_DATA_BLOCK
+

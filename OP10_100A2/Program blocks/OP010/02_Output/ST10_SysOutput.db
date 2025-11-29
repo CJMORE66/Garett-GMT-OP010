@@ -1,0 +1,41 @@
+﻿DATA_BLOCK "ST10_SysOutput"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+   VAR 
+      oTowerLight : Struct
+         Red : Bool;
+         Yellow : Bool;
+         Green : Bool;
+         Blue : Bool;
+      END_STRUCT;
+      HMIButtonLight : Struct
+         ControlOn : Bool;
+         ControlOff : Bool;
+         MachineStart : Bool;
+         MachineStop : Bool;
+         ResetButton : Bool;
+         "Manual/Auto" : Bool;
+         SafetyGateUnlock : Bool;
+      END_STRUCT;
+      BoxLight : Struct
+         oMachineStartLight : Bool;
+         oMachineStopLight : Bool;
+         oResetLight : Bool;
+         oSafetyGateUnlockLight : Bool;
+      END_STRUCT;
+      SafetyDoorCoil : Array[1..20] of Bool;
+      MaterialDoorCoil : Array[1..20] of Bool;
+   END_VAR
+
+
+BEGIN
+   HMIButtonLight.ControlOn := false;
+   HMIButtonLight.MachineStart := false;
+   HMIButtonLight.MachineStop := false;
+   HMIButtonLight.ResetButton := false;
+   HMIButtonLight."Manual/Auto" := false;
+   HMIButtonLight.SafetyGateUnlock := false;
+
+END_DATA_BLOCK
+

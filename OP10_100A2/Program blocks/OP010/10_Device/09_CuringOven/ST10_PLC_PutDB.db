@@ -1,0 +1,59 @@
+﻿DATA_BLOCK "ST10_PLC_PutDB"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+NON_RETAIN
+   STRUCT 
+      OutData : Struct
+         Global : Struct
+            Beat : Bool;
+            AutoRunning : Bool;
+            Alarm : Bool;
+            Spare_1 : Bool;
+            Spare_2 : Bool;
+            Spare_3 : Bool;
+            Spare_4 : Bool;
+            Spare_5 : Bool;
+            Spare_6 : Bool;
+            Spare_7 : Bool;
+            Spare_8 : Bool;
+            Spare_9 : Bool;
+            Spare_10 : Bool;
+            Spare_11 : Bool;
+            Spare_12 : Bool;
+            Spare_13 : Bool;
+         END_STRUCT;
+         Control : Struct
+            PalletOut : Bool;
+            Spare_16 : Bool;
+            Spare_1 : Bool;
+            Spare_2 : Bool;
+            Spare_3 : Bool;
+            Spare_4 : Bool;
+            Spare_5 : Bool;
+            Spare_6 : Bool;
+            Spare_7 : Bool;
+            Spare_8 : Bool;
+            Spare_9 : Bool;
+            Spare_10 : Bool;
+            Spare_11 : Bool;
+            Spare_12 : Bool;
+            Spare_13 : Bool;
+            Spare_14 : Byte;
+            Spare_15 : Byte;
+         END_STRUCT;
+         Data : Struct
+            Spare_5 : Int;
+            Spare_4 : Int;
+            Spare_1 : Int;
+            Spare_2 : Int;
+            Spare_6 : Int;   // Min
+            Spare_3 : Array[0..83] of Byte;
+         END_STRUCT;
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+
+END_DATA_BLOCK
+

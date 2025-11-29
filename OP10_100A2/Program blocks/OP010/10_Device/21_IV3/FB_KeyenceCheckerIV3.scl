@@ -1,0 +1,1080 @@
+﻿FUNCTION_BLOCK "FB_KeyenceCheckerIV3"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      I_nID : Int;
+   END_VAR
+
+   VAR 
+      rtrigManualMode {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      ftrigManualMode {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      "****Common*******" : Bool;
+      nStep : Int;
+      nNextStep : Int;
+      nLastStep : Int;
+      bCondition : Bool;
+      fbNextstep { S7_SetPoint := 'False'} : "FB_Next";
+      tonProcessOvertime {InstructionName := 'TON_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TON_TIME;
+      "****Local******" : Bool;
+      aToolResultReset : Array[1..64] of Bool;
+      ToolResultResult : Array[1..64] of Struct
+         nToolMatchingRate : Word;
+         nToolMatchingRateMAX : Word;
+         nToolMatchingRateMIN : Word;
+         nToolLowerLimitValue : Word;
+         nToolUpperLimitValue : Word;
+         nDecimalPosition : Word;
+         "nPitchPresentValueMAX/ColorAverageH (hue)" : Word;
+         "nPitchPresentValueMIN/ColorAverageS(saturation)" : Word;
+         "nNumberOfPitches/ColorAverageV(brightness)/BrightnessAverage" : Word;
+         nReserved1 : Word;
+      END_STRUCT;
+      bCompleteToggleSign : Bool;
+      rtrigCompleteToggle {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : R_TRIG;
+      ftrigCompleteToggle {InstructionName := 'F_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : F_TRIG;
+      nIdx : Int;
+      nTriggerFailCount : Byte;
+      "****Instruction******" : Bool;
+   END_VAR
+   VAR DB_SPECIFIC
+      nWord : Word;
+      aWord { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} AT nWord : Array[0..1] of Byte;
+      nDWord : DWord;
+      aDWord { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} AT nDWord : Array[0..3] of Byte;
+   END_VAR
+   VAR 
+      nIndex3 : Int;
+   END_VAR
+
+   VAR_TEMP 
+      nByte : Byte;
+      aInput_Byte1 : Array[0..3] of Byte;
+      aInput_Byte2 : Array[0..3] of Byte;
+      aInput_Byte3 : Array[0..15] of Byte;
+      aInput_Byte4 : Array[0..27] of Byte;
+      aInput_Byte5 : Array[0..19] of Byte;
+      aInput_Byte6 : Array[0..63] of Struct
+         bInput_Byte0 : Byte;
+         bInput_Byte1 : Byte;
+         bInput_Byte2 : Byte;
+         bInput_Byte3 : Byte;
+         bInput_Byte4 : Byte;
+         bInput_Byte5 : Byte;
+         bInput_Byte6 : Byte;
+         bInput_Byte7 : Byte;
+         bInput_Byte8 : Byte;
+         bInput_Byte9 : Byte;
+         bInput_Byte10 : Byte;
+         bInput_Byte11 : Byte;
+         bInput_Byte12 : Byte;
+         bInput_Byte13 : Byte;
+         bInput_Byte14 : Byte;
+         bInput_Byte15 : Byte;
+         bInput_Byte16 : Byte;
+         bInput_Byte17 : Byte;
+         bInput_Byte18 : Byte;
+         bInput_Byte19 : Byte;
+      END_STRUCT;
+      aInput_Byte7 : Array[0..7] of Byte;
+      aOutput_Byte1 : Array[0..11] of Byte;
+      aRetvalRead : Array[1..22] of Int;
+      aRetvalWrite : Array[1..1] of Int;
+   END_VAR
+
+   VAR CONSTANT 
+      MODE_CHECKER_IDLE : Int := 0;
+      MODE_CHECKER_START : Int := 1;
+      MODE_CHECKER_REGISTER : Int := 4;
+      MODE_CHECKER_CLEAR : Int := 5;
+      MODE_CHECKER_RESET : Int := 99;
+   END_VAR
+
+
+BEGIN
+	(*
+	=============================================================================
+	BBSS Automation
+	(c)Copyright 2022 All Rights Reserved
+	-----------------------------------------------------------------------------
+	Functionality:
+	This function block manager keyence checker iv3 control
+	-----------------------------------------------------------------------------
+	Change log table:
+	Version   Date Y/M/D    Person       Description
+	3.0.1     21/09/01      Xiangxiang   Active simulation
+	3.0.4     22/01/20      Yuan Li      Handshake disabled
+	3.0.5     22/05/13      Xuecao Guo   Update IV2 to IV3
+	4.0.0     22/08/18      Huiyun       Separate condition and definition
+	=============================================================================
+	*)
+	
+	REGION ReadData()
+	    //************************************************************************************************ 
+	    //从接口读取数据/Read data from interface
+	    //************************************************************************************************ 
+	    //命令状态/Command Status bits
+	    #aRetvalRead[1] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr1, RECORD => #aInput_Byte1);
+	    //设备结果/Device Results bits
+	    #aRetvalRead[2] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr2, RECORD => #aInput_Byte2);
+	    //设备状态/Device status words
+	    #aRetvalRead[3] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr3, RECORD => #aInput_Byte3);
+	    //设备统计/Device statistics
+	    #aRetvalRead[4] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr4, RECORD => #aInput_Byte4);
+	    //位置修正结果/Position adjust result
+	    #aRetvalRead[5] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr5, RECORD => #aInput_Byte5);
+	    //工具1处理结果/Tool1 result
+	    #aRetvalRead[6] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr6, RECORD => #aInput_Byte6[0]);
+	    //工具2处理结果/Tool2 result
+	    #aRetvalRead[7] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr7, RECORD => #aInput_Byte6[1]);
+	    //工具3处理结果/Tool3 result
+	    #aRetvalRead[8] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr8, RECORD => #aInput_Byte6[2]);
+	    //工具4处理结果/Tool4 result
+	    #aRetvalRead[9] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr9, RECORD => #aInput_Byte6[3]);
+	    //工具5处理结果/Tool5 result
+	    #aRetvalRead[10] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr10, RECORD => #aInput_Byte6[4]);
+	    //工具6处理结果/Tool6 result
+	    #aRetvalRead[11] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr11, RECORD => #aInput_Byte6[5]);
+	    //工具7处理结果/Tool7 result
+	    #aRetvalRead[12] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr12, RECORD => #aInput_Byte6[6]);
+	    //工具8处理结果/Tool8 result
+	    #aRetvalRead[13] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr13, RECORD => #aInput_Byte6[7]);
+	    //工具9处理结果/Tool9 result
+	    #aRetvalRead[14] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr14, RECORD => #aInput_Byte6[8]);
+	    //工具10处理结果/Tool10 result
+	    #aRetvalRead[15] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr15, RECORD => #aInput_Byte6[9]);
+	    //工具11处理结果/Tool11 result
+	    #aRetvalRead[16] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr16, RECORD => #aInput_Byte6[10]);
+	    //工具12处理结果/Tool12 result
+	    #aRetvalRead[17] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr17, RECORD => #aInput_Byte6[11]);
+	    //工具13处理结果/Tool13 result
+	    #aRetvalRead[18] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr18, RECORD => #aInput_Byte6[12]);
+	    //工具14处理结果/Tool14 result
+	    #aRetvalRead[19] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr19, RECORD => #aInput_Byte6[13]);
+	    //工具15处理结果/Tool15 result
+	    #aRetvalRead[20] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr20, RECORD => #aInput_Byte6[14]);
+	    //工具16处理结果/Tool16 result
+	    #aRetvalRead[21] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr21, RECORD => #aInput_Byte6[15]);
+	    //工具17处理结果/Tool1 result
+	    #aRetvalRead[6] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr22, RECORD => #aInput_Byte6[16]);
+	    //工具18处理结果/Tool2 result
+	    #aRetvalRead[7] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr23, RECORD => #aInput_Byte6[17]);
+	    //工具19处理结果/Tool3 result
+	    #aRetvalRead[8] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr24, RECORD => #aInput_Byte6[18]);
+	    //工具20处理结果/Tool4 result
+	    #aRetvalRead[9] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr25, RECORD => #aInput_Byte6[19]);
+	    //工具21处理结果/Tool5 result
+	    #aRetvalRead[10] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr26, RECORD => #aInput_Byte6[20]);
+	    //工具22处理结果/Tool6 result
+	    #aRetvalRead[11] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr27, RECORD => #aInput_Byte6[21]);
+	    //工具23处理结果/Tool7 result
+	    #aRetvalRead[12] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr28, RECORD => #aInput_Byte6[22]);
+	    //工具24处理结果/Tool8 result
+	    #aRetvalRead[13] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr29, RECORD => #aInput_Byte6[23]);
+	    //工具25处理结果/Tool9 result
+	    #aRetvalRead[14] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr30, RECORD => #aInput_Byte6[24]);
+	    //工具26处理结果/Tool10 result
+	    #aRetvalRead[15] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr31, RECORD => #aInput_Byte6[25]);
+	    //工具27处理结果/Tool11 result
+	    #aRetvalRead[16] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr32, RECORD => #aInput_Byte6[26]);
+	    //工具28处理结果/Tool12 result
+	    #aRetvalRead[17] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr33, RECORD => #aInput_Byte6[27]);
+	    //工具29处理结果/Tool13 result
+	    #aRetvalRead[18] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr34, RECORD => #aInput_Byte6[28]);
+	    //工具30处理结果/Tool14 result
+	    #aRetvalRead[19] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr35, RECORD => #aInput_Byte6[29]);
+	    //工具31处理结果/Tool15 result
+	    #aRetvalRead[20] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr36, RECORD => #aInput_Byte6[30]);
+	    //工具32处理结果/Tool16 result
+	    #aRetvalRead[21] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr37, RECORD => #aInput_Byte6[31]);
+	    //工具33处理结果/Tool1 result
+	    #aRetvalRead[6] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr38, RECORD => #aInput_Byte6[32]);
+	    //工具34处理结果/Tool2 result
+	    #aRetvalRead[7] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr39, RECORD => #aInput_Byte6[33]);
+	    //工具35处理结果/Tool3 result
+	    #aRetvalRead[8] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr40, RECORD => #aInput_Byte6[34]);
+	    //工具36处理结果/Tool4 result
+	    #aRetvalRead[9] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr41, RECORD => #aInput_Byte6[35]);
+	    //工具37处理结果/Tool5 result
+	    #aRetvalRead[10] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr42, RECORD => #aInput_Byte6[36]);
+	    //工具38处理结果/Tool6 result
+	    #aRetvalRead[11] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr43, RECORD => #aInput_Byte6[37]);
+	    //工具39处理结果/Tool7 result
+	    #aRetvalRead[12] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr44, RECORD => #aInput_Byte6[38]);
+	    //工具40处理结果/Tool8 result
+	    #aRetvalRead[13] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr45, RECORD => #aInput_Byte6[39]);
+	    //工具41处理结果/Tool9 result
+	    #aRetvalRead[14] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr46, RECORD => #aInput_Byte6[40]);
+	    //工具42处理结果/Tool10 result
+	    #aRetvalRead[15] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr47, RECORD => #aInput_Byte6[41]);
+	    //工具43处理结果/Tool11 result
+	    #aRetvalRead[16] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr48, RECORD => #aInput_Byte6[42]);
+	    //工具44处理结果/Tool12 result
+	    #aRetvalRead[17] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr49, RECORD => #aInput_Byte6[43]);
+	    //工具45处理结果/Tool13 result
+	    #aRetvalRead[18] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr50, RECORD => #aInput_Byte6[44]);
+	    //工具46处理结果/Tool14 result
+	    #aRetvalRead[19] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr51, RECORD => #aInput_Byte6[45]);
+	    //工具47处理结果/Tool15 result
+	    #aRetvalRead[20] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr52, RECORD => #aInput_Byte6[46]);
+	    //工具48处理结果/Tool16 result
+	    #aRetvalRead[21] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr53, RECORD => #aInput_Byte6[47]);
+	    //工具49处理结果/Tool1 result
+	    #aRetvalRead[6] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr54, RECORD => #aInput_Byte6[48]);
+	    //工具50处理结果/Tool2 result
+	    #aRetvalRead[7] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr55, RECORD => #aInput_Byte6[49]);
+	    //工具51处理结果/Tool3 result
+	    #aRetvalRead[8] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr56, RECORD => #aInput_Byte6[50]);
+	    //工具52处理结果/Tool4 result
+	    #aRetvalRead[9] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr57, RECORD => #aInput_Byte6[51]);
+	    //工具53处理结果/Tool5 result
+	    #aRetvalRead[10] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr58, RECORD => #aInput_Byte6[52]);
+	    //工具54处理结果/Tool6 result
+	    #aRetvalRead[11] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr59, RECORD => #aInput_Byte6[53]);
+	    //工具55处理结果/Tool7 result
+	    #aRetvalRead[12] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr60, RECORD => #aInput_Byte6[54]);
+	    //工具56处理结果/Tool8 result
+	    #aRetvalRead[13] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr61, RECORD => #aInput_Byte6[55]);
+	    //工具57处理结果/Tool9 result
+	    #aRetvalRead[14] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr62, RECORD => #aInput_Byte6[56]);
+	    //工具58处理结果/Tool10 result
+	    #aRetvalRead[15] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr63, RECORD => #aInput_Byte6[57]);
+	    //工具59处理结果/Tool11 result
+	    #aRetvalRead[16] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr64, RECORD => #aInput_Byte6[58]);
+	    //工具60处理结果/Tool12 result
+	    #aRetvalRead[17] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr65, RECORD => #aInput_Byte6[59]);
+	    //工具61处理结果/Tool13 result
+	    #aRetvalRead[18] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr66, RECORD => #aInput_Byte6[60]);
+	    //工具62处理结果/Tool14 result
+	    #aRetvalRead[19] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr67, RECORD => #aInput_Byte6[61]);
+	    //工具63处理结果/Tool15 result
+	    #aRetvalRead[20] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr68, RECORD => #aInput_Byte6[62]);
+	    //工具64处理结果/Tool16 result
+	    #aRetvalRead[21] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr69, RECORD => #aInput_Byte6[63]);
+	    //设备结果/Device Results bits
+	    #aRetvalRead[22] := DPRD_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nInAdr70, RECORD => #aInput_Byte7);
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nID := #I_nID;
+	END_REGION
+	
+	REGION CopyReadData()
+	    ///************************************************************************************************
+	    //分配输入数据/Asignment of the intput data (Statusword)
+	    //************************************************************************************************
+	    //命令状态/Command status bits
+	    //Address 0
+	    #nByte := #aInput_Byte1[0];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bTriggerResponse := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bMasterImageRegistration := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bProgramSwitchingResponse := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bWarningClearResponse := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bStatisticsResetResponse := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBufferClearResponse := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bSDCardStopSaveResponse := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bChangeParameterResponse := #nByte.%X7;
+	    //Address 1
+	    #nByte := #aInput_Byte1[1];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bTriggerFailed := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bMasterImageRegistrationFailed := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bProgramSwitchingFailed := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReserved1 := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReserved2 := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReserved3 := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bSDCardStopSaveFailed := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bChangeParameterFailed := #nByte.%X7;
+	    //Address 2 
+	    #nByte := #aInput_Byte1[2];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bResultAvailable := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bResultUpdateComplete := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBusy := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bImaging := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bRun := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReady := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReserved4 := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bSDCardStatus := #nByte.%X7;
+	    //Address 3
+	    #nByte := #aInput_Byte1[3];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bClassificationModeInformation := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReserved5 := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReserved6 := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bReserved7 := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bSDCardStorageShortage := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBufferOverrun := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bWarning := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bError := #nByte.%X7;
+	    
+	    //设备结果/Device Results Bits
+	    //Address 0
+	    #nByte := #aInput_Byte2[0];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bOverallJudgmentOK := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bPositionCorrection := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bLogic1 := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bLogic2 := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bLogic3 := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bLogic4 := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bOverallJudgmentNG := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bReserved1 := #nByte.%X7;
+	    //Address 1
+	    #nByte := #aInput_Byte2[1];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.nReserved2 := #nByte;
+	    //Address 2
+	    #nByte := #aInput_Byte2[2];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[1] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[2] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[3] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[4] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[5] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[6] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[7] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[8] := #nByte.%X7;
+	    //Address 3
+	    #nByte := #aInput_Byte2[3];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[9] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[10] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[11] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[12] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[13] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[14] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[15] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[16] := #nByte.%X7;
+	    
+	    //设备状态/Device status words
+	    //错误编号/Error number
+	    #aWord[0] := #aInput_Byte3[0];
+	    #aWord[1] := #aInput_Byte3[1];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nErrorNo := #nWord;
+	    //警报编号/Warning number
+	    #aWord[0] := #aInput_Byte3[2];
+	    #aWord[1] := #aInput_Byte3[3];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nWarningNo := #nWord;
+	    //剩余缓存数/Number of remaining buffers
+	    #aWord[0] := #aInput_Byte3[4];
+	    #aWord[1] := #aInput_Byte3[5];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nNumberOfRemainingBuffers := #nWord;
+	    //设定校验和/Check sum
+	    #aWord[0] := #aInput_Byte3[6];
+	    #aWord[1] := #aInput_Byte3[7];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nChecksum := #nWord;
+	    //当前程序编号/Current program number
+	    #aWord[0] := #aInput_Byte3[8];
+	    #aWord[1] := #aInput_Byte3[9];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nCurrentProgramNo := #nWord;
+	    //判断时程序编号/Program number during judgment
+	    #aWord[0] := #aInput_Byte3[10];
+	    #aWord[1] := #aInput_Byte3[11];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nProgramNoDuringJudgment := #nWord;
+	    //结果编号/Result number
+	    #aWord[0] := #aInput_Byte3[12];
+	    #aWord[1] := #aInput_Byte3[13];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nResultNo := #nWord;
+	    //处理时间/Processing time
+	    #aWord[0] := #aInput_Byte3[14];
+	    #aWord[1] := #aInput_Byte3[15];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nProcessingtime := #nWord;
+	    
+	    //设备统计/Device Statistics
+	    //最大处理时间/Processing time max
+	    #aWord[0] := #aInput_Byte4[0];
+	    #aWord[1] := #aInput_Byte4[1];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nProcessingTimeMAX := #nWord;
+	    //最小处理时间/Processing time min
+	    #aWord[0] := #aInput_Byte4[2];
+	    #aWord[1] := #aInput_Byte4[3];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nProcessingTimeMIN := #nWord;
+	    //平均处理时间/Processing time average
+	    #aWord[0] := #aInput_Byte4[4];
+	    #aWord[1] := #aInput_Byte4[5];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nProcessingTimeAVE := #nWord;
+	    //系统预约/Reserved by system
+	    #aWord[0] := #aInput_Byte4[6];
+	    #aWord[1] := #aInput_Byte4[7];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nReserved1 := #nWord;
+	    //触发次数/Number of triggers
+	    #aDWord[0] := #aInput_Byte4[8];
+	    #aDWord[1] := #aInput_Byte4[9];
+	    #aDWord[2] := #aInput_Byte4[10];
+	    #aDWord[3] := #aInput_Byte4[11];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nNumberOfTriggers := #nDWord;
+	    //OK 次数或分类次数/Number of OKs OR Classification number
+	    #aDWord[0] := #aInput_Byte4[12];
+	    #aDWord[1] := #aInput_Byte4[13];
+	    #aDWord[2] := #aInput_Byte4[14];
+	    #aDWord[3] := #aInput_Byte4[15];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nNumberOfOKs := #nDWord;
+	    //NG 次数/Number of NGs
+	    #aDWord[0] := #aInput_Byte4[16];
+	    #aDWord[1] := #aInput_Byte4[17];
+	    #aDWord[2] := #aInput_Byte4[18];
+	    #aDWord[3] := #aInput_Byte4[19];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nNumberOfNGs := #nDWord;
+	    //触发错误次数/Number of trigger errors
+	    #aDWord[0] := #aInput_Byte4[20];
+	    #aDWord[1] := #aInput_Byte4[21];
+	    #aDWord[2] := #aInput_Byte4[22];
+	    #aDWord[3] := #aInput_Byte4[23];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nNumberOfTriggerErrors := #nDWord;
+	    //系统预约/Reserved by system
+	    #aDWord[0] := #aInput_Byte4[24];
+	    #aDWord[1] := #aInput_Byte4[25];
+	    #aDWord[2] := #aInput_Byte4[26];
+	    #aDWord[3] := #aInput_Byte4[27];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatistics".nReserved2 := #nDWord;
+	    
+	    //位置修正结果/Position Adjust Result
+	    //位置修正分数/Position correction tool matching rate
+	    #aWord[0] := #aInput_Byte5[0];
+	    #aWord[1] := #aInput_Byte5[1];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nPositionCorrectionToolMatchingRate := #nWord;
+	    //最大位置修正分数/Position correction tool matching rate max
+	    #aWord[0] := #aInput_Byte5[2];
+	    #aWord[1] := #aInput_Byte5[3];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nPositionCorrectionToolMatchingRateMAX := #nWord;
+	    //最小位置修正分数/Position correction tool matching rate min
+	    #aWord[0] := #aInput_Byte5[4];
+	    #aWord[1] := #aInput_Byte5[5];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nPositionCorrectionToolMatchingRateMIN := #nWord;
+	    //位置修正分数下限阈值/Position correction tool threshold
+	    #aWord[0] := #aInput_Byte5[6];
+	    #aWord[1] := #aInput_Byte5[7];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nPositionCorrectionToolThreshold := #nWord;
+	    //系统预约/Reserved by system
+	    #aWord[0] := #aInput_Byte5[8];
+	    #aWord[1] := #aInput_Byte5[9];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nReserved1 := #nWord;
+	    //系统预约/Reserved by system
+	    #aWord[0] := #aInput_Byte5[10];
+	    #aWord[1] := #aInput_Byte5[11];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nReserved2 := #nWord;
+	    //系统预约/Reserved by system
+	    #aWord[0] := #aInput_Byte5[12];
+	    #aWord[1] := #aInput_Byte5[13];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nReserved3 := #nWord;
+	    //系统预约/Reserved by system
+	    #aWord[0] := #aInput_Byte5[14];
+	    #aWord[1] := #aInput_Byte5[15];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nReserved4 := #nWord;
+	    //系统预约/Reserved by system
+	    #aWord[0] := #aInput_Byte5[16];
+	    #aWord[1] := #aInput_Byte5[17];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nReserved5 := #nWord;
+	    //系统预约/Reserved by system
+	    #aWord[0] := #aInput_Byte5[18];
+	    #aWord[1] := #aInput_Byte5[19];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In."PositionAdjustResult".nReserved6 := #nWord;
+	    
+	    //工具处理结果/Tool Results
+	    FOR #nIdx := 1 TO 64 BY 1 DO
+	        //工具相似度/Tool matching rate
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte0;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte1;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx].nToolMatchingRate := #nWord;
+	        //最大工具相似度/Tool matching rate max
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte2;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte3;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx].nToolMatchingRateMAX := #nWord;
+	        //最小工具相似度/Tool matching rate min
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte4;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte5;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx].nToolMatchingRateMIN := #nWord;
+	        //工具下限阈值/Tool lower limit value
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte6;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte7;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx].nToolLowerLimitValue := #nWord;
+	        //工具上限阈值/Tool upper limit value
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte8;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte9;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx].nToolUpperLimitValue := #nWord;
+	        //小数点位置/Decimal position
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte10;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte11;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx].nDecimalPosition := #nWord;
+	        //间距当前值 MAX&彩色识别 H（色相）/Pitch present value MAX&color average H (hue)
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte12;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte13;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx]."nPitchPresentValueMAX/ColorAverageH (hue)" := #nWord;
+	        //间距当前值 MIN&彩色识别 S（彩度）/Pitch present value MIN&color average S
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte14;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte15;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx]."nPitchPresentValueMIN/ColorAverageS(saturation)" := #nWord;
+	        //间距数量&彩色识别 V（彩度）&亮度平均亮度/Number of pitches&color average V (brightness)&brightness average 
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte16;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte17;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx]."nNumberOfPitches/ColorAverageV(brightness)/BrightnessAverage" := #nWord;
+	        //系统预约/Reserved by system
+	        #aWord[0] := #aInput_Byte6[#nIdx - 1].bInput_Byte18;
+	        #aWord[1] := #aInput_Byte6[#nIdx - 1].bInput_Byte19;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult[#nIdx].nReserved1 := #nWord;
+	    END_FOR;
+	    
+	    //设备结果/Device Results Bits 
+	    //主控编号/The master number
+	    #aWord[0] := #aInput_Byte7[0];
+	    #aWord[1] := #aInput_Byte7[1];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.nMasterNumber := #nWord;
+	    //Address 1
+	    #nByte := #aInput_Byte7[2];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[17] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[18] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[19] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[20] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[21] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[22] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[23] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[24] := #nByte.%X7;
+	    //Address 2
+	    #nByte := #aInput_Byte7[3];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[25] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[26] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[27] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[28] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[29] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[30] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[31] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[32] := #nByte.%X7;
+	    //Address 3
+	    #nByte := #aInput_Byte7[4];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[33] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[34] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[35] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[36] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[37] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[38] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[39] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[40] := #nByte.%X7;
+	    //Address 4
+	    #nByte := #aInput_Byte7[5];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[41] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[42] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[43] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[44] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[45] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[46] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[47] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[48] := #nByte.%X7;
+	    //Address 5
+	    #nByte := #aInput_Byte7[6];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[49] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[50] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[51] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[52] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[53] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[54] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[55] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[56] := #nByte.%X7;
+	    //Address 6
+	    #nByte := #aInput_Byte7[7];
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[57] := #nByte.%X0;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[58] := #nByte.%X1;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[59] := #nByte.%X2;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[60] := #nByte.%X3;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[61] := #nByte.%X4;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[62] := #nByte.%X5;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[63] := #nByte.%X6;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[64] := #nByte.%X7;
+	END_REGION
+	
+	REGION CallAdditionalFunctionBlock()
+	    //************************************************************************************************
+	    //调用外部功能块/Call additional function block
+	    //************************************************************************************************
+	END_REGION
+	
+	REGION ErrorMessages()
+	    //************************************************************************************************
+	    //错误信息/Error messages
+	    //************************************************************************************************
+	    //复位错误信息/Reset error messages
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bReset AND
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bError
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 0;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bError := FALSE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bWarningClearRequest := TRUE;
+	        #nTriggerFailCount := 0;
+	    ELSE
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bWarningClearRequest := FALSE;
+	    END_IF;
+	    
+	    //流程超时/Process over time
+	    #tonProcessOvertime(IN := "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode <> #MODE_CHECKER_IDLE,
+	                        PT := "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.tMaxProcessTime);
+	    IF #tonProcessOvertime.Q
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 1;
+	    END_IF;
+	    
+	    //安全互锁/Safety interlock
+	    IF NOT "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bEnable AND
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode <> #MODE_CHECKER_IDLE
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 2;
+	    END_IF;
+	    
+	    //模式无效/Mode invalid
+	    //"DB_KeyenceCheckerIV2".aDev[#I_nID].Common.nErrorNo := 3;
+	    
+	    //相机警报/Vision warning
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bWarning
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 6;
+	    END_IF;
+	    
+	    //相机错误/Vision error
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bError
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 7;
+	    END_IF;
+	    
+	    //缓存溢出/Buffer overrun
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBufferOverrun
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 8;
+	    END_IF;
+	    
+	    //程序切换失败/Program switching failed
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bProgramSwitchingFailed
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 9;
+	    END_IF;
+	    
+	    //触发失败/Trigger failed
+	    IF #nTriggerFailCount >= 3
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 10;
+	    END_IF;
+	    
+	    //外部主控注册图像失败/Master image registration failed
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bMasterImageRegistrationFailed
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 11;
+	    END_IF;
+	    
+	    //设定值更改失败/Setting value change failed
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bChangeParameterFailed
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 12;
+	    END_IF;
+	    
+	    //错误标志/Error flag
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo <> 0 THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode := #MODE_CHECKER_IDLE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bError := TRUE;
+	    END_IF;
+	END_REGION
+	
+	REGION WarningMessages()
+	    //************************************************************************************************
+	    //警告信息/Warning messages
+	    //************************************************************************************************
+	    //复位警告信息/Reset warning messages
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nWarningNo := 0;
+	    
+	    //警告/Warning flag
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bWarning :=
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nWarningNo <> 0;
+	END_REGION
+	
+	REGION FrontGenaralControl()
+	    //************************************************************************************************
+	    //前端通用控制/Front genaral control
+	    //************************************************************************************************
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nProgramNo := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nProgramNo;
+	    
+	    //结果更新完成标志位/Complete toggle sign
+	    #rtrigCompleteToggle(CLK := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bResultUpdateComplete);
+	    #ftrigCompleteToggle(CLK := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bResultUpdateComplete);
+	    IF #rtrigCompleteToggle.Q OR #ftrigCompleteToggle.Q THEN
+	        #bCompleteToggleSign := TRUE;
+	    END_IF;
+	END_REGION
+	
+	REGION AutoProcess()
+	    //************************************************************************************************
+	    //自动流程/Auto process
+	    //************************************************************************************************
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode <> #MODE_CHECKER_IDLE THEN
+	        CASE #nStep OF
+	                //******************************************************************************
+	            0: //等待模式选择/Wait for mode selected
+	                //设置下一个步号/Set next step
+	                CASE "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode OF
+	                    #MODE_CHECKER_START://开始相机/Start vision
+	                        #nNextStep := 100;
+	                        // #MODE_CHECKER_REGISTER://程序切换/Program switching
+	                        //     #nNextStep := 200;
+	                    #MODE_CHECKER_CLEAR://统计数据清除/Stastics Reset
+	                        #nNextStep := 300;
+	                    #MODE_CHECKER_RESET://初始化/Reset paramaters
+	                        #nNextStep := 900;
+	                    ELSE
+	                        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nErrorNo := 3;//模式无效/Mode invalid
+	                END_CASE;
+	                //复位流程完成标志/Reset done
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bDone := FALSE;
+	                #fbNextstep(I_bEnable := TRUE,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                END_IF;
+	                //*************************************************************************************
+	            100://检查程序号/Check program number
+	                //设置下一个步号/Set next step
+	                //
+	                #bCompleteToggleSign := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.bProductOverallOK := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.bProductOverallNG := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResult := #aToolResultReset;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.ToolResult := #ToolResultResult;
+	                IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nCurrentProgramNo <> "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nProgramNo
+	                THEN
+	                    #nNextStep := 110;
+	                ELSE
+	                    #nNextStep := 120;
+	                END_IF;
+	                //Condition
+	                #bCondition := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bRun AND NOT "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBusy;
+	                //Goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                END_IF;
+	                //*************************************************************************************
+	            110://程序切换/Program switching
+	                //设置下一个步号/Set next step
+	                #nNextStep := 120;
+	                //Action
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bProgramSwitchingRequest := TRUE;
+	                //Condition
+	                #bCondition := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bProgramSwitchingResponse AND NOT "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bProgramSwitchingFailed
+	                AND "DB_KeyenceCheckerIV3".aDev[#I_nID].In."DeviceStatus".nCurrentProgramNo = "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nProgramNo;
+	                //Goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                    //复位程序选择/Reset program switch
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bProgramSwitchingRequest := FALSE;
+	                END_IF;
+	                //*************************************************************************************
+	            120://触发输入/Trigger input 
+	                //设置下一个步号/Set next step
+	                IF "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bTriggerFailed THEN
+	                    #nNextStep := 100;
+	                    #nTriggerFailCount := #nTriggerFailCount + 1;
+	                ELSE
+	                    #nNextStep := 130;
+	                    #nTriggerFailCount := 0;
+	                END_IF;
+	                //Action
+	               // #bCompleteToggleSign := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bTriggerRequest := TRUE;
+	                //Condition
+	                #bCondition := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bTriggerResponse;
+	                //Goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                    //触发复位/Reset trigger 
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bTriggerRequest := FALSE;
+	                END_IF;
+	                //*************************************************************************************
+	            130://等待结果判断/Waite for result 
+	                //设置下一个步号/Set next step
+	                #nNextStep := 0;
+	                //Condition
+	                #bCondition := NOT "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBusy AND #bCompleteToggleSign;
+	                //goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                    //take result
+	                    //Choose basic or extension tools
+	                    FOR #nIndex3 := 1 TO 64 DO
+	                        IF #nIndex3 <= 16 THEN
+	                            "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResult[#nIndex3] := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.aToolResult[#nIndex3];
+	                        ELSE
+	                            "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResult[#nIndex3] := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ExtendedDeviceResult.aToolResult[#nIndex3];
+	                        END_IF;
+	                    END_FOR;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.bProductOverallOK := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bOverallJudgmentOK;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.bProductOverallNG := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.DeviceResults.bOverallJudgmentNG;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.ToolResult := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.ToolResult;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bDone := TRUE;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode := #MODE_CHECKER_IDLE;
+	                END_IF;
+	                //*************************************************************************************
+	                // 200: //检查程序号/Check program number
+	                //     //设置下一个步号/Set next step
+	                //     IF "DB_KeyenceCheckerIV2".aDev[#I_nID].In."DeviceStatus".nCurrentProgramNo <> "DB_KeyenceCheckerIV2".aDev[#I_nID].Out.CommandControl.nProgramNo
+	                //     THEN
+	                //         #nNextStep := 210;
+	                //     ELSE
+	                //         #nNextStep := 220;
+	                //     END_IF;
+	                //     //Condition
+	                //     #bCondition := "DB_KeyenceCheckerIV2".aDev[#I_nID].In.CommandStatus.bRun AND NOT "DB_KeyenceCheckerIV2".aDev[#I_nID].In.CommandStatus.bBusy;
+	                //     //Goto next step
+	                //     #fbNextstep(I_bEnable := #bCondition,
+	                //                 I_bSeqMode := true,
+	                //                 I_tTimeValue := t#0ms);
+	                //     IF #fbNextstep.O_bStart THEN
+	                //         #nLastStep := #nStep;
+	                //         #nStep := #nNextStep;
+	                //     END_IF;
+	                //     //*************************************************************************************
+	                // 210: //程序切换/Program switching
+	                //     //设置下一个步号/Set next step
+	                //     #nNextStep := 120;
+	                //     //Action
+	                //     "DB_KeyenceCheckerIV2".aDev[#I_nID].Out.CommandControl.bProgramSwitchingRequest := TRUE;
+	                //     //Condition
+	                //     #bCondition := "DB_KeyenceCheckerIV2".aDev[#I_nID].In.CommandStatus.bProgramSwitchingResponse AND NOT  "DB_KeyenceCheckerIV2".aDev[#I_nID].In.CommandStatus.bProgramSwitchingFailed
+	                //     AND "DB_KeyenceCheckerIV2".aDev[#I_nID].In."DeviceStatus".nCurrentProgramNo = "DB_KeyenceCheckerIV2".aDev[#I_nID].Out.CommandControl.nProgramNo;
+	                //     //Goto next step
+	                //     #fbNextstep(I_bEnable := #bCondition,
+	                //                 I_bSeqMode := true,
+	                //                 I_tTimeValue := t#0ms);
+	                //     IF #fbNextstep.O_bStart THEN
+	                //         #nLastStep := #nStep;
+	                //         #nStep := #nNextStep;
+	                //         //复位程序选择/Reset program switch
+	                //         "DB_KeyenceCheckerIV2".aDev[#I_nID].Out.CommandControl.bProgramSwitchingRequest := FALSE;
+	                //     END_IF;
+	                //     //*************************************************************************************
+	                // 220: //外部主控注册图像/Registering a master image externally
+	                //     //设置下一个步号/Set next step
+	                //     #nNextStep := 0;
+	                //     //Action
+	                //     "DB_KeyenceCheckerIV2".aDev[#I_nID].Out.CommandControl.bMasterRegistrationRequest := TRUE;
+	                //     //Condition
+	                //     #bCondition := "DB_KeyenceCheckerIV2".aDev[#I_nID].In.CommandStatus.bMasterImageRegistration AND NOT "DB_KeyenceCheckerIV2".aDev[#I_nID].In.CommandStatus.bBusy
+	                //     AND NOT "DB_KeyenceCheckerIV2".aDev[#I_nID].In.CommandStatus.bMasterImageRegistrationFailed;
+	                //     //Goto next step
+	                //     #fbNextstep(I_bEnable := #bCondition,
+	                //                 I_bSeqMode := true,
+	                //                 I_tTimeValue := t#0ms);
+	                //     IF #fbNextstep.O_bStart THEN
+	                //         #nLastStep := #nStep;
+	                //         #nStep := #nNextStep;
+	                //         //Reset process
+	                //         "DB_KeyenceCheckerIV2".aDev[#I_nID].Out.CommandControl.bMasterRegistrationRequest := FALSE;
+	                //         //Set process done
+	                //         "DB_KeyenceCheckerIV2".aDev[#I_nID].Common.bDone := TRUE;
+	                //         "DB_KeyenceCheckerIV2".aDev[#I_nID].Common.nMode := #MODE_CHECKER_IDLE;
+	                //     END_IF;
+	                //*************************************************************************************
+	            300: //等待相机准备完成/Wait Camera ready
+	                //设置下一个步号/Set next step
+	                #nNextStep := 310;
+	                //Condition
+	                #bCondition := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bRun AND NOT "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBusy;
+	                //Goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                END_IF;
+	                //*************************************************************************************
+	            310: //统计数据清除/Stastics reset
+	                //设置下一个步号/Set next step
+	                #nNextStep := 0;
+	                //Action
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bStatisticsResetRequest := TRUE;
+	                //Condition
+	                #bCondition := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bStatisticsResetResponse;
+	                //Goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                    //停止统计数据清楚/Stop stastics reset
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bStatisticsResetRequest := FALSE;
+	                    //动作完成/Action Done
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bDone := TRUE;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode := #MODE_CHECKER_IDLE;
+	                END_IF;
+	                //*************************************************************************************
+	            900: //等待相机准备完成/Wait Camera ready
+	                //设置下一个步号/Set next step
+	                #nNextStep := 910;
+	                //Condition
+	                #bCondition := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bRun AND NOT "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBusy;
+	                //Goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                END_IF;
+	                //*************************************************************************************
+	            910: //初始化/Reset paramaters
+	                //设置下一个步号/Set next step
+	                #nNextStep := 0;
+	                //Action
+	                //清除PLC数据/Reset PLC data
+	                #nTriggerFailCount := 0;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bTriggerRequest := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bMasterRegistrationRequest := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bProgramSwitchingRequest := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bParameterChangeRequest := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bResultAcquisitionCompleteNotification := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.bProductOverallOK := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.bProductOverallNG := FALSE;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResult := #aToolResultReset;
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.ToolResult := #ToolResultResult;
+	                //清除缓存结果/Reset buffer 
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bBufferClearRequest := TRUE;
+	                //清除统计数据/Reset Stastics
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bStatisticsResetRequest := TRUE;
+	                //condition
+	                #bCondition := "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bBufferClearResponse AND "DB_KeyenceCheckerIV3".aDev[#I_nID].In.CommandStatus.bStatisticsResetResponse;
+	                //goto next step
+	                #fbNextstep(I_bEnable := #bCondition,
+	                            I_bSeqMode := true,
+	                            I_tTimeValue := t#0ms);
+	                IF #fbNextstep.O_bStart THEN
+	                    #nLastStep := #nStep;
+	                    #nStep := #nNextStep;
+	                    //初始化请求停止/Stop reset
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bBufferClearRequest := FALSE;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bStatisticsResetRequest := FALSE;
+	                    //动作完成/Action Done
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.bDone := TRUE;
+	                    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode := #MODE_CHECKER_IDLE;
+	                END_IF;
+	        END_CASE;
+	    ELSE
+	        #nStep := 0;
+	        //Reset signals
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bTriggerRequest := FALSE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bMasterRegistrationRequest := FALSE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bProgramSwitchingRequest := FALSE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bParameterChangeRequest := FALSE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bResultAcquisitionCompleteNotification := FALSE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bBufferClearRequest := FALSE;
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bStatisticsResetRequest := FALSE;
+	        #bCompleteToggleSign := FALSE;
+	        #bCondition := FALSE;
+	        #fbNextstep(I_bEnable := #bCondition,
+	                    I_bSeqMode := TRUE,
+	                    I_tTimeValue := t#0ms);
+	    END_IF;
+	END_REGION
+	
+	REGION BehindGeneralControl()
+	    //************************************************************************************************
+	    //后端通用控制/Behind genaral control
+	    //************************************************************************************************
+	    //设备启动停止/Device mode control
+	    #rtrigManualMode(CLK := "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nModeSwitch = "MS_MANUAL");
+	    #ftrigManualMode(CLK := "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nModeSwitch = "MS_MANUAL");
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nModeSwitch = "MS_EMPTY" OR
+	        #rtrigManualMode.Q OR #ftrigManualMode.Q
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode := #MODE_CHECKER_IDLE;
+	    END_IF;
+	    //触摸屏显示工具结果/Tool result to HMI
+	    FOR #nIdx := 1 TO 16 BY 1 DO
+	        IF "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.ToolResult[#nIdx].nToolMatchingRateMIN = 0 AND "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.ToolResult[#nIdx].nToolMatchingRate = 0 THEN
+	            //工具未使用/Tool is unuseful
+	            "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResultHMI[#nIdx] := 2;//灰色/Gray
+	        ELSE
+	            IF "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResult[#nIdx] THEN
+	                //工具结果OK/Tool result is OK
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResultHMI[#nIdx] := 1;//绿色/Green
+	            END_IF;
+	            IF NOT "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResult[#nIdx] THEN
+	                //工具结果NG/Tool result is NG
+	                "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.aToolResultHMI[#nIdx] := 0;//红色/Red
+	            END_IF;
+	        END_IF;
+	    END_FOR;
+	END_REGION
+	
+	REGION CopyWriteData()
+	    //************************************************************************************************
+	    //分配输出数据/Asignment of the output data (Controlword)
+	    //************************************************************************************************
+	    //指令控制/Command control Address 
+	    //Address 0
+	    #nByte.%X0 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bTriggerRequest;
+	    #nByte.%X1 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bMasterRegistrationRequest;
+	    #nByte.%X2 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bProgramSwitchingRequest;
+	    #nByte.%X3 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bWarningClearRequest;
+	    #nByte.%X4 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bStatisticsResetRequest;
+	    #nByte.%X5 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bBufferClearRequest;
+	    #nByte.%X6 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bSDCardSaveStopRequest;
+	    #nByte.%X7 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bParameterChangeRequest;
+	    #aOutput_Byte1[0] := #nByte;
+	    //Aaddress 1
+	    #nByte := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nReserved1;
+	    #aOutput_Byte1[1] := #nByte;
+	    //Aaddress 2
+	    #nByte.%X0 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bResultAcquisitionCompleteNotification;
+	    #nByte.%X1 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bReserved2;
+	    #nByte.%X2 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bReserved3;
+	    #nByte.%X3 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bReserved4;
+	    #nByte.%X4 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bReserved5;
+	    #nByte.%X5 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bReserved6;
+	    #nByte.%X6 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bReserved7;
+	    #nByte.%X7 := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.bReserved8;
+	    #aOutput_Byte1[2] := #nByte;
+	    //Address 3 
+	    #nByte := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nReserved9;
+	    #aOutput_Byte1[3] := #nByte;
+	    //程序号/Program number
+	    #nWord := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nProgramNo;
+	    #aOutput_Byte1[4] := #aWord[0];
+	    #aOutput_Byte1[5] := #aWord[1];
+	    //设定值设定编号/Setting value setting number
+	    #nWord := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nSetNumber;
+	    #aOutput_Byte1[6] := #aWord[0];
+	    #aOutput_Byte1[7] := #aWord[1];
+	    //设定值/Setting value
+	    #nDWord := "DB_KeyenceCheckerIV3".aDev[#I_nID].Out.CommandControl.nSetParameter;
+	    #aOutput_Byte1[8] := #aDWord[0];
+	    #aOutput_Byte1[9] := #aDWord[1];
+	    #aOutput_Byte1[10] := #aDWord[2];
+	    #aOutput_Byte1[11] := #aDWord[3];
+	END_REGION
+	
+	REGION WriteData()
+	    //************************************************************************************************ 
+	    //向接口写入数据/Write data to interface
+	    //************************************************************************************************ 
+	    //指令控制/Command control
+	    #aRetvalWrite[1] := DPWR_DAT(LADDR := "DB_KeyenceCheckerIV3".aDev[#I_nID].Para.nOutAdr1, RECORD := #aOutput_Byte1);
+	END_REGION
+	
+	REGION Steps()
+	    //************************************************************************************************ 
+	    //步数显示在触摸屏/Steps show in HMI
+	    //************************************************************************************************ 
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nLastStep := #nLastStep;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nCurrentStep := #nStep;
+	    "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nNextStep := #nNextStep;
+	    
+	    //流程时间/Process Time
+	    IF "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.nMode <> #MODE_CHECKER_IDLE
+	    THEN
+	        "DB_KeyenceCheckerIV3".aDev[#I_nID].Common.tActProcessTime := #tonProcessOvertime.ET;
+	    END_IF;
+	END_REGION
+END_FUNCTION_BLOCK
+

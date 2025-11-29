@@ -1,0 +1,484 @@
+﻿FUNCTION_BLOCK "KukaRobot1_Ctrl"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      iHWID_In : HW_IO;
+      iHWID_Out : HW_IO;
+      iSysRun : Bool;
+      iAuto : Bool;
+      iManual : Bool;
+      iSpecial : Bool;
+      iE_STOP : Bool;
+      iReset : Bool;
+      iT1000ms : Bool;
+      iTaskMode : USInt;
+      iPartType : USInt;
+      iSpeedValue : USInt;
+      iPGNO : USInt;
+   END_VAR
+
+   VAR_OUTPUT 
+      oReady : Bool;
+      oStartComplete : Bool;
+      oWarning : Bool;
+      oError : Bool;
+      oErrorCode : Int;
+   END_VAR
+
+   VAR_IN_OUT 
+      ioAutoStart : Bool;
+      ioSrartHome : Bool;
+      ioStartAutoCycle : Bool;
+   END_VAR
+
+   VAR 
+      sHMI : "KukaRobot_HMI";
+      sROBtoPLC : Struct
+         Sys : "KukaRobot_SysOutput";
+         User : "KukaRobot_UserOutput_1";
+      END_STRUCT;
+      sPLCtoROB : Struct
+         Sys : "KukaRobot_SysInput";
+         User : "KukaRobot_UserInput_1";
+      END_STRUCT;
+      sDrivesOnDelay {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      sStartUpDelay {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      sRobotReadyToStart : Bool;
+      sRobotReadyToRunning : Bool;
+      sRobotActComplete : Bool;
+      sRobotProgrameChoseOK : Bool;
+      sSequence : Int;
+      F_TRIG_Work {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      F_TRIG_Home {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      ModeValue : Int;
+      Tem_ModeValue : Int;
+      ModeChange : Bool;
+      IEC_Timer_DRIVES_OFF {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      IEC_Timer_DRIVES_ON {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+   END_VAR
+
+   VAR_TEMP 
+      tInRwENO : Bool;
+      tOutRwENO : Bool;
+      tInRwRetVal : Int;
+      tOutRwRetVal : Int;
+      "tROB-Input" : Array[1..128] of Byte;
+      tROB_Output : Array[1..128] of Byte;
+   END_VAR
+
+
+BEGIN
+	REGION Description
+	    (*
+	    %%%
+	VERSION: V1.0
+	LANGUAGE: ENGLISH
+	    %%%
+	    ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+	    ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+	    * *
+	    * R (uhlamat) R (obot) I (nterface) *
+	    * < < Robot Function Block > > *
+	    * < < Handing Tool > > *
+	    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - *
+	    * *
+	    * Customer:   *
+	    * Roboter Type: Kuka *
+	    * Software: Siemens TIA V15.1 SP1 *
+	    * Autor: ChenYi *
+	    * Company: Ruhlamat Automation Technologies (Suzhou) Co., Ltd *
+	    * Department: Elec.*
+	    * Telephone: + 86 (512) 6767 1108 *
+	    * *
+	    * Version: 1.0 *
+	    * Created: 26.05.2020 *
+	    * Modified: 26.05.2020
+	BY: ChenYi *
+	    * *
+	    ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+	    ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+	    %%%
+	 #oErrorCode:
+	    102:Robot home Failed
+	    205:Failed to read HW Input data;
+	    206:Failed to write HW Output data;
+	    303:Start up TimeOut   
+	    
+	    %%%
+	    *)
+	END_REGION
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  Program Start  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+	
+	
+	
+	//******************************************
+	REGION Bus Input Data Mapping
+	    
+	    #tInRwRetVal := DPRD_DAT(LADDR := #iHWID_In, RECORD => #sROBtoPLC, ENO => #tInRwENO);
+	    IF NOT #tInRwENO THEN
+	        GOTO ERROR;
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	//******************************************
+	(*Robot controller remmote control*)
+	
+	// I/O Act-Activate interface
+	#sPLCtoROB.Sys.SI.I_O_ACT := 1;
+	// Move Enable
+	//#sPLCtoROB.Sys.SI.MOVE_ENABLE := (#iSysRun AND (((#sROBtoPLC.Sys.SO.T1 OR #sROBtoPLC.Sys.SO.T2) AND #iManual) OR (#iAuto))) AND #iSafePos;
+	//#sPLCtoROB.Sys.SI.MOVE_ENABLE := #iSysRun AND (#iManual OR #iAuto) AND #iSafePos;
+	IF #sROBtoPLC.Sys.SO.EXT = TRUE THEN
+	    #sPLCtoROB.Sys.SI.MOVE_ENABLE := #iE_STOP;
+	END_IF;
+	IF #sROBtoPLC.Sys.SO.T1 = TRUE OR #sROBtoPLC.Sys.SO.T2 = TRUE THEN
+	    #sPLCtoROB.Sys.SI.MOVE_ENABLE := TRUE;
+	END_IF;
+	// Drives Off
+	#sPLCtoROB.Sys.SI.DRIVES_OFF := NOT #ModeChange;
+	
+	
+	IF #iManual
+	THEN
+	    #ModeValue := 1;
+	ELSIF #iAuto
+	THEN
+	    #ModeValue := 3;
+	    
+	END_IF;
+	
+	IF #ModeValue <> #Tem_ModeValue
+	THEN
+	    #ModeChange := true;
+	ELSE
+	    #ModeChange := false;
+	END_IF;
+	
+	IF #IEC_Timer_DRIVES_OFF.Q THEN
+	    #Tem_ModeValue := #ModeValue;
+	END_IF;
+	
+	#IEC_Timer_DRIVES_OFF(IN:=#ModeValue <> #Tem_ModeValue,
+	                      PT:=T#1s);
+	
+	
+	//#sPLCtoROB.Sys.SI.DRIVES_OFF := #iSysRun;
+	//#sPLCtoROB.Sys.SI.DRIVES_OFF := #iSysRun AND (#iManual OR #iAuto) AND #iSafePos;
+	(*Robot controller ready to Start*)
+	#sRobotReadyToStart := #iSysRun AND (#iAuto OR #iSpecial) AND
+	#sROBtoPLC.Sys.SO.USER_SAF AND #sROBtoPLC.Sys.SO.ALARM_STOP AND
+	#sROBtoPLC.Sys.SO.I_O_ACTCONF AND #sROBtoPLC.Sys.SO.ALARM_STOP_INTERN AND
+	#sPLCtoROB.Sys.SI.MOVE_ENABLE AND #sPLCtoROB.Sys.SI.DRIVES_OFF
+	AND #sROBtoPLC.Sys.SO.EXT;
+	
+	
+	REGION Robot Start control
+	    IF #sRobotReadyToStart THEN
+	        IF (#sSequence = 0) AND #ioAutoStart AND (#iAuto OR #iSpecial) AND NOT #sRobotActComplete THEN
+	            #sSequence := 100;
+	            #ioAutoStart := 0;
+	            #sRobotActComplete := 0;
+	            #sRobotProgrameChoseOK := 0;
+	        END_IF;
+	        
+	        #IEC_Timer_DRIVES_ON(IN := #sSequence=110,
+	                              PT := T#100ms);
+	        
+	        CASE #sSequence OF
+	(*            100:
+	                #sPLCtoROB.Sys.SI.DRIVES_ON := 0;
+	                #sSequence := 110;
+	                
+	            110:
+	                #sPLCtoROB.Sys.SI.DRIVES_ON := 1;
+	                IF #IEC_Timer_DRIVES_ON.Q THEN
+	                    #sPLCtoROB.Sys.SI.DRIVES_ON := 0;
+	                    #sSequence := 150;
+	                END_IF;
+	                *)
+	            100:  // DrivesOn
+	                IF NOT #sROBtoPLC.Sys.SO.RC_RDY1  THEN
+	                        #sPLCtoROB.Sys.SI.CONF_MESS := 1;
+	                        #sPLCtoROB.Sys.SI.DRIVES_ON := 0;
+	                    ELSIF #sROBtoPLC.Sys.SO.RC_RDY1 THEN
+	                        #sPLCtoROB.Sys.SI.CONF_MESS := 0;
+	                        #sPLCtoROB.Sys.SI.DRIVES_ON := 1;
+	                        IF #sDrivesOnDelay.Q AND #sROBtoPLC.Sys.SO.PERI_RDY THEN
+	                            #sSequence := 200;
+	                            #sPLCtoROB.Sys.SI.DRIVES_ON := 0;
+	                            
+	                        END_IF;
+	                    END_IF;
+	                    
+	                    200:  // ALARM CONF
+	                    IF #sROBtoPLC.Sys.SO.STOPMESS OR NOT #sROBtoPLC.Sys.SO.RC_RDY1 THEN
+	                        #sPLCtoROB.Sys.SI.CONF_MESS := 1;
+	                    ELSE
+	                        #sPLCtoROB.Sys.SI.CONF_MESS := 0;
+	                        #sSequence := 300;
+	                    END_IF;
+	                    
+	                    300: // EXT_Start    
+	                    IF #sROBtoPLC.Sys.SO.PERI_RDY AND NOT #sROBtoPLC.Sys.SO.STOPMESS THEN
+	                        #sPLCtoROB.Sys.SI.EXT_START := 1;
+	                        #sSequence := 400;
+	                    END_IF;
+	                    
+	                    400: // EXT_Start Reset  
+	                    IF #sROBtoPLC.Sys.SO.PRO_ACT THEN
+	                        #sPLCtoROB.Sys.SI.EXT_START := 0;
+	                        #sSequence := 500;
+	                    END_IF;
+	                    
+	                    500: // Programe Call
+	                    IF #sROBtoPLC.Sys.SO.PERI_RDY
+	                        AND #sROBtoPLC.Sys.SO.PRO_ACT
+	                        AND #sROBtoPLC.Sys.SO.PGNO_REQ
+	                        AND #iPGNO <> 0
+	                        //AND #s_ROBInput.User.User.Home.DI_AutoCycleStart
+	                        //AND #s_ROBOutput.Sys."SO_$ON_PATH"
+	                        //AND #s_ROBOutput.Sys."SO_$IN_HOME"
+	                    THEN
+	                        
+	                        #sPLCtoROB.Sys.SI.PGNO_PBIT := #iPGNO;
+	                        #sPLCtoROB.Sys.SI.PGNO_VALID := 1;
+	                        #sSequence := 600;
+	                    END_IF;
+	                    
+	                    600: // Programe Call Finish
+	                    IF #sROBtoPLC.Sys.SO.APPL_RUN THEN
+	                        #sPLCtoROB.Sys.SI.PGNO_VALID := 0;
+	                        #sRobotActComplete := 1;
+	                        #sSequence := 0;
+	                    END_IF;
+	                
+	        END_CASE;
+	        
+	    ELSE
+	        #sSequence := 0;
+	        #sRobotActComplete := 0;
+	//        #sPLCtoROB.Sys.SI.DRIVES_ON := 0;////2023/9/1更改
+	        #sPLCtoROB.Sys.SI.EXT_START := 0;
+	       // #sPLCtoROB.Sys.SI.CONF_MESS := 0;
+	        #sPLCtoROB.Sys.SI.PGNO_VALID := 0;
+	        #sPLCtoROB.Sys.SI.PGNO_PBIT := 0; 
+	    END_IF;
+	    
+	(*Robot ready to Running*)
+	    #sRobotReadyToRunning := #sRobotReadyToStart AND #sROBtoPLC.Sys.SO.PERI_RDY AND #sROBtoPLC.Sys.SO.PRO_ACT AND #sROBtoPLC.Sys.SO.APPL_RUN;
+	    
+	    
+	(*Robot TaskMode,PartType, SpeedValue Set*)
+	    #sPLCtoROB.User.Public.GI_TaskMode := #iTaskMode;
+	    #sPLCtoROB.User.Public.GI_PartType := #iPartType;
+	    #sPLCtoROB.User.Public.GI_SpeedSet := #iSpeedValue;
+	    
+	    // Robot Program calls
+	    #sPLCtoROB.Sys.SI.PGNO_PARITY := 1;
+	    //************************************************************
+	    (*DrivesOn delay*)
+	    #sDrivesOnDelay(IN := #sPLCtoROB.Sys.SI.DRIVES_ON,
+	                    PT := T#200ms      // IN: TIME
+	    );
+	(*StartTimeOut delay*)
+	    #sStartUpDelay(IN := #sSequence <> 0,
+	                   PT := T#5s        // IN: TIME
+	    );
+	    IF #sStartUpDelay.Q THEN
+	        #sHMI.StartUpTimeOut := 1;
+	        GOTO ERROR;
+	    ELSE
+	        #sHMI.StartUpTimeOut := 0;
+	    END_IF;
+	    
+	END_REGION
+	
+	//******************************************
+	REGION Home
+	    IF #sRobotReadyToRunning AND #sROBtoPLC.User.Home.DO161_WaitForHomeSeqStart AND NOT #sROBtoPLC.User.Home.DO162_GoHomeFail AND #ioSrartHome THEN
+	        #sPLCtoROB.User.Home.DI161_HomeSeqStart := 1;
+	    END_IF;
+	    
+	    IF #sRobotReadyToRunning AND #sROBtoPLC.User.Home.DO163_HomeSeqOK THEN
+	        #ioSrartHome := 0;
+	        #sPLCtoROB.User.Home.DI161_HomeSeqStart := 0;
+	    END_IF;
+	    
+	    IF #sROBtoPLC.User.Home.DO162_GoHomeFail THEN
+	        GOTO ERROR;
+	    END_IF;
+	    
+	END_REGION ;
+	
+	REGION Auto Cycle Start
+	    
+	    (*Start Auto Cycle*)
+	    IF #sRobotReadyToRunning AND #sROBtoPLC.User.Home.DO164_WaitForAutoStart AND #ioStartAutoCycle THEN
+	        #sPLCtoROB.User.Home.DI162_AutoCycleStart := 1;
+	    ELSE
+	        #sPLCtoROB.User.Home.DI162_AutoCycleStart := 0;
+	    END_IF;
+	    
+	    IF NOT #sROBtoPLC.User.Home.DO164_WaitForAutoStart THEN
+	        #ioStartAutoCycle := 0;
+	    END_IF;
+	    
+	    
+	END_REGION ;
+	
+	
+	
+	
+	REGION Bus Output Data Mapping
+	    
+	    #tOutRwRetVal := DPWR_DAT(LADDR := #iHWID_Out, RECORD := #sPLCtoROB, ENO => #tOutRwENO);
+	    IF NOT #tOutRwENO THEN
+	        GOTO ERROR;
+	    END_IF;
+	    
+	END_REGION
+	
+	//----------------------------------------------------------------------------------------------------
+	REGION Output
+	    #oReady := #sRobotReadyToRunning;
+	    #oStartComplete := #sRobotActComplete;
+	    
+	    
+	END_REGION
+	
+	REGION HMI Signal
+	    //SI  
+	    #sHMI.PGNO_PBIT := #sPLCtoROB.Sys.SI.PGNO_PBIT;
+	    #sHMI.EXT_START := #sPLCtoROB.Sys.SI.EXT_START;
+	    #sHMI.MOVE_ENABLE := #sHMI.MOVE_ENABLE;
+	    #sHMI.CONF_MESS := #sPLCtoROB.Sys.SI.CONF_MESS;
+	    #sHMI.DRIVES_OFF := NOT #sHMI.DRIVES_OFF;
+	    #sHMI.DRIVES_ON := #sHMI.DRIVES_ON;
+	    #sHMI.I_O_ACT := #sHMI.I_O_ACT;
+	    //UI   
+	    #sHMI.TaskMode := #sPLCtoROB.User.Public.GI_TaskMode;
+	    #sHMI.PartType := #sPLCtoROB.User.Public.GI_PartType;
+	    #sHMI.SpeedSet := #sPLCtoROB.User.Public.GI_SpeedSet;
+	    #sHMI.HomeSeqStart := #sPLCtoROB.User.Home.DI161_HomeSeqStart;
+	    #sHMI.AutoCycleStart := #sPLCtoROB.User.Home.DI162_AutoCycleStart;
+	    //SO   
+	    #sHMI.RC_RDY1 := #sROBtoPLC.Sys.SO.RC_RDY1;
+	    #sHMI.ALARM_STOP := NOT #sROBtoPLC.Sys.SO.ALARM_STOP;
+	    #sHMI.USER_SAF := #sROBtoPLC.Sys.SO.USER_SAF;
+	    #sHMI.PERI_RDY := #sROBtoPLC.Sys.SO.PERI_RDY;
+	    #sHMI.ROB_CAL := #sROBtoPLC.Sys.SO.ROB_CAL;
+	    #sHMI.I_O_ACTCONF := #sROBtoPLC.Sys.SO.I_O_ACTCONF;
+	    #sHMI.STOPMESS := #sROBtoPLC.Sys.SO.STOPMESS;
+	    #sHMI.ALARM_STOP_INTERN := NOT #sROBtoPLC.Sys.SO.ALARM_STOP_INTERN;
+	    #sHMI.PGNO_FBIT_REFL := #sROBtoPLC.Sys.SO.PGNO_FBIT_REFL;
+	    #sHMI.PRO_ACT := #sROBtoPLC.Sys.SO.PRO_ACT;
+	    #sHMI.APPL_RUN := #sROBtoPLC.Sys.SO.APPL_RUN;
+	    #sHMI.PRO_MOVE := #sROBtoPLC.Sys.SO.PRO_MOVE;
+	    #sHMI.IN_HOME := #sROBtoPLC.Sys.SO.IN_HOME;
+	    #sHMI.ON_PATH := #sROBtoPLC.Sys.SO.ON_PATH;
+	    #sHMI.NEAR_POSRET := #sROBtoPLC.Sys.SO.NEAR_POSRET;
+	    #sHMI.T1 := #sROBtoPLC.Sys.SO.T1;
+	    #sHMI.T2 := #sROBtoPLC.Sys.SO.T2;
+	    #sHMI.AUT := #sROBtoPLC.Sys.SO.AUT;
+	    #sHMI.EXT := #sROBtoPLC.Sys.SO.EXT;
+	    //UO
+	    #sHMI.CurrentMode := #sROBtoPLC.User.Public.GO_CurrentMode;
+	    #sHMI.CurrentPartType := #sROBtoPLC.User.Public.GO_CurrentPartType;
+	    #sHMI.SpeedActual := #sROBtoPLC.User.Public.GO_SpeedActual;
+	    #sHMI.ProgramSequence := #sROBtoPLC.User.Public.GO_RobotTaskSequence;
+	    #sHMI.WaitForHomeSeqStart := #sROBtoPLC.User.Home.DO161_WaitForHomeSeqStart;
+	    #sHMI.GoHomeFail := #sROBtoPLC.User.Home.DO162_GoHomeFail;
+	    #sHMI.HomeSeqOK := #sROBtoPLC.User.Home.DO163_HomeSeqOK;
+	    #sHMI.WaitForAutoCycleStart := #sROBtoPLC.User.Home.DO164_WaitForAutoStart;
+	    //IO
+	    #sHMI.iTaskMode := #iTaskMode;
+	    #sHMI.iPartType := #iPartType;
+	    #sHMI.iSpeedValue := #iSpeedValue;
+	    #sHMI.iPGNO := #iPGNO;
+	    
+	    #sHMI.AutoStart := #ioAutoStart;
+	    #sHMI.SrartHome := #ioSrartHome;
+	    #sHMI.StartAutoCycle := #ioStartAutoCycle;
+	    
+	    #sHMI.Ready := #oReady;
+	    #sHMI.StartComplete := #oStartComplete;
+	    #sHMI.Warning := #oWarning;
+	    
+	    
+	(*Robot working time monitor*)
+	    IF #iT1000ms AND NOT #sHMI.CountPulse AND #sROBtoPLC.Sys.SO.PERI_RDY THEN
+	        #sHMI.Seconds := #sHMI.Seconds + 1;
+	    END_IF;
+	    #sHMI.CountPulse := #iT1000ms;
+	    IF #sHMI.Seconds >= 60 THEN
+	        #sHMI.Minute := #sHMI.Minute + 1;
+	        #sHMI.Seconds := 0;
+	    END_IF;
+	    IF #sHMI.Minute >= 60 THEN
+	        #sHMI.Hours := #sHMI.Hours + 1;
+	        #sHMI.Minute := 0;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Error
+	    
+	    IF #iReset AND #oError THEN
+	        #oError := FALSE;
+	        #oErrorCode := 0;
+	    END_IF;
+	   
+	ERROR:
+	    ENO := 0;
+	    
+	    IF #sROBtoPLC.User.Home.DO162_GoHomeFail THEN
+	        #oErrorCode := 102;
+	    ELSIF #tInRwRetVal <> 0 OR NOT #tInRwENO THEN
+	        #oError := 1;
+	        #oErrorCode := 205;
+	    ELSIF #tOutRwRetVal <> 0 OR NOT #tOutRwENO THEN
+	        #oError := 1;
+	        #oErrorCode := 206;
+	    ELSIF #sStartUpDelay.Q THEN
+	        #oError := 1;
+	        #oErrorCode := 303;
+	    END_IF;
+	    
+	    
+	    
+	    #sHMI.Error := #oError;
+	    #sHMI.ErrorCode := #oErrorCode;
+	    
+	    
+	END_REGION
+	
+	// IF #sROBtoPLC.User.Gripper.DO129_GripperOpen THEN
+	//     "ST10Cylinder".Cy[13].Inout.ManualGoHome := TRUE;
+	//     "ST10Cylinder".Cy[13].Inout.ManualGoWork := FALSE;
+	// END_IF;
+	
+	// IF #sROBtoPLC.User.Gripper.DO130_GripperClose THEN
+	//     "ST10Cylinder".Cy[13].Inout.ManualGoWork := TRUE;
+	//     "ST10Cylinder".Cy[13].Inout.ManualGoHome := FALSE;
+	// END_IF;
+	
+	// #F_TRIG_Work(CLK:=#sROBtoPLC.User.Gripper.DO130_GripperClose);
+	
+	// #F_TRIG_Home(CLK:= #sROBtoPLC.User.Gripper.DO129_GripperOpen );
+	
+	// IF #F_TRIG_Work.Q OR #F_TRIG_Home.Q THEN
+	//     "ST10Cylinder".Cy[13].Inout.ManualGoWork := FALSE;
+	//     "ST10Cylinder".Cy[13].Inout.ManualGoHome := FALSE;
+	// END_IF;
+	
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  Program End  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	
+END_FUNCTION_BLOCK
+

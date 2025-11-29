@@ -1,0 +1,976 @@
+﻿FUNCTION_BLOCK "FB_AteqF620"
+{ S7_Optimized_Access := 'FALSE' }
+AUTHOR : 'Chaoyao.Zheng'
+FAMILY : LeakTester
+VERSION : 1.0
+   VAR_INPUT 
+      iHWID_Slot1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iHWID_Slot2 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iHWID_Slot3 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iHWID_Slot4 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iHWID_Slot5 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iHWID_Slot6 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iHWID_Slot7 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iHWID_Slot8 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : HW_IO;
+      iSysRun { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      iReset { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      iAuto { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      iManual { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      iTimeout { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Time := T#5S;
+   END_VAR
+
+   VAR_OUTPUT 
+      oDeviceReady { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      oReady { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      oError { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      oSetProgOk { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      oMeasureOk { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      oErrorCode { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+      oFillTime : Real;
+      oStabTime : Real;
+      oTeatTime : Real;
+      oDumpTime : Real;
+      oResult { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+         PassPart { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         FailTestPart { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         FailRefPart { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         Alarm { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         PressureError { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         PartRecoverable { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         CalibError { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         CalibCheckError { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         AtrFault { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         Leak { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+            Value { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+            Unit { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : String[10];
+         END_STRUCT;
+      END_STRUCT;
+      oPressure { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+         Value { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+         Unit { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : String[10];
+      END_STRUCT;
+      oActProgStep { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+      oActProgNo { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+      oElapsedTime { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Time;
+   END_VAR
+
+   VAR_IN_OUT 
+      ioSetProg { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      ioMeasure { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      ioSpecialCycle : Bool;
+      ioReadProTime : Bool;
+   END_VAR
+
+   VAR 
+      sHMI { S7_SetPoint := 'False'} : "RCS_typeAteqF620Visual";
+      sAuto { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+         Set { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+            ProgNo { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         END_STRUCT;
+      END_STRUCT;
+      sHelp { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+         First { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool := FALSE;
+         AutoOld { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ManualOld { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ResetRis { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ResetOld { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         SetProgRis { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         SetProgOld { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         SetProgAct { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         MeasureRis { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         MeasureOld { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         MeasureAct { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         EnableTime { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         Abort { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         OrderCnt { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         Step { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Array[1..2] of UInt;
+         CmdTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'; ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : TON_TIME;
+         Set { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+            ProgNo { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         END_STRUCT;
+      END_STRUCT;
+      sRecv { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+         Echo { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+            Reset { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            Start { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            StartSpec { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            ProgramSel { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            ReadPara { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            ReadLastResult { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            Status { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         END_STRUCT;
+         Result { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+            PassPart { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            FailTestPart { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            FailRefPart { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            Alarm { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            PressureError { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            PartRecoverable { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            CalibError { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            CalibCheckError { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            AtrFault { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+            Leak { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+               Value { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+               Unit { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : String[10];
+            END_STRUCT;
+         END_STRUCT;
+         CycleEnd { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ErrorCode { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         ActProgram { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         ResultCnt { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         ActTestType { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         ActProgStep { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+         ActPressure { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+         PressureUnitCode { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+         ActLeak { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+         LeakUnitCode { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+         FillTime { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+         StabTime { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+         TeatTime { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+         DumpTime { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UDInt;
+      END_STRUCT;
+      sSend { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+         Reset { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         Start { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         StartSpec { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ProgramSel { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ReadPara { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ReadLastResult { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         ProgNo { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : UInt;
+      END_STRUCT;
+      sArrayInput { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Array[1..#cSlotAmount, 1..#cFieldbusBytes] of Byte;
+      sArrayOutput { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Array[1..#cSlotAmount, 1..#cFieldbusBytes] of Byte;
+      SpecialCycleStep : Int;
+      ReadProTimeStep : Int;
+      IEC_Timer_0_Instance {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      IEC_Timer_1_Instance {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      IEC_Timer_0_Instance_1 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      IEC_Timer_1_Instance_1 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      IEC_Timer_2_Instance_1 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+   END_VAR
+
+   VAR_TEMP 
+      tIndex : UInt;
+      tLoop : Int;
+      tZero : Byte;
+      tRetval : Struct
+         LocallyErrID : Word;
+         DPRD : Array[1..#cSlotAmount] of Int;
+         DPWR : Array[1..#cSlotAmount] of Int;
+         FILL : Int;
+      END_STRUCT;
+   END_VAR
+
+   VAR CONSTANT 
+      cSlotAmount : UInt := 4;
+      cFieldbusBytes : UInt := 64;
+   END_VAR
+
+
+BEGIN
+	REGION Description header
+	    //================================================================================
+	    // (C) Ruhlamat Automation Technologies (Suzhou) Co.,Ltd.
+	    //--------------------------------------------------------------------------------
+	    // TargetSystem: ATEQ F620(COMX 100XX-PNS)
+	    // Engineering : TIA Portal V15 SP1
+	    // Author      : Chaoyao.Zheng
+	    //--------------------------------------------------------------------------------
+	    // Moduleversions:
+	    // V1.0 2020-08-24 - Chaoyao
+	    // - Initial version
+	    //================================================================================
+	END_REGION
+	REGION Error code explanation
+	    //  100: DPRD_DAT error occurred                                    
+	    //  101: DPWR_DAT error occurred                                    
+	    //  102: GET_ERR_ID error occurred                                  
+	    //  200: Order while FB not ready (oReady=FALSE)                    
+	    //  201: Several orders set at the same time                        
+	    //  202: Program number is not valid (1-128)                        
+	    //  203: Command error occurred                                     
+	    //  204: Command timeout                                            
+	END_REGION
+	
+	(* FB Init *)
+	IF NOT #sHelp.First THEN
+	    (* initialize outputs *)
+	    #sHelp.Abort := FALSE;
+	    #oDeviceReady := FALSE;
+	    #oReady := FALSE;
+	    #oSetProgOk := FALSE;
+	    #oMeasureOk := FALSE;
+	    #oErrorCode := 0;
+	    #oElapsedTime := T#0s;
+	    #tZero := 0;
+	    #tRetval.FILL := FILL(BVAL := #tZero, BLK => #oResult);
+	    #sHMI.Status.InstanceName := GetInstanceName(0);
+	    #sHelp.First := TRUE;
+	ELSE
+	    (* reset fieldbus output *)
+	    FOR #tLoop := 1 TO UINT_TO_INT(#cSlotAmount) DO
+	        UFILL_BLK(IN := 0,
+	                  COUNT := #cFieldbusBytes,
+	                  OUT => #sArrayOutput[#tLoop, 01]);
+	    END_FOR;
+	    
+	    (* cyclic read tester input *)
+	    #tRetval.DPRD[1] := DPRD_DAT(LADDR := #iHWID_Slot1,
+	                                 RECORD => #sArrayInput[1]);
+	    #tRetval.DPRD[2] := DPRD_DAT(LADDR := #iHWID_Slot2,
+	                                 RECORD => #sArrayInput[2]);
+	    #tRetval.DPRD[3] := DPRD_DAT(LADDR := #iHWID_Slot3,
+	                                 RECORD => #sArrayInput[3]);
+	    #tRetval.DPRD[4] := DPRD_DAT(LADDR := #iHWID_Slot4,
+	                                 RECORD => #sArrayInput[4]);
+	    IF (#tRetval.DPRD[1] <> 0) OR (#tRetval.DPRD[2] <> 0) OR (#tRetval.DPRD[3] <> 0) OR (#tRetval.DPRD[4] <> 0) THEN
+	        #oErrorCode := 100; // Error cyclic read
+	    END_IF;
+	    
+	    (* move input bytes to static bits *)
+	    #sRecv.Echo.Reset := #sArrayInput[1, 01].%X0;
+	    #sRecv.Echo.Start := #sArrayInput[1, 01].%X1;
+	    #sRecv.Echo.StartSpec := #sArrayInput[1, 01].%X2;
+	    #sRecv.Echo.ProgramSel := #sArrayInput[1, 01].%X3;
+	    #sRecv.Echo.ReadPara := #sArrayInput[1, 02].%X5;
+	    #sRecv.Echo.ReadLastResult := #sArrayInput[1, 02].%X7;
+	    #sRecv.Result.PassPart := #sArrayInput[1, 13].%X0;
+	    #sRecv.Result.FailTestPart := #sArrayInput[1, 13].%X1;
+	    #sRecv.Result.FailRefPart := #sArrayInput[1, 13].%X2;
+	    #sRecv.Result.Alarm := #sArrayInput[1, 13].%X3;
+	    #sRecv.Result.PressureError := #sArrayInput[1, 13].%X4;
+	    #sRecv.CycleEnd := #sArrayInput[1, 13].%X5;
+	    #sRecv.Result.PartRecoverable := #sArrayInput[1, 13].%X6;
+	    #sRecv.Result.CalibError := #sArrayInput[1, 13].%X7;
+	    #sRecv.Result.CalibCheckError := #sArrayInput[1, 14].%X0;
+	    #sRecv.Result.AtrFault := #sArrayInput[1, 14].%X1;
+	    #sRecv.Result.Leak.Value := DINT_TO_REAL(#sRecv.ActLeak) / 1000.0;
+	    #oFillTime := DINT_TO_REAL(#sRecv.FillTime) / 1000.0;
+	    #oStabTime := DINT_TO_REAL(#sRecv.StabTime) / 1000.0;
+	    #oTeatTime := DINT_TO_REAL(#sRecv.TeatTime) / 1000.0;
+	    #oDumpTime := DINT_TO_REAL(#sRecv.DumpTime) / 1000.0;
+	    #sRecv.Echo.Status.%B0 := #sArrayInput[1, 01];
+	    #sRecv.Echo.Status.%B1 := #sArrayInput[1, 02];
+	    #sRecv.ErrorCode.%B0 := #sArrayInput[1, 03];
+	    #sRecv.ErrorCode.%B1 := #sArrayInput[1, 04];
+	    #sRecv.ActProgram.%B0 := #sArrayInput[1, 07];
+	    #sRecv.ActProgram.%B1 := #sArrayInput[1, 08];
+	    #sRecv.ActProgStep.%B0 := #sArrayInput[1, 15];
+	    #sRecv.ActProgStep.%B1 := #sArrayInput[1, 16];
+	    #sRecv.ActPressure.%B0 := #sArrayInput[1, 17];
+	    #sRecv.ActPressure.%B1 := #sArrayInput[1, 18];
+	    #sRecv.ActPressure.%B2 := #sArrayInput[1, 19];
+	    #sRecv.ActPressure.%B3 := #sArrayInput[1, 20];
+	    #sRecv.PressureUnitCode.%B0 := #sArrayInput[1, 21];
+	    #sRecv.PressureUnitCode.%B1 := #sArrayInput[1, 22];
+	    #sRecv.PressureUnitCode.%B2 := #sArrayInput[1, 23];
+	    #sRecv.PressureUnitCode.%B3 := #sArrayInput[1, 24];
+	    #sRecv.ActLeak.%B0 := #sArrayInput[1, 25];
+	    #sRecv.ActLeak.%B1 := #sArrayInput[1, 26];
+	    #sRecv.ActLeak.%B2 := #sArrayInput[1, 27];
+	    #sRecv.ActLeak.%B3 := #sArrayInput[1, 28];
+	    #sRecv.LeakUnitCode.%B0 := #sArrayInput[1, 29];
+	    #sRecv.LeakUnitCode.%B1 := #sArrayInput[1, 30];
+	    #sRecv.LeakUnitCode.%B2 := #sArrayInput[1, 31];
+	    #sRecv.LeakUnitCode.%B3 := #sArrayInput[1, 32];
+	    #sRecv.FillTime.%B0 := #sArrayInput[1, 35];
+	    #sRecv.FillTime.%B1 := #sArrayInput[1, 36];
+	    #sRecv.FillTime.%B2 := #sArrayInput[1, 37];
+	    #sRecv.FillTime.%B3 := #sArrayInput[1, 38];
+	    #sRecv.StabTime.%B0 := #sArrayInput[1, 41];
+	    #sRecv.StabTime.%B1 := #sArrayInput[1, 42];
+	    #sRecv.StabTime.%B2 := #sArrayInput[1, 43];
+	    #sRecv.StabTime.%B3 := #sArrayInput[1, 44];
+	    #sRecv.TeatTime.%B0 := #sArrayInput[1, 47];
+	    #sRecv.TeatTime.%B1 := #sArrayInput[1, 48];
+	    #sRecv.TeatTime.%B2 := #sArrayInput[1, 49];
+	    #sRecv.TeatTime.%B3 := #sArrayInput[1, 50];
+	    #sRecv.DumpTime.%B0 := #sArrayInput[1, 53];
+	    #sRecv.DumpTime.%B1 := #sArrayInput[1, 54];
+	    #sRecv.DumpTime.%B2 := #sArrayInput[1, 55];
+	    #sRecv.DumpTime.%B3 := #sArrayInput[1, 56];
+	    
+	    
+	    
+	    CASE #sRecv.LeakUnitCode OF
+	        0000:
+	            #sRecv.Result.Leak.Unit := 'cm3/s';
+	        1000:
+	            #sRecv.Result.Leak.Unit := 'cm3/min';
+	        2000:
+	            #sRecv.Result.Leak.Unit := 'cm3/h';
+	        3000:
+	            #sRecv.Result.Leak.Unit := 'mm3/h';
+	        4000:
+	            #sRecv.Result.Leak.Unit := 'Pa';
+	        5000:
+	            #sRecv.Result.Leak.Unit := 'Pa/s';
+	        6000:
+	            #sRecv.Result.Leak.Unit := 'Pa';
+	        7000:
+	            #sRecv.Result.Leak.Unit := 'Pa';
+	        8000:
+	            #sRecv.Result.Leak.Unit := 'Pa/s';
+	        9000:
+	            #sRecv.Result.Leak.Unit := 'Pa/s';
+	        11000:
+	            #sRecv.Result.Leak.Unit := 'bar';
+	        12000:
+	            #sRecv.Result.Leak.Unit := 'KPa';
+	        13000:
+	            #sRecv.Result.Leak.Unit := 'psi';
+	        14000:
+	            #sRecv.Result.Leak.Unit := 'mbar';
+	        15000:
+	            #sRecv.Result.Leak.Unit := 'MPa';
+	        43000:
+	            #sRecv.Result.Leak.Unit := 'Pa';
+	        44000:
+	            #sRecv.Result.Leak.Unit := 'Pa';
+	        45000:
+	            #sRecv.Result.Leak.Unit := 'Pa/s';
+	        46000:
+	            #sRecv.Result.Leak.Unit := 'In3/s';
+	        47000:
+	            #sRecv.Result.Leak.Unit := 'In3/min';
+	        48000:
+	            #sRecv.Result.Leak.Unit := 'In3/h';
+	        49000:
+	            #sRecv.Result.Leak.Unit := 'Ft3/h';
+	        50000:
+	            #sRecv.Result.Leak.Unit := 'mL/s';
+	        51000:
+	            #sRecv.Result.Leak.Unit := 'mL/min';
+	        52000:
+	            #sRecv.Result.Leak.Unit := 'mL/h';
+	        58000:
+	            #sRecv.Result.Leak.Unit := 'cm3/s';
+	        59000:
+	            #sRecv.Result.Leak.Unit := 'cm3/min';
+	        60000:
+	            #sRecv.Result.Leak.Unit := 'cm3/h';
+	        76000:
+	            #sRecv.Result.Leak.Unit := 'Ft3/s';
+	        77000:
+	            #sRecv.Result.Leak.Unit := 'Ft3/min';
+	        84000:
+	            #sRecv.Result.Leak.Unit := 'sccm';
+	        ELSE
+	            ;
+	    END_CASE;
+	    
+	    (* detection mode change *)
+	    IF NOT #iSysRun OR (#iManual XOR #sHelp.ManualOld) OR (#iAuto XOR #sHelp.AutoOld) THEN
+	        #sHMI.Trigger.SetProg := FALSE;
+	        #sHMI.Trigger.Measure := FALSE;
+	        #ioSetProg := FALSE;
+	        #ioMeasure := FALSE;
+	        (* reset outputs *)
+	        // Todo
+	    END_IF;
+	    #sHelp.ManualOld := #iManual;
+	    #sHelp.AutoOld := #iAuto;
+	    
+	    (* detection rising edges of inputs *)
+	    IF #iManual THEN
+	        #ioSetProg := FALSE;
+	        #ioMeasure := FALSE;
+	    ELSIF #iAuto THEN
+	        #sHMI.Trigger.SetProg := FALSE;
+	        #sHMI.Trigger.Measure := FALSE;
+	    END_IF;
+	    #sHelp.ResetRis := NOT #sHelp.ResetOld AND #iReset;
+	    #sHelp.ResetOld := #iReset;
+	    #sHelp.SetProgRis := NOT #sHelp.SetProgOld AND (#sHMI.Trigger.SetProg OR #ioSetProg);
+	    #sHelp.SetProgOld := #sHMI.Trigger.SetProg OR #ioSetProg;
+	    #sHelp.MeasureRis := NOT #sHelp.MeasureOld AND (#sHMI.Trigger.Measure OR #ioMeasure);
+	    #sHelp.MeasureOld := #sHMI.Trigger.Measure OR #ioMeasure;
+	    
+	    (* order handling *)
+	    #sHelp.OrderCnt := 0;
+	    IF #sHelp.SetProgOld THEN
+	        #sHelp.OrderCnt := #sHelp.OrderCnt + 1;
+	    END_IF;
+	    IF #sHelp.MeasureOld THEN
+	        #sHelp.OrderCnt := #sHelp.OrderCnt + 1;
+	    END_IF;
+	    IF (#sHelp.OrderCnt > 1) AND (#oErrorCode = 0) THEN
+	        #oErrorCode := 201; // twice command request
+	    END_IF;
+	    IF (#oErrorCode = 0) AND NOT #oReady THEN
+	        IF #sHelp.SetProgRis OR #sHelp.MeasureRis THEN
+	            #oErrorCode := 200; // command while not ready
+	        END_IF;
+	    END_IF;
+	    
+	    (* error clear *)
+	    IF (#sHelp.OrderCnt = 0) THEN
+	        IF #sHelp.ResetRis THEN
+	            #oErrorCode := 0;
+	            #sSend.Reset := TRUE;
+	        ELSE
+	            #sSend.Reset := FALSE;
+	        END_IF;
+	    END_IF;
+	    
+	    (* check timeout *)
+	    #sHelp.CmdTimer(IN := #sHelp.EnableTime,
+	                    PT := #iTimeout);
+	    (* Sequence --- SetProg *)
+	    REGION SetProg
+	        #tIndex := 1;
+	        
+	        IF (#oErrorCode = 0) AND #sHelp.SetProgRis THEN
+	            #tZero := 0;
+	            #tRetval.FILL := FILL(BVAL := #tZero, BLK => #oResult);
+	            IF #iAuto THEN
+	                #sHelp.Set := #sAuto.Set;
+	            ELSE
+	                #sHelp.Set := #sHMI.Set;
+	            END_IF;
+	            IF (#sHelp.Set.ProgNo >= 1) AND (#sHelp.Set.ProgNo <= 128) THEN
+	                #sHelp.Abort := FALSE;
+	                #sHelp.SetProgAct := TRUE;
+	                #sHelp.Step[#tIndex] := 0;
+	            ELSE
+	                #oErrorCode := 202;
+	            END_IF;
+	        END_IF;
+	        
+	        IF NOT #sHelp.SetProgOld THEN
+	            #oSetProgOk := FALSE;
+	            IF #sHelp.SetProgAct THEN
+	                #sHelp.Abort := TRUE;
+	            END_IF;
+	        END_IF;
+	        
+	        IF #sHelp.SetProgAct THEN
+	            CASE #sHelp.Step[#tIndex] OF
+	                0:  (* check error code *)
+	                    IF #sRecv.ErrorCode <> 16#0000 THEN
+	                        #sHelp.Step[#tIndex] := 1;
+	                    ELSE
+	                        #sHelp.Step[#tIndex] := 4;
+	                    END_IF;
+	                    
+	                1:  (* start order *)
+	                    IF #sRecv.Echo.Status = 16#0000 THEN
+	                        #sSend.Reset := TRUE;
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    END_IF;
+	                    
+	                2:  (* order accepted *)
+	                    IF #sRecv.Echo.Reset AND #sRecv.ErrorCode = 16#FFFF THEN
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 99;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                3:  (* order finished *)
+	                    IF #sRecv.Echo.Reset AND #sRecv.ErrorCode <> 16#FFFF THEN
+	                        #sSend.Reset := FALSE;
+	                        #sHelp.EnableTime := FALSE;
+	                        IF #sRecv.ErrorCode = 16#0000 THEN
+	                            #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                        ELSE
+	                            #oErrorCode := 203;
+	                            #sHelp.Step[#tIndex] := 99;
+	                        END_IF;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 99;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                4:  (* start order *)
+	                    IF (#sRecv.Echo.Status = 16#0000) THEN
+	                        #sSend.ProgNo := #sHelp.Set.ProgNo - 1;
+	                        #sSend.ProgramSel := TRUE;
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    END_IF;
+	                    
+	                5:  (* order accepted *)
+	                    IF #sRecv.Echo.ProgramSel AND #sRecv.ErrorCode = 16#FFFF THEN
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 995;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                6:  (* order finished *)
+	                    IF #sRecv.Echo.ProgramSel AND #sRecv.ErrorCode <> 16#FFFF THEN
+	                        #sSend.ProgramSel := FALSE;
+	                        #sHelp.EnableTime := FALSE;
+	                        IF #sRecv.ErrorCode = 16#0000 THEN
+	                            #sHelp.Step[#tIndex] := 996;
+	                        ELSE
+	                            #oErrorCode := 203;
+	                            #sHelp.Step[#tIndex] := 997;
+	                        END_IF;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 998;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                99,995,996,997,998,999:
+	                    #sSend.Reset := FALSE;
+	                    #sSend.ProgramSel := FALSE;
+	                    #sHelp.SetProgAct := FALSE;
+	                    #sHMI.Trigger.SetProg := FALSE;
+	                    #sHelp.Abort := FALSE;
+	                    IF #oErrorCode = 0 THEN
+	                        #oSetProgOk := TRUE;
+	                    END_IF;
+	            END_CASE;
+	        END_IF;
+	    END_REGION
+	    (* Sequence --- Measure *)
+	    REGION Measure
+	        #tIndex := 2;
+	        
+	        IF (#oErrorCode = 0) AND #sHelp.MeasureRis THEN
+	            #tZero := 0;
+	            #tRetval.FILL := FILL(BVAL := #tZero, BLK => #oResult);
+	            IF #iAuto THEN
+	                #sHelp.Set := #sAuto.Set;
+	            ELSE
+	                #sHelp.Set := #sHMI.Set;
+	            END_IF;
+	            #sHelp.Abort := FALSE;
+	            #sHelp.MeasureAct := TRUE;
+	            #sHelp.Step[#tIndex] := 0;
+	        END_IF;
+	        
+	        IF NOT #sHelp.MeasureOld THEN
+	            #oMeasureOk := FALSE;
+	            IF #sHelp.MeasureAct THEN
+	                #sHelp.Abort := TRUE;
+	            END_IF;
+	        END_IF;
+	        
+	        IF #sHelp.MeasureAct THEN
+	            CASE #sHelp.Step[#tIndex] OF
+	                0:  (* check error code *)
+	                    IF #sRecv.ErrorCode <> 16#0000 THEN
+	                        #sHelp.Step[#tIndex] := 1;
+	                    ELSE
+	                        #sHelp.Step[#tIndex] := 4;
+	                    END_IF;
+	                    
+	                1:  (* start order *)
+	                    IF #sRecv.Echo.Status = 16#0000 THEN
+	                        #sSend.Reset := TRUE;
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    END_IF;
+	                    
+	                2:  (* order accepted *)
+	                    IF #sRecv.Echo.Reset AND #sRecv.ErrorCode = 16#FFFF THEN
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 299;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                3:  (* order finished *)
+	                    IF #sRecv.Echo.Reset AND #sRecv.ErrorCode <> 16#FFFF THEN
+	                        #sSend.Reset := FALSE;
+	                        #sHelp.EnableTime := FALSE;
+	                        IF #sRecv.ErrorCode = 16#0000 THEN
+	                            #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                        ELSE
+	                            #oErrorCode := 203;
+	                            #sHelp.Step[#tIndex] := 398;
+	                        END_IF;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 399;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                4:  (* start order *)
+	                    IF (#sRecv.Echo.Status = 16#0000) THEN
+	                        #sSend.Start := TRUE;
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    END_IF;
+	                    
+	                5:  (* order accepted *)
+	                    IF #sRecv.Echo.Start AND #sRecv.ErrorCode = 16#FFFF THEN
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 599;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                6:  (* order finished *)
+	                    IF #sRecv.Echo.Start AND #sRecv.ErrorCode <> 16#FFFF THEN
+	                        #sSend.Start := FALSE;
+	                        #sHelp.EnableTime := FALSE;
+	                        IF #sRecv.ErrorCode = 16#0000 THEN
+	                            #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                        ELSE
+	                            #oErrorCode := 203;
+	                            #sHelp.Step[#tIndex] := 698;
+	                        END_IF;
+	                    ELSIF #sHelp.Abort THEN
+	                        #sHelp.Step[#tIndex] := 10;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 699;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                7:  (* start order *)
+	                    IF (#sRecv.Echo.Status = 16#0000) AND #sRecv.CycleEnd THEN
+	                        #sSend.ReadLastResult := TRUE;
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    END_IF;
+	                    
+	                8:  (* order accepted *)
+	                    IF #sRecv.Echo.ReadLastResult AND #sRecv.ErrorCode = 16#FFFF THEN
+	                        #sHelp.EnableTime := FALSE;
+	                        #sHelp.Step[#tIndex] := #sHelp.Step[#tIndex] + 1;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 899;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                9:  (* order finished *)
+	                    IF #sRecv.Echo.ReadLastResult AND #sRecv.ErrorCode <> 16#FFFF THEN
+	                        #sSend.ReadLastResult := FALSE;
+	                        #sHelp.EnableTime := FALSE;
+	                        IF #sRecv.ErrorCode = 16#0000 THEN
+	                            #sHelp.Step[#tIndex] := 997;
+	                        ELSE
+	                            #oErrorCode := 203;
+	                            #sHelp.Step[#tIndex] := 998;
+	                        END_IF;
+	                    ELSE
+	                        #sHelp.EnableTime := TRUE;
+	                        IF #sHelp.CmdTimer.Q THEN
+	                            #oErrorCode := 204;
+	                            #sHelp.Step[#tIndex] := 999;
+	                        END_IF;
+	                    END_IF;
+	                    
+	                10:  (* abort order *)
+	                    #sHelp.Step[#tIndex] := 1099;
+	                    
+	                299,398,399,599,698,699,899,997,998,999,1099:
+	                    #sSend.Reset := FALSE;
+	                    #sSend.Start := FALSE;
+	                    #sSend.ReadLastResult := FALSE;
+	                    #sHelp.MeasureAct := FALSE;
+	                    #sHMI.Trigger.Measure := FALSE;
+	                    #sHelp.Abort := FALSE;
+	                    IF #oErrorCode = 0 THEN
+	                        #oResult := #sRecv.Result;
+	                        #oMeasureOk := TRUE;
+	                    END_IF;
+	            END_CASE;
+	        END_IF;
+	    END_REGION
+	    
+	    (* update outputs *)
+	    #oDeviceReady := #sRecv.CycleEnd;
+	    #oPressure.Value := UDINT_TO_REAL(#sRecv.ActPressure) / 1000.0;
+	    CASE #sRecv.PressureUnitCode OF
+	        0000:
+	            #oPressure.Unit := 'cm3/s';
+	        1000:
+	            #oPressure.Unit := 'cm3/min';
+	        2000:
+	            #oPressure.Unit := 'cm3/h';
+	        3000:
+	            #oPressure.Unit := 'mm3/h';
+	        4000:
+	            #oPressure.Unit := 'Pa';
+	        5000:
+	            #oPressure.Unit := 'Pa/s';
+	        6000:
+	            #oPressure.Unit := 'Pa';
+	        7000:
+	            #oPressure.Unit := 'Pa';
+	        8000:
+	            #oPressure.Unit := 'Pa/s';
+	        9000:
+	            #oPressure.Unit := 'Pa/s';
+	        11000:
+	            #oPressure.Unit := 'bar';
+	        12000:
+	            #oPressure.Unit := 'KPa';
+	        13000:
+	            #oPressure.Unit := 'psi';
+	        14000:
+	            #oPressure.Unit := 'mbar';
+	        15000:
+	            #oPressure.Unit := 'MPa';
+	        43000:
+	            #oPressure.Unit := 'Pa';
+	        44000:
+	            #oPressure.Unit := 'Pa';
+	        45000:
+	            #oPressure.Unit := 'Pa/s';
+	        46000:
+	            #oPressure.Unit := 'In3/s';
+	        47000:
+	            #oPressure.Unit := 'In3/min';
+	        48000:
+	            #oPressure.Unit := 'In3/h';
+	        49000:
+	            #oPressure.Unit := 'Ft3/h';
+	        50000:
+	            #oPressure.Unit := 'mL/s';
+	        51000:
+	            #oPressure.Unit := 'mL/min';
+	        52000:
+	            #oPressure.Unit := 'mL/h';
+	        58000:
+	            #oPressure.Unit := 'cm3/s';
+	        59000:
+	            #oPressure.Unit := 'cm3/min';
+	        60000:
+	            #oPressure.Unit := 'cm3/h';
+	        76000:
+	            #oPressure.Unit := 'Ft3/s';
+	        77000:
+	            #oPressure.Unit := 'Ft3/min';
+	        84000:
+	            #oPressure.Unit := 'sccm';
+	        ELSE
+	            ;
+	    END_CASE;
+	    #oActProgStep := #sRecv.ActProgStep;
+	    #oActProgNo := #sRecv.ActProgram + 1;
+	    
+	    (* update hmi *)
+	    #sHMI.Status.DeviceReady := #oDeviceReady;
+	    #sHMI.Status.Ready := #oReady;
+	    #sHMI.Status.Error := #oError;
+	    #sHMI.Status.SetProgOk := #oSetProgOk;
+	    #sHMI.Status.MeasureOk := #oMeasureOk;
+	    #sHMI.Status.ErrorCode := #oErrorCode;
+	    #sHMI.Status.Result := #oResult;
+	    #sHMI.Status.Pressure := #oPressure;
+	    #sHMI.Status.ActProgStep := #oActProgStep;
+	    #sHMI.Status.ActProgNo := #oActProgNo;
+	    #sHMI.Status.ElapsedTime := #oElapsedTime;
+	    
+	    (* set ready for command flag *)
+	    IF (#oErrorCode = 0) AND (#sHelp.OrderCnt = 0) AND #oDeviceReady AND NOT #sHelp.SetProgAct AND NOT #sHelp.MeasureAct THEN
+	        #oReady := TRUE;
+	    ELSE
+	        #oReady := FALSE;
+	    END_IF;
+	    
+	    (* move static bits to output bytes *)
+	    #sArrayOutput[1, 1].%X0 := #sSend.Reset;
+	    #sArrayOutput[1, 1].%X1 := #sSend.Start;
+	    #sArrayOutput[1, 1].%X2 := #sSend.StartSpec;
+	    #sArrayOutput[1, 1].%X3 := #sSend.ProgramSel AND "ClockMemory0.8s";
+	    #sArrayOutput[1, 1].%X5 := #sSend.ReadPara ;
+	    #sArrayOutput[1, 2].%X7 := #sSend.ReadLastResult AND "ClockMemory0.8s";
+	    #sArrayOutput[1, 7] := #sSend.ProgNo.%B0;
+	    REGION SpecialCycle
+	        // Statement section REGION
+	        IF NOT #ioSpecialCycle THEN
+	            #SpecialCycleStep := 0;
+	        END_IF;
+	        IF #ioSpecialCycle AND #SpecialCycleStep = 0 AND #oReady AND #oDeviceReady THEN
+	            #SpecialCycleStep := 10;
+	        END_IF;
+	        #IEC_Timer_0_Instance(IN := #SpecialCycleStep = 10,
+	                              PT := t#0.2s);
+	        #IEC_Timer_1_Instance(IN := #SpecialCycleStep = 20,
+	                              PT := t#0.4s);
+	        CASE #SpecialCycleStep OF
+	            10://标志清零
+	                #sHelp.EnableTime := FALSE;
+	                #sArrayOutput[1, 9] := 16#00;
+	                #sArrayOutput[1, 10] := 16#00;
+	                IF #IEC_Timer_0_Instance.Q THEN
+	                    #SpecialCycleStep := 20;
+	                END_IF;
+	            20://赋值
+	                #sHelp.EnableTime := FALSE;
+	                #sArrayOutput[1, 9] := 16#08;
+	                #sArrayOutput[1, 10] := 16#00;
+	                #sSend.StartSpec := 1;
+	                IF #IEC_Timer_1_Instance.Q THEN
+	                    #SpecialCycleStep := 30;
+	                END_IF;
+	                
+	            30://触发
+	                #sHelp.EnableTime := FALSE;
+	                #sSend.Start := 1;
+	                #SpecialCycleStep := 40;
+	            40://运行
+	                IF #sRecv.Echo.StartSpec THEN
+	                    #sHelp.EnableTime := FALSE;
+	                    #SpecialCycleStep := 50;
+	                END_IF;
+	                #sHelp.EnableTime := TRUE;
+	                IF #sHelp.CmdTimer.Q THEN
+	                    #oErrorCode := 1004;
+	                    #SpecialCycleStep := 99;
+	                END_IF;
+	            50://完成
+	                IF NOT #oReady AND NOT #oDeviceReady THEN
+	                    #sHelp.EnableTime := FALSE;
+	                    #sSend.Start := #sSend.StartSpec := 0;
+	                    #SpecialCycleStep := 60;
+	                END_IF;
+	                #sHelp.EnableTime := TRUE;
+	                IF #sHelp.CmdTimer.Q THEN
+	                    #oErrorCode := 1005;
+	                    #SpecialCycleStep := 99;
+	                END_IF;
+	            60://完成
+	                IF #oReady AND #oDeviceReady THEN
+	                    #ioSpecialCycle := #sSend.StartSpec := 0;
+	                    #sHelp.EnableTime := FALSE;
+	                END_IF;
+	            99:
+	                #sSend.Start := #sSend.StartSpec := 0;
+	                #ioSpecialCycle := 0;
+	        END_CASE;
+	        
+	    END_REGION
+	    REGION ReadProTime
+	        // Statement section REGION
+	        IF NOT #ioReadProTime THEN
+	            #ReadProTimeStep := 0;
+	        END_IF;
+	        IF #ioReadProTime AND #ReadProTimeStep = 0 AND #oReady AND #oDeviceReady THEN
+	            #ReadProTimeStep := 10;
+	        END_IF;
+	        #IEC_Timer_0_Instance_1(IN := #ReadProTimeStep = 20,
+	                              PT := t#0.1s);
+	      #IEC_Timer_1_Instance_1(IN := #ReadProTimeStep = 20,
+	                              PT := t#0.3s);
+	      
+	        CASE #ReadProTimeStep OF
+	            10://标志
+	                #sHelp.EnableTime := FALSE;
+	                #sArrayOutput[1, 33] := 16#04;
+	                #sArrayOutput[1, 34] := 16#00;
+	                #sArrayOutput[1, 35] := 16#01;
+	                #sArrayOutput[1, 36] := 16#00;
+	                #sArrayOutput[1, 37] := 16#02;
+	                #sArrayOutput[1, 38] := 16#00;
+	                #sArrayOutput[1, 39] := 16#03;
+	                #sArrayOutput[1, 40] := 16#00;
+	                #sArrayOutput[1, 41] := 16#09;
+	                #sArrayOutput[1, 42] := 16#00;
+	                #ReadProTimeStep := 20;
+	                
+	            20://赋值
+	                #sHelp.EnableTime := FALSE;
+	                #sArrayOutput[1, 33] := 16#04;
+	                #sArrayOutput[1, 34] := 16#00;
+	                #sArrayOutput[1, 35] := 16#01;
+	                #sArrayOutput[1, 36] := 16#00;
+	                #sArrayOutput[1, 37] := 16#02;
+	                #sArrayOutput[1, 38] := 16#00;
+	                #sArrayOutput[1, 39] := 16#03;
+	                #sArrayOutput[1, 40] := 16#00;
+	                #sArrayOutput[1, 41] := 16#09;
+	                #sArrayOutput[1, 42] := 16#00;
+	                
+	                IF #IEC_Timer_0_Instance_1.Q THEN
+	                    #sSend.ReadPara := 1;
+	                END_IF;
+	                IF  #sRecv.Echo.ReadPara OR #IEC_Timer_1_Instance_1.Q THEN
+	                    #ReadProTimeStep := 30;
+	                END_IF;
+	            30://触发
+	                #sHelp.EnableTime := FALSE;
+	               
+	                #ReadProTimeStep := 40;
+	            40://运行
+	                #ReadProTimeStep := 50;
+	                #sHelp.EnableTime := TRUE;
+	                IF #sHelp.CmdTimer.Q THEN 
+	                    #oErrorCode := 1004;
+	                    #ReadProTimeStep := 99;
+	                END_IF;
+	            50://完成
+	                #ReadProTimeStep := 60;
+	                
+	            60://完成
+	                IF #oReady AND #oDeviceReady THEN
+	                    #ioReadProTime := #sSend.ReadPara := 0;
+	                    #sHelp.EnableTime := FALSE;
+	                END_IF;
+	            99:
+	                #sSend.Start := #sSend.ReadPara := 0;
+	                #ioReadProTime := 0;
+	        END_CASE;
+	        
+	    END_REGION
+	
+	    
+	    (* Cyclic write plc output to tester input *)
+	    #tRetval.DPWR[1] := DPWR_DAT(LADDR := #iHWID_Slot5,
+	                                 RECORD := #sArrayOutput[1]);
+	    #tRetval.DPWR[2] := DPWR_DAT(LADDR := #iHWID_Slot6,
+	                                 RECORD := #sArrayOutput[2]);
+	    #tRetval.DPWR[3] := DPWR_DAT(LADDR := #iHWID_Slot7,
+	                                 RECORD := #sArrayOutput[3]);
+	    #tRetval.DPWR[4] := DPWR_DAT(LADDR := #iHWID_Slot8,
+	                                 RECORD := #sArrayOutput[4]);
+	    IF #tRetval.DPWR[1] <> 0 OR
+	        #tRetval.DPWR[2] <> 0 OR
+	        #tRetval.DPWR[3] <> 0 OR
+	        #tRetval.DPWR[4] <> 0  THEN
+	        #oErrorCode := 101; // Error cyclic write
+	    END_IF;
+	    
+	    (* handle errors within block *)
+	    #tRetval.LocallyErrID := GET_ERR_ID();
+	    IF #tRetval.LocallyErrID <> 0 THEN
+	        (* reset fieldbus output *)
+	        FOR #tLoop := 1 TO UINT_TO_INT(#cSlotAmount) DO
+	            UFILL_BLK(IN := 0,
+	                      COUNT := #cFieldbusBytes,
+	                      OUT => #sArrayOutput[#tLoop, 01]);
+	        END_FOR;
+	        #oErrorCode := 102; // Error within block
+	    END_IF;
+	    
+	END_IF;
+END_FUNCTION_BLOCK
+

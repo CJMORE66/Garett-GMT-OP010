@@ -1,0 +1,225 @@
+﻿FUNCTION_BLOCK "Axis_FB"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      IAI_Axis : Array[1..3] of "IAI_BASE_FB";
+   END_VAR
+
+
+BEGIN
+	///Z轴
+	#IAI_Axis[1]();
+	
+	#IAI_Axis[1].Axis_ID := 1;
+	#IAI_Axis[1]."Input 4 word_Man1" := "OP10_384A1~Input_4_word_7";
+	#IAI_Axis[1]."Input 4 word_Man2" := "OP10_384A1~Input_4_word_8";
+	#IAI_Axis[1]."Input 4 word_1" := "OP10_384A1~Input_4_word_3";
+	#IAI_Axis[1]."Input 4 word_2" := "OP10_384A1~Input_4_word_4";
+	#IAI_Axis[1]."Output 4 word_Man1" := "OP10_384A1~Output_4_word_1";
+	#IAI_Axis[1]."Output 4 word_Man2" := "OP10_384A1~Output_4_word_2";
+	#IAI_Axis[1]."Output 4 word_1" := "OP10_384A1~Output_4_word_5";
+	#IAI_Axis[1]."Output 4 word_2" := "OP10_384A1~Output_4_word_6";
+	
+	#IAI_Axis[1].Mode:= "ModeDB".Gen;
+	#IAI_Axis[1].Par.PositionWidth := 0.05;
+	#IAI_Axis[1].Par.AccSpeed := 10;
+	#IAI_Axis[1].Par."Limt+Pos" := 362000.0;
+	#IAI_Axis[1].Par."Limt-Pos" := -30000.0;
+	#IAI_Axis[1].Interfere := TRUE;
+	#IAI_Axis[1].RunSetTime := T#20S;
+	#IAI_Axis[1].Par.GoPosInterfere[0] := TRUE;
+	#IAI_Axis[1].Par.GoPosInterfere[1] := TRUE;
+	#IAI_Axis[1].Par.GoPosInterfere[2] := TRUE;
+	#IAI_Axis[1].Par.GoPosInterfere[3] := TRUE;
+	#IAI_Axis[1].Par.GoPosInterfere[4] := TRUE;
+	#IAI_Axis[1].Par.GoPosInterfere[5] := TRUE;
+	#IAI_Axis[1].AutoPointStart := "IAI_A1".In.iAutoStart;
+	
+	"IAI_A1".Auto.Pos[1].Pos:=#IAI_Axis[1].Par.TargetPosition[1] := "Parameter".AxisRun.Axis[5].Pos1.Position;
+	"IAI_A1".Auto.Pos[1].Vel :=#IAI_Axis[1].Par.TargetSpeed[1] := "Parameter".AxisRun.Axis[5].Pos1.Speed;
+	
+	"IAI_A1".Auto.Pos[2].Pos:=#IAI_Axis[1].Par.TargetPosition[2] := "Parameter".AxisRun.Axis[5].Pos2.Position;
+	"IAI_A1".Auto.Pos[2].Vel :=#IAI_Axis[1].Par.TargetSpeed[2] := "Parameter".AxisRun.Axis[5].Pos2.Speed;
+	
+	"IAI_A1".Auto.Pos[3].Pos:=#IAI_Axis[1].Par.TargetPosition[3] := "Parameter".AxisRun.Axis[5].Pos3.Position;
+	"IAI_A1".Auto.Pos[3].Vel :=#IAI_Axis[1].Par.TargetSpeed[3] := "Parameter".AxisRun.Axis[5].Pos3.Speed;
+	
+	"IAI_A1".Auto.Pos[4].Pos:=#IAI_Axis[1].Par.TargetPosition[4] := "Parameter".AxisRun.Axis[5].Pos4.Position;
+	"IAI_A1".Auto.Pos[4].Vel :=#IAI_Axis[1].Par.TargetSpeed[4] := "Parameter".AxisRun.Axis[5].Pos4.Speed;
+	
+	"IAI_A1".Auto.Pos[5].Pos:=#IAI_Axis[1].Par.TargetPosition[5] := "Parameter".AxisRun.Axis[5].Pos5.Position;
+	"IAI_A1".Auto.Pos[5].Vel :=#IAI_Axis[1].Par.TargetSpeed[5] := "Parameter".AxisRun.Axis[5].Pos5.Speed;
+	
+	"IAI_A1".Auto.Pos[6].Pos := #IAI_Axis[1].Par.TargetPosition[6] := "Parameter".AxisRun.Axis[5].Pos6.Position;
+	"IAI_A1".Auto.Pos[6].Vel := #IAI_Axis[1].Par.TargetSpeed[6] := "Parameter".AxisRun.Axis[5].Pos6.Speed;
+	
+	"IAI_A1".Auto.Pos[7].Pos := #IAI_Axis[1].Par.TargetPosition[7] := "Parameter".AxisRun.Axis[5].Pos7.Position;
+	"IAI_A1".Auto.Pos[7].Vel := #IAI_Axis[1].Par.TargetSpeed[7] := "Parameter".AxisRun.Axis[5].Pos7.Speed;
+	
+	"IAI_A1".Auto.Pos[8].Pos := #IAI_Axis[1].Par.TargetPosition[8] := "Parameter".AxisRun.Axis[5].Pos8.Position;
+	"IAI_A1".Auto.Pos[8].Vel := #IAI_Axis[1].Par.TargetSpeed[8] := "Parameter".AxisRun.Axis[5].Pos8.Speed;
+	
+	"IAI_A1".Auto.Pos[9].Pos := #IAI_Axis[1].Par.TargetPosition[9] := "Parameter".AxisRun.Axis[5].Pos6.Position-4.0;
+	"IAI_A1".Auto.Pos[9].Vel := #IAI_Axis[1].Par.TargetSpeed[9] := "Parameter".AxisRun.Axis[5].Pos6.Speed;
+	
+	"IAI_A1".Auto.Pos[10].Pos := #IAI_Axis[1].Par.TargetPosition[10] := "Parameter".AxisRun.Axis[5].Pos10.Position;
+	"IAI_A1".Auto.Pos[10].Vel := #IAI_Axis[1].Par.TargetSpeed[10] := "Parameter".AxisRun.Axis[5].Pos10.Speed;
+	
+	//X轴
+	#IAI_Axis[2]();
+	
+	#IAI_Axis[2].Axis_ID := 2;
+	#IAI_Axis[2]."Input 4 word_Man1" := "OP10_384A1~Input_4_word_7";
+	#IAI_Axis[2]."Input 4 word_Man2" := "OP10_384A1~Input_4_word_8";
+	#IAI_Axis[2]."Input 4 word_1" := "OP10_384A1~Input_4_word_5";
+	#IAI_Axis[2]."Input 4 word_2" := "OP10_384A1~Input_4_word_6";
+	#IAI_Axis[2]."Output 4 word_Man1" := "OP10_384A1~Output_4_word_1";
+	#IAI_Axis[2]."Output 4 word_Man2" := "OP10_384A1~Output_4_word_2";
+	#IAI_Axis[2]."Output 4 word_1" := "OP10_384A1~Output_4_word_7";
+	#IAI_Axis[2]."Output 4 word_2" := "OP10_384A1~Output_4_word_8";
+	
+	#IAI_Axis[2].Mode := "ModeDB".Gen;
+	#IAI_Axis[2].Par.PositionWidth := 0.05;
+	#IAI_Axis[2].Par.AccSpeed := 10;
+	#IAI_Axis[2].Par."Limt+Pos" := 362000.0;
+	#IAI_Axis[2].Par."Limt-Pos" := -30000.0;
+	#IAI_Axis[2].Interfere := TRUE;
+	#IAI_Axis[2].RunSetTime := T#20S; 
+	#IAI_Axis[2].Par.GoPosInterfere[0] := TRUE;
+	#IAI_Axis[2].Par.GoPosInterfere[1] := TRUE;
+	#IAI_Axis[2].Par.GoPosInterfere[2] := TRUE;
+	#IAI_Axis[2].Par.GoPosInterfere[3] := TRUE;
+	#IAI_Axis[2].Par.GoPosInterfere[4] := TRUE;
+	#IAI_Axis[2].Par.GoPosInterfere[5] := TRUE;
+	#IAI_Axis[2].AutoPointStart := "IAI_A2".In.iAutoStart;
+	
+	"IAI_A2".Auto.Pos[1].Pos:=#IAI_Axis[2].Par.TargetPosition[1] := "Parameter".AxisRun.Axis[6].Pos1.Position;
+	"IAI_A2".Auto.Pos[1].Vel := #IAI_Axis[2].Par.TargetSpeed[1] := "Parameter".AxisRun.Axis[6].Pos1.Speed;
+	
+	"IAI_A2".Auto.Pos[2].Pos:=#IAI_Axis[2].Par.TargetPosition[2] := "Parameter".AxisRun.Axis[6].Pos2.Position;
+	"IAI_A2".Auto.Pos[2].Vel :=#IAI_Axis[2].Par.TargetSpeed[2] := "Parameter".AxisRun.Axis[6].Pos2.Speed;
+	
+	"IAI_A2".Auto.Pos[3].Pos:=#IAI_Axis[2].Par.TargetPosition[3] := "Parameter".AxisRun.Axis[6].Pos3.Position;
+	"IAI_A2".Auto.Pos[3].Vel :=#IAI_Axis[2].Par.TargetSpeed[3] := "Parameter".AxisRun.Axis[6].Pos3.Speed;
+	
+	"IAI_A2".Auto.Pos[4].Pos:=#IAI_Axis[2].Par.TargetPosition[4] := "Parameter".AxisRun.Axis[6].Pos4.Position;
+	"IAI_A2".Auto.Pos[4].Vel :=#IAI_Axis[2].Par.TargetSpeed[4] := "Parameter".AxisRun.Axis[6].Pos4.Speed;
+	
+	"IAI_A2".Auto.Pos[5].Pos:=#IAI_Axis[2].Par.TargetPosition[5] := "Parameter".AxisRun.Axis[6].Pos5.Position;
+	"IAI_A2".Auto.Pos[5].Vel :=#IAI_Axis[2].Par.TargetSpeed[5] := "Parameter".AxisRun.Axis[6].Pos5.Speed;
+	
+	"IAI_A2".Auto.Pos[6].Pos := #IAI_Axis[2].Par.TargetPosition[6] := "Parameter".AxisRun.Axis[6].Pos6.Position;
+	"IAI_A2".Auto.Pos[6].Vel := #IAI_Axis[2].Par.TargetSpeed[6] := "Parameter".AxisRun.Axis[6].Pos6.Speed;
+	
+	"IAI_A2".Auto.Pos[7].Pos := #IAI_Axis[2].Par.TargetPosition[7] := "Parameter".AxisRun.Axis[6].Pos7.Position;
+	"IAI_A2".Auto.Pos[7].Vel := #IAI_Axis[2].Par.TargetSpeed[7] := "Parameter".AxisRun.Axis[6].Pos7.Speed;
+	
+	"IAI_A2".Auto.Pos[8].Pos := #IAI_Axis[2].Par.TargetPosition[8] := "Parameter".AxisRun.Axis[6].Pos8.Position;
+	"IAI_A2".Auto.Pos[8].Vel := #IAI_Axis[2].Par.TargetSpeed[8] := "Parameter".AxisRun.Axis[6].Pos8.Speed;
+	
+	"IAI_A2".Auto.Pos[9].Pos := #IAI_Axis[2].Par.TargetPosition[9] := "Parameter".AxisRun.Axis[6].Pos9.Position;
+	"IAI_A2".Auto.Pos[9].Vel := #IAI_Axis[2].Par.TargetSpeed[9] := "Parameter".AxisRun.Axis[6].Pos9.Speed;
+	
+	"IAI_A2".Auto.Pos[10].Pos := #IAI_Axis[2].Par.TargetPosition[10] := "Parameter".AxisRun.Axis[6].Pos10.Position;
+	"IAI_A2".Auto.Pos[10].Vel := #IAI_Axis[2].Par.TargetSpeed[10] := "Parameter".AxisRun.Axis[6].Pos10.Speed;
+	
+	///Y轴
+	#IAI_Axis[3]();
+	
+	#IAI_Axis[3].Axis_ID := 3;
+	#IAI_Axis[3]."Input 4 word_Man1" := "OP10_384A1~Input_4_word_7";
+	#IAI_Axis[3]."Input 4 word_Man2" := "OP10_384A1~Input_4_word_8";
+	#IAI_Axis[3]."Input 4 word_1" := "OP10_384A1~Input_4_word_1";
+	#IAI_Axis[3]."Input 4 word_2" := "OP10_384A1~Input_4_word_2";
+	#IAI_Axis[3]."Output 4 word_Man1" := "OP10_384A1~Output_4_word_1";
+	#IAI_Axis[3]."Output 4 word_Man2" := "OP10_384A1~Output_4_word_2";
+	#IAI_Axis[3]."Output 4 word_1" := "OP10_384A1~Output_4_word_3";
+	#IAI_Axis[3]."Output 4 word_2" := "OP10_384A1~Output_4_word_4";
+	
+	#IAI_Axis[3].Mode := "ModeDB".Gen;
+	#IAI_Axis[3].Par.PositionWidth := 0.05;
+	#IAI_Axis[3].Par.AccSpeed := 10;
+	#IAI_Axis[3].Par."Limt+Pos" := 362000.0;
+	#IAI_Axis[3].Par."Limt-Pos" := -30000.0;
+	#IAI_Axis[3].Interfere := TRUE;
+	#IAI_Axis[3].RunSetTime := T#20S;
+	#IAI_Axis[3].Par.GoPosInterfere[0] := TRUE;
+	#IAI_Axis[3].Par.GoPosInterfere[1] := TRUE;
+	#IAI_Axis[3].Par.GoPosInterfere[2] := TRUE;
+	#IAI_Axis[3].Par.GoPosInterfere[3] := TRUE;
+	#IAI_Axis[3].Par.GoPosInterfere[4] := TRUE;
+	#IAI_Axis[3].Par.GoPosInterfere[5] := TRUE;
+	#IAI_Axis[3].AutoPointStart := "IAI_A3".In.iAutoStart;
+	
+	"IAI_A3".Auto.Pos[1].Pos:=#IAI_Axis[3].Par.TargetPosition[1] := "Parameter".AxisRun.Axis[7].Pos1.Position;
+	"IAI_A3".Auto.Pos[1].Vel :=#IAI_Axis[3].Par.TargetSpeed[1] := "Parameter".AxisRun.Axis[7].Pos1.Speed;
+	
+	"IAI_A3".Auto.Pos[2].Pos:=#IAI_Axis[3].Par.TargetPosition[2] := "Parameter".AxisRun.Axis[7].Pos2.Position;
+	"IAI_A3".Auto.Pos[2].Vel :=#IAI_Axis[3].Par.TargetSpeed[2] := "Parameter".AxisRun.Axis[7].Pos2.Speed;
+	
+	"IAI_A3".Auto.Pos[3].Pos:=#IAI_Axis[3].Par.TargetPosition[3] := "Parameter".AxisRun.Axis[7].Pos3.Position;
+	"IAI_A3".Auto.Pos[3].Vel :=#IAI_Axis[3].Par.TargetSpeed[3] := "Parameter".AxisRun.Axis[7].Pos3.Speed;
+	
+	"IAI_A3".Auto.Pos[4].Pos:=#IAI_Axis[3].Par.TargetPosition[4] := "Parameter".AxisRun.Axis[7].Pos4.Position;
+	"IAI_A3".Auto.Pos[4].Vel :=#IAI_Axis[3].Par.TargetSpeed[4] := "Parameter".AxisRun.Axis[7].Pos4.Speed;
+	
+	"IAI_A3".Auto.Pos[5].Pos:=#IAI_Axis[3].Par.TargetPosition[5] := "Parameter".AxisRun.Axis[7].Pos5.Position;
+	"IAI_A3".Auto.Pos[5].Vel :=#IAI_Axis[3].Par.TargetSpeed[5] := "Parameter".AxisRun.Axis[7].Pos5.Speed;
+	
+	"IAI_A3".Auto.Pos[6].Pos := #IAI_Axis[3].Par.TargetPosition[6] := "Parameter".AxisRun.Axis[7].Pos6.Position;
+	"IAI_A3".Auto.Pos[6].Vel := #IAI_Axis[3].Par.TargetSpeed[6] := "Parameter".AxisRun.Axis[7].Pos6.Speed;
+	
+	"IAI_A3".Auto.Pos[7].Pos := #IAI_Axis[3].Par.TargetPosition[7] := "Parameter".AxisRun.Axis[7].Pos7.Position;
+	"IAI_A3".Auto.Pos[7].Vel := #IAI_Axis[3].Par.TargetSpeed[7] := "Parameter".AxisRun.Axis[7].Pos7.Speed;
+	
+	"IAI_A3".Auto.Pos[8].Pos := #IAI_Axis[3].Par.TargetPosition[8] := "Parameter".AxisRun.Axis[7].Pos8.Position;
+	"IAI_A3".Auto.Pos[8].Vel := #IAI_Axis[3].Par.TargetSpeed[8] := "Parameter".AxisRun.Axis[7].Pos8.Speed;
+	
+	"IAI_A3".Auto.Pos[9].Pos := #IAI_Axis[3].Par.TargetPosition[9] := "Parameter".AxisRun.Axis[7].Pos9.Position;
+	"IAI_A3".Auto.Pos[9].Vel := #IAI_Axis[3].Par.TargetSpeed[9] := "Parameter".AxisRun.Axis[7].Pos9.Speed;
+	
+	"IAI_A3".Auto.Pos[10].Pos := #IAI_Axis[3].Par.TargetPosition[10] := "Parameter".AxisRun.Axis[7].Pos10.Position;
+	"IAI_A3".Auto.Pos[10].Vel := #IAI_Axis[3].Par.TargetSpeed[10] := "Parameter".AxisRun.Axis[7].Pos10.Speed;
+	
+	/////////////////HNI_DATA_PUT&GET////////
+	IF "ModeDB".Gen.Out.Manual THEN
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Par.Speed := "HMISystemDB".HMI_Axis.INPUT.Speed;
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Par.SimplyTrigger := "HMISystemDB".HMI_Axis.INPUT.SimplyTrigger;
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Par.SimplyTriggerPos := "HMISystemDB".HMI_Axis.INPUT.SimplyPos;
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Par.ListTrigger := "HMISystemDB".HMI_Axis.INPUT.ListTrigger;
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Par.ListPosID := "HMISystemDB".HMI_Axis.INPUT.ListPosID;
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Enable := "HMISystemDB".HMI_Axis.INPUT.Enable;
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID]."Jog+" := "HMISystemDB".HMI_Axis.INPUT."Jog+";
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID]."Jog-" := "HMISystemDB".HMI_Axis.INPUT."Jog-";
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Homing := "HMISystemDB".HMI_Axis.INPUT.Homing;
+	    #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Stop := "HMISystemDB".HMI_Axis.INPUT.Stop;
+	END_IF;
+	"HMISystemDB".HMI_Axis.OUTPUT.MAX_Axis := 3;
+	"HMISystemDB".HMI_Axis.OUTPUT.Ready := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Ready;
+	"HMISystemDB".HMI_Axis.OUTPUT.Alarm := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Error OR #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].OverTime;
+	"HMISystemDB".HMI_Axis.OUTPUT.Warming := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Warn;
+	"HMISystemDB".HMI_Axis.OUTPUT.RunEnd := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].RunEnd;
+	"HMISystemDB".HMI_Axis.OUTPUT.Interference := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].InterfereEnable;
+	"HMISystemDB".HMI_Axis.OUTPUT."Reference Point" := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Homed;
+	"HMISystemDB".HMI_Axis.OUTPUT.CurrentPosition := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].CurrentPosition;
+	"HMISystemDB".HMI_Axis.OUTPUT.CurrentSpeed := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].CurrentSpeed;
+	"HMISystemDB".HMI_Axis.OUTPUT.Enable := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Enabled;
+	"HMISystemDB".HMI_Axis.OUTPUT.TargetPosition := #IAI_Axis["HMISystemDB".HMI_Axis.INPUT.Axis_ID].Par.TargetPosition["HMISystemDB".HMI_Axis.INPUT.ListPosID];
+	
+	
+	IF "ModeDB".Gen.Out.Change THEN
+	    #IAI_Axis[1].Par.SimplyTriggerPos := 0.0;
+	    #IAI_Axis[2].Par.SimplyTriggerPos := 0.0;
+	    #IAI_Axis[3].Par.SimplyTriggerPos := 0.0;
+	    "HMISystemDB".HMI_Axis.INPUT.SimplyPos := 0.0;
+	END_IF;
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+

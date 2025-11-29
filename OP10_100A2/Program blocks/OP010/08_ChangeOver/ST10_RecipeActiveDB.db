@@ -1,0 +1,34 @@
+﻿DATA_BLOCK "ST10_RecipeActiveDB"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   STRUCT 
+      Recipe : Struct
+         RecipeTag : String[50];
+         RecordName : String[50];
+         PreConfigType : String[50];
+         Pulse : Bool;
+         Trigger : Bool;
+         PosEdg : Bool;
+         Alarm : Bool;
+         Ret : Bool;
+         Equal : Bool;
+         Pls : Bool;
+         "time" : Int;
+         Spare : Array[0..38] of Byte;
+         DataRecord_TransferStatus : Int;
+      END_STRUCT;
+      ParameterElement : Struct
+         TypeName : String[50];
+         TypeID : Int;
+         FixtureID : Array[0..5] of Int;
+         FestoAxis { S7_SetPoint := 'False'} : "RecipeAxis";
+         PressRgramNo { S7_SetPoint := 'True'} : Array[0..60] of DInt;
+         ProcessParameter : "MEStoPLC_RecipeData_OP220";
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+
+END_DATA_BLOCK
+

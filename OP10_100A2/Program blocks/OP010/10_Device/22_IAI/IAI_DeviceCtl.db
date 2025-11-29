@@ -1,0 +1,26 @@
+﻿DATA_BLOCK "IAI_DeviceCtl"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   STRUCT 
+      IAIServo : Array[1..4] of Struct
+         i : Int;
+         nError : Int;
+         nWarning : Int;
+         nPositionListNo : Int;
+         Pos { S7_SetPoint := 'False'} : "PosList_IAI";
+         Point : Array[0..39] of Struct
+            Start : Bool;
+            Achieve : Bool;
+         END_STRUCT;
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+   IAIServo[1].nPositionListNo := 1;
+   IAIServo[2].nPositionListNo := 1;
+   IAIServo[3].nPositionListNo := 1;
+   IAIServo[4].nPositionListNo := 1;
+
+END_DATA_BLOCK
+

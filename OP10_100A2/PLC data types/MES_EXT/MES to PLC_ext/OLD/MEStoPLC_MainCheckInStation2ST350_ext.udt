@@ -1,0 +1,13 @@
+﻿TYPE "MEStoPLC_MainCheckInStation2ST350_ext"
+VERSION : 0.1
+   STRUCT
+      PartTypeID : Int;
+      Station1PalletID : Int;
+      Station1PartSN : String[60];
+      DataMatrixPartSN : String[60];
+      Spare : Array[0..70] of Byte;
+      Massage { S7_SetPoint := 'False'} : "MEStoPLC_AlarmMassage_ext";
+   END_STRUCT;
+
+END_TYPE
+

@@ -1,0 +1,38 @@
+﻿DATA_BLOCK "ST10_SysInput"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+   VAR 
+      HMI_Button : Struct
+         ControlOn : Bool;
+         ControlOff : Bool;
+         MachineStart : Bool;
+         MachineStop : Bool;
+         ResetButton : Bool;
+         "Manual/Auto" : Bool;
+         SafetyGateUnlock : Bool;
+         "E-Stop" : Bool;
+      END_STRUCT;
+      Sys : Struct
+         iCircuitBreakerOK1 : Bool;
+         iCircuitBreakerOK2 : Bool;
+         iPressure : Bool;
+      END_STRUCT;
+      "iE-StopPB" : Array[1..20] of Bool;
+      iSafetyGatFeedBack : Array[1..20] of Bool;
+      iSafetydoorLockingFeedBack : Array[1..20] of Bool;
+      iMaterieldoorLockingFeedBack : Array[1..20] of Bool;
+   END_VAR
+
+
+BEGIN
+   HMI_Button.ControlOn := false;
+   HMI_Button.MachineStart := false;
+   HMI_Button.MachineStop := false;
+   HMI_Button.ResetButton := false;
+   HMI_Button."Manual/Auto" := false;
+   HMI_Button.SafetyGateUnlock := false;
+   HMI_Button."E-Stop" := false;
+
+END_DATA_BLOCK
+

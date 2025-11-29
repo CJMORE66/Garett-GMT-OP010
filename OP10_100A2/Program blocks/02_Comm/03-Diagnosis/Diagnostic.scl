@@ -1,0 +1,109 @@
+﻿FUNCTION "Diagnostic" : Void
+{ S7_Optimized_Access := 'FALSE' }
+AUTHOR : STD
+FAMILY : RCS
+VERSION : 18.0
+   VAR_INPUT 
+      iCPUType : Int;
+      iDBNum : Word;
+      iOffset : Int;
+      iHardwareID : HW_IOSYSTEM;
+   END_VAR
+
+   VAR_OUTPUT 
+      oStatus : Int;
+   END_VAR
+
+   VAR_TEMP 
+      RDSRet : Struct
+         Busy : Bool;
+         Header : Struct
+            Length : Word;
+            Number : Word;
+         END_STRUCT;
+      END_STRUCT;
+      retInt : Int;
+      SSL : Struct
+         SSID : Word;
+         Index : Word;
+         Length : Int;
+      END_STRUCT;
+      DR : Any;
+      DRS AT DR : Struct
+         SyntaxID : Byte;
+         DataType : Byte;
+         RepetitionFactor : Int;
+         DB_Number : Word;
+         MemoryAreaAddress : DWord;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	
+	(*############################################################
+	   RUHLAMAT SUZHOU ELEC.STD.
+	   Copyright (c) 2017. All rights reserved.    
+	
+	   NAME OF FUNCTION BLOCK:         Diagnostic
+	   VERSION NUMBER:                 V3.0
+	   COMPOSER:                       Ming.Jiang
+	   
+	   CreateDate:                    16.Nov.2016
+	   ----------------------------------------------------------
+	   Interface description:
+	   IN:
+	       "iCPUType"
+	       iDBNum
+	       iOffset
+	       iHardwareID
+	
+	   INOUT:
+	   OUT:
+	       oStatus
+	
+	   ----------------------------------------------------------
+	   #RET_VALUE:
+	  
+	   #Alert Value:
+	  
+	   ----------------------------------------------------------
+	   Date           Name      Version           Activity                                                                              
+	   28.Nov.2016    JM        V3.0              add alarm
+	   
+	############################################################*)
+	IF #iCPUType = 0 OR #iDBNum = 0 THEN
+	    ENO := 0;
+	    RETURN;
+	ELSE
+	    IF #iCPUType=2 THEN
+	        GOTO PN;
+	    ELSIF #iCPUType=1 THEN
+	        ;
+	    ELSE
+	        ENO := 0;
+	        RETURN;
+	    END_IF;
+	    #DRS.SyntaxID := 16#10;
+	    #DRS.DataType := 16#02;
+	    #DRS.RepetitionFactor := 128;
+	    #DRS.DB_Number := #iDBNum;
+	    #DRS.MemoryAreaAddress := 16#8400_0000 OR (SHL(IN := INT_TO_DWORD(#iOffset), N := 3));
+	    #oStatus := DeviceStates(LADDR := #iHardwareID, MODE := 2, STATE := #DR);
+	PN:
+	    #DRS.SyntaxID := 16#10;
+	    #DRS.DataType := 16#02;
+	    #DRS.RepetitionFactor := 128;
+	    #DRS.DB_Number := #iDBNum;
+	    #DRS.MemoryAreaAddress := 16#8400_0000 OR (SHL(IN := INT_TO_DWORD(#iOffset), N := 3));
+	    #oStatus := DeviceStates(LADDR := #iHardwareID, MODE := 2, STATE := #DR);
+	    // orginise interface data 
+	    ENO := 1;
+	    RETURN;
+	END_IF;
+	
+	
+	
+	
+END_FUNCTION
+

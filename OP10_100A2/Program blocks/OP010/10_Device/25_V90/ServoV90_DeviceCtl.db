@@ -1,0 +1,59 @@
+﻿DATA_BLOCK "ServoV90_DeviceCtl"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   STRUCT 
+      V90Servo : Array[1..4] of Struct
+         i : Int;
+         nError : Int;
+         nWarning : Int;
+         nPositionListNo : Int;
+         Pos { S7_SetPoint := 'False'} : "PosList";
+         Point : Array[0..39] of Struct
+            Start : Bool;
+            Achieve : Bool;
+         END_STRUCT;
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+   V90Servo[1].nPositionListNo := 1;
+   V90Servo[1].Pos.List[3].Vel := 0;
+   V90Servo[1].Pos.List[4].Pos := 0;
+   V90Servo[1].Pos.List[4].Vel := 0;
+   V90Servo[1].Pos.List[5].Pos := 0;
+   V90Servo[1].Pos.List[5].Vel := 0;
+   V90Servo[1].Pos.List[6].Pos := 0;
+   V90Servo[1].Pos.List[6].Vel := 0;
+   V90Servo[1].Pos.List[7].Pos := 0;
+   V90Servo[1].Pos.List[7].Vel := 0;
+   V90Servo[1].Pos.List[8].Pos := 0;
+   V90Servo[1].Pos.List[8].Vel := 0;
+   V90Servo[1].Pos.List[9].Pos := 0;
+   V90Servo[1].Pos.List[9].Vel := 0;
+   V90Servo[1].Pos.List[10].Pos := 0;
+   V90Servo[1].Pos.List[10].Vel := 0;
+   V90Servo[1].Pos.List[11].Pos := 0;
+   V90Servo[1].Pos.List[11].Vel := 0;
+   V90Servo[1].Pos.List[12].Pos := 0;
+   V90Servo[1].Pos.List[12].Vel := 0;
+   V90Servo[1].Pos.List[13].Pos := 0;
+   V90Servo[1].Pos.List[13].Vel := 0;
+   V90Servo[1].Pos.List[14].Pos := 0;
+   V90Servo[1].Pos.List[14].Vel := 0;
+   V90Servo[1].Pos.List[15].Pos := 0;
+   V90Servo[1].Pos.List[15].Vel := 0;
+   V90Servo[1].Pos.List[16].Pos := 0;
+   V90Servo[1].Pos.List[16].Vel := 0;
+   V90Servo[1].Pos.List[17].Pos := 0;
+   V90Servo[1].Pos.List[17].Vel := 0;
+   V90Servo[1].Pos.List[18].Pos := 0;
+   V90Servo[1].Pos.List[18].Vel := 0;
+   V90Servo[1].Pos.List[19].Pos := 0;
+   V90Servo[1].Pos.List[19].Vel := 0;
+   V90Servo[2].nPositionListNo := 1;
+   V90Servo[3].nPositionListNo := 1;
+   V90Servo[4].nPositionListNo := 1;
+
+END_DATA_BLOCK
+
