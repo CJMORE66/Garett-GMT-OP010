@@ -1,0 +1,1285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Temp">
+    <Member Name="sString" Datatype="String[50]" />
+    <Member Name="FixtureNumber" Datatype="Int" />
+    <Member Name="FixtureIndex" Datatype="Int" />
+    <Member Name="tRET_VAL" Datatype="Int" />
+  </Section>
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" />
+  </Section>
+</Sections></Interface>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>ST10_ChangeOver</Name>
+      <Namespace />
+      <Number>1008</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Station_Sys" />
+        <Component Name="Cmd" />
+        <Component Name="OnOffLine" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="Station_Sys" />
+        <Component Name="Cmd" />
+        <Component Name="DryRun" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Station_Sys" />
+        <Component Name="Cmd" />
+        <Component Name="OnOffLine" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10_RecipeDB" />
+        <Component Name="ParameterElement" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="tRET_VAL" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="ST10_RecipeActiveDB" />
+        <Component Name="ParameterElement" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10_GeneralData" />
+        <Component Name="FunctionDeSelect" />
+        <Component Name="MES" />
+        <Component Name="FunctionDeSelected" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="28">
+      <Symbol>
+        <Component Name="Station_Sys" />
+        <Component Name="Cmd" />
+        <Component Name="OnOffLine" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="29">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Contact" UId="30" />
+    <Part Name="Contact" UId="31" />
+    <Part Name="O" UId="32">
+      <TemplateValue Name="Card" Type="Cardinality">3</TemplateValue>
+    </Part>
+    <Part Name="BLKMOV" Version="1.1" UId="33">
+      <TemplateValue Name="blk_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="Contact" UId="34" />
+    <Part Name="Coil" UId="35" />
+  </Parts>
+  <Wires>
+    <Wire UId="36">
+      <Powerrail />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="30" Name="in" />
+      <NameCon UId="31" Name="in" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="37">
+      <IdentCon UId="21" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="32" Name="in1" />
+    </Wire>
+    <Wire UId="39">
+      <IdentCon UId="22" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="40">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="32" Name="in2" />
+    </Wire>
+    <Wire UId="41">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="42">
+      <NameCon UId="31" Name="out" />
+      <NameCon UId="32" Name="in3" />
+    </Wire>
+    <Wire UId="43">
+      <NameCon UId="32" Name="out" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="24" />
+      <NameCon UId="33" Name="SRCBLK" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="33" Name="RET_VAL" />
+      <IdentCon UId="25" />
+    </Wire>
+    <Wire UId="46">
+      <NameCon UId="33" Name="DSTBLK" />
+      <IdentCon UId="26" />
+    </Wire>
+    <Wire UId="47">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+    <Wire UId="48">
+      <NameCon UId="34" Name="out" />
+      <NameCon UId="35" Name="in" />
+    </Wire>
+    <Wire UId="49">
+      <IdentCon UId="28" />
+      <NameCon UId="35" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>Recipe Active</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>Recipe Active</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Station_Sys" />
+        <Component Name="Manual" />
+        <Component Name="Mode" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="ST10_RecipeDB" />
+        <Component Name="Recipe" />
+        <Component Name="RecordName" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="sString" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10_RecipeDB" />
+        <Component Name="Recipe" />
+        <Component Name="RecordName" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ST10_RecipeDB" />
+        <Component Name="Recipe" />
+        <Component Name="PreConfigType" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="26" />
+    <Part Name="S_Move" UId="27" DisabledENO="true" />
+    <Part Name="S_Move" UId="28" DisabledENO="true" />
+  </Parts>
+  <Wires>
+    <Wire UId="29">
+      <Powerrail />
+      <NameCon UId="26" Name="in" />
+    </Wire>
+    <Wire UId="30">
+      <IdentCon UId="21" />
+      <NameCon UId="26" Name="operand" />
+    </Wire>
+    <Wire UId="31">
+      <NameCon UId="26" Name="out" />
+      <NameCon UId="27" Name="en" />
+      <NameCon UId="28" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <IdentCon UId="22" />
+      <NameCon UId="27" Name="in" />
+    </Wire>
+    <Wire UId="33">
+      <NameCon UId="27" Name="out" />
+      <IdentCon UId="23" />
+    </Wire>
+    <Wire UId="34">
+      <IdentCon UId="24" />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="28" Name="out" />
+      <IdentCon UId="25" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="13" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>On/OffLine</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>On/OffLine</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="17" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StatementList xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StatementList/v4">
+  <StlStatement UId="49">
+    <LineComment>
+      <Text>"ST10_RecipeDB".Recipe.PreConfigType    AUTO CONFIG, When PLC activate change over, Set Recipe data record Tags</Text>
+    </LineComment>
+    <StlToken Text="COMMENT" />
+  </StlStatement>
+  <StlStatement UId="185">
+    <LineComment>
+      <Text>"ST10_RecipeDB".ParameterElement.TypeName    HMI MANUAL CONFIG, HMI Recipe data record element:Product_type</Text>
+    </LineComment>
+    <StlToken Text="COMMENT" />
+  </StlStatement>
+  <StlStatement UId="190">
+    <LineComment>
+      <Text>HMI Recipe data record element Product_type set value must be same with HMI Recipe data record Name</Text>
+    </LineComment>
+    <StlToken Text="COMMENT" />
+  </StlStatement>
+  <StlStatement UId="44">
+    <StlToken Text="EMPTY_LINE" />
+  </StlStatement>
+  <StlStatement UId="36">
+    <StlToken Text="A" />
+    <Access Scope="GlobalVariable">
+      <Symbol>
+        <Component Name="ChangeOver_DB" />
+        <Component Name="Global" />
+        <Component Name="ChangeOverActive" />
+      </Symbol>
+    </Access>
+  </StlStatement>
+  <StlStatement UId="45">
+    <StlToken Text="A" />
+    <Access Scope="GlobalVariable">
+      <Symbol>
+        <Component Name="Station_Sys" />
+        <Component Name="Auto" />
+        <Component Name="Mode" />
+      </Symbol>
+    </Access>
+  </StlStatement>
+  <StlStatement UId="28">
+    <StlToken Text="Assign" />
+    <Access Scope="GlobalVariable">
+      <Symbol>
+        <Component Name="ST10_RecipeDB" />
+        <Component Name="Recipe" />
+        <Component Name="Trigger" />
+      </Symbol>
+    </Access>
+  </StlStatement>
+  <StlStatement UId="42">
+    <StlToken Text="EMPTY_LINE" />
+  </StlStatement>
+  <StlStatement UId="21">
+    <StlToken Text="CALL" />
+    <Access Scope="Call">
+      <CallInfo Name="ChangeOver" BlockType="FC">
+        <Parameter Name="iCheckType" Section="Input" Type="String">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="ParameterElement" />
+              <Component Name="TypeName" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="iPulse*500ms" Section="Input" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="Sys" />
+              <Component Name="COM" />
+              <Component Name="FlashTime500mS" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="iReset" Section="Input" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="Station_Sys" />
+              <Component Name="Cmd" />
+              <Component Name="Reset" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="Ret_Val" Section="Return" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="Ret" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="oPulse" Section="Output" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="Pulse" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="oEqual" Section="Output" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="Equal" />
+            </Symbol>
+          </Access>
+          <LineComment>
+            <Text> CheckType=PreConfigType, indicate ChangerOver successfully</Text>
+          </LineComment>
+        </Parameter>
+        <Parameter Name="ioPreConfigType" Section="InOut" Type="String">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="PreConfigType" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="ioCurrentName" Section="InOut" Type="String">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="RecordName" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="iotime" Section="InOut" Type="Int">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="time" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="ioTrigger" Section="InOut" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="Trigger" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="ioPosEdg" Section="InOut" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="PosEdg" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="ioAlarm" Section="InOut" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="Alarm" />
+            </Symbol>
+          </Access>
+        </Parameter>
+        <Parameter Name="ioPls" Section="InOut" Type="Bool">
+          <Access Scope="GlobalVariable">
+            <Symbol>
+              <Component Name="ST10_RecipeDB" />
+              <Component Name="Recipe" />
+              <Component Name="Pls" />
+            </Symbol>
+          </Access>
+        </Parameter>
+      </CallInfo>
+    </Access>
+  </StlStatement>
+  <StlStatement UId="25">
+    <StlToken Text="EMPTY_LINE" />
+  </StlStatement>
+  <StlStatement UId="35">
+    <StlToken Text="EMPTY_LINE" />
+  </StlStatement>
+  <StlStatement UId="22">
+    <StlToken Text="EMPTY_LINE" />
+  </StlStatement>
+</StatementList></NetworkSource>
+          <ProgrammingLanguage>STL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="18" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="19" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>
+</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1C" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>换型功能块调用</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>Transposition function block call</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="20" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <LineComment UId="21">
+    <Text UId="22">Fixture 1 输入轴换型X轴工装</Text>
+  </LineComment>
+  <NewLine UId="23" />
+  <LineComment UId="24">
+    <Text UId="25">工装检测屏蔽条件</Text>
+  </LineComment>
+  <NewLine UId="26" />
+  <Access Scope="GlobalVariable" UId="27">
+    <Symbol UId="28">
+      <Component Name="ST10_GeneralData" UId="29">
+        <BooleanAttribute Name="HasQuotes" UId="30">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="31" />
+      <Component Name="FixtureIDCheck" UId="32">
+        <Token Text="[" UId="33" />
+        <Access Scope="LiteralConstant" UId="34">
+          <Constant UId="35">
+            <ConstantValue UId="37">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="38" />
+      </Component>
+      <Token Text="." UId="39" />
+      <Component Name="FixtureCheckUnEnable" UId="40" />
+    </Symbol>
+  </Access>
+  <Blank UId="41" />
+  <Token Text=":=" UId="42" />
+  <Blank UId="43" />
+  <Access Scope="LiteralConstant" UId="44">
+    <Constant UId="45">
+      <ConstantValue UId="47">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="48" />
+  <NewLine Num="2" UId="49" />
+  <LineComment UId="50">
+    <Text UId="51">工装检测传感器赋值</Text>
+  </LineComment>
+  <NewLine Num="2" UId="52" />
+  <Access Scope="GlobalVariable" UId="53">
+    <Symbol UId="54">
+      <Component Name="ST10_GeneralData" UId="55">
+        <BooleanAttribute Name="HasQuotes" UId="56">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="57" />
+      <Component Name="FixtureIDCheck" UId="58">
+        <Token Text="[" UId="59" />
+        <Access Scope="LiteralConstant" UId="60">
+          <Constant UId="61">
+            <ConstantValue UId="63">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="64" />
+      </Component>
+      <Token Text="." UId="65" />
+      <Component Name="FixtureIDCheckValue" UId="66" />
+      <Token Text="." UId="67" />
+      <Token Text="%X0" UId="68" />
+    </Symbol>
+  </Access>
+  <Blank UId="69" />
+  <Token Text=":=" UId="70" />
+  <Blank UId="71" />
+  <Access Scope="LiteralConstant" UId="72">
+    <Constant UId="73">
+      <ConstantValue UId="75">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="76" />
+  <NewLine UId="77" />
+  <Access Scope="GlobalVariable" UId="78">
+    <Symbol UId="79">
+      <Component Name="ST10_GeneralData" UId="80">
+        <BooleanAttribute Name="HasQuotes" UId="81">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="82" />
+      <Component Name="FixtureIDCheck" UId="83">
+        <Token Text="[" UId="84" />
+        <Access Scope="LiteralConstant" UId="85">
+          <Constant UId="86">
+            <ConstantValue UId="88">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="89" />
+      </Component>
+      <Token Text="." UId="90" />
+      <Component Name="FixtureIDCheckValue" UId="91" />
+      <Token Text="." UId="92" />
+      <Token Text="%X1" UId="93" />
+    </Symbol>
+  </Access>
+  <Blank UId="94" />
+  <Token Text=":=" UId="95" />
+  <Blank UId="96" />
+  <Access Scope="LiteralConstant" UId="97">
+    <Constant UId="98">
+      <ConstantValue UId="100">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="101" />
+  <NewLine UId="102" />
+  <Access Scope="GlobalVariable" UId="103">
+    <Symbol UId="104">
+      <Component Name="ST10_GeneralData" UId="105">
+        <BooleanAttribute Name="HasQuotes" UId="106">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="107" />
+      <Component Name="FixtureIDCheck" UId="108">
+        <Token Text="[" UId="109" />
+        <Access Scope="LiteralConstant" UId="110">
+          <Constant UId="111">
+            <ConstantValue UId="113">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="114" />
+      </Component>
+      <Token Text="." UId="115" />
+      <Component Name="FixtureIDCheckValue" UId="116" />
+      <Token Text="." UId="117" />
+      <Token Text="%X2" UId="118" />
+    </Symbol>
+  </Access>
+  <Blank UId="119" />
+  <Token Text=":=" UId="120" />
+  <Blank UId="121" />
+  <Access Scope="LiteralConstant" UId="122">
+    <Constant UId="123">
+      <ConstantValue UId="125">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="126" />
+  <NewLine UId="127" />
+  <Access Scope="GlobalVariable" UId="128">
+    <Symbol UId="129">
+      <Component Name="ST10_GeneralData" UId="130">
+        <BooleanAttribute Name="HasQuotes" UId="131">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="132" />
+      <Component Name="FixtureIDCheck" UId="133">
+        <Token Text="[" UId="134" />
+        <Access Scope="LiteralConstant" UId="135">
+          <Constant UId="136">
+            <ConstantValue UId="138">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="139" />
+      </Component>
+      <Token Text="." UId="140" />
+      <Component Name="FixtureIDCheckValue" UId="141" />
+      <Token Text="." UId="142" />
+      <Token Text="%X3" UId="143" />
+    </Symbol>
+  </Access>
+  <Blank UId="144" />
+  <Token Text=":=" UId="145" />
+  <Blank UId="146" />
+  <Access Scope="LiteralConstant" UId="147">
+    <Constant UId="148">
+      <ConstantValue UId="150">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="151" />
+  <NewLine UId="152" />
+  <Access Scope="GlobalVariable" UId="153">
+    <Symbol UId="154">
+      <Component Name="ST10_GeneralData" UId="155">
+        <BooleanAttribute Name="HasQuotes" UId="156">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="157" />
+      <Component Name="FixtureIDCheck" UId="158">
+        <Token Text="[" UId="159" />
+        <Access Scope="LiteralConstant" UId="160">
+          <Constant UId="161">
+            <ConstantValue UId="163">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="164" />
+      </Component>
+      <Token Text="." UId="165" />
+      <Component Name="FixtureIDCheckValue" UId="166" />
+      <Token Text="." UId="167" />
+      <Token Text="%X4" UId="168" />
+    </Symbol>
+  </Access>
+  <Blank UId="169" />
+  <Token Text=":=" UId="170" />
+  <Blank UId="171" />
+  <Access Scope="LiteralConstant" UId="172">
+    <Constant UId="173">
+      <ConstantValue UId="175">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="176" />
+  <NewLine UId="177" />
+  <Access Scope="GlobalVariable" UId="178">
+    <Symbol UId="179">
+      <Component Name="ST10_GeneralData" UId="180">
+        <BooleanAttribute Name="HasQuotes" UId="181">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="182" />
+      <Component Name="FixtureIDCheck" UId="183">
+        <Token Text="[" UId="184" />
+        <Access Scope="LiteralConstant" UId="185">
+          <Constant UId="186">
+            <ConstantValue UId="188">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="189" />
+      </Component>
+      <Token Text="." UId="190" />
+      <Component Name="FixtureIDCheckValue" UId="191" />
+      <Token Text="." UId="192" />
+      <Token Text="%X5" UId="193" />
+    </Symbol>
+  </Access>
+  <Blank UId="194" />
+  <Token Text=":=" UId="195" />
+  <Blank UId="196" />
+  <Access Scope="LiteralConstant" UId="197">
+    <Constant UId="198">
+      <ConstantValue UId="200">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="201" />
+  <NewLine UId="202" />
+  <Access Scope="GlobalVariable" UId="203">
+    <Symbol UId="204">
+      <Component Name="ST10_GeneralData" UId="205">
+        <BooleanAttribute Name="HasQuotes" UId="206">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="207" />
+      <Component Name="FixtureIDCheck" UId="208">
+        <Token Text="[" UId="209" />
+        <Access Scope="LiteralConstant" UId="210">
+          <Constant UId="211">
+            <ConstantValue UId="213">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="214" />
+      </Component>
+      <Token Text="." UId="215" />
+      <Component Name="FixtureIDCheckValue" UId="216" />
+      <Token Text="." UId="217" />
+      <Token Text="%X6" UId="218" />
+    </Symbol>
+  </Access>
+  <Blank UId="219" />
+  <Token Text=":=" UId="220" />
+  <Blank UId="221" />
+  <Access Scope="LiteralConstant" UId="222">
+    <Constant UId="223">
+      <ConstantValue UId="225">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="226" />
+  <NewLine UId="227" />
+  <Access Scope="GlobalVariable" UId="228">
+    <Symbol UId="229">
+      <Component Name="ST10_GeneralData" UId="230">
+        <BooleanAttribute Name="HasQuotes" UId="231">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="232" />
+      <Component Name="FixtureIDCheck" UId="233">
+        <Token Text="[" UId="234" />
+        <Access Scope="LiteralConstant" UId="235">
+          <Constant UId="236">
+            <ConstantValue UId="238">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="239" />
+      </Component>
+      <Token Text="." UId="240" />
+      <Component Name="FixtureIDCheckValue" UId="241" />
+      <Token Text="." UId="242" />
+      <Token Text="%X7" UId="243" />
+    </Symbol>
+  </Access>
+  <Blank UId="244" />
+  <Token Text=":=" UId="245" />
+  <Blank UId="246" />
+  <Access Scope="LiteralConstant" UId="247">
+    <Constant UId="248">
+      <ConstantValue UId="250">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="251" />
+  <NewLine UId="252" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="21" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="22" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="25" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="26" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>Fixture换型工装</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>Fixture Changing fixture</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="28" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="29" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <LineComment UId="21">
+    <Text UId="22">循环数量为工装检测的数量</Text>
+  </LineComment>
+  <NewLine Num="2" UId="23" />
+  <Access Scope="LocalVariable" UId="24">
+    <Symbol UId="25">
+      <Component Name="FixtureNumber" UId="26" />
+    </Symbol>
+  </Access>
+  <Blank UId="27" />
+  <Token Text=":=" UId="28" />
+  <Blank UId="29" />
+  <Access Scope="LiteralConstant" UId="30">
+    <Constant UId="31">
+      <ConstantValue UId="33">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="34" />
+  <NewLine Num="2" UId="35" />
+  <LineComment UId="36">
+    <Text UId="37">工装检测功能块调用</Text>
+  </LineComment>
+  <NewLine Num="2" UId="38" />
+  <Access Scope="LocalVariable" UId="39">
+    <Symbol UId="40">
+      <Component Name="FixtureIndex" UId="41" />
+    </Symbol>
+  </Access>
+  <Blank UId="42" />
+  <Token Text=":=" UId="43" />
+  <Blank UId="44" />
+  <Access Scope="LiteralConstant" UId="45">
+    <Constant UId="46">
+      <ConstantValue UId="48">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="49" />
+  <NewLine Num="2" UId="50" />
+  <Token Text="FOR" UId="51" />
+  <Blank UId="52" />
+  <Access Scope="LocalVariable" UId="53">
+    <Symbol UId="54">
+      <Component Name="FixtureIndex" UId="55" />
+    </Symbol>
+  </Access>
+  <Blank UId="56" />
+  <Token Text=":=" UId="57" />
+  <Blank UId="58" />
+  <Access Scope="LiteralConstant" UId="59">
+    <Constant UId="60">
+      <ConstantValue UId="62">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="63" />
+  <Token Text="TO" UId="64" />
+  <Blank UId="65" />
+  <Access Scope="LocalVariable" UId="66">
+    <Symbol UId="67">
+      <Component Name="FixtureNumber" UId="68" />
+    </Symbol>
+  </Access>
+  <Blank UId="69" />
+  <Token Text="DO" UId="70" />
+  <NewLine UId="71" />
+  <Blank Num="3" UId="72" />
+  <NewLine UId="73" />
+  <Blank Num="4" UId="74" />
+  <Access Scope="Call" UId="75">
+    <CallInfo UId="76" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="78">
+        <Component Name="fcFixtureCheck" UId="77" />
+      </Instance>
+      <Token Text="(" UId="79" />
+      <Parameter Name="iRecipeSetValue" UId="80">
+        <Blank UId="81" />
+        <Token Text=":=" UId="82" />
+        <Blank UId="83" />
+        <Access Scope="GlobalVariable" UId="84">
+          <Symbol UId="85">
+            <Component Name="ST10_RecipeDB" UId="86">
+              <BooleanAttribute Name="HasQuotes" UId="87">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="88" />
+            <Component Name="ParameterElement" UId="89" />
+            <Token Text="." UId="90" />
+            <Component Name="FixtureID" UId="91">
+              <Token Text="[" UId="92" />
+              <Access Scope="LocalVariable" UId="93">
+                <Symbol UId="94">
+                  <Component Name="FixtureIndex" UId="95" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="96" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="97" />
+      <NewLine UId="98" />
+      <Blank Num="21" UId="99" />
+      <Parameter Name="FixtureIDCheck" UId="100">
+        <Blank UId="101" />
+        <Token Text=":=" UId="102" />
+        <Blank UId="103" />
+        <Access Scope="GlobalVariable" UId="104">
+          <Symbol UId="105">
+            <Component Name="ST10_GeneralData" UId="106">
+              <BooleanAttribute Name="HasQuotes" UId="107">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="108" />
+            <Component Name="FixtureIDCheck" UId="109">
+              <Token Text="[" UId="110" />
+              <Access Scope="LocalVariable" UId="111">
+                <Symbol UId="112">
+                  <Component Name="FixtureIndex" UId="113" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="114" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="115" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="116" />
+  <NewLine UId="117" />
+  <Blank Num="4" UId="118" />
+  <NewLine UId="119" />
+  <Token Text="END_FOR" UId="120" />
+  <Token Text=";" UId="121" />
+  <NewLine UId="122" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="2E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>FixtureID Check Call</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>FixtureID Check Call</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="31" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="32" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="ST10_RecipeDB" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="ST10_RecipeDB_HMI" />
+      </Symbol>
+    </Access>
+    <Part Name="Move" UId="23" DisabledENO="true">
+      <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="24">
+      <Powerrail />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="25">
+      <IdentCon UId="21" />
+      <NameCon UId="23" Name="in" />
+    </Wire>
+    <Wire UId="26">
+      <NameCon UId="23" Name="out1" />
+      <IdentCon UId="22" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="33" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="35" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="36" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="37" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="38" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="39" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>Recipe HMI</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="3B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource />
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="3C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="40" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="41" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="42" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="43" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="44" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="45" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="46" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="47" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

@@ -1,0 +1,27 @@
+﻿DATA_BLOCK "HMISystemDB"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 2201
+// END_ATTRIBUTES
+   STRUCT 
+      DisplayRows : Int;
+      MaxPage : Int;
+      Rows : Int;
+      UnEnableGroup : Bool;
+      DisplaySymbol : Bool;
+      "DisplaySymbol Time" : Int;
+      SymbolText : Array[1..4] of Int;
+      HMICylinderBypass : Array[1..50] of Struct
+         BY : Array[1..50] of Int;
+      END_STRUCT;
+      HMI_Axis { S7_SetPoint := 'False'} : "HMI_Axis";
+   END_STRUCT;
+
+
+BEGIN
+   HMI_Axis.INPUT.Axis_ID := 1;
+
+END_DATA_BLOCK
+

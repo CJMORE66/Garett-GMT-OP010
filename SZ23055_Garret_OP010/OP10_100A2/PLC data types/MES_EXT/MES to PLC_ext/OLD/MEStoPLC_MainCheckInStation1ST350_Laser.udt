@@ -1,0 +1,13 @@
+﻿TYPE "MEStoPLC_MainCheckInStation1ST350_Laser"
+VERSION : 0.1
+   STRUCT
+      PartTypeID : Int;
+      Station1PalletID : Int;
+      Station1PartSN : String[60];
+      Spare : Array[0..132] of Byte;
+      Massage { S7_SetPoint := 'False'} : "MEStoPLC_AlarmMassage_ext";
+      LaserMarking : "LaserMarkingBuffer";
+   END_STRUCT;
+
+END_TYPE
+

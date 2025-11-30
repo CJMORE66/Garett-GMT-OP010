@@ -1,0 +1,20 @@
+﻿TYPE "MEStoPLC_MainCheckIn"
+VERSION : 0.1
+   STRUCT
+      "M-OrderNum" : String[48];
+      "M-PartType" : String[28];
+      "M-PartID" : String[48];
+      "M-PartIDReqDone" : Bool;
+      "M-RecipeDone" : Bool;
+      "M-PartOK" : Bool;
+      "M-PartNG" : Bool;
+      "M-PartStatus" : Byte;
+      "M-PartRouting" : Byte;
+      "M-RecipeVer" : String[18];
+      "M-ErrorCode" : Int;
+      "M-ErrorMsg" : String[98];
+      Reserve : Array[1..744] of Byte;
+   END_STRUCT;
+
+END_TYPE
+

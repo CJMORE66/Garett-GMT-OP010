@@ -1,0 +1,18 @@
+﻿DATA_BLOCK "AutoProcessData_Buffer_Clear"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 1602
+// END_ATTRIBUTES
+   STRUCT 
+      DataBuffer { S7_SetPoint := 'False'} : Array[0..60] of "ProcessData";
+      DataBufferClear { S7_SetPoint := 'False'} : "ProcessData";
+      VAL { S7_SetPoint := 'True'} : Int;
+   END_STRUCT;
+
+
+BEGIN
+
+END_DATA_BLOCK
+

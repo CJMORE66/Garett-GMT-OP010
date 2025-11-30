@@ -1,0 +1,141 @@
+﻿DATA_BLOCK "ST10_GlobalError"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 1066
+// END_ATTRIBUTES
+   STRUCT 
+      COM : Struct
+         MainPneumaticPressure1NOK : Bool;
+         MainPneumaticPressure2NOK : Bool;
+         MainPneumaticPressure3NOK : Bool;
+         StationNotInHP : Bool;
+         CabinetTemperatureNotOk : Bool;
+         CoolingUnitNotOk : Bool;
+         RotateTablePositionNOK : Bool;
+         RotateTableNotInPosition : Bool;
+         StationHardwareError : Bool;
+         ChangeStyleError : Bool;
+         Reserve3 : Bool;
+         Reserve4 : Bool;
+         Reserve5 : Bool;
+         Reserve6 : Bool;
+         Reserve7 : Bool;
+         Reserve8 : Bool;
+         Reserve : Array[1..4, 0..15] of Bool;
+      END_STRUCT;
+      Hardware : Struct
+         PNSlaveStation01 : Array[1..10] of Struct
+            Error : Bool;
+            Reserve1 : Bool;
+            Reserve2 : Bool;
+         END_STRUCT;
+         COMM : Array[1..5] of Struct
+            CommunicationError : Bool;
+            NoReceive : Bool;
+            ReceiveWrong : Bool;
+            Reserve1 : Bool;
+            Reserve2 : Bool;
+         END_STRUCT;
+         PNSlaveStation02 : Array[1..10] of Struct
+            Error : Bool;
+            Reserve1 : Bool;
+            Reserve2 : Bool;
+            Reserve3 : Bool;
+         END_STRUCT;
+         PNSlaveStation03 : Array[1..10] of Struct
+            Error : Bool;
+            Reserve1 : Bool;
+            Reserve2 : Bool;
+            Reserve3 : Bool;
+         END_STRUCT;
+         ValveIsland : Array[1..5] of Struct
+            SystemError : Bool;
+            OffLine : Bool;
+            Reserve1 : Bool;
+            Reserve2 : Bool;
+         END_STRUCT;
+      END_STRUCT;
+      Safety : Struct
+         "Robot 1 Estop" : Bool;
+         "Robot 2 Estop" : Bool;
+         HMIEstopPBActivated : Bool;
+         TableEstopPB1Activated : Bool;
+         TableEstopPB2Activated : Bool;
+         TableEstopPB3Activated : Bool;
+         TableEstopPB4Activated : Bool;
+         TableEstopPB5Activated : Bool;
+         TableEstopPB6Activated : Bool;
+         EStopSafety : Bool;
+         TableEstopPB7Activated : Bool;
+         TableEstopPB8Activated : Bool;
+         TableEstopPB9Activated : Bool;
+         StoveEstopActivated : Bool;
+         "Robot 3 Estop" : Bool;
+         Reserve9 : Bool;
+         Reserve : Array[1..4, 0..15] of Bool;
+      END_STRUCT;
+      SafetyDoor : Struct
+         "Type" : Array[1..5] of Struct
+            NotOk : Bool;
+            OpenInRunning : Bool;
+            Reserve1 : Bool;
+            Reserve2 : Bool;
+         END_STRUCT;
+         No : Array[1..9] of Struct
+            NotLock : Bool;
+            Notlocked : Bool;
+            NotClose : Bool;
+            Reserve1 : Bool;
+            Reserve2 : Bool;
+         END_STRUCT;
+         MaterialDoor : Struct
+            NotLock_1 : Bool;
+            NotClose_1 : Bool;
+            NotLock_2 : Bool;
+            NotClose_2 : Bool;
+            NotLock_3 : Bool;
+            NotClose_3 : Bool;
+            NotLock_4 : Bool;
+            NotClose_4 : Bool;
+            NotLock_5 : Bool;
+            NotClose_5 : Bool;
+            NotLock_6 : Bool;
+            NotClose_6 : Bool;
+            NotLock_7 : Bool;
+            NotClose_7 : Bool;
+            NotLock_8 : Bool;
+            NotClose_8 : Bool;
+         END_STRUCT;
+      END_STRUCT;
+      LightCurtain : Array[1..5] of Struct
+         ActivatedInRunning : Bool;
+         ActivatedInRotTableRun : Bool;
+         Error : Bool;
+         Reserve1 : Bool;
+         Reserve2 : Bool;
+      END_STRUCT;
+      Product : Array[1..5] of Struct
+         TypeSelectionError : Bool;
+         TypeWrong : Bool;
+         NotforStation : Bool;
+         TypeAutoChangeError : Bool;
+         Reserve2 : Bool;
+      END_STRUCT;
+      Fixture : Array[1..10] of Struct
+         PositionError : Bool;
+         TypeError : Bool;
+         Reserve1 : Bool;
+         Reserve2 : Bool;
+      END_STRUCT;
+      Breaker : Struct
+         Trip : Array[1..16] of Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+
+END_DATA_BLOCK
+

@@ -1,0 +1,23 @@
+﻿DATA_BLOCK "PartData_Interface_DB"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+// ATTRIBUTES
+// AUTO_NUMBER = True
+// BLOCK_NUMBER = 1500
+// END_ATTRIBUTES
+   VAR 
+      PartDataID : Int;
+      PartData : Array[1..4] of "PartData_UDT";
+      PartCMD : Array[1..4] of Struct
+         Set : Bool;
+         Use : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+   PartDataID := 1;
+
+END_DATA_BLOCK
+

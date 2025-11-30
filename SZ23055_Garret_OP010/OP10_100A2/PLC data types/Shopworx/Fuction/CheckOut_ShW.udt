@@ -1,0 +1,26 @@
+﻿TYPE "CheckOut_ShW"
+VERSION : 0.1
+   STRUCT
+      Trigger : Bool;
+      SubStationResult : Int;
+      NGCode : DInt;
+      S_MainID : String[120];
+      S_CarrierID : Int;
+      S_CompletedProductID : String[48];
+      S_PackageBatchID : String[48];
+      Result : Int;
+      Completed : Bool;
+      S_ComponentID : "ComponentID_ShW";
+      S_BatchID : "batchID_ShW";
+      S_SubAssemblyID { S7_SetPoint := 'False'} : "SubAssemblyID_ShW";
+      S_OperatorNo : Struct
+         _1 : String[48];
+         _2 : String[48];
+         _3 : String[48];
+         _4 : String[48];
+         _5 : String[48];
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+

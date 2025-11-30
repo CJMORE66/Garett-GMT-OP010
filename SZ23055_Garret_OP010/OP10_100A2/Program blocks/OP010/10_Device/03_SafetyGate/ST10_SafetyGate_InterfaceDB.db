@@ -1,0 +1,42 @@
+﻿DATA_BLOCK "ST10_SafetyGate_InterfaceDB"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 1140
+// END_ATTRIBUTES
+   VAR 
+      aDev : Array[1..20] of "SafetyGateUDT";
+      SafetyDoorLamp { S7_SetPoint := 'True'} : Array[1..20] of Bool;
+      H : Struct
+         Status_1 : Int;
+         Status_2 : Int;
+         Status_3 : Int;
+         p : Array[0..20] of Bool;
+      END_STRUCT;
+      J : Struct
+         Status_1 : Int;
+         Status_2 : Int;
+         Status_3 : Int;
+         p : Array[0..20] of Bool;
+      END_STRUCT;
+      K : Struct
+         Status_1 : Int;
+         Status_2 : Int;
+         Status_3 : Int;
+         p : Array[0..20] of Bool;
+      END_STRUCT;
+      L : Struct
+         Status_1 : Int;
+         Status_2 : Int;
+         Status_3 : Int;
+         p : Array[0..20] of Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+
+END_DATA_BLOCK
+

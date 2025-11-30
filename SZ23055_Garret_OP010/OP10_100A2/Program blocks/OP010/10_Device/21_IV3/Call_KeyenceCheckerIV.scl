@@ -1,0 +1,225 @@
+﻿FUNCTION_BLOCK "Call_KeyenceCheckerIV"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 2100
+// END_ATTRIBUTES
+   VAR 
+      InsKeyenceCheckerIV3810A1 { S7_SetPoint := 'False'} : "FB_KeyenceCheckerIV3";
+      InsKeyenceCheckerIV3811A1 { S7_SetPoint := 'False'} : "FB_KeyenceCheckerIV3";
+      nIndex { S7_SetPoint := 'True'} : Int;
+   END_VAR
+
+
+BEGIN
+	
+	//810A1
+	REGION KeyenceCheckerIV3() 
+	    
+	    REGION HardwareConfigGuidance()
+	        // 组态说明/Hardware config Guidance
+	        // 输入/Input
+	        // Command Status Bits_1
+	        // Device Result Bits_1
+	        // Device Status Words_1
+	        // Device Statistics_1
+	        // Position Adjust Result_1
+	        // Tool Result_1
+	        // Tool Result_2
+	        // 输出/Output
+	        // Command Control_1
+	    END_REGION
+	    
+	    REGION DeviceControl()
+	        //************************************************************************************************ 
+	        //设备控制/Device control 
+	        //************************************************************************************************ 
+	        //Set device number
+	        #nIndex := 1;//(For example Constant:ST01_CHECKER_FUNCTION)
+	        
+	        REGION WorkflowControl()
+	            //************************************************************************************************ 
+	            //流程控制/Workflow control
+	            //************************************************************************************************ 
+	            //---set program number
+	            //   "DB_KeyenceCheckerIV2".aDev[#nIndex].Out.CommandControl.nProgramNo
+	            //---set command mode and wait for mode to "MODE_CHECKER_IDLE"
+	            //   "DB_KeyenceCheckerIV2".aDev[#nIndex].Common.nMode
+	        END_REGION
+	        
+	        REGION GeneralControl()
+	            //************************************************************************************************ 
+	            //常规控制/General control 
+	            //************************************************************************************************ 
+	            //Set common parameter
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.bScreenActive := "Station_Sys".Manual.Mode;
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.bReset := "Station_Sys".Cmd.Reset;
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.tMaxProcessTime := t#30s;
+	        END_REGION
+	        
+	        REGION ParameterConfig()
+	            //************************************************************************************************ 
+	            //参数配置/Parameter config 
+	            //************************************************************************************************ 
+	        END_REGION
+	        
+	        REGION ModeControl()
+	            //************************************************************************************************ 
+	            //设备启动停止/Device mode control
+	            //************************************************************************************************ 
+	            // IF NOT "Station_Sys".Status.Run THEN
+	            //     "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nMode := 0;
+	            // END_IF;
+	            
+	            IF "Station_Sys".Manual.Mode THEN
+	                "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nModeSwitch := "MS_MANUAL";
+	            ELSIF "Station_Sys".Auto.Mode THEN
+	                "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nModeSwitch:=  "MS_Auto";
+	            ELSE
+	                "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nModeSwitch := "MS_EMPTY";
+	            END_IF;
+	            END_REGION
+	        
+	        REGION ConditionControl()
+	            //************************************************************************************************ 
+	            //使能控制/Condition control
+	            //************************************************************************************************ 
+	            //according to detail information in different use to fill in start condition
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.bEnable := "Station_Sys".Status.Run;
+	        END_REGION
+	        
+	    END_REGION
+	    
+	    REGION HardwareInput()
+	        //************************************************************************************************ 
+	        //硬件输入/Hardware input 
+	        //************************************************************************************************ 
+	    END_REGION
+	    
+	    REGION CallFunctionBlock()
+	        //************************************************************************************************
+	        //功能块调用/Call function block
+	        //************************************************************************************************
+	        //according to hardware configuration to type in hardware address
+	     
+	        #InsKeyenceCheckerIV3810A1(#nIndex);
+	        
+	      
+	    END_REGION
+	    
+	    REGION HardwareOutput()
+	        //************************************************************************************************ 
+	        //硬件输出/Hardware output 
+	        //************************************************************************************************ 
+	    END_REGION
+	    
+	END_REGION
+	
+	
+	//811A1
+	REGION KeyenceCheckerIV3() 
+	    
+	    REGION HardwareConfigGuidance()
+	        // 组态说明/Hardware config Guidance
+	        // 输入/Input
+	        // Command Status Bits_1
+	        // Device Result Bits_1
+	        // Device Status Words_1
+	        // Device Statistics_1
+	        // Position Adjust Result_1
+	        // Tool Result_1
+	        // Tool Result_2
+	        // 输出/Output
+	        // Command Control_1
+	    END_REGION
+	    
+	    REGION DeviceControl()
+	        //************************************************************************************************ 
+	        //设备控制/Device control 
+	        //************************************************************************************************ 
+	        //Set device number
+	        #nIndex := 2;//(For example Constant:ST01_CHECKER_FUNCTION)
+	        
+	        REGION WorkflowControl()
+	            //************************************************************************************************ 
+	            //流程控制/Workflow control
+	            //************************************************************************************************ 
+	            //---set program number
+	            //   "DB_KeyenceCheckerIV2".aDev[#nIndex].Out.CommandControl.nProgramNo
+	            //---set command mode and wait for mode to "MODE_CHECKER_IDLE"
+	            //   "DB_KeyenceCheckerIV2".aDev[#nIndex].Common.nMode
+	        END_REGION
+	        
+	        REGION GeneralControl()
+	            //************************************************************************************************ 
+	            //常规控制/General control 
+	            //************************************************************************************************ 
+	            //Set common parameter
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.bScreenActive := "Station_Sys".Manual.Mode;
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.bReset := "Station_Sys".Cmd.Reset;
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.tMaxProcessTime := t#30s;
+	        END_REGION
+	        
+	        REGION ParameterConfig()
+	            //************************************************************************************************ 
+	            //参数配置/Parameter config 
+	            //************************************************************************************************ 
+	        END_REGION
+	        
+	        REGION ModeControl()
+	            //************************************************************************************************ 
+	            //设备启动停止/Device mode control
+	            //************************************************************************************************ 
+	            // IF NOT "Station_Sys".Status.Run THEN
+	            //     "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nMode := 0;
+	            // END_IF;
+	            
+	            IF "Station_Sys".Manual.Mode THEN
+	                "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nModeSwitch := "MS_MANUAL";
+	            ELSIF "Station_Sys".Auto.Mode THEN
+	                "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nModeSwitch := "MS_Auto";
+	            ELSE
+	                "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.nModeSwitch := "MS_EMPTY";
+	            END_IF;
+	        END_REGION
+	        
+	        REGION ConditionControl()
+	            //************************************************************************************************ 
+	            //使能控制/Condition control
+	            //************************************************************************************************ 
+	            //according to detail information in different use to fill in start condition
+	            "DB_KeyenceCheckerIV3".aDev[#nIndex].Common.bEnable := "Station_Sys".Status.Run;
+	        END_REGION
+	        
+	    END_REGION
+	    
+	    REGION HardwareInput()
+	        //************************************************************************************************ 
+	        //硬件输入/Hardware input 
+	        //************************************************************************************************ 
+	    END_REGION
+	    
+	    REGION CallFunctionBlock()
+	        //************************************************************************************************
+	        //功能块调用/Call function block
+	        //************************************************************************************************
+	        //according to hardware configuration to type in hardware address
+	        
+	        #InsKeyenceCheckerIV3811A1(#nIndex);
+	        
+	        
+	    END_REGION
+	    
+	    REGION HardwareOutput()
+	        //************************************************************************************************ 
+	        //硬件输出/Hardware output 
+	        //************************************************************************************************ 
+	    END_REGION
+	    
+	END_REGION
+	
+	
+	
+END_FUNCTION_BLOCK
+

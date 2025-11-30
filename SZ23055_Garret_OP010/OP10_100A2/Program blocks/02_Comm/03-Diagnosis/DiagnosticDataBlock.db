@@ -1,0 +1,23 @@
+﻿DATA_BLOCK "DiagnosticDataBlock"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 3001
+// END_ATTRIBUTES
+   STRUCT 
+      DP : Struct
+         DPReadStatus : Int;
+         Status : Array[0..1023] of Bool;
+      END_STRUCT;
+      Profinet : Struct
+         PNReadStatus : Int;
+         Status : Array[0..1023] of Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+
+END_DATA_BLOCK
+

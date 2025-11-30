@@ -1,0 +1,603 @@
+﻿DATA_BLOCK "AutoProcessControl"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+NON_RETAIN
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 5100
+// END_ATTRIBUTES
+   STRUCT 
+      A_Table_1Scan : Struct
+         Robot1PickPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      A_Table_1Loading : Struct
+         Robot1PickPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+         ServoRunCount : Int;
+      END_STRUCT;
+      A_Table_2Scan : Struct
+         Robot3PickPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      A_Table_2Loading : Struct
+         Robot3PickPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+         ServoRunCount : Int;
+      END_STRUCT;
+      A_ScanRotary : Struct
+         Robot1PickPrimit : Bool;
+         Robot1PutPrimit : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      B_Press_1 : Struct
+         Robot1PickPrimit : Bool;
+         Robot1PutShaftPrimit : Bool;
+         Robot1PutRingPrimit : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+         GripStatus : Int;
+      END_STRUCT;
+      B_Press_2 : Struct
+         Robot3PickPrimit : Bool;
+         Robot3PutRingPrimit : Bool;
+         Robot2PutPrimit : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+         GripStatus : Int;
+      END_STRUCT;
+      C_Glue : Struct
+         Robot2PickPrimit : Bool;
+         Robot1PutPrimit : Bool;
+         Robot2MaganePutPrimit : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         GlueTest : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      H_ShafeLine : Struct
+         Robot1PickPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         EmptyMaterial : Bool;   // 托盘清料反转
+         LineTest : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      J_MagnetLine : Struct
+         Robot2PickPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         EmptyMaterial : Bool;   // 托盘清料反转
+         LineTest : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      K_ShafeLine : Struct
+         Robot2PickPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         EmptyMaterial : Bool;   // 托盘清料反转
+         LineTest : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      L_ShafeLine : Struct
+         Robot3PutPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         EmptyMaterial : Bool;   // 托盘清料反转
+         LineTest : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Headt : Struct
+         PalletUnloadingPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Robot2ScanNG : Struct
+         PutPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Robot2GlueNG : Struct
+         PutPrimit : Bool;
+         Spare_2 : Bool;
+         Spare_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      NG_1 : Struct
+         Robot1PutPrimit_1 : Bool;
+         Robot1PutPrimit_2 : Bool;
+         Robot1PutPrimit_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         DoorRequest : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      NG_2 : Struct
+         Robot3PutPrimit_1 : Bool;
+         Robot3PutPrimit_2 : Bool;
+         Robot3PutPrimit_3 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         DoorRequest : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      NGBuffer : Struct
+         Robot3PPickMagnetNGPrimit : Bool;
+         PickGlueNGPrimit : Bool;
+         Spare_17 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Fixture1Code : Struct
+         Robot1CodeReadReq : Bool;
+         Spare_17 : Bool;
+         Spare_18 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Fixture2Code : Struct
+         Robot3CodeReadReq : Bool;
+         Spare_17 : Bool;
+         Spare_18 : Bool;
+         Spare_4 : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Robot_1 : Struct
+         GluePutFlag : Bool;
+         NGPutFlag : Bool;
+         MaintenanceRequest : Bool;
+         HomeRequest : Bool;
+         Spare_5 : Bool;
+         Spare_6 : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         ReadyToRobot2 : Bool;
+         ClearPart : Bool;
+         GripScanRequest : Bool;
+         OnePart : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Robot_2 : Struct
+         PalletPickFlag : Bool;
+         MagnetScanFlag : Bool;
+         GluePutFlag : Bool;
+         GluePickFlag : Bool;
+         Press2PutFlag : Bool;
+         GlueNGPutFlag : Bool;
+         ScanNGPutFlag : Bool;
+         Spare_8 : Bool;
+         ReadyToRobot1 : Bool;
+         ReadyToRobot3 : Bool;
+         MaintenanceRequest : Bool;
+         HomeRequest : Bool;
+         GripScanRequest : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Robot_3 : Struct
+         Press2PutFlag : Bool;
+         Press2PickFlag : Bool;
+         GlueNGPickFlag : Bool;
+         ScanNGPickFlag : Bool;
+         NGPutFlag : Bool;
+         Spare_10 : Bool;
+         Spare_9 : Bool;
+         Spare_8 : Bool;
+         ReadyToRobot2 : Bool;
+         PalletFull : Bool;
+         MaintenanceRequest : Bool;
+         HomeRequest : Bool;
+         GripScanRequest : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+      END_STRUCT;
+      Global : Struct
+         H : Struct
+            EmptyPallet : Bool;
+            LoadStopRequestPallet_1 : Bool;
+            LoadStopRequestPallet_2 : Bool;
+            LoadStopRequestPallet_3 : Bool;
+            LoadStopRequestPallet_4 : Bool;
+            EmptyStopRequestPallet_1 : Bool;
+            EmptyStopRequestPallet_2 : Bool;
+            EmptyStopRequestPallet_3 : Bool;
+            Spare : Bool;
+            Spare_1 : Bool;
+            Spare_2 : Bool;
+            Spare_3 : Bool;
+            Spare_4 : Bool;
+            Spare_5 : Bool;
+            Spare_6 : Bool;
+            Spare_7 : Bool;
+         END_STRUCT;
+         J : Struct
+            EmptyPallet : Bool;
+            LoadStopRequestPallet_1 : Bool;
+            LoadStopRequestPallet_2 : Bool;
+            LoadStopRequestPallet_3 : Bool;
+            LoadStopRequestPallet_4 : Bool;
+            EmptyStopRequestPallet_1 : Bool;
+            EmptyStopRequestPallet_2 : Bool;
+            EmptyStopRequestPallet_3 : Bool;
+            Spare : Bool;
+            Spare_1 : Bool;
+            Spare_2 : Bool;
+            Spare_3 : Bool;
+            Spare_4 : Bool;
+            Spare_5 : Bool;
+            Spare_6 : Bool;
+            Spare_7 : Bool;
+         END_STRUCT;
+         K : Struct
+            EmptyPallet : Bool;
+            LoadStopRequestPallet_1 : Bool;
+            LoadStopRequestPallet_2 : Bool;
+            LoadStopRequestPallet_3 : Bool;
+            LoadStopRequestPallet_4 : Bool;
+            EmptyStopRequestPallet_1 : Bool;
+            EmptyStopRequestPallet_2 : Bool;
+            EmptyStopRequestPallet_3 : Bool;
+            Spare : Bool;
+            Spare_1 : Bool;
+            Spare_2 : Bool;
+            Spare_3 : Bool;
+            Spare_4 : Bool;
+            Spare_5 : Bool;
+            Spare_6 : Bool;
+            Spare_7 : Bool;
+         END_STRUCT;
+         L : Struct
+            EmptyPallet : Bool;
+            LoadStopRequestPallet_1 : Bool;
+            LoadStopRequestPallet_2 : Bool;
+            LoadStopRequestPallet_3 : Bool;
+            LoadStopRequestPallet_4 : Bool;
+            EmptyStopRequestPallet_1 : Bool;
+            EmptyStopRequestPallet_2 : Bool;
+            EmptyStopRequestPallet_3 : Bool;
+            Spare : Bool;
+            Spare_1 : Bool;
+            Spare_2 : Bool;
+            Spare_3 : Bool;
+            Spare_4 : Bool;
+            Spare_5 : Bool;
+            Spare_6 : Bool;
+            Spare_7 : Bool;
+         END_STRUCT;
+         H_EmptyPallet : Bool;
+         J_EmptyPallet : Bool;
+         K_EmptyPallet : Bool;
+         L_EmptyPallet : Bool;
+         ALL_EmptyPallet : Bool;
+         ALL_BeltPalletEmptyFinish : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+         Spare_16 : Bool;
+         P : Array[0..60] of Bool;
+      END_STRUCT;
+      P : Array[0..40] of Bool;
+      Status : Struct
+         A1TableScan : Struct
+            Status : Int;
+         END_STRUCT;
+         A1TableUnloading : Struct
+            Status : Int;
+         END_STRUCT;
+         A1RotaryScan : Struct
+            Status : Int;
+         END_STRUCT;
+         B1Press : Struct
+            Status : Int;
+         END_STRUCT;
+         FRobot_1 : Struct
+            Status : Int;
+         END_STRUCT;
+         A1FixtureCodeScan : Struct
+            Status : Int;
+         END_STRUCT;
+         CGlueing : Struct
+            Status : Int;
+         END_STRUCT;
+         FRobot_2 : Struct
+            Status : Int;
+         END_STRUCT;
+         A2TableScan : Struct
+            Status : Int;
+         END_STRUCT;
+         A2TableUnloading : Struct
+            Status : Int;
+         END_STRUCT;
+         ChangeOver : Struct
+            Status : Int;
+         END_STRUCT;
+         B2Press : Struct
+            Status : Int;
+         END_STRUCT;
+         FRobot_3 : Struct
+            Status : Int;
+         END_STRUCT;
+         A2FixtureCodeScan : Struct
+            Status : Int;
+         END_STRUCT;
+         HShaftLifting : Struct
+            Status : Int;
+         END_STRUCT;
+         JMagnetLifting : Struct
+            Status : Int;
+         END_STRUCT;
+         KReserveLifting : Struct
+            Status : Int;
+         END_STRUCT;
+         LUnloadingTrans : Struct
+            Status : Int;
+         END_STRUCT;
+         "HShaftLoad&Unload" : Struct
+            Status : Int;
+         END_STRUCT;
+         "JMagnetLoad&Unload" : Struct
+            Status : Int;
+         END_STRUCT;
+         "KReserveLoad&Unload" : Struct
+            Status : Int;
+         END_STRUCT;
+         "LUnloadingLoad&Unload" : Struct
+            Status : Int;
+         END_STRUCT;
+         Solidify : Struct
+            Status : Int;
+         END_STRUCT;
+         ENG_1 : Struct
+            Status : Int;
+         END_STRUCT;
+         ENG_2 : Struct
+            Status : Int;
+         END_STRUCT;
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+
+END_DATA_BLOCK
+

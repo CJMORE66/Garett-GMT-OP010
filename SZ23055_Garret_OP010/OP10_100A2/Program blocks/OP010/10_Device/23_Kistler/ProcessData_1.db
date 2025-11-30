@@ -1,0 +1,123 @@
+﻿DATA_BLOCK "ProcessData_1"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 2300
+// END_ATTRIBUTES
+   STRUCT 
+      AlwaysZero : Byte;
+      "OP40.2" : Struct
+         Kistler_Continue_Interlock : Bool;
+         Kistler_Interlock : Bool;
+         KistlerPress_autoInterlock : Bool;
+         KistlerPress_1Flag : Bool;
+         KistlerPress_2Flag : Bool;
+         KistlerPress_1Flag_Reset : Bool;
+         KistlerPress_2Flag_Reset : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+      END_STRUCT;
+      "OP40.3" : Struct
+         Kistler_Continue_Interlock : Bool;
+         Kistler_Interlock : Bool;
+         KistlerPress_autoInterlock : Bool;
+         KistlerPress_1Flag : Bool;
+         KistlerPress_2Flag : Bool;
+         KistlerPress_1Flag_Reset : Bool;
+         KistlerPress_2Flag_Reset : Bool;
+         Spare_7 : Bool;
+         Spare_8 : Bool;
+         Spare_9 : Bool;
+         Spare_10 : Bool;
+         Spare_11 : Bool;
+         Spare_12 : Bool;
+         Spare_13 : Bool;
+         Spare_14 : Bool;
+         Spare_15 : Bool;
+      END_STRUCT;
+      "HMI_OP40.2" : "OP40_Data";
+      "HMI_OP40.3" : "OP40_Data";
+      PressInterlock_1 { S7_SetPoint := 'True'} : Array[0..15] of Bool;
+      PressInterlock_2 : Array[0..15] of Bool;
+      Calibartion_1 : Bool;
+      Calibartion_2 : Bool;
+   END_STRUCT;
+
+
+BEGIN
+   AlwaysZero := 16#00;
+   "OP40.2".Kistler_Continue_Interlock := FALSE;
+   "OP40.2".Kistler_Interlock := FALSE;
+   "OP40.2".KistlerPress_autoInterlock := FALSE;
+   "OP40.2".KistlerPress_1Flag := FALSE;
+   "OP40.2".KistlerPress_2Flag := FALSE;
+   "OP40.2".KistlerPress_1Flag_Reset := FALSE;
+   "OP40.2".KistlerPress_2Flag_Reset := FALSE;
+   "OP40.2".Spare_7 := FALSE;
+   "OP40.2".Spare_8 := FALSE;
+   "OP40.2".Spare_9 := FALSE;
+   "OP40.2".Spare_10 := FALSE;
+   "OP40.2".Spare_11 := FALSE;
+   "OP40.2".Spare_12 := FALSE;
+   "OP40.2".Spare_13 := FALSE;
+   "OP40.2".Spare_14 := FALSE;
+   "OP40.2".Spare_15 := FALSE;
+   "OP40.3".Kistler_Continue_Interlock := FALSE;
+   "OP40.3".Kistler_Interlock := FALSE;
+   "OP40.3".KistlerPress_autoInterlock := FALSE;
+   "OP40.3".KistlerPress_1Flag := FALSE;
+   "OP40.3".KistlerPress_2Flag := FALSE;
+   "OP40.3".KistlerPress_1Flag_Reset := FALSE;
+   "OP40.3".KistlerPress_2Flag_Reset := FALSE;
+   "OP40.3".Spare_7 := FALSE;
+   "OP40.3".Spare_8 := FALSE;
+   "OP40.3".Spare_9 := FALSE;
+   "OP40.3".Spare_10 := FALSE;
+   "OP40.3".Spare_11 := FALSE;
+   "OP40.3".Spare_12 := FALSE;
+   "OP40.3".Spare_13 := FALSE;
+   "OP40.3".Spare_14 := FALSE;
+   "OP40.3".Spare_15 := FALSE;
+   "HMI_OP40.2".AssemblyResult := 16#00;
+   "HMI_OP40.2".SN := '';
+   "HMI_OP40.2".ProcessData.AssemblyResult1 := 16#00;
+   "HMI_OP40.2".ProcessData.AssemblyResult2 := 16#00;
+   "HMI_OP40.2".ProcessData.StartForce1 := 0.0;
+   "HMI_OP40.2".ProcessData.StartLVDT1 := 0.0;
+   "HMI_OP40.2".ProcessData.ProcessForce1 := 0.0;
+   "HMI_OP40.2".ProcessData.ProcessLVDT1 := 0.0;
+   "HMI_OP40.2".ProcessData.EndForce1 := 0.0;
+   "HMI_OP40.2".ProcessData.EndLVDT1 := 0.0;
+   "HMI_OP40.2".ProcessData.StartForce2 := 0.0;
+   "HMI_OP40.2".ProcessData.StartLVDT2 := 0.0;
+   "HMI_OP40.2".ProcessData.ProcessForce2 := 0.0;
+   "HMI_OP40.2".ProcessData.ProcessLVDT2 := 0.0;
+   "HMI_OP40.2".ProcessData.EndForce2 := 0.0;
+   "HMI_OP40.2".ProcessData.EndLVDT2 := 0.0;
+   "HMI_OP40.3".AssemblyResult := 16#00;
+   "HMI_OP40.3".SN := '';
+   "HMI_OP40.3".ProcessData.AssemblyResult1 := 16#00;
+   "HMI_OP40.3".ProcessData.AssemblyResult2 := 16#00;
+   "HMI_OP40.3".ProcessData.StartForce1 := 0.0;
+   "HMI_OP40.3".ProcessData.StartLVDT1 := 0.0;
+   "HMI_OP40.3".ProcessData.ProcessForce1 := 0.0;
+   "HMI_OP40.3".ProcessData.ProcessLVDT1 := 0.0;
+   "HMI_OP40.3".ProcessData.EndForce1 := 0.0;
+   "HMI_OP40.3".ProcessData.EndLVDT1 := 0.0;
+   "HMI_OP40.3".ProcessData.StartForce2 := 0.0;
+   "HMI_OP40.3".ProcessData.StartLVDT2 := 0.0;
+   "HMI_OP40.3".ProcessData.ProcessForce2 := 0.0;
+   "HMI_OP40.3".ProcessData.ProcessLVDT2 := 0.0;
+   "HMI_OP40.3".ProcessData.EndForce2 := 0.0;
+   "HMI_OP40.3".ProcessData.EndLVDT2 := 0.0;
+
+END_DATA_BLOCK
+

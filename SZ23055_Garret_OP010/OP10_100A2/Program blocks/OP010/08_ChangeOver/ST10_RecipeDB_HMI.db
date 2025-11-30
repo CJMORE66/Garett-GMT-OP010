@@ -1,0 +1,190 @@
+﻿DATA_BLOCK "ST10_RecipeDB_HMI"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 1079
+// END_ATTRIBUTES
+   STRUCT 
+      Recipe : Struct
+         RecipeTag : String[50];   // System Defined=
+         RecordName : String[50];   // 配方名称ID
+         PreConfigType : String[50];   // 数据记录名称
+         Pulse : Bool;   // 待切换数据记录名称
+         Trigger : Bool;
+         PosEdg : Bool;   // 配方切换触发
+         Alarm : Bool;
+         Ret : Bool;
+         Equal : Bool;
+         Pls : Bool;   // 换型OK标志位
+         "time" : Int;
+         Spare : Array[0..38] of Byte;
+         DataRecord_TransferStatus : Int;   // 数据记录传送状态
+      END_STRUCT;
+      ParameterElement : Struct
+         TypeName : String[50];   // System Defined=
+         TypeID : USInt;   // System define= product type for parameters of servo ,press and so on
+         FixtureID : Array[1..16] of Byte;
+         A1_TableFixtureCode : Array[0..10] of String[128];
+         A2_TableFixtureCode : Array[0..10] of String[128];
+         A1RingUnloadingFixtureCode : String[128];
+         E1LoadingNGFixtureCode : String[128];
+         ShaftScanFixtureCode : String[128];
+         B1PressFixtureCode : String[128];
+         CGlueFixtureCode : String[128];
+         B1PressCylFixtureCode : String[128];
+         A2RingUnloadingFixtureCode : String[128];
+         E2UnloadingNGFixtureCode : String[128];
+         B2PressFixtureCode : String[128];
+         CGlueNGFixtureCode : String[128];
+         B2PressCylFixtureCode : String[128];
+         R1GripperFixtureCode : Array[0..6] of String[128];
+         R2GripperFixtureCode : Array[0..6] of String[128];
+         R3GripperFixtureCode : Array[0..6] of String[128];
+         B1PressProgram : Int;
+         B2PressProgram : Int;
+         CGlueShaftIV3Program_1 : Word;
+         CGlueShaftIV3Program_2 : Word;
+         CGlueShaftIV3Program_3 : Word;
+         CGlueShaftIV3Program_4 : Word;
+         CGlueMagnetIV3Program : Word;
+         CGlueProgram : Int;
+      END_STRUCT;
+   END_STRUCT;
+
+
+BEGIN
+   Recipe.RecipeTag := 'RecipeST10';
+   Recipe.RecordName := 'Product_1';
+   Recipe.PreConfigType := 'Product_1';
+   Recipe.Pulse := FALSE;
+   Recipe.Trigger := FALSE;
+   Recipe.PosEdg := TRUE;
+   Recipe.Alarm := FALSE;
+   Recipe.Ret := FALSE;
+   Recipe.Equal := TRUE;
+   Recipe.Pls := FALSE;
+   Recipe."time" := 0;
+   Recipe.Spare[0] := 16#00;
+   Recipe.Spare[1] := 16#00;
+   Recipe.Spare[2] := 16#00;
+   Recipe.Spare[3] := 16#00;
+   Recipe.Spare[4] := 16#00;
+   Recipe.Spare[5] := 16#00;
+   Recipe.Spare[6] := 16#00;
+   Recipe.Spare[7] := 16#00;
+   Recipe.Spare[8] := 16#00;
+   Recipe.Spare[9] := 16#00;
+   Recipe.Spare[10] := 16#00;
+   Recipe.Spare[11] := 16#00;
+   Recipe.Spare[12] := 16#00;
+   Recipe.Spare[13] := 16#00;
+   Recipe.Spare[14] := 16#00;
+   Recipe.Spare[15] := 16#00;
+   Recipe.Spare[16] := 16#00;
+   Recipe.Spare[17] := 16#00;
+   Recipe.Spare[18] := 16#00;
+   Recipe.Spare[19] := 16#00;
+   Recipe.Spare[20] := 16#00;
+   Recipe.Spare[21] := 16#00;
+   Recipe.Spare[22] := 16#00;
+   Recipe.Spare[23] := 16#00;
+   Recipe.Spare[24] := 16#00;
+   Recipe.Spare[25] := 16#00;
+   Recipe.Spare[26] := 16#00;
+   Recipe.Spare[27] := 16#00;
+   Recipe.Spare[28] := 16#00;
+   Recipe.Spare[29] := 16#00;
+   Recipe.Spare[30] := 16#00;
+   Recipe.Spare[31] := 16#00;
+   Recipe.Spare[32] := 16#00;
+   Recipe.Spare[33] := 16#00;
+   Recipe.Spare[34] := 16#00;
+   Recipe.Spare[35] := 16#00;
+   Recipe.Spare[36] := 16#00;
+   Recipe.Spare[37] := 16#00;
+   Recipe.Spare[38] := 16#00;
+   Recipe.DataRecord_TransferStatus := 0;
+   ParameterElement.TypeName := 'Product_1';
+   ParameterElement.TypeID := 1;
+   ParameterElement.FixtureID[1] := 16#00;
+   ParameterElement.FixtureID[2] := 16#00;
+   ParameterElement.FixtureID[3] := 16#00;
+   ParameterElement.FixtureID[4] := 16#00;
+   ParameterElement.FixtureID[5] := 16#00;
+   ParameterElement.FixtureID[6] := 16#00;
+   ParameterElement.FixtureID[7] := 16#00;
+   ParameterElement.FixtureID[8] := 16#00;
+   ParameterElement.FixtureID[9] := 16#00;
+   ParameterElement.FixtureID[10] := 16#00;
+   ParameterElement.FixtureID[11] := 16#00;
+   ParameterElement.FixtureID[12] := 16#00;
+   ParameterElement.FixtureID[13] := 16#00;
+   ParameterElement.FixtureID[14] := 16#00;
+   ParameterElement.FixtureID[15] := 16#00;
+   ParameterElement.FixtureID[16] := 16#00;
+   ParameterElement.A1_TableFixtureCode[0] := '';
+   ParameterElement.A1_TableFixtureCode[1] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-1';
+   ParameterElement.A1_TableFixtureCode[2] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-2';
+   ParameterElement.A1_TableFixtureCode[3] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-3';
+   ParameterElement.A1_TableFixtureCode[4] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-4';
+   ParameterElement.A1_TableFixtureCode[5] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-5';
+   ParameterElement.A1_TableFixtureCode[6] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-6';
+   ParameterElement.A1_TableFixtureCode[7] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-7';
+   ParameterElement.A1_TableFixtureCode[8] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-8';
+   ParameterElement.A1_TableFixtureCode[9] := '';
+   ParameterElement.A1_TableFixtureCode[10] := '';
+   ParameterElement.A2_TableFixtureCode[0] := '';
+   ParameterElement.A2_TableFixtureCode[1] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-1';
+   ParameterElement.A2_TableFixtureCode[2] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-2';
+   ParameterElement.A2_TableFixtureCode[3] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-3';
+   ParameterElement.A2_TableFixtureCode[4] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-4';
+   ParameterElement.A2_TableFixtureCode[5] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-5';
+   ParameterElement.A2_TableFixtureCode[6] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-6';
+   ParameterElement.A2_TableFixtureCode[7] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-7';
+   ParameterElement.A2_TableFixtureCode[8] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-8';
+   ParameterElement.A2_TableFixtureCode[9] := '';
+   ParameterElement.A2_TableFixtureCode[10] := '';
+   ParameterElement.A1RingUnloadingFixtureCode := 'F2';
+   ParameterElement.E1LoadingNGFixtureCode := 'SZ23055-OP010-E-Compressor-Left NG tooling-1';
+   ParameterElement.ShaftScanFixtureCode := 'SZ23055-OP010-E-Compressor-shaft Rotating scanning tooling-1';
+   ParameterElement.B1PressFixtureCode := 'SZ23055-OP010-E-Compressor-ring1 Below Positioning fixture -1';
+   ParameterElement.CGlueFixtureCode := 'SZ23055-OP010-E-Compressor-Point adhesive tooling-1';
+   ParameterElement.B1PressCylFixtureCode := 'SZ23055-OP010-E-Compressor-ring1 Upper pressing fixture-1';
+   ParameterElement.A2RingUnloadingFixtureCode := 'F12';
+   ParameterElement.E2UnloadingNGFixtureCode := 'SZ23055-OP010-E-Compressor-Right NG tooling-1';
+   ParameterElement.B2PressFixtureCode := 'SZ23055-OP010-E-Compressor-ring2 Below Positioning fixture -1';
+   ParameterElement.CGlueNGFixtureCode := 'SZ23055-OP010-E-Compressor-NG middle shift tooling-1';
+   ParameterElement.B2PressCylFixtureCode := 'SZ23055-OP010-E-Compressor-ring1 Upper pressing fixture-1';
+   ParameterElement.R1GripperFixtureCode[0] := '';
+   ParameterElement.R1GripperFixtureCode[1] := 'SZ23055-OP010-E-Compressor-robot1 ring1 Left clamping jaw tooling-1';
+   ParameterElement.R1GripperFixtureCode[2] := 'SZ23055-OP010-E-Compressor-robot1 ring1 Right clamping jaw tooling-2';
+   ParameterElement.R1GripperFixtureCode[3] := 'SZ23055-OP010-E-Compressor-robot1 shaft Left clamping jaw tooling-1';
+   ParameterElement.R1GripperFixtureCode[4] := 'SZ23055-OP010-E-Compressor-robot1 shaft Right clamping jaw tooling-2';
+   ParameterElement.R1GripperFixtureCode[5] := '';
+   ParameterElement.R1GripperFixtureCode[6] := '';
+   ParameterElement.R2GripperFixtureCode[0] := '';
+   ParameterElement.R2GripperFixtureCode[1] := 'SZ23055-OP010-E-Compressor-robot2 shaft Right clamping jaw tooling-2';
+   ParameterElement.R2GripperFixtureCode[2] := 'SZ23055-OP010-E-Compressor-robot2 shaft Left clamping jaw tooling-1';
+   ParameterElement.R2GripperFixtureCode[3] := 'SZ23055-OP010-E-Compressor-robot2 magnet Left clamping jaw tooling-1';
+   ParameterElement.R2GripperFixtureCode[4] := 'SZ23055-OP010-E-Compressor-robot2 magnet Right clamping jaw tooling-2';
+   ParameterElement.R2GripperFixtureCode[5] := '';
+   ParameterElement.R2GripperFixtureCode[6] := '';
+   ParameterElement.R3GripperFixtureCode[0] := '';
+   ParameterElement.R3GripperFixtureCode[1] := 'SZ23055-OP010-E-Compressor-robot3 ring2 Right clamping jaw tooling-2';
+   ParameterElement.R3GripperFixtureCode[2] := 'SZ23055-OP010-E-Compressor-robot3 ring2 Left clamping jaw tooling-1';
+   ParameterElement.R3GripperFixtureCode[3] := 'SZ23055-OP010-E-Compressor-robot3 shaft Left clamping jaw tooling-1';
+   ParameterElement.R3GripperFixtureCode[4] := 'SZ23055-OP010-E-Compressor-robot3 shaft Right clamping jaw tooling-2';
+   ParameterElement.R3GripperFixtureCode[5] := '';
+   ParameterElement.R3GripperFixtureCode[6] := '';
+   ParameterElement.B1PressProgram := 1;
+   ParameterElement.B2PressProgram := 1;
+   ParameterElement.CGlueShaftIV3Program_1 := 16#0001;
+   ParameterElement.CGlueShaftIV3Program_2 := 16#0002;
+   ParameterElement.CGlueShaftIV3Program_3 := 16#0003;
+   ParameterElement.CGlueShaftIV3Program_4 := 16#0004;
+   ParameterElement.CGlueMagnetIV3Program := 16#0001;
+   ParameterElement.CGlueProgram := 1;
+
+END_DATA_BLOCK
+
