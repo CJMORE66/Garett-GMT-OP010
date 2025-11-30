@@ -1,0 +1,350 @@
+﻿FUNCTION_BLOCK "AutoProcessDataPopUp"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 1666
+// END_ATTRIBUTES
+   VAR_IN_OUT 
+      idx { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Int;
+   END_VAR
+
+   VAR_TEMP 
+      DefaultData : "ProcessData";
+   END_VAR
+
+
+BEGIN
+	REGION read me
+	  // ============================================================================
+	  // PROGRAM START COMMENT
+	  // ============================================================================
+	  // EN:
+	  // FC_AutoProcessPopup handles popup visualization and editing of AutoProcess
+	  // data based on index from HMI.
+	  // The function provides:
+	  //  - automatic data loading from AutoProcessData according to selected index,
+	  //  - two-step confirmation for safe data overwrite (compare first, write second),
+	  //  - automatic reset of edit mode when index is changed,
+	  //  - delete functionality for selected record,
+	  //  - status bits for HMI to visualize pending changes and confirmation dialogs,
+	  //  - index range control (1..16).
+	  //
+	  // Data flow:
+	  // AutoProcessData  -> ActualSHowingData  (display mode)
+	  // ActualSHowingData -> AutoProcessData  (after double confirmation)
+	  //
+	  // Usage:
+	  // Call cyclically 
+	  // RMS index is taken from AutoProcess_HMI.IndexProcess.
+	  //
+	  // ----------------------------------------------------------------------------
+	  // CZ:
+	  // FC_AutoProcessPopup obsluhuje zobrazení a editaci dat AutoProcess podle
+	  // indexu z HMI.
+	  // Funkce zajišťuje:
+	  //  - automatické načítání dat z AutoProcessData podle zvoleného indexu,
+	  //  - dvoukrokové potvrzení zápisu (nejprve porovnání, poté zápis),
+	  //  - automatické zrušení editace při změně indexu,
+	  //  - mazání záznamu podle indexu,
+	  //  - stavové bity pro HMI (čekající změna, potvrzovací dialog),
+	  //  - kontrolu rozsahu indexu (1..16).
+	  //
+	  // Tok dat:
+	  // AutoProcessData  -> ActualSHowingData  (zobrazení)
+	  // ActualSHowingData -> AutoProcessData  (po potvrzení)
+	  //
+	  // Použití:
+	  // Volat cyklicky 
+	  // Index je čten z AutoProcess_HMI.IndexProcess.
+	  // ============================================================================
+	  
+	  // Statement section REGION
+	  
+	END_REGION
+	
+	
+	REGION IndexRangeCheck
+	  // EN: Clamp index to range 1..16
+	  // CZ: Oříznutí indexu do rozsahu 1..16
+	  IF #idx < 1 THEN
+	    #idx := 1;
+	    "AutoProcess_HMI".IndexProcess := #idx;
+	  ELSIF #idx > 16 THEN
+	    #idx := 16;
+	    "AutoProcess_HMI".IndexProcess := #idx;
+	    
+	  END_IF;
+	END_REGION
+	
+	
+	REGION IndexHandling
+	  // ---------------------------------------------------------------------------
+	  // EN: Detect index change and reset edit session
+	  // CZ: Detekce změny indexu a zrušení editace
+	  // ---------------------------------------------------------------------------
+	  #idx := "AutoProcess_HMI".IndexProcess;
+	  
+	  IF #idx <> "AutoProcess_HMI".Data_handling.LastIndex THEN
+	    "AutoProcess_HMI".Data_handling.UpdateData_switch := FALSE;
+	    "AutoProcess_HMI".Data_handling.UpdateData_Confirm := FALSE;
+	    "AutoProcess_HMI".Data_handling.FinalConfirm_Write := FALSE;
+	    "AutoProcess_HMI".Data_handling.ConfirmDialogActive := FALSE;
+	    "AutoProcess_HMI".Data_handling.ChangePending := FALSE;
+	    "AutoProcess_HMI".Data_handling.DeleteData := FALSE;
+	    "AutoProcess_HMI".Data_handling.LastIndex := #idx;
+	  END_IF;
+	END_REGION
+	
+	
+	
+	REGION ShowData
+	  // ---------------------------------------------------------------------------
+	  // EN: Copy data to HMI if edit mode is inactive
+	  // CZ: Zobrazování dat – pokud není editace, kopíruj data z DB
+	  // ---------------------------------------------------------------------------
+	  IF NOT "AutoProcess_HMI".Data_handling.UpdateData_switch THEN
+	    CASE #idx OF
+	      1:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".A_ScanRotate;
+	      2:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".F_Robot1Grip1;
+	      3:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".F_Robot1Grip2;
+	      4:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".B_Press1;
+	      5:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".C_Glue;
+	      6:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".F_Robot2Grip1;
+	      7:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".F_Robot2Grip2;
+	      8:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".C_GlueNGBuffer;
+	      9:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".C_MagnScanNGBuffer;
+	      10:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".B_Press2;
+	      11:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".F_Robot3Grip1;
+	      12:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".F_Robot3Grip2;
+	      13:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".H_ShafeLine;
+	      14:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".J_ShafeLine;
+	      15:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".K_ShafeLine;
+	      16:
+	        "AutoProcess_HMI".ActualSHowingData := "AutoProcessData".L_ShafeLine;
+	      ELSE
+	        ;
+	        // EN: invalid index / CZ: neplatný index
+	    END_CASE;
+	  END_IF;
+	END_REGION
+	
+	
+	
+	REGION FirstConfirm
+	  // ---------------------------------------------------------------------------
+	  // EN: First confirmation → enable compare dialog
+	  // CZ: První potvrzení → aktivace porovnávacího dialogu
+	  // ---------------------------------------------------------------------------
+	  IF "AutoProcess_HMI".Data_handling.UpdateData_switch
+	    AND "AutoProcess_HMI".Data_handling.UpdateData_Confirm
+	    AND NOT "AutoProcess_HMI".Data_handling.ConfirmDialogActive THEN
+	    
+	    "AutoProcess_HMI".Data_handling.ConfirmDialogActive := TRUE;
+	    "AutoProcess_HMI".Data_handling.ChangePending := TRUE;
+	    
+	    "AutoProcess_HMI".Data_handling.UpdateData_Confirm := FALSE;
+	  END_IF;
+	END_REGION
+	
+	
+	
+	REGION FinalWrite
+	  // ---------------------------------------------------------------------------
+	  // EN: Final confirmation → write to data DB
+	  // CZ: Finální potvrzení → zápis do DB
+	  // ---------------------------------------------------------------------------
+	  IF "AutoProcess_HMI".Data_handling.ConfirmDialogActive
+	    AND "AutoProcess_HMI".Data_handling.FinalConfirm_Write THEN
+	    
+	    CASE #idx OF
+	      1:
+	        "AutoProcessData".A_ScanRotate := "AutoProcess_HMI".ActualSHowingData;
+	      2:
+	        "AutoProcessData".F_Robot1Grip1 := "AutoProcess_HMI".ActualSHowingData;
+	      3:
+	        "AutoProcessData".F_Robot1Grip2 := "AutoProcess_HMI".ActualSHowingData;
+	      4:
+	        "AutoProcessData".B_Press1 := "AutoProcess_HMI".ActualSHowingData;
+	      5:
+	        "AutoProcessData".C_Glue := "AutoProcess_HMI".ActualSHowingData;
+	      6:
+	        "AutoProcessData".F_Robot2Grip1 := "AutoProcess_HMI".ActualSHowingData;
+	      7:
+	        "AutoProcessData".F_Robot2Grip2 := "AutoProcess_HMI".ActualSHowingData;
+	      8:
+	        "AutoProcessData".C_GlueNGBuffer := "AutoProcess_HMI".ActualSHowingData;
+	      9:
+	        "AutoProcessData".C_MagnScanNGBuffer := "AutoProcess_HMI".ActualSHowingData;
+	      10:
+	        "AutoProcessData".B_Press2 := "AutoProcess_HMI".ActualSHowingData;
+	      11:
+	        "AutoProcessData".F_Robot3Grip1 := "AutoProcess_HMI".ActualSHowingData;
+	      12:
+	        "AutoProcessData".F_Robot3Grip2 := "AutoProcess_HMI".ActualSHowingData;
+	      13:
+	        "AutoProcessData".H_ShafeLine := "AutoProcess_HMI".ActualSHowingData;
+	      14:
+	        "AutoProcessData".J_ShafeLine := "AutoProcess_HMI".ActualSHowingData;
+	      15:
+	        "AutoProcessData".K_ShafeLine := "AutoProcess_HMI".ActualSHowingData;
+	      16:
+	        "AutoProcessData".L_ShafeLine := "AutoProcess_HMI".ActualSHowingData;
+	      ELSE
+	        ;
+	    END_CASE;
+	    
+	    // reset flags after write
+	    "AutoProcess_HMI".Data_handling.ConfirmDialogActive := FALSE;
+	    "AutoProcess_HMI".Data_handling.ChangePending := FALSE;
+	    "AutoProcess_HMI".Data_handling.FinalConfirm_Write := FALSE;
+	    "AutoProcess_HMI".Data_handling.UpdateData_switch := FALSE;
+	  END_IF;
+	END_REGION
+	
+	
+	
+	REGION DeleteData
+	  // ---------------------------------------------------------------------------
+	  // EN: Delete selected Record (reset to default struct)
+	  // CZ: Smazání záznamu – vynulování struktury
+	  // ---------------------------------------------------------------------------
+	  IF "AutoProcess_HMI".Data_handling.DeleteData AND
+	    "AutoProcess_HMI".Data_handling.FinalConfirm_Write
+	    THEN
+	    
+	    CASE #idx OF
+	      1:
+	        "AutoProcessData".A_ScanRotate := #DefaultData;
+	      2:
+	        "AutoProcessData".F_Robot1Grip1 := #DefaultData;
+	      3:
+	        "AutoProcessData".F_Robot1Grip2 := #DefaultData;
+	      4:
+	        "AutoProcessData".B_Press1 := #DefaultData;
+	      5:
+	        "AutoProcessData".C_Glue := #DefaultData;
+	      6:
+	        "AutoProcessData".F_Robot2Grip1 := #DefaultData;
+	      7:
+	        "AutoProcessData".F_Robot2Grip2 := #DefaultData;
+	      8:
+	        "AutoProcessData".C_GlueNGBuffer := #DefaultData;
+	      9:
+	        "AutoProcessData".C_MagnScanNGBuffer := #DefaultData;
+	      10:
+	        "AutoProcessData".B_Press2 := #DefaultData;
+	      11:
+	        "AutoProcessData".F_Robot3Grip1 := #DefaultData;
+	      12:
+	        "AutoProcessData".F_Robot3Grip2 := #DefaultData;
+	      13:
+	        "AutoProcessData".H_ShafeLine := #DefaultData;
+	      14:
+	        "AutoProcessData".J_ShafeLine := #DefaultData;
+	      15:
+	        "AutoProcessData".K_ShafeLine := #DefaultData;
+	      16:
+	        "AutoProcessData".L_ShafeLine := #DefaultData;
+	      ELSE
+	        ;
+	    END_CASE;
+	    
+	    // reset delete + editing states
+	    "AutoProcess_HMI".Data_handling.DeleteData := FALSE;
+	    "AutoProcess_HMI".Data_handling.UpdateData_switch := FALSE;
+	    "AutoProcess_HMI".Data_handling.UpdateData_Confirm := FALSE;
+	    "AutoProcess_HMI".Data_handling.FinalConfirm_Write := FALSE;
+	    "AutoProcess_HMI".Data_handling.ConfirmDialogActive := FALSE;
+	    "AutoProcess_HMI".Data_handling.ChangePending := FALSE;
+	  END_IF;
+	END_REGION
+	
+	REGION StationProductIcons
+	  // EN: Set icon bits if station contains product (PartStatus <> 0)
+	  // CZ: Nastavení bitů ikony – stanice má kus, pokud PartStatus <> 0
+	  
+	  // 1 – A_ScanRotate
+	  "AutoProcess_HMI".StationHasProduct[1] :=
+	  "AutoProcessData".A_ScanRotate.PartStatus <> 0;
+	  
+	  // 2 – F_Robot1Grip1
+	  "AutoProcess_HMI".StationHasProduct[2] :=
+	  "AutoProcessData".F_Robot1Grip1.PartStatus <> 0;
+	  
+	  // 3 – F_Robot1Grip2
+	  "AutoProcess_HMI".StationHasProduct[3] :=
+	  "AutoProcessData".F_Robot1Grip2.PartStatus <> 0;
+	  
+	  // 4 – B_Press1
+	  "AutoProcess_HMI".StationHasProduct[4] :=
+	  "AutoProcessData".B_Press1.PartStatus <> 0;
+	  
+	  // 5 – C_Glue
+	  "AutoProcess_HMI".StationHasProduct[5] :=
+	  "AutoProcessData".C_Glue.PartStatus <> 0;
+	  
+	  // 6 – F_Robot2Grip1
+	  "AutoProcess_HMI".StationHasProduct[6] :=
+	  "AutoProcessData".F_Robot2Grip1.PartStatus <> 0;
+	  
+	  // 7 – F_Robot2Grip2
+	  "AutoProcess_HMI".StationHasProduct[7] :=
+	  "AutoProcessData".F_Robot2Grip2.PartStatus <> 0;
+	  
+	  // 8 – C_GlueNGBuffer
+	  "AutoProcess_HMI".StationHasProduct[8] :=
+	  "AutoProcessData".C_GlueNGBuffer.PartStatus <> 0;
+	  
+	  // 9 – C_MagnScanNGBuffer
+	  "AutoProcess_HMI".StationHasProduct[9] :=
+	  "AutoProcessData".C_MagnScanNGBuffer.PartStatus <> 0;
+	  
+	  // 10 – B_Press2
+	  "AutoProcess_HMI".StationHasProduct[10] :=
+	  "AutoProcessData".B_Press2.PartStatus <> 0;
+	  
+	  // 11 – F_Robot3Grip1
+	  "AutoProcess_HMI".StationHasProduct[11] :=
+	  "AutoProcessData".F_Robot3Grip1.PartStatus <> 0;
+	  
+	  // 12 – F_Robot3Grip2
+	  "AutoProcess_HMI".StationHasProduct[12] :=
+	  "AutoProcessData".F_Robot3Grip2.PartStatus <> 0;
+	  
+	  // 13 – H_ShafeLine
+	  "AutoProcess_HMI".StationHasProduct[13] :=
+	  "AutoProcessData".H_ShafeLine.PartStatus <> 0;
+	  
+	  // 14 – J_ShafeLine
+	  "AutoProcess_HMI".StationHasProduct[14] :=
+	  "AutoProcessData".J_ShafeLine.PartStatus <> 0;
+	  
+	  // 15 – K_ShafeLine
+	  "AutoProcess_HMI".StationHasProduct[15] :=
+	  "AutoProcessData".K_ShafeLine.PartStatus <> 0;
+	  
+	  // 16 – L_ShafeLine
+	  "AutoProcess_HMI".StationHasProduct[16] :=
+	  "AutoProcessData".L_ShafeLine.PartStatus <> 0;
+	  
+	END_REGION
+	
+	
+END_FUNCTION_BLOCK
+
