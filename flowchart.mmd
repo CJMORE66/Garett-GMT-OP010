@@ -1,0 +1,59 @@
+flowchart TD
+    start@{ shape: circle, label: "Start\nInbound pallet" }
+    gates{{"Material gates locked"}}
+    estop{{"Pilz / E-Stop reset"}}
+    load@{ shape: trap-t, label: "A1/A2 Table Load" }
+    clamp{{"Clamp sensors true"}}
+    table{{"Lift tables down"}}
+    fixtureEmpty{{"Fixture empty & pallet seated"}}
+    scan@{ shape: docs, label: "RFID + SR1000 Scan" }
+    rfid{{"RFID code valid"}}
+    mesAck{{"MES check-in acknowledged"}}
+    tooling{{"Fixture & tooling IDs match"}}
+    robot1Ready{{"Robot #1 MOVE_ENABLE + gripper code"}}
+    robot1@{ shape: procs, label: "Robot #1 Pick to Press 1 buffer" }
+    press1@{ shape: hex, label: "Kistler Press 1" }
+    press1OK{{"maXYmos curve within limits"}}
+    glue@{ shape: procs, label: "Glue Application" }
+    glueOK{{"Glue bead / temp verified"}}
+    robot2Ready{{"Robot #2 route confirmed"}}
+    robot2@{ shape: procs, label: "Robot #2 Transfer" }
+    press2@{ shape: hex, label: "Kistler Press 2" }
+    press2OK{{"Press 2 force profile OK"}}
+    robot3Ready{{"Robot #3 ready & lanes free"}}
+    robot3@{ shape: procs, label: "Robot #3 Distribution" }
+    route{{"Select output lane"}}
+    shaftFree{{"Shaft buffer available"}}
+    shaftLift@{ shape: procs, label: "Flow21 HShaft Lift" }
+    shaftLoad@{ shape: procs, label: "Flow25 HShaft Load/Unload" }
+    magnetFree{{"Magnet buffer available"}}
+    magnetLift@{ shape: procs, label: "Flow22 JMagnet Lift" }
+    magnetLoad@{ shape: procs, label: "Flow26 JMagnet Load/Unload" }
+    reserveFree{{"Reserve slots free"}}
+    reserveLift@{ shape: procs, label: "Flow23 KReserve Lift" }
+    reserveLoad@{ shape: procs, label: "Flow27 KReserve Load/Unload" }
+    transfer@{ shape: procs, label: "Flow24 Transfer to Outbound" }
+    outboundReady{{"Outbound conveyor ready"}}
+    unload@{ shape: procs, label: "Flow28 Final Unload" }
+    clearData@{ shape: lean-r, label: "AutoProcessData clear + pallet release" }
+    finish@{ shape: dbl-circ, label: "END\nPallet returns" }
+    ngFixture@{ shape: bow-rect, label: "Stop: fixture/tool NG" }
+    ngPress1@{ shape: bow-rect, label: "Send to NG buffer after Press 1" }
+    ngGlue@{ shape: bow-rect, label: "Send to Glue NG buffer" }
+    ngPress2@{ shape: bow-rect, label: "Send to NG buffer after Press 2" }
+
+    start --> gates --> estop --> load --> clamp --> table --> fixtureEmpty --> scan --> rfid --> mesAck --> tooling
+    tooling -->|OK| robot1Ready --> robot1 --> press1 --> press1OK
+    tooling -->|NG| ngFixture --> finish
+    press1OK -->|OK| glue --> glueOK
+    press1OK -->|NG| ngPress1 --> clearData
+    glueOK -->|OK| robot2Ready --> robot2 --> press2 --> press2OK
+    glueOK -->|NG| ngGlue --> clearData
+    press2OK -->|OK| robot3Ready --> robot3 --> route
+    press2OK -->|NG| ngPress2 --> clearData
+
+    route --> shaftFree --> shaftLift --> shaftLoad --> transfer
+    route --> magnetFree --> magnetLift --> magnetLoad --> transfer
+    route --> reserveFree --> reserveLift --> reserveLoad --> transfer
+
+    transfer --> outboundReady --> unload --> clearData --> finish
