@@ -1,0 +1,1490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <DocumentInfo>
+    <Created>2025-12-01T17:53:07.0293138Z</Created>
+    <ExportSetting>None</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Teamcenter Gateway</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Professional</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <Hmi.Screen.Screen ID="0">
+    <AttributeList>
+      <BackColor>205, 215, 225</BackColor>
+      <Height>800</Height>
+      <Name>293_Cylinder_L2</Name>
+      <Number>293</Number>
+      <Width>1280</Width>
+    </AttributeList>
+    <LinkList>
+      <Template TargetID="@OpenLink">
+        <Name>02ManualUnit1</Name>
+      </Template>
+    </LinkList>
+    <ObjectList>
+      <MultilingualText ID="2" CompositionName="HelpText">
+        <ObjectList>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <Hmi.Screen.ScreenLayer ID="6" CompositionName="Layers">
+        <AttributeList>
+          <Index>0</Index>
+          <Name>Layer_0</Name>
+          <VisibleES>true</VisibleES>
+        </AttributeList>
+        <ObjectList>
+          <Hmi.Screen.FaceplateInstance ID="7" CompositionName="ScreenItems">
+            <AttributeList>
+              <FaceplateTypeName>03 FunctionBlocks@$@101 Cylinder@$@101.2 HMI@$@S7-1500@$@Cylinder_S71500_TP700 V 0.0.29</FaceplateTypeName>
+              <Height>80</Height>
+              <Left>0</Left>
+              <ObjectName>Cylinder_S71500_TP700_1</ObjectName>
+              <Resizing>None</Resizing>
+              <TabIndex>1</TabIndex>
+              <Top>85</Top>
+              <Width>1279</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Screen.InterfacePropertySimple ID="8" CompositionName="Interface">
+                <AttributeList>
+                  <Name>Cy</Name>
+                </AttributeList>
+                <ObjectList>
+                  <Hmi.Dynamic.TagConnectionDynamic ID="9" CompositionName="Dynamic">
+                    <AttributeList>
+                      <Indirect>false</Indirect>
+                    </AttributeList>
+                    <LinkList>
+                      <Tag TargetID="@OpenLink">
+                        <Name>STxxxCylinder053</Name>
+                      </Tag>
+                    </LinkList>
+                  </Hmi.Dynamic.TagConnectionDynamic>
+                </ObjectList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="B" CompositionName="Interface">
+                <AttributeList>
+                  <Name>CylinderName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl name</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="D" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeButtonName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl go home button</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="F" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkButtonName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl go work button</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="11" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeQaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl home Q</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="13" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeIaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl home I</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="15" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkIaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl work I</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="17" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkQaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl work Q</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+            </ObjectList>
+          </Hmi.Screen.FaceplateInstance>
+          <Hmi.Screen.FaceplateInstance ID="19" CompositionName="ScreenItems">
+            <AttributeList>
+              <FaceplateTypeName>03 FunctionBlocks@$@101 Cylinder@$@101.2 HMI@$@S7-1500@$@Cylinder_S71500_TP700 V 0.0.29</FaceplateTypeName>
+              <Height>80</Height>
+              <Left>0</Left>
+              <ObjectName>Cylinder_S71500_TP700_3</ObjectName>
+              <Resizing>None</Resizing>
+              <TabIndex>2</TabIndex>
+              <Top>160</Top>
+              <Width>1279</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Screen.InterfacePropertySimple ID="1A" CompositionName="Interface">
+                <AttributeList>
+                  <Name>Cy</Name>
+                </AttributeList>
+                <ObjectList>
+                  <Hmi.Dynamic.TagConnectionDynamic ID="1B" CompositionName="Dynamic">
+                    <AttributeList>
+                      <Indirect>false</Indirect>
+                    </AttributeList>
+                    <LinkList>
+                      <Tag TargetID="@OpenLink">
+                        <Name>STxxxCylinder054</Name>
+                      </Tag>
+                    </LinkList>
+                  </Hmi.Dynamic.TagConnectionDynamic>
+                </ObjectList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="1D" CompositionName="Interface">
+                <AttributeList>
+                  <Name>CylinderName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl name</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="1E" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeButtonName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl go home button</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="1F" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkButtonName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl go work button</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="20" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeQaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl home Q</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="21" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeIaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl home I</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="22" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkIaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl work I</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="23" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkQaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl work Q</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+            </ObjectList>
+          </Hmi.Screen.FaceplateInstance>
+          <Hmi.Screen.FaceplateInstance ID="24" CompositionName="ScreenItems">
+            <AttributeList>
+              <FaceplateTypeName>03 FunctionBlocks@$@101 Cylinder@$@101.2 HMI@$@S7-1500@$@Cylinder_S71500_TP700 V 0.0.29</FaceplateTypeName>
+              <Height>80</Height>
+              <Left>0</Left>
+              <ObjectName>Cylinder_S71500_TP700_2</ObjectName>
+              <Resizing>None</Resizing>
+              <TabIndex>3</TabIndex>
+              <Top>235</Top>
+              <Width>1279</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Screen.InterfacePropertySimple ID="25" CompositionName="Interface">
+                <AttributeList>
+                  <Name>Cy</Name>
+                </AttributeList>
+                <ObjectList>
+                  <Hmi.Dynamic.TagConnectionDynamic ID="26" CompositionName="Dynamic">
+                    <AttributeList>
+                      <Indirect>false</Indirect>
+                    </AttributeList>
+                    <LinkList>
+                      <Tag TargetID="@OpenLink">
+                        <Name>STxxxCylinder055</Name>
+                      </Tag>
+                    </LinkList>
+                  </Hmi.Dynamic.TagConnectionDynamic>
+                </ObjectList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="28" CompositionName="Interface">
+                <AttributeList>
+                  <Name>CylinderName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl name</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="29" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeButtonName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl go home button</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="2A" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkButtonName</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl go work button</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="2B" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeQaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl home Q</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="2C" CompositionName="Interface">
+                <AttributeList>
+                  <Name>HomeIaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl home I</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="2D" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkIaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl work I</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+              <Hmi.Screen.InterfacePropertySimple ID="2E" CompositionName="Interface">
+                <AttributeList>
+                  <Name>WorkQaddress</Name>
+                </AttributeList>
+                <LinkList>
+                  <Value TargetID="@OpenLink">
+                    <Name>Cyl work Q</Name>
+                  </Value>
+                </LinkList>
+              </Hmi.Screen.InterfacePropertySimple>
+            </ObjectList>
+          </Hmi.Screen.FaceplateInstance>
+          <Hmi.Screen.Button ID="2F" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>99, 101, 113</BackColor>
+              <BackFillStyle>GradientVertical</BackFillStyle>
+              <BorderBackColor>110, 145, 200</BorderBackColor>
+              <BorderColor>110, 145, 200</BorderColor>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <FirstGradientColor>40, 90, 175</FirstGradientColor>
+              <FirstGradientOffset>30</FirstGradientOffset>
+              <FocusColor>255, 235, 0</FocusColor>
+              <FocusWidth>2</FocusWidth>
+              <ForeColor>255, 255, 255</ForeColor>
+              <Height>75</Height>
+              <Left>384</Left>
+              <MiddleGradientColor>75, 120, 195</MiddleGradientColor>
+              <ObjectName>btnMenu4</ObjectName>
+              <PictureAutoSizing>None</PictureAutoSizing>
+              <SecondGradientColor>88, 90, 103</SecondGradientColor>
+              <SecondGradientOffset>15</SecondGradientOffset>
+              <TabIndex>-1</TabIndex>
+              <Top>725</Top>
+              <UseDesignColorSchema>false</UseDesignColorSchema>
+              <UseFirstGradient>true</UseFirstGradient>
+              <Width>128</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Event.Event ID="30" CompositionName="Events">
+                <AttributeList>
+                  <Name>Click</Name>
+                </AttributeList>
+                <ObjectList>
+                  <Hmi.Event.FunctionListEventHandler ID="31" CompositionName="EventHandler">
+                    <ObjectList>
+                      <Hmi.Event.FunctionListEntry ID="32" CompositionName="FunctionListEntries">
+                        <AttributeList>
+                          <Name>ActivateScreen</Name>
+                          <Type>SystemFunction</Type>
+                        </AttributeList>
+                        <ObjectList>
+                          <Hmi.Event.FunctionListEntryParameter ID="33" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Screen name</Name>
+                            </AttributeList>
+                            <LinkList>
+                              <Value TargetID="#0" />
+                            </LinkList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                          <Hmi.Event.FunctionListEntryParameter ID="34" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Object number</Name>
+                              <Value Type="System.Int32">0</Value>
+                            </AttributeList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                        </ObjectList>
+                      </Hmi.Event.FunctionListEntry>
+                    </ObjectList>
+                  </Hmi.Event.FunctionListEventHandler>
+                </ObjectList>
+              </Hmi.Event.Event>
+              <Hmi.Globalization.MultiLingualFont ID="35" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="36" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="37" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="38" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="39" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="3A" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="3B" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="3C" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="3D" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="3E" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-气缸2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="3F" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Cylinder2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="40" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="41" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="42" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-气缸2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="43" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Cylinder2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="44" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+          <Hmi.Screen.Button ID="45" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>99, 101, 113</BackColor>
+              <BackFillStyle>GradientVertical</BackFillStyle>
+              <BorderBackColor>100, 120, 135</BorderBackColor>
+              <BorderColor>255, 255, 255</BorderColor>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <FirstGradientColor>170, 190, 200</FirstGradientColor>
+              <FirstGradientOffset>30</FirstGradientOffset>
+              <FocusColor>255, 235, 0</FocusColor>
+              <FocusWidth>2</FocusWidth>
+              <Height>75</Height>
+              <Left>128</Left>
+              <MiddleGradientColor>215, 225, 230</MiddleGradientColor>
+              <ObjectName>按钮_9</ObjectName>
+              <PictureAutoSizing>None</PictureAutoSizing>
+              <SecondGradientColor>88, 90, 103</SecondGradientColor>
+              <SecondGradientOffset>15</SecondGradientOffset>
+              <TabIndex>4</TabIndex>
+              <Top>725</Top>
+              <UseDesignColorSchema>false</UseDesignColorSchema>
+              <UseFirstGradient>true</UseFirstGradient>
+              <Width>128</Width>
+            </AttributeList>
+            <LinkList>
+              <PictureOff TargetID="@OpenLink">
+                <Name>向右箭头_0</Name>
+              </PictureOff>
+            </LinkList>
+            <ObjectList>
+              <Hmi.Event.Event ID="47" CompositionName="Events">
+                <AttributeList>
+                  <Name>Click</Name>
+                </AttributeList>
+                <ObjectList>
+                  <Hmi.Event.FunctionListEventHandler ID="48" CompositionName="EventHandler">
+                    <ObjectList>
+                      <Hmi.Event.FunctionListEntry ID="49" CompositionName="FunctionListEntries">
+                        <AttributeList>
+                          <Name>ActivateScreen</Name>
+                          <Type>SystemFunction</Type>
+                        </AttributeList>
+                        <ObjectList>
+                          <Hmi.Event.FunctionListEntryParameter ID="4A" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Screen name</Name>
+                            </AttributeList>
+                            <LinkList>
+                              <Value TargetID="@OpenLink">
+                                <Name>290_Cylinder_L1</Name>
+                              </Value>
+                            </LinkList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                          <Hmi.Event.FunctionListEntryParameter ID="4C" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Object number</Name>
+                              <Value Type="System.Int32">0</Value>
+                            </AttributeList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                        </ObjectList>
+                      </Hmi.Event.FunctionListEntry>
+                    </ObjectList>
+                  </Hmi.Event.FunctionListEventHandler>
+                </ObjectList>
+              </Hmi.Event.Event>
+              <Hmi.Globalization.MultiLingualFont ID="4D" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="4E" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="4F" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="50" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="51" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="52" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="53" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="54" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="55" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="56" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-气缸1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="57" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Cylinder1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="58" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="59" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="5A" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-气缸1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="5B" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Cylinder1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="5C" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+          <Hmi.Screen.Button ID="5D" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>192, 192, 192</BackColor>
+              <BorderBackColor>105, 105, 105</BorderBackColor>
+              <BorderColor>227, 227, 227</BorderColor>
+              <BorderWidth>2</BorderWidth>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <Height>75</Height>
+              <Left>640</Left>
+              <ObjectName>btnMenu6</ObjectName>
+              <TabIndex>-1</TabIndex>
+              <Top>725</Top>
+              <Width>128</Width>
+            </AttributeList>
+            <LinkList>
+              <StyleItem TargetID="@OpenLink">
+                <Name>BtnNormal20</Name>
+              </StyleItem>
+            </LinkList>
+            <ObjectList>
+              <Hmi.Globalization.MultiLingualFont ID="5F" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="60" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>22</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="61" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>22</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="62" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>22</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="63" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="64" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="65" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="66" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="67" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="68" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="69" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="6A" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="6B" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="6C" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="6D" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="6E" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+          <Hmi.Screen.Button ID="6F" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>192, 192, 192</BackColor>
+              <BorderBackColor>105, 105, 105</BorderBackColor>
+              <BorderColor>227, 227, 227</BorderColor>
+              <BorderWidth>2</BorderWidth>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <Height>75</Height>
+              <Left>768</Left>
+              <ObjectName>btnMenu6_1</ObjectName>
+              <TabIndex>-1</TabIndex>
+              <Top>725</Top>
+              <Width>128</Width>
+            </AttributeList>
+            <LinkList>
+              <StyleItem TargetID="@OpenLink">
+                <Name>BtnNormal20</Name>
+              </StyleItem>
+            </LinkList>
+            <ObjectList>
+              <Hmi.Globalization.MultiLingualFont ID="70" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="71" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>22</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="72" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>22</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="73" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>22</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="74" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="75" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="76" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="77" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="78" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="79" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="7A" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="7B" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="7C" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="7D" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="7E" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="7F" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+          <Hmi.Screen.Button ID="80" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>99, 101, 113</BackColor>
+              <BackFillStyle>GradientVertical</BackFillStyle>
+              <BorderBackColor>100, 120, 135</BorderBackColor>
+              <BorderColor>255, 255, 255</BorderColor>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <FirstGradientColor>170, 190, 200</FirstGradientColor>
+              <FirstGradientOffset>30</FirstGradientOffset>
+              <FocusColor>255, 235, 0</FocusColor>
+              <FocusWidth>2</FocusWidth>
+              <Height>75</Height>
+              <Left>512</Left>
+              <MiddleGradientColor>215, 225, 232</MiddleGradientColor>
+              <ObjectName>btnMenu5</ObjectName>
+              <PictureAutoSizing>None</PictureAutoSizing>
+              <SecondGradientColor>88, 90, 103</SecondGradientColor>
+              <SecondGradientOffset>15</SecondGradientOffset>
+              <TabIndex>-1</TabIndex>
+              <Top>725</Top>
+              <UseDesignColorSchema>false</UseDesignColorSchema>
+              <UseFirstGradient>true</UseFirstGradient>
+              <Width>128</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Event.Event ID="81" CompositionName="Events">
+                <AttributeList>
+                  <Name>Click</Name>
+                </AttributeList>
+                <ObjectList>
+                  <Hmi.Event.FunctionListEventHandler ID="82" CompositionName="EventHandler">
+                    <ObjectList>
+                      <Hmi.Event.FunctionListEntry ID="83" CompositionName="FunctionListEntries">
+                        <AttributeList>
+                          <Name>ActivateScreen</Name>
+                          <Type>SystemFunction</Type>
+                        </AttributeList>
+                        <ObjectList>
+                          <Hmi.Event.FunctionListEntryParameter ID="84" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Screen name</Name>
+                            </AttributeList>
+                            <LinkList>
+                              <Value TargetID="@OpenLink">
+                                <Name>294_Motor_L2</Name>
+                              </Value>
+                            </LinkList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                          <Hmi.Event.FunctionListEntryParameter ID="86" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Object number</Name>
+                              <Value Type="System.Int32">0</Value>
+                            </AttributeList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                        </ObjectList>
+                      </Hmi.Event.FunctionListEntry>
+                    </ObjectList>
+                  </Hmi.Event.FunctionListEventHandler>
+                </ObjectList>
+              </Hmi.Event.Event>
+              <Hmi.Globalization.MultiLingualFont ID="87" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="88" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="89" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="8A" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="8B" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="8C" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="8D" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="8E" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="8F" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="90" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-电机2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="91" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Motor2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="92" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="93" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="94" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-电机2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="95" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Motor2</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="96" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+          <Hmi.Screen.Button ID="97" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>99, 101, 113</BackColor>
+              <BackFillStyle>GradientVertical</BackFillStyle>
+              <BorderBackColor>100, 120, 135</BorderBackColor>
+              <BorderColor>255, 255, 255</BorderColor>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <FirstGradientColor>170, 190, 200</FirstGradientColor>
+              <FirstGradientOffset>30</FirstGradientOffset>
+              <FocusColor>255, 235, 0</FocusColor>
+              <FocusWidth>2</FocusWidth>
+              <Height>75</Height>
+              <Left>896</Left>
+              <MiddleGradientColor>215, 225, 232</MiddleGradientColor>
+              <ObjectName>btnMenu7</ObjectName>
+              <PictureAutoSizing>None</PictureAutoSizing>
+              <SecondGradientColor>88, 90, 103</SecondGradientColor>
+              <SecondGradientOffset>15</SecondGradientOffset>
+              <TabIndex>-1</TabIndex>
+              <Top>725</Top>
+              <UseDesignColorSchema>false</UseDesignColorSchema>
+              <UseFirstGradient>true</UseFirstGradient>
+              <Width>128</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Globalization.MultiLingualFont ID="98" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="99" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="9A" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="9B" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="9C" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="9D" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="9E" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="9F" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="A0" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="A1" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="A2" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="A3" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="A4" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="A5" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="A6" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="A7" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+          <Hmi.Screen.Button ID="A8" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>99, 101, 113</BackColor>
+              <BackFillStyle>GradientVertical</BackFillStyle>
+              <BorderBackColor>100, 120, 135</BorderBackColor>
+              <BorderColor>255, 255, 255</BorderColor>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <FirstGradientColor>170, 190, 200</FirstGradientColor>
+              <FirstGradientOffset>30</FirstGradientOffset>
+              <FocusColor>255, 235, 0</FocusColor>
+              <FocusWidth>2</FocusWidth>
+              <Height>75</Height>
+              <Left>1024</Left>
+              <MiddleGradientColor>215, 225, 232</MiddleGradientColor>
+              <ObjectName>btnMenu7_1</ObjectName>
+              <PictureAutoSizing>None</PictureAutoSizing>
+              <SecondGradientColor>88, 90, 103</SecondGradientColor>
+              <SecondGradientOffset>15</SecondGradientOffset>
+              <TabIndex>-1</TabIndex>
+              <Top>725</Top>
+              <UseDesignColorSchema>false</UseDesignColorSchema>
+              <UseFirstGradient>true</UseFirstGradient>
+              <Width>128</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Globalization.MultiLingualFont ID="A9" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="AA" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="AB" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="AC" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="AD" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="AE" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="AF" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="B0" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="B1" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="B2" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="B3" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="B4" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="B5" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="B6" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="B7" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="B8" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+          <Hmi.Screen.Button ID="B9" CompositionName="ScreenItems">
+            <AttributeList>
+              <BackColor>99, 101, 113</BackColor>
+              <BackFillStyle>GradientVertical</BackFillStyle>
+              <BorderBackColor>100, 120, 135</BorderBackColor>
+              <BorderColor>255, 255, 255</BorderColor>
+              <EdgeStyle>Style3D</EdgeStyle>
+              <FirstGradientColor>170, 190, 200</FirstGradientColor>
+              <FirstGradientOffset>30</FirstGradientOffset>
+              <FocusColor>255, 235, 0</FocusColor>
+              <FocusWidth>2</FocusWidth>
+              <Height>75</Height>
+              <Left>256</Left>
+              <MiddleGradientColor>215, 225, 232</MiddleGradientColor>
+              <ObjectName>btnMenu4_2</ObjectName>
+              <PictureAutoSizing>None</PictureAutoSizing>
+              <SecondGradientColor>88, 90, 103</SecondGradientColor>
+              <SecondGradientOffset>15</SecondGradientOffset>
+              <TabIndex>-1</TabIndex>
+              <Top>725</Top>
+              <UseDesignColorSchema>false</UseDesignColorSchema>
+              <UseFirstGradient>true</UseFirstGradient>
+              <Width>128</Width>
+            </AttributeList>
+            <ObjectList>
+              <Hmi.Event.Event ID="BA" CompositionName="Events">
+                <AttributeList>
+                  <Name>Click</Name>
+                </AttributeList>
+                <ObjectList>
+                  <Hmi.Event.FunctionListEventHandler ID="BB" CompositionName="EventHandler">
+                    <ObjectList>
+                      <Hmi.Event.FunctionListEntry ID="BC" CompositionName="FunctionListEntries">
+                        <AttributeList>
+                          <Name>ActivateScreen</Name>
+                          <Type>SystemFunction</Type>
+                        </AttributeList>
+                        <ObjectList>
+                          <Hmi.Event.FunctionListEntryParameter ID="BD" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Screen name</Name>
+                            </AttributeList>
+                            <LinkList>
+                              <Value TargetID="@OpenLink">
+                                <Name>291_Motor_L1</Name>
+                              </Value>
+                            </LinkList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                          <Hmi.Event.FunctionListEntryParameter ID="BF" CompositionName="Parameters">
+                            <AttributeList>
+                              <Name>Object number</Name>
+                              <Value Type="System.Int32">0</Value>
+                            </AttributeList>
+                          </Hmi.Event.FunctionListEntryParameter>
+                        </ObjectList>
+                      </Hmi.Event.FunctionListEntry>
+                    </ObjectList>
+                  </Hmi.Event.FunctionListEventHandler>
+                </ObjectList>
+              </Hmi.Event.Event>
+              <Hmi.Globalization.MultiLingualFont ID="C0" CompositionName="Font">
+                <ObjectList>
+                  <Hmi.Globalization.FontItem ID="C1" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="C2" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                  <Hmi.Globalization.FontItem ID="C3" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <FontFamily>Microsoft YaHei</FontFamily>
+                      <FontSize>18</FontSize>
+                      <FontStyle>Regular</FontStyle>
+                    </AttributeList>
+                  </Hmi.Globalization.FontItem>
+                </ObjectList>
+              </Hmi.Globalization.MultiLingualFont>
+              <MultilingualText ID="C4" CompositionName="HelpText">
+                <ObjectList>
+                  <MultilingualTextItem ID="C5" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="C6" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="C7" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text />
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="C8" CompositionName="TextOff">
+                <ObjectList>
+                  <MultilingualTextItem ID="C9" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-电机1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="CA" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Motor1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="CB" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+              <MultilingualText ID="CC" CompositionName="TextOn">
+                <ObjectList>
+                  <MultilingualTextItem ID="CD" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>zh-CN</Culture>
+                      <Text><body><p>L-电机1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="CE" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>en-GB</Culture>
+                      <Text><body><p>L-Motor1</p></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                  <MultilingualTextItem ID="CF" CompositionName="Items">
+                    <AttributeList>
+                      <Culture>sk-SK</Culture>
+                      <Text><body><p /></body></Text>
+                    </AttributeList>
+                  </MultilingualTextItem>
+                </ObjectList>
+              </MultilingualText>
+            </ObjectList>
+          </Hmi.Screen.Button>
+        </ObjectList>
+      </Hmi.Screen.ScreenLayer>
+    </ObjectList>
+  </Hmi.Screen.Screen>
+</Document>
