@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <DocumentInfo>
+    <Created>2025-12-01T12:38:05.0394299Z</Created>
+    <ExportSetting>None</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Teamcenter Gateway</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Professional</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="COM" Datatype="Struct" Remanence="Retain">
+      <Member Name="MainPneumaticPressure1NOK" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Main Pneumatic pressure 1 NOK,pls check inptut Ix.x,then check if the main valve is opened</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="MainPneumaticPressure2NOK" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Main Pneumatic pressure 2 NOK,pls check inptut Ix.x,then check if the main valve is opened</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="MainPneumaticPressure3NOK" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Main Pneumatic pressure 3 NOK,pls check inptut Ix.x,then check if the main valve is opened</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="StationNotInHP" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Station not in Home position,can't start cycle,pls check the Home positiong state</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="CabinetTemperatureNotOk" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Cabinet Temperature not OK, please check input Ix.x,then check if the cooling and fan is working</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="CoolingUnitNotOk" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Cooling unit not OK,pls check input Ix.x,then check if the cooling and fan is working</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="RotateTablePositionNOK" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">The position of the rotate table is not correct after change mode.pls reset position by manual</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="RotateTableNotInPosition" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">No position signal after rotate table Stopped,please check table position and input Ix.x</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="StationHardwareError" Datatype="Bool" />
+      <Member Name="ChangeStyleError" Datatype="Bool" />
+      <Member Name="Reserve3" Datatype="Bool" />
+      <Member Name="Reserve4" Datatype="Bool" />
+      <Member Name="Reserve5" Datatype="Bool" />
+      <Member Name="Reserve6" Datatype="Bool" />
+      <Member Name="Reserve7" Datatype="Bool" />
+      <Member Name="Reserve8" Datatype="Bool" />
+      <Member Name="Reserve" Datatype="Array[1..4, 0..15] of Bool" />
+    </Member>
+    <Member Name="Hardware" Datatype="Struct" Remanence="Retain">
+      <Member Name="PNSlaveStation01" Datatype="Array[1..10] of Struct">
+        <Member Name="Error" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">PLC Local Module Error,please check the error module,PLC hardware configuration and online monitor the PLC error message</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve1" Datatype="Bool" />
+        <Member Name="Reserve2" Datatype="Bool" />
+      </Member>
+      <Member Name="COMM" Datatype="Array[1..5] of Struct">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN"> Communication</MultiLanguageText>
+        </Comment>
+        <Member Name="CommunicationError" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Serial Communication error,please check power, hardware configuration and connection cable</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="NoReceive" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Serial Communication receive no information, please check the module settings and communication equipment is the same, check the communication line is the intersection or straight line</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="ReceiveWrong" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Serial Communication receive the information is wrong, please check the data area is updated in real time</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve1" Datatype="Bool" />
+        <Member Name="Reserve2" Datatype="Bool" />
+      </Member>
+      <Member Name="PNSlaveStation02" Datatype="Array[1..10] of Struct">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Substation</MultiLanguageText>
+        </Comment>
+        <Member Name="Error" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">SubStation Missing, please check power, hardware configuration and connection cable</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve1" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">SubStation error, please check Slave error code, check the error information in the PLC online hardware</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve2" Datatype="Bool" />
+        <Member Name="Reserve3" Datatype="Bool" />
+      </Member>
+      <Member Name="PNSlaveStation03" Datatype="Array[1..10] of Struct">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Remote I/O Error (远程I/O错误）</MultiLanguageText>
+        </Comment>
+        <Member Name="Error" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Remote I/O communication error, please check the power and communication cable, check the hardware configuration of PLC</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve1" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Remote I/O error, please online monitor the PLC error message</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve2" Datatype="Bool" />
+        <Member Name="Reserve3" Datatype="Bool" />
+      </Member>
+      <Member Name="ValveIsland" Datatype="Array[1..5] of Struct">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Valve Island Error（阀岛错误）</MultiLanguageText>
+        </Comment>
+        <Member Name="SystemError" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Valve island error, pls check the error code , check the error information in the PLC online hardware</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="OffLine" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Valve island is lost, pls check the island's cable , check valve island in PLC configuration and the actual agreement</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve1" Datatype="Bool" />
+        <Member Name="Reserve2" Datatype="Bool" />
+      </Member>
+    </Member>
+    <Member Name="Safety" Datatype="Struct" Remanence="Retain">
+      <Member Name="Robot 1 Estop" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Safety circuit not OK,pls check input Ix.x,then check if the safety circuit  control on</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Robot 2 Estop" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">E-stop safety circuit not OK, please check input Ix.x, then reset safety circurt</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="HMIEstopPBActivated" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">HMI Estop PB Activated，pls check input Ix.x,then check Estop button,if Estop button is close,pls open the Estop button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TableEstopPB1Activated" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">HTable Estop PB1 Activated，pls check input Ix.x,then check Estop button,if Estop button is close,pls open the Estop button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TableEstopPB2Activated" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Table Estop PB2 Activated，pls check input Ix.x,then check Estop button,if Estop button is close,pls open the Estop button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TableEstopPB3Activated" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Table Estop PB3 Activated，pls check input Ix.x,then check Estop button,if Estop button is close,pls open the Estop button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TableEstopPB4Activated" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Table Estop PB4 Activated，pls check input Ix.x,then check Estop button,if Estop button is close,pls open the Estop button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TableEstopPB5Activated" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Table Estop PB5 Activated，pls check input Ix.x,then check Estop button,if Estop button is close,pls open the Estop button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TableEstopPB6Activated" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Table Estop PB6 Activated，pls check input Ix.x,then check Estop button,if Estop button is close,pls open the Estop button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="EStopSafety" Datatype="Bool" />
+      <Member Name="TableEstopPB7Activated" Datatype="Bool" />
+      <Member Name="TableEstopPB8Activated" Datatype="Bool" />
+      <Member Name="TableEstopPB9Activated" Datatype="Bool" />
+      <Member Name="StoveEstopActivated" Datatype="Bool" />
+      <Member Name="Robot 3 Estop" Datatype="Bool" />
+      <Member Name="Reserve9" Datatype="Bool" />
+      <Member Name="Reserve" Datatype="Array[1..4, 0..15] of Bool" />
+    </Member>
+    <Member Name="SafetyDoor" Datatype="Struct" Remanence="Retain">
+      <Member Name="Type" Datatype="Array[1..5] of Struct">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Safety Door circuit type</MultiLanguageText>
+        </Comment>
+        <Member Name="NotOk" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Safety Door type [*] circuit not OK, please check input Ix.x, then reset safety circurt</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="OpenInRunning" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">The safety door is opened when device Running,pls power on than initialize device</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve1" Datatype="Bool" />
+        <Member Name="Reserve2" Datatype="Bool" />
+      </Member>
+      <Member Name="No" Datatype="Array[1..9] of Struct">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">SafetyDoorNumber</MultiLanguageText>
+        </Comment>
+        <Member Name="NotLock" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Safety door lock is not lock，pls check input Ix.x，then check safety door lock output Qx.x</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Notlocked" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Safety door lock is not unlock，pls check input Ix.x，then check safety door lock output Qx.x</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="NotClose" Datatype="Bool">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">Safety door is not close,pls check satety door lock position</MultiLanguageText>
+          </Comment>
+        </Member>
+        <Member Name="Reserve1" Datatype="Bool" />
+        <Member Name="Reserve2" Datatype="Bool" />
+      </Member>
+      <Member Name="MaterialDoor" Datatype="Struct">
+        <Member Name="NotLock_1" Datatype="Bool" />
+        <Member Name="NotClose_1" Datatype="Bool" />
+        <Member Name="NotLock_2" Datatype="Bool" />
+        <Member Name="NotClose_2" Datatype="Bool" />
+        <Member Name="NotLock_3" Datatype="Bool" />
+        <Member Name="NotClose_3" Datatype="Bool" />
+        <Member Name="NotLock_4" Datatype="Bool" />
+        <Member Name="NotClose_4" Datatype="Bool" />
+        <Member Name="NotLock_5" Datatype="Bool" />
+        <Member Name="NotClose_5" Datatype="Bool" />
+        <Member Name="NotLock_6" Datatype="Bool" />
+        <Member Name="NotClose_6" Datatype="Bool" />
+        <Member Name="NotLock_7" Datatype="Bool" />
+        <Member Name="NotClose_7" Datatype="Bool" />
+        <Member Name="NotLock_8" Datatype="Bool" />
+        <Member Name="NotClose_8" Datatype="Bool" />
+      </Member>
+    </Member>
+    <Member Name="LightCurtain" Datatype="Array[1..5] of Struct" Remanence="Retain">
+      <Member Name="ActivatedInRunning" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Light curtain is Activated when device Running, pls power on than initialize device</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="ActivatedInRotTableRun" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Light curtain is Activated when rotate table running,please press the reset button to rotate the rotate table to position</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Error" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Light curtain error,pls check the light curtain connection or check the error code</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Reserve1" Datatype="Bool" />
+      <Member Name="Reserve2" Datatype="Bool" />
+    </Member>
+    <Member Name="Product" Datatype="Array[1..5] of Struct" Remanence="Retain">
+      <Member Name="TypeSelectionError" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Product Type selection error,pls select the proper type</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TypeWrong" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Product is not match current model, please make sure the product model is entered correctly</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="NotforStation" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Product not for this station,pls check if the Product is proper</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TypeAutoChangeError" Datatype="Bool" />
+      <Member Name="Reserve2" Datatype="Bool" />
+    </Member>
+    <Member Name="Fixture" Datatype="Array[1..10] of Struct" Remanence="Retain">
+      <Member Name="PositionError" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Fixture [*] position error,pls put the fixture on proper positon</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="TypeError" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Fixture [*] tpye error,pls put the correct fixture into the tooling</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Reserve1" Datatype="Bool" />
+      <Member Name="Reserve2" Datatype="Bool" />
+    </Member>
+    <Member Name="Breaker" Datatype="Struct" Remanence="Retain">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Power Breaker</MultiLanguageText>
+      </Comment>
+      <Member Name="Trip" Datatype="Array[1..16] of Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Breaker tripped, please check input Ix.x</MultiLanguageText>
+        </Comment>
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>ST10_GlobalError</Name>
+      <Namespace />
+      <Number>1066</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <DocumentInfo>
+    <Created>2025-12-01T12:38:39.2002655Z</Created>
+    <ExportSetting>None</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Teamcenter Gateway</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V18</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Professional</DisplayName>
+        <DisplayVersion>V18 Update 5</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="In" Datatype="Struct" Remanence="Retain">
+      <Member Name="iInterlock" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">interlock</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iManJog+" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">positive motion/action/...manually</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iManJog-" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">negtive motion/action/...manually</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iAutoStart" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">negtive motion/action/...automaticly</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iHome" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Homing</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iCancelTask" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Cancel task</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iPauseTask" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Pause task</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iManStart" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">positive motion/action/...automaticly</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iManListStart" Datatype="Bool" />
+      <Member Name="iLimitSwitchActive" Datatype="Bool">
+        <StartValue>true</StartValue>
+      </Member>
+      <Member Name="iLimitSoftActive" Datatype="Bool">
+        <StartValue>true</StartValue>
+      </Member>
+      <Member Name="iRunningTimeout" Datatype="Time" />
+      <Member Name="iHomingTimeout" Datatype="Time" />
+      <Member Name="iAutoPosition" Datatype="DInt" />
+      <Member Name="iAutoVelocity" Datatype="Int" />
+      <Member Name="iManListPosition" Datatype="DInt" />
+      <Member Name="iManListVelocity" Datatype="Int" />
+      <Member Name="iManListNumber" Datatype="Int">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">position list number</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="iManPosition" Datatype="DInt" />
+      <Member Name="iManVelocity" Datatype="Int" />
+      <Member Name="iMode" Datatype="Int">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">1-相对;2-绝对</MultiLanguageText>
+        </Comment>
+      </Member>
+    </Member>
+    <Member Name="Out" Datatype="Struct" Remanence="Retain">
+      <Member Name="oReady" Datatype="Bool" />
+      <Member Name="oWarning" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">warning</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="oError" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">error</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="oInterlock" Datatype="Bool" />
+      <Member Name="oServoEnable" Datatype="Bool" />
+      <Member Name="oRunning" Datatype="Bool" />
+      <Member Name="oHoming" Datatype="Bool" />
+      <Member Name="oHomeRef" Datatype="Bool" />
+      <Member Name="oServoPosOK" Datatype="Bool" />
+      <Member Name="oErrorCode" Datatype="Int" />
+      <Member Name="oStatus" Datatype="Int" />
+      <Member Name="oActPosition" Datatype="DInt" />
+      <Member Name="oManualListPos" Datatype="DInt" />
+    </Member>
+    <Member Name="IO" Datatype="Struct" Remanence="Retain">
+      <Member Name="ioManEnale" Datatype="Bool" />
+      <Member Name="ioAutoEnale" Datatype="Bool" />
+    </Member>
+    <Member Name="Spare" Datatype="Struct" Remanence="Retain">
+      <Member Name="S" Datatype="Array[0..100] of Byte" />
+    </Member>
+    <Member Name="Manual" Datatype="Struct" Remanence="Retain">
+      <Member Name="Index" Datatype="Int">
+        <StartValue>1</StartValue>
+      </Member>
+      <Member Name="Pos" Datatype="Array[1..20] of Struct">
+        <Member Name="Pos" Datatype="Real" />
+        <Member Name="Vel" Datatype="Int" />
+      </Member>
+    </Member>
+    <Member Name="Auto" Datatype="Struct" Remanence="Retain">
+      <Member Name="Index" Datatype="Int">
+        <StartValue>1</StartValue>
+      </Member>
+      <Member Name="Pos" Datatype="Array[1..20] of Struct">
+        <Member Name="Pos" Datatype="Real" />
+        <Member Name="Vel" Datatype="Int" />
+        <Subelement Path="1">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">1.取料位置</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="2">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">2.放料位置</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="3">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">3.</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="4">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">4.</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="5">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">5.</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="6">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">6.</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="7">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">7.</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="8">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">8.</MultiLanguageText>
+          </Comment>
+        </Subelement>
+        <Subelement Path="9">
+          <Comment>
+            <MultiLanguageText Lang="zh-CN">9.</MultiLanguageText>
+          </Comment>
+        </Subelement>
+      </Member>
+    </Member>
+    <Member Name="Interlock" Datatype="Struct" Remanence="Retain">
+      <Member Name="Active" Datatype="Bool" />
+      <Member Name="Case1" Datatype="Bool" />
+      <Member Name="Case2" Datatype="Bool" />
+      <Member Name="Case3" Datatype="Bool" />
+      <Member Name="Case4" Datatype="Bool" />
+      <Member Name="Case5" Datatype="Bool" />
+      <Member Name="Case6" Datatype="Bool" />
+      <Member Name="Case7" Datatype="Bool" />
+      <Member Name="Case8" Datatype="Bool" />
+      <Member Name="Case9" Datatype="Bool" />
+      <Member Name="Case10" Datatype="Bool" />
+    </Member>
+    <Member Name="PositionOk" Datatype="Array[1..20] of Bool" Remanence="Retain">
+      <Subelement Path="1">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[1]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="2">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[2]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="3">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[3]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="4">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[4]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="5">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[5]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="6">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[6]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="7">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[7]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="8">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[8]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+      <Subelement Path="9">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">[9]</MultiLanguageText>
+        </Comment>
+      </Subelement>
+    </Member>
+    <Member Name="Home_Pos" Datatype="Struct" Remanence="Retain">
+      <Member Name="Home Pos Pls" Datatype="Bool" />
+      <Member Name="Arrow indication" Datatype="Int" />
+      <Member Name="Process prompt" Datatype="Int" />
+      <Member Name="Button prompt" Datatype="Int" />
+    </Member>
+  </Section>
+</Sections></Interface>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>IAI_A1</Name>
+      <Namespace />
+      <Number>2211</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>
