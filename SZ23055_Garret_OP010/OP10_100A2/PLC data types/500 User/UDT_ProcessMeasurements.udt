@@ -1,0 +1,23 @@
+TYPE "UDT_ProcessMeasurements"
+VERSION : 0.1
+   STRUCT
+      ForceActual : Real;
+      ForceTarget : Real;
+      DisplacementActual : Real;
+      DisplacementTarget : Real;
+      TorqueActual : Real;
+      TorqueTarget : Real;
+      AngleActual : Real;
+      AngleTarget : Real;
+      LeakValue : Real;
+      LeakLimit : Real;
+      GlueWeight : Real;
+      GlueWeightTarget : Real;
+      TemperatureActual : Real;
+      TemperatureTarget : Real;
+      CycleTimeMs : DInt;
+      Reserved : Array[1..8] of DInt;
+   END_STRUCT;
+
+END_TYPE
+

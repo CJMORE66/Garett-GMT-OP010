@@ -1,0 +1,21 @@
+FUNCTION "FC_ProcessSlot_Write" : Bool
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      SlotID : Int;
+      SlotData : "UDT_ProcessSlot";
+   END_VAR
+
+
+BEGIN
+	REGION Write slot record
+	  IF (#SlotID >= 1) AND (#SlotID <= 16) THEN
+	    "DB_ProcessSlots".Slots[#SlotID] := #SlotData;
+	    "DB_ProcessSlots".Slots[#SlotID].LastUpdateTS := DT#1970-01-01-00:00:00;
+	    "FC_ProcessSlot_Write" := TRUE;
+	  ELSE
+	    "FC_ProcessSlot_Write" := FALSE;
+	  END_IF;
+	END_REGION
+	
+END_FUNCTION

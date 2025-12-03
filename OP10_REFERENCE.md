@@ -45,7 +45,16 @@ Supporting arrays include `A_Table_1/2` tooling codes and `GripperCode_R1..R3`
 
 `Program blocks/OP010/03_Auto/HMI/AutoProcessDataPopUp.scl:67-346` and
 `AutoProcess_HMI.db:10-27` expose the same 16 slots on HMI, provide double-confirm edits,
-and populate `StationHasProduct[1..16]` bits for visualization.
+and populate `StationHasProduct[1..16]` bits for visualization. Pro paralelní přechod lze
+využít `Program blocks/OP010/03_Auto/FB_ProcessSlotManager.scl:1-78`, který cyklicky
+zrcadlí hodnoty mezi `AutoProcessData` a novým `DB_ProcessSlots`.
+- **Připravovaný model receptů/slotů** – `PLC data types/500 User/UDT_RecipeHeader.udt`,
+  `UDT_SubProcessRecipe.udt` a `UDT_ProcessSlot.udt` společně s bloky
+  `DB_RecipeMaster.db`, `DB_RecipeActiveNew.db`, `DB_ProcessSlots.db` a
+  `DB_ProcessSlots_Global.db` sjednocují receptové, fixture a NG údaje.
+  `FC_MigrateProcessData.scl` a `FC_ProcessSlot_Read/Write.scl` poskytují most mezi
+  historickým `AutoProcessData` a novým uložením – díky tomu lze nové struktury
+  naplnit už dnes a zítra pouze přepnout čtení v grafech.
 
 ## 4. Device Subsystems
 - **Robots** – `Program blocks/OP010/10_Device/24_Robot/KukaRobot?_Ctrl.scl:1-210` use

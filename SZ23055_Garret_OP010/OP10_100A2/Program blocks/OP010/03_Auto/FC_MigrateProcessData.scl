@@ -1,0 +1,63 @@
+FUNCTION "FC_MigrateProcessData" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_TEMP 
+      idx : Int;
+   END_VAR
+
+
+BEGIN
+	REGION Copy legacy AutoProcessData slots into DB_ProcessSlots
+	  FOR #idx := 1 TO 16 DO
+	    CASE #idx OF
+	      1:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".A_ScanRotate.PartStatus;
+	      2:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".F_Robot1Grip1.PartStatus;
+	      3:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".F_Robot1Grip2.PartStatus;
+	      4:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".B_Press1.PartStatus;
+	      5:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".C_Glue.PartStatus;
+	      6:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".F_Robot2Grip1.PartStatus;
+	      7:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".F_Robot2Grip2.PartStatus;
+	      8:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".C_GlueNGBuffer.PartStatus;
+	      9:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".C_MagnScanNGBuffer.PartStatus;
+	      10:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".B_Press2.PartStatus;
+	      11:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".F_Robot3Grip1.PartStatus;
+	      12:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".F_Robot3Grip2.PartStatus;
+	      13:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".H_ShafeLine.PartStatus;
+	      14:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".J_ShafeLine.PartStatus;
+	      15:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".K_ShafeLine.PartStatus;
+	      16:
+	        "DB_ProcessSlots".Slots[#idx].PartStatus := "AutoProcessData".L_ShafeLine.PartStatus;
+	      ELSE
+	        // keep default
+	    END_CASE;
+	    
+	    "DB_ProcessSlots".Slots[#idx].ExpectedFixture := "DB_RecipeMaster".FixtureCodes[#idx];
+	    "DB_ProcessSlots".Slots[#idx].ExpectedGripper := "DB_RecipeMaster".GripperCodes[#idx];
+	    "DB_ProcessSlots".Slots[#idx].LastUpdateTS := DT#1970-01-01-00:00:00;
+	  END_FOR;
+	END_REGION
+	
+	
+	REGION Copy current station presence bits
+	  FOR #idx := 1 TO 16 DO
+	    "DB_ProcessSlots_Global".SlotHasProduct[#idx] := "AutoProcess_HMI".StationHasProduct[#idx];
+	  END_FOR;
+	END_REGION
+	
+END_FUNCTION
+

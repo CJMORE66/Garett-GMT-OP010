@@ -1,0 +1,24 @@
+DATA_BLOCK "DB_ProcessSlots_Global"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+// ATTRIBUTES
+// AUTO_NUMBER = False
+// BLOCK_NUMBER = 2601
+// END_ATTRIBUTES
+   VAR 
+      SlotHasProduct : Array[1..16] of Bool;
+      SlotLocked : Array[1..16] of Bool;
+      SlotPendingWrite : Array[1..16] of Bool;
+      ActiveRecipeID : Int;
+      ActiveRecipeVersion : String[18];
+      BufferIndex : Int;
+   END_VAR
+
+
+BEGIN
+   ActiveRecipeID := 1;
+   ActiveRecipeVersion := 'INIT';
+   BufferIndex := 1;
+
+END_DATA_BLOCK
+

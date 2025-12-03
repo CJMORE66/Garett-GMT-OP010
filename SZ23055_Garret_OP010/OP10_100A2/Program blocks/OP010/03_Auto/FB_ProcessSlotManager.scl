@@ -1,0 +1,93 @@
+FUNCTION_BLOCK "FB_ProcessSlotManager"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      MirrorLegacyToNew : Bool;
+      MirrorNewToLegacy : Bool;
+   END_VAR
+   VAR 
+      initDone : Bool;
+      idx : Int;
+      legacyStatus : Int;
+   END_VAR
+
+
+BEGIN
+	REGION InitialCopyFromRecipe
+	  IF NOT #initDone THEN
+	    FOR #idx := 1 TO 16 DO
+	      "DB_ProcessSlots".Slots[#idx].SlotID := #idx;
+	      "DB_ProcessSlots".Slots[#idx].ExpectedFixture := "DB_RecipeMaster".FixtureCodes[#idx];
+	      IF #idx <= 12 THEN
+	        "DB_ProcessSlots".Slots[#idx].ExpectedGripper := "DB_RecipeMaster".GripperCodes[#idx];
+	      END_IF;
+	    END_FOR;
+	    #initDone := TRUE;
+	  END_IF;
+	END_REGION
+	
+	
+	REGION LegacyToNewMapping
+	  IF #MirrorLegacyToNew THEN
+	    FOR #idx := 1 TO 16 DO
+	      CASE #idx OF
+	        1:  #legacyStatus := "AutoProcessData".A_ScanRotate.PartStatus;
+	        2:  #legacyStatus := "AutoProcessData".F_Robot1Grip1.PartStatus;
+	        3:  #legacyStatus := "AutoProcessData".F_Robot1Grip2.PartStatus;
+	        4:  #legacyStatus := "AutoProcessData".B_Press1.PartStatus;
+	        5:  #legacyStatus := "AutoProcessData".C_Glue.PartStatus;
+	        6:  #legacyStatus := "AutoProcessData".F_Robot2Grip1.PartStatus;
+	        7:  #legacyStatus := "AutoProcessData".F_Robot2Grip2.PartStatus;
+	        8:  #legacyStatus := "AutoProcessData".C_GlueNGBuffer.PartStatus;
+	        9:  #legacyStatus := "AutoProcessData".C_MagnScanNGBuffer.PartStatus;
+	        10: #legacyStatus := "AutoProcessData".B_Press2.PartStatus;
+	        11: #legacyStatus := "AutoProcessData".F_Robot3Grip1.PartStatus;
+	        12: #legacyStatus := "AutoProcessData".F_Robot3Grip2.PartStatus;
+	        13: #legacyStatus := "AutoProcessData".H_ShafeLine.PartStatus;
+	        14: #legacyStatus := "AutoProcessData".J_ShafeLine.PartStatus;
+	        15: #legacyStatus := "AutoProcessData".K_ShafeLine.PartStatus;
+	        16: #legacyStatus := "AutoProcessData".L_ShafeLine.PartStatus;
+	        ELSE
+	          #legacyStatus := 0;
+	      END_CASE;
+	      
+	      "DB_ProcessSlots".Slots[#idx].PartStatus := #legacyStatus;
+	      "DB_ProcessSlots".Slots[#idx].SlotID := #idx;
+	    END_FOR;
+	    
+	    FOR #idx := 1 TO 16 DO
+	      "DB_ProcessSlots_Global".SlotHasProduct[#idx] := ("DB_ProcessSlots".Slots[#idx].PartStatus <> 0);
+	    END_FOR;
+	  END_IF;
+	END_REGION
+	
+	
+	REGION NewToLegacyMapping
+	  IF #MirrorNewToLegacy THEN
+	    FOR #idx := 1 TO 16 DO
+	      CASE #idx OF
+	        1:  "AutoProcessData".A_ScanRotate.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        2:  "AutoProcessData".F_Robot1Grip1.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        3:  "AutoProcessData".F_Robot1Grip2.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        4:  "AutoProcessData".B_Press1.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        5:  "AutoProcessData".C_Glue.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        6:  "AutoProcessData".F_Robot2Grip1.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        7:  "AutoProcessData".F_Robot2Grip2.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        8:  "AutoProcessData".C_GlueNGBuffer.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        9:  "AutoProcessData".C_MagnScanNGBuffer.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        10: "AutoProcessData".B_Press2.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        11: "AutoProcessData".F_Robot3Grip1.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        12: "AutoProcessData".F_Robot3Grip2.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        13: "AutoProcessData".H_ShafeLine.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        14: "AutoProcessData".J_ShafeLine.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        15: "AutoProcessData".K_ShafeLine.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        16: "AutoProcessData".L_ShafeLine.PartStatus := "DB_ProcessSlots".Slots[#idx].PartStatus;
+	        ELSE
+	          ;
+	      END_CASE;
+	    END_FOR;
+	  END_IF;
+	END_REGION
+	
+END_FUNCTION_BLOCK
+

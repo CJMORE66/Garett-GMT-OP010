@@ -1,0 +1,20 @@
+FUNCTION "FC_ProcessSlot_Read" : "UDT_ProcessSlot"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      SlotID : Int;
+   END_VAR
+
+
+BEGIN
+	REGION Read slot record
+	  IF (#SlotID >= 1) AND (#SlotID <= 16) THEN
+	    "FC_ProcessSlot_Read" := "DB_ProcessSlots".Slots[#SlotID];
+	  ELSE
+	    "FC_ProcessSlot_Read".SlotID := 0;
+	    "FC_ProcessSlot_Read".PositionTag := 'INVALID';
+	  END_IF;
+	END_REGION
+	
+END_FUNCTION
+
