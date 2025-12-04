@@ -46,15 +46,7 @@ mezi stanicemi.
 
 `Program blocks/OP010/03_Auto/HMI/AutoProcessDataPopUp.scl:67-346` a
 `AutoProcess_HMI.db:10-27` zobrazují těchto 16 slotů na HMI, vyžadují dvojité potvrzení
-editace/smazání a naplňují bity `StationHasProduct[1..16]`. Nový blok
-`FB_ProcessSlotManager.scl:1-78` (Auto → DB a DB → Auto) drží data obou světů
-identická během migrace.
-- **Nový model receptů a slotů** – UDT `UDT_RecipeHeader`, `UDT_SubProcessRecipe`,
-  `UDT_ProcessSlot` plus DB `DB_RecipeMaster.db`, `DB_RecipeActiveNew.db`,
-  `DB_ProcessSlots.db` a `DB_ProcessSlots_Global.db` konsolidují recepty, fixture kódy a
-  výsledky. `FC_MigrateProcessData`, `FC_ProcessSlot_Read` a
-  `FC_ProcessSlot_Write` fungují jako most mezi starým `AutoProcessData` a novými
-  strukturami.
+editace/smazání a naplňují bity `StationHasProduct[1..16]`.
 
 ## 4. Pod-systémy zařízení
 - **Roboti** – `Program blocks/OP010/10_Device/24_Robot/KukaRobot?_Ctrl.scl:1-210` používají

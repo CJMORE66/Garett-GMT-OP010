@@ -57,12 +57,3 @@ flowchart TD
     route --> reserveFree --> reserveLift --> reserveLoad --> transfer
 
     transfer --> outboundReady --> unload --> clearData --> finish
-
-    subgraph RecipeUI["Recipe & Slot UI"]
-        header["Header: Product + verze + povolení"]
-        subprocess["Subprocesy\nTarget/Tol/NG"]
-        slots["Sloty 1..16\nDMC + fixture + status"]
-        actions["Akce\nNačíst / Zapsat"]
-        header --> subprocess --> actions
-        header --> slots --> actions
-    end

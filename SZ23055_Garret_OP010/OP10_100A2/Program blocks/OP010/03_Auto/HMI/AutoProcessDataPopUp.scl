@@ -11,7 +11,6 @@ VERSION : 0.1
 
    VAR_TEMP 
       DefaultData : "ProcessData";
-      SlotShadow : "UDT_ProcessSlot";
    END_VAR
 
 
@@ -210,29 +209,11 @@ BEGIN
 	        ;
 	    END_CASE;
 	    
-	    SlotShadow := "FC_ProcessSlot_Read"(SlotID := #idx);
-	    SlotShadow.PartStatus := "AutoProcess_HMI".ActualSHowingData.PartStatus;
-	    SlotShadow.PositionTag := "DB_ProcessSlots".Slots[#idx].PositionTag;
-	    SlotShadow.ProductID := "DB_RecipeActiveNew".Header.ProductID;
-	    SlotShadow.RecipeLink := #idx;
-	    "FC_ProcessSlot_Write"(SlotID := #idx, SlotData := SlotShadow);
-	    
 	    // reset flags after write
 	    "AutoProcess_HMI".Data_handling.ConfirmDialogActive := FALSE;
 	    "AutoProcess_HMI".Data_handling.ChangePending := FALSE;
 	    "AutoProcess_HMI".Data_handling.FinalConfirm_Write := FALSE;
 	    "AutoProcess_HMI".Data_handling.UpdateData_switch := FALSE;
-	  END_IF;
-	END_REGION
-	
-	
-	REGION MirrorToProcessSlotsWhenViewing
-	  IF NOT "AutoProcess_HMI".Data_handling.ConfirmDialogActive THEN
-	    SlotShadow := "FC_ProcessSlot_Read"(SlotID := #idx);
-	    SlotShadow.PartStatus := "AutoProcess_HMI".ActualSHowingData.PartStatus;
-	    SlotShadow.PositionTag := "DB_ProcessSlots".Slots[#idx].PositionTag;
-	    SlotShadow.RecipeLink := #idx;
-	    "FC_ProcessSlot_Write"(SlotID := #idx, SlotData := SlotShadow);
 	  END_IF;
 	END_REGION
 	
