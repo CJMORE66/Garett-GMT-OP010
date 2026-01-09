@@ -1,0 +1,123 @@
+FUNCTION_BLOCK "ST10_Flow24_LUnloadingTrans"
+VAR_INPUT
+  iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+VAR_IN_OUT
+  ioPM_Inface : "RCS_PMInterface_V1";
+  ioStatus : Int;
+END_VAR
+VAR
+  sCtrlMode : "SysFlowCtrlGraph";
+  sUpdMES_Data : Bool;
+  "工件放行中" : Bool;
+  "前站站号" : UInt;
+  "本站站号" : UInt;
+  "弹窗Temp" : Array[1..10] of Int;
+  AlarmID : Int;
+  TON : Array[0..10] of TON_TIME;
+  TOF : Array[0..10] of TOF_TIME;
+  sUP : Array[0..10] of Bool;
+  "更新RFID完成" : Bool;
+  RT_DATA : G7_RTDataPlus_V6;
+  Trans1 : G7_TransitionPlus_V6;
+  Trans2 : G7_TransitionPlus_V6;
+  Trans3 : G7_TransitionPlus_V6;
+  Trans325 : G7_TransitionPlus_V6;
+  Trans10 : G7_TransitionPlus_V6;
+  Trans102 : G7_TransitionPlus_V6;
+  Trans22 : G7_TransitionPlus_V6;
+  Trans23 : G7_TransitionPlus_V6;
+  Trans24 : G7_TransitionPlus_V6;
+  Trans25 : G7_TransitionPlus_V6;
+  Trans27 : G7_TransitionPlus_V6;
+  Trans28 : G7_TransitionPlus_V6;
+  Trans29 : G7_TransitionPlus_V6;
+  Trans30 : G7_TransitionPlus_V6;
+  Trans31 : G7_TransitionPlus_V6;
+  Trans32 : G7_TransitionPlus_V6;
+  Trans33 : G7_TransitionPlus_V6;
+  Trans34 : G7_TransitionPlus_V6;
+  Trans37 : G7_TransitionPlus_V6;
+  Trans35 : G7_TransitionPlus_V6;
+  Trans36 : G7_TransitionPlus_V6;
+  Trans38 : G7_TransitionPlus_V6;
+  Trans200 : G7_TransitionPlus_V6;
+  Trans765 : G7_TransitionPlus_V6;
+  Trans117 : G7_TransitionPlus_V6;
+  Trans766 : G7_TransitionPlus_V6;
+  Trans119 : G7_TransitionPlus_V6;
+  Trans772 : G7_TransitionPlus_V6;
+  Trans773 : G7_TransitionPlus_V6;
+  Trans136 : G7_TransitionPlus_V6;
+  Trans774 : G7_TransitionPlus_V6;
+  Trans775 : G7_TransitionPlus_V6;
+  Trans139 : G7_TransitionPlus_V6;
+  Trans140 : G7_TransitionPlus_V6;
+  Trans776 : G7_TransitionPlus_V6;
+  Trans142 : G7_TransitionPlus_V6;
+  Trans143 : G7_TransitionPlus_V6;
+  Trans144 : G7_TransitionPlus_V6;
+  Trans145 : G7_TransitionPlus_V6;
+  Trans146 : G7_TransitionPlus_V6;
+  Trans147 : G7_TransitionPlus_V6;
+  Trans148 : G7_TransitionPlus_V6;
+  Trans778 : G7_TransitionPlus_V6;
+  Trans137 : G7_TransitionPlus_V6;
+  Trans141 : G7_TransitionPlus_V6;
+  Trans149 : G7_TransitionPlus_V6;
+  Trans153 : G7_TransitionPlus_V6;
+  Trans250 : G7_TransitionPlus_V6;
+  Trans613 : G7_TransitionPlus_V6;
+  F24_Initial : G7_StepPlus_V6;
+  S2 : G7_StepPlus_V6;
+  S3 : G7_StepPlus_V6;
+  S4 : G7_StepPlus_V6;
+  S5_MESInitial : G7_StepPlus_V6;
+  WaitRobotInitialFinish : G7_StepPlus_V6;
+  S10_InitialFinish : G7_StepPlus_V6;
+  StatusError : G7_StepPlus_V6;
+  CheckStopPalletExist : G7_StepPlus_V6;
+  TimeDelay : G7_StepPlus_V6;
+  "Motor CWStart" : G7_StepPlus_V6;
+  MotorCWStart : G7_StepPlus_V6;
+  MotorCCWStart_1 : G7_StepPlus_V6;
+  MotorCWStart_2 : G7_StepPlus_V6;
+  MotorCCWStart_2 : G7_StepPlus_V6;
+  ProcessStart : G7_StepPlus_V6;
+  "L-UnloadingTransCylinderToHP" : G7_StepPlus_V6;
+  CheckUnloadingTransCylinderPos : G7_StepPlus_V6;
+  "L-UnloadingTransPalletLocationCylinderHP_2" : G7_StepPlus_V6;
+  "L-UnloadingTransCylindertoWP2" : G7_StepPlus_V6;
+  "L-UnloadingTransPalletLocationCylinder ToWP" : G7_StepPlus_V6;
+  "Time   Delay" : G7_StepPlus_V6;
+  MotorStop : G7_StepPlus_V6;
+  CheckPalletExist : G7_StepPlus_V6;
+  RequestRobotPickPallet : G7_StepPlus_V6;
+  WaitingPalletUnloading : G7_StepPlus_V6;
+  PalletRequest : G7_StepPlus_V6;
+  RobotCountClear0 : G7_StepPlus_V6;
+  "L-UnloadingTransPalletLocationCylinderTo HP" : G7_StepPlus_V6;
+  "L-UnloadingTransCylindertoWP_3" : G7_StepPlus_V6;
+  MotorCCWRun : G7_StepPlus_V6;
+  "Motor Stop" : G7_StepPlus_V6;
+  "L-UnloadingTransCylindertoHP_4" : G7_StepPlus_V6;
+  WaitRobotTaskFinish : G7_StepPlus_V6;
+  "Time  Delay" : G7_StepPlus_V6;
+  CheckPalletStatus : G7_StepPlus_V6;
+  "Time  Delay_1" : G7_StepPlus_V6;
+  "Time  Delay_2" : G7_StepPlus_V6;
+  WaitingPalletUnloading_1 : G7_StepPlus_V6;
+  "Motor Stop_1" : G7_StepPlus_V6;
+  "L-UnloadingTransPalletLocationCylinderTo HP_1" : G7_StepPlus_V6;
+  JudgmentEmptyPallet : G7_StepPlus_V6;
+  "Process Finish" : G7_StepPlus_V6;
+END_VAR
+VAR_TEMP
+  Tempresult : USInt;
+  "本站站号乘10" : UInt;
+END_VAR
+BEGIN
+  // Původní jazyk: GRAPH
+  // Zdroj XML: EXPORT/Program blocks/OP010/03_Auto/L_Unload/ST10_Flow24_LUnloadingTrans.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK
