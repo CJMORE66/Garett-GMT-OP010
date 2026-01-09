@@ -1,0 +1,49 @@
+FUNCTION_BLOCK "FB_Stopper"
+VAR_INPUT
+  iSysInface : "RCS_SysComInterface_V1";
+  iSensor : Bool;
+  iNextSensor : Bool;
+  iNextValve : Bool;
+  iPresentDwell : Time;
+  iNextEmptyDwell : Time;
+  iReleaseClear : Bool;
+  iReleaseDwell : Time;
+  iReleaseFaultTimer : Time;
+  iReachFaultTimer : Time;
+END_VAR
+VAR_OUTPUT
+  oValve : Bool;
+  oReleaseCompleted : Bool;
+  oReleaseFault : Bool;
+  oReachFault : Bool;
+  oNotClear : Bool;
+END_VAR
+VAR_IN_OUT
+  io_Dev : "ST_Stopper";
+END_VAR
+VAR
+  Stopper : STRUCT
+    Sensor : Bool;
+    Valve : Bool;
+    NextSensor : Bool;
+    NextValve : Bool;
+    NextFullSensor : Bool;
+    PresentDwell : TON_TIME;
+    NextEmptyDwell : TON_TIME;
+    NextFullDwell : TON_TIME;
+    ReleaseClear : Bool;
+    ReleaseMemory : Bool;
+    ReleaseDwell : TON_TIME;
+    ReleasePB : Bool;
+    NotClear : Bool;
+    NextEmptyMemory : Bool;
+    ReleaseCompleted : Bool;
+    ReleaseFaultTimer : TON_TIME;
+    ReachFaultTimer : TON_TIME;
+  END_STRUCT;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/03_Device/201 Stopper/FB_Stopper.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

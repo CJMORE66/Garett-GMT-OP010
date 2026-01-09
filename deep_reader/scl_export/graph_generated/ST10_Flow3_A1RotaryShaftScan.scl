@@ -1,0 +1,907 @@
+FUNCTION "ST10_Flow3_A1RotaryShaftScan" : Void
+VERSION : 1.0
+VAR_INPUT
+  Enable : BOOL;
+END_VAR
+VAR_TEMP
+  idx : INT;
+  tr_cond : ARRAY[1..710] OF BOOL;
+  next_active : ARRAY[1..605] OF BOOL;
+END_VAR
+BEGIN
+  IF NOT Enable THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.Initialized := FALSE;
+    FOR idx := 1 TO 605 DO
+      "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.PalltReleaseRuning := FALSE;
+    RETURN;
+  END_IF;
+
+  IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.Initialized THEN
+    FOR idx := 1 TO 605 DO
+      "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[1] := TRUE;
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.Initialized := TRUE;
+  END_IF;
+
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[237] THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.CheckPartExist := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.CheckPartExist + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.CheckPartExist := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[101] THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Determine product status := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Determine product status + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Determine product status := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[305] THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESCheckRequest := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESCheckRequest + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESCheckRequest := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[306] THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESSaveRequest_1 := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESSaveRequest_1 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESSaveRequest_1 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[303] THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[304] THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData_1 := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData_1 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData_1 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[104] THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.ProcessStart,CTStart := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.ProcessStart,CTStart + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.ProcessStart,CTStart := T#0S;
+  END_IF;
+
+  IF ((TRUE) AND (TRUE)) AND (iA-Rotating product Check) THEN
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.TON_ET[0] := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.TON_ET[0] + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.TON_ET[0] := T#0S;
+  END_IF;
+  "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.TON_Q[0] := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.TON_ET[0] >= t#500ms;
+
+  tr_cond[1] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Ready);
+  tr_cond[2] := TRUE;
+  tr_cond[3] := (TRUE) AND (ServoV90_A2.Out.oReady);
+  tr_cond[4] := TRUE;
+  tr_cond[8] := ((TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO163_HomeSeqOK)) OR ((TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME));
+  tr_cond[9] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[1].Achieve);
+  tr_cond[10] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.ioPM_Inface.Running);
+  tr_cond[11] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[1].Achieve);
+  tr_cond[12] := TRUE;
+  tr_cond[13] := (TRUE) AND (Station_Sys.Cmd.OnOffLine);
+  tr_cond[100] := (((((TRUE) AND (NOT ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Auto.RunningOver))) AND (NOT ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Auto.OneCycleMode))) OR ((((((TRUE) AND (NOT ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Auto.RunningOver))) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Auto.OneCycleMode)) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.ioPM_Inface.TriggerOneCycle));
+  tr_cond[101] := (AutoProcessData.A_ScanRotate.PartStatus) = (0);
+  tr_cond[102] := TRUE;
+  tr_cond[103] := TRUE;
+  tr_cond[104] := ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.ProcessStart,CTStart) > (t#100MS);
+  tr_cond[112] := ((TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO249_ShaftScanPutInside)) AND (NOT ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO250_ShaftScanPutFinish));
+  tr_cond[115] := TRUE;
+  tr_cond[139] := (AutoProcessData.A_ScanRotate.PartStatus) <> (0);
+  tr_cond[140] := TRUE;
+  tr_cond[141] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Reset);
+  tr_cond[145] := TRUE;
+  tr_cond[146] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO250_ShaftScanPutFinish);
+  tr_cond[200] := TRUE;
+  tr_cond[201] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[202] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[203] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[204] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[205] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[2].Achieve);
+  tr_cond[206] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[207] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[208] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[209] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[3].Achieve);
+  tr_cond[210] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[211] := (AutoProcessData.A_ScanRotate.PartStatus) <= (100);
+  tr_cond[212] := (AutoProcessData.A_ScanRotate.PartStatus) = (180);
+  tr_cond[213] := TRUE;
+  tr_cond[214] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[216] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[217] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[218] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[219] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[4].Achieve);
+  tr_cond[221] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[222] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[223] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[224] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[225] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[5].Achieve);
+  tr_cond[226] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[227] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[228] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[229] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[230] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[6].Achieve);
+  tr_cond[231] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[232] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[233] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[234] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[235] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[7].Achieve);
+  tr_cond[236] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[237] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[238] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[239] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[240] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[2].Point[8].Achieve);
+  tr_cond[241] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready));
+  tr_cond[242] := (TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Ready);
+  tr_cond[243] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadNok);
+  tr_cond[244] := ((TRUE) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_801A1DB.sHMI.Status.ReadOk);
+  tr_cond[245] := (AutoProcessData.A_ScanRotate.PartStatus) = (150);
+  tr_cond[246] := TRUE;
+  tr_cond[247] := (AutoProcessData.A_ScanRotate.PartStatus) = (150);
+  tr_cond[248] := (AutoProcessData.A_ScanRotate.PartStatus) = (180);
+  tr_cond[249] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.TON_Q[0]);
+  tr_cond[250] := ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.CheckPartExist) > (t#1500MS);
+  tr_cond[251] := (AutoProcessData.A_ScanRotate.PartStatus) = (100);
+  tr_cond[253] := (AutoProcessData.A_ScanRotate.PartStatus) >= (190);
+  tr_cond[254] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Reset);
+  tr_cond[256] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO254_SScanPickFinish);
+  tr_cond[258] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO180_Robot2Area);
+  tr_cond[300] := (TRUE) AND (NOT (Station_Sys.Cmd.OnOffLine));
+  tr_cond[301] := ((((TRUE) AND (NOT (PLCtoMES.PLC.Load_Station1ChickInReq))) AND (NOT (MEStoPLC.MES.Load_Station1PartOK))) AND (NOT (MEStoPLC.MES.Load_Station1PartNG))) AND (NOT (MEStoPLC.MES.Load_Station1ReqMesDone));
+  tr_cond[302] := ((((TRUE) AND (NOT (PLCtoMES.PLC.Unload_Station1DataSaveReq))) AND (NOT (MEStoPLC.MES.Unload_ResultsStored1OK))) AND (NOT (MEStoPLC.MES.Unload_ResultsStored1NG))) AND (NOT (MEStoPLC.MES.Unload_ResultsStored1ReqMesDone));
+  tr_cond[303] := ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData) > (t#300MS);
+  tr_cond[304] := ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Prepare MES CheckData_1) > (t#300MS);
+  tr_cond[305] := (((TRUE) AND (MEStoPLC.MES.Load_Station1PartOK)) AND (NOT (MEStoPLC.MES.Load_Station1PartNG))) AND (MEStoPLC.MES.Load_Station1ReqMesDone);
+  tr_cond[306] := (((TRUE) AND (MEStoPLC.MES.Unload_ResultsStored1OK)) AND (NOT (MEStoPLC.MES.Unload_ResultsStored1NG))) AND (MEStoPLC.MES.Unload_ResultsStored1ReqMesDone);
+  tr_cond[307] := ((AutoProcessData.A_ScanRotate.PartStatus) = (151)) OR ((AutoProcessData.A_ScanRotate.PartStatus) = (152));
+  tr_cond[308] := TRUE;
+  tr_cond[309] := (AutoProcessData.A_ScanRotate.PartStatus) = (199);
+  tr_cond[310] := ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESSaveRequest_1) > (t#10S);
+  tr_cond[311] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Reset);
+  tr_cond[312] := TRUE;
+  tr_cond[313] := ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.MESCheckRequest) > (t#10S);
+  tr_cond[314] := (((TRUE) AND (NOT (MEStoPLC.MES.Load_Station1PartOK))) AND (MEStoPLC.MES.Load_Station1PartNG)) AND (MEStoPLC.MES.Load_Station1ReqMesDone);
+  tr_cond[315] := (TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.iSysInface.Reset);
+  tr_cond[316] := (AutoProcessData.A_ScanRotate.PartStatus) = (151);
+  tr_cond[317] := (((TRUE) AND (NOT (MEStoPLC.MES.Unload_ResultsStored1OK))) AND (MEStoPLC.MES.Unload_ResultsStored1NG)) AND (MEStoPLC.MES.Unload_ResultsStored1ReqMesDone);
+  tr_cond[318] := (AutoProcessData.A_ScanRotate.PartStatus) = (152);
+  tr_cond[319] := TRUE;
+  tr_cond[320] := TRUE;
+  tr_cond[321] := ((AutoProcessData.A_ScanRotate.PartStatus) = (199)) OR ((AutoProcessData.A_ScanRotate.PartStatus) = (150));
+  tr_cond[322] := TRUE;
+  tr_cond[410] := ((TRUE) AND ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO253_SScanPickInside)) AND (NOT ("DB_ST10_Flow3_A1RotaryShaftScan_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO254_SScanPickFinish));
+  tr_cond[600] := TRUE;
+  tr_cond[605] := TRUE;
+  tr_cond[607] := TRUE;
+  tr_cond[710] := ("DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepTime.Determine product status) > (t#1500MS);
+
+  FOR idx := 1 TO 605 DO
+    next_active[idx] := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[idx];
+  END_FOR;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[1] THEN
+    // Step 1: F3_Initial
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[1] THEN
+      #ioPM_Inface.InitialRun := TRUE;
+      #ioPM_Inface.InitialOK := FALSE;
+      #ioPM_Inface.WaitRunning := FALSE;
+      #ioPM_Inface.Running := FALSE;
+      #ioPM_Inface.UnPause := FALSE;
+      "Station_Sys".Cmd.Calibration := FALSE;
+      "Station_Sys".Cmd.ChangeOver := FALSE;
+      "Station_Sys".Cmd.Reserve := FALSE;
+      "Station_Sys".Cmd.OneCycle := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[1] THEN
+      next_active[1] := FALSE;
+      next_active[2] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[2] THEN
+    // Step 2: S2
+    IF tr_cond[2] THEN
+      next_active[2] := FALSE;
+      next_active[3] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[3] THEN
+    // Step 3: S3
+    IF tr_cond[607] THEN
+      next_active[3] := FALSE;
+      next_active[4] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[4] THEN
+    // Step 4: ServoReady?
+    IF tr_cond[3] THEN
+      next_active[4] := FALSE;
+      next_active[5] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[5] THEN
+    // Step 5: S5_MESInitial
+    IF tr_cond[4] THEN
+      next_active[5] := FALSE;
+      next_active[8] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[8] THEN
+    // Step 8: WaitRobotInitialFinish
+    IF tr_cond[8] THEN
+      next_active[8] := FALSE;
+      next_active[9] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[9] THEN
+    // Step 9: Servo returns to initial Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[1].Start := TRUE;
+    IF tr_cond[9] THEN
+      next_active[9] := FALSE;
+      next_active[10] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[10] THEN
+    // Step 10: S10_InitialFinish
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[10] THEN
+      #ioPM_Inface.InitialOK := TRUE;
+    END_IF;
+    IF tr_cond[10] THEN
+      next_active[10] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[11] THEN
+    // Step 11: Servo returns to initial Pos_1
+    "ServoV90_DeviceCtl".V90Servo[2].Point[1].Start := TRUE;
+    IF tr_cond[11] THEN
+      next_active[11] := FALSE;
+      next_active[605] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[12] THEN
+    // Step 12: MES OK
+    IF tr_cond[12] THEN
+      next_active[12] := FALSE;
+      next_active[600] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[100] THEN
+    // Step 100: ProcessStart
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[100] THEN
+      #ioPM_Inface.InitialRun := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := FALSE;
+      #ioPM_Inface.InitialOK := TRUE;
+      #ioPM_Inface.WaitRunning := TRUE;
+      #ioPM_Inface.ProcessResult:=0;
+      "ST10_GeneralData".FlowControl_Handshake[3].Start := FALSE;
+      "ST10_GeneralData".FlowControl_Handshake[3].Done := FALSE;
+    END_IF;
+    "MES_CHeck_DB".Station_1.CheckStep:=0;
+    "MES_CHeck_DB".Station_1.ResultStep:=0;
+    IF tr_cond[100] THEN
+      next_active[100] := FALSE;
+      next_active[101] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[101] THEN
+    // Step 101: Determine product status
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[102] THEN
+    // Step 102: CheckMachineStatus
+    IF tr_cond[102] THEN
+      next_active[102] := FALSE;
+      next_active[103] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[103] THEN
+    // Step 103: Normal mode
+    IF tr_cond[103] THEN
+      next_active[103] := FALSE;
+      next_active[104] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[104] THEN
+    // Step 104: ProcessStart,CTStart
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[104] THEN
+      #ioPM_Inface.ProcessStart := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+    END_IF;
+    IF tr_cond[104] THEN
+      next_active[104] := FALSE;
+      next_active[112] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[112] THEN
+    // Step 112: Request robot put
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".AutoProcessControl.A_ScanRotary.Robot1PutPrimit := TRUE;
+    IF tr_cond[112] THEN
+      next_active[112] := FALSE;
+      next_active[130] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[115] THEN
+    // Step 115: RobotPutPartFinish
+    IF tr_cond[115] THEN
+      next_active[115] := FALSE;
+      next_active[237] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[125] THEN
+    // Step 125: PartStatusOK
+    IF tr_cond[140] THEN
+      next_active[125] := FALSE;
+      next_active[200] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[126] THEN
+    // Step 126: StatusAlarm
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[126] THEN
+      "ST10_DeviceError".A.A1RotaryScan.ProductAnomaly := TRUE;
+    END_IF;
+    IF tr_cond[141] THEN
+      next_active[126] := FALSE;
+      next_active[101] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[127] THEN
+    // Step 127: PartStatusError
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[127] THEN
+      "ST10_DeviceError".A.A1RotaryScan.PartMissing := TRUE;
+    END_IF;
+    IF tr_cond[254] THEN
+      next_active[127] := FALSE;
+      next_active[237] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[129] THEN
+    // Step 129: NoPart
+    IF tr_cond[145] THEN
+      next_active[129] := FALSE;
+      next_active[102] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[130] THEN
+    // Step 130: Wait  robot finish task
+    IF tr_cond[146] THEN
+      next_active[130] := FALSE;
+      next_active[238] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[131] THEN
+    // Step 131: Wait robot finish task
+    IF tr_cond[256] THEN
+      next_active[131] := FALSE;
+      next_active[133] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[133] THEN
+    // Step 133: Wait robot in safety area
+    IF tr_cond[258] THEN
+      next_active[133] := FALSE;
+      next_active[11] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[200] THEN
+    // Step 200: Rotary code reading
+    IF tr_cond[200] THEN
+      next_active[200] := FALSE;
+      next_active[208] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[201] THEN
+    // Step 201: Start 1st reading
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[201] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[201] THEN
+      next_active[201] := FALSE;
+      next_active[203] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[202] THEN
+    // Step 202: Check reader Ready
+    IF tr_cond[202] THEN
+      next_active[202] := FALSE;
+      next_active[201] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[203] THEN
+    // Step 203: Wait reading complete
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[204] THEN
+    // Step 204: Servo returns to Scan2 Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[2].Start := TRUE;
+    IF tr_cond[205] THEN
+      next_active[204] := FALSE;
+      next_active[206] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[205] THEN
+    // Step 205: Start 2st reading
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[205] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[206] THEN
+      next_active[205] := FALSE;
+      next_active[207] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[206] THEN
+    // Step 206: Check reader Ready_1
+    IF tr_cond[207] THEN
+      next_active[206] := FALSE;
+      next_active[205] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[207] THEN
+    // Step 207: Wait reading complete_1
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[208] THEN
+    // Step 208: Step208
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[209] THEN
+    // Step 209: Read OK
+    IF tr_cond[213] THEN
+      next_active[209] := FALSE;
+      next_active[236] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[210] THEN
+    // Step 210: Servo returns to Scan3 Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[3].Start := TRUE;
+    IF tr_cond[209] THEN
+      next_active[210] := FALSE;
+      next_active[212] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[211] THEN
+    // Step 211: Start 3st reading
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[211] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[214] THEN
+      next_active[211] := FALSE;
+      next_active[213] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[212] THEN
+    // Step 212: Check reader Ready_2
+    IF tr_cond[216] THEN
+      next_active[212] := FALSE;
+      next_active[211] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[213] THEN
+    // Step 213: Wait reading complete_3
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[214] THEN
+    // Step 214: Servo returns to Scan4 Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[4].Start := TRUE;
+    IF tr_cond[219] THEN
+      next_active[214] := FALSE;
+      next_active[216] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[215] THEN
+    // Step 215: Start 4st reading_1
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[215] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[221] THEN
+      next_active[215] := FALSE;
+      next_active[217] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[216] THEN
+    // Step 216: Check reader Ready_3
+    IF tr_cond[222] THEN
+      next_active[216] := FALSE;
+      next_active[215] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[217] THEN
+    // Step 217: Wait reading complete_4
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[218] THEN
+    // Step 218: Servo returns to Scan5 Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[5].Start := TRUE;
+    IF tr_cond[225] THEN
+      next_active[218] := FALSE;
+      next_active[220] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[219] THEN
+    // Step 219: Start 5st reading
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[219] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[226] THEN
+      next_active[219] := FALSE;
+      next_active[221] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[220] THEN
+    // Step 220: Check reader Ready_4
+    IF tr_cond[227] THEN
+      next_active[220] := FALSE;
+      next_active[219] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[221] THEN
+    // Step 221: Wait reading complete_5
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[222] THEN
+    // Step 222: Servo returns to Scan6Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[6].Start := TRUE;
+    IF tr_cond[230] THEN
+      next_active[222] := FALSE;
+      next_active[224] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[223] THEN
+    // Step 223: Start 6st reading
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[223] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[231] THEN
+      next_active[223] := FALSE;
+      next_active[225] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[224] THEN
+    // Step 224: Check reader Ready_5
+    IF tr_cond[232] THEN
+      next_active[224] := FALSE;
+      next_active[223] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[225] THEN
+    // Step 225: Wait reading complete_6
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[226] THEN
+    // Step 226: Servo returns to Scan7Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[7].Start := TRUE;
+    IF tr_cond[235] THEN
+      next_active[226] := FALSE;
+      next_active[228] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[227] THEN
+    // Step 227: Start 7st reading
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[227] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[236] THEN
+      next_active[227] := FALSE;
+      next_active[229] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[228] THEN
+    // Step 228: Check reader Ready_6
+    IF tr_cond[237] THEN
+      next_active[228] := FALSE;
+      next_active[227] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[229] THEN
+    // Step 229: Wait reading complete_7
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[230] THEN
+    // Step 230: Servo returns to Scan8Pos
+    "ServoV90_DeviceCtl".V90Servo[2].Point[8].Start := TRUE;
+    IF tr_cond[240] THEN
+      next_active[230] := FALSE;
+      next_active[232] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[231] THEN
+    // Step 231: Start 8st reading
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[231] THEN
+      "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[241] THEN
+      next_active[231] := FALSE;
+      next_active[233] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[232] THEN
+    // Step 232: Check reader Ready_7
+    IF tr_cond[242] THEN
+      next_active[232] := FALSE;
+      next_active[231] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[233] THEN
+    // Step 233: Wait reading complete_8
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[234] THEN
+    // Step 234: Read NG
+    IF tr_cond[246] THEN
+      next_active[234] := FALSE;
+      next_active[235] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[235] THEN
+    // Step 235: NG_Status
+    "AutoProcessData".A_ScanRotate.PartStatus:=150;
+    "AutoProcessData".A_ScanRotate.ShaftCode:='';
+    IF tr_cond[247] THEN
+      next_active[235] := FALSE;
+      next_active[300] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[236] THEN
+    // Step 236: OKStatus
+    "AutoProcessData".A_ScanRotate.PartStatus:=180;
+    "AutoProcessData".A_ScanRotate.ShaftCode:="KeyenceSR1000Ctrl_801A1DB".sHMI.Status.CurrentCode;
+    IF tr_cond[248] THEN
+      next_active[236] := FALSE;
+      next_active[300] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[237] THEN
+    // Step 237: CheckPartExist
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[238] THEN
+    // Step 238: PartStatus
+    "AutoProcessData".A_ScanRotate.PartStatus:=100;
+    IF tr_cond[251] THEN
+      next_active[238] := FALSE;
+      next_active[115] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[300] THEN
+    // Step 300: MES
+    IF tr_cond[312] THEN
+      next_active[300] := FALSE;
+      next_active[310] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[301] THEN
+    // Step 301: ResetMesCheckRequest
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[301] THEN
+      "PLCtoMES"."PLC.Load_Station1ChickInReq" := FALSE;
+      "MEStoPLC"."MES.Load_Station1PartOK" := FALSE;
+      "MEStoPLC"."MES.Load_Station1PartNG" := FALSE;
+      "MEStoPLC"."MES.Load_Station1ReqMesDone" := FALSE;
+    END_IF;
+    IF tr_cond[301] THEN
+      next_active[301] := FALSE;
+      next_active[303] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[302] THEN
+    // Step 302: ResetMesUnloadRequest_1
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[302] THEN
+      "PLCtoMES"."PLC.Unload_Station1DataSaveReq" := FALSE;
+      "MEStoPLC"."MES.Unload_ResultsStored1OK" := FALSE;
+      "MEStoPLC"."MES.Unload_ResultsStored1NG" := FALSE;
+      "MEStoPLC"."MES.Unload_ResultsStored1ReqMesDone" := FALSE;
+    END_IF;
+    IF tr_cond[302] THEN
+      next_active[302] := FALSE;
+      next_active[304] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[303] THEN
+    // Step 303: Prepare MES CheckData
+    IF tr_cond[303] THEN
+      next_active[303] := FALSE;
+      next_active[305] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[304] THEN
+    // Step 304: Prepare MES CheckData_1
+    IF tr_cond[304] THEN
+      next_active[304] := FALSE;
+      next_active[306] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[305] THEN
+    // Step 305: MESCheckRequest
+    "PLCtoMES"."PLC.Load_Station1ChickInReq" := TRUE;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[306] THEN
+    // Step 306: MESSaveRequest_1
+    "PLCtoMES"."PLC.Unload_Station1DataSaveReq" := TRUE;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[307] THEN
+    // Step 307: MES NG
+    IF tr_cond[308] THEN
+      next_active[307] := FALSE;
+      next_active[600] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[308] THEN
+    // Step 308: MESOverTime
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[308] THEN
+      "ST10_DeviceError".MES_Error.CheckInResultOverTime_1 := TRUE;
+    END_IF;
+    IF tr_cond[311] THEN
+      next_active[308] := FALSE;
+      next_active[310] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[309] THEN
+    // Step 309: ok
+    "AutoProcessData".A_ScanRotate.PartStatus:=199;
+    IF tr_cond[309] THEN
+      next_active[309] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[310] THEN
+    // Step 310: Bypass
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[311] THEN
+    // Step 311: MESOverTime_1
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[311] THEN
+      "ST10_DeviceError".MES_Error.CheckInCompOverTime_1 := TRUE;
+    END_IF;
+    IF tr_cond[315] THEN
+      next_active[311] := FALSE;
+      next_active[310] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[312] THEN
+    // Step 312: ResultNG
+    "AutoProcessData".A_ScanRotate.PartStatus:=152;
+    IF tr_cond[318] THEN
+      next_active[312] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[313] THEN
+    // Step 313: MESResultFinish
+    IF tr_cond[319] THEN
+      next_active[313] := FALSE;
+      next_active[600] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[314] THEN
+    // Step 314: Step314
+    IF tr_cond[320] THEN
+      next_active[314] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[315] THEN
+    // Step 315: ok_1
+    "AutoProcessData".A_ScanRotate.PartStatus:=199;
+    IF tr_cond[321] THEN
+      next_active[315] := FALSE;
+      next_active[314] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[316] THEN
+    // Step 316: Check OK
+    IF tr_cond[322] THEN
+      next_active[316] := FALSE;
+      next_active[302] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[317] THEN
+    // Step 317: Check NG
+    "AutoProcessData".A_ScanRotate.PartStatus:=151;
+    IF tr_cond[316] THEN
+      next_active[317] := FALSE;
+      next_active[600] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[408] THEN
+    // Step 408: Request robot pick
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".AutoProcessControl.A_ScanRotary.Robot1PickPrimit := TRUE;
+    IF tr_cond[410] THEN
+      next_active[408] := FALSE;
+      next_active[131] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[600] THEN
+    // Step 600: RobotPick
+    IF NOT "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[600] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[600] THEN
+      next_active[600] := FALSE;
+      next_active[408] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[605] THEN
+    // Step 605: ProcessFinsh
+    IF tr_cond[605] THEN
+      next_active[605] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  FOR idx := 1 TO 605 DO
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepPrev[idx] := "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[idx];
+    "DB_ST10_Flow3_A1RotaryShaftScan_State".Flow.StepActive[idx] := next_active[idx];
+  END_FOR;
+END_FUNCTION

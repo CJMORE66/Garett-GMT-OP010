@@ -1,0 +1,32 @@
+# OP10 – index výstupů (Deep Reader)
+
+## Co je hotové (FINAL GATE)
+- [x] Struktura projektu namapovaná (inventář objektů)
+- [x] Call tree / závislosti (omezeno na extrahovatelná volání)
+- [x] Mapa použití proměnných (orientační čtení/zápis, bez cross-reference)
+- [x] Monitoring body identifikované (HMI tag export → ControllerTag)
+- [x] Registr NEŠAHAT vytvořen (konzervativně podle názvů + kritických OB)
+- [x] Okrajové případy zkontrolované (ANY/BLKMOV/PEEK/POKE/AR/AT/VARIANT + absolutní DB scan)
+
+## Hlavní reporty (čeština)
+- `deep_reader/reports/01_project_comprehension_report.md`
+- `deep_reader/reports/02_unused_elements_analysis.md`
+- `deep_reader/reports/03_monitoring_consolidation_blueprint.md`
+- `deep_reader/reports/04_migration_roadmap.md`
+- `deep_reader/reports/05_risk_assessment_matrix.csv`
+- `deep_reader/reports/06_zavislosti_a_ostrovy.md`
+- `deep_reader/reports/no_touch_register.csv`
+
+## Důkazní balíčky (režim 2)
+- `deep_reader/evidence_unused/INDEX.md`
+- `deep_reader/evidence_unused/souhrn_kandidatu.csv`
+
+## Surová data / evidence
+- `deep_reader/out/summary.json`
+- `deep_reader/out/objects.csv`, `deep_reader/out/call_edges.csv`, `deep_reader/out/symbol_usage.csv`
+- `deep_reader/out/hmi_tags.csv`, `deep_reader/out/plc_tags.csv`
+- `deep_reader/out/edge_case_scan.csv`, `deep_reader/out/absolute_db_refs.csv`
+
+## Offline SCL export (pro čtení/porovnání)
+- `deep_reader/scl_export/` (XML → SCL, orientační převod)
+- `deep_reader/scl_export/graph_generated/` (GRAPH → SCL, orientační převod)

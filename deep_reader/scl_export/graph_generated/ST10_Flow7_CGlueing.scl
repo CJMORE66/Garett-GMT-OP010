@@ -1,0 +1,1866 @@
+FUNCTION "ST10_Flow7_CGlueing" : Void
+VERSION : 1.0
+VAR_INPUT
+  Enable : BOOL;
+END_VAR
+VAR_TEMP
+  idx : INT;
+  tr_cond : ARRAY[1..698] OF BOOL;
+  next_active : ARRAY[1..630] OF BOOL;
+END_VAR
+BEGIN
+  IF NOT Enable THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.Initialized := FALSE;
+    FOR idx := 1 TO 630 DO
+      "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow7_CGlueing_State".Flow.PalltReleaseRuning := FALSE;
+    RETURN;
+  END_IF;
+
+  IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.Initialized THEN
+    FOR idx := 1 TO 630 DO
+      "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[1] := TRUE;
+    "DB_ST10_Flow7_CGlueing_State".Flow.Initialized := TRUE;
+  END_IF;
+
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[121] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.C-LocationCylinderToWP_2 := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.C-LocationCylinderToWP_2 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.C-LocationCylinderToWP_2 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[163] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Glue2s := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Glue2s + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Glue2s := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[310] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESCheckRequest := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESCheckRequest + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESCheckRequest := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[313] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESSaveRequest_1 := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESSaveRequest_1 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESSaveRequest_1 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[303] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[307] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData_1 := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData_1 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData_1 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[311] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[329] THEN
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok_1 := "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok_1 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok_1 := T#0S;
+  END_IF;
+
+  tr_cond[1] := (TRUE) AND ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Ready);
+  tr_cond[2] := TRUE;
+  tr_cond[3] := TRUE;
+  tr_cond[4] := TRUE;
+  tr_cond[5] := (TRUE) AND (ServoV90_A3.Out.oReady);
+  tr_cond[8] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Home.DO163_HomeSeqOK)) OR ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME)) OR ((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".Flow.Tag_2));
+  tr_cond[10] := (TRUE) AND ("DB_ST10_Flow7_CGlueing_State".Flow.ioPM_Inface.Running);
+  tr_cond[13] := ((TRUE) AND (Station_Sys.Cmd.OnOffLine)) OR ((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest));
+  tr_cond[14] := (TRUE) AND (Station_Sys.Cmd.OnOffLine);
+  tr_cond[22] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[1].Achieve);
+  tr_cond[23] := ((TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[1].Achieve)) OR ((TRUE) AND (TRUE));
+  tr_cond[24] := ((AutoProcessData.C_Glue.PartStatus) = (0)) AND (NOT (iC-LocationShaftDetection));
+  tr_cond[25] := (((AutoProcessData.C_Glue.PartStatus) = (299)) OR ((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest))) AND (iC-LocationShaftDetection);
+  tr_cond[26] := ((AutoProcessData.C_Glue.PartStatus) = (310)) AND (iC-LocationShaftDetection);
+  tr_cond[27] := (AutoProcessData.C_Glue.PartStatus) <= (360);
+  tr_cond[28] := ((((AutoProcessData.C_Glue.PartStatus) <> (0)) AND (NOT (iC-LocationShaftDetection))) OR (((AutoProcessData.C_Glue.PartStatus) = (0)) AND (iC-LocationShaftDetection))) AND (NOT ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest));
+  tr_cond[29] := (TRUE) AND ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Reset);
+  tr_cond[31] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[2].Achieve);
+  tr_cond[32] := (((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO289_GluePutInside)) AND (NOT ("DB_ST10_Flow7_CGlueing_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO290_GluePutFinish))) OR ((((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest)) AND (iC-LocationShaftDetection)) AND (iHMI Machine Start));
+  tr_cond[33] := ((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO290_GluePutFinish)) OR ((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest));
+  tr_cond[34] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[3].Achieve);
+  tr_cond[35] := ((TRUE) AND (GluingControl.Input.GluingDeviceReady)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue));
+  tr_cond[36] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[2].Achieve);
+  tr_cond[37] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[2].Achieve);
+  tr_cond[38] := TRUE;
+  tr_cond[40] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[3].Achieve);
+  tr_cond[41] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[4].Achieve);
+  tr_cond[42] := ((TRUE) AND (GluingControl.Input.GluingDeviceReady)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue));
+  tr_cond[43] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[3].Achieve);
+  tr_cond[44] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[2].Achieve);
+  tr_cond[45] := TRUE;
+  tr_cond[46] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[3].Achieve);
+  tr_cond[47] := TRUE;
+  tr_cond[48] := TRUE;
+  tr_cond[50] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[4].Achieve);
+  tr_cond[51] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[5].Achieve);
+  tr_cond[52] := ((TRUE) AND (GluingControl.Input.GluingDeviceReady)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue));
+  tr_cond[53] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[4].Achieve);
+  tr_cond[54] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[2].Achieve);
+  tr_cond[55] := TRUE;
+  tr_cond[56] := TRUE;
+  tr_cond[57] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[4].Achieve);
+  tr_cond[58] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[5].Achieve);
+  tr_cond[59] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[6].Achieve);
+  tr_cond[60] := ((TRUE) AND (GluingControl.Input.GluingDeviceReady)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue));
+  tr_cond[61] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[5].Achieve);
+  tr_cond[62] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[2].Achieve);
+  tr_cond[63] := TRUE;
+  tr_cond[64] := TRUE;
+  tr_cond[65] := (((DB_KeyenceCheckerIV3.aDev[2].Common.nMode) = (0)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError))) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bDone);
+  tr_cond[66] := ((DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3810A1));
+  tr_cond[67] := (DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo);
+  tr_cond[68] := (AutoProcessData.C_Glue.PartStatus) = (310);
+  tr_cond[69] := (AutoProcessData.C_Glue.PartStatus) = (359);
+  tr_cond[70] := ((AutoProcessData.C_Glue.PartStatus) = (320)) AND (iC-LocationShaftDetection);
+  tr_cond[71] := TRUE;
+  tr_cond[72] := TRUE;
+  tr_cond[73] := ((AutoProcessData.C_Glue.PartStatus) = (330)) AND (iC-LocationShaftDetection);
+  tr_cond[74] := TRUE;
+  tr_cond[75] := ((AutoProcessData.C_Glue.PartStatus) = (300)) AND (iC-LocationShaftDetection);
+  tr_cond[76] := TRUE;
+  tr_cond[77] := (AutoProcessData.C_Glue.PartStatus) = (300);
+  tr_cond[78] := (((DB_KeyenceCheckerIV3.aDev[1].Common.nMode) = (0)) AND (NOT (DB_KeyenceCheckerIV3.aDev[1].Common.bError))) AND (DB_KeyenceCheckerIV3.aDev[1].Common.bDone);
+  tr_cond[79] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[6].Achieve);
+  tr_cond[80] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[7].Achieve);
+  tr_cond[81] := ((TRUE) AND (GluingControl.Input.GluingDeviceReady)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue));
+  tr_cond[82] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[6].Achieve);
+  tr_cond[83] := ((DB_KeyenceCheckerIV3.aDev[1].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[1].In.DeviceStatus.nCurrentProgramNo)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3811A1));
+  tr_cond[84] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[6].Achieve);
+  tr_cond[85] := TRUE;
+  tr_cond[86] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[5].Achieve);
+  tr_cond[87] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[7].Achieve);
+  tr_cond[88] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[8].Achieve);
+  tr_cond[89] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[1].Achieve);
+  tr_cond[90] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[1].Achieve);
+  tr_cond[91] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[1].Achieve);
+  tr_cond[92] := (AutoProcessData.C_Glue.PartStatus) = (330);
+  tr_cond[93] := (DB_KeyenceCheckerIV3.aDev[1].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[1].In.DeviceStatus.nCurrentProgramNo);
+  tr_cond[94] := (AutoProcessData.C_Glue.PartStatus) = (380);
+  tr_cond[95] := (AutoProcessData.C_Glue.PartStatus) = (358);
+  tr_cond[96] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[1].Achieve);
+  tr_cond[97] := TRUE;
+  tr_cond[98] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[7].Achieve);
+  tr_cond[99] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[2].Achieve);
+  tr_cond[100] := (((((TRUE) AND (NOT ("DB_ST10_Flow7_CGlueing_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow7_CGlueing_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Auto.RunningOver))) AND (NOT ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Auto.OneCycleMode))) OR ((((((TRUE) AND (NOT ("DB_ST10_Flow7_CGlueing_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow7_CGlueing_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Auto.RunningOver))) AND ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Auto.OneCycleMode)) AND ("DB_ST10_Flow7_CGlueing_State".Flow.ioPM_Inface.TriggerOneCycle));
+  tr_cond[101] := TRUE;
+  tr_cond[102] := (Axis_FB_DB.IAI_Axis[3].RecvData.Input 4 word_1.Current Position) < (20000);
+  tr_cond[103] := (Axis_FB_DB.IAI_Axis[3].RecvData.Input 4 word_1.Current Position) >= (20000);
+  tr_cond[104] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[6].Achieve);
+  tr_cond[105] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[7].Achieve);
+  tr_cond[106] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[6].Achieve);
+  tr_cond[107] := TRUE;
+  tr_cond[108] := TRUE;
+  tr_cond[109] := (ServoV90_A3.Out.oActPosition) <= (5);
+  tr_cond[110] := TRUE;
+  tr_cond[111] := (ServoV90_A3.Out.oActPosition) <= (5);
+  tr_cond[112] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[1].Achieve);
+  tr_cond[113] := TRUE;
+  tr_cond[114] := TRUE;
+  tr_cond[115] := TRUE;
+  tr_cond[116] := TRUE;
+  tr_cond[117] := TRUE;
+  tr_cond[118] := TRUE;
+  tr_cond[119] := TRUE;
+  tr_cond[120] := ((TRUE) AND (NOT (ST10Cylinder.Cy[9].In.WorkPositionSensor))) AND (ST10Cylinder.Cy[9].In.HomePositionSensor);
+  tr_cond[121] := ((TRUE) AND (ST10Cylinder.Cy[9].In.WorkPositionSensor)) AND (NOT (ST10Cylinder.Cy[9].In.HomePositionSensor));
+  tr_cond[122] := (((TRUE) AND (ST10Cylinder.Cy[9].In.WorkPositionSensor)) OR (("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.C-LocationCylinderToWP_2) > (t#100MS))) AND (NOT (ST10Cylinder.Cy[9].In.HomePositionSensor));
+  tr_cond[123] := ((TRUE) AND (NOT (ST10Cylinder.Cy[9].In.WorkPositionSensor))) AND (ST10Cylinder.Cy[9].In.HomePositionSensor);
+  tr_cond[124] := (TRUE) AND (NOT ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest));
+  tr_cond[125] := TRUE;
+  tr_cond[126] := (ServoV90_A3.Out.oActPosition) <= (5);
+  tr_cond[127] := TRUE;
+  tr_cond[128] := (ServoV90_A3.Out.oActPosition) <= (5);
+  tr_cond[129] := TRUE;
+  tr_cond[130] := (ServoV90_A3.Out.oActPosition) <= (5);
+  tr_cond[131] := TRUE;
+  tr_cond[132] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[7].Achieve);
+  tr_cond[133] := TRUE;
+  tr_cond[134] := (((DB_KeyenceCheckerIV3.aDev[2].Common.nMode) = (0)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError))) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bDone);
+  tr_cond[135] := ((DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3810A1));
+  tr_cond[136] := (AutoProcessData.C_Glue.PartStatus) = (310);
+  tr_cond[137] := TRUE;
+  tr_cond[138] := (DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo);
+  tr_cond[139] := (AutoProcessData.C_Glue.PartStatus) = (359);
+  tr_cond[140] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[8].Achieve);
+  tr_cond[141] := (((DB_KeyenceCheckerIV3.aDev[2].Common.nMode) = (0)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError))) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bDone);
+  tr_cond[142] := ((DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3810A1));
+  tr_cond[143] := (AutoProcessData.C_Glue.PartStatus) = (310);
+  tr_cond[144] := TRUE;
+  tr_cond[145] := (DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo);
+  tr_cond[146] := (AutoProcessData.C_Glue.PartStatus) = (359);
+  tr_cond[147] := (TRUE) AND (ServoV90_DeviceCtl.V90Servo[3].Point[9].Achieve);
+  tr_cond[148] := (((DB_KeyenceCheckerIV3.aDev[2].Common.nMode) = (0)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError))) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bDone);
+  tr_cond[149] := TRUE;
+  tr_cond[150] := TRUE;
+  tr_cond[151] := (ServoV90_A3.Out.oActPosition) <= (5);
+  tr_cond[152] := (DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo);
+  tr_cond[153] := (AutoProcessData.C_Glue.PartStatus) = (359);
+  tr_cond[154] := (ServoV90_A3.Out.oActPosition) <= (5);
+  tr_cond[155] := TRUE;
+  tr_cond[156] := (TRUE) AND (IAI_DeviceCtl.IAIServo[2].Point[1].Achieve);
+  tr_cond[157] := (TRUE) AND (IAI_DeviceCtl.IAIServo[1].Point[9].Achieve);
+  tr_cond[158] := TRUE;
+  tr_cond[159] := (AutoProcessData.C_Glue.PartStatus) = (380);
+  tr_cond[160] := TRUE;
+  tr_cond[161] := (AutoProcessData.C_Glue.PartStatus) = (399);
+  tr_cond[162] := TRUE;
+  tr_cond[163] := TRUE;
+  tr_cond[164] := TRUE;
+  tr_cond[165] := (TRUE) AND (IAI_DeviceCtl.IAIServo[3].Point[1].Achieve);
+  tr_cond[166] := (TRUE) AND (FALSE);
+  tr_cond[167] := ("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Glue2s) > (t#2S);
+  tr_cond[168] := (TRUE) AND (TRUE);
+  tr_cond[169] := (AutoProcessData.C_Glue.PartStatus) <= (360);
+  tr_cond[200] := TRUE;
+  tr_cond[202] := ((TRUE) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bEnable)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError));
+  tr_cond[203] := TRUE;
+  tr_cond[204] := ((TRUE) AND (DB_KeyenceCheckerIV3.aDev[1].Common.bEnable)) AND (NOT (DB_KeyenceCheckerIV3.aDev[1].Common.bError));
+  tr_cond[205] := TRUE;
+  tr_cond[206] := ((TRUE) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bEnable)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError));
+  tr_cond[207] := ((TRUE) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bEnable)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError));
+  tr_cond[208] := ((TRUE) AND (DB_KeyenceCheckerIV3.aDev[2].Common.bEnable)) AND (NOT (DB_KeyenceCheckerIV3.aDev[2].Common.bError));
+  tr_cond[250] := TRUE;
+  tr_cond[281] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO265_GluePutInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO266_GluePutFinish));
+  tr_cond[282] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO269_GluePickInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO270_GluePickFinish));
+  tr_cond[287] := TRUE;
+  tr_cond[288] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO266_GluePutFinish);
+  tr_cond[289] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO270_GluePickFinish);
+  tr_cond[290] := TRUE;
+  tr_cond[299] := TRUE;
+  tr_cond[300] := TRUE;
+  tr_cond[301] := ((TRUE) AND (NOT (Station_Sys.Cmd.OnOffLine))) AND (NOT ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest));
+  tr_cond[302] := ((((TRUE) AND (NOT (PLCtoMES.PLC.Load_Station5ChickInReq))) AND (NOT (MEStoPLC.MES.Load_Station5PartOK))) AND (NOT (MEStoPLC.MES.Load_Station5PartNG))) AND (NOT (MEStoPLC.MES.Load_Station5ReqMesDone));
+  tr_cond[303] := ("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData) > (t#300MS);
+  tr_cond[304] := (TRUE) AND (NOT (Station_Sys.Cmd.OnOffLine));
+  tr_cond[305] := (((TRUE) AND (MEStoPLC.MES.Load_Station5PartOK)) AND (NOT (MEStoPLC.MES.Load_Station5PartNG))) AND (MEStoPLC.MES.Load_Station5ReqMesDone);
+  tr_cond[306] := (((TRUE) AND ("DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.GlueTest)) AND (iHMI ResetButton)) AND (iHMI Machine Start);
+  tr_cond[307] := TRUE;
+  tr_cond[308] := ("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.Prepare MES CheckData_1) > (t#300MS);
+  tr_cond[312] := ("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok) > (t#200MS);
+  tr_cond[313] := ((((((TRUE) AND (NOT (PLCtoMES.PLC.Load_Station5ChickInReq))) AND (NOT (MEStoPLC.MES.Load_Station5PartOK))) AND (NOT (MEStoPLC.MES.Load_Station5PartNG))) AND (NOT (MEStoPLC.MES.Load_Station5ReqMesDone))) AND (NOT (MEStoPLC.MES.Unload_ResultsStored5ReqMesDone))) AND (NOT (MEStoPLC.MES.Unload_ResultsStored5OK));
+  tr_cond[314] := (((TRUE) AND (NOT (MEStoPLC.MES.Load_Station5PartOK))) AND (MEStoPLC.MES.Load_Station5PartNG)) AND (MEStoPLC.MES.Load_Station5ReqMesDone);
+  tr_cond[316] := (AutoProcessData.C_Glue.PartStatus) = (351);
+  tr_cond[319] := ((AutoProcessData.C_Glue.PartStatus) < (350)) OR ((AutoProcessData.C_Glue.PartStatus) > (360));
+  tr_cond[320] := TRUE;
+  tr_cond[322] := TRUE;
+  tr_cond[323] := ("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESCheckRequest) > (t#10S);
+  tr_cond[324] := (TRUE) AND ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Reset);
+  tr_cond[327] := TRUE;
+  tr_cond[328] := ("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.MESSaveRequest_1) > (t#10S);
+  tr_cond[329] := (TRUE) AND ("DB_ST10_Flow7_CGlueing_State".Flow.iSysInface.Reset);
+  tr_cond[332] := (((TRUE) AND (NOT (MEStoPLC.MES.Unload_ResultsStored5OK))) AND (MEStoPLC.MES.Unload_ResultsStored5NG)) AND (MEStoPLC.MES.Unload_ResultsStored5ReqMesDone);
+  tr_cond[333] := (AutoProcessData.C_Glue.PartStatus) = (352);
+  tr_cond[335] := TRUE;
+  tr_cond[336] := ("DB_ST10_Flow7_CGlueing_State".Flow.StepTime.ok_1) > (t#200MS);
+  tr_cond[349] := TRUE;
+  tr_cond[399] := TRUE;
+  tr_cond[400] := TRUE;
+  tr_cond[401] := TRUE;
+  tr_cond[607] := TRUE;
+  tr_cond[630] := TRUE;
+  tr_cond[645] := (AutoProcessData.C_Glue.PartStatus) = (310);
+  tr_cond[698] := ((DB_KeyenceCheckerIV3.aDev[2].Para.nProgramNo) = (DB_KeyenceCheckerIV3.aDev[2].In.DeviceStatus.nCurrentProgramNo)) OR ((TRUE) AND (Station_Sys.Cmd.DryRun)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue)) OR ((TRUE) AND (ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3810A1));
+
+  FOR idx := 1 TO 630 DO
+    next_active[idx] := "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[idx];
+  END_FOR;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[1] THEN
+    // Step 1: F7_Initial
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[1] THEN
+      #ioPM_Inface.InitialRun := TRUE;
+      #ioPM_Inface.InitialOK := FALSE;
+      #ioPM_Inface.WaitRunning := FALSE;
+      #ioPM_Inface.Running := FALSE;
+      #ioPM_Inface.UnPause := FALSE;
+      "Station_Sys".Cmd.Calibration := FALSE;
+      "Station_Sys".Cmd.ChangeOver := FALSE;
+      "Station_Sys".Cmd.Reserve := FALSE;
+      "Station_Sys".Cmd.OneCycle := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := FALSE;
+      "DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.Robot1PutPrimit := FALSE;
+      "DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.Robot2PickPrimit := FALSE;
+      "DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.Robot2MaganePutPrimit := FALSE;
+    END_IF;
+    IF tr_cond[1] THEN
+      next_active[1] := FALSE;
+      next_active[2] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[2] THEN
+    // Step 2: S2
+    IF tr_cond[2] THEN
+      next_active[2] := FALSE;
+      next_active[3] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[3] THEN
+    // Step 3: S3
+    IF tr_cond[607] THEN
+      next_active[3] := FALSE;
+      next_active[6] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[4] THEN
+    // Step 4: S4
+    IF tr_cond[3] THEN
+      next_active[4] := FALSE;
+      next_active[5] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[5] THEN
+    // Step 5: S5_MESInitial
+    IF tr_cond[4] THEN
+      next_active[5] := FALSE;
+      next_active[8] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[6] THEN
+    // Step 6: ServoReady?
+    IF tr_cond[5] THEN
+      next_active[6] := FALSE;
+      next_active[4] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[8] THEN
+    // Step 8: WaitRobotInitialFinish
+    IF tr_cond[8] THEN
+      next_active[8] := FALSE;
+      next_active[81] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[10] THEN
+    // Step 10: S10_InitialFinish
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[10] THEN
+      #ioPM_Inface.InitialOK := TRUE;
+    END_IF;
+    IF tr_cond[10] THEN
+      next_active[10] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[21] THEN
+    // Step 21: Axis_YToHomePos
+    "IAI_DeviceCtl".IAIServo[3].Point[1].Start := TRUE;
+    IF tr_cond[22] THEN
+      next_active[21] := FALSE;
+      next_active[82] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[22] THEN
+    // Step 22: Servo returns toHome Pos
+    "ServoV90_DeviceCtl".V90Servo[3].Point[1].Start := TRUE;
+    IF tr_cond[23] THEN
+      next_active[22] := FALSE;
+      next_active[163] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[23] THEN
+    // Step 23: CheckPartStatus
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[24] THEN
+    // Step 24: StatusAlarm
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[24] THEN
+      "ST10_DeviceError".C.CGlueing.StatusError := TRUE;
+    END_IF;
+    IF tr_cond[29] THEN
+      next_active[24] := FALSE;
+      next_active[23] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[26] THEN
+    // Step 26: Axis_YToGlueePos_1
+    "IAI_DeviceCtl".IAIServo[3].Point[2].Start := TRUE;
+    IF tr_cond[31] THEN
+      next_active[26] := FALSE;
+      next_active[89] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[27] THEN
+    // Step 27: RequestRobot1PutShaft
+    "DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.Robot1PutPrimit := TRUE;
+    IF tr_cond[32] THEN
+      next_active[27] := FALSE;
+      next_active[28] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[28] THEN
+    // Step 28: WaitRobot1FinishTask
+    IF tr_cond[33] THEN
+      next_active[28] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[29] THEN
+    // Step 29: Axis_XToGluePos_1
+    "IAI_DeviceCtl".IAIServo[2].Point[3].Start := TRUE;
+    IF tr_cond[34] THEN
+      next_active[29] := FALSE;
+      next_active[30] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[30] THEN
+    // Step 30: CheckGlueSysOK
+    IF tr_cond[35] THEN
+      next_active[30] := FALSE;
+      next_active[96] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[31] THEN
+    // Step 31: Servo returns toGluePos_1
+    "ServoV90_DeviceCtl".V90Servo[3].Point[2].Start := TRUE;
+    IF tr_cond[36] THEN
+      next_active[31] := FALSE;
+      next_active[42] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[32] THEN
+    // Step 32: Axis_XToGlueSafPos
+    "IAI_DeviceCtl".IAIServo[2].Point[2].Start := TRUE;
+    IF tr_cond[37] THEN
+      next_active[32] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[33] THEN
+    // Step 33: Glue_1
+    IF tr_cond[38] THEN
+      next_active[33] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[35] THEN
+    // Step 35: Axis_ZToGlueePos_2
+    "IAI_DeviceCtl".IAIServo[1].Point[3].Start := TRUE;
+    IF tr_cond[40] THEN
+      next_active[35] := FALSE;
+      next_active[105] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[36] THEN
+    // Step 36: Axis_XToGluePos_2
+    "IAI_DeviceCtl".IAIServo[2].Point[4].Start := TRUE;
+    IF tr_cond[41] THEN
+      next_active[36] := FALSE;
+      next_active[37] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[37] THEN
+    // Step 37: CheckGlueSysOK_1
+    IF tr_cond[42] THEN
+      next_active[37] := FALSE;
+      next_active[98] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[38] THEN
+    // Step 38: Servo returns toGluePos_2
+    "ServoV90_DeviceCtl".V90Servo[3].Point[3].Start := TRUE;
+    IF tr_cond[43] THEN
+      next_active[38] := FALSE;
+      next_active[43] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[39] THEN
+    // Step 39: Axis_XToGlueSafPos_2
+    "IAI_DeviceCtl".IAIServo[2].Point[2].Start := TRUE;
+    IF tr_cond[44] THEN
+      next_active[39] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[40] THEN
+    // Step 40: Glue_2
+    IF tr_cond[45] THEN
+      next_active[40] := FALSE;
+      next_active[36] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[41] THEN
+    // Step 41: Axis_YToGlueePos_5
+    "IAI_DeviceCtl".IAIServo[3].Point[3].Start := TRUE;
+    IF tr_cond[46] THEN
+      next_active[41] := FALSE;
+      next_active[153] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[42] THEN
+    // Step 42: TimeDelay_1
+    IF tr_cond[47] THEN
+      next_active[42] := FALSE;
+      next_active[32] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[43] THEN
+    // Step 43: TimeDelay_2
+    IF tr_cond[48] THEN
+      next_active[43] := FALSE;
+      next_active[39] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[45] THEN
+    // Step 45: Axis_ZToGlueePos_3
+    "IAI_DeviceCtl".IAIServo[1].Point[4].Start := TRUE;
+    IF tr_cond[50] THEN
+      next_active[45] := FALSE;
+      next_active[108] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[46] THEN
+    // Step 46: Axis_XToGluePos_3
+    "IAI_DeviceCtl".IAIServo[2].Point[5].Start := TRUE;
+    IF tr_cond[51] THEN
+      next_active[46] := FALSE;
+      next_active[47] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[47] THEN
+    // Step 47: CheckGlueSysOK_2
+    IF tr_cond[52] THEN
+      next_active[47] := FALSE;
+      next_active[114] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[48] THEN
+    // Step 48: Servo returns toGluePos_3
+    "ServoV90_DeviceCtl".V90Servo[3].Point[4].Start := TRUE;
+    IF tr_cond[53] THEN
+      next_active[48] := FALSE;
+      next_active[51] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[49] THEN
+    // Step 49: Axis_XToGlueSafPos_3
+    "IAI_DeviceCtl".IAIServo[2].Point[2].Start := TRUE;
+    IF tr_cond[54] THEN
+      next_active[49] := FALSE;
+      next_active[162] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[50] THEN
+    // Step 50: Glue_3
+    IF tr_cond[55] THEN
+      next_active[50] := FALSE;
+      next_active[46] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[51] THEN
+    // Step 51: TimeDelay_3
+    IF tr_cond[56] THEN
+      next_active[51] := FALSE;
+      next_active[49] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[52] THEN
+    // Step 52: Axis_YToGlueePos_6
+    "IAI_DeviceCtl".IAIServo[3].Point[4].Start := TRUE;
+    IF tr_cond[57] THEN
+      next_active[52] := FALSE;
+      next_active[155] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[53] THEN
+    // Step 53: Axis_ZToGlueePos_4
+    "IAI_DeviceCtl".IAIServo[1].Point[5].Start := TRUE;
+    IF tr_cond[58] THEN
+      next_active[53] := FALSE;
+      next_active[111] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[54] THEN
+    // Step 54: Axis_XToGluePos_4
+    "IAI_DeviceCtl".IAIServo[2].Point[6].Start := TRUE;
+    IF tr_cond[59] THEN
+      next_active[54] := FALSE;
+      next_active[55] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[55] THEN
+    // Step 55: CheckGlueSysOK_3
+    IF tr_cond[60] THEN
+      next_active[55] := FALSE;
+      next_active[116] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[56] THEN
+    // Step 56: Servo returns toGluePos_4
+    "ServoV90_DeviceCtl".V90Servo[3].Point[5].Start := TRUE;
+    IF tr_cond[61] THEN
+      next_active[56] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[57] THEN
+    // Step 57: Axis_XToGlueSafPos_4
+    "IAI_DeviceCtl".IAIServo[2].Point[2].Start := TRUE;
+    IF tr_cond[62] THEN
+      next_active[57] := FALSE;
+      next_active[117] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[58] THEN
+    // Step 58: Glue_4
+    IF tr_cond[63] THEN
+      next_active[58] := FALSE;
+      next_active[54] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[59] THEN
+    // Step 59: TimeDelay_4
+    IF tr_cond[64] THEN
+      next_active[59] := FALSE;
+      next_active[57] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[60] THEN
+    // Step 60: IV3Check
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[60] THEN
+      "DB_KeyenceCheckerIV3".aDev[2].Common.nMode:=1;
+    END_IF;
+    IF tr_cond[65] THEN
+      next_active[60] := FALSE;
+      next_active[61] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[61] THEN
+    // Step 61: JudgeCheckStatus
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[62] THEN
+    // Step 62: OKStatus
+    "AutoProcessData".C_Glue.PartStatus:=310;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore1":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_1:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    IF tr_cond[68] THEN
+      next_active[62] := FALSE;
+      next_active[126] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[63] THEN
+    // Step 63: NGStatus
+    "AutoProcessData".C_Glue.PartStatus:=359;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore1":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_1:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftCheckResult:=2;
+    IF tr_cond[69] THEN
+      next_active[63] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[64] THEN
+    // Step 64: PutMagnet
+    IF tr_cond[71] THEN
+      next_active[64] := FALSE;
+      next_active[300] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[65] THEN
+    // Step 65: Magnet_Glue
+    IF tr_cond[72] THEN
+      next_active[65] := FALSE;
+      next_active[320] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[66] THEN
+    // Step 66: Magnet_GlueCheck
+    IF tr_cond[74] THEN
+      next_active[66] := FALSE;
+      next_active[630] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[67] THEN
+    // Step 67: Shaft GlueCheck
+    IF tr_cond[76] THEN
+      next_active[67] := FALSE;
+      next_active[250] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[68] THEN
+    // Step 68: ShaftGlueFinishStatus
+    "AutoProcessData".C_Glue.PartStatus:=300;
+    IF tr_cond[77] THEN
+      next_active[68] := FALSE;
+      next_active[59] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[69] THEN
+    // Step 69: IV3Check_1
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[69] THEN
+      "DB_KeyenceCheckerIV3".aDev[1].Common.nMode:=1;
+    END_IF;
+    IF tr_cond[78] THEN
+      next_active[69] := FALSE;
+      next_active[74] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[70] THEN
+    // Step 70: Axis_ZToGlueePos_5
+    "IAI_DeviceCtl".IAIServo[1].Point[6].Start := TRUE;
+    IF tr_cond[79] THEN
+      next_active[70] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[71] THEN
+    // Step 71: Axis_XToGluePos_5
+    "IAI_DeviceCtl".IAIServo[2].Point[7].Start := TRUE;
+    IF tr_cond[80] THEN
+      next_active[71] := FALSE;
+      next_active[70] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[72] THEN
+    // Step 72: CheckGlueSysOK_4
+    IF tr_cond[81] THEN
+      next_active[72] := FALSE;
+      next_active[73] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[73] THEN
+    // Step 73: Servo returns toGluePos_5
+    "ServoV90_DeviceCtl".V90Servo[3].Point[6].Start := TRUE;
+    IF tr_cond[82] THEN
+      next_active[73] := FALSE;
+      next_active[76] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[74] THEN
+    // Step 74: JudgeCheckStatus_1
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[75] THEN
+    // Step 75: Axis_YToGluePos_5
+    "IAI_DeviceCtl".IAIServo[3].Point[6].Start := TRUE;
+    IF tr_cond[84] THEN
+      next_active[75] := FALSE;
+      next_active[71] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[76] THEN
+    // Step 76: TimeDelay_5
+    IF tr_cond[85] THEN
+      next_active[76] := FALSE;
+      next_active[83] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[78] THEN
+    // Step 78: Axis_ZToIVCheckPos
+    "IAI_DeviceCtl".IAIServo[1].Point[7].Start := TRUE;
+    IF tr_cond[87] THEN
+      next_active[78] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[79] THEN
+    // Step 79: Axis_XYIVCheckPos
+    "IAI_DeviceCtl".IAIServo[2].Point[8].Start := TRUE;
+    IF tr_cond[88] THEN
+      next_active[79] := FALSE;
+      next_active[159] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[80] THEN
+    // Step 80: Axis_ZToHomePos_1
+    "IAI_DeviceCtl".IAIServo[1].Point[1].Start := TRUE;
+    IF tr_cond[89] THEN
+      next_active[80] := FALSE;
+      next_active[146] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[81] THEN
+    // Step 81: Axis_XToHomePos
+    "IAI_DeviceCtl".IAIServo[2].Point[1].Start := TRUE;
+    IF tr_cond[90] THEN
+      next_active[81] := FALSE;
+      next_active[21] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[82] THEN
+    // Step 82: Axis_ZToHomePos_2
+    "IAI_DeviceCtl".IAIServo[1].Point[1].Start := TRUE;
+    IF tr_cond[91] THEN
+      next_active[82] := FALSE;
+      next_active[119] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[83] THEN
+    // Step 83: GlueFinishStatus
+    "AutoProcessData".C_Glue.PartStatus:=330;
+    IF tr_cond[92] THEN
+      next_active[83] := FALSE;
+      next_active[630] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[84] THEN
+    // Step 84: OKStatus_1
+    "AutoProcessData".C_Glue.PartStatus:=380;
+    "Station5UnLoadData"."PLC.MagnetIVScore":="DB_KeyenceCheckerIV3".aDev[1].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_MagnetScore:="DB_KeyenceCheckerIV3".aDev[1].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_MagnetCheckResult:=1;
+    IF tr_cond[94] THEN
+      next_active[84] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[85] THEN
+    // Step 85: NGStatus_1
+    "AutoProcessData".C_Glue.PartStatus:=358;
+    "Station5UnLoadData"."PLC.MagnetIVScore":="DB_KeyenceCheckerIV3".aDev[1].In.ToolResult[1].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_MagnetScore:="DB_KeyenceCheckerIV3".aDev[1].In.ToolResult[1].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_MagnetCheckResult:=2;
+    IF tr_cond[95] THEN
+      next_active[85] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[86] THEN
+    // Step 86: Axis_XYToHomePos_1
+    "IAI_DeviceCtl".IAIServo[2].Point[1].Start := TRUE;
+    IF tr_cond[96] THEN
+      next_active[86] := FALSE;
+      next_active[80] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[87] THEN
+    // Step 87: Step87
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[88] THEN
+    // Step 88: Axis_YToGlueePos_7
+    "IAI_DeviceCtl".IAIServo[3].Point[5].Start := TRUE;
+    IF tr_cond[86] THEN
+      next_active[88] := FALSE;
+      next_active[154] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[89] THEN
+    // Step 89: Axis_ZToGlueePos_1
+    "IAI_DeviceCtl".IAIServo[1].Point[2].Start := TRUE;
+    IF tr_cond[99] THEN
+      next_active[89] := FALSE;
+      next_active[95] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[90] THEN
+    // Step 90: JudgeYPosition
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[91] THEN
+    // Step 91: Axis_YToGluePos_6
+    "IAI_DeviceCtl".IAIServo[3].Point[6].Start := TRUE;
+    IF tr_cond[104] THEN
+      next_active[91] := FALSE;
+      next_active[92] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[92] THEN
+    // Step 92: Axis_XToGluePos_6
+    "IAI_DeviceCtl".IAIServo[2].Point[7].Start := TRUE;
+    IF tr_cond[105] THEN
+      next_active[92] := FALSE;
+      next_active[93] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[93] THEN
+    // Step 93: Axis_ZToGlueePos_6
+    "IAI_DeviceCtl".IAIServo[1].Point[6].Start := TRUE;
+    IF tr_cond[106] THEN
+      next_active[93] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[94] THEN
+    // Step 94: ServoHomePos
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[94] THEN
+      "ServoV90_A3".IO.ioAutoHome := TRUE;
+    END_IF;
+    IF tr_cond[109] THEN
+      next_active[94] := FALSE;
+      next_active[103] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[95] THEN
+    // Step 95: IAIMoveFinish
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[96] THEN
+    // Step 96: GluePos_1
+    IF tr_cond[110] THEN
+      next_active[96] := FALSE;
+      next_active[31] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[97] THEN
+    // Step 97: ServoHomePos_1
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[97] THEN
+      "ServoV90_A3".IO.ioAutoHome := TRUE;
+    END_IF;
+    IF tr_cond[111] THEN
+      next_active[97] := FALSE;
+      next_active[106] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[98] THEN
+    // Step 98: GluePos_2
+    IF tr_cond[119] THEN
+      next_active[98] := FALSE;
+      next_active[38] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[99] THEN
+    // Step 99: CheckServo returns toHome Pos_5
+    IF tr_cond[112] THEN
+      next_active[99] := FALSE;
+      next_active[120] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[100] THEN
+    // Step 100: ProcessStart
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[100] THEN
+      #ioPM_Inface.InitialRun := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := FALSE;
+      #ioPM_Inface.InitialOK := TRUE;
+      #ioPM_Inface.WaitRunning := TRUE;
+      #ioPM_Inface.ProcessResult:=0;
+      "ST10_GeneralData".FlowControl_Handshake[7].Start := FALSE;
+      "ST10_GeneralData".FlowControl_Handshake[7].Done := FALSE;
+    END_IF;
+    IF tr_cond[100] THEN
+      next_active[100] := FALSE;
+      next_active[101] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[101] THEN
+    // Step 101: WaitTableCode OK
+    "MES_CHeck_DB".Station_5.CheckStep:=0;
+    "MES_CHeck_DB".Station_5.ResultStep:=0;
+    IF tr_cond[101] THEN
+      next_active[101] := FALSE;
+      next_active[23] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[102] THEN
+    // Step 102: Step102
+    IF tr_cond[113] THEN
+      next_active[102] := FALSE;
+      next_active[26] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[103] THEN
+    // Step 103: WaitIAIStop
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[104] THEN
+    // Step 104: Step104
+    IF tr_cond[115] THEN
+      next_active[104] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[105] THEN
+    // Step 105: IAIMoveFinish_1
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[106] THEN
+    // Step 106: WaitIAIStop_1
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[107] THEN
+    // Step 107: Step107
+    IF tr_cond[108] THEN
+      next_active[107] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[108] THEN
+    // Step 108: IAIMoveFinish_2
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[109] THEN
+    // Step 109: WaitIAIStop_2
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[110] THEN
+    // Step 110: Step110
+    IF tr_cond[117] THEN
+      next_active[110] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[111] THEN
+    // Step 111: IAIMoveFinish_3
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[112] THEN
+    // Step 112: WaitIAIStop_3
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[113] THEN
+    // Step 113: ServoHomePos_2
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[113] THEN
+      "ServoV90_A3".IO.ioAutoHome := TRUE;
+    END_IF;
+    IF tr_cond[126] THEN
+      next_active[113] := FALSE;
+      next_active[109] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[114] THEN
+    // Step 114: GluePos_3
+    IF tr_cond[127] THEN
+      next_active[114] := FALSE;
+      next_active[48] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[115] THEN
+    // Step 115: ServoHomePos_3
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[115] THEN
+      "ServoV90_A3".IO.ioAutoHome := TRUE;
+    END_IF;
+    IF tr_cond[128] THEN
+      next_active[115] := FALSE;
+      next_active[112] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[116] THEN
+    // Step 116: GluePos_4
+    IF tr_cond[129] THEN
+      next_active[116] := FALSE;
+      next_active[56] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[117] THEN
+    // Step 117: ServoHomePos_4
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[117] THEN
+      "ServoV90_A3".IO.ioAutoHome := TRUE;
+    END_IF;
+    IF tr_cond[130] THEN
+      next_active[117] := FALSE;
+      next_active[250] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[118] THEN
+    // Step 118: CameraCheck1
+    IF tr_cond[131] THEN
+      next_active[118] := FALSE;
+      next_active[202] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[119] THEN
+    // Step 119: C-LocationCylinderToHP
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[119] THEN
+      "ST10Cylinder".Cy[9].Inout.AutoGoHome := TRUE;
+      "ST10Cylinder".Cy[9].Inout.AutoGoWork := FALSE;
+    END_IF;
+    IF tr_cond[120] THEN
+      next_active[119] := FALSE;
+      next_active[22] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[120] THEN
+    // Step 120: C-LocationCylinderToWP_1
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[120] THEN
+      "ST10Cylinder".Cy[9].Inout.AutoGoHome := FALSE;
+      "ST10Cylinder".Cy[9].Inout.AutoGoWork := TRUE;
+    END_IF;
+    IF tr_cond[121] THEN
+      next_active[120] := FALSE;
+      next_active[147] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[121] THEN
+    // Step 121: C-LocationCylinderToWP_2
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[121] THEN
+      "ST10Cylinder".Cy[9].Inout.AutoGoHome := FALSE;
+      "ST10Cylinder".Cy[9].Inout.AutoGoWork := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[122] THEN
+      next_active[121] := FALSE;
+      next_active[27] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[122] THEN
+    // Step 122: C-LocationCylinderToHP2
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[122] THEN
+      "ST10Cylinder".Cy[9].Inout.AutoGoHome := TRUE;
+      "ST10Cylinder".Cy[9].Inout.AutoGoWork := FALSE;
+    END_IF;
+    IF tr_cond[123] THEN
+      next_active[122] := FALSE;
+      next_active[33] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[123] THEN
+    // Step 123: ServoJoging
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[124] THEN
+    // Step 124: StopServoJoging
+    IF tr_cond[125] THEN
+      next_active[124] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[125] THEN
+    // Step 125: Servo returns toGluePos_6
+    "ServoV90_DeviceCtl".V90Servo[3].Point[7].Start := TRUE;
+    IF tr_cond[132] THEN
+      next_active[125] := FALSE;
+      next_active[206] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[126] THEN
+    // Step 126: CameraCheck2
+    IF tr_cond[133] THEN
+      next_active[126] := FALSE;
+      next_active[125] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[127] THEN
+    // Step 127: IV3Check_2
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[127] THEN
+      "DB_KeyenceCheckerIV3".aDev[2].Common.nMode:=1;
+    END_IF;
+    IF tr_cond[134] THEN
+      next_active[127] := FALSE;
+      next_active[128] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[128] THEN
+    // Step 128: JudgeCheckStatus_2
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[129] THEN
+    // Step 129: OKStatus_2
+    "AutoProcessData".C_Glue.PartStatus:=310;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore2":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_2:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    IF tr_cond[136] THEN
+      next_active[129] := FALSE;
+      next_active[131] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[130] THEN
+    // Step 130: NGStatus_2
+    "AutoProcessData".C_Glue.PartStatus:=359;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore2":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_2:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftCheckResult:=2;
+    IF tr_cond[139] THEN
+      next_active[130] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[131] THEN
+    // Step 131: CameraCheck3
+    IF tr_cond[137] THEN
+      next_active[131] := FALSE;
+      next_active[132] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[132] THEN
+    // Step 132: Servo returns toGluePos_7
+    "ServoV90_DeviceCtl".V90Servo[3].Point[8].Start := TRUE;
+    IF tr_cond[140] THEN
+      next_active[132] := FALSE;
+      next_active[207] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[133] THEN
+    // Step 133: IV3Check_3
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[133] THEN
+      "DB_KeyenceCheckerIV3".aDev[2].Common.nMode:=1;
+    END_IF;
+    IF tr_cond[141] THEN
+      next_active[133] := FALSE;
+      next_active[134] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[134] THEN
+    // Step 134: JudgeCheckStatus_3
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[135] THEN
+    // Step 135: OKStatus_3
+    "AutoProcessData".C_Glue.PartStatus:=310;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore3":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_3:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    IF tr_cond[143] THEN
+      next_active[135] := FALSE;
+      next_active[137] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[136] THEN
+    // Step 136: NGStatus_3
+    "AutoProcessData".C_Glue.PartStatus:=359;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore3":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_3:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftCheckResult:=2;
+    IF tr_cond[146] THEN
+      next_active[136] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[137] THEN
+    // Step 137: CameraCheck4
+    IF tr_cond[144] THEN
+      next_active[137] := FALSE;
+      next_active[138] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[138] THEN
+    // Step 138: Servo returns toGluePos_8
+    "ServoV90_DeviceCtl".V90Servo[3].Point[9].Start := TRUE;
+    IF tr_cond[147] THEN
+      next_active[138] := FALSE;
+      next_active[208] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[139] THEN
+    // Step 139: IV3Check_4
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[139] THEN
+      "DB_KeyenceCheckerIV3".aDev[2].Common.nMode:=1;
+    END_IF;
+    IF tr_cond[148] THEN
+      next_active[139] := FALSE;
+      next_active[140] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[140] THEN
+    // Step 140: JudgeCheckStatus_4
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[141] THEN
+    // Step 141: OKStatus_4
+    "AutoProcessData".C_Glue.PartStatus:=310;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore4":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_4:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftCheckResult:=1;
+    IF tr_cond[645] THEN
+      next_active[141] := FALSE;
+      next_active[203] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[142] THEN
+    // Step 142: NGStatus_4
+    "AutoProcessData".C_Glue.PartStatus:=359;
+    "Station5UnLoadData"."PLC.ShaftGlueIVScore4":="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftScore_4:="DB_KeyenceCheckerIV3".aDev[2].In.ToolResult[2].nToolMatchingRate;
+    "AutoProcessData".C_Glue.IV3_ShaftCheckResult:=2;
+    IF tr_cond[153] THEN
+      next_active[142] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[143] THEN
+    // Step 143: ServoHomePos_5
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[143] THEN
+      "ServoV90_A3".IO.ioAutoHome := TRUE;
+    END_IF;
+    IF tr_cond[151] THEN
+      next_active[143] := FALSE;
+      next_active[72] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[144] THEN
+    // Step 144: ServoHomePos_6
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[144] THEN
+      "ServoV90_A3".IO.ioAutoHome := TRUE;
+    END_IF;
+    IF tr_cond[154] THEN
+      next_active[144] := FALSE;
+      next_active[145] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[145] THEN
+    // Step 145: Step145
+    IF tr_cond[155] THEN
+      next_active[145] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[146] THEN
+    // Step 146: Step146
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[147] THEN
+    // Step 147: CheckAxisXPos
+    IF tr_cond[156] THEN
+      next_active[147] := FALSE;
+      next_active[282] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[148] THEN
+    // Step 148: Axis_ZToGlueePos_7
+    "IAI_DeviceCtl".IAIServo[1].Point[9].Start := TRUE;
+    IF tr_cond[157] THEN
+      next_active[148] := FALSE;
+      next_active[75] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[149] THEN
+    // Step 149: Process Finish
+    IF tr_cond[149] THEN
+      next_active[149] := FALSE;
+      next_active[150] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[150] THEN
+    // Step 150: MES Check
+    IF tr_cond[150] THEN
+      next_active[150] := FALSE;
+      next_active[315] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[151] THEN
+    // Step 151: MESResult
+    IF tr_cond[160] THEN
+      next_active[151] := FALSE;
+      next_active[350] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[152] THEN
+    // Step 152: OKPart
+    IF tr_cond[162] THEN
+      next_active[152] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[153] THEN
+    // Step 153: IAIMoveFinish_ 1
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[154] THEN
+    // Step 154: IAIMoveFinish_5
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[155] THEN
+    // Step 155: IAIMoveFinish_4
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[156] THEN
+    // Step 156: Axis_XYToHomePos_2
+    "IAI_DeviceCtl".IAIServo[3].Point[1].Start := TRUE;
+    IF tr_cond[165] THEN
+      next_active[156] := FALSE;
+      next_active[161] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[157] THEN
+    // Step 157: Axis_XYIVCheckPos_1
+    "IAI_DeviceCtl".IAIServo[3].Point[7].Start := TRUE;
+    IF tr_cond[98] THEN
+      next_active[157] := FALSE;
+      next_active[158] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[158] THEN
+    // Step 158: Step158
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[159] THEN
+    // Step 159: Step159
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[160] THEN
+    // Step 160: Step160
+    IF tr_cond[164] THEN
+      next_active[160] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[161] THEN
+    // Step 161: Step161
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[162] THEN
+    // Step 162: bypassGlue4
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[163] THEN
+    // Step 163: Glue2s
+    "GluingControl".GlueInitiaStart := TRUE;
+    IF tr_cond[167] THEN
+      next_active[163] := FALSE;
+      next_active[10] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[200] THEN
+    // Step 200: ShaftGluingProcess
+    IF tr_cond[200] THEN
+      next_active[200] := FALSE;
+      next_active[122] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[202] THEN
+    // Step 202: CheckIV3Ready
+    "DB_KeyenceCheckerIV3".aDev[2].Para.nProgramNo:=1;
+    IF tr_cond[202] THEN
+      next_active[202] := FALSE;
+      next_active[60] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[203] THEN
+    // Step 203: Step203
+    IF tr_cond[203] THEN
+      next_active[203] := FALSE;
+      next_active[299] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[204] THEN
+    // Step 204: CheckIV3Ready_1
+    "DB_KeyenceCheckerIV3".aDev[1].Para.nProgramNo:=1;
+    IF tr_cond[204] THEN
+      next_active[204] := FALSE;
+      next_active[69] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[205] THEN
+    // Step 205: Step204
+    IF tr_cond[205] THEN
+      next_active[205] := FALSE;
+      next_active[349] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[206] THEN
+    // Step 206: CheckIV3Ready_2
+    "DB_KeyenceCheckerIV3".aDev[2].Para.nProgramNo:=1;
+    IF tr_cond[206] THEN
+      next_active[206] := FALSE;
+      next_active[127] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[207] THEN
+    // Step 207: CheckIV3Ready_3
+    "DB_KeyenceCheckerIV3".aDev[2].Para.nProgramNo:=1;
+    IF tr_cond[207] THEN
+      next_active[207] := FALSE;
+      next_active[133] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[208] THEN
+    // Step 208: CheckIV3Ready_4
+    "DB_KeyenceCheckerIV3".aDev[2].Para.nProgramNo:=1;
+    IF tr_cond[208] THEN
+      next_active[208] := FALSE;
+      next_active[139] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[250] THEN
+    // Step 250: ShaftGlueCameraCheck
+    IF tr_cond[250] THEN
+      next_active[250] := FALSE;
+      next_active[118] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[281] THEN
+    // Step 281: RequestRobotPutMagnet_1
+    "DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.Robot2MaganePutPrimit := TRUE;
+    IF tr_cond[281] THEN
+      next_active[281] := FALSE;
+      next_active[288] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[282] THEN
+    // Step 282: RequestRobotGluePick
+    "DB_ST10_Flow7_CGlueing_State".AutoProcessControl.C_Glue.Robot2PickPrimit := TRUE;
+    IF tr_cond[282] THEN
+      next_active[282] := FALSE;
+      next_active[289] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[287] THEN
+    // Step 287: Shaft Glue
+    IF tr_cond[287] THEN
+      next_active[287] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[288] THEN
+    // Step 288: WaitRobotFinishTask_1
+    IF tr_cond[288] THEN
+      next_active[288] := FALSE;
+      next_active[124] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[289] THEN
+    // Step 289: WaitRobotFinishTask_2
+    IF tr_cond[289] THEN
+      next_active[289] := FALSE;
+      next_active[87] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[290] THEN
+    // Step 290: Process  Finish
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[290] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[290] THEN
+      next_active[290] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[299] THEN
+    // Step 299: ShaftGlueProcessFinish
+    IF tr_cond[299] THEN
+      next_active[299] := FALSE;
+      next_active[300] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[300] THEN
+    // Step 300: RobotPutMagnet
+    IF tr_cond[300] THEN
+      next_active[300] := FALSE;
+      next_active[123] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[301] THEN
+    // Step 301: ResetMesCheckRequest
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[301] THEN
+      "PLCtoMES"."PLC.Load_Station5ChickInReq" := FALSE;
+      "MEStoPLC"."MES.Load_Station5PartOK" := FALSE;
+      "MEStoPLC"."MES.Load_Station5PartNG" := FALSE;
+      "MEStoPLC"."MES.Load_Station5ReqMesDone" := FALSE;
+    END_IF;
+    IF tr_cond[302] THEN
+      next_active[301] := FALSE;
+      next_active[303] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[302] THEN
+    // Step 302: ResetMesCheckRequest_1
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[302] THEN
+      "PLCtoMES"."PLC.Load_Station5ChickInReq" := FALSE;
+      "MEStoPLC"."MES.Load_Station5PartOK" := FALSE;
+      "MEStoPLC"."MES.Load_Station5PartNG" := FALSE;
+      "MEStoPLC"."MES.Load_Station5ReqMesDone" := FALSE;
+      "MEStoPLC"."MES.Unload_ResultsStored5OK" := FALSE;
+      "MEStoPLC"."MES.Unload_ResultsStored5ReqMesDone" := FALSE;
+    END_IF;
+    IF tr_cond[313] THEN
+      next_active[302] := FALSE;
+      next_active[307] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[303] THEN
+    // Step 303: Prepare MES CheckData
+    IF tr_cond[303] THEN
+      next_active[303] := FALSE;
+      next_active[310] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[306] THEN
+    // Step 306: MES Check OK
+    IF tr_cond[307] THEN
+      next_active[306] := FALSE;
+      next_active[200] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[307] THEN
+    // Step 307: Prepare MES CheckData_1
+    IF tr_cond[308] THEN
+      next_active[307] := FALSE;
+      next_active[313] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[310] THEN
+    // Step 310: MESCheckRequest
+    "PLCtoMES"."PLC.Load_Station5ChickInReq" := TRUE;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[311] THEN
+    // Step 311: ok
+    "AutoProcessData".C_Glue.PartStatus:=399;
+    IF tr_cond[312] THEN
+      next_active[311] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[313] THEN
+    // Step 313: MESSaveRequest_1
+    "PLCtoMES"."PLC.Unload_Station5DataSaveReq" := TRUE;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[315] THEN
+    // Step 315: Bypass
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[316] THEN
+    // Step 316: Check OK
+    IF tr_cond[322] THEN
+      next_active[316] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[317] THEN
+    // Step 317: Check NG
+    "AutoProcessData".C_Glue.PartStatus:=351;
+    IF tr_cond[316] THEN
+      next_active[317] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[318] THEN
+    // Step 318: MESOverTime_1
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[318] THEN
+      "ST10_DeviceError".MES_Error.CheckInCompOverTime_5 := TRUE;
+    END_IF;
+    IF tr_cond[324] THEN
+      next_active[318] := FALSE;
+      next_active[315] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[320] THEN
+    // Step 320: MaganetGlue
+    IF tr_cond[320] THEN
+      next_active[320] := FALSE;
+      next_active[90] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[322] THEN
+    // Step 322: Step314
+    IF tr_cond[327] THEN
+      next_active[322] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[323] THEN
+    // Step 323: MESOverTime
+    IF NOT "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[323] THEN
+      "ST10_DeviceError".MES_Error.CheckInResultOverTime_5 := TRUE;
+    END_IF;
+    IF tr_cond[329] THEN
+      next_active[323] := FALSE;
+      next_active[324] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[324] THEN
+    // Step 324: Bypass_1
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[326] THEN
+    // Step 326: ResultNG
+    "AutoProcessData".C_Glue.PartStatus:=352;
+    IF tr_cond[333] THEN
+      next_active[326] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[328] THEN
+    // Step 328: Step315
+    IF tr_cond[335] THEN
+      next_active[328] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[329] THEN
+    // Step 329: ok_1
+    "AutoProcessData".C_Glue.PartStatus:=399;
+    IF tr_cond[336] THEN
+      next_active[329] := FALSE;
+      next_active[328] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[349] THEN
+    // Step 349: MagnetGlueFinish
+    IF tr_cond[349] THEN
+      next_active[349] := FALSE;
+      next_active[350] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[350] THEN
+    // Step 350: MES  Check Result
+    IF tr_cond[158] THEN
+      next_active[350] := FALSE;
+      next_active[324] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[399] THEN
+    // Step 399: MES Check OK_1
+    IF tr_cond[399] THEN
+      next_active[399] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[400] THEN
+    // Step 400: RobotGluePick
+    IF tr_cond[400] THEN
+      next_active[400] := FALSE;
+      next_active[144] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[401] THEN
+    // Step 401: PartNG
+    IF tr_cond[401] THEN
+      next_active[401] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[630] THEN
+    // Step 630: IV3 Check
+    IF tr_cond[630] THEN
+      next_active[630] := FALSE;
+      next_active[78] := TRUE;
+    END_IF;
+  END_IF;
+
+  FOR idx := 1 TO 630 DO
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepPrev[idx] := "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[idx];
+    "DB_ST10_Flow7_CGlueing_State".Flow.StepActive[idx] := next_active[idx];
+  END_FOR;
+END_FUNCTION

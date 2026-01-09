@@ -1,0 +1,433 @@
+FUNCTION_BLOCK "IAI_BASE_FB"
+VAR_INPUT
+  Mode : "ModeGenStruct";
+  "Input 4 word_Man1" : HW_IO;
+  "Input 4 word_Man2" : HW_IO;
+  "Input 4 word_1" : HW_IO;
+  "Input 4 word_2" : HW_IO;
+  "Output 4 word_Man1" : HW_IO;
+  "Output 4 word_Man2" : HW_IO;
+  "Output 4 word_1" : HW_IO;
+  "Output 4 word_2" : HW_IO;
+  Interfere : Bool;
+  Axis_ID : Int;
+  AutoPointStart : Bool;
+END_VAR
+VAR_IN_OUT
+  Homing : Bool;
+  AbsPos : Bool;
+  RelaPos : Bool;
+  Enable : Bool;
+  Stop : Bool;
+  "Jog+" : Bool;
+  "Jog-" : Bool;
+  PosCode : Int;
+  RunEnd : Bool;
+  Adjist : Bool;
+END_VAR
+VAR
+  Par : STRUCT
+    "Limit+" : Bool;
+    "Limit-" : Bool;
+    PositionWidth : Real;
+    PosCode : Int;
+    Speed : Int;
+    "Limt+Pos" : Real;
+    "Limt-Pos" : Real;
+    AccSpeed : Int;
+    DecSpeed : Int;
+    LuV : Int;
+    SimplyTrigger : Bool;
+    SimplyTriggerPos : Real;
+    ListTrigger : Bool;
+    ListPosID : Int;
+    TargetPosition : Array[0..30] of Real;
+    TargetSpeed : Array[0..30] of Int;
+    GoPosInterfere : Array[0..30] of Bool;
+    OverTime : Time;
+  END_STRUCT;
+  RecvData : "IAI Input Struct";
+  SendData : "IAI Output Struct";
+  CurrentPosition : Real;
+  CurrentSpeed : Int;
+  TargetPosition : Real;
+  Ready : Bool;
+  Enabled : Bool;
+  Homed : Bool;
+  Error : Bool;
+  Warn : Bool;
+  HRunning : Bool;
+  PRunning : Bool;
+  Running : Bool;
+  TemWritePos : Bool;
+  TemGoPos : Bool;
+  TemStart : Bool;
+  RInterfere : Bool;
+  PosInterfere : Bool;
+  InterfereEnable : Bool;
+  LimtStop : Bool;
+  HomeJogTime : TON_TIME;
+  TemHomingok : TON_TIME;
+  TemPosOk : TON_TIME;
+  RunTime : TON_TIME;
+  RunSetTime : Time;
+  OverTime : Bool;
+  Cmd : STRUCT
+    Homing : Bool;
+    PosRun : Bool;
+    Jog : Bool;
+  END_STRUCT;
+  Hstep : Int;
+  Step : Int;
+  PosTime : TON_TIME;
+  StopCmd : Bool;
+  StopTime : TON_TIME;
+  Pos_ID : Int;
+  SetPosCode : Int;
+  AutoStart : Bool;
+  TemPage : Int;
+  TemGroup : Int;
+  FOR_ID : Int;
+  TemHMIClick : Bool;
+  aRetvalRead : Array[1..5] of Int;
+  aRetvalWrite : Array[1..5] of Int;
+  PRunninDelay : TON_TIME;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/22_IAI/IAI_BASE_FB.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+      
+      [] := ( := #Input 4 word_Man1,  => .#RecvData.Input 4 word_Man1);
+      [] := ( := #Input 4 word_Man2,  => .#RecvData.Input 4 word_Man2);
+      
+      
+      [] := ( := #Input 4 word_1,  => .#RecvData.Input 4 word_1);
+      [] := ( := #Input 4 word_2,  => .#RecvData.Input 4 word_2);
+      
+      ..#SendData.Output 4 word_2.Accelerated Speed := .#Par.AccSpeed;  
+  END_REGION
+  REGION 
+      
+      ..#SendData.Output 4 word_Man1.Mon := ;
+      
+      IF ..#RecvData.Input 4 word_2.ALM OR #OverTime THEN
+          #Error := ;
+      END_IF;
+      
+      IF (#TargetPosition < .#Par.Limt-Pos) OR (#TargetPosition > .#Par.Limt+Pos) THEN
+          #LimtStop := ;
+      ELSE
+          #LimtStop := ;
+      END_IF;
+      
+      IF #LimtStop OR .#Par.Limit+ OR .#Par.Limit- THEN
+          #Step := ;
+          #Hstep := ;
+          #AbsPos := ;
+          #RelaPos := ;
+      END_IF;
+      
+      IF NOT ..#Mode.Out.Estop OR ..#RecvData.Input 4 word_2.ALM =  THEN
+          #Hstep := ;
+          #Step := ;
+          ..#SendData.Output 4 word_2.STP := ;
+          #Homing := ;
+          #TemStart := ;
+      END_IF;
+      
+      IF ..#Mode.Out.Change THEN
+          #SetPosCode := .#Par.PosCode;
+          .#Par.PosCode := #PosCode;
+          #Jog- := ;
+          #Jog+ := ;
+          #Homing := ;
+          #AbsPos := ;
+          #RelaPos := ;
+          #Step := ;
+          #Hstep := ;
+      END_IF;
+      
+      IF .#Par.ListTrigger OR #TemGoPos THEN
+          
+          IF .[.#Par.PosCode] THEN
+              #PosInterfere := ;
+          ELSE
+              #PosInterfere := ;
+          END_IF;
+      ELSE
+          #PosInterfere := ;
+      END_IF;
+      #RInterfere := #PosInterfere AND #Interfere;
+      
+      IF #RInterfere OR #Adjist THEN
+          #InterfereEnable := ;
+      ELSE
+          #InterfereEnable := ;
+      END_IF;
+      
+      IF ..#Mode.Out.Estop AND ..#RecvData.Input 4 word_2.ALM =  AND #Enable THEN 
+          ..#SendData.Output 4 word_2.SON := ;
+      ELSE
+          ..#SendData.Output 4 word_2.SON := ;
+      END_IF;
+      
+      IF ..#SendData.Output 4 word_2.SON AND ..#Mode.Out.Estop THEN
+          #Enabled := ;
+      ELSE
+          #Enabled := ;
+      END_IF;
+      
+      IF #Error THEN
+          #Step := ;
+          #Jog- := ;
+          #Jog+ := ;
+          #Hstep := ;
+          #Homing := ;
+          #TemStart := ;
+      END_IF;
+      
+      
+      IF ..#Mode.Out.Reset THEN
+          #Error := ;
+          #OverTime := ;
+          ..#SendData.Output 4 word_2.RES := ;
+          ..#SendData.Output 4 word_2.Home := ;
+          #Hstep := ;
+          ..#SendData.Output 4 word_2.STP := ;
+          
+      ELSE
+          ..#SendData.Output 4 word_2.RES := ;
+      END_IF;
+      
+      IF #Enabled AND NOT #PRunning AND #Homed AND #InterfereEnable THEN
+          #Ready := ;
+      ELSE
+          #Ready := ;
+      END_IF;
+      
+      #CurrentPosition := ( := ..#RecvData.Input 4 word_1.Current Position) / ;
+      #CurrentSpeed := ..#RecvData.Input 4 word_2.Current Speed;
+      
+      ..#SendData.Output 4 word_2.JVEL := ;
+      ..#SendData.Output 4 word_1.Location Width := ( := (.#Par.PositionWidth * )); 
+  END_REGION
+  REGION 
+      IF ..#Mode.Out.Manual THEN
+          #FOR_ID := ;
+      ELSE
+          #FOR_ID := ;
+      END_IF;
+      
+      FOR #Pos_ID := #FOR_ID TO  DO
+          IF #CurrentPosition >= .[#Pos_ID] - .#Par.PositionWidth AND
+              #CurrentPosition <= .[#Pos_ID] + .#Par.PositionWidth AND #Homed THEN
+              #PosCode := #Pos_ID;
+              #SetPosCode := #Pos_ID;
+              EXIT;
+          ELSE
+              #PosCode := ;
+          END_IF;
+      END_FOR;
+      
+  END_REGION
+  REGION 
+      #TemHomingok( := ..#RecvData.Input 4 word_2.Hend AND #HRunning,    
+                    := );
+      
+      CASE #Hstep OF
+          :
+              #HRunning := ;
+              IF #Homing AND #Enabled AND #InterfereEnable THEN
+                  ..#SendData.Output 4 word_2.Home := ;
+                  #Step := ;
+                  #Homed := ;
+                  #Hstep := ;
+              END_IF;
+          :  
+              IF (..#RecvData.Input 4 word_2.Move = )
+              THEN
+                  #HRunning := ;
+                  #Hstep := ;
+              END_IF;
+              
+          :  
+              IF (..#RecvData.Input 4 word_2.Hend =  AND .#TemHomingok.Q)
+              THEN
+                  ..#SendData.Output 4 word_2.Home := ;
+                  #Hstep := ;
+              END_IF;
+              
+          :  
+              IF ..#SendData.Output 4 word_2.Home =  THEN
+                  #Homing := ;
+                  #Homed := ;
+                  #HRunning := ;
+                  #Hstep := ;
+              END_IF;
+              
+      END_CASE;
+  END_REGION
+  REGION 
+      
+      
+          IF (..#Mode.Out.Auto OR ..#Mode.Out.Home) AND  #AutoPointStart THEN
+              #AutoStart := ;
+          ELSE
+              #AutoStart := ;
+          END_IF;
+      
+      
+      IF ..#Mode.Out.Manual AND .#Par.SimplyTrigger THEN
+          .#Par.PosCode := ;
+          #SetPosCode := .#Par.PosCode;
+      ELSIF ..#Mode.Out.Manual AND .#Par.ListTrigger THEN
+          #TargetPosition := .[.#Par.ListPosID];
+          .#Par.PosCode := .#Par.ListPosID;
+          #SetPosCode := .#Par.PosCode;
+      END_IF;
+      
+      .[] := .#Par.SimplyTriggerPos;
+      .[] := .#Par.Speed;
+      
+      IF ..#Mode.Out.Auto THEN
+          #TargetPosition := .[.#Par.PosCode];
+          ..#SendData.Output 4 word_1.Target position := ( := (#TargetPosition * ));
+          ..#SendData.Output 4 word_2.Speed :=.[.#Par.PosCode]; 
+      END_IF;
+      IF ..#Mode.Out.Manual THEN
+          
+          ..#SendData.Output 4 word_1.Target position := ( := (#TargetPosition * ));
+          ..#SendData.Output 4 word_2.Speed := .#Par.Speed;
+      END_IF;
+  
+      
+      IF ((..#Mode.Out.Manual AND (.#Par.SimplyTrigger OR .#Par.ListTrigger) AND #InterfereEnable AND .#Par.Speed > ))   
+          OR ((..#Mode.Out.Auto OR ..#Mode.Out.Home) AND #AutoStart AND ..#Mode.Out.Running AND #InterfereEnable AND .#Par.Speed > ) THEN
+          #TemStart := ;
+      END_IF;
+      
+      CASE #Step OF
+          :
+              #PRunning := ;
+              #TemWritePos := ;
+              IF #TemStart AND #Ready AND #InterfereEnable THEN
+                  ..#SendData.Output 4 word_2.STP := ;
+                  #RunEnd := ;
+                  #Jog- := ;
+                  #Jog+ := ;
+                  #Step := ;
+              END_IF;
+          :
+              #PRunning := ;
+              IF #TemStart THEN       
+                  #TargetPosition := .[.#Par.PosCode];
+              END_IF;
+              IF #TargetPosition = .[.#Par.PosCode] THEN
+                  ..#SendData.Output 4 word_1.Target position := ( := (#TargetPosition * ));
+                  ..#SendData.Output 4 word_2.Speed := .[.#Par.PosCode]; 
+                  IF #TargetPosition = #CurrentPosition THEN
+                      #PosCode := .#Par.PosCode;
+                      #PRunning := ;
+                      #TemStart := ;
+                      #RunEnd := ;
+                      #SetPosCode := .#Par.PosCode;
+                      IF #SetPosCode = .#Par.PosCode THEN
+                          #Step := ;
+                      END_IF;
+                  ELSE
+                      #Step := ;
+                  END_IF;
+              END_IF;
+              
+          : 
+              ..#SendData.Output 4 word_1.Target position := ( := (#TargetPosition * ));
+              ..#SendData.Output 4 word_2.Speed := .[.#Par.PosCode]; 
+              IF ..#RecvData.Input 4 word_2.Pend AND ClockMemory0.5s AND #InterfereEnable THEN
+                  ..#SendData.Output 4 word_2.CSTR := ;
+              ELSE
+                  ..#SendData.Output 4 word_2.CSTR := ;
+              END_IF;
+              IF ..#RecvData.Input 4 word_2.Pend =  AND ..#RecvData.Input 4 word_2.Move THEN 
+                  #Step := ;
+              END_IF;
+              
+          : 
+              IF #Stop OR #InterfereEnable =  THEN
+                  #StopCmd := ;
+                  ..#SendData.Output 4 word_2.STP := ;
+              ELSE
+                  #StopCmd := ;
+                  ..#SendData.Output 4 word_2.STP := ;
+              END_IF;
+              
+              IF ..#RecvData.Input 4 word_2.Pend THEN
+                  ..#SendData.Output 4 word_2.CSTR := ;
+                  #Step := ;
+              END_IF;
+          : 
+              IF ..#Mode.Out.Manual THEN
+                  
+                  IF .[#Axis_ID].[.#Par.ListPosID]. THEN
+                      #SetPosCode := .#Par.PosCode;
+                      IF #SetPosCode = .#Par.PosCode THEN
+                          ;
+                          #Step := ;
+                      END_IF;
+                  END_IF;
+                  IF ..#RecvData.Input 4 word_1.Current Position = ( := (.#Par.SimplyTriggerPos * )) THEN
+                      #Step := ;
+                  END_IF;
+              END_IF;
+              IF ..#Mode.Out.Auto THEN
+                  IF .[#Axis_ID].[.#Par.PosCode]. THEN
+                      #SetPosCode := .#Par.PosCode;
+                      IF #SetPosCode = .#Par.PosCode THEN
+                          ;
+                          #Step := ;
+                      END_IF;
+                  END_IF;
+              END_IF;
+          :
+              ..#SendData.Output 4 word_2.CSTR := ;
+              #AutoStart := ;
+              IF ..#SendData.Output 4 word_2.CSTR =  AND #AutoStart =  THEN
+                  #RunEnd := ;
+                  #PRunning := ;
+                  #TemStart := ;
+                  #Step := ;
+              END_IF;
+              
+      END_CASE;
+  END_REGION
+  
+  #Running := #HRunning OR #PRunning;
+  #RunTime( := #Running,
+            := #RunSetTime);
+  IF .#RunTime.Q THEN
+      #OverTime := ;
+  END_IF;
+  
+  REGION 
+      IF ..#Mode.Out.Manual AND #Step =  THEN
+          ;
+          
+          
+          
+          ..#SendData.Output 4 word_2.JOG+ := #Jog+ AND NOT .#Par.Limit+ AND (#CurrentPosition < .#Par.Limt+Pos);
+          
+          ..#SendData.Output 4 word_2.JOG- := #Jog- AND NOT .#Par.Limit- AND (#CurrentPosition > .#Par.Limt-Pos);
+      END_IF;
+  END_REGION
+  
+  
+  
+  
+  [] := ( := #Output 4 word_Man1,  := .#SendData.Output 4 word_Man1);
+  [] := ( := #Output 4 word_Man2,  := .#SendData.Output 4 word_Man2);
+  
+  [] := ( := #Output 4 word_1,  := .#SendData.Output 4 word_1);
+  [] := ( := #Output 4 word_2,  := .#SendData.Output 4 word_2);
+END_FUNCTION_BLOCK

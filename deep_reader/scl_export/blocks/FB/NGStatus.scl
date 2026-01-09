@@ -1,0 +1,25 @@
+FUNCTION_BLOCK "NGStatus"
+VAR_INPUT
+  NG_1 : Bool;
+  NG_2 : Bool;
+  NG_3 : Bool;
+  NG_4 : Bool;
+  NG_5 : Bool;
+END_VAR
+VAR_OUTPUT
+  Status : Int;
+  Ready : Bool;
+END_VAR
+VAR_IN_OUT
+  Interlock : Array[1..10] of Bool;
+END_VAR
+VAR
+  AlwaysOn : Bool;
+  NG_Delay : Array[1..10] of TON_TIME;
+  NG_DelayTime : Array[1..10] of DInt;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/29_NG/NGStatus.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

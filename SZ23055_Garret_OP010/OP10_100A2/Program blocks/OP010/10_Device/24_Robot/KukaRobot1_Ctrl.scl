@@ -1,10 +1,6 @@
 ﻿FUNCTION_BLOCK "KukaRobot1_Ctrl"
 { S7_Optimized_Access := 'FALSE' }
 VERSION : 0.1
-// ATTRIBUTES
-// AUTO_NUMBER = False
-// BLOCK_NUMBER = 2401
-// END_ATTRIBUTES
    VAR_INPUT 
       iHWID_In : HW_IO;
       iHWID_Out : HW_IO;
@@ -359,11 +355,11 @@ BEGIN
 	    //SI  
 	    #sHMI.PGNO_PBIT := #sPLCtoROB.Sys.SI.PGNO_PBIT;
 	    #sHMI.EXT_START := #sPLCtoROB.Sys.SI.EXT_START;
-	    #sHMI.MOVE_ENABLE := #sHMI.MOVE_ENABLE;
+	    #sHMI.MOVE_ENABLE := #sPLCtoROB.Sys.SI.MOVE_ENABLE;
 	    #sHMI.CONF_MESS := #sPLCtoROB.Sys.SI.CONF_MESS;
-	    #sHMI.DRIVES_OFF := NOT #sHMI.DRIVES_OFF;
-	    #sHMI.DRIVES_ON := #sHMI.DRIVES_ON;
-	    #sHMI.I_O_ACT := #sHMI.I_O_ACT;
+	    #sHMI.DRIVES_OFF := #sPLCtoROB.Sys.SI.DRIVES_OFF;
+	    #sHMI.DRIVES_ON := #sPLCtoROB.Sys.SI.DRIVES_ON;
+	    #sHMI.I_O_ACT := #sPLCtoROB.Sys.SI.I_O_ACT;
 	    //UI   
 	    #sHMI.TaskMode := #sPLCtoROB.User.Public.GI_TaskMode;
 	    #sHMI.PartType := #sPLCtoROB.User.Public.GI_PartType;

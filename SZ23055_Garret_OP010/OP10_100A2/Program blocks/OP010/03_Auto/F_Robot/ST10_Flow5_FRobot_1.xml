@@ -1,40 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Document>
   <Engineering version="V18" />
-  <DocumentInfo>
-    <Created>2025-12-01T17:50:49.0587508Z</Created>
-    <ExportSetting>None</ExportSetting>
-    <InstalledProducts>
-      <Product>
-        <DisplayName>Totally Integrated Automation Portal</DisplayName>
-        <DisplayVersion>V18 Update 5</DisplayVersion>
-      </Product>
-      <OptionPackage>
-        <DisplayName>TIA Portal Openness</DisplayName>
-        <DisplayVersion>V18 Update 5</DisplayVersion>
-      </OptionPackage>
-      <OptionPackage>
-        <DisplayName>TIA Portal Teamcenter Gateway</DisplayName>
-        <DisplayVersion>V18</DisplayVersion>
-      </OptionPackage>
-      <OptionPackage>
-        <DisplayName>TIA Portal Version Control Interface</DisplayName>
-        <DisplayVersion>V18</DisplayVersion>
-      </OptionPackage>
-      <Product>
-        <DisplayName>STEP 7 Professional</DisplayName>
-        <DisplayVersion>V18 Update 5</DisplayVersion>
-      </Product>
-      <OptionPackage>
-        <DisplayName>STEP 7 Safety</DisplayName>
-        <DisplayVersion>V18</DisplayVersion>
-      </OptionPackage>
-      <Product>
-        <DisplayName>WinCC Professional</DisplayName>
-        <DisplayVersion>V18 Update 5</DisplayVersion>
-      </Product>
-    </InstalledProducts>
-  </DocumentInfo>
   <SW.Blocks.FB ID="0">
     <AttributeList>
       <AcknowledgeErrorsRequired>false</AcknowledgeErrorsRequired>
@@ -7585,11 +7551,20 @@
     <Member Name="本站站号乘10" Datatype="UInt" />
   </Section>
   <Section Name="Constant">
-    <Member Name="GripperEmpty" Datatype="Int">
+    <Member Name="Gripper_empty" Datatype="Int">
       <StartValue>0</StartValue>
     </Member>
-    <Member Name="PartOKStatus_2" Datatype="Int">
+    <Member Name="Gripper_have_OK_part_NO-MES" Datatype="Int">
       <StartValue>199</StartValue>
+    </Member>
+    <Member Name="Gripper_have_OK_part" Datatype="Int">
+      <StartValue>110</StartValue>
+    </Member>
+    <Member Name="Gripper_have_uknown_part" Datatype="Int">
+      <StartValue>100</StartValue>
+    </Member>
+    <Member Name="Gripper_Product_DMC_not_readable" Datatype="Int">
+      <StartValue>155</StartValue>
     </Member>
   </Section>
 </Sections></Interface>
@@ -9015,11 +8990,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="22">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="22">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="23">
               <Symbol>
@@ -9028,11 +9000,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="24">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="24">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="25">
               <Symbol>
@@ -9071,11 +9040,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="28">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="28">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="29">
               <Symbol>
@@ -9114,11 +9080,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="32">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="32">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="33">
               <Symbol>
@@ -9329,11 +9292,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="22">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="22">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="23">
               <Symbol>
@@ -9372,11 +9332,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="26">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="26">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="27">
               <Symbol>
@@ -9482,11 +9439,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="22">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="22">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="23">
               <Symbol>
@@ -9525,11 +9479,8 @@
                 <Component Name="PartStatus" />
               </Symbol>
             </Access>
-            <Access Scope="LiteralConstant" UId="26">
-              <Constant>
-                <ConstantType>Int</ConstantType>
-                <ConstantValue>0</ConstantValue>
-              </Constant>
+            <Access Scope="LocalConstant" UId="26">
+              <Constant Name="Gripper_empty" />
             </Access>
             <Access Scope="GlobalVariable" UId="27">
               <Symbol>

@@ -1,0 +1,213 @@
+FUNCTION_BLOCK "Call_KeyenceCheckerIV"
+VAR
+  InsKeyenceCheckerIV3810A1 : "FB_KeyenceCheckerIV3";
+  InsKeyenceCheckerIV3811A1 : "FB_KeyenceCheckerIV3";
+  nIndex : Int;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/21_IV3/Call_KeyenceCheckerIV.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+      
+      REGION 
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      END_REGION
+      
+      REGION 
+          
+          
+          
+          
+          #nIndex := ;
+          
+          REGION 
+              
+              
+              
+              
+              
+              
+              
+          END_REGION
+          
+          REGION 
+              
+              
+              
+              
+              .[#nIndex].. := ..Station_Sys.Manual.Mode;
+              .[#nIndex].. := ..Station_Sys.Cmd.Reset;
+              .[#nIndex].. := ;
+          END_REGION
+          
+          REGION 
+              
+              
+              
+          END_REGION
+          
+          REGION 
+              
+              
+              
+              
+              
+              
+              
+              IF ..Station_Sys.Manual.Mode THEN
+                  .[#nIndex].. := ;
+              ELSIF ..Station_Sys.Auto.Mode THEN
+                  .[#nIndex]..:=  ;
+              ELSE
+                  .[#nIndex].. := ;
+              END_IF;
+              END_REGION
+          
+          REGION 
+              
+              
+              
+              
+              .[#nIndex].. := ..Station_Sys.Status.Run;
+          END_REGION
+          
+      END_REGION
+      
+      REGION 
+          
+          
+          
+      END_REGION
+      
+      REGION 
+          
+          
+          
+          
+       
+          (#nIndex);
+          
+        
+      END_REGION
+      
+      REGION 
+          
+          
+          
+      END_REGION
+      
+  END_REGION
+  
+  REGION 
+      
+      REGION 
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      END_REGION
+      
+      REGION 
+          
+          
+          
+          
+          #nIndex := ;
+          
+          REGION 
+              
+              
+              
+              
+              
+              
+              
+          END_REGION
+          
+          REGION 
+              
+              
+              
+              
+              .[#nIndex].. := ..Station_Sys.Manual.Mode;
+              .[#nIndex].. := ..Station_Sys.Cmd.Reset;
+              .[#nIndex].. := ;
+          END_REGION
+          
+          REGION 
+              
+              
+              
+          END_REGION
+          
+          REGION 
+              
+              
+              
+              
+              
+              
+              
+              IF ..Station_Sys.Manual.Mode THEN
+                  .[#nIndex].. := ;
+              ELSIF ..Station_Sys.Auto.Mode THEN
+                  .[#nIndex].. := ;
+              ELSE
+                  .[#nIndex].. := ;
+              END_IF;
+          END_REGION
+          
+          REGION 
+              
+              
+              
+              
+              .[#nIndex].. := ..Station_Sys.Status.Run;
+          END_REGION
+          
+      END_REGION
+      
+      REGION 
+          
+          
+          
+      END_REGION
+      
+      REGION 
+          
+          
+          
+          
+          
+          (#nIndex);
+          
+          
+      END_REGION
+      
+      REGION 
+          
+          
+          
+      END_REGION
+      
+  END_REGION
+END_FUNCTION_BLOCK

@@ -1,0 +1,26 @@
+FUNCTION_BLOCK "MotorContro"
+VAR_INPUT
+  iAlwaysTrue : Bool;
+  iSysRun : Bool;
+  iReset : Bool;
+  iAuto : Bool;
+  iManual : Bool;
+  i_ParySensor : Bool;
+  i_Alarm : Bool;
+  iType : Int;
+  i_RunInTimeDelay : Time;
+  i_RunOutTimeDelay : Time;
+  i_Interlock : Bool;
+END_VAR
+VAR_IN_OUT
+  Control : "Motor_Control";
+END_VAR
+VAR
+  TON : Array[0..5] of TON_TIME;
+  Zero : Array[0..15] of Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/31_Motor_1/MotorContro.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

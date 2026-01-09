@@ -1,0 +1,41 @@
+TYPE "RCS_KeyenceSR1000_Output1"
+STRUCT
+  LatchAndErrorClearControl : STRUCT
+    ReservedBit0 : Bool;
+    ResultDataLatch : Bool;
+    ReservedBit2 : Bool;
+    ReservedBit3 : Bool;
+    ReservedBit4 : Bool;
+    ReservedBit5 : Bool;
+    ReservedBit6 : Bool;
+    ErrorClear : Bool;
+  END_STRUCT;
+  OperationInstructionControl : STRUCT
+    ReadRequest : Bool;
+    PresetRequest : Bool;
+    RegisterPresetDataRequest : Bool;
+    TuneRequest : Bool;
+    BloadRequest : Bool;
+    ReservedBit5 : Bool;
+    ReservedBit6 : Bool;
+    ReservedBit7 : Bool;
+  END_STRUCT;
+  CompletionClearControl : STRUCT
+    ReadCompleteClear : Bool;
+    PresetCompleteClear : Bool;
+    RegisterPresetDataCompleteClear : Bool;
+    TuneCompleteClear : Bool;
+    BloadCompleteClear : Bool;
+    ReservedBit5 : Bool;
+    ReservedBit6 : Bool;
+    EXTRequestCompleteClear : Bool;
+  END_STRUCT;
+  ParameterBankNumber : STRUCT
+    BankNo_BloadFileNo : UInt;
+  END_STRUCT;
+  UserData : STRUCT
+    UserDataSize : UInt;
+    UserData : Array[1..128] of Char;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

@@ -1,0 +1,22 @@
+FUNCTION "块_1" : Void
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/25_V90/Patch/块_1.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  (:=.[],
+                              =>.DATA.HaveAxisStart,
+                              =>.DATA.AxisStartNumber);
+  
+  
+  IF    .DATA.Forced modification    AND
+      .DATA.HaveAxisStart AND .DATA.AxisStartNumber <>  AND
+      ..[] = AND
+      ..V90Servo_DB.Servo_382A1.sErrorCode=  AND
+     
+      ..[].<> ..ServoV90_A3.Out.oActPosition
+  THEN
+      ..[] := 
+      ;
+  END_IF;
+END_FUNCTION

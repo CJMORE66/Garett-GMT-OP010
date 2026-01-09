@@ -1,0 +1,325 @@
+FUNCTION_BLOCK "AutoProcessDataPopUp"
+VAR_IN_OUT
+  idx : Int;
+END_VAR
+VAR_TEMP
+  DefaultData : "ProcessData";
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/03_Auto/HMI/AutoProcessDataPopUp.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  END_REGION
+  REGION 
+    
+    
+    IF #idx <  THEN
+      #idx := ;
+      .AutoProcess_HMI.IndexProcess := #idx;
+    ELSIF #idx >  THEN
+      #idx := ;
+      .AutoProcess_HMI.IndexProcess := #idx;
+      
+    END_IF;
+  END_REGION
+  REGION 
+    
+    
+    
+    
+    #idx := .AutoProcess_HMI.IndexProcess;
+    
+    IF #idx <> ..AutoProcess_HMI.Data_handling.LastIndex THEN
+      ..AutoProcess_HMI.Data_handling.UpdateData_switch := ;
+      ..AutoProcess_HMI.Data_handling.UpdateData_Confirm := ;
+      ..AutoProcess_HMI.Data_handling.FinalConfirm_Write := ;
+      ..AutoProcess_HMI.Data_handling.ConfirmDialogActive := ;
+      ..AutoProcess_HMI.Data_handling.ChangePending := ;
+      ..AutoProcess_HMI.Data_handling.DeleteData := ;
+      ..AutoProcess_HMI.Data_handling.LastIndex := #idx;
+    END_IF;
+  END_REGION
+  REGION 
+    
+    
+    
+    
+    IF NOT ..AutoProcess_HMI.Data_handling.UpdateData_switch THEN
+      CASE #idx OF
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.A_ScanRotate;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.F_Robot1Grip1;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.F_Robot1Grip2;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.B_Press1;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.C_Glue;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.F_Robot2Grip1;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.F_Robot2Grip2;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.C_GlueNGBuffer;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.C_MagnScanNGBuffer;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.B_Press2;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.F_Robot3Grip1;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.F_Robot3Grip2;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.H_ShafeLine;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.J_MagnetBelt;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.K_ReserveBelt;
+        :
+          .AutoProcess_HMI.ActualSHowingData := .AutoProcessData.L_UnloadBelt;
+        ELSE
+          ;
+          
+      END_CASE;
+    END_IF;
+  END_REGION
+  REGION 
+    
+    
+    
+    
+    IF ..AutoProcess_HMI.Data_handling.UpdateData_switch
+      AND ..AutoProcess_HMI.Data_handling.UpdateData_Confirm
+      AND NOT ..AutoProcess_HMI.Data_handling.ConfirmDialogActive THEN
+      
+      ..AutoProcess_HMI.Data_handling.ConfirmDialogActive := ;
+      ..AutoProcess_HMI.Data_handling.ChangePending := ;
+      
+      ..AutoProcess_HMI.Data_handling.UpdateData_Confirm := ;
+    END_IF;
+  END_REGION
+  REGION 
+    
+    
+    
+    
+    IF ..AutoProcess_HMI.Data_handling.ConfirmDialogActive
+      AND ..AutoProcess_HMI.Data_handling.FinalConfirm_Write THEN
+      
+      CASE #idx OF
+        :
+          .AutoProcessData.A_ScanRotate := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.F_Robot1Grip1 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.F_Robot1Grip2 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.B_Press1 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.C_Glue := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.F_Robot2Grip1 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.F_Robot2Grip2 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.C_GlueNGBuffer := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.C_MagnScanNGBuffer := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.B_Press2 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.F_Robot3Grip1 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.F_Robot3Grip2 := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.H_ShafeLine := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.J_MagnetBelt := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.K_ReserveBelt := .AutoProcess_HMI.ActualSHowingData;
+        :
+          .AutoProcessData.L_UnloadBelt := .AutoProcess_HMI.ActualSHowingData;
+        ELSE
+          ;
+      END_CASE;
+      
+      
+      ..AutoProcess_HMI.Data_handling.ConfirmDialogActive := ;
+      ..AutoProcess_HMI.Data_handling.ChangePending := ;
+      ..AutoProcess_HMI.Data_handling.FinalConfirm_Write := ;
+      ..AutoProcess_HMI.Data_handling.UpdateData_switch := ;
+    END_IF;
+  END_REGION
+  REGION 
+    
+    
+    
+    
+    IF ..AutoProcess_HMI.Data_handling.DeleteData AND
+      ..AutoProcess_HMI.Data_handling.FinalConfirm_Write
+      THEN
+      
+      CASE #idx OF
+        :
+          .AutoProcessData.A_ScanRotate := #DefaultData;
+        :
+          .AutoProcessData.F_Robot1Grip1 := #DefaultData;
+        :
+          .AutoProcessData.F_Robot1Grip2 := #DefaultData;
+        :
+          .AutoProcessData.B_Press1 := #DefaultData;
+        :
+          .AutoProcessData.C_Glue := #DefaultData;
+        :
+          .AutoProcessData.F_Robot2Grip1 := #DefaultData;
+        :
+          .AutoProcessData.F_Robot2Grip2 := #DefaultData;
+        :
+          .AutoProcessData.C_GlueNGBuffer := #DefaultData;
+        :
+          .AutoProcessData.C_MagnScanNGBuffer := #DefaultData;
+        :
+          .AutoProcessData.B_Press2 := #DefaultData;
+        :
+          .AutoProcessData.F_Robot3Grip1 := #DefaultData;
+        :
+          .AutoProcessData.F_Robot3Grip2 := #DefaultData;
+        :
+          .AutoProcessData.H_ShafeLine := #DefaultData;
+        :
+          .AutoProcessData.J_MagnetBelt := #DefaultData;
+        :
+          .AutoProcessData.K_ReserveBelt := #DefaultData;
+        :
+          .AutoProcessData.L_UnloadBelt := #DefaultData;
+        ELSE
+          ;
+      END_CASE;
+      
+      
+      ..AutoProcess_HMI.Data_handling.DeleteData := ;
+      ..AutoProcess_HMI.Data_handling.UpdateData_switch := ;
+      ..AutoProcess_HMI.Data_handling.UpdateData_Confirm := ;
+      ..AutoProcess_HMI.Data_handling.FinalConfirm_Write := ;
+      ..AutoProcess_HMI.Data_handling.ConfirmDialogActive := ;
+      ..AutoProcess_HMI.Data_handling.ChangePending := ;
+    END_IF;
+  END_REGION
+  REGION 
+    
+    
+    
+    
+    .[] :=
+    ..AutoProcessData.A_ScanRotate.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.F_Robot1Grip1.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.F_Robot1Grip2.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.B_Press1.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.C_Glue.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.F_Robot2Grip1.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.F_Robot2Grip2.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.C_GlueNGBuffer.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.C_MagnScanNGBuffer.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.B_Press2.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.F_Robot3Grip1.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.F_Robot3Grip2.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.H_ShafeLine.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.J_MagnetBelt.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.K_ReserveBelt.PartStatus <> ;
+    
+    
+    .[] :=
+    ..AutoProcessData.L_UnloadBelt.PartStatus <> ;
+    
+  END_REGION
+END_FUNCTION_BLOCK

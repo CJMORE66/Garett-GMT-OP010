@@ -1,0 +1,34 @@
+DATA_BLOCK "KistlerPressData2"
+VAR
+  Spare : STRUCT
+    Spare : Array[0..85] of Byte;
+  END_STRUCT;
+  Data : STRUCT
+    EO01 : STRUCT
+      "pvXMin-Y" : Real;
+      "pvXMax-Y" : Real;
+      "pvXMin-X" : Real;
+      "pvXMax-X" : Real;
+    END_STRUCT;
+    EO02 : STRUCT
+      "pvXMin-Y" : Real;
+      "pvXMax-Y" : Real;
+      "pvXMin-X" : Real;
+      "pvXMax-X" : Real;
+    END_STRUCT;
+    EO03 : STRUCT
+      "pvXMax-Y" : Real;
+      "pvXMax-X" : Real;
+    END_STRUCT;
+  END_STRUCT;
+  iWritePressData : STRUCT
+    temp1 : Real;
+  END_STRUCT;
+  PressData1 : STRUCT
+    pvBlock_X : Real;
+    pvBlock_Y : Real;
+  END_STRUCT;
+  ManualPro : Int;
+END_VAR
+BEGIN
+END_DATA_BLOCK

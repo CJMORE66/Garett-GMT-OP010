@@ -1,0 +1,106 @@
+FUNCTION_BLOCK "IAI_Position"
+VAR
+  Servo5 : "SevroStart&PosCheck_IAI";
+  Servo6 : "SevroStart&PosCheck_IAI";
+  Servo7 : "SevroStart&PosCheck_IAI";
+END_VAR
+VAR_TEMP
+  Sevro5ActPos : Real;
+  Sevro5StartList : Bool;
+  Sevro6ActPos : Real;
+  Sevro6StartList : Bool;
+  Sevro7ActPos : Real;
+  Sevro7StartList : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/22_IAI/IAI_Position.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+      FOR .[]. :=  TO  BY  DO
+          .[]..[.[].]. := ..[.[].].;
+          .[]..[.[].]. := ..[.[].].;
+          
+          .[]..[.[].]. := ..[.[].].;
+          .[]..[.[].]. := ..[.[].].;
+          
+          .[]..[.[].]. := ..[.[].].;
+          .[]..[.[].]. := ..[.[].].;
+          
+          
+      END_FOR;
+      
+      
+      
+      ( := ,
+                 := ,
+                 := ..Station_Sys.Cmd.Reset,
+                 := ,
+                 := .[].,
+                 := ,
+                 := ,
+                 := ,
+                 := .[].,
+                 => #Sevro5StartList,
+                 := .[].,
+                 := .[].);
+      
+      IF .[]. =  THEN
+          .[]. := ;
+      END_IF;
+      
+      .[]..:=..IAI_A1.Auto.Index := .[].;
+      
+      
+      ..IAI_A1.In.iAutoStart := #Sevro5StartList AND ..Station_Sys.Auto.Mode;
+      
+      
+      
+      ( := ,
+                 := ,
+                 := ..Station_Sys.Cmd.Reset,
+                 := ,
+                 := .[].,
+                 := ,
+                 := ,
+                 := ,
+                 := .[].,
+                 => #Sevro6StartList,
+                 := .[].,
+                 := .[].);
+      
+      IF .[]. =  THEN
+          .[]. := ;
+      END_IF;
+      
+      .[]..:=..IAI_A2.Auto.Index := .[].;
+      
+      
+      ..IAI_A2.In.iAutoStart := #Sevro6StartList AND ..Station_Sys.Auto.Mode;
+      
+      
+      
+      ( := ,
+                 := ,
+                 := ..Station_Sys.Cmd.Reset,
+                 := ,
+                 := .[].,
+                 := ,
+                 := ,
+                 := ,
+                 := .[].,
+                 => #Sevro7StartList,
+                 := .[].,
+                 := .[].);
+      
+      IF .[]. =  THEN
+          .[]. := ;
+      END_IF;
+      
+      .[]..:=..IAI_A3.Auto.Index := .[].;
+      
+      
+      ..IAI_A3.In.iAutoStart := #Sevro7StartList AND ..Station_Sys.Auto.Mode;
+  END_REGION
+END_FUNCTION_BLOCK

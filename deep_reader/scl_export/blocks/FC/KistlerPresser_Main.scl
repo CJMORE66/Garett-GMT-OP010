@@ -1,0 +1,19 @@
+FUNCTION "KistlerPresser_Main" : Void
+VAR_TEMP
+  tRel : DInt;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/23_Kistler/KistlerPresser_Main.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  (:=.KistlerPresser1_DB.Shaft,
+                :=,
+                =>#tRel,
+                :=.KistlerPresser1_DB.ShaftID);
+  // Network 2
+  (:=.KistlerPresser2_DB.Shaft,
+                :=,
+                =>#tRel,
+                :=.KistlerPresser2_DB.ShaftID);
+END_FUNCTION

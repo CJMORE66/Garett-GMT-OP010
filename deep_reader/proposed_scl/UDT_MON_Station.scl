@@ -1,0 +1,26 @@
+TYPE "UDT_MON_Station"
+STRUCT
+  ScreenNo : Int;
+  Auto : "RCS_SysAuto_V1";
+  Manual : "RCS_SysManual_V1";
+
+  Interface : STRUCT
+    CpuFirstCycle : Bool;
+    SysRun : Bool;
+    Reset : Bool;
+    SetInitial : Bool;
+    InitialRun : Bool;
+    Ready : Bool;
+    ManualMode : Bool;
+  END_STRUCT;
+
+  Initial : STRUCT
+    Set : Bool;
+    Running : Bool;
+    Ok : Bool;
+  END_STRUCT;
+
+  AlarmWarningWord : Int;
+END_STRUCT;
+END_TYPE
+

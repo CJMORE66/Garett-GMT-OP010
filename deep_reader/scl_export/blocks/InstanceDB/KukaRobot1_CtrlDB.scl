@@ -1,0 +1,28 @@
+DATA_BLOCK "KukaRobot1_CtrlDB"
+VAR
+  sHMI : "KukaRobot_HMI";
+  sROBtoPLC : STRUCT
+    Sys : "KukaRobot_SysOutput";
+    User : "KukaRobot_UserOutput_1";
+  END_STRUCT;
+  sPLCtoROB : STRUCT
+    Sys : "KukaRobot_SysInput";
+    User : "KukaRobot_UserInput_1";
+  END_STRUCT;
+  sDrivesOnDelay : TON_TIME;
+  sStartUpDelay : TON_TIME;
+  sRobotReadyToStart : Bool;
+  sRobotReadyToRunning : Bool;
+  sRobotActComplete : Bool;
+  sRobotProgrameChoseOK : Bool;
+  sSequence : Int;
+  F_TRIG_Work : F_TRIG;
+  F_TRIG_Home : F_TRIG;
+  ModeValue : Int;
+  Tem_ModeValue : Int;
+  ModeChange : Bool;
+  IEC_Timer_DRIVES_OFF : TON_TIME;
+  IEC_Timer_DRIVES_ON : TON_TIME;
+END_VAR
+BEGIN
+END_DATA_BLOCK

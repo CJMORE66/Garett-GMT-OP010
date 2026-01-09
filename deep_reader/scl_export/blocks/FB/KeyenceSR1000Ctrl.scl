@@ -1,0 +1,371 @@
+FUNCTION_BLOCK "KeyenceSR1000Ctrl"
+VAR_INPUT
+  iI_Address : Int;
+  iO_Address : Int;
+  iSysRun : Bool;
+  iReset : Bool;
+  iAuto : Bool;
+  iManual : Bool;
+  iReTriggerLimitTimes : USInt;
+END_VAR
+VAR_OUTPUT
+  oReady : Bool;
+  oComplete : Bool;
+  oError : Bool;
+  oErrorCode : UInt;
+END_VAR
+VAR_IN_OUT
+  ioAutoTrigger : Bool;
+END_VAR
+VAR
+  sHMI : "RCS_KeyenceSR1000_HMI1";
+  sCtrl : STRUCT
+    Sequence : Int;
+  END_STRUCT;
+  sCurrentCode : String[128];
+  sAtCurrentCode : Array[-1..128] of Byte;
+  sInData : "RCS_KeyenceSR1000_Input1";
+  sOutData : "RCS_KeyenceSR1000_Output1";
+  sAutoOld : Bool;
+  sManualOld : Bool;
+  sBusyTimeOut : Bool;
+  sRunTimer : TON_TIME;
+  sBusyTimer : TON_TIME;
+  sFindCurrentPos : Int;
+END_VAR
+VAR_TEMP
+  tAny : Any;
+  tAnyParameters : STRUCT
+    SyntaxID : Byte;
+    DataType : Byte;
+    RepetitionFactor : Int;
+    DB_Number : Word;
+    MemoryAreaAddress : DWord;
+  END_STRUCT;
+  tOffset : Int;
+  tEmpty : DWord;
+  tIndex : Int;
+  tRetVal : Int;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/18_SR1000 Scan/KeyenceSR1000Ctrl.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+  
+  
+  
+  END_REGION
+  
+  
+  REGION 
+      .#tAnyParameters.SyntaxID := ;
+      .#tAnyParameters.DataType := ;
+      #tOffset := #iI_Address;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.DB_Number := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := )); 
+      IF ( := #tAny,  => .#sInData.HandshakeAndGeneralErrorStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.BusyStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.CompletionStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.ErrorStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.TerminalStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.UnstableReadStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.MatchingLevelAndTotalEvaluationGradeStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.OperationResultStatus) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := #tAny,  => .#sInData.ReadData) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+  END_REGION 
+  
+  REGION 
+      
+      [] := ;
+      
+      
+      ..#sHMI.Status.Ready := #iSysRun AND .#sCtrl.Sequence = 
+      AND NOT ..#sInData.BusyStatus.TrggerBusy
+      AND NOT ..#sInData.HandshakeAndGeneralErrorStatus.Error
+      AND NOT ..#sInData.CompletionStatus.ReadComplete
+      AND NOT ..#sInData.ErrorStatus.ReadFailure
+      AND NOT ..#sHMI.Status.Error;
+      
+      
+      ..#sHMI.Status.Busy := ..#sInData.BusyStatus.TrggerBusy;
+      
+      
+      ..#sHMI.Status.Failure := ..#sInData.ErrorStatus.ReadFailure;
+      
+      
+      #sRunTimer( := .#sCtrl.Sequence <>  OR NOT ..#sHMI.Status.Ready,
+                  := ,
+                  => ..#sHMI.Status.TimeOut);
+      #sBusyTimer( := ..#sInData.BusyStatus.TrggerBusy,
+               := ,
+               => #sBusyTimeOut); 
+      
+          
+      IF ..#sInData.HandshakeAndGeneralErrorStatus.Error THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ..#sInData.OperationResultStatus.ReadResultCode;
+      ELSIF ..#sHMI.Status.TimeOut THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          ..#sOutData.OperationInstructionControl.ReadRequest := ; 
+      END_IF;
+      
+      
+      
+      
+      ..#sHMI.Status.Sequence := .#sCtrl.Sequence;
+      
+      ..#sHMI.Indata.ReadComplete := ..#sInData.CompletionStatus.ReadComplete;
+      ..#sHMI.Indata.ReadFailure := ..#sInData.ErrorStatus.ReadFailure;
+      ..#sHMI.Indata.GeneralErrorCode := ..#sInData.OperationResultStatus.GeneralErrorCode;
+      ..#sHMI.Indata.ReadResultCode := ..#sInData.OperationResultStatus.ReadResultCode;
+      ..#sHMI.Indata.ResultDataSize := ..#sInData.ReadData.ResultDataSize;
+      
+      ..#sHMI.Outdata.ReadCompleteClear := ..#sOutData.CompletionClearControl.ReadCompleteClear;
+      ..#sHMI.Outdata.ErrorClear := ..#sOutData.LatchAndErrorClearControl.ErrorClear;
+      ..#sHMI.Outdata.ReadRequest := ..#sOutData.OperationInstructionControl.ReadRequest;
+      
+  END_REGION 
+  
+  REGION 
+      
+      IF NOT #iSysRun OR (#iManual XOR #sManualOld) OR (#iAuto XOR #sAutoOld) THEN
+          ..#sHMI.Manual.Trigger := ;
+          #ioAutoTrigger := ;
+          ..#sHMI.Status.iReTriggerTimes := ;
+          ..#sOutData.OperationInstructionControl.ReadRequest := ; 
+      END_IF;
+      #sManualOld := #iManual;
+      #sAutoOld := #iAuto;
+      
+      
+      
+      CASE .#sCtrl.Sequence OF
+          :
+              ..#sOutData.CompletionClearControl.ReadCompleteClear := ..#sInData.CompletionStatus.ReadComplete;
+              IF ..#sHMI.Status.Ready AND ((#iAuto AND #ioAutoTrigger) XOR (#iManual AND ..#sHMI.Manual.Trigger)) THEN
+                  ..#sHMI.Status.LastCode := ..#sHMI.Status.CurrentCode;
+                  ..#sHMI.Status.CurrentCode := ;
+                  ..#sHMI.Status.CurrentLength := ;
+                  ..#sHMI.Status.ReadOk := ;
+                  ..#sHMI.Status.ReadNok := ;
+                  ..#sHMI.Status.Complete := ;
+                  ..#sOutData.OperationInstructionControl.ReadRequest := ; 
+                  ..#sOutData.CompletionClearControl.ReadCompleteClear := ;
+                  .#sCtrl.Sequence := ;
+              ELSE
+                  ..#sOutData.OperationInstructionControl.ReadRequest := ;
+              END_IF;
+          :
+              IF NOT ..#sInData.HandshakeAndGeneralErrorStatus.Error
+                  AND ..#sOutData.OperationInstructionControl.ReadRequest
+                  AND ..#sInData.BusyStatus.TrggerBusy THEN
+                  ..#sHMI.Status.iReTriggerTimes := ..#sHMI.Status.iReTriggerTimes + ;
+                  
+                  .#sCtrl.Sequence := ;
+              END_IF;
+          :
+              IF (NOT ..#sInData.HandshakeAndGeneralErrorStatus.Error AND NOT ..#sInData.BusyStatus.TrggerBusy AND ..#sInData.CompletionStatus.ReadComplete)
+                  OR #sBusyTimeOut THEN
+                  ..#sOutData.OperationInstructionControl.ReadRequest := ;
+                  .#sCtrl.Sequence := ;
+              END_IF;
+          :
+              IF NOT ..#sInData.HandshakeAndGeneralErrorStatus.Error
+                  AND NOT ..#sOutData.OperationInstructionControl.ReadRequest
+                  AND ..#sInData.CompletionStatus.ReadComplete
+                  AND ..#sInData.ReadData.ResultDataSize <= 
+                  AND ..#sInData.ReadData.ResultDataSize >  THEN
+                  ( := ..#sInData.ReadData.ResultData,
+                                 := , 
+                                 := ..#sInData.ReadData.ResultDataSize,
+                                 => #sCurrentCode);
+                  
+                  #sFindCurrentPos  :=  ( := #sCurrentCode,  := );
+                  
+                  #sCurrentCode := ( := #sCurrentCode,  := ,  := #sFindCurrentPos);
+                  
+                  ..#sHMI.Status.CurrentCode := #sCurrentCode;
+                  IF ..#sHMI.Status.CurrentCode =  OR ..#sInData.ErrorStatus.ReadFailure THEN
+                      .#sCtrl.Sequence := ;
+                  ELSE
+                      ..#sHMI.Status.ReadOk := ;
+                      ..#sHMI.Status.ReadNok := ;
+                      .#sCtrl.Sequence := ;
+                  END_IF;
+              END_IF;
+              
+          : 
+              IF ..#sHMI.Status.iReTriggerTimes < #iReTriggerLimitTimes THEN
+                  ..#sOutData.CompletionClearControl.ReadCompleteClear := ;
+                  IF NOT ..#sInData.CompletionStatus.ReadComplete AND NOT ..#sInData.ErrorStatus.ReadFailure THEN
+                      .#sCtrl.Sequence := ;
+                  END_IF;
+              ELSE
+                  ..#sHMI.Status.ReadOk := ;
+                  ..#sHMI.Status.ReadNok := ;
+                  .#sCtrl.Sequence := ;
+              END_IF;
+              
+          :
+              IF NOT ..#sOutData.OperationInstructionControl.ReadRequest
+                  AND ..#sInData.CompletionStatus.ReadComplete THEN
+                  ..#sOutData.CompletionClearControl.ReadCompleteClear := ;
+              ELSE
+                  ..#sOutData.CompletionClearControl.ReadCompleteClear := ;
+                  #ioAutoTrigger := ;
+                  ..#sHMI.Manual.Trigger := ;
+                  ..#sHMI.Status.iReTriggerTimes := ;
+                  ..#sHMI.Status.Complete := ;
+                  .#sCtrl.Sequence := ;
+              END_IF;
+          ELSE
+              .#sCtrl.Sequence := ;
+      END_CASE;
+  END_REGION 
+  REGION 
+  IF (..#sHMI.Status.Error OR ..#sHMI.Status.Failure OR ..#sHMI.Status.TimeOut) THEN
+      IF #iReset THEN
+          ..#sOutData.LatchAndErrorClearControl.ErrorClear := ;
+          ..#sOutData.OperationInstructionControl.ReadRequest := ;
+          #ioAutoTrigger := ;
+          ..#sHMI.Manual.Trigger := ;
+          .#sCtrl.Sequence := ;
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+      END_IF;
+  ELSE
+      ..#sOutData.LatchAndErrorClearControl.ErrorClear := ;
+  END_IF;
+  END_REGION 
+  
+  REGION 
+      .#tAnyParameters.SyntaxID := ;
+      .#tAnyParameters.DataType := ;
+      #tOffset := #iO_Address;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.DB_Number := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := )); 
+      IF ( := .#sOutData.LatchAndErrorClearControl,  => #tAny) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := .#sOutData.OperationInstructionControl,  => #tAny) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := .#sOutData.CompletionClearControl,  => #tAny) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := .#sOutData.ParameterBankNumber,  => #tAny) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      #tOffset += .#tAnyParameters.RepetitionFactor;
+      .#tAnyParameters.RepetitionFactor := ;
+      .#tAnyParameters.MemoryAreaAddress :=  OR (( := (#tOffset),  := ));
+      IF ( := .#sOutData.UserData,  => #tAny) <>  THEN
+          ..#sHMI.Status.Error := ;
+          ..#sHMI.Status.ErrorCode := ;
+          GOTO ;
+      END_IF;
+      
+  
+      #oReady := ..#sHMI.Status.Ready;
+      #oComplete := ..#sHMI.Status.Complete;
+      #oError := ..#sHMI.Status.Error;
+      #oErrorCode := ..#sHMI.Status.ErrorCode;
+  END_REGION 
+  
+  REGION 
+       := ;
+      RETURN;
+  :
+      ..#sHMI.Status.Ready := ;
+      #tEmpty := ;
+      #tRetVal := ( := #tEmpty,  => .#sOutData.LatchAndErrorClearControl);
+      #tRetVal := ( := #tEmpty,  => .#sOutData.OperationInstructionControl);
+      #tRetVal := ( := #tEmpty,  => .#sOutData.CompletionClearControl);
+      #tRetVal := ( := #tEmpty,  => .#sOutData.ParameterBankNumber);
+      #tRetVal := ( := #tEmpty,  => .#sOutData.UserData);
+       := ;
+      RETURN;
+  END_REGION
+END_FUNCTION_BLOCK

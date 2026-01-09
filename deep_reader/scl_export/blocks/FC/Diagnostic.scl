@@ -1,0 +1,68 @@
+FUNCTION "Diagnostic" : Void
+VAR_INPUT
+  iCPUType : Int;
+  iDBNum : Word;
+  iOffset : Int;
+  iHardwareID : HW_IOSYSTEM;
+END_VAR
+VAR_OUTPUT
+  oStatus : Int;
+END_VAR
+VAR_TEMP
+  RDSRet : STRUCT
+    Busy : Bool;
+    Header : STRUCT
+      Length : Word;
+      Number : Word;
+    END_STRUCT;
+  END_STRUCT;
+  retInt : Int;
+  SSL : STRUCT
+    SSID : Word;
+    Index : Word;
+    Length : Int;
+  END_STRUCT;
+  DR : Any;
+  DRS : STRUCT
+    SyntaxID : Byte;
+    DataType : Byte;
+    RepetitionFactor : Int;
+    DB_Number : Word;
+    MemoryAreaAddress : DWord;
+  END_STRUCT;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/02_Comm/03-Diagnosis/Diagnostic.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  IF #iCPUType =  OR #iDBNum =  THEN
+       := ;
+      RETURN;
+  ELSE
+      IF #iCPUType= THEN
+          GOTO ;
+      ELSIF #iCPUType= THEN
+          ;
+      ELSE
+           := ;
+          RETURN;
+      END_IF;
+      .#DRS.SyntaxID := ;
+      .#DRS.DataType := ;
+      .#DRS.RepetitionFactor := ;
+      .#DRS.DB_Number := #iDBNum;
+      .#DRS.MemoryAreaAddress :=  OR (( := (#iOffset),  := ));
+      #oStatus := ( := #iHardwareID,  := ,  := #DR);
+  :
+      .#DRS.SyntaxID := ;
+      .#DRS.DataType := ;
+      .#DRS.RepetitionFactor := ;
+      .#DRS.DB_Number := #iDBNum;
+      .#DRS.MemoryAreaAddress :=  OR (( := (#iOffset),  := ));
+      #oStatus := ( := #iHardwareID,  := ,  := #DR);
+      
+       := ;
+      RETURN;
+  END_IF;
+END_FUNCTION

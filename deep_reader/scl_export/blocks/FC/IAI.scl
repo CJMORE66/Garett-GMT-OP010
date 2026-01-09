@@ -1,0 +1,13 @@
+FUNCTION "IAI" : Void
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/22_IAI/IAI.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  ...ModeDB.Gen.Out.Estop := ..Station_Sys.Status.EStopOK;
+  ...ModeDB.Gen.Out.Reset := ..Station_Sys.Cmd.Reset;
+  ...ModeDB.Gen.Out.Manual := ..Station_Sys.Manual.Mode;
+  ...ModeDB.Gen.Out.Auto := ..Station_Sys.Auto.Mode;
+  ...ModeDB.Gen.Out.Home := ..Station_Sys.Initial.Running;
+  ...ModeDB.Gen.Out.Running := ..Station_Sys.Auto.Mode;
+END_FUNCTION

@@ -1,0 +1,152 @@
+DATA_BLOCK "ST10_GeneralData"
+VAR
+  P_Plus : Array[0..50] of Bool;
+  ByPass : Array[0..10] of Bool;
+  HMI : STRUCT
+    AREAPOINTER : STRUCT
+      COORDINATION : Array[1..16] of Bool;
+      USER_VERSION : Word;
+      SCREEN_NUMBER : STRUCT
+        SCREENTYPE : Int;
+        SCREENNUMBER : Int;
+        SPARE_1 : Int;
+        FIELDNUMBER : Int;
+        SPARE_2 : Int;
+      END_STRUCT;
+      JOB_MAILBOX : STRUCT
+        JOBNUMBER : Int;
+        PARAMETER_1 : Int;
+        PARAMETER_2 : Int;
+        PARAMETER_3 : Int;
+      END_STRUCT;
+      DATE_TIME_OP : Array[1..12] of Byte;
+      DATE_TIME_PLC : Array[1..12] of Byte;
+      SPARE : Array[1..22] of Byte;
+      DataRecord : STRUCT
+        RecipeNummer : Word;
+        DataRecordNummer : Word;
+        Reserve : Word;
+        TransferStatus : Word;
+        Reserve_1 : Word;
+      END_STRUCT;
+    END_STRUCT;
+    Win : STRUCT
+      Win : Int;
+      WinBullfer : Int;
+      "10x弹窗" : Array[1..10] of Int;
+      "20x弹窗" : Array[1..10] of Int;
+      "30x弹窗" : Array[1..10] of Int;
+      "40x弹窗" : Array[1..10] of Int;
+      TON : Array[1..40] of TON_TIME;
+      INT : Array[1..40] of Int;
+      Bool : Array[1..40] of Bool;
+    END_STRUCT;
+    StationLightPB : Bool;
+  END_STRUCT;
+  Operator : STRUCT
+    Name : String;
+    ID : String;
+  END_STRUCT;
+  TowerLamp : STRUCT
+    PreReady : Bool;
+    PreStart : Bool;
+    ProcessingFinish : Bool;
+    Maintenance : Bool;
+  END_STRUCT;
+  FlowPartStatus : Array[1..32] of Int;
+  FunctionDeSelect : STRUCT
+    A : STRUCT
+      DeSelectPB_Servo380A1 : Bool;
+      FunctionDeSelected_Servo380A1 : Bool;
+      DeSelectPB_Servo381A1 : Bool;
+      FunctionDeSelected_Servo381A1 : Bool;
+      DeSelectPB_Servo383A1 : Bool;
+      FunctionDeSelected_Servo383A1 : Bool;
+      DeSelectPB_Reader800A1 : Bool;
+      FunctionDeSelected_Reader800A1 : Bool;
+      DeSelectPB_Reader801A1 : Bool;
+      FunctionDeSelected_Reader801A1 : Bool;
+      DeSelectPB_Reader802A1 : Bool;
+      FunctionDeSelected_Reader802A1 : Bool;
+      DeSelectPB_Reader803A1 : Bool;
+      FunctionDeSelected_Reader803A1 : Bool;
+      DeSelectPB_Reader804A1 : Bool;
+      FunctionDeSelected_Reader804A1 : Bool;
+    END_STRUCT;
+    B : STRUCT
+      DeSelectPB_Press372A1 : Bool;
+      FunctionDeSelected_Press372A1 : Bool;
+      DeSelectPB_Press375A1 : Bool;
+      FunctionDeSelected_Press375A1 : Bool;
+      DeSelectPB_Reader806A1 : Bool;
+      FunctionDeSelected_Reader806A1 : Bool;
+      DeSelectPB_TestPress372A1 : Bool;
+      FunctionDeSelected_TestPress372A1 : Bool;
+      DeSelectPB_TestPress375A1 : Bool;
+      FunctionDeSelected_TestPress375A1 : Bool;
+    END_STRUCT;
+    C : STRUCT
+      DeSelectPB_Servo382A1 : Bool;
+      FunctionDeSelected_Servo382A1 : Bool;
+      DeSelectPB_ServoIAI : Bool;
+      FunctionDeSelected_ServoIAI : Bool;
+      DeSelectPB_IV3810A1 : Bool;
+      FunctionDeSelected_IV3810A1 : Bool;
+      DeSelectPB_IV3811A1 : Bool;
+      FunctionDeSelected_IV3811A1 : Bool;
+      DeSelectPB_Glue : Bool;
+      FunctionDeSelected_Glue : Bool;
+    END_STRUCT;
+    E : STRUCT
+      DeSelectPB : Bool;
+      FunctionDeSelected : Bool;
+    END_STRUCT;
+    F : STRUCT
+      DeSelectPB_Reader805A1 : Bool;
+      FunctionDeSelected_Reader805A1 : Bool;
+    END_STRUCT;
+    H : STRUCT
+      DeSelectPB : Bool;
+      FunctionDeSelected : Bool;
+    END_STRUCT;
+    J : STRUCT
+      DeSelectPB : Bool;
+      FunctionDeSelected : Bool;
+    END_STRUCT;
+    K : STRUCT
+      DeSelectPB : Bool;
+      FunctionDeSelected : Bool;
+    END_STRUCT;
+    L : STRUCT
+      DeSelectPB : Bool;
+      FunctionDeSelected : Bool;
+    END_STRUCT;
+    MES : STRUCT
+      DeSelectPB : Bool;
+      FunctionDeSelected : Bool;
+    END_STRUCT;
+    Global : STRUCT
+      DeSelectPB_DryMode : Bool;
+      FunctionDeSelected_DryMode : Bool;
+      DeSelectPB_ScanFixture : Bool;
+      FunctionDeSelected_ScanFixture : Bool;
+      Spare_2 : Bool;
+      Spare_3 : Bool;
+      Spare_4 : Bool;
+      Spare_5 : Bool;
+      Spare_6 : Bool;
+      Spare_7 : Bool;
+      Spare_8 : Bool;
+      Spare_9 : Bool;
+      Spare_10 : Bool;
+      Spare_11 : Bool;
+      Spare_12 : Bool;
+      Spare_13 : Bool;
+    END_STRUCT;
+  END_STRUCT;
+  FlowControl_Handshake : Array[1..32] of Struct;
+  FixtureIDCheck : Array[1..16] of "FixtureCheck_UDT";
+  ProcessData : Array[0..5] of "ProcessData";
+END_VAR
+BEGIN
+END_DATA_BLOCK

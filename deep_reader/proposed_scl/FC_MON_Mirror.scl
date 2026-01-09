@@ -1,0 +1,62 @@
+FUNCTION "FC_MON_Mirror" : Void
+VAR_INPUT
+  Enable : Bool;
+END_VAR
+BEGIN
+  IF NOT Enable THEN
+    RETURN;
+  END_IF;
+
+  "DB_OP010_Monitoring".Header.LastUpdate := Sys.DateTime.Read;
+  "DB_OP010_Monitoring".Header.SourceCyclePreviousMs := Sys.ScanTime.CyclePrevious;
+  "DB_OP010_Monitoring".Header.SourceCycleMinMs := Sys.ScanTime.CycleMin;
+  "DB_OP010_Monitoring".Header.SourceCycleMaxMs := Sys.ScanTime.CycleMax;
+
+  "DB_OP010_Monitoring".Sys.Com.AlwaysOff := Sys.COM.AlwaysOFF;
+  "DB_OP010_Monitoring".Sys.Com.AlwaysOn := Sys.COM.AlwaysON;
+  "DB_OP010_Monitoring".Sys.Com.FlashTime100ms := Sys.COM.FlashTime100mS;
+  "DB_OP010_Monitoring".Sys.Com.FlashTime200ms := Sys.COM.FlashTime200mS;
+  "DB_OP010_Monitoring".Sys.Com.FlashTime500ms := Sys.COM.FlashTime500mS;
+  "DB_OP010_Monitoring".Sys.Com.FlashTime1s := Sys.COM.FlashTime1S;
+  "DB_OP010_Monitoring".Sys.Com.FlashTime2s := Sys.COM.FlashTime2S;
+  "DB_OP010_Monitoring".Sys.Com.PlcRestarted := Sys.COM.PLCRestarted;
+
+  "DB_OP010_Monitoring".Sys.DateTime.Set := Sys.DateTime.Set;
+  "DB_OP010_Monitoring".Sys.DateTime.Read := Sys.DateTime.Read;
+  "DB_OP010_Monitoring".Sys.DateTime.Trigger := Sys.DateTime.Trigger;
+  "DB_OP010_Monitoring".Sys.DateTime.ReturnValueRead := Sys.DateTime.ReturnValueRead;
+  "DB_OP010_Monitoring".Sys.DateTime.ReturnValueSet := Sys.DateTime.ReturnValueSet;
+
+  "DB_OP010_Monitoring".Sys.ScanTime.CyclePreviousMs := Sys.ScanTime.CyclePrevious;
+  "DB_OP010_Monitoring".Sys.ScanTime.CycleMinMs := Sys.ScanTime.CycleMin;
+  "DB_OP010_Monitoring".Sys.ScanTime.CycleMaxMs := Sys.ScanTime.CycleMax;
+
+  "DB_OP010_Monitoring".Sys.VersionManagement.ProductLineName := Sys.VersionManagement.ProductLineName;
+  "DB_OP010_Monitoring".Sys.VersionManagement.ProjectNumber := Sys.VersionManagement.ProjectNumber;
+  "DB_OP010_Monitoring".Sys.VersionManagement.PlcIpAddr := Sys.VersionManagement."PLC IP Addr";
+  "DB_OP010_Monitoring".Sys.VersionManagement.HmiIpAddr := Sys.VersionManagement."HMI IP Addr";
+  "DB_OP010_Monitoring".Sys.VersionManagement.PlcVersion := Sys.VersionManagement.PLCVersion;
+  "DB_OP010_Monitoring".Sys.VersionManagement.HmiVersion := Sys.VersionManagement.HMIVersion;
+  "DB_OP010_Monitoring".Sys.VersionManagement.TiaVersion := Sys.VersionManagement."TIA Version";
+  "DB_OP010_Monitoring".Sys.VersionManagement.StationId := Sys.VersionManagement.StationID;
+  "DB_OP010_Monitoring".Sys.VersionManagement.HmiPageId := Sys.VersionManagement.HMIPageID;
+
+  "DB_OP010_Monitoring".Station.ScreenNo := Station_Sys.ScreenNo;
+  "DB_OP010_Monitoring".Station.Auto := Station_Sys.Auto;
+  "DB_OP010_Monitoring".Station.Manual := Station_Sys.Manual;
+
+  "DB_OP010_Monitoring".Station.Interface.CpuFirstCycle := Station_Sys.Interface.CPUFristCycle;
+  "DB_OP010_Monitoring".Station.Interface.SysRun := Station_Sys.Interface.SysRun;
+  "DB_OP010_Monitoring".Station.Interface.Reset := Station_Sys.Interface.Reset;
+  "DB_OP010_Monitoring".Station.Interface.SetInitial := Station_Sys.Interface.SetInitial;
+  "DB_OP010_Monitoring".Station.Interface.InitialRun := Station_Sys.Interface.InitialRun;
+  "DB_OP010_Monitoring".Station.Interface.Ready := Station_Sys.Interface.Ready;
+  "DB_OP010_Monitoring".Station.Interface.ManualMode := Station_Sys.Interface.ManualMode;
+
+  "DB_OP010_Monitoring".Station.Initial.Set := Station_Sys.Initial.Set;
+  "DB_OP010_Monitoring".Station.Initial.Running := Station_Sys.Initial.Running;
+  "DB_OP010_Monitoring".Station.Initial.Ok := Station_Sys.Initial.OK;
+
+  "DB_OP010_Monitoring".Station.AlarmWarningWord := Station_Sys.AlarmWarning;
+END_FUNCTION
+

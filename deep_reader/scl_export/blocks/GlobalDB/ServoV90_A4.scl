@@ -1,0 +1,78 @@
+DATA_BLOCK "ServoV90_A4"
+VAR
+  In : STRUCT
+    iInterlock : Bool;
+    "iManJog+" : Bool;
+    "iManJog-" : Bool;
+    iAutoStart : Bool;
+    iHome : Bool;
+    iCancelTask : Bool;
+    iPauseTask : Bool;
+    iManStart : Bool;
+    iManListStart : Bool;
+    iLimitSwitchActive : Bool;
+    iLimitSoftActive : Bool;
+    iRunningTimeout : Time;
+    iHomingTimeout : Time;
+    iAutoPosition : DInt;
+    iAutoVelocity : Int;
+    iManListPosition : DInt;
+    iManListVelocity : Int;
+    iManListNumber : Int;
+    iManPosition : DInt;
+    iManVelocity : Int;
+    iMode : Int;
+  END_STRUCT;
+  Out : STRUCT
+    oReady : Bool;
+    oWarning : Bool;
+    oError : Bool;
+    oInterlock : Bool;
+    oServoEnable : Bool;
+    oRunning : Bool;
+    oHoming : Bool;
+    oHomeRef : Bool;
+    oServoPosOK : Bool;
+    oErrorCode : Int;
+    oStatus : Int;
+    oActPosition : DInt;
+    oManualListPos : DInt;
+  END_STRUCT;
+  IO : STRUCT
+    ioManEnale : Bool;
+    ioAutoEnale : Bool;
+  END_STRUCT;
+  Spare : STRUCT
+    S : Array[0..100] of Byte;
+  END_STRUCT;
+  Manual : STRUCT
+    Index : Int;
+    Pos : Array[1..20] of Struct;
+  END_STRUCT;
+  Auto : STRUCT
+    Index : Int;
+    Pos : Array[1..20] of Struct;
+  END_STRUCT;
+  Interlock : STRUCT
+    Active : Bool;
+    Case1 : Bool;
+    Case2 : Bool;
+    Case3 : Bool;
+    Case4 : Bool;
+    Case5 : Bool;
+    Case6 : Bool;
+    Case7 : Bool;
+    Case8 : Bool;
+    Case9 : Bool;
+    Case10 : Bool;
+  END_STRUCT;
+  PositionOk : Array[1..20] of Bool;
+  Home_Pos : STRUCT
+    "Home Pos Pls" : Bool;
+    "Arrow indication" : Int;
+    "Process prompt" : Int;
+    "Button prompt" : Int;
+  END_STRUCT;
+END_VAR
+BEGIN
+END_DATA_BLOCK

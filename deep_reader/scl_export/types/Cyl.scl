@@ -1,0 +1,48 @@
+TYPE "Cyl"
+STRUCT
+  In : STRUCT
+    Error : Bool;
+    GoWorkInterlock : Bool;
+    GoHomeInterlock : Bool;
+    WorkPositionSensor : Bool;
+    HomePositionSensor : Bool;
+    ValveType : Bool;
+    ManualOutputType : Bool;
+    FaultTime : Int;
+    OnPositionTime : Int;
+  END_STRUCT;
+  Inout : STRUCT
+    ManualGoWork : Bool;
+    ManualGoHome : Bool;
+    AutoGoWork : Bool;
+    AutoGoHome : Bool;
+    ResetOut : Bool;
+  END_STRUCT;
+  S : STRUCT
+    GoWorkTime : Int;
+    GoHomeTime : Int;
+    WorkFaultTime : Int;
+    HomeFaultTime : Int;
+    BothSensorOnTime : Int;
+    Pulse100mSP : Bool;
+    AutoGoWorkP : Bool;
+    AutoGoHomeP : Bool;
+    GoWork100mSP : Bool;
+    GoHome100mSP : Bool;
+    BothSensorOn100mSP : Bool;
+    Alarm : Bool;
+    spare1 : Bool;
+    spare2 : Byte;
+  END_STRUCT;
+  Out : STRUCT
+    GoWorkPosition : Bool;
+    GoHomePosition : Bool;
+    GoWPButtonActive : Bool;
+    GoHPButtonActive : Bool;
+    GoWorkFault : Bool;
+    GoHomeFault : Bool;
+    SensorPositionFault : Bool;
+    CyNO : Byte;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

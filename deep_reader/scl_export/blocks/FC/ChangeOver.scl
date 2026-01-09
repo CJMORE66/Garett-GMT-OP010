@@ -1,0 +1,74 @@
+FUNCTION "ChangeOver" : Void
+VAR_INPUT
+  iCheckType : String;
+  "iPulse*500ms" : Bool;
+  iReset : Bool;
+END_VAR
+VAR_OUTPUT
+  oPulse : Bool;
+  oEqual : Bool;
+END_VAR
+VAR_IN_OUT
+  ioPreConfigType : String;
+  ioCurrentName : String;
+  iotime : Int;
+  ioTrigger : Bool;
+  ioPosEdg : Bool;
+  ioAlarm : Bool;
+  ioPls : Bool;
+END_VAR
+VAR_TEMP
+  tpPosEdg : Bool;
+  tpPls : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/02_Comm/04-ChangeOver/ChangeOver.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  #tpPls := #ioTrigger AND NOT #ioPls;
+  #ioPls := #ioTrigger;
+  #tpPosEdg := #iPulse*500ms AND NOT #ioPosEdg;
+  #ioPosEdg := #iPulse*500ms;
+  #oEqual := #ioPreConfigType = #iCheckType AND #ioPreConfigType<>;
+  
+  
+  
+  IF (#iReset AND #ioAlarm) OR #oEqual THEN
+      #ioAlarm := ;
+  END_IF;
+  IF NOT #ioTrigger THEN
+      #ChangeOver := ;
+      #iotime := ;
+      
+      RETURN;
+  ELSE
+      IF #tpPosEdg THEN
+          #iotime := #iotime + ;
+      END_IF;
+      IF #iotime >=  THEN
+          #ioAlarm := ;
+          #ioTrigger := ;
+          
+          
+      END_IF;
+      #ChangeOver := ;
+      
+      
+      IF #ioPreConfigType <> #iCheckType THEN
+          #oPulse := #iPulse*500ms;
+          RETURN;
+      ELSE
+          IF #ioCurrentName <> #ioPreConfigType THEN
+              #ioCurrentName := #ioPreConfigType;
+          END_IF;
+          #iotime := ;
+          #ioAlarm := ;
+          #oPulse := ;
+          #ChangeOver := ;
+          #ioTrigger := ;
+           := ;
+      END_IF;
+      
+  END_IF;
+END_FUNCTION

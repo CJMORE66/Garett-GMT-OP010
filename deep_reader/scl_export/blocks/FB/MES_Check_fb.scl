@@ -1,0 +1,38 @@
+FUNCTION_BLOCK "MES Check_fb"
+VAR_INPUT
+  i_AlwaysTrue : Bool;
+  i_MESOnlineOffline : Bool;
+  i_CheckRequest : Bool;
+  i_ResultRequest : Bool;
+  i_Reset : Bool;
+  i_CheckTimeOut : DInt;
+  i_ResultTimeOut : DInt;
+  i_Status : Int;
+END_VAR
+VAR_OUTPUT
+  o_CheckTimeOut : Bool;
+  o_ResultTimeOut : Bool;
+END_VAR
+VAR_IN_OUT
+  ioPLC_MESCheckReq : Bool;
+  ioPLC_MESResultReq : Bool;
+  ioMES_PLCChecOK : Bool;
+  ioMES_PLCChecNG : Bool;
+  ioMES_PLCChecDone : Bool;
+  ioMES_PLCResultOK : Bool;
+  ioMES_PLCResultNG : Bool;
+  ioMES_PLCResultDone : Bool;
+  ioProductStatus : Int;
+END_VAR
+VAR
+  CheckStep : Int;
+  ResultStep : Int;
+  CheckTimeOut : TON_TIME;
+  ResultTimeOut : TON_TIME;
+  Pls : Array[0..20] of Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/11_MES/MES Check_fb.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

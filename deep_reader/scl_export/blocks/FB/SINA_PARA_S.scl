@@ -1,0 +1,1264 @@
+FUNCTION_BLOCK "SINA_PARA_S"
+VAR_INPUT
+  Start : Bool;
+  ReadWrite : Bool;
+  Parameter : Int;
+  Index : Int;
+  ValueWrite1 : Real;
+  ValueWrite2 : DInt;
+  AxisNo : Byte;
+  hardwareId : HW_IO;
+END_VAR
+VAR_OUTPUT
+  Ready : Bool;
+  Busy : Bool;
+  Done : Bool;
+  ValueRead1 : Real;
+  ValueRead2 : DInt;
+  Format : Byte;
+  ErrorNo : Word;
+  Error : Bool;
+  ErrorId : DWord;
+  DiagId : Word;
+END_VAR
+VAR
+  sbWrError : Bool;
+  sbWrDone : Bool;
+  sbRdError : Bool;
+  sbWrBusy : Bool;
+  sbRdBusy : Bool;
+  sbWrStart : Bool;
+  sbRdStart : Bool;
+  sbWrStart1 : Bool;
+  sbRdStart1 : Bool;
+  sbWrStart2 : Bool;
+  sbRdStart2 : Bool;
+  sbStart : Bool;
+  sbReady : Bool;
+  sbRead : Bool;
+  sbWrite : Bool;
+  sbParaNo : Bool;
+  sbBusy : Bool;
+  sbError : Bool;
+  sbDone : Bool;
+  syFormat : Byte;
+  syAxisNo : Byte;
+  siReqRef : Int;
+  siErrorId : Int;
+  siErrorCount : Int;
+  siMaxErrCount : Int;
+  swParaError : Word;
+  sxReqParaMulti : STRUCT
+    sxHeader : STRUCT
+      syReqRef : Byte;
+      syReqId : Byte;
+      syAxisNo : Byte;
+      syParaNo : Byte;
+    END_STRUCT;
+    sxParaAdress : STRUCT
+      syAttr : Byte;
+      syElemNo : Byte;
+      siParaNo : Int;
+      siIndex : Int;
+    END_STRUCT;
+  END_STRUCT;
+  sxChaParaMulti : STRUCT
+    sxHeader : STRUCT
+      syReqRef : Byte;
+      syReqId : Byte;
+      syAxisNo : Byte;
+      syParaNo : Byte;
+    END_STRUCT;
+    sxData : Array[1..12] of Byte;
+  END_STRUCT;
+  sxRespParaMulti : STRUCT
+    sxHeader : STRUCT
+      syReqRef : Byte;
+      syReqId : Byte;
+      syAxisNo : Byte;
+      syParaNo : Byte;
+    END_STRUCT;
+    sxData : Array[1..6] of Byte;
+  END_STRUCT;
+  RDREC_1 : RDREC;
+  WRREC_1 : WRREC;
+  siLenHeader : Int;
+  siLenParaMulti : Int;
+  siLenChaPara : Int;
+END_VAR
+VAR_TEMP
+  piCount : Int;
+  piPointer : Int;
+  piLenTele : Int;
+  piRetSFC : Int;
+  pwWordHigh : Word;
+  pwWordLow : Word;
+  pwWord1 : Word;
+  pwWord2 : Word;
+  pdDWordHigh : DWord;
+  pdDWordLow : DWord;
+  pdStatus : DWord;
+  pbValidSFB : Bool;
+  piLenSFB : UInt;
+  pwErrorNo : Word;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/25_V90/V90_Standard/SINA_PARA_S.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  IF NOT #sbBusy THEN
+    #sbParaNo := ;
+    #syAxisNo := #AxisNo;
+  END_IF;
+  
+  IF #Start AND NOT #sbStart AND NOT #sbBusy THEN
+    
+    #sbReady := ;
+    #sbError := ;
+    #sbBusy := ;
+    
+    
+    IF NOT #ReadWrite THEN
+      #sbRead := ;
+      #sbWrStart := ;
+      #sbRdStart := ;
+      
+      #sbWrite := ;
+      #sbWrStart1 := ;
+      #sbRdStart1 := ;
+      #sbWrStart2 := ;
+      #sbRdStart2 := ;
+      
+      
+      #siReqRef := #siReqRef + ;
+      
+      
+      IF #siReqRef >  THEN
+        #siReqRef := ;
+      END_IF;
+      
+      
+    ELSE
+      #sbWrite := ;
+      #sbWrStart1 := ;
+      #sbRdStart1 := ;
+      #sbWrStart2 := ;
+      #sbRdStart2 := ;
+      
+      #sbRead := ;
+      #sbWrStart := ;
+      #sbRdStart := ;
+      
+      
+      #siReqRef := #siReqRef + ;
+      
+      
+      IF #siReqRef >  THEN
+        #siReqRef := ;
+      END_IF;
+    END_IF;
+    
+    
+    IF (#siErrorId = ) OR (#siErrorId = ) THEN
+      #sbError := ;
+      #siErrorId := ;
+    END_IF;
+  END_IF;
+  
+  #sbStart := #Start;
+  
+  IF NOT #Start THEN
+    
+    #siErrorCount := ;
+    
+    #sbRead := ;
+    #sbWrStart := ;
+    #sbRdStart := ;
+    
+    #sbWrite := ;
+    #sbWrStart1 := ;
+    #sbRdStart1 := ;
+    #sbWrStart2 := ;
+    #sbRdStart2 := ;
+    
+    
+    IF #sbBusy THEN
+      #sbError := ;
+      #siErrorId := ;
+      #sbBusy := ;
+    END_IF;
+  END_IF;
+  
+  IF #sbParaNo AND #sbRead AND NOT #sbWrite THEN
+    
+    
+    IF #sbWrStart THEN
+      
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siParaNo := ;
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siIndex := ;
+      
+      
+      
+      ..#sxReqParaMulti.sxHeader.syReqRef := (#siReqRef);
+      
+      
+      ..#sxReqParaMulti.sxHeader.syReqId := ;
+      
+      
+      ..#sxReqParaMulti.sxHeader.syAxisNo := #syAxisNo;
+      
+      
+      ..#sxReqParaMulti.sxHeader.syParaNo := ;
+      
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siParaNo := #Parameter;
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siIndex := #Index;
+      
+      
+      #piLenTele := #siLenHeader + #siLenParaMulti;
+      #WRREC_1( := ,                                
+                := #hardwareId,                         
+                := ,                                  
+                := (#piLenTele),             
+                => #sbWrDone,                           
+                => #sbWrBusy,                           
+                => #sbWrError,                          
+                => #pdStatus,                           
+                := #sxReqParaMulti);                    
+      
+      
+      #sbBusy := #sbWrBusy;
+      #sbDone := #sbWrDone;
+      
+      
+      IF #sbWrError THEN
+        
+        
+        #pwWord1 := (( := (#pdStatus AND ),  := ));
+        
+        
+        #siErrorId := ;
+        #DiagId := #pwWord1;
+        
+        
+        IF NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) THEN
+          
+          
+          #sbWrStart := ;
+          #sbRdStart := ;
+          #sbRead := ;
+          
+          
+          #sbError := #sbWrError;
+          
+        ELSE
+          
+          IF #siErrorCount = #siMaxErrCount THEN
+            
+            
+            #sbWrStart := ;
+            #sbRdStart := ;
+            #sbRead := ;
+            
+            
+            #siErrorCount := ;
+            
+            
+            
+            #sbError := #sbWrError;
+            
+            
+          ELSE
+            #siErrorCount := #siErrorCount + ;
+          END_IF;
+        END_IF;
+        
+        
+      ELSIF NOT #sbWrBusy AND #sbWrDone THEN
+        
+        
+        IF #siErrorId =  THEN
+          #siErrorId := ;
+          #sbError := ;
+        END_IF;
+        
+        #DiagId := ;
+        
+        
+        #sbWrStart := ;
+        #sbRdStart := ;
+      END_IF;
+    END_IF; 
+    
+    
+    IF #sbRdStart THEN
+      
+      
+      ..#sxRespParaMulti.sxHeader.syReqRef := ;
+      ..#sxRespParaMulti.sxHeader.syReqId := ;
+      ..#sxRespParaMulti.sxHeader.syAxisNo := ;
+      ..#sxRespParaMulti.sxHeader.syParaNo := ;
+      
+      FOR #piCount :=  TO #siLenParaMulti DO
+        .[#piCount] := ;
+      END_FOR;
+      
+      
+      #piLenTele := #siLenHeader + #siLenParaMulti;
+      #RDREC_1( := ,                                
+                := #hardwareId,                         
+                := ,                                  
+                := (#piLenTele),             
+                => #pbValidSFB,                         
+                => #sbRdBusy,                           
+                => #sbRdError,                          
+                => #pdStatus,                           
+                => #piLenSFB,                           
+                := #sxRespParaMulti);                   
+      
+      
+      #sbBusy := #sbRdBusy;
+      #sbDone := #pbValidSFB;
+      
+      
+      IF #sbRdError THEN
+        
+        #pwWord1 := (( := (#pdStatus AND ),  := ));
+        
+        
+        #siErrorId := ;
+        #DiagId := #pwWord1;
+        
+        
+        IF NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) THEN
+          
+          
+          #sbWrStart := ;
+          #sbRdStart := ;
+          #sbRead := ;
+          
+          
+          #sbError := #sbRdError;
+          
+        ELSE
+          
+          IF #siErrorCount = #siMaxErrCount THEN
+            
+            
+            #sbWrStart := ;
+            #sbRdStart := ;
+            #sbRead := ;
+            
+            
+            #siErrorCount := ;
+            
+            
+            
+            #sbError := #sbRdError;
+            
+            
+          ELSE
+            #siErrorCount := #siErrorCount + ;
+          END_IF;
+        END_IF;
+        
+        
+      ELSIF NOT (#siReqRef = (..#sxRespParaMulti.sxHeader.syReqRef)) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart := ;
+        #sbRdStart := ;
+        #sbRead := ;
+        
+        
+      ELSIF NOT (..#sxRespParaMulti.sxHeader.syReqId =  OR ..#sxRespParaMulti.sxHeader.syReqId = ) AND
+        NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart := ;
+        #sbRdStart := ;
+        #sbRead := ;
+        
+        
+      ELSIF NOT (..#sxRespParaMulti.sxHeader.syParaNo = ) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart := ;
+        #sbRdStart := ;
+        #sbRead := ;
+        
+        
+      ELSIF NOT (#syAxisNo = ..#sxRespParaMulti.sxHeader.syAxisNo) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart := ;
+        #sbRdStart := ;
+        #sbRead := ;
+        
+        
+      ELSIF NOT #sbRdBusy AND #pbValidSFB THEN
+        
+        
+        
+        
+        #syFormat := .[];
+        
+        
+        IF ((.[]) = ) THEN
+          
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          
+          #sbError := ;
+          
+          
+          #ErrorNo := #pwWordHigh XOR #pwWordLow;
+          
+          
+          #swParaError := #swParaError OR ;
+          
+          
+        ELSIF (.[] = ) OR (.[] = ) THEN
+          
+          
+          #ValueRead1 := ((.[]));
+          #ValueRead2 := ;
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSIF (.[] = ) THEN
+          
+          
+          #ValueRead1 := ((.[]));
+          #ValueRead2 := ;
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSIF (.[] = ) OR (.[] = )
+          OR (.[] = ) THEN
+          
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord1 := #pwWordHigh XOR #pwWordLow;
+          
+          
+          #ValueRead1 := ((#pwWord1));
+          #ValueRead2 := ;
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSIF (.[] = ) THEN
+          
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord1 := #pwWordHigh XOR #pwWordLow;
+          
+          
+          #ValueRead1 := ((#pwWord1));
+          #ValueRead2 := ;
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSIF (.[] = ) OR (.[] = ) OR
+          (.[] = ) THEN
+          
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord1 := #pwWordHigh XOR #pwWordLow;
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord2 := #pwWordHigh XOR #pwWordLow;
+          
+          #pdDWordHigh := ( := (#pwWord1),  := );
+          #pdDWordLow := (#pwWord2);
+          
+          
+          #ValueRead1 := ;
+          #ValueRead2 := (#pdDWordHigh XOR #pdDWordLow);
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSIF (.[] = ) THEN
+          
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord1 := #pwWordHigh XOR #pwWordLow;
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord2 := #pwWordHigh XOR #pwWordLow;
+          
+          #pdDWordHigh := ( := (#pwWord1),  := );
+          #pdDWordLow := (#pwWord2);
+          
+          
+          #ValueRead1 := ;
+          #ValueRead2 := (#pdDWordHigh XOR #pdDWordLow);
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSIF (.[] = ) THEN
+          
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord1 := #pwWordHigh XOR #pwWordLow;
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+          #pwWord2 := #pwWordHigh XOR #pwWordLow;
+          
+          #pdDWordHigh := ( := (#pwWord1),  := );
+          #pdDWordLow := (#pwWord2);
+          
+          
+          #ValueRead1 := (#pdDWordHigh XOR #pdDWordLow);
+          #ValueRead2 := ;
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSE
+          
+          #siErrorId := ;
+          #sbError := ;
+          #sbDone := ;
+          
+          #swParaError := #swParaError OR ;
+          
+        END_IF;
+        
+        
+        IF (#siErrorId = ) OR (#siErrorId = ) THEN
+          #siErrorId := ;
+          #sbError := ;
+        END_IF;
+        
+        #DiagId := ;
+        
+        
+        #sbRdStart := ;
+        #sbRead := ;
+      END_IF; 
+    END_IF; 
+  END_IF; 
+  
+  IF #sbParaNo AND NOT #sbRead AND #sbWrite THEN
+    
+    
+    
+    
+    
+    
+    IF #sbWrStart1 THEN
+      
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siParaNo := ;
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siIndex := ;
+      
+      
+      
+      ..#sxReqParaMulti.sxHeader.syReqRef := (#siReqRef);
+      
+      
+      ..#sxReqParaMulti.sxHeader.syReqId := ;
+      
+      
+      ..#sxReqParaMulti.sxHeader.syAxisNo := #syAxisNo;
+      
+      
+      ..#sxReqParaMulti.sxHeader.syParaNo := ;
+      
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siParaNo := #Parameter;
+      
+      
+      ..#sxReqParaMulti.sxParaAdress.siIndex := #Index;
+      
+      
+      #piLenTele := #siLenHeader + #siLenParaMulti;
+      #WRREC_1( := ,                                
+                := #hardwareId,                         
+                := ,                                  
+                := (#piLenTele),             
+                => #sbWrDone,                           
+                => #sbWrBusy,                           
+                => #sbWrError,                          
+                => #pdStatus,                           
+                := #sxReqParaMulti);                    
+      
+      
+      #sbBusy := #sbWrBusy;
+      #sbDone := #sbWrDone;
+      
+      
+      IF #sbWrError THEN
+        
+        
+        #pwWord1 := (( := (#pdStatus AND ),  := ));
+        
+        
+        #siErrorId := ;
+        #DiagId := #pwWord1;
+        
+        
+        IF NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) THEN
+          
+          
+          #sbWrStart1 := ;
+          #sbRdStart1 := ;
+          #sbWrite := ;
+          
+          
+          #sbError := #sbWrError;
+          
+        ELSE
+          
+          IF #siErrorCount = #siMaxErrCount THEN
+            
+            
+            #sbWrStart1 := ;
+            #sbRdStart1 := ;
+            #sbWrite := ;
+            
+            
+            #siErrorCount := ;
+            
+            
+            
+            #sbError := #sbWrError;
+            
+          ELSE
+            #siErrorCount := #siErrorCount + ;
+          END_IF;
+        END_IF;
+        
+        
+      ELSIF NOT #sbWrBusy AND #sbWrDone THEN
+        
+        
+        IF (#siErrorId = ) THEN
+          #siErrorId := ;
+          #sbError := ;
+        END_IF;
+        
+        #DiagId := ;
+        
+        
+        #sbWrStart1 := ;
+        #sbRdStart1 := ;
+      END_IF;
+    END_IF; 
+    
+    
+    IF #sbRdStart1 THEN
+      
+      
+      ..#sxRespParaMulti.sxHeader.syReqRef := ;
+      ..#sxRespParaMulti.sxHeader.syReqId := ;
+      ..#sxRespParaMulti.sxHeader.syAxisNo := ;
+      ..#sxRespParaMulti.sxHeader.syParaNo := ;
+      
+      FOR #piCount :=  TO #siLenParaMulti DO
+        .[#piCount] := ;
+      END_FOR;
+      
+      
+      #piLenTele := #siLenHeader + #siLenParaMulti;
+      #RDREC_1( := ,                                
+                := #hardwareId,                         
+                := ,                                  
+                := (#piLenTele),             
+                => #pbValidSFB,                         
+                => #sbRdBusy,                           
+                => #sbRdError,                          
+                => #pdStatus,                           
+                => #piLenSFB,                           
+                := #sxRespParaMulti);                   
+      
+      
+      #sbBusy := #sbRdBusy;
+      #sbDone := #pbValidSFB;
+      
+      
+      IF #sbRdError THEN
+        
+        #pwWord1 := (( := (#pdStatus AND ),  := ));
+        
+        
+        #siErrorId := ;
+        #DiagId := #pwWord1;
+        
+        
+        IF NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) THEN
+          
+          
+          #sbWrStart1 := ;
+          #sbRdStart1 := ;
+          #sbWrite := ;
+          
+          
+          #sbError := #sbRdError;
+          
+        ELSE
+          
+          IF #siErrorCount = #siMaxErrCount THEN
+            
+            
+            #sbWrStart1 := ;
+            #sbRdStart1 := ;
+            #sbWrite := ;
+            
+            
+            #siErrorCount := ;
+            
+            
+            
+            #sbError := #sbRdError;
+            
+            
+          ELSE
+            #siErrorCount := #siErrorCount + ;
+          END_IF;
+        END_IF;
+        
+        
+      ELSIF NOT (#siReqRef = (..#sxRespParaMulti.sxHeader.syReqRef)) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart1 := ;
+        #sbRdStart1 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT (..#sxRespParaMulti.sxHeader.syReqId =  OR ..#sxRespParaMulti.sxHeader.syReqId = ) AND
+        NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart1 := ;
+        #sbRdStart1 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT (..#sxRespParaMulti.sxHeader.syParaNo = ) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart1 := ;
+        #sbRdStart1 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT (#syAxisNo = ..#sxRespParaMulti.sxHeader.syAxisNo) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart1 := ;
+        #sbRdStart1 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT #sbRdBusy AND #pbValidSFB THEN
+        
+        
+        
+        #syFormat := .[];
+        
+        
+        IF ((.[]) = ) THEN
+          
+          
+          #pwWordHigh := ( := (.[]),  := );
+          #pwWordLow := (.[]);
+              
+          #sbError := ;
+              
+          
+          #ErrorNo := #pwWordHigh XOR #pwWordLow;
+          
+          
+          #swParaError := #swParaError OR ;
+          
+          
+        ELSIF (.[] = ) OR
+          (.[] = ) OR (.[] = ) THEN
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSIF (.[] = ) OR (.[] = )
+          OR (.[] = ) OR (.[] = ) THEN
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+          
+        ELSIF (.[] = ) OR (.[] = ) OR
+          (.[] = ) OR (.[] = ) OR
+          (.[] = ) THEN
+          
+          
+          #ErrorNo := ;
+          
+          
+          #swParaError := #swParaError AND ;
+          
+          
+        ELSE
+          
+          #siErrorId := ;
+          #sbError := ;
+          #sbDone := ;
+          
+          #swParaError := #swParaError OR ;
+          
+        END_IF;
+        
+        
+        IF (#siErrorId = ) OR (#siErrorId = ) THEN
+          #siErrorId := ;
+          #sbError := ;
+        END_IF;
+        
+        #DiagId := ;
+        
+        
+        #sbRdStart1 := ;
+        
+        
+        IF (#swParaError = ) THEN
+          #sbWrStart2 := ;
+        ELSE
+          #sbWrStart2 := ;
+        END_IF;
+      END_IF; 
+    END_IF; 
+    
+    
+    IF #sbWrStart2 THEN
+      
+      
+      FOR #piCount :=  TO #siLenChaPara DO
+        
+        .[#piCount] := ;
+      END_FOR;
+      
+      
+      
+      ..#sxChaParaMulti.sxHeader.syReqRef := (#siReqRef);
+      
+      
+      ..#sxChaParaMulti.sxHeader.syReqId := ;
+      
+      
+      ..#sxChaParaMulti.sxHeader.syAxisNo := #syAxisNo;
+      
+      
+      ..#sxChaParaMulti.sxHeader.syParaNo := ;
+      
+      
+      
+      .[] := ;
+      
+      
+      .[] := ;
+      
+      
+      .[] := (#Parameter);
+      .[] := (( := (#Parameter),  := ));
+      
+      
+      .[] := (#Index);
+      .[] := (( := (#Index),  := ));
+      
+      
+      
+      .[] := #syFormat;
+      
+      
+      .[] := ;
+      
+      
+      IF (#syFormat = ) OR
+        (#syFormat = ) OR (#syFormat = ) THEN
+        
+        .[] := ((((#ValueWrite1))));
+        .[] := ;  
+        
+        
+      ELSIF (#syFormat = ) OR (#syFormat = ) OR
+        (#syFormat = ) OR (#syFormat = ) THEN
+        
+        .[] := ((((#ValueWrite1))));
+        .[] := ((( := ((#ValueWrite1)),  := )));
+        
+        
+      ELSIF (#syFormat = ) OR (#syFormat = ) OR
+        (#syFormat = ) OR (#syFormat = ) THEN
+        
+        .[] := (((#ValueWrite2)));
+        .[] := ((( := (#ValueWrite2),  := )));
+        .[] := ((( := (#ValueWrite2),  := )));
+        .[] := ((( := (#ValueWrite2),  := )));
+        
+        
+        
+      ELSIF (#syFormat = ) THEN
+        
+        .[] := (((#ValueWrite1)));
+        .[] := ((( := (#ValueWrite1),  := )));
+        .[] := ((( := (#ValueWrite1),  := )));
+        .[] := ((( := (#ValueWrite1),  := )));
+        
+      END_IF;
+      
+      
+      #piLenTele := #siLenHeader + #siLenChaPara;
+      #WRREC_1( := ,                                
+                := #hardwareId,                         
+                := ,                                  
+                := (#piLenTele),             
+                => #sbWrDone,                           
+                => #sbWrBusy,                           
+                => #sbWrError,                          
+                => #pdStatus,                           
+                := #sxChaParaMulti);                    
+      
+      
+      #sbBusy := #sbWrBusy;
+      #sbDone := #sbWrDone;
+      
+      
+      IF #sbWrError THEN
+        
+        #pwWord1 := (( := (#pdStatus AND ),  := ));
+        
+        
+        #siErrorId := ;
+        #sbError := ;
+        #DiagId := #pwWord1;
+        
+        
+        IF NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) THEN
+          
+          
+          #sbWrStart2 := ;
+          #sbRdStart2 := ;
+          #sbWrite := ;
+          
+          
+          #sbError := #sbWrError;
+          
+        ELSE
+          
+          IF #siErrorCount = #siMaxErrCount THEN
+            
+            
+            #sbWrStart2 := ;
+            #sbRdStart2 := ;
+            #sbWrite := ;
+            
+            
+            #siErrorCount := ;
+            
+            
+            
+            #sbError := #sbWrError;
+            
+            
+          ELSE
+            #siErrorCount := #siErrorCount + ;
+          END_IF;
+        END_IF;
+        
+        
+      ELSIF NOT #sbWrBusy AND #sbWrDone THEN
+        
+        #DiagId := ;
+        
+        
+        #sbWrStart2 := ;
+        #sbRdStart2 := ;
+      END_IF;
+    END_IF; 
+    
+    
+    IF #sbRdStart2 THEN
+      
+      
+      ..#sxRespParaMulti.sxHeader.syReqRef := ;
+      ..#sxRespParaMulti.sxHeader.syReqId := ;
+      ..#sxRespParaMulti.sxHeader.syAxisNo := ;
+      ..#sxRespParaMulti.sxHeader.syParaNo := ;
+      
+      FOR #piCount :=  TO #siLenParaMulti DO
+        .[#piCount] := ;
+      END_FOR;
+      
+      
+      #piLenTele := #siLenHeader + #siLenParaMulti;
+      #RDREC_1( := ,                                
+                := #hardwareId,                         
+                := ,                                  
+                := (#piLenTele),             
+                => #pbValidSFB,                         
+                => #sbRdBusy,                           
+                => #sbRdError,                          
+                => #pdStatus,                           
+                => #piLenSFB,                           
+                := #sxRespParaMulti);                   
+      
+      
+      #sbBusy := #sbRdBusy;
+      #sbDone := #pbValidSFB;
+      
+      
+      IF #sbRdError THEN
+        
+        #pwWord1 := (( := (#pdStatus AND ),  := ));
+        
+        
+        #siErrorId := ;
+        #DiagId := #pwWord1;
+        
+        
+        IF NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND NOT (#pwWord1 = ) AND
+          NOT (#pwWord1 = ) THEN
+          
+          
+          #sbWrStart2 := ;
+          #sbRdStart2 := ;
+          #sbWrite := ;
+          
+          
+          #sbError := #sbRdError;
+          
+        ELSE
+          
+          IF #siErrorCount = #siMaxErrCount THEN
+            
+            
+            #sbWrStart2 := ;
+            #sbRdStart2 := ;
+            #sbWrite := ;
+            
+            
+            #siErrorCount := ;
+            
+            
+            
+            #sbError := #sbRdError;
+            
+            
+          ELSE
+            #siErrorCount := #siErrorCount + ;
+          END_IF;
+        END_IF;
+        
+        
+      ELSIF NOT (#siReqRef = (..#sxRespParaMulti.sxHeader.syReqRef)) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart2 := ;
+        #sbRdStart2 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT (..#sxRespParaMulti.sxHeader.syReqId =  OR ..#sxRespParaMulti.sxHeader.syReqId = ) AND
+        NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart2 := ;
+        #sbRdStart2 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT (..#sxRespParaMulti.sxHeader.syParaNo = ) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart2 := ;
+        #sbRdStart2 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT (#syAxisNo = ..#sxRespParaMulti.sxHeader.syAxisNo) AND NOT #sbRdBusy AND #pbValidSFB THEN
+        #siErrorId := ;
+        #sbError := ;
+        #sbDone := ;
+        
+        
+        #sbWrStart2 := ;
+        #sbRdStart2 := ;
+        #sbWrite := ;
+        
+        
+      ELSIF NOT #sbRdBusy AND #pbValidSFB THEN
+        
+        
+        IF ..#sxRespParaMulti.sxHeader.syReqId =  THEN
+          
+          
+          
+          IF ((.[]) = ) THEN
+            
+            
+            
+            #pwWordHigh := ( := (.[]),  := );
+            #pwWordLow := (.[]);
+            #pwWord1 := #pwWordHigh XOR #pwWordLow;
+              
+            #sbError := ;
+              
+            
+            #ErrorNo := ;
+            
+            #ErrorNo := #pwWord1;
+            
+            
+            #swParaError := #swParaError OR ;
+            
+          ELSE
+            
+            
+            #swParaError := #swParaError AND ;
+            
+            
+            #ErrorNo := ;
+          END_IF;
+        END_IF; 
+        
+        
+        IF (#siErrorId = ) OR (#siErrorId = ) THEN
+          #siErrorId := ;
+          #sbError := ;
+        END_IF;
+        
+        #DiagId := ;
+        
+        
+        #sbRdStart2 := ;
+        #sbWrite := ;
+        
+      END_IF; 
+    END_IF; 
+  END_IF; 
+  #pdDWordHigh := ( := (#siErrorId),  := );
+  #pdDWordLow := (#swParaError);
+  
+  #ErrorId := #pdDWordHigh XOR #pdDWordLow;
+  
+  #Busy := #sbBusy;
+  #Error := #sbError;
+  #Format := #syFormat;
+  
+  #Done := #sbDone;
+  
+  IF ((#Error OR #Done) AND NOT #sbReady) THEN
+    #Ready := ;
+    #sbReady := ;
+  ELSE
+    #Ready := ;
+  END_IF;
+END_FUNCTION_BLOCK

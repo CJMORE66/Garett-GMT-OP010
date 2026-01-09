@@ -1,0 +1,282 @@
+FUNCTION_BLOCK "V90_Servo"
+VAR
+  Servo_380A1 : "fbV90Ctrl";
+  Servo_381A1 : "fbV90Ctrl";
+  Servo_382A1 : "fbV90Ctrl";
+  Servo_383A1 : "fbV90Ctrl";
+  Servo1 : "SevroStart&PosCheck";
+  Servo2 : "SevroStart&PosCheck";
+  Servo3 : "SevroStart&PosCheck";
+  Servo4 : "SevroStart&PosCheck";
+  Servo2SafetyPos : DInt;
+  Servo4SafetyPos : DInt;
+  IEC_Timer_0_Instance : TON_TIME;
+  P : Array[0..10] of Bool;
+END_VAR
+VAR_TEMP
+  Sevro1ActPos : Real;
+  Sevro1StartList : Bool;
+  Sevro2ActPos : Real;
+  Sevro2StartList : Bool;
+  Sevro3ActPos : Real;
+  Sevro3StartList : Bool;
+  Sevro4ActPos : Real;
+  Sevro4StartList : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/25_V90/V90_Servo.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  IF ..Station_Sys.Status.Run THEN
+       ..[]. := ..[]. :=(..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+  END_IF;
+  // Network 2
+  IF ..Station_Sys.Status.Run THEN
+       ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+  END_IF;
+  // Network 3
+  IF ..Station_Sys.Status.Run THEN
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+      
+       ..[]. := ..[]. := (..[]..*);
+       ..[]. := ..[]. := ..[]..;
+  END_IF;
+  // Network 4
+  IF ..Station_Sys.Status.Run THEN
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+      
+      ..[]. := ..[]. := (..[]..*);
+      ..[]. := ..[]. := ..[]..;
+  END_IF;
+  // Network 5
+  FOR .[]. :=  TO  BY  DO
+      .[]..[.[].]. := ..[.[].].;
+      .[]..[.[].]. := ..[.[].].;
+      
+      .[]..[.[].]. := ..[.[].].;
+      .[]..[.[].]. := ..[.[].].;
+      
+      .[]..[.[].]. := ..[.[].].;
+      .[]..[.[].]. := ..[.[].].;
+      
+      .[]..[.[].]. := ..[.[].].;
+      .[]..[.[].]. := ..[.[].].;
+      
+  END_FOR;
+     
+  
+  ( :=   ..ServoV90_A1.Out.oHomeRef,
+                             := ,
+                             := ..Station_Sys.Cmd.Reset,
+                            :=..ServoV90_A1.In.iInterlock,
+                             :=..ServoV90_A1.Out.oActPosition,
+                             := ,
+                             := ,
+                             := ,
+                            :=.[].,
+                             => #Sevro1StartList,
+                             := .[].,
+                             := .[].);
+                  
+  IF .[]. =  THEN
+     .[].:=  ;
+  END_IF;
+                  
+   
+                  
+                  
+                  
+                  
+                 ..ServoV90_A1.Auto.Index := .[].;
+                  
+  
+                  ..ServoV90_A1.In.iAutoStart := #Sevro1StartList;
+                  
+                  
+                  
+  
+  ( := ..ServoV90_A2.Out.oHomeRef,
+             := ,
+             := ..Station_Sys.Cmd.Reset,
+             := ..ServoV90_A2.In.iInterlock,
+             := ..ServoV90_A2.Out.oActPosition,
+             := ,
+             := ,
+             := ,
+             := .[].,
+             => #Sevro2StartList,
+             := .[].,
+             := .[].);
+  IF .[]. =  THEN
+      .[]. := ;
+  END_IF;
+  
+  
+  
+  
+  ..ServoV90_A2.Auto.Index := .[].;
+  
+  ..ServoV90_A2.In.iAutoStart := #Sevro2StartList;
+                  
+                  
+  
+  
+  ( := ..ServoV90_A3.Out.oHomeRef,
+             := ,
+             := ..Station_Sys.Cmd.Reset,
+             := ..ServoV90_A3.In.iInterlock,
+             := ..ServoV90_A3.Out.oActPosition,
+             := ,
+             := ,
+             := ,
+             := .[].,
+             => #Sevro3StartList,
+             := .[].,
+             := .[].);
+  IF .[]. =  THEN
+      .[]. := ;
+  END_IF;
+  
+  
+  
+  
+  ..ServoV90_A3.Auto.Index := .[].;
+  
+  ..ServoV90_A3.In.iAutoStart := #Sevro3StartList;
+  
+  
+  ( := ..ServoV90_A4.Out.oHomeRef,
+             := ,
+             := ..Station_Sys.Cmd.Reset,
+             := ..ServoV90_A4.In.iInterlock,
+             := ..ServoV90_A4.Out.oActPosition,
+             := ,
+             := ,
+             := ,
+             := .[].,
+             => #Sevro4StartList,
+             := .[].,
+             := .[].);
+  IF .[]. =  THEN
+      .[]. := ;
+  END_IF;
+  
+  
+  
+  
+  ..ServoV90_A4.Auto.Index := .[].;
+  
+  ..ServoV90_A4.In.iAutoStart := #Sevro4StartList;
+  // Network 6
+  IF FirstScan THEN
+      ..ServoV90_A1.IO.ioManEnale := ;
+      ..ServoV90_A2.IO.ioManEnale := ;
+      ..ServoV90_A3.IO.ioManEnale := ;
+      ..ServoV90_A4.IO.ioManEnale := ;
+  END_IF;
+END_FUNCTION_BLOCK

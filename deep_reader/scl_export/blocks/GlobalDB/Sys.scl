@@ -1,0 +1,43 @@
+DATA_BLOCK "Sys"
+VAR
+  COM : STRUCT
+    AlwaysOFF : Bool;
+    AlwaysON : Bool;
+    FlashTime100mS : Bool;
+    FlashTime200mS : Bool;
+    FlashTime500mS : Bool;
+    FlashTime1S : Bool;
+    FlashTime2S : Bool;
+    SpareBit : Bool;
+    PLCRestarted : Bool;
+  END_STRUCT;
+  SpareB1 : Array[0..7] of Byte;
+  DateTime : STRUCT
+    Set : Date_And_Time;
+    Read : Date_And_Time;
+    Trigger : Bool;
+    ReturnValueRead : Int;
+    ReturnValueSet : Int;
+  END_STRUCT;
+  SpareB2 : Array[0..17] of Byte;
+  ScanTime : STRUCT
+    CyclePrevious : Int;
+    CycleMax : Int;
+    CycleMin : Int;
+  END_STRUCT;
+  RETVALI : Int;
+  RETVALW : Word;
+  VersionManagement : STRUCT
+    ProductLineName : String;
+    ProjectNumber : String[20];
+    "PLC IP Addr" : Array[0..3] of UInt;
+    "HMI IP Addr" : Array[0..3] of UInt;
+    PLCVersion : Array[0..1] of UInt;
+    HMIVersion : Array[0..1] of UInt;
+    "TIA Version" : String;
+    StationID : Int;
+    HMIPageID : Int;
+  END_STRUCT;
+END_VAR
+BEGIN
+END_DATA_BLOCK

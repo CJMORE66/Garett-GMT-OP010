@@ -1,0 +1,34 @@
+TYPE "ST_KeyenceSR1000"
+STRUCT
+  Common : STRUCT
+    nMode : Int;
+    bError : Bool;
+    bWarning : Bool;
+    bReset : Bool;
+    bDone : Bool;
+    bOK : Bool;
+    bNG : Bool;
+    bScreenActive : Bool;
+    nErrorNo : Int;
+    nWarningNo : Int;
+  END_STRUCT;
+  In : STRUCT
+    bError : Bool;
+    bBusy : Bool;
+    bReadComplete : Bool;
+    bReadFailure : Bool;
+    nReadResultCode : Int;
+    nDataSize : UInt;
+    aData : Array[1..128] of Char;
+  END_STRUCT;
+  Out : STRUCT
+    bErrorClear : Bool;
+    bReadRequest : Bool;
+    bReadComlpleteClear : Bool;
+  END_STRUCT;
+  Pare : STRUCT
+    tMaxProcessTime : Time;
+  END_STRUCT;
+  RecordCode : String[128];
+END_STRUCT;
+END_TYPE

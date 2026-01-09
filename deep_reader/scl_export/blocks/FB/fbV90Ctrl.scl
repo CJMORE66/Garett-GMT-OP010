@@ -1,0 +1,107 @@
+FUNCTION_BLOCK "fbV90Ctrl"
+VAR_INPUT
+  iSysRun : Bool;
+  iReset : Bool;
+  iEstop : Bool;
+  iAuto : Bool;
+  iManual : Bool;
+  iConnect : Bool;
+  iStep : Bool;
+  iInterlock : Bool;
+  "iManJog+" : Bool;
+  "iManJog-" : Bool;
+  iManStart : Bool;
+  iManListStart : Bool;
+  iAutoStart : Bool;
+  iLimitSwitchActive : Bool;
+  iLimitSoftActive : Bool;
+  iRunningTimeout : Time;
+  iHomingTimeout : Time;
+  iAutoPosition : DInt;
+  iAutoVelocity : Int;
+  iManListPosition : DInt;
+  iManListVelocity : Int;
+  iManPosition : DInt;
+  iManVelocity : Int;
+  iMode : Int;
+  iAListNumber : Int;
+  iMListNumber : Int;
+  iHWIDSTW : HW_IO;
+  iHWIDZSW : HW_IO;
+  iHardwareId : HW_IO;
+  iSpecJog : Bool;
+  iHomeSwitch : Bool;
+  iIndexTableON : Bool;
+  Position_sensor_1 : Bool;
+  Position_sensor_2 : Bool;
+  Position_sensor_3 : Bool;
+  Position_sensor_4 : Bool;
+  Type : Bool;
+END_VAR
+VAR_OUTPUT
+  oReady : Bool;
+  oWarning : Bool;
+  oError : Bool;
+  oInterlock : Bool;
+  oServoEnable : Bool;
+  oRunning : Bool;
+  oHoming : Bool;
+  oHomeRef : Bool;
+  oServoPosOK : Bool;
+  oErrorCode : Int;
+  oStatus : Int;
+  oActPosition : DInt;
+  oTargetPos : DInt;
+  oPosOK : Array[1..20] of Bool;
+  oDisable : Bool;
+  oSensorInPos : Bool;
+END_VAR
+VAR_IN_OUT
+  ioManEnale : Bool;
+  ioAutoEnale : Bool;
+  ioHome : Bool;
+  ioHomeWrite : Bool;
+  ioBusy : Bool;
+  ioDone : Bool;
+END_VAR
+VAR
+  sStep : Array[1..4] of Int;
+  sPls : Array[1..16] of Bool;
+  sErrorCode : Int;
+  sPosOK : Bool;
+  sRunning : Bool;
+  sHoming : Bool;
+  sCancel : Bool;
+  "sMan/List" : Bool;
+  sCMMT : "SINA_POS";
+  sPara : "SINA_PARA_S";
+  sRunningTimeout : TON_TIME;
+  sHomingTimeout : TON_TIME;
+  sEnableDelay : TON_TIME;
+  sManDirHis : DInt;
+  sManListHis : Int;
+  sAutoListHis : Int;
+  Position_PV : Int;
+  Conv_Pos_PV : Int;
+  Delay : TON_TIME;
+  Delay_1 : TON_TIME;
+  Delay_2 : TON_TIME;
+  Delay_3 : TON_TIME;
+END_VAR
+VAR_TEMP
+  tNormalON : Bool;
+  tHome : Bool;
+  tCancelTask : Bool;
+  tPauseTask : Bool;
+  tRetVal : Int;
+  "tPosConfig+" : DInt;
+  "tPosConfig-" : DInt;
+END_VAR
+VAR_CONSTANT
+  cOffset : DInt;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/25_V90/V90_Standard/fbV90Ctrl.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

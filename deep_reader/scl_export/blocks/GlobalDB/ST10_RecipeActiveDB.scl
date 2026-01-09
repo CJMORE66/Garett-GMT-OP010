@@ -1,0 +1,28 @@
+DATA_BLOCK "ST10_RecipeActiveDB"
+VAR
+  Recipe : STRUCT
+    RecipeTag : String[50];
+    RecordName : String[50];
+    PreConfigType : String[50];
+    Pulse : Bool;
+    Trigger : Bool;
+    PosEdg : Bool;
+    Alarm : Bool;
+    Ret : Bool;
+    Equal : Bool;
+    Pls : Bool;
+    time : Int;
+    Spare : Array[0..38] of Byte;
+    DataRecord_TransferStatus : Int;
+  END_STRUCT;
+  ParameterElement : STRUCT
+    TypeName : String[50];
+    TypeID : Int;
+    FixtureID : Array[0..5] of Int;
+    FestoAxis : "RecipeAxis";
+    PressRgramNo : Array[0..60] of DInt;
+    ProcessParameter : "MEStoPLC_RecipeData_OP220";
+  END_STRUCT;
+END_VAR
+BEGIN
+END_DATA_BLOCK

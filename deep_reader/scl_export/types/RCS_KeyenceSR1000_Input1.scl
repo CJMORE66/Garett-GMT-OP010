@@ -1,0 +1,89 @@
+TYPE "RCS_KeyenceSR1000_Input1"
+STRUCT
+  HandshakeAndGeneralErrorStatus : STRUCT
+    Error : Bool;
+    ResultDataAvailable : Bool;
+    ResultDataStrobe : Bool;
+    ReservedBit3 : Bool;
+    ReservedBit4 : Bool;
+    ReservedBit5 : Bool;
+    BufferOverflowError : Bool;
+    GeneralError : Bool;
+  END_STRUCT;
+  BusyStatus : STRUCT
+    Busy : Bool;
+    TrggerBusy : Bool;
+    LockBusy : Bool;
+    ModeBusy : Bool;
+    ErrorBusy : Bool;
+    FileBusy : Bool;
+    ReservedBit6 : Bool;
+    ReservedBit7 : Bool;
+  END_STRUCT;
+  CompletionStatus : STRUCT
+    ReadComplete : Bool;
+    PresetComplete : Bool;
+    RegisterPresetComplete : Bool;
+    TuneComplete : Bool;
+    BloadComplete : Bool;
+    ReservedBit5 : Bool;
+    ReservedBit6 : Bool;
+    ExtRequestComplete : Bool;
+  END_STRUCT;
+  ErrorStatus : STRUCT
+    ReadFailure : Bool;
+    PresetFailure : Bool;
+    RegisterPresetDataFailure : Bool;
+    TuneFailure : Bool;
+    BloadFailure : Bool;
+    ReservedBit5 : Bool;
+    ReservedBit6 : Bool;
+    ExtRequestFailure : Bool;
+  END_STRUCT;
+  TerminalStatus : STRUCT
+    IN1 : Bool;
+    IN2 : Bool;
+    ReservedBit2 : Bool;
+    ReservedBit3 : Bool;
+    OUT1 : Bool;
+    OUT2 : Bool;
+    OUT3 : Bool;
+    ReservedBit7 : Bool;
+  END_STRUCT;
+  UnstableReadStatus : STRUCT
+    Unstable : Bool;
+    MatchingLevelUnstable : Bool;
+    ISO_IEC15415Unstable : Bool;
+    AIMDPM_Unstable : Bool;
+    SAEAS9132Unstable : Bool;
+    ReservedBit5 : Bool;
+    ReservedBit6 : Bool;
+    ReservedBit7 : Bool;
+  END_STRUCT;
+  MatchingLevelAndTotalEvaluationGradeStatus : STRUCT
+    MatchingLevel : UInt;
+    ISO_IEC15415Grade : UInt;
+    "AIMDPM _Grade" : UInt;
+    ReservedInt4 : UInt;
+  END_STRUCT;
+  OperationResultStatus : STRUCT
+    ReadResultCode : UInt;
+    PresetResultCode : UInt;
+    RegisterPresetDataResultCode : UInt;
+    TuneResultCode : UInt;
+    BloadResultCode : UInt;
+    ReservedInt5 : UInt;
+    ReservedInt6 : UInt;
+    ExtReqResultCode : UInt;
+    GeneralErrorCode : UInt;
+    SlaveID : UInt;
+  END_STRUCT;
+  ReadData : STRUCT
+    ResultDataReadyCount : UInt;
+    ResultDataUpdateCount : UInt;
+    TriggerInputCountForMaster : UInt;
+    ResultDataSize : UInt;
+    ResultData : Array[1..128] of Char;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

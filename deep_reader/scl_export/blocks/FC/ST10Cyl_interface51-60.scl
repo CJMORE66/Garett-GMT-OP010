@@ -1,0 +1,47 @@
+FUNCTION "ST10Cyl_interface51-60" : Void
+VAR_INPUT
+  AlwaysON : Bool;
+  E_stop : Bool;
+END_VAR
+VAR_TEMP
+  tTest : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/01_Cylinder/ST10Cyl_interface51-60.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  .[].. := iL-UnloadingTransCylinderInWP;
+  .[].. := iL-UnloadingTransCylinderInHP;
+  
+  oL-UnloadingTransCylinderToWP := .[]..;
+  oL-UnloadingTransCylinderToHP := .[]..;
+  
+  
+  .[].. := iL-UnloadingTransPalletLocationCylinderInWP;
+  .[].. := iL-UnloadingTransPalletLocationCylinderInHP;
+  
+  oL-UnloadingTransPalletLocationCylinderToWP := .[]..;
+  oL-UnloadingTransPalletLocationCylinderToHP := .[]..;
+  
+  
+  .[].. := oL-UnloadingStopperCylinder1_ToWP;
+  .[].. := oL-UnloadingStopperCylinder1_ToHP;
+  
+  oL-UnloadingStopperCylinder1_ToWP := .[]..;
+  oL-UnloadingStopperCylinder1_ToHP := .[]..;
+  
+  
+  .[].. := oL-UnloadingStopperCylinder2_ToWP;
+  .[].. := oL-UnloadingStopperCylinder2_ToHP;
+  
+  oL-UnloadingStopperCylinder2_ToWP := .[]..;
+  oL-UnloadingStopperCylinder2_ToHP := .[]..;
+  
+  
+  .[].. := oL-UnloadingStopperCylinder3_ToWP;
+  .[].. := oL-UnloadingStopperCylinder3_ToHP;
+  
+  oL-UnloadingStopperCylinder3_ToWP := .[]..;
+  oL-UnloadingStopperCylinder3_ToHP := .[]..;
+END_FUNCTION

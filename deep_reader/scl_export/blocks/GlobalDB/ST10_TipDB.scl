@@ -1,0 +1,72 @@
+DATA_BLOCK "ST10_TipDB"
+VAR
+  Global : STRUCT
+    "1" : STRUCT
+      ControlOn : Bool;
+      closesafetyDoor : Bool;
+      LockSafetyDoor : Bool;
+      SelectAutoMode : Bool;
+      SelectManualMode : Bool;
+      AutoModeRunning : Bool;
+      SafetyDoorLocked : Bool;
+      SaferyDoorNotLocked : Bool;
+      GoWP : Bool;
+      Reset : Bool;
+    END_STRUCT;
+    "2" : Array[0..15] of Bool;
+    "3" : Array[0..15] of Bool;
+    "4" : Array[0..15] of Bool;
+    "5" : STRUCT
+      FuncrionDeactive1 : Bool;
+      FuncrionDeactive2 : Bool;
+      FuncrionDeactive3 : Bool;
+      FuncrionDeactive4 : Bool;
+      FuncrionDeactive5 : Bool;
+      FuncrionDeactive6 : Bool;
+      FuncrionDeactive7 : Bool;
+      FuncrionDeactive8 : Bool;
+    END_STRUCT;
+    "6" : Array[0..15] of Bool;
+    "7" : STRUCT
+      ScanMainPartDMC1 : Bool;
+      ScanPartDMC2 : Bool;
+      ScanPartDMC3 : Bool;
+      ScanPartDMC4 : Bool;
+      ScanPartDMC5 : Bool;
+      ScanPartDMC6 : Bool;
+      ScanPartDMC7 : Bool;
+      ScanPartDMC8 : Bool;
+    END_STRUCT;
+    "8" : Array[0..15] of Bool;
+    "9" : Array[0..15] of Bool;
+    "10" : Array[0..15] of Bool;
+  END_STRUCT;
+  OP1 : STRUCT
+    "Take off product" : Bool;
+    "Put product" : Bool;
+    "Please scan the code" : Bool;
+    "Please apply Oil" : Bool;
+    "Please take the O-ring" : Bool;
+    "Please put in the powertrain" : Bool;
+    Static_2 : Bool;
+    "Please pre-screw" : Bool;
+    Static_1 : Bool;
+    Static_3 : Bool;
+    "Please press the button_1" : Bool;
+    Reset : Bool;
+  END_STRUCT;
+  OP2 : STRUCT
+    Static_4 : Bool;
+    Static_2 : Bool;
+    Static_3 : Bool;
+    "Please press the button" : Bool;
+    "Please press the trigger" : Bool;
+    "Please take the paint pen" : Bool;
+    "Please put back the paint pen" : Bool;
+    Static_1 : Bool;
+    "Please remove the product" : Bool;
+    "Please press the screw gun trigger" : Bool;
+  END_STRUCT;
+END_VAR
+BEGIN
+END_DATA_BLOCK

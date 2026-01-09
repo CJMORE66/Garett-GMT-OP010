@@ -1,0 +1,33 @@
+FUNCTION_BLOCK "SafetyGate"
+VAR_INPUT
+  iSysInface : "RCS_SysComInterface_V1";
+  "iSafetyGate Opened Monitor" : Bool;
+  "iSafetyGate Locked Monitor" : Bool;
+  i1s_Pulse : Bool;
+  "iSafetyGate AutoLock Timer" : Time;
+  "iSafetyGate ManualLock Timer" : Time;
+  iMode : Int;
+END_VAR
+VAR_OUTPUT
+  "oSafetyGate LockedLamp" : Bool;
+END_VAR
+VAR_IN_OUT
+  ioSafetyGateLock : Bool;
+  ioHMI_Interface : "SafetyGateUDT";
+END_VAR
+VAR
+  "sSafetyGate Timer" : Array[1..5] of TON_TIME;
+  sP_Trig : Array[1..10] of Bool;
+  sN_Trig : Array[1..10] of Bool;
+  "sSafetyGate UnlockRequest" : Bool;
+  "sSafetyGate LockRequest" : Bool;
+END_VAR
+VAR_TEMP
+  tAlyways_On : Bool;
+  tAlyways_Off : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/03_Device/102 SafetyGate/SafetyGate.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

@@ -1,0 +1,41 @@
+TYPE "UDT_MON_Sys"
+STRUCT
+  Com : STRUCT
+    AlwaysOff : Bool;
+    AlwaysOn : Bool;
+    FlashTime100ms : Bool;
+    FlashTime200ms : Bool;
+    FlashTime500ms : Bool;
+    FlashTime1s : Bool;
+    FlashTime2s : Bool;
+    PlcRestarted : Bool;
+  END_STRUCT;
+
+  DateTime : STRUCT
+    Set : Date_And_Time;
+    Read : Date_And_Time;
+    Trigger : Bool;
+    ReturnValueRead : Int;
+    ReturnValueSet : Int;
+  END_STRUCT;
+
+  ScanTime : STRUCT
+    CyclePreviousMs : Int;
+    CycleMaxMs : Int;
+    CycleMinMs : Int;
+  END_STRUCT;
+
+  VersionManagement : STRUCT
+    ProductLineName : String;
+    ProjectNumber : String[20];
+    PlcIpAddr : Array[0..3] of UInt;
+    HmiIpAddr : Array[0..3] of UInt;
+    PlcVersion : Array[0..1] of UInt;
+    HmiVersion : Array[0..1] of UInt;
+    TiaVersion : String;
+    StationId : Int;
+    HmiPageId : Int;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE
+

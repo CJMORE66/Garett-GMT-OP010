@@ -1,0 +1,75 @@
+FUNCTION "ST10Cyl_interface41-50" : Void
+VAR_INPUT
+  AlwaysON : Bool;
+  E_stop : Bool;
+END_VAR
+VAR_TEMP
+  tTest : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/01_Cylinder/ST10Cyl_interface41-50.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  .[].. := iK-reserveLifting3LiftingCylinderInWP;
+  .[].. := iK-reserveLifting3LiftingCylinderInHP;
+  
+  oK-reserveLifting3LiftingCylinderToWP := .[]..;
+  oK-reserveLifting3LiftingCylinderToHP := .[]..;
+  
+  
+  .[].. := iK-reserveLifting3PalletLocationCylinderInWP;
+  .[].. := iK-reserveLifting3PalletLocationCylinderInHP;
+  
+  oK-reserveLifting3PalletLocationCylinderToWP := .[]..;
+  oK-reserveLifting3PalletLocationCylinderToHP := .[]..;
+  
+  
+  .[].. := oK-reserveLoadingStopperCylinder1_ToWP;
+  .[].. := oK-reserveLoadingStopperCylinder1_ToHP;
+  
+  oK-reserveLoadingStopperCylinder1_ToWP := .[]..;
+  oK-reserveLoadingStopperCylinder1_ToHP := .[]..;
+  
+  
+  .[].. := oK-reserveLoadingStopperCylinder2_ToWP;
+  .[].. := oK-reserveLoadingStopperCylinder2_ToHP;
+  
+  oK-reserveLoadingStopperCylinder2_ToWP := .[]..;
+  oK-reserveLoadingStopperCylinder2_ToHP := .[]..;
+  
+  
+  .[].. := oK-reserveLoadingStopperCylinder3_ToWP;
+  .[].. := oK-reserveLoadingStopperCylinder3_ToHP;
+  
+  oK-reserveLoadingStopperCylinder3_ToWP := .[]..;
+  oK-reserveLoadingStopperCylinder3_ToHP := .[]..;
+  
+  
+  .[].. := oK-reserveLoadingStopperCylinder4_ToWP;
+  .[].. := oK-reserveLoadingStopperCylinder4_ToHP;
+  
+  oK-reserveLoadingStopperCylinder4_ToWP := .[]..;
+  oK-reserveLoadingStopperCylinder4_ToHP := .[]..;
+  
+  
+  .[].. := oK-reserveTakeStopperCylinder1_ToWP;
+  .[].. := oK-reserveTakeStopperCylinder1_ToHP;
+  
+  oK-reserveTakeStopperCylinder1_ToWP := .[]..;
+  oK-reserveTakeStopperCylinder1_ToHP := .[]..;
+  
+  
+  .[].. := oK-reserveTakeStopperCylinder2_ToWP;
+  .[].. := oK-reserveTakeStopperCylinder2_ToHP;
+  
+  oK-reserveTakeStopperCylinder2_ToWP := .[]..;
+  oK-reserveTakeStopperCylinder2_ToHP := .[]..;
+  
+  
+  .[].. := oK-reserveTakeStopperCylinder3_ToWP;
+  .[].. := oK-reserveTakeStopperCylinder3_ToHP;
+  
+  oK-reserveTakeStopperCylinder3_ToWP := .[]..;
+  oK-reserveTakeStopperCylinder3_ToHP := .[]..;
+END_FUNCTION

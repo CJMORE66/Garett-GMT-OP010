@@ -1,0 +1,54 @@
+FUNCTION_BLOCK "SystemMode"
+VAR_INPUT
+  iPLCRestarted : Bool;
+  iEstopAllOK : Bool;
+  iResetFault : Bool;
+  iModeSelectType : Bool;
+  iManual : Bool;
+  iAuto : Bool;
+  iStep : Bool;
+  iOneCycle : Bool;
+  iHMIModeSelect : Int;
+  iControlOnMonitor : Bool;
+  iSafetyDoor : Bool;
+  iLightCurtain : Bool;
+  iSafetyByPass : Bool;
+  iMainPressureSwitch : Bool;
+  iFixtureOK : Bool;
+  iChangeOverOK : Bool;
+  iInitializationOK : Bool;
+  iAllDeviceOK : Bool;
+  iAlarmOn : Bool;
+  iFlowRun : Bool;
+END_VAR
+VAR_OUTPUT
+  oReset : Bool;
+  oEStopOK : Bool;
+  oManualMode : Bool;
+  oAutoMode : Bool;
+  oOneCycleMode : Bool;
+  oStepMode : Bool;
+  oRun : Bool;
+  "oEnable alarm" : Bool;
+  oControlON : Bool;
+  oMainPressureOK : Bool;
+  oSafetyDoorOK : Bool;
+  oLightCurtainOK : Bool;
+  oReady : Bool;
+  oMode : Int;
+  oStatus : Int;
+END_VAR
+VAR
+  sRunT : TON_TIME;
+  sPressureTOF : TOF_TIME;
+  sChangeOverTOF : TOF_TIME;
+  sChangeOverOK : Bool;
+END_VAR
+VAR_TEMP
+  tAlwaysOn : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/02_Comm/02_SysMode/SystemMode.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

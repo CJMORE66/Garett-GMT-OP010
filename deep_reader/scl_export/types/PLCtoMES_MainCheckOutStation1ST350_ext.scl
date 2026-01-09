@@ -1,0 +1,25 @@
+TYPE "PLCtoMES_MainCheckOutStation1ST350_ext"
+STRUCT
+  CheckSum : Int;
+  PartTypeID : Int;
+  PartTypeSN : String[60];
+  PalletID : Int;
+  PartStatus : Int;
+  SubPartSN : String[60];
+  StatusBits2 : DInt;
+  "PLCTransfer time" : String[60];
+  DataMatrixStr : String[60];
+  ProductNameStr : String[60];
+  HW_Str : String[60];
+  SW_Str : String[60];
+  PN_Str : String[60];
+  DATA_Str : String[60];
+  SN_Str : String[60];
+  ECU_UID_Str : String[60];
+  Vdc_Str : String[60];
+  Power_Str : String[60];
+  Place_Str : String[60];
+  Spare : Array[880..998] of Byte;
+  Massage : "PLCtoMES_AlarmMassage_ext";
+END_STRUCT;
+END_TYPE

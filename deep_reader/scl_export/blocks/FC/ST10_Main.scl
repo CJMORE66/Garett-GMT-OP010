@@ -1,0 +1,55 @@
+FUNCTION "ST10_Main" : Void
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/00_Main/ST10_Main.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  ..Station_Sys.Interface.CPUFristCycle  := ..Sys.COM.PLCRestarted;
+  ..Station_Sys.Interface.SysRun         := ..Station_Sys.Status.Run;
+  ..Station_Sys.Interface.Reset          := ..Station_Sys.Cmd.Reset;
+  ..Station_Sys.Interface.EstopOK        := ..Station_Sys.Status.EStopOK;
+  ..Station_Sys.Interface.SafetyDoorOK   := ..[];
+  ..Station_Sys.Interface.LightCurtainOK := ..[];
+  ..Station_Sys.Interface.SetInitial     := ..Station_Sys.Initial.Set;
+  ..Station_Sys.Interface.InitialRun     := ..Station_Sys.Initial.Running;
+  ..Station_Sys.Interface.Ready          := ..Station_Sys.Status.Ready;
+  ..Station_Sys.Interface.ManualMode     := ..Station_Sys.Manual.Mode;
+  ..Station_Sys.Interface.Auto           := .Station_Sys.Auto;
+  // Network 2
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Servo380A1  := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Servo380A1;
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Servo381A1  := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Servo381A1;
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Servo383A1  := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Servo383A1;
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Reader800A1 := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Reader800A1;
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Reader801A1 := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Reader801A1;
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Reader802A1 := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Reader802A1;
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Reader803A1 := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Reader803A1;
+  ...ST10_GeneralData.FunctionDeSelect.A.FunctionDeSelected_Reader804A1 := ...ST10_GeneralData.FunctionDeSelect.A.DeSelectPB_Reader804A1;
+  
+  ...ST10_GeneralData.FunctionDeSelect.B.FunctionDeSelected_Press372A1     := ...ST10_GeneralData.FunctionDeSelect.B.DeSelectPB_Press372A1;
+  ...ST10_GeneralData.FunctionDeSelect.B.FunctionDeSelected_Press375A1     := ...ST10_GeneralData.FunctionDeSelect.B.DeSelectPB_Press375A1;
+  ...ST10_GeneralData.FunctionDeSelect.B.FunctionDeSelected_Reader806A1    := ...ST10_GeneralData.FunctionDeSelect.B.DeSelectPB_Reader806A1;
+  ...ST10_GeneralData.FunctionDeSelect.B.FunctionDeSelected_TestPress372A1 := ...ST10_GeneralData.FunctionDeSelect.B.DeSelectPB_TestPress372A1;
+  ...ST10_GeneralData.FunctionDeSelect.B.FunctionDeSelected_TestPress375A1 := ...ST10_GeneralData.FunctionDeSelect.B.DeSelectPB_TestPress375A1;
+  
+  ...ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Servo382A1 := ...ST10_GeneralData.FunctionDeSelect.C.DeSelectPB_Servo382A1;
+  ...ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_ServoIAI := ...ST10_GeneralData.FunctionDeSelect.C.DeSelectPB_ServoIAI;
+  ...ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3810A1 := ...ST10_GeneralData.FunctionDeSelect.C.DeSelectPB_IV3810A1;
+  ...ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3811A1 := ...ST10_GeneralData.FunctionDeSelect.C.DeSelectPB_IV3811A1;
+  ...ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue := ...ST10_GeneralData.FunctionDeSelect.C.DeSelectPB_Glue;
+  
+  ...ST10_GeneralData.FunctionDeSelect.E.FunctionDeSelected := ...ST10_GeneralData.FunctionDeSelect.E.DeSelectPB;
+  
+  ...ST10_GeneralData.FunctionDeSelect.F.FunctionDeSelected_Reader805A1 := ...ST10_GeneralData.FunctionDeSelect.F.DeSelectPB_Reader805A1;
+  
+  ...ST10_GeneralData.FunctionDeSelect.H.FunctionDeSelected := ...ST10_GeneralData.FunctionDeSelect.H.DeSelectPB;
+  
+  ...ST10_GeneralData.FunctionDeSelect.J.FunctionDeSelected := ...ST10_GeneralData.FunctionDeSelect.J.DeSelectPB;
+  
+  ...ST10_GeneralData.FunctionDeSelect.K.FunctionDeSelected := ...ST10_GeneralData.FunctionDeSelect.K.DeSelectPB;
+  
+  ...ST10_GeneralData.FunctionDeSelect.L.FunctionDeSelected := ...ST10_GeneralData.FunctionDeSelect.L.DeSelectPB;
+  
+  ...ST10_GeneralData.FunctionDeSelect.MES.FunctionDeSelected := ...ST10_GeneralData.FunctionDeSelect.MES.DeSelectPB;
+  
+  ...ST10_GeneralData.FunctionDeSelect.Global.FunctionDeSelected_ScanFixture := ...ST10_GeneralData.FunctionDeSelect.Global.DeSelectPB_ScanFixture;
+END_FUNCTION

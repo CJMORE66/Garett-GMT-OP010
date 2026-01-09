@@ -1,0 +1,1505 @@
+FUNCTION "ST10_Flow8_FRobot_2" : Void
+VERSION : 1.0
+VAR_INPUT
+  Enable : BOOL;
+END_VAR
+VAR_TEMP
+  idx : INT;
+  tr_cond : ARRAY[1..931] OF BOOL;
+  next_active : ARRAY[1..930] OF BOOL;
+END_VAR
+BEGIN
+  IF NOT Enable THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.Initialized := FALSE;
+    FOR idx := 1 TO 930 DO
+      "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow8_FRobot_2_State".Flow.PalltReleaseRuning := FALSE;
+    RETURN;
+  END_IF;
+
+  IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.Initialized THEN
+    FOR idx := 1 TO 930 DO
+      "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[1] := TRUE;
+    "DB_ST10_Flow8_FRobot_2_State".Flow.Initialized := TRUE;
+  END_IF;
+
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[258] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Data Clear_2 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Data Clear_2 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Data Clear_2 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[253] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[255] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_1 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_1 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_1 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[257] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_2 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_2 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_2 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[260] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_3 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_3 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_3 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[262] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_4 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_4 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_4 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[264] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_5 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_5 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_5 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[243] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Grip1PartStatus := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Grip1PartStatus + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Grip1PartStatus := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[930] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Step930 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Step930 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Step930 := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[343] THEN
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.WaitRobotFinish_1 := "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.WaitRobotFinish_1 + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.WaitRobotFinish_1 := T#0S;
+  END_IF;
+
+  tr_cond[1] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Ready);
+  tr_cond[2] := TRUE;
+  tr_cond[3] := (KukaRobot2_CtrlDB.iSpeedValue) = (20);
+  tr_cond[4] := TRUE;
+  tr_cond[8] := TRUE;
+  tr_cond[9] := TRUE;
+  tr_cond[10] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.ioPM_Inface.Running);
+  tr_cond[100] := (((((TRUE) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Auto.RunningOver))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Auto.OneCycleMode))) OR ((((((TRUE) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Auto.RunningOver))) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Auto.OneCycleMode)) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.ioPM_Inface.TriggerOneCycle));
+  tr_cond[110] := TRUE;
+  tr_cond[115] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.PalletPickFlag);
+  tr_cond[120] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.ScanNGPutFlag);
+  tr_cond[125] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GlueNGPutFlag);
+  tr_cond[130] := TRUE;
+  tr_cond[131] := TRUE;
+  tr_cond[132] := TRUE;
+  tr_cond[133] := TRUE;
+  tr_cond[134] := TRUE;
+  tr_cond[135] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MagnetScanFlag);
+  tr_cond[136] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO462);
+  tr_cond[138] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO453);
+  tr_cond[139] := (((TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO460))) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO462))) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO461);
+  tr_cond[140] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePickFlag);
+  tr_cond[141] := (((TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO452))) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO453))) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Safety.DO454);
+  tr_cond[145] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.Press2PutFlag);
+  tr_cond[149] := ((TRUE) AND (ChangeOver_DB.Global.AllFixtureScanCompareOk)) OR ((TRUE) AND (ChangeOver_DB.Robot_2.Req_RobotToMaintenancePos));
+  tr_cond[150] := TRUE;
+  tr_cond[155] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePutFlag);
+  tr_cond[200] := TRUE;
+  tr_cond[243] := ((AutoProcessData.F_Robot2Grip2.PartStatus) = (100)) OR (("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Grip1PartStatus) > (t#500MS));
+  tr_cond[244] := (AutoProcessData.F_Robot2Grip2.PartStatus) = (100);
+  tr_cond[245] := (TRUE) AND (KeyenceSR1000Ctrl_806A1DB.oReady);
+  tr_cond[246] := (TRUE) AND (NOT (KeyenceSR1000Ctrl_806A1DB.sHMI.Status.Ready));
+  tr_cond[247] := ((TRUE) AND (KeyenceSR1000Ctrl_806A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_806A1DB.sHMI.Status.ReadOk);
+  tr_cond[248] := ((TRUE) AND (KeyenceSR1000Ctrl_806A1DB.sHMI.Status.Complete)) AND (KeyenceSR1000Ctrl_806A1DB.sHMI.Status.ReadNok);
+  tr_cond[249] := TRUE;
+  tr_cond[250] := TRUE;
+  tr_cond[251] := (AutoProcessData.F_Robot2Grip2.PartStatus) = (199);
+  tr_cond[252] := (AutoProcessData.F_Robot2Grip2.PartStatus) = (155);
+  tr_cond[253] := TRUE;
+  tr_cond[254] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove) > (t#100MS);
+  tr_cond[256] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_1) > (t#100MS);
+  tr_cond[258] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_2) > (t#100MS);
+  tr_cond[259] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Data Clear_2) > (t#100MS);
+  tr_cond[261] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_3) > (t#100MS);
+  tr_cond[263] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_4) > (t#100MS);
+  tr_cond[265] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.DataMove_5) > (t#100MS);
+  tr_cond[266] := TRUE;
+  tr_cond[267] := ((AutoProcessData.F_Robot2Grip1.PartStatus) <> (0)) AND (TON.TON[71].Q);
+  tr_cond[268] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Reset);
+  tr_cond[269] := ((AutoProcessData.F_Robot2Grip2.PartStatus) <> (0)) AND (TON.TON[72].Q);
+  tr_cond[270] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Reset);
+  tr_cond[271] := (((((((TRUE) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.PalletPickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MagnetScanFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePutFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.Press2PutFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GlueNGPutFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.ScanNGPutFlag));
+  tr_cond[272] := (AutoProcessData.F_Robot2Grip2.PartStatus) = (110);
+  tr_cond[299] := TRUE;
+  tr_cond[300] := TRUE;
+  tr_cond[327] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO242_PickPalletFinish);
+  tr_cond[328] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO249_ScanNGPutInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO250_ScanNGPutFinish));
+  tr_cond[333] := (((((((AutoProcessData.F_Robot2Grip1.PartStatus) = (0)) AND (NOT (iF-ROOBT2Gripper1Detection))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GripScanRequest)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (NOT (ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag))) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[349] := TRUE;
+  tr_cond[350] := TRUE;
+  tr_cond[355] := (TRUE) AND (KukaRobot2_CtrlDB.sPLCtoROB.User.Cycle.DI306_ScanPartComplete);
+  tr_cond[359] := (TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO307_ScanPos1Reach));
+  tr_cond[360] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO308_ScanPos2Reach);
+  tr_cond[367] := (TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO308_ScanPos2Reach));
+  tr_cond[368] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO309_ScanPos3Reach);
+  tr_cond[375] := (TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO309_ScanPos3Reach));
+  tr_cond[376] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO310_ScanPos4Reach);
+  tr_cond[383] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO306_GripScanFinish);
+  tr_cond[399] := TRUE;
+  tr_cond[400] := TRUE;
+  tr_cond[449] := TRUE;
+  tr_cond[450] := TRUE;
+  tr_cond[499] := TRUE;
+  tr_cond[500] := TRUE;
+  tr_cond[549] := TRUE;
+  tr_cond[550] := TRUE;
+  tr_cond[599] := TRUE;
+  tr_cond[600] := TRUE;
+  tr_cond[606] := (((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.Sys.SO.ALARM_STOP)) AND (KukaRobot2_CtrlDB.sROBtoPLC.Sys.SO.EXT)) AND (NOT (KukaRobot2_CtrlDB.oStartComplete));
+  tr_cond[607] := TRUE;
+  tr_cond[608] := ((TRUE) AND (KukaRobot2_CtrlDB.oReady)) AND (KukaRobot2_CtrlDB.oStartComplete);
+  tr_cond[609] := ((((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME)) AND (KukaRobot2_CtrlDB.sHMI.HomeSeqOK)) AND (KukaRobot2_CtrlDB.sHMI.WaitForAutoCycleStart)) AND (NOT (KukaRobot2_CtrlDB.sHMI.GoHomeFail));
+  tr_cond[610] := ((TRUE) AND (NOT (KukaRobot2_CtrlDB.sHMI.HomeSeqOK))) AND (NOT (KukaRobot2_CtrlDB.sHMI.WaitForAutoCycleStart));
+  tr_cond[611] := ((((AutoProcessData.F_Robot2Grip2.PartStatus) = (0)) AND (ST10Cylinder.Cy[15].In.HomePositionSensor)) AND (ST10Cylinder.Cy[16].In.HomePositionSensor)) OR ((((AutoProcessData.F_Robot2Grip1.PartStatus) <> (0)) AND (NOT (ST10Cylinder.Cy[15].In.WorkPositionSensor))) AND (NOT (ST10Cylinder.Cy[15].In.HomePositionSensor))) OR ((((AutoProcessData.F_Robot2Grip2.PartStatus) <> (0)) AND (NOT (ST10Cylinder.Cy[16].In.WorkPositionSensor))) AND (NOT (ST10Cylinder.Cy[16].In.HomePositionSensor)));
+  tr_cond[612] := ((((AutoProcessData.F_Robot1Grip2.PartStatus) = (0)) AND (NOT (ST10Cylinder.Cy[16].In.WorkPositionSensor))) AND (NOT (ST10Cylinder.Cy[16].In.HomePositionSensor))) OR (((AutoProcessData.F_Robot1Grip2.PartStatus) <> (0)) AND (ST10Cylinder.Cy[16].In.WorkPositionSensor));
+  tr_cond[613] := ((((AutoProcessData.F_Robot2Grip1.PartStatus) = (0)) AND (NOT (ST10Cylinder.Cy[15].In.WorkPositionSensor))) AND (NOT (ST10Cylinder.Cy[15].In.HomePositionSensor))) OR (((AutoProcessData.F_Robot2Grip1.PartStatus) <> (0)) AND (ST10Cylinder.Cy[15].In.WorkPositionSensor));
+  tr_cond[614] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Reset);
+  tr_cond[615] := (TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".Flow.iSysInface.Reset);
+  tr_cond[616] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO305_GripScanInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO306_GripScanFinish));
+  tr_cond[618] := (((((((((((((AutoProcessData.C_Glue.PartStatus) <> (0)) AND ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO179_GlueArea)) AND ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO180_Robot2Area)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO289_GluePutInside))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_1.GluePutFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Global.J.EmptyPallet))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.C_Glue.Robot2PickPrimit))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.J_MagnetLine.Robot2PickPrimit)) AND (NOT (ChangeOver_DB.Robot_2.MaintenancePosReqSelFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (NOT (ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag))) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[620] := ((((((((((((((AutoProcessData.F_Robot2Grip2.PartStatus) <= (160)) OR ((((AutoProcessData.F_Robot2Grip2.PartStatus) = (0)) AND (NOT (ST10Cylinder.Cy[16].In.HomePositionSensor))) AND (NOT (ST10Cylinder.Cy[16].In.WorkPositionSensor))) OR (((AutoProcessData.F_Robot2Grip2.PartStatus) >= (155)) AND (ST10Cylinder.Cy[16].In.WorkPositionSensor))) AND (NOT (iE-NG-03MagnetDispenseNGDetection))) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO178_Robot2Area)) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO253_PickGlueNGInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO249_PickMagnetInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO277_PressPutRingInside))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.Press2PickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.GlueNGPickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.ScanNGPickFlag))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot2ScanNG.PutPrimit)) OR ((((((((((((AutoProcessData.F_Robot2Grip2.PartStatus) <= (160)) OR ((((AutoProcessData.F_Robot2Grip2.PartStatus) = (0)) AND (NOT (ST10Cylinder.Cy[16].In.HomePositionSensor))) AND (NOT (ST10Cylinder.Cy[16].In.WorkPositionSensor))) OR (((AutoProcessData.F_Robot2Grip2.PartStatus) >= (155)) AND (ST10Cylinder.Cy[16].In.WorkPositionSensor))) AND (NOT (iE-NG-03MagnetDispenseNGDetection))) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO178_Robot2Area)) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO253_PickGlueNGInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO249_PickMagnetInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO277_PressPutRingInside))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.Press2PickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.GlueNGPickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.ScanNGPickFlag))) AND (NOT (iE-NG-03MagnetDispenseNGDetection)))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (NOT (ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag));
+  tr_cond[623] := TRUE;
+  tr_cond[625] := (((((AutoProcessData.F_Robot2Grip2.PartStatus) = (0)) AND (NOT (iF-ROOBT2Gripper2Detection))) AND (ST10Cylinder.Cy[16].In.HomePositionSensor)) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[626] := (TRUE) AND (KukaRobot2_CtrlDB.sPLCtoROB.User.Cycle.DI306_ScanPartComplete);
+  tr_cond[627] := ((((((((((((AutoProcessData.F_Robot2Grip2.PartStatus) = (100)) AND (NOT (ChangeOver_DB.Global.ManualModeFlag))) AND (iF-ROOBT2Gripper2Detection)) OR ((((AutoProcessData.F_Robot2Grip2.PartStatus) = (100)) AND (NOT (ChangeOver_DB.Global.ManualModeFlag))) AND (TRUE))) AND (NOT (ST10Cylinder.Cy[16].In.HomePositionSensor))) AND ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO180_Robot2Area)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO289_GluePutInside))) AND (NOT (ChangeOver_DB.Robot_2.MaintenancePosReqSelFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (NOT (ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag))) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[629] := (((((((((((((((((AutoProcessData.F_Robot2Grip1.PartStatus) <= (360)) AND (NOT (iF-ROOBT2Gripper1Detection))) OR ((AutoProcessData.F_Robot2Grip1.PartStatus) = (399))) AND (NOT (ST10Cylinder.Cy[15].In.HomePositionSensor))) AND (NOT (iE-NG-03ShaftDispenseNGDetection))) AND (NOT (ChangeOver_DB.Robot_2.MaintenancePosReqSelFlag))) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO178_Robot2Area)) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO253_PickGlueNGInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO249_PickMagnetInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO277_PressPutRingInside))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.Press2PickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.GlueNGPickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.ScanNGPickFlag))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot2GlueNG.PutPrimit)) OR ((((((((((((((((AutoProcessData.F_Robot2Grip1.PartStatus) <= (360)) AND (NOT (iF-ROOBT2Gripper1Detection))) OR ((AutoProcessData.F_Robot2Grip1.PartStatus) = (399))) AND (NOT (ST10Cylinder.Cy[15].In.HomePositionSensor))) AND (NOT (iE-NG-03ShaftDispenseNGDetection))) AND (NOT (ChangeOver_DB.Robot_2.MaintenancePosReqSelFlag))) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO178_Robot2Area)) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO253_PickGlueNGInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO249_PickMagnetInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO277_PressPutRingInside))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.Press2PickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.GlueNGPickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.ScanNGPickFlag))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.C_Glue.GlueTest)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot2GlueNG.PutPrimit)))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (NOT (ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag));
+  tr_cond[630] := (TRUE) AND (KukaRobot2_CtrlDB.sPLCtoROB.User.Cycle.DI306_ScanPartComplete);
+  tr_cond[631] := (((((((((((AutoProcessData.F_Robot2Grip1.PartStatus) = (0)) AND (NOT (iF-ROOBT2Gripper1Detection))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO289_GluePutInside))) AND ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO180_Robot2Area)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_1.GluePutFlag))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.C_Glue.Robot2PickPrimit)) AND (NOT (ChangeOver_DB.Robot_2.MaintenancePosReqSelFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (NOT (ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag))) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[634] := ((((((((((((((((AutoProcessData.F_Robot2Grip1.PartStatus) = (399)) AND (NOT (ChangeOver_DB.Global.ManualModeFlag))) AND (iF-ROOBT2Gripper1Detection)) OR ((((AutoProcessData.F_Robot2Grip1.PartStatus) = (399)) AND (NOT (ChangeOver_DB.Global.ManualModeFlag))) AND (TRUE))) AND (NOT (ST10Cylinder.Cy[15].In.HomePositionSensor))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO253_PickGlueNGInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO249_PickMagnetInside))) AND (NOT (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO277_PressPutRingInside))) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO177_PressPut1Area)) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO178_Robot2Area)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.Press2PickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.GlueNGPickFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_3.ScanNGPickFlag))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.B_Press_2.Robot2PutPrimit)) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[635] := (TRUE) AND (KukaRobot2_CtrlDB.sPLCtoROB.User.Cycle.DI306_ScanPartComplete);
+  tr_cond[637] := ((((((AutoProcessData.F_Robot2Grip1.PartStatus) = (0)) AND (NOT (iF-ROOBT2Gripper1Detection))) AND (ST10Cylinder.Cy[15].In.HomePositionSensor)) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.B_Press_1.Robot1PickPrimit)) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[639] := ((((((AutoProcessData.F_Robot2Grip2.PartStatus) = (0)) AND (NOT (iF-ROOBT2Gripper2Detection))) AND (ChangeOver_DB.Robot_2.Req_RobotToMaintenancePos)) OR (((TRUE) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MaintenanceRequest))) AND (ChangeOver_DB.Robot_2.HMI_MaintenancePosActive))) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req))) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[648] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO241_PickPalletInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO242_PickPalletFinish));
+  tr_cond[649] := TRUE;
+  tr_cond[650] := TRUE;
+  tr_cond[651] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.WaitRobotFinish_1) > (t#100MS);
+  tr_cond[652] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO253_GlueNGPutInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO254_GlueNGPutFinish));
+  tr_cond[653] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO254_GlueNGPutFinish);
+  tr_cond[654] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO257_PickPartInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO258_PickPartFinish));
+  tr_cond[655] := ((KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO6_RobGrip2Status) <> (0)) OR ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO242_PickPalletFinish));
+  tr_cond[656] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO6_RobGrip2Status) = (0);
+  tr_cond[657] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO5_RobGrip1Status) = (0);
+  tr_cond[658] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO258_PickPartFinish);
+  tr_cond[659] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO6_RobGrip2Status) <> (0);
+  tr_cond[660] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO261_ScanPartInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO262_ScanPartFinish));
+  tr_cond[661] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO262_ScanPartFinish);
+  tr_cond[662] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO263_ScanReach);
+  tr_cond[663] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO269_GluePickInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO270_GluePickFinish));
+  tr_cond[664] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO270_GluePickFinish);
+  tr_cond[665] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO5_RobGrip1Status) <> (0);
+  tr_cond[666] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO273_PressPutPart1Inside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO274_PressPutPart1Finish));
+  tr_cond[667] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO274_PressPutPart1Finish);
+  tr_cond[668] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO5_RobGrip1Status) = (0);
+  tr_cond[669] := ((TRUE) AND (TRUE)) AND (NOT (TRUE));
+  tr_cond[670] := (TRUE) AND (TRUE);
+  tr_cond[671] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO5_RobGrip1Status) <> (0);
+  tr_cond[672] := ((((((((((((AutoProcessData.F_Robot2Grip2.PartStatus) = (199)) OR ((AutoProcessData.F_Robot2Grip2.PartStatus) = (150)) OR ((AutoProcessData.F_Robot2Grip2.PartStatus) = (199))) AND (iF-ROOBT2Gripper2Detection)) OR ((((AutoProcessData.F_Robot2Grip2.PartStatus) = (199)) OR ((AutoProcessData.F_Robot2Grip2.PartStatus) = (150)) OR ((AutoProcessData.F_Robot2Grip2.PartStatus) = (199))) AND (TRUE))) AND (NOT (ST10Cylinder.Cy[16].In.HomePositionSensor))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO289_GluePutInside))) AND ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO180_Robot2Area)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_1.GluePutFlag))) AND ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.C_Glue.Robot2MaganePutPrimit)) AND (NOT (ChangeOver_DB.Robot_2.MaintenancePosReqSelFlag))) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (NOT (ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag));
+  tr_cond[673] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO307_ScanPos1Reach);
+  tr_cond[676] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO265_GluePutInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO266_GluePutFinish));
+  tr_cond[677] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO266_GluePutFinish);
+  tr_cond[679] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO6_RobGrip2Status) = (0);
+  tr_cond[691] := ((TRUE) AND ("DB_ST10_Flow8_FRobot_2_State".KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO180_Robot2Area)) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO178_Robot2Area);
+  tr_cond[692] := TRUE;
+  tr_cond[695] := (TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Home.DO161_WaitForHomeSeqStart);
+  tr_cond[696] := ((TRUE) AND (NOT (KukaRobot2_CtrlDB.sPLCtoROB.User.Home.DI169_RobotMoved))) AND (NOT (ST10_DeviceError.F.Robot_2.ManualMoved));
+  tr_cond[698] := (TRUE) AND (Station_Sys.Cmd.OnOffLine);
+  tr_cond[699] := TRUE;
+  tr_cond[700] := (TRUE) AND (NOT (Station_Sys.Cmd.OnOffLine));
+  tr_cond[705] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO298_MaintainFinish));
+  tr_cond[706] := ((((TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside))) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO298_MaintainFinish)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MaintenanceRequest))) AND (NOT (ChangeOver_DB.Robot_2.Req_RobotToMaintenancePos));
+  tr_cond[707] := ((((TRUE) AND (ChangeOver_DB.Robot_2.HMI_MaintenanceHomeReq)) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO298_MaintainFinish)) OR (((TRUE) AND (ChangeOver_DB.Robot_2.HMI_MaintenanceHomeReq)) AND (KukaRobot3_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME))) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO300_HomeInside));
+  tr_cond[708] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO300_HomeInside)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO301_HomeFinish));
+  tr_cond[850] := ((TRUE) AND (KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO298_MaintainFinish)) OR ((TRUE) AND (KukaRobot3_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME));
+  tr_cond[899] := (((TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO300_HomeInside))) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO301_HomeFinish)) AND (NOT ("DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.HomeRequest));
+  tr_cond[900] := (((AutoProcessData.F_Robot2Grip2.PartStatus) = (0)) AND (NOT (iF-ROOBT2Gripper2Detection))) AND (Robot_DB.Robot_2.MasteringTest_Req);
+  tr_cond[901] := (((AutoProcessData.F_Robot2Grip2.PartStatus) = (0)) AND (NOT (iF-ROOBT2Gripper2Detection))) AND (Robot_DB.Robot_2.BrakeTest_Req);
+  tr_cond[919] := (TRUE) AND (NOT (Robot_DB.Robot_2.MasteringTest_Req));
+  tr_cond[929] := (TRUE) AND (NOT (Robot_DB.Robot_2.BrakeTest_Req));
+  tr_cond[930] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.WaitRobotFinish_1) > (t#5S);
+  tr_cond[931] := ("DB_ST10_Flow8_FRobot_2_State".Flow.StepTime.Step930) > (t#100MS);
+
+  FOR idx := 1 TO 930 DO
+    next_active[idx] := "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[idx];
+  END_FOR;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[1] THEN
+    // Step 1: F8_Initial
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[1] THEN
+      #ioPM_Inface.InitialRun := TRUE;
+      #ioPM_Inface.InitialOK := FALSE;
+      #ioPM_Inface.WaitRunning := FALSE;
+      #ioPM_Inface.Running := FALSE;
+      #ioPM_Inface.UnPause := FALSE;
+      "Station_Sys".Cmd.Calibration := FALSE;
+      "Station_Sys".Cmd.ChangeOver := FALSE;
+      "Station_Sys".Cmd.Reserve := FALSE;
+      "Station_Sys".Cmd.OneCycle := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.PalletPickFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MagnetScanFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePutFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePickFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.Press2PutFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GlueNGPutFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.ScanNGPutFlag := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := FALSE;
+      "ChangeOver_DB".Robot_2.MaintenancePosReqSelFlag := FALSE;
+    END_IF;
+    IF tr_cond[1] THEN
+      next_active[1] := FALSE;
+      next_active[2] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[2] THEN
+    // Step 2: S2
+    IF tr_cond[2] THEN
+      next_active[2] := FALSE;
+      next_active[3] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[3] THEN
+    // Step 3: S3
+    IF tr_cond[607] THEN
+      next_active[3] := FALSE;
+      next_active[4] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[4] THEN
+    // Step 4: RobotSpeed
+    "KukaRobot2_CtrlDB".iSpeedValue:=20;
+    IF tr_cond[3] THEN
+      next_active[4] := FALSE;
+      next_active[5] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[5] THEN
+    // Step 5: S5_MESInitial
+    IF tr_cond[4] THEN
+      next_active[5] := FALSE;
+      next_active[382] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[8] THEN
+    // Step 8: S8
+    IF tr_cond[8] THEN
+      next_active[8] := FALSE;
+      next_active[9] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[9] THEN
+    // Step 9: S9
+    IF tr_cond[9] THEN
+      next_active[9] := FALSE;
+      next_active[10] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[10] THEN
+    // Step 10: S10_InitialFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[10] THEN
+      #ioPM_Inface.InitialOK := TRUE;
+    END_IF;
+    IF tr_cond[10] THEN
+      next_active[10] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[100] THEN
+    // Step 100: ProcessStart
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[100] THEN
+      #ioPM_Inface.InitialRun := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := FALSE;
+      #ioPM_Inface.InitialOK := TRUE;
+      #ioPM_Inface.WaitRunning := TRUE;
+      #ioPM_Inface.ProcessResult:=0;
+      "ST10_GeneralData".FlowControl_Handshake[8].Start := FALSE;
+      "ST10_GeneralData".FlowControl_Handshake[8].Done := FALSE;
+    END_IF;
+    IF tr_cond[100] THEN
+      next_active[100] := FALSE;
+      next_active[268] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[110] THEN
+    // Step 110: ScanFixtureCode
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[110] THEN
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[110] THEN
+      next_active[110] := FALSE;
+      next_active[200] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[115] THEN
+    // Step 115: PickPallet
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[115] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.PalletPickFlag := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[115] THEN
+      next_active[115] := FALSE;
+      next_active[250] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[120] THEN
+    // Step 120: ScanNGPut
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[120] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.ScanNGPutFlag := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[120] THEN
+      next_active[120] := FALSE;
+      next_active[300] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[125] THEN
+    // Step 125: GlueNGPut
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[125] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GlueNGPutFlag := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[125] THEN
+      next_active[125] := FALSE;
+      next_active[350] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[130] THEN
+    // Step 130: PickTable
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[130] THEN
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[130] THEN
+      next_active[130] := FALSE;
+      next_active[400] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[131] THEN
+    // Step 131: Maintenance
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[131] THEN
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[131] THEN
+      next_active[131] := FALSE;
+      next_active[850] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[132] THEN
+    // Step 132: Masref_test
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[132] THEN
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[132] THEN
+      next_active[132] := FALSE;
+      next_active[910] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[133] THEN
+    // Step 133: Brake_Test
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[133] THEN
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[133] THEN
+      next_active[133] := FALSE;
+      next_active[920] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[135] THEN
+    // Step 135: ScanMagane
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[135] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MagnetScanFlag := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[135] THEN
+      next_active[135] := FALSE;
+      next_active[450] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[140] THEN
+    // Step 140: GluePick
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[140] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePickFlag := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[140] THEN
+      next_active[140] := FALSE;
+      next_active[500] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[145] THEN
+    // Step 145: PutPress
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[145] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.Press2PutFlag := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[145] THEN
+      next_active[145] := FALSE;
+      next_active[550] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[149] THEN
+    // Step 149: Tablecode ScanFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[149] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[149] THEN
+      next_active[149] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[150] THEN
+    // Step 150: PressPick
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[150] THEN
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[150] THEN
+      next_active[150] := FALSE;
+      next_active[600] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[155] THEN
+    // Step 155: GluePut
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[155] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePutFlag := TRUE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := TRUE;
+    END_IF;
+    IF tr_cond[155] THEN
+      next_active[155] := FALSE;
+      next_active[650] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[200] THEN
+    // Step 200: Tablecode Scan
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[200] THEN
+      "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI307_ScanPartFinish := FALSE;
+      "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI306_ScanPartComplete := FALSE;
+    END_IF;
+    "AutoProcessData".GripperCode_R2[1]:='';
+    "AutoProcessData".GripperCode_R2[2]:='';
+    "AutoProcessData".GripperCode_R2[3]:='';
+    "AutoProcessData".GripperCode_R2[4]:='';
+    IF tr_cond[200] THEN
+      next_active[200] := FALSE;
+      next_active[338] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[243] THEN
+    // Step 243: Grip1PartStatus
+    "AutoProcessData".F_Robot2Grip2.PartStatus:=100;
+    IF tr_cond[243] THEN
+      next_active[243] := FALSE;
+      next_active[327] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[244] THEN
+    // Step 244: Grip2PartStatus
+    "AutoProcessData".F_Robot2Grip2.PartStatus:=100;
+    IF tr_cond[244] THEN
+      next_active[244] := FALSE;
+      next_active[353] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[245] THEN
+    // Step 245: CheckScanReady
+    IF tr_cond[245] THEN
+      next_active[245] := FALSE;
+      next_active[246] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[246] THEN
+    // Step 246: ScanStart
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[246] THEN
+      "KeyenceSR1000Ctrl_806A1DB".ioAutoTrigger := TRUE;
+    END_IF;
+    IF tr_cond[246] THEN
+      next_active[246] := FALSE;
+      next_active[247] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[247] THEN
+    // Step 247: WaitScanCompletely
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[248] THEN
+    // Step 248: CodeMove
+    "AutoProcessData".F_Robot2Grip2.Code_1:="KeyenceSR1000Ctrl_806A1DB".sHMI.Status.CurrentCode;
+    IF tr_cond[249] THEN
+      next_active[248] := FALSE;
+      next_active[269] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[249] THEN
+    // Step 249: PartOKStatus
+    "AutoProcessData".F_Robot2Grip2.PartStatus:=199;
+    IF tr_cond[251] THEN
+      next_active[249] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[250] THEN
+    // Step 250: PickPalletProcess
+    IF tr_cond[250] THEN
+      next_active[250] := FALSE;
+      next_active[252] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[251] THEN
+    // Step 251: PartNGStatus
+    "AutoProcessData".F_Robot2Grip2.PartStatus:=155;
+    IF tr_cond[252] THEN
+      next_active[251] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[252] THEN
+    // Step 252: DataClear
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[252] THEN
+      "AutoProcessData".F_Robot2Grip2:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[253] THEN
+      next_active[252] := FALSE;
+      next_active[326] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[253] THEN
+    // Step 253: DataMove
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[253] THEN
+      "AutoProcessData".C_MagnScanNGBuffer:="AutoProcessData".F_Robot2Grip2;
+      "AutoProcessData".F_Robot2Grip2:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[254] THEN
+      next_active[253] := FALSE;
+      next_active[343] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[255] THEN
+    // Step 255: DataMove_1
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[255] THEN
+      "AutoProcessData".C_GlueNGBuffer:="AutoProcessData".F_Robot2Grip1;
+      "AutoProcessData".F_Robot2Grip1:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[256] THEN
+      next_active[255] := FALSE;
+      next_active[345] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[257] THEN
+    // Step 257: DataMove_2
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[257] THEN
+      "AutoProcessData".F_Robot2Grip1:="AutoProcessData".C_Glue;
+      "AutoProcessData".C_Glue:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[258] THEN
+      next_active[257] := FALSE;
+      next_active[359] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[258] THEN
+    // Step 258: Data Clear_2
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[258] THEN
+      "AutoProcessData".F_Robot2Grip2:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[259] THEN
+      next_active[258] := FALSE;
+      next_active[352] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[260] THEN
+    // Step 260: DataMove_3
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[260] THEN
+      "AutoProcessData".B_Press2:="AutoProcessData".F_Robot2Grip1;
+      "AutoProcessData".F_Robot2Grip1:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[261] THEN
+      next_active[260] := FALSE;
+      next_active[362] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[262] THEN
+    // Step 262: DataMove_4
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[262] THEN
+      "AutoProcessData".F_Robot2Grip1:="AutoProcessData".B_Press1;
+      "AutoProcessData".B_Press1:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[263] THEN
+      next_active[262] := FALSE;
+      next_active[365] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[264] THEN
+    // Step 264: DataMove_5
+    "AutoProcessData".C_Glue.Code_1:="AutoProcessData".F_Robot2Grip2.Code_1;
+    "AutoProcessData".C_Glue.PartStatus:=320;
+    IF tr_cond[265] THEN
+      next_active[264] := FALSE;
+      next_active[265] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[265] THEN
+    // Step 265: Data Clear_6
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[265] THEN
+      "AutoProcessData".F_Robot2Grip2:="AutoProcessData".ClearData;
+    END_IF;
+    IF tr_cond[266] THEN
+      next_active[265] := FALSE;
+      next_active[368] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[266] THEN
+    // Step 266: Grip1SensorError
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[266] THEN
+      "ST10_DeviceError".F.Robot_2.Grip1SensorCheckError := TRUE;
+    END_IF;
+    IF tr_cond[268] THEN
+      next_active[266] := FALSE;
+      next_active[333] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[267] THEN
+    // Step 267: Grip2SensorError
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[267] THEN
+      "ST10_DeviceError".F.Robot_2.Grip2SensorCheckError := TRUE;
+    END_IF;
+    IF tr_cond[270] THEN
+      next_active[267] := FALSE;
+      next_active[333] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[268] THEN
+    // Step 268: FlagReset
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[268] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.PalletPickFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MagnetScanFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePutFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GluePickFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.Press2PutFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.GlueNGPutFlag := FALSE;
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.ScanNGPutFlag := FALSE;
+    END_IF;
+    IF tr_cond[271] THEN
+      next_active[268] := FALSE;
+      next_active[333] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[269] THEN
+    // Step 269: PartOKStatus_1
+    "AutoProcessData".F_Robot2Grip2.PartStatus:=110;
+    IF tr_cond[272] THEN
+      next_active[269] := FALSE;
+      next_active[384] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[296] THEN
+    // Step 296: WaitGripperPos1ScanFinish
+    IF tr_cond[355] THEN
+      next_active[296] := FALSE;
+      next_active[301] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[299] THEN
+    // Step 299: PickPalletFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[299] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[299] THEN
+      next_active[299] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[300] THEN
+    // Step 300: ScanNGPutProcess
+    IF tr_cond[300] THEN
+      next_active[300] := FALSE;
+      next_active[328] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[301] THEN
+    // Step 301: RobotScanGripPos1Comp
+    IF tr_cond[359] THEN
+      next_active[301] := FALSE;
+      next_active[304] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[304] THEN
+    // Step 304: WaitRobotScanGripPos2Reach
+    IF tr_cond[360] THEN
+      next_active[304] := FALSE;
+      next_active[337] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[311] THEN
+    // Step 311: RobotReady?
+    IF tr_cond[606] THEN
+      next_active[311] := FALSE;
+      next_active[316] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[316] THEN
+    // Step 316: RobotStart
+    "KukaRobot2_CtrlDB".ioAutoStart := TRUE;
+    IF tr_cond[608] THEN
+      next_active[316] := FALSE;
+      next_active[381] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[317] THEN
+    // Step 317: RobotHome
+    "KukaRobot2_CtrlDB".ioSrartHome := TRUE;
+    IF tr_cond[609] THEN
+      next_active[317] := FALSE;
+      next_active[329] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[326] THEN
+    // Step 326: StartRobotPickPalletShaft
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI241_PickPalletReq := TRUE;
+    IF tr_cond[648] THEN
+      next_active[326] := FALSE;
+      next_active[346] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[327] THEN
+    // Step 327: WaitRobotFinish
+    IF tr_cond[327] THEN
+      next_active[327] := FALSE;
+      next_active[299] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[328] THEN
+    // Step 328: StartRobotScanNGPut
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI249_ScanNGPutReq := TRUE;
+    IF tr_cond[328] THEN
+      next_active[328] := FALSE;
+      next_active[347] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[329] THEN
+    // Step 329: RobotAutoCycle
+    "KukaRobot2_CtrlDB".ioStartAutoCycle := TRUE;
+    IF tr_cond[610] THEN
+      next_active[329] := FALSE;
+      next_active[330] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[330] THEN
+    // Step 330: GripStatusCheck
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[331] THEN
+    // Step 331: Gripe1StatusAlarm
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[331] THEN
+      "ST10_DeviceError".F.Robot_2.Grip1Error := TRUE;
+    END_IF;
+    IF tr_cond[614] THEN
+      next_active[331] := FALSE;
+      next_active[330] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[332] THEN
+    // Step 332: Gripe2StatusAlarm
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[332] THEN
+      "ST10_DeviceError".F.Robot_2.Grip2Error := TRUE;
+    END_IF;
+    IF tr_cond[615] THEN
+      next_active[332] := FALSE;
+      next_active[330] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[333] THEN
+    // Step 333: RobotTaskSelect
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[336] THEN
+    // Step 336: SetGripCodeScanFlag
+    IF tr_cond[623] THEN
+      next_active[336] := FALSE;
+      next_active[149] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[337] THEN
+    // Step 337: WaitGripperPos2ScanFinish
+    IF tr_cond[626] THEN
+      next_active[337] := FALSE;
+      next_active[371] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[338] THEN
+    // Step 338: StartRobotScanGripperCode
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI305_GripScan := TRUE;
+    IF tr_cond[616] THEN
+      next_active[338] := FALSE;
+      next_active[340] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[340] THEN
+    // Step 340: RobotScanGripperReachPos1
+    IF tr_cond[673] THEN
+      next_active[340] := FALSE;
+      next_active[296] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[343] THEN
+    // Step 343: WaitRobotFinish_1
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[344] THEN
+    // Step 344: StartRobotGlueNGPut
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI253_GlueNGPutReq := TRUE;
+    IF tr_cond[652] THEN
+      next_active[344] := FALSE;
+      next_active[348] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[345] THEN
+    // Step 345: WaitRobotFinish_2
+    IF tr_cond[653] THEN
+      next_active[345] := FALSE;
+      next_active[399] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[346] THEN
+    // Step 346: WaitRobotGripHaveStatus
+    IF tr_cond[655] THEN
+      next_active[346] := FALSE;
+      next_active[243] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[347] THEN
+    // Step 347: WaitRobotGripHaveStatus_1
+    IF tr_cond[656] THEN
+      next_active[347] := FALSE;
+      next_active[253] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[348] THEN
+    // Step 348: WaitRobotGripHaveStatus_2
+    IF tr_cond[657] THEN
+      next_active[348] := FALSE;
+      next_active[255] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[349] THEN
+    // Step 349: ScanNGPutFinish_1
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[349] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[349] THEN
+      next_active[349] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[350] THEN
+    // Step 350: GlueNGPutProcess
+    IF tr_cond[350] THEN
+      next_active[350] := FALSE;
+      next_active[344] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[352] THEN
+    // Step 352: StartRobotPickTable
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI257_PickPartReq := TRUE;
+    IF tr_cond[654] THEN
+      next_active[352] := FALSE;
+      next_active[354] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[353] THEN
+    // Step 353: WaitRobotFinish_3
+    IF tr_cond[658] THEN
+      next_active[353] := FALSE;
+      next_active[449] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[354] THEN
+    // Step 354: WaitRobotGripHaveStatus_3
+    IF tr_cond[659] THEN
+      next_active[354] := FALSE;
+      next_active[244] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[355] THEN
+    // Step 355: StartRobotScanRing
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI261_ScanPartReq := TRUE;
+    IF tr_cond[660] THEN
+      next_active[355] := FALSE;
+      next_active[357] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[356] THEN
+    // Step 356: WaitRobotFinish_4
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI262_ScanPartComplete := TRUE;
+    IF tr_cond[661] THEN
+      next_active[356] := FALSE;
+      next_active[499] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[357] THEN
+    // Step 357: WaitRobotReachScanPos
+    IF tr_cond[662] THEN
+      next_active[357] := FALSE;
+      next_active[245] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[358] THEN
+    // Step 358: StartRobotGluePick
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI269_GluePickReq := TRUE;
+    IF tr_cond[663] THEN
+      next_active[358] := FALSE;
+      next_active[360] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[359] THEN
+    // Step 359: WaitRobotFinish_5
+    IF tr_cond[664] THEN
+      next_active[359] := FALSE;
+      next_active[549] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[360] THEN
+    // Step 360: WaitRobotGripStatus
+    IF tr_cond[665] THEN
+      next_active[360] := FALSE;
+      next_active[257] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[361] THEN
+    // Step 361: StartRobotPutPress
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI273_PutPressReq := TRUE;
+    IF tr_cond[666] THEN
+      next_active[361] := FALSE;
+      next_active[363] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[362] THEN
+    // Step 362: WaitRobotFinish_6
+    IF tr_cond[667] THEN
+      next_active[362] := FALSE;
+      next_active[599] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[363] THEN
+    // Step 363: WaitRobotGripStatus_1
+    IF tr_cond[668] THEN
+      next_active[363] := FALSE;
+      next_active[260] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[364] THEN
+    // Step 364: StartRobotPressPick
+    IF tr_cond[669] THEN
+      next_active[364] := FALSE;
+      next_active[366] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[365] THEN
+    // Step 365: WaitRobotFinish_7
+    IF tr_cond[670] THEN
+      next_active[365] := FALSE;
+      next_active[649] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[366] THEN
+    // Step 366: WaitRobotGripStatus_2
+    IF tr_cond[671] THEN
+      next_active[366] := FALSE;
+      next_active[262] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[367] THEN
+    // Step 367: StartRobotGluePut
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI265_GluePutReq := TRUE;
+    IF tr_cond[676] THEN
+      next_active[367] := FALSE;
+      next_active[369] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[368] THEN
+    // Step 368: WaitRobotFinish_8
+    IF tr_cond[677] THEN
+      next_active[368] := FALSE;
+      next_active[699] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[369] THEN
+    // Step 369: WaitRobotGripStatus_3
+    IF tr_cond[679] THEN
+      next_active[369] := FALSE;
+      next_active[264] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[371] THEN
+    // Step 371: RobotScanGripPos2Comp
+    IF tr_cond[367] THEN
+      next_active[371] := FALSE;
+      next_active[372] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[372] THEN
+    // Step 372: WaitRobotScanGripPos3Reach
+    IF tr_cond[368] THEN
+      next_active[372] := FALSE;
+      next_active[373] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[373] THEN
+    // Step 373: WaitGripperPos3ScanFinish
+    IF tr_cond[630] THEN
+      next_active[373] := FALSE;
+      next_active[378] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[378] THEN
+    // Step 378: RobotScanGripPos3Comp
+    IF tr_cond[375] THEN
+      next_active[378] := FALSE;
+      next_active[383] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[379] THEN
+    // Step 379: WaitRobot1AndRobot3HomeFinish
+    IF tr_cond[691] THEN
+      next_active[379] := FALSE;
+      next_active[380] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[380] THEN
+    // Step 380: Step380
+    IF tr_cond[692] THEN
+      next_active[380] := FALSE;
+      next_active[311] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[381] THEN
+    // Step 381: WaitRobotStartHome
+    IF tr_cond[695] THEN
+      next_active[381] := FALSE;
+      next_active[317] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[382] THEN
+    // Step 382: RobotManuallyMoved?
+    IF tr_cond[696] THEN
+      next_active[382] := FALSE;
+      next_active[379] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[383] THEN
+    // Step 383: WaitRobotScanGripPos4Reach
+    IF tr_cond[376] THEN
+      next_active[383] := FALSE;
+      next_active[385] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[384] THEN
+    // Step 384: MES Online  offline?
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[385] THEN
+    // Step 385: WaitGripperPos4ScanFinish
+    IF tr_cond[635] THEN
+      next_active[385] := FALSE;
+      next_active[391] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[391] THEN
+    // Step 391: RobotScanGripPos4Comp
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI307_ScanPartFinish := TRUE;
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI306_ScanPartComplete := TRUE;
+    IF tr_cond[383] THEN
+      next_active[391] := FALSE;
+      next_active[336] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[399] THEN
+    // Step 399: GlueNGPutFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[399] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[399] THEN
+      next_active[399] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[400] THEN
+    // Step 400: PickTableProcess
+    IF tr_cond[400] THEN
+      next_active[400] := FALSE;
+      next_active[258] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[449] THEN
+    // Step 449: PickTableProcessFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[449] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[449] THEN
+      next_active[449] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[450] THEN
+    // Step 450: ScanMaganeProcess
+    IF tr_cond[450] THEN
+      next_active[450] := FALSE;
+      next_active[355] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[499] THEN
+    // Step 499: ScanMaganeProcessFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[499] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[499] THEN
+      next_active[499] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[500] THEN
+    // Step 500: GluePickProcess
+    IF tr_cond[500] THEN
+      next_active[500] := FALSE;
+      next_active[358] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[549] THEN
+    // Step 549: PressGluePickProcessFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[549] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[549] THEN
+      next_active[549] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[550] THEN
+    // Step 550: PutPressProcess
+    IF tr_cond[550] THEN
+      next_active[550] := FALSE;
+      next_active[361] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[599] THEN
+    // Step 599: PutProcessFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[599] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    "Robot_DB".Robot_2.SpeedCount:="Robot_DB".Robot_2.SpeedCount+1;
+    IF tr_cond[599] THEN
+      next_active[599] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[600] THEN
+    // Step 600: PressPickProcess
+    IF tr_cond[600] THEN
+      next_active[600] := FALSE;
+      next_active[364] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[649] THEN
+    // Step 649: PressPickProcessFinish_
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[649] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[649] THEN
+      next_active[649] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[650] THEN
+    // Step 650: GluePutProcess
+    IF tr_cond[650] THEN
+      next_active[650] := FALSE;
+      next_active[367] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[699] THEN
+    // Step 699: GluePutProcessFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[699] THEN
+      #ioPM_Inface.ProcessComplete := TRUE;
+      #ioPM_Inface.ProcessStart := FALSE;
+    END_IF;
+    IF tr_cond[699] THEN
+      next_active[699] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[704] THEN
+    // Step 704: ReqRobotToMantenPos_1
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI297_MaintainRequest := TRUE;
+    IF tr_cond[705] THEN
+      next_active[704] := FALSE;
+      next_active[705] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[705] THEN
+    // Step 705: WaitR1MaintenPosFinsh_1
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[705] THEN
+      "DB_ST10_Flow8_FRobot_2_State".AutoProcessControl.Robot_2.MaintenanceRequest := FALSE;
+    END_IF;
+    IF tr_cond[706] THEN
+      next_active[705] := FALSE;
+      next_active[706] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[706] THEN
+    // Step 706: WaitRobotHomeRequest
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[706] THEN
+      "ChangeOver_DB".Robot_2.MaintenancePosReqSelFlag := FALSE;
+    END_IF;
+    IF tr_cond[707] THEN
+      next_active[706] := FALSE;
+      next_active[707] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[707] THEN
+    // Step 707: ReqRobotToHomePos
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI300_HomeRequest := TRUE;
+    IF tr_cond[708] THEN
+      next_active[707] := FALSE;
+      next_active[899] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[850] THEN
+    // Step 850: Maintenance Pos
+    IF tr_cond[850] THEN
+      next_active[850] := FALSE;
+      next_active[704] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[899] THEN
+    // Step 899: WaitR1HomePosFinsh_1
+    IF tr_cond[899] THEN
+      next_active[899] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[900] THEN
+    // Step 900: 900
+    IF tr_cond[134] THEN
+      next_active[900] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[910] THEN
+    // Step 910: MasteringTest_Req
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI321 := TRUE;
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Safety.DI450 := TRUE;
+    IF tr_cond[136] THEN
+      next_active[910] := FALSE;
+      next_active[911] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[911] THEN
+    // Step 911: WaitMasteringTestFinish
+    IF tr_cond[139] THEN
+      next_active[911] := FALSE;
+      next_active[919] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[919] THEN
+    // Step 919: MasteringTestFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[919] THEN
+      "Robot_DB".Robot_2.MasteringTest_Req := FALSE;
+    END_IF;
+    IF tr_cond[919] THEN
+      next_active[919] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[920] THEN
+    // Step 920: BrakeTest_Req
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI329 := TRUE;
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Safety.DI451 := TRUE;
+    IF tr_cond[138] THEN
+      next_active[920] := FALSE;
+      next_active[921] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[921] THEN
+    // Step 921: WaitBrakeTestFinish
+    IF tr_cond[141] THEN
+      next_active[921] := FALSE;
+      next_active[929] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[929] THEN
+    // Step 929: BrakeTestFinish
+    IF NOT "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[929] THEN
+      "Robot_DB".Robot_2.BrakeTest_Req := FALSE;
+    END_IF;
+    IF tr_cond[929] THEN
+      next_active[929] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[930] THEN
+    // Step 930: Step930
+    "AutoProcessData".C_MagnScanNGBuffer.PartStatus:=0;
+    IF tr_cond[931] THEN
+      next_active[930] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  FOR idx := 1 TO 930 DO
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepPrev[idx] := "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[idx];
+    "DB_ST10_Flow8_FRobot_2_State".Flow.StepActive[idx] := next_active[idx];
+  END_FOR;
+END_FUNCTION

@@ -1,0 +1,32 @@
+FUNCTION_BLOCK "MaterialGate"
+VAR_INPUT
+  iSysInface : "RCS_SysComInterface_V1";
+  "iMaterialGate Opened Monitor" : Bool;
+  "iMaterialGate Locked Monitor" : Bool;
+  i1s_Pulse : Bool;
+  "iMaterialGate AutoLock Timer" : Time;
+  "iMaterialGate ManualLock Timer" : Time;
+END_VAR
+VAR_OUTPUT
+  "oMaterialGate LockedLamp" : Bool;
+END_VAR
+VAR_IN_OUT
+  ioMaterialGateLock : Bool;
+  ioHMI_Interface : "SafetyGateUDT";
+END_VAR
+VAR
+  "sMaterialafetyGate Timer" : Array[1..5] of TON_TIME;
+  sP_Trig : Array[1..10] of Bool;
+  sN_Trig : Array[1..10] of Bool;
+  "sMaterialGate UnlockRequest" : Bool;
+  "sMaterialGate LockRequest" : Bool;
+END_VAR
+VAR_TEMP
+  tAlyways_On : Bool;
+  tAlyways_Off : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/03_Device/102 SafetyGate/MaterialGate.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

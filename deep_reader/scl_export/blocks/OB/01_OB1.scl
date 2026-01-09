@@ -1,0 +1,34 @@
+ORGANIZATION_BLOCK "01_OB1"
+VAR_TEMP
+  OB1_EV_CLASS : Byte;
+  OB1_SCAN_1 : Byte;
+  OB1_PRIORITY : Byte;
+  OB1_OB_NUMBR : Byte;
+  OB1_RESERVED_1 : Byte;
+  OB1_RESERVED_2 : Byte;
+  OB1_PREV_CYCLE : Int;
+  OB1_MIN_CYCLE : Int;
+  OB1_MAX_CYCLE : Int;
+  OB1_DATE_TIME : Date_And_Time;
+  i : Int;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/01_OB/01_OB1.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  ..Sys.ScanTime.CyclePrevious := #OB1_PREV_CYCLE;
+  ..Sys.ScanTime.CycleMin := #OB1_MIN_CYCLE;
+  ..Sys.ScanTime.CycleMax := #OB1_MAX_CYCLE;
+  // Network 2
+  ...ST10_GeneralData.HMI.Win.WinBullfer := ;
+      FOR #i :=  TO  DO
+          ...ST10_GeneralData.HMI.Win.WinBullfer := ...ST10_GeneralData.HMI.Win.WinBullfer + ...[#i] *  +...[] *  +...[#i] *  +...[#i] * ;
+      END_FOR;
+      ...ST10_GeneralData.HMI.Win.WinBullfer := (...ST10_GeneralData.HMI.Win.WinBullfer);
+      ...[]( := ...ST10_GeneralData.HMI.Win.Win <> ...ST10_GeneralData.HMI.Win.WinBullfer,
+                          := );
+  IF ...[]. THEN
+      ...ST10_GeneralData.HMI.Win.Win := ...ST10_GeneralData.HMI.Win.WinBullfer;
+      END_IF;
+END_ORGANIZATION_BLOCK

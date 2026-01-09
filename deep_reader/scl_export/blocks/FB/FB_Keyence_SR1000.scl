@@ -1,0 +1,235 @@
+FUNCTION_BLOCK "FB_Keyence_SR1000"
+VAR_INPUT
+  "I_Handshake and Genera_InAdr" : HW_IO;
+  I_BUSYStatusBits_InAdr : HW_IO;
+  I_CompletionStatus_InAdr : HW_IO;
+  I_ErrorStatusBits_InAdr : HW_IO;
+  "I_Terminal Status InAdr" : HW_IO;
+  "I_Unstable Read Status Bits_InAdr" : HW_IO;
+  "I_Matching Level and Total_InAdr" : HW_IO;
+  "I_Operation Result Status InAdr" : HW_IO;
+  "I_Read Data 128Byte InAdr" : HW_IO;
+  "I_Latch and Error OutAdr" : HW_IO;
+  "I_Operation instruction_OutAdr" : HW_IO;
+  "I_Completion OutAdr" : HW_IO;
+  "I_Parameter Bank Number_OutAdr" : HW_IO;
+  "I_User Data 128Byte_OutAdr" : HW_IO;
+END_VAR
+VAR_OUTPUT
+  io_nError : Int;
+  io_nWarning : Int;
+END_VAR
+VAR_IN_OUT
+  IO_udtData : "ST_KeyenceSR1000";
+END_VAR
+VAR
+  s_nValue : Array[0..20] of Int;
+  sUP : Array[0..10] of R_TRIG;
+  TON : Array[0..10] of TON_TIME;
+  FB_Step : "FB_Step";
+  sPN_IN : STRUCT
+    Handshake : Byte;
+    BUSYStatusBits : Byte;
+    CompletionStatus : Byte;
+    ErrorStatusBits : Byte;
+    TerminalStatus : Byte;
+    UnstableReadStatusBits : Byte;
+    MatchingLevelandTotal : Array[1..8] of Byte;
+    OperationResultStatus : Array[1..20] of Byte;
+    ReadData128Byte : Array[1..136] of Byte;
+  END_STRUCT;
+  sPN_Out : STRUCT
+    LatchErrorClear : Byte;
+    OperationInstruction : Byte;
+    Completion : Byte;
+    ParBankNo : Array[1..2] of Byte;
+    UserData128byte : Array[1..136] of Byte;
+  END_STRUCT;
+  Flag : Array[0..10] of Bool;
+END_VAR
+VAR_TEMP
+  tInt : Array[1..8] of Int;
+  i : Int;
+  TempBytes : Array[1..128] of Char;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/03_Device/214_KeyenceSR X80/FB_Keyence_SR1000.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+      
+      [] := ( := #I_Handshake and Genera_InAdr,
+                                => .#sPN_IN.Handshake);
+      
+      [] := ( := #I_BUSYStatusBits_InAdr,
+                                => .#sPN_IN.BUSYStatusBits);
+      
+      [] := ( := #I_CompletionStatus_InAdr,
+                                => .#sPN_IN.CompletionStatus);
+      
+      [] := ( := #I_ErrorStatusBits_InAdr,
+                                => .#sPN_IN.ErrorStatusBits);
+      
+      [] := ( := #I_Terminal Status InAdr,
+                                => .#sPN_IN.TerminalStatus);
+      
+      [] := ( := #I_Unstable Read Status Bits_InAdr,
+                                => .#sPN_IN.UnstableReadStatusBits);
+      
+      [] := ( := #I_Matching Level and Total_InAdr,
+                                => .#sPN_IN.MatchingLevelandTotal);
+      
+      [] := ( := #I_Operation Result Status InAdr,
+                                => .#sPN_IN.OperationResultStatus);
+      
+      [] := ( := #I_Read Data 128Byte InAdr,
+                                => .#sPN_IN.ReadData128Byte);
+     
+  END_REGION
+  REGION 
+      
+      
+      
+      ..#IO_udtData.In.bBusy := ..%X1#sPN_IN.BUSYStatusBits;
+      ..#IO_udtData.In.bError := ..%X0#sPN_IN.Handshake;
+      ..#IO_udtData.In.bReadComplete := ..%X0#sPN_IN.CompletionStatus;
+      ..#IO_udtData.In.bReadFailure := ..%X0#sPN_IN.ErrorStatusBits;
+      ..#IO_udtData.In.nReadResultCode := .[];
+      
+  END_REGION
+  REGION 
+      
+      []( := ..#IO_udtData.Common.nMode <> ,
+               := );
+      IF []. THEN
+          ..#IO_udtData.Common.nErrorNo := ;
+          .%X0#io_nError := ;
+      END_IF;
+      
+      
+      
+      []( := NOT .#FB_Step.sCondition AND .#FB_Step.sNextNo = ,
+               := );
+      
+      
+      
+      IF ..#IO_udtData.Common.nErrorNo <>  THEN
+          ..#IO_udtData.Common.bError := ;
+          ..#IO_udtData.Common.nMode := ;
+      END_IF;
+      
+      
+      IF ..#IO_udtData.Common.bReset AND ..#IO_udtData.Common.bError THEN
+          ..#IO_udtData.Common.nErrorNo := ;
+          #io_nError := ;
+          ..#IO_udtData.Common.bError := ;
+      END_IF;
+      
+      ..#IO_udtData.Out.bErrorClear := ..#IO_udtData.Common.bReset;
+      
+  END_REGION
+  REGION 
+      
+      ..#IO_udtData.Common.nWarningNo := ..#IO_udtData.In.nReadResultCode;
+  END_REGION
+  REGION 
+      IF ..#IO_udtData.In.bReadComplete THEN
+          ..#IO_udtData.In.nDataSize := .[] - ;
+          FOR #i :=  TO  DO
+              ..[#i] := .[#i + ];
+          END_FOR;
+          ( := ..#IO_udtData.In.aData,
+                         := ,
+                         := ..#IO_udtData.In.nDataSize,
+                         => .#IO_udtData.RecordCode);
+      END_IF;
+  END_REGION
+  REGION 
+      ();
+      IF ..#IO_udtData.Common.nMode <>  THEN
+          CASE .#FB_Step.sCurrNo OF
+              :
+                  .#FB_Step.sCondition := ..#IO_udtData.Common.nMode = ;
+                  .#FB_Step.sNextNo := ;
+              :
+                  IF .#FB_Step.sPls THEN
+                      ..#IO_udtData.Out.bReadRequest := ;
+                      .#IO_udtData.RecordCode := ;
+                      ..#IO_udtData.In.aData := #TempBytes;
+                      ..#IO_udtData.In.nDataSize := ;
+                      ..#IO_udtData.Common.bDone := ;
+                      ..#IO_udtData.Common.bNG := ;
+                      ..#IO_udtData.Common.bOK := ;
+                  END_IF;
+                  .#FB_Step.sCondition := ..#IO_udtData.In.bBusy;
+                  .#FB_Step.sNextNo := ;
+              :
+                  
+                  .#FB_Step.sDealyTime := ;
+                  
+                  .#FB_Step.sCondition :=( ..#IO_udtData.In.bReadComplete AND NOT ..#IO_udtData.In.bBusy ) OR [].;
+                  IF .#FB_Step.sCondition THEN
+                      ..#IO_udtData.Out.bReadRequest := ;
+                  END_IF;
+                  .#FB_Step.sNextNo := ;
+              :
+                  IF .#IO_udtData.RecordCode =  THEN
+                      ..#IO_udtData.Common.bNG := ;
+                      ..#IO_udtData.Common.bOK := ;
+                  ELSE
+                      ..#IO_udtData.Common.bNG := ;
+                      ..#IO_udtData.Common.bOK := ;
+                  END_IF;
+                  .#FB_Step.sCondition := ;
+                  .#FB_Step.sNextNo := ;
+              :
+                  IF .#FB_Step.sPls THEN
+                      ..#IO_udtData.Out.bReadComlpleteClear := ;
+                  END_IF;
+                  .#FB_Step.sCondition := NOT ..#IO_udtData.In.bReadComplete AND NOT ..#IO_udtData.In.bReadFailure;
+                  .#FB_Step.sNextNo := ;
+              :
+                  IF .#FB_Step.sPls THEN
+                      ..#IO_udtData.Out.bReadComlpleteClear := ;
+                      ..#IO_udtData.Common.bDone := ;
+                      ..#IO_udtData.Common.nMode := ;
+                  END_IF;
+                  .#FB_Step.sCondition := ;
+                  .#FB_Step.sNextNo := ;
+          END_CASE;
+      ELSE
+          .#FB_Step.sCurrNo := ;
+          ..#IO_udtData.Out.bReadComlpleteClear := ;
+          ..#IO_udtData.Out.bReadRequest := ;
+      END_IF;
+  END_REGION
+  REGION 
+      
+      
+      
+      ..%X0#sPN_Out.OperationInstruction := ..#IO_udtData.Out.bReadRequest;
+      ..%X7#sPN_Out.LatchErrorClear:= ..#IO_udtData.Out.bErrorClear;
+      ..%X0#sPN_Out.Completion := ..#IO_udtData.Out.bReadComlpleteClear;
+      
+      
+      
+  END_REGION
+  REGION 
+      
+      [] := ( := #I_Latch and Error OutAdr,
+                                := .#sPN_Out.LatchErrorClear);
+      
+      [] := ( := #I_Operation instruction_OutAdr,
+                                := .#sPN_Out.OperationInstruction);
+      
+     [] := ( := #I_Completion OutAdr,
+                                := .#sPN_Out.Completion);
+      
+     [] := ( := #I_Parameter Bank Number_OutAdr,
+                                := .#sPN_Out.ParBankNo);
+      
+      [] := ( := #I_User Data 128Byte_OutAdr,
+                                := .#sPN_Out.UserData128byte);
+  END_REGION
+END_FUNCTION_BLOCK

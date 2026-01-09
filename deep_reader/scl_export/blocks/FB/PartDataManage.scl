@@ -1,0 +1,272 @@
+FUNCTION_BLOCK "PartDataManage"
+VAR_INPUT
+  iReset : Bool;
+  iScannerTrigger : Bool;
+  iStringRecived : String;
+  iMaterialType : String;
+  iSaveToBuffer : Bool;
+  iCodeType : Bool;
+  iDecrementCnt : DInt;
+  iDecrementTrigger : Bool;
+  iBufferBoxes : Int;
+END_VAR
+VAR_IN_OUT
+  ioMaterialActive : Bool;
+  io_MaterialManage : "PartData_UDT";
+END_VAR
+VAR
+  NO : Array[0..6] of Int;
+  sString_MId : String;
+  sKeyChar : Char;
+  Puls : Array[0..20] of Bool;
+  R_TRIG_MaterialActive : R_TRIG;
+  R_TRIG_ScannerTrigger : R_TRIG;
+  IEC_Timer_MaterialActive : TON_TIME;
+  R_TRIG_DecrementTrigger : R_TRIG;
+  "R_TRIG_PartQuality+1" : R_TRIG;
+  "R_TRIG_PartQuality-1" : R_TRIG;
+  R_TRIG_ClearCurrentBox : R_TRIG;
+  R_TRIG_ClearAllBox : R_TRIG;
+  R_TRIG_SaveToBuffer : R_TRIG;
+  Timer_PartQualityAckPB : TON_TIME;
+END_VAR
+VAR_TEMP
+  tMaterialTypePos : Int;
+  tLenString : Int;
+  BufferIndex : Int;
+  "BufferIndex+1" : Int;
+  "BufferBoxes-1" : Int;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/03_Device/104 PartDataManage/PartDataManage.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  END_REGION
+  REGION 
+      
+      #R_TRIG_ScannerTrigger( := #iScannerTrigger);
+      
+      #tMaterialTypePos := ( := #iStringRecived,  := #iMaterialType);
+      
+      IF .#R_TRIG_ScannerTrigger.Q AND #tMaterialTypePos <>  THEN
+          #ioMaterialActive := ;
+      END_IF;
+      
+      #R_TRIG_MaterialActive( := #ioMaterialActive);
+      
+      
+      
+      #IEC_Timer_MaterialActive( := #ioMaterialActive,
+                                 := );
+      
+      IF .#IEC_Timer_MaterialActive.Q THEN
+          #ioMaterialActive := ;
+      END_IF;
+      
+      
+  END_REGION
+  REGION 
+      
+      IF .#R_TRIG_MaterialActive.Q AND NOT #iCodeType THEN
+          
+          
+          ..#io_MaterialManage.PartBoxDataRecive.PartCode := #iStringRecived;
+          ..#io_MaterialManage.PartBoxDataRecive.PartCode_Len := (..#io_MaterialManage.PartBoxDataRecive.PartCode);
+          
+          
+          
+          [] := ( := #iStringRecived,  := #sKeyChar);
+          [] := [] - ;
+          ..#io_MaterialManage.PartBoxDataRecive.SupplierID := ( := #iStringRecived,  := []);
+          
+          
+          #tLenString := ..#io_MaterialManage.PartBoxDataRecive.PartCode_Len - [];
+          #sString_MId := ( := #iStringRecived,  := #tLenString);
+          [] := ( := #sString_MId,  := #sKeyChar);
+          [] := [] - ;
+          ..#io_MaterialManage.PartBoxDataRecive.MaterialType := ( := #sString_MId,  := []);
+          
+          
+          
+          #tLenString := #tLenString - [];
+          #sString_MId := ( := #sString_MId,  := #tLenString);
+          [] := ( := #sString_MId,  := #sKeyChar);
+          [] := [] - ;
+          ..#io_MaterialManage.PartBoxDataRecive.PO_ID := ( := #sString_MId,  := []);
+          
+          
+          
+          #tLenString := #tLenString - [];
+          #sString_MId := ( := #sString_MId,  := #tLenString);
+          [] := ( := #sString_MId,  := #sKeyChar);
+          [] := [] - ;
+          ..#io_MaterialManage.PartBoxDataRecive.BatchID := ( := #sString_MId,  := []);
+          
+          
+          
+          #tLenString := #tLenString - [];
+          #sString_MId := ( := #sString_MId,  := #tLenString);
+          [] := ( := #sString_MId,  := #sKeyChar);
+          [] := [] - ;
+          ..#io_MaterialManage.PartBoxDataRecive.Quality := ( := #sString_MId,  := []);
+          
+          
+          
+          #tLenString := #tLenString - [];
+          #sString_MId := ( := #sString_MId,  := #tLenString);
+          ..#io_MaterialManage.PartBoxDataRecive.Cartons := #sString_MId;
+          
+      END_IF;
+  END_REGION
+  REGION 
+      
+      IF #ioMaterialActive AND NOT #iCodeType THEN
+          IF ..#io_MaterialManage.PartBoxDataRecive.PartCode = .[].
+              OR ..#io_MaterialManage.PartBoxDataRecive.PartCode = .[].
+              OR ..#io_MaterialManage.PartBoxDataRecive.PartCode = .[].
+              OR ..#io_MaterialManage.PartBoxDataRecive.PartCode = .[].
+              OR ..#io_MaterialManage.PartBoxDataRecive.PartCode = .[]. THEN
+              
+              ...#io_MaterialManage.PartDataHMI.Waring.ScannCodeInvalid := ;
+              
+          END_IF;
+          
+      END_IF;
+      
+      
+      
+      IF #ioMaterialActive
+          AND .[#iBufferBoxes] <> .#io_MaterialManage.PartBoxDataNull THEN
+          ...#io_MaterialManage.PartDataHMI.Waring.BufferBoxFull := ;
+          
+      END_IF;
+      
+      
+      IF ..#io_MaterialManage.PartDataHMI.PartQuality <= #iDecrementCnt THEN
+          ...#io_MaterialManage.PartDataHMI.Waring.Insufficient := ;
+          
+      END_IF;
+      
+      
+      
+      IF #iReset THEN
+          
+          ...#io_MaterialManage.PartDataHMI.Waring.Insufficient := ;
+          ...#io_MaterialManage.PartDataHMI.Waring.BufferBoxFull := ;
+          ...#io_MaterialManage.PartDataHMI.Waring.ScannCodeInvalid := ;
+          
+      END_IF;
+      
+  END_REGION
+  REGION 
+      IF NOT #iCodeType THEN
+          
+          IF ..#io_MaterialManage.PartDataHMI.PartQuality < #iDecrementCnt THEN
+              
+              .[] := .[];
+              
+              ..#io_MaterialManage.PartDataHMI.PartQuality := ( := .[].);
+              
+              
+              .[] := .#io_MaterialManage.PartBoxDataNull;
+              
+          END_IF;
+          
+          
+          IF #iBufferBoxes >  THEN
+              #BufferIndex := ;
+              #BufferBoxes-1 := #iBufferBoxes - ;
+              FOR #BufferIndex :=  TO #iBufferBoxes -  DO
+                  
+                  #BufferIndex+1 := #BufferIndex + ;
+                  
+                  IF .[#BufferIndex] = .#io_MaterialManage.PartBoxDataNull THEN
+                      
+                      .[#BufferIndex] := .[#BufferIndex+1];
+                      
+                      .[#BufferIndex+1] := .#io_MaterialManage.PartBoxDataNull;
+                  END_IF;
+                  
+              END_FOR;
+              
+          END_IF;
+          
+      END_IF;
+      
+      
+      #R_TRIG_SaveToBuffer(:=#iSaveToBuffer);
+      
+      
+      
+      IF .#R_TRIG_SaveToBuffer.Q AND NOT #iCodeType AND NOT ...#io_MaterialManage.PartDataHMI.Waring.ScannCodeInvalid
+          AND .[#iBufferBoxes] = .#io_MaterialManage.PartBoxDataNull THEN
+          
+          .[#iBufferBoxes] := .#io_MaterialManage.PartBoxDataRecive;
+          
+          .#io_MaterialManage.PartBoxDataRecive := .#io_MaterialManage.PartBoxDataNull;
+      END_IF;
+  END_REGION
+  REGION 
+      
+      #R_TRIG_DecrementTrigger( := #iDecrementTrigger);
+      IF .#R_TRIG_DecrementTrigger.Q THEN
+          ..#io_MaterialManage.PartDataHMI.PartQuality := ..#io_MaterialManage.PartDataHMI.PartQuality - #iDecrementCnt;
+      END_IF;
+      
+     
+      #R_TRIG_PartQuality+1(:=...#io_MaterialManage.PartDataHMI.CMD.PartQuality+1);
+      #R_TRIG_PartQuality-1(:=...#io_MaterialManage.PartDataHMI.CMD.PartQuality-1);
+      
+      IF .#R_TRIG_PartQuality+1.Q THEN
+          ..#io_MaterialManage.PartDataHMI.PartQuality :=..#io_MaterialManage.PartDataHMI.PartQuality + ;
+      END_IF;
+      IF .#R_TRIG_PartQuality-1.Q THEN
+          ..#io_MaterialManage.PartDataHMI.PartQuality := ..#io_MaterialManage.PartDataHMI.PartQuality - ;
+          
+      END_IF;
+      
+      
+      #Timer_PartQualityAckPB(:=...#io_MaterialManage.PartDataHMI.CMD.PartQualityAck,
+                              :=);
+      
+      IF .#Timer_PartQualityAckPB.Q THEN
+          
+          ..#io_MaterialManage.PartDataHMI.PartQuality := ..#io_MaterialManage.PartDataHMI.PartQualitySet;
+      END_IF;
+      
+      
+      
+      
+      
+      #R_TRIG_ClearCurrentBox( := ...#io_MaterialManage.PartDataHMI.CMD.ClearCurrentBox);
+      #R_TRIG_ClearAllBox( := ...#io_MaterialManage.PartDataHMI.CMD.ClearAllBox);
+      
+      IF .#R_TRIG_ClearCurrentBox.Q THEN
+          .[] := .#io_MaterialManage.PartBoxDataNull;
+          
+      END_IF;
+      
+      IF .#R_TRIG_ClearAllBox.Q THEN
+          
+          #BufferIndex := ;
+          FOR #BufferIndex :=  TO  DO
+              .[#BufferIndex] := .#io_MaterialManage.PartBoxDataNull;
+          END_FOR;
+      END_IF;
+      
+  END_REGION
+  REGION 
+      ..#io_MaterialManage.PartDataHMI.PartDataDispaly := .[..#io_MaterialManage.PartDataHMI.BoxDisplayID];
+  END_REGION
+END_FUNCTION_BLOCK

@@ -1,0 +1,109 @@
+FUNCTION "ST10Cyl_interface11-20" : Void
+VAR_INPUT
+  AlwaysON : Bool;
+  E_stop : Bool;
+END_VAR
+VAR_TEMP
+  tTest : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/01_Cylinder/ST10Cyl_interface11-20.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  .[].. := iE-NG-01NGLocationCylinderInWP;
+  .[].. := iE-NG-01NGLocationCylinderInHP;
+  
+  oE-NG-01NGLocationCylinderToWP := .[]..;
+  oE-NG-01NGLocationCylinderToHP := .[]..;
+  
+  
+  .[].. := iE-NG-02NGLocationCylinderInWP;
+  .[].. := iE-NG-02NGLocationCylinderInHP;
+  
+  oE-NG-02NGLocationCylinderToWP := .[]..;
+  oE-NG-02NGLocationCylinderToHP := .[]..;
+  
+  
+  ....KukaRobot1_CtrlDB.sPLCtoROB.User.Gripper.DI129_Grip1WP:=.[].. := iF-ROOBT1Gripper1CylinderInWP ;
+  ....KukaRobot1_CtrlDB.sPLCtoROB.User.Gripper.DI130_Grip1HP := .[].. := iF-ROOBT1Gripper1CylinderInHP ;
+  IF  NOT ..Robot_DB.Control.Robot1GripControl THEN
+      
+      oF-ROOBT1Gripper1CylinderToWP := ....KukaRobot1_CtrlDB.sROBtoPLC.User.Gripper.DO129_Grip1GoWork;
+      oF-ROOBT1Gripper1CylinderToHP := ....KukaRobot1_CtrlDB.sROBtoPLC.User.Gripper.DO130_Grip1GoHome;
+  ELSE
+      
+      oF-ROOBT1Gripper1CylinderToWP := .[]..;
+      oF-ROOBT1Gripper1CylinderToHP := .[]..;
+  END_IF;
+  .[](:=oF-ROOBT1Gripper1CylinderToHP AND NOTiF-ROOBT1Gripper1CylinderInWP,:=);
+  
+  
+  ....KukaRobot1_CtrlDB.sPLCtoROB.User.Gripper.DI131_Grip2WP:=.[].. := iF-ROOBT1Gripper2CylinderInWP;
+  ....KukaRobot1_CtrlDB.sPLCtoROB.User.Gripper.DI132_Grip2HP:=.[].. := iF-ROOBT1Gripper2CylinderInHP;
+  IF NOT ..Robot_DB.Control.Robot1GripControl THEN
+      
+      oF-ROOBT1Gripper2CylinderToWP :=.[]..:=....KukaRobot1_CtrlDB.sROBtoPLC.User.Gripper.DO131_Grip2GoWork;
+      oF-ROOBT1Gripper2CylinderToHP :=.[]..:=....KukaRobot1_CtrlDB.sROBtoPLC.User.Gripper.DO132_Grip2GoHome;
+  ELSE
+      
+      oF-ROOBT1Gripper2CylinderToWP := .[]..;
+      oF-ROOBT1Gripper2CylinderToHP := .[]..;
+  END_IF;
+      
+      
+  
+  
+  ....KukaRobot2_CtrlDB.sPLCtoROB.User.Gripper.DI129_Grip1WP:=.[].. := iF-ROOBT2Gripper1CylinderInWP;
+  ....KukaRobot2_CtrlDB.sPLCtoROB.User.Gripper.DI130_Grip1HP := .[].. :=iF-ROOBT2Gripper1CylinderInHP;
+  IF NOT ..Robot_DB.Control.Robot2GripControl THEN
+      
+      oF-ROOBT2Gripper1CylinderToWP :=.[]..:=....KukaRobot2_CtrlDB.sROBtoPLC.User.Gripper.DO129_Grip1GoWork;
+      oF-ROOBT2Gripper1CylinderToHP :=.[]..:=....KukaRobot2_CtrlDB.sROBtoPLC.User.Gripper.DO130_Grip1GoHome;
+  ELSE
+      
+      oF-ROOBT2Gripper1CylinderToWP := .[]..;
+      oF-ROOBT2Gripper1CylinderToHP := .[]..;
+  END_IF;
+  
+  
+  ....KukaRobot2_CtrlDB.sPLCtoROB.User.Gripper.DI131_Grip2WP:=.[].. := iF-ROOBT2Gripper2CylinderInWP;
+  ....KukaRobot2_CtrlDB.sPLCtoROB.User.Gripper.DI132_Grip2HP:=.[].. := iF-ROOBT2Gripper2CylinderInHP;
+  IF NOT ..Robot_DB.Control.Robot2GripControl THEN
+      
+      oF-ROOBT2Gripper2CylinderToWP :=.[]..:= ....KukaRobot2_CtrlDB.sROBtoPLC.User.Gripper.DO131_Grip2GoWork;
+      oF-ROOBT2Gripper2CylinderToHP :=.[]..:= ....KukaRobot2_CtrlDB.sROBtoPLC.User.Gripper.DO132_Grip2GoHome;
+  ELSE
+      
+      oF-ROOBT2Gripper2CylinderToWP := .[]..;
+      oF-ROOBT2Gripper2CylinderToHP := .[]..;
+  END_IF;
+  
+  
+  ....KukaRobot3_CtrlDB.sPLCtoROB.User.Gripper.DI129_Grip1WP:=.[].. := iF-ROOBT3Gripper1CylinderInWP;
+  ....KukaRobot3_CtrlDB.sPLCtoROB.User.Gripper.DI130_Grip1HP:=.[].. := iF-ROOBT3Gripper1CylinderInHP;
+  IF NOT ..Robot_DB.Control.Robot3GripControl THEN
+      
+      oF-ROOBT3Gripper1CylinderToWP :=.[]..:=....KukaRobot3_CtrlDB.sROBtoPLC.User.Gripper.DO129_Grip1GoWork;
+      oF-ROOBT3Gripper1CylinderToHP :=.[]..:=....KukaRobot3_CtrlDB.sROBtoPLC.User.Gripper.DO130_Grip1GoHome;
+  ELSE
+      
+      oF-ROOBT3Gripper1CylinderToWP := .[]..;
+      oF-ROOBT3Gripper1CylinderToHP := .[]..;
+  END_IF;
+  
+  
+  ....KukaRobot3_CtrlDB.sPLCtoROB.User.Gripper.DI131_Grip2WP:=.[].. := iF-ROOBT3Gripper2CylinderInWP;
+  ....KukaRobot3_CtrlDB.sPLCtoROB.User.Gripper.DI132_Grip2HP := .[].. := iF-ROOBT3Gripper2CylinderInHP;
+  IF NOT ..Robot_DB.Control.Robot3GripControl THEN
+      
+      oF-ROOBT3Gripper2CylinderToWP :=.[]..:=....KukaRobot3_CtrlDB.sROBtoPLC.User.Gripper.DO131_Grip2GoWork;
+      oF-ROOBT3Gripper2CylinderToHP :=.[]..:=....KukaRobot3_CtrlDB.sROBtoPLC.User.Gripper.DO132_Grip2GoHome;
+  ELSE
+      
+      oF-ROOBT3Gripper2CylinderToWP := .[]..;
+      oF-ROOBT3Gripper2CylinderToHP := .[]..;
+  END_IF;
+  .[]( := oF-ROOBT3Gripper2CylinderToHP AND NOT iF-ROOBT3Gripper2CylinderInWP,
+                := );
+END_FUNCTION

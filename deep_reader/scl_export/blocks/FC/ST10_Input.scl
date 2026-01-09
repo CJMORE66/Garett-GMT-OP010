@@ -1,0 +1,46 @@
+FUNCTION "ST10_Input" : Void
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/01_Input/ST10_Input.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  ..ST10_SysInput.HMI_Button.ControlOn := iHMI Control On;
+  
+  ..ST10_SysInput.HMI_Button.MachineStart := iHMI Machine Start;
+  ..ST10_SysInput.HMI_Button.MachineStop := iHMI Machine Stop;
+  ..ST10_SysInput.HMI_Button.ResetButton := iHMI ResetButton;
+  ..ST10_SysInput.HMI_Button.Manual/Auto := iHMI Manual/Auto;
+  ..ST10_SysInput.HMI_Button.SafetyGateUnlock := iHMI Safety Gate Unlock;
+  ..ST10_SysInput.HMI_Button.E-Stop :=  iHMI E-Stop;
+  // Network 2
+  ..ST10_SysInput.Sys.iCircuitBreakerOK1 := iCircuit Breaker OK_1;
+  ..ST10_SysInput.Sys.iCircuitBreakerOK2 := iCircuit Breaker OK_2;
+  ..ST10_SysInput.Sys.iPressure:= iPressure;
+  // Network 3
+  .[] := iE_StopButton2_A01;
+  .[] := iE_StopButton3_A02;
+  .[] := iE_StopButton4_H;
+  .[] := iE_StopButton5_J;
+  .[] := iE_StopButton6_K;
+  .[] := iE_StopButton7_L;
+  .[] := iH_StopButton;
+  .[] := iJ_StopButton;
+  .[] := iK_StopButton;
+  // Network 4
+  .[] := iSafety door Locking FeedBack_1;
+  .[] := iSafety door Locking FeedBack_2;
+  .[] := iSafety door Locking FeedBack_3;
+  .[] := iSafety door Locking FeedBack_4;
+  .[] := iSafety door Locking FeedBack_5;
+  .[] := iSafety door Locking FeedBack_6;
+  .[] := iSafety door Locking FeedBack_7;
+  .[] := iSafety door Locking FeedBack_8;
+  // Network 5
+  .[] := iMateriel Door Locking FeedBack_H1;
+  .[] := iMateriel Door Locking FeedBack_H2;
+  .[] := iMateriel Door Locking FeedBack_J1;
+  .[] := iMateriel Door Locking FeedBack_J2;
+  .[] := iMateriel Door Locking FeedBack_K1;
+  .[] := iMateriel Door Locking FeedBack_K2;
+  .[] := iMateriel Door Locking FeedBack_L1;
+END_FUNCTION

@@ -1,0 +1,75 @@
+FUNCTION "ST10Cyl_interface31-40" : Void
+VAR_INPUT
+  AlwaysON : Bool;
+  E_stop : Bool;
+END_VAR
+VAR_TEMP
+  tTest : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/01_Cylinder/ST10Cyl_interface31-40.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  .[].. := iJ-magnetLiftingLiftingCylinderInWP;
+  .[].. := iJ-magnetLiftingLiftingCylinderInHP;
+  
+  oJ-magnetLiftingLiftingCylinderToWP := .[]..;
+  oJ-magnetLiftingLiftingCylinderToHP := .[]..;
+  
+  
+  .[].. := iJ-magnetLiftingPalletLocationCylinderInWP;
+  .[].. := iJ-magnetLiftingPalletLocationCylinderInHP;
+  
+  oJ-magnetLiftingPalletLocationCylinderToWP := .[]..;
+  oJ-magnetLiftingPalletLocationCylinderToHP := .[]..;
+  
+  
+  .[].. := oJ-magnetLoadingStopperCylinder1_ToWP;
+  .[].. := oJ-magnetLoadingStopperCylinder1_ToHP;
+  
+  oJ-magnetLoadingStopperCylinder1_ToWP := .[]..;
+  oJ-magnetLoadingStopperCylinder1_ToHP := .[]..;
+  
+  
+  .[].. := oJ-magnetLoadingStopperCylinder2_ToWP;
+  .[].. := oJ-magnetLoadingStopperCylinder2_ToHP;
+  
+  oJ-magnetLoadingStopperCylinder2_ToWP := .[]..;
+  oJ-magnetLoadingStopperCylinder2_ToHP := .[]..;
+  
+  
+  .[].. := oJ-magnetLoadingStopperCylinder3_ToWP;
+  .[].. := oJ-magnetLoadingStopperCylinder3_ToHP;
+  
+  oJ-magnetLoadingStopperCylinder3_ToWP := .[]..;
+  oJ-magnetLoadingStopperCylinder3_ToHP := .[]..;
+  
+  
+  .[].. := oJ-magnetLoadingStopperCylinder4_ToWP;
+  .[].. := oJ-magnetLoadingStopperCylinder4_ToHP;
+  
+  oJ-magnetLoadingStopperCylinder4_ToWP := .[]..;
+  oJ-magnetLoadingStopperCylinder4_ToHP := .[]..;
+  
+  
+  .[].. := oJ-magnetTakeStopperCylinder1_ToWP;
+  .[].. := oJ-magnetTakeStopperCylinder1_ToHP;
+  
+  oJ-magnetTakeStopperCylinder1_ToWP := .[]..;
+  oJ-magnetTakeStopperCylinder1_ToHP := .[]..;
+  
+  
+  .[].. := oJ-magnetTakeStopperCylinder2_ToWP;
+  .[].. := oJ-magnetTakeStopperCylinder2_ToHP;
+  
+  oJ-magnetTakeStopperCylinder2_ToWP := .[]..;
+  oJ-magnetTakeStopperCylinder2_ToHP := .[]..;
+  
+  
+  .[].. := oJ-magnetTakeStopperCylinder3_ToWP;
+  .[].. := oJ-magnetTakeStopperCylinder3_ToHP;
+  
+  oJ-magnetTakeStopperCylinder3_ToWP := .[]..;
+  oJ-magnetTakeStopperCylinder3_ToHP := .[]..;
+END_FUNCTION

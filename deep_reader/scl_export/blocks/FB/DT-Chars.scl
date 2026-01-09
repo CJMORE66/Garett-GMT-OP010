@@ -1,0 +1,138 @@
+FUNCTION_BLOCK "DT-Chars"
+VAR_INPUT
+  YEAR : Int;
+  MONTH : Int;
+  DAY : Int;
+  HH : Int;
+  MM : Int;
+  SS : Int;
+END_VAR
+VAR_OUTPUT
+  Year_Byte1 : Char;
+  Year_Byte2 : Char;
+  Month_Byte1 : Char;
+  Month_Byte2 : Char;
+  Days_Byte1 : Char;
+  Days_Byte2 : Char;
+  HH_Byte1 : Char;
+  HH_Byte2 : Char;
+  MM_Byte1 : Char;
+  MM_Byte2 : Char;
+  SS_Byte1 : Char;
+  SS_Byte2 : Char;
+  CalculateDays_Byte1 : Char;
+  CalculateDays_Byte2 : Char;
+  CalculateDays_Byte3 : Char;
+  Error_Code : Int;
+  Year_Byte3 : String[1];
+  Year_Byte4 : String[1];
+  Month_Byte3 : String[1];
+  Month_Byte4 : String[1];
+  Days_Byte3 : String[1];
+  Days_Byte4 : String[1];
+  HH_Byte3 : String[1];
+  HH_Byte4 : String[1];
+  MM_Byte3 : String[1];
+  MM_Byte4 : String[1];
+  SS_Byte3 : String[1];
+  SS_Byte4 : String[1];
+  CalculateDays_Byte4 : String[1];
+  CalculateDays_Byte5 : String[1];
+  CalculateDays_Byte6 : String[1];
+  OTimeStr : String[20];
+END_VAR
+VAR
+  Sum_Days : Int;
+  Sum_Year : Int;
+END_VAR
+VAR_TEMP
+  Input_1_BCD : Word;
+  Input_2_BCD : Word;
+  Input_3_BCD : Word;
+  Input_4_BCD : Word;
+  Input_5_BCD : Word;
+  Input_6_BCD : Word;
+  Input_7_BCD : Word;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/11_MES/DT-Chars.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  #Input_1_BCD := (#YEAR);
+  #Year_Byte2 := (#YEAR MOD  + );
+  #Year_Byte1 := ((( := #Input_1_BCD,  := )) + );
+  #Input_2_BCD := (#MONTH);
+  #Month_Byte2 := (#MONTH MOD  + );
+  #Month_Byte1 := ((( := #Input_2_BCD,  := )) + );
+  #Input_3_BCD := (#DAY);
+  #Days_Byte2 := (#DAY MOD  + );
+  #Days_Byte1 := ((( := #Input_3_BCD,  := )) + );
+  #Input_4_BCD := (#HH);
+  #HH_Byte2 := (#HH MOD  + );
+  #HH_Byte1 := ((( := #Input_4_BCD,  := )) + );
+  #Input_5_BCD := (#MM);
+  #MM_Byte2 := (#MM MOD  + );
+  #MM_Byte1 := ((( := #Input_5_BCD,  := )) + );
+  #Input_6_BCD := (#SS);
+  #SS_Byte2 := (#SS MOD  + );
+  #SS_Byte1 := ((( := #Input_6_BCD,  := )) + );
+  #Sum_Days := ;
+  #Sum_Year :=  + #YEAR;
+  CASE #MONTH OF
+      :
+          #Sum_Days :=  +  +  +  +  +  +  +  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  +  +  +  +  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  +  +  +  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  +  +  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  +  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  +  + #DAY;
+      :
+          #Sum_Days :=  +  + #DAY;
+      :
+          #Sum_Days :=  + #DAY;
+      :
+          #Sum_Days := #DAY;
+  END_CASE;
+  
+  IF (#Sum_Year MOD =)AND(#Sum_Year MOD <>)OR(#Sum_Year MOD =)AND(#MONTH > ) THEN
+          
+      #Sum_Days := #Sum_Days +;
+  END_IF;
+  #Input_4_BCD:=(#Sum_Days);
+  #CalculateDays_Byte3 := ((( := (#Input_4_BCD AND ),  := )) + );
+  #CalculateDays_Byte2 := ((( := (#Input_4_BCD AND ),  := )) + );
+  #CalculateDays_Byte1 := ((( := (#Input_4_BCD AND ),  := )) + );
+  #Year_Byte3 := (#Year_Byte1);
+  #Year_Byte4 := (#Year_Byte2);
+  #Month_Byte3 := (#Month_Byte1);
+  #Month_Byte4 := (#Month_Byte2);
+  #Days_Byte3 := (#Days_Byte1);
+  #Days_Byte4 := (#Days_Byte2);
+  #HH_Byte3 := (#HH_Byte1);
+  #HH_Byte4 := (#HH_Byte2);
+  #MM_Byte3 := (#MM_Byte1);
+  #MM_Byte4 := (#MM_Byte2);
+  #SS_Byte3 := (#SS_Byte1);
+  #SS_Byte4 := (#SS_Byte2);
+  #CalculateDays_Byte4 := (#CalculateDays_Byte1);
+  #CalculateDays_Byte5 := (#CalculateDays_Byte2);
+  #CalculateDays_Byte6 := (#CalculateDays_Byte3);
+  #OTimeStr := ( := ,  := #Year_Byte3,  := #Year_Byte4,  := ,
+                                    := #Month_Byte3,  := #Month_Byte4,  := ,
+                                    := #Days_Byte3,  := #Days_Byte4,  := ,
+                                    := #HH_Byte3,  := #HH_Byte4,  := ,
+                                    := #MM_Byte3,  := #MM_Byte4,  := ,
+                                    := #SS_Byte3,  := #SS_Byte4);
+END_FUNCTION_BLOCK

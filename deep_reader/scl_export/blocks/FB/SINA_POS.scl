@@ -1,0 +1,1308 @@
+FUNCTION_BLOCK "SINA_POS"
+VAR_INPUT
+  ModePos : Int;
+  EnableAxis : Bool;
+  CancelTraversing : Bool;
+  IntermediateStop : Bool;
+  Positive : Bool;
+  Negative : Bool;
+  Jog1 : Bool;
+  Jog2 : Bool;
+  FlyRef : Bool;
+  AckError : Bool;
+  ExecuteMode : Bool;
+  Position : DInt;
+  Velocity : DInt;
+  OverV : Int;
+  OverAcc : Int;
+  OverDec : Int;
+  ConfigEPos : DWord;
+  HWIDSTW : HW_IO;
+  HWIDZSW : HW_IO;
+END_VAR
+VAR_OUTPUT
+  AxisEnabled : Bool;
+  AxisPosOk : Bool;
+  AxisRef : Bool;
+  AxisWarn : Bool;
+  AxisError : Bool;
+  Lockout : Bool;
+  ActVelocity : DInt;
+  ActPosition : DInt;
+  ActMode : Int;
+  EPosZSW1 : Word;
+  EPosZSW2 : Word;
+  ActWarn : Word;
+  ActFault : Word;
+  Error : Bool;
+  Status : Word;
+  DiagID : Word;
+END_VAR
+VAR
+  sbOff1Edge : Bool;
+  sbOff1 : Bool;
+  sbExecuteEdge : Bool;
+  sbExecute : Bool;
+  sbRefTypEdge : Bool;
+  sbRefTyp : Bool;
+  sbMdiStart : Bool;
+  sbMdiStartEdge : Bool;
+  sbRefStart : Bool;
+  sbJogInc : Bool;
+  sbReady : Bool;
+  sbIOp : Bool;
+  sbAccel : Bool;
+  sbDecel : Bool;
+  sbAlarm : Bool;
+  sbFault : Bool;
+  sbFWD : Bool;
+  sbBWD : Bool;
+  sbBusy : Bool;
+  swStatus : Word;
+  swEPosZSW1 : Word;
+  swEPosZSW2 : Word;
+  siExecuteCyc : Int;
+  siRefTypCyc : Int;
+  siJogIncCyc : Int;
+  siMdiStartCyc : Int;
+  siRefActRetry : Int;
+  siModePos : Int;
+  siModePosMax : Int;
+  siCycWait : Int;
+  siRetryMax : Int;
+  sbModePos : Bool;
+  sxSendBuf : STRUCT
+    STW1 : Word;
+    EPosSTW1 : Word;
+    EPosSTW2 : Word;
+    STW2 : Word;
+    OverrideV : Word;
+    Position : DWord;
+    Velocity : DWord;
+    OverrideA : Word;
+    OverrideD : Word;
+    Reserve : Word;
+  END_STRUCT;
+  sxRecvBuf : STRUCT
+    ZSW1 : Word;
+    EPosZSW1 : Word;
+    EPosZSW2 : Word;
+    ZSW2 : Word;
+    NotUsed : Word;
+    Position : DWord;
+    Velocity : DWord;
+    ErrNr : Word;
+    WarnNr : Word;
+    Reserve : Word;
+  END_STRUCT;
+END_VAR
+VAR_TEMP
+  piRetSFC : Int;
+  piCount : Int;
+  swSendBuf : Array[0..11] of Word;
+  swRecvBuf : Array[0..11] of Word;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/25_V90/V90_Standard/SINA_POS.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  IF #ModePos > #siModePosMax THEN
+    
+    #sbModePos := ;
+    #Error := ;
+    #swStatus := ;
+  ELSIF #ModePos <  THEN
+    
+    #sbModePos := ;
+    #Error := ;
+    #swStatus := ;
+  ELSE
+    
+    
+    IF NOT #sbFWD AND NOT #sbBWD AND NOT #sbAccel AND NOT #sbDecel THEN
+      
+      #sbModePos := ;
+      #siModePos := #ModePos;
+      
+      
+      IF #swStatus =  THEN
+          #swStatus := ;
+        #Error := ;
+      END_IF;
+    END_IF;
+  END_IF;
+  
+  
+  IF (#OverV < ) OR (#OverV > ) THEN
+      #swStatus := ;
+    #Error := ;
+  ELSE
+    
+    .#sxSendBuf.OverrideV := (( * ((#OverV) / )));
+  END_IF;
+  
+  IF (#OverAcc < ) OR (#OverAcc > ) THEN
+      #swStatus := ;
+    #Error := ;
+  ELSE
+    
+    .#sxSendBuf.OverrideA := (( * ((#OverAcc) / )));
+  END_IF;
+  
+  IF (#OverDec < ) OR (#OverDec > ) THEN
+      #swStatus := ;
+    #Error := ;
+  ELSE
+    
+    .#sxSendBuf.OverrideD := (( * ((#OverDec) / )));
+  END_IF;
+  
+  IF NOT (#OverV < ) AND NOT (#OverV > ) AND NOT (#OverAcc < ) AND NOT (#OverAcc > ) AND
+    NOT (#OverDec < ) AND NOT (#OverDec > ) THEN
+    IF #swStatus =  THEN
+      #swStatus := ;
+      #Error := ;
+    END_IF;
+  END_IF;
+  
+  
+  .#sxSendBuf.Position := (#Position);
+  
+  
+  .#sxSendBuf.Velocity := (#Velocity);
+  
+  IF #EnableAxis AND NOT #sbOff1Edge AND NOT #sbBusy AND #sbModePos THEN
+    #sbOff1 := ;
+  END_IF;
+  
+  #sbOff1Edge := #EnableAxis AND NOT #sbBusy;
+  
+  IF NOT #EnableAxis THEN
+    #sbOff1 := ;
+  END_IF;
+  
+  IF #FlyRef AND NOT #sbRefTypEdge THEN
+    #sbRefTyp := ;
+  END_IF;
+  
+  #sbRefTypEdge := #FlyRef;
+  
+  IF NOT #FlyRef THEN
+    #sbRefTyp := ;
+    #siRefTypCyc := ;
+  END_IF;
+  
+  IF #ExecuteMode AND NOT #sbExecuteEdge THEN
+    #sbExecute := ;
+  END_IF;
+  
+  #sbExecuteEdge := #ExecuteMode;
+  
+  IF NOT #ExecuteMode THEN
+    #sbExecute := ;
+    #siExecuteCyc := ;
+  END_IF;
+  
+  
+  
+  
+  IF ..%X15#sxSendBuf.EPosSTW1 AND NOT #sbMdiStartEdge THEN
+    #sbMdiStart := ;
+  END_IF;
+  
+  #sbMdiStartEdge := ..%X15#sxSendBuf.EPosSTW1 AND NOT #sbBusy;
+  
+  IF NOT ..%X15#sxSendBuf.EPosSTW1 THEN
+    #sbMdiStart := ;
+    #siMdiStartCyc := ;
+  END_IF;
+  
+  
+  
+  ..%X4#sxSendBuf.STW1 := #CancelTraversing;
+  ..%X5#sxSendBuf.STW1 := #IntermediateStop;
+  ..%X7#sxSendBuf.STW1 := #AckError;
+  ..%X1#sxSendBuf.STW1 := ;
+  ..%X2#sxSendBuf.STW1 := ;
+  ..%X3#sxSendBuf.STW1 := ;
+  ..%X10#sxSendBuf.STW1 := ;
+  
+  
+  IF (#siModePos =  AND #sbModePos) THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW1 := ;
+    ..%X9#sxSendBuf.EPosSTW1 := ;
+    ..%X10#sxSendBuf.EPosSTW1 := ;
+    ..%X14#sxSendBuf.EPosSTW1 := ;
+    ..%X1#sxSendBuf.EPosSTW2 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X9#sxSendBuf.EPosSTW2 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    
+    
+    
+    
+    IF #sbOff1 AND #sbReady AND #sbIOp AND NOT #sbFault THEN
+      
+      
+      
+      ..%X15#sxSendBuf.EPosSTW1 := ;
+      
+      
+      
+      ..%X8#sxSendBuf.EPosSTW1 := ;
+      
+      
+      IF #Positive AND NOT #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+        
+      ELSIF NOT #Positive AND #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+        
+      ELSE
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+      END_IF;
+      
+      
+      
+      IF #sbMdiStart AND (#siMdiStartCyc < #siCycWait) THEN
+        #siMdiStartCyc := #siMdiStartCyc + ;
+      ELSE
+        
+        
+        ..%X6#sxSendBuf.STW1 := #ExecuteMode;
+        
+      END_IF;
+      
+      
+      
+      IF #sbRefTyp THEN
+        
+        
+        
+        ..%X8#sxSendBuf.EPosSTW2 := ;
+        
+        
+        
+        IF (#siRefTypCyc = ) THEN
+          #siRefTypCyc := #siRefTypCyc + ;
+        ELSE
+          
+          
+          ..%X11#sxSendBuf.STW1 := ;
+          
+        END_IF;
+      END_IF;
+    END_IF;
+    
+    
+  ELSIF #siModePos =  AND #sbModePos THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW1 := ;
+    ..%X9#sxSendBuf.EPosSTW1 := ;
+    ..%X10#sxSendBuf.EPosSTW1 := ;
+    ..%X14#sxSendBuf.EPosSTW1 := ;
+    ..%X1#sxSendBuf.EPosSTW2 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X9#sxSendBuf.EPosSTW2 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    
+    
+    
+    IF #sbOff1 AND #sbReady AND #sbIOp AND NOT #sbFault THEN
+      
+      
+      
+      ..%X15#sxSendBuf.EPosSTW1 := ;
+      
+      
+      
+      ..%X8#sxSendBuf.EPosSTW1 := ;
+      
+      
+      IF #Positive AND NOT #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+        
+      ELSIF NOT #Positive AND #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+        
+      ELSE
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+      END_IF;
+      
+      
+      
+      IF #sbMdiStart AND (#siMdiStartCyc < #siCycWait) THEN
+        #siMdiStartCyc := #siMdiStartCyc + ;
+      ELSE
+        
+        
+        ..%X6#sxSendBuf.STW1 := #ExecuteMode;
+        
+      END_IF;
+      
+      
+      
+      IF #sbRefTyp THEN
+        
+        
+        
+        ..%X8#sxSendBuf.EPosSTW2 := ;
+        
+        
+        
+        IF (#siRefTypCyc = ) THEN
+          #siRefTypCyc := #siRefTypCyc + ;
+        ELSE
+          
+          
+          ..%X11#sxSendBuf.STW1 := ;
+          
+        END_IF;
+      END_IF;
+    END_IF;
+    
+    
+  ELSIF #siModePos =  AND #sbModePos THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW1 := ;
+    ..%X9#sxSendBuf.EPosSTW1 := ;
+    ..%X10#sxSendBuf.EPosSTW1 := ;
+    ..%X14#sxSendBuf.EPosSTW1 := ;
+    ..%X1#sxSendBuf.EPosSTW2 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X9#sxSendBuf.EPosSTW2 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    
+    
+    
+    IF #sbOff1 AND #sbReady AND #sbIOp AND NOT #sbFault THEN
+      
+      
+      
+      ..%X15#sxSendBuf.EPosSTW1 := ;
+      
+      
+      
+      ..%X8#sxSendBuf.EPosSTW1 := ;
+      
+      
+      
+      ..%X14#sxSendBuf.EPosSTW1 := ;
+      
+      
+      IF #Positive AND NOT #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+        
+      ELSIF NOT #Positive AND #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+        
+      ELSE
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+      END_IF;
+      
+      
+      
+      IF #sbMdiStart AND (#siMdiStartCyc < #siCycWait) THEN
+        #siMdiStartCyc := #siMdiStartCyc + ;
+      ELSE
+        
+        
+        ..%X6#sxSendBuf.STW1 := #ExecuteMode;
+        
+      END_IF;
+      
+      
+      
+      IF #sbRefTyp THEN
+        
+        
+        
+        ..%X8#sxSendBuf.EPosSTW2 := ;
+        
+        
+        
+        IF (#siRefTypCyc = ) THEN
+          #siRefTypCyc := #siRefTypCyc + ;
+        ELSE
+          
+          
+          ..%X11#sxSendBuf.STW1 := ;
+          
+        END_IF;
+      END_IF;
+    END_IF;
+    
+    
+    
+  ELSIF #siModePos =  AND #sbModePos THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    ..%X1#sxSendBuf.EPosSTW2 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.EPosSTW2 := ;
+    
+    
+    
+    IF #sbOff1 AND #sbReady AND #sbIOp AND NOT #sbFault THEN
+      
+      
+      
+      ..%X11#sxSendBuf.STW1 := #ExecuteMode;
+      
+      
+      IF #Positive AND NOT #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW2 := ;
+        
+        
+      ELSIF NOT #Positive AND #Negative THEN
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW2 := ;
+        
+      END_IF;
+    END_IF;
+    
+    
+  ELSIF #siModePos =  AND #sbModePos THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X9#sxSendBuf.EPosSTW2 := ;
+    ..%X1#sxSendBuf.EPosSTW2 := ;
+    
+    
+    
+    IF NOT #sbFault THEN
+      
+      
+      
+      ..%X1#sxSendBuf.EPosSTW2 := #ExecuteMode;
+      
+    END_IF;
+    
+    
+  ELSIF #siModePos =  AND #sbModePos THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW1 := ;
+    ..%X9#sxSendBuf.EPosSTW1 := ;
+    ..%X10#sxSendBuf.EPosSTW1 := ;
+    ..%X14#sxSendBuf.EPosSTW1 := ;
+    ..%X1#sxSendBuf.EPosSTW2 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X9#sxSendBuf.EPosSTW2 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    ..%X0#sxSendBuf.EPosSTW1 := ;
+    ..%X1#sxSendBuf.EPosSTW1 := ;
+    ..%X2#sxSendBuf.EPosSTW1 := ;
+    ..%X3#sxSendBuf.EPosSTW1 := ;
+    ..%X4#sxSendBuf.EPosSTW1 := ;
+    ..%X5#sxSendBuf.EPosSTW1 := ;
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    
+    
+    
+    
+    IF ((#Position) < ) OR ((#Position) > ) THEN
+      
+      #swStatus := ;
+      #Error := ;
+    ELSE
+      
+      IF #swStatus =  THEN
+        #swStatus := ;
+        #Error := ;
+      END_IF;
+      
+      
+      IF ((#Position) AND ) =  THEN
+        
+        ..%X0#sxSendBuf.EPosSTW1 := ;
+      END_IF;
+      
+      
+      IF ((#Position) AND ) =  THEN
+        
+        ..%X1#sxSendBuf.EPosSTW1 := ;
+      END_IF;
+      
+      
+      IF ((#Position) AND ) =  THEN
+        
+        ..%X2#sxSendBuf.EPosSTW1 := ;
+      END_IF;
+      
+      
+      IF ((#Position) AND ) =  THEN
+        
+        ..%X3#sxSendBuf.EPosSTW1 := ;
+      END_IF;
+      
+      
+      IF ((#Position) AND ) =  THEN
+        
+        ..%X4#sxSendBuf.EPosSTW1 := ;
+      END_IF;
+      
+      
+      IF ((#Position) AND ) =  THEN
+        
+        ..%X5#sxSendBuf.EPosSTW1 := ;
+      END_IF;
+      
+      
+      
+      IF #sbOff1 AND #sbReady AND #sbIOp AND NOT #sbFault THEN
+        
+        
+        
+        ..%X8#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X9#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X10#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        ..%X14#sxSendBuf.EPosSTW1 := ;
+        
+        
+        
+        IF #sbMdiStart AND (#siMdiStartCyc < #siCycWait) THEN
+          #siMdiStartCyc := #siMdiStartCyc + ;
+        ELSE
+          
+          
+          ..%X6#sxSendBuf.STW1 := #ExecuteMode;
+        END_IF;
+        
+        
+        
+        IF #sbRefTyp THEN
+          
+          
+          
+          ..%X8#sxSendBuf.EPosSTW2 := ;
+          
+          
+          
+          IF (#siRefTypCyc = ) THEN
+            #siRefTypCyc := #siRefTypCyc + ;
+          ELSE
+            
+            
+            ..%X11#sxSendBuf.STW1 := ;
+          END_IF;
+        END_IF;
+      END_IF;
+    END_IF;
+    
+    
+    
+  ELSIF #siModePos =  AND #sbModePos THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    
+    
+    
+    IF #sbOff1 AND #sbReady AND #sbIOp AND NOT #sbFault THEN
+      
+      
+      IF #Jog1 AND NOT #Jog2 THEN
+        
+        ..%X8#sxSendBuf.STW1 := ;
+      END_IF;
+      
+      
+      IF #Jog2 AND NOT #Jog1 THEN
+        
+        ..%X9#sxSendBuf.STW1 := ;
+      END_IF;
+      
+      
+      
+      IF #sbRefTyp THEN
+        
+        
+        
+        ..%X8#sxSendBuf.EPosSTW2 := #FlyRef;
+        
+        
+        
+        IF (#siRefTypCyc = ) THEN
+          #siRefTypCyc := #siRefTypCyc + ;
+        ELSE
+          
+          
+          ..%X11#sxSendBuf.STW1 := ;
+        END_IF;
+      END_IF;
+    END_IF;
+    
+    
+  ELSIF #siModePos =  AND #sbModePos THEN
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #sbOff1;
+    
+    
+    
+    
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    
+    
+    
+    
+    IF #sbOff1 AND #sbReady AND #sbIOp AND NOT #sbFault THEN
+      
+      
+      
+      ..%X5#sxSendBuf.EPosSTW2 := ;
+      
+      #sbJogInc := ;
+      
+      
+      IF #sbJogInc AND (#siJogIncCyc = ) THEN
+        #siJogIncCyc := #siJogIncCyc + ;
+      ELSE
+        
+        
+        IF #Jog1 XOR #Jog2 THEN
+          
+          
+          
+          ..%X8#sxSendBuf.STW1 := #Jog1;
+          ..%X9#sxSendBuf.STW1 := #Jog2;
+        END_IF;
+      END_IF;
+      
+      
+      
+      IF #sbRefTyp THEN
+        
+        
+        
+        ..%X8#sxSendBuf.EPosSTW2 := ;
+        
+        
+        
+        IF (#siRefTypCyc = ) THEN
+          #siRefTypCyc := #siRefTypCyc + ;
+        ELSE
+          
+          
+          ..%X11#sxSendBuf.STW1 := ;
+        END_IF;
+      END_IF;
+    END_IF;
+  ELSE
+    
+    
+    
+    ..%X0#sxSendBuf.STW1 := #EnableAxis;
+    ..%X4#sxSendBuf.STW1 := ;
+    ..%X6#sxSendBuf.STW1 := ;
+    ..%X15#sxSendBuf.EPosSTW1 := ;
+    ..%X8#sxSendBuf.STW1 := ;
+    ..%X9#sxSendBuf.STW1 := ;
+    ..%X8#sxSendBuf.EPosSTW1 := ;
+    ..%X9#sxSendBuf.EPosSTW1 := ;
+    ..%X10#sxSendBuf.EPosSTW1 := ;
+    ..%X12#sxSendBuf.EPosSTW1 := ;
+    ..%X14#sxSendBuf.EPosSTW1 := ;
+    ..%X1#sxSendBuf.EPosSTW2 := ;
+    ..%X8#sxSendBuf.EPosSTW2 := ;
+    ..%X9#sxSendBuf.EPosSTW2 := ;
+    ..%X5#sxSendBuf.EPosSTW2 := ;
+    ..%X11#sxSendBuf.STW1 := ;
+  END_IF; 
+  
+  ..%X1#sxSendBuf.STW1 := .%X0#ConfigEPos;
+  ..%X2#sxSendBuf.STW1 := .%X1#ConfigEPos;
+  ..%X14#sxSendBuf.EPosSTW2 := .%X2#ConfigEPos;
+  ..%X15#sxSendBuf.EPosSTW2 := .%X3#ConfigEPos;
+  ..%X11#sxSendBuf.EPosSTW2 := .%X4#ConfigEPos;
+  ..%X10#sxSendBuf.EPosSTW2 := .%X5#ConfigEPos;
+  ..%X2#sxSendBuf.EPosSTW2 := .%X6#ConfigEPos;
+  ..%X13#sxSendBuf.STW1 := .%X7#ConfigEPos;
+  ..%X12#sxSendBuf.EPosSTW1 := .%X8#ConfigEPos;
+  ..%X0#sxSendBuf.STW2 := .%X9#ConfigEPos;
+  ..%X1#sxSendBuf.STW2 := .%X10#ConfigEPos;
+  ..%X2#sxSendBuf.STW2 := .%X11#ConfigEPos;
+  ..%X3#sxSendBuf.STW2 := .%X12#ConfigEPos;
+  ..%X4#sxSendBuf.STW2 := .%X13#ConfigEPos;
+  ..%X7#sxSendBuf.STW2 := .%X14#ConfigEPos;
+  ..%X12#sxSendBuf.STW1 := .%X15#ConfigEPos;
+  ..%X14#sxSendBuf.STW1 := .%X16#ConfigEPos;
+  ..%X15#sxSendBuf.STW1 := .%X17#ConfigEPos;
+  ..%X6#sxSendBuf.EPosSTW1 := .%X18#ConfigEPos;
+  ..%X7#sxSendBuf.EPosSTW1 := .%X19#ConfigEPos;
+  ..%X11#sxSendBuf.EPosSTW1 := .%X20#ConfigEPos;
+  ..%X13#sxSendBuf.EPosSTW1 := .%X21#ConfigEPos;
+  ..%X3#sxSendBuf.EPosSTW2 := .%X22#ConfigEPos;
+  ..%X4#sxSendBuf.EPosSTW2 := .%X23#ConfigEPos;
+  ..%X6#sxSendBuf.EPosSTW2 := .%X24#ConfigEPos;
+  ..%X7#sxSendBuf.EPosSTW2 := .%X25#ConfigEPos;
+  ..%X12#sxSendBuf.EPosSTW2 := .%X26#ConfigEPos;
+  ..%X13#sxSendBuf.EPosSTW2 := .%X27#ConfigEPos;
+  ..%X5#sxSendBuf.STW2 := .%X28#ConfigEPos;
+  ..%X6#sxSendBuf.STW2 := .%X29#ConfigEPos;
+  ..%X8#sxSendBuf.STW2 := .%X30#ConfigEPos;
+  ..%X9#sxSendBuf.STW2 := .%X31#ConfigEPos;
+  [] := .#sxSendBuf.STW1;
+  [] := .#sxSendBuf.EPosSTW1;
+  [] := .#sxSendBuf.EPosSTW2;
+  [] := .#sxSendBuf.STW2;
+  [] := .#sxSendBuf.OverrideV;
+  [] := ..%W1#sxSendBuf.Position;
+  [] := ..%W0#sxSendBuf.Position;
+  [] := ..%W1#sxSendBuf.Velocity;
+  [] := ..%W0#sxSendBuf.Velocity;
+  [] := .#sxSendBuf.OverrideA;
+  [] := .#sxSendBuf.OverrideD;
+  [] := .#sxSendBuf.Reserve;
+  
+  #piRetSFC := ( := #HWIDSTW,
+                         := #swSendBuf);
+  
+  #DiagID := (#piRetSFC);
+  
+  IF #piRetSFC =  THEN
+      
+      
+      IF (#swStatus = ) THEN
+          #swStatus := ;
+          #Error := ;
+      END_IF;
+      
+      
+      #piRetSFC := ( := #HWIDZSW,
+                             => #swRecvBuf);
+      
+      
+      #DiagID := (#piRetSFC);
+      
+      
+      IF #piRetSFC <>  THEN
+          
+          
+          #Error := ;
+          #swStatus := ;
+          
+          
+          .#sxRecvBuf.ZSW1 := ;
+          .#sxRecvBuf.EPosZSW1 := ;
+          .#sxRecvBuf.EPosZSW2 := ;
+          .#sxRecvBuf.ZSW2 := ;
+          .#sxRecvBuf.NotUsed := ;
+          .#sxRecvBuf.Position := ;
+          .#sxRecvBuf.Velocity := ;
+          .#sxRecvBuf.ErrNr := ;
+          .#sxRecvBuf.WarnNr := ;
+          .#sxRecvBuf.Reserve := ;
+          
+          
+      ELSE
+          
+          
+          IF (#swStatus = ) THEN
+              #swStatus := ;
+              #Error := ;
+          END_IF;
+          
+          .#sxRecvBuf.ZSW1 := [];
+          .#sxRecvBuf.EPosZSW1 := [];
+          .#sxRecvBuf.EPosZSW2 := [];
+          .#sxRecvBuf.ZSW2 := [];
+          .#sxRecvBuf.NotUsed := [];
+          ..%W1#sxRecvBuf.Position := [];
+          ..%W0#sxRecvBuf.Position := [];
+          ..%W1#sxRecvBuf.Velocity := [];
+          ..%W0#sxRecvBuf.Velocity := [];
+          .#sxRecvBuf.ErrNr := [];
+          .#sxRecvBuf.WarnNr := [];
+          .#sxRecvBuf.Reserve := [];
+          
+          
+          
+          #sbBusy := ..%X2#sxRecvBuf.ZSW1;
+          
+          
+      
+          IF ..%X3#sxRecvBuf.ZSW1 THEN
+              #swStatus := ;
+              #Error := ;
+          ELSIF ..%X6#sxRecvBuf.ZSW1 THEN
+              #swStatus := ;
+              #Error := ;
+          ELSE
+              
+              IF (#swStatus = ) OR (#swStatus = ) THEN
+                  #swStatus := ;
+                  #Error := ;
+              END_IF;
+          END_IF;
+          
+          
+          
+          
+          IF ..%X0#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X1#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X2#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X3#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X4#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X5#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X8#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X9#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X10#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X11#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF NOT ..%X12#sxRecvBuf.EPosZSW1 AND #sbRefTyp AND ..%X11#sxSendBuf.STW1 THEN
+              
+              
+              IF #siRefActRetry < #siRetryMax THEN
+                  #siRefActRetry := #siRefActRetry + ;
+                  
+                  
+                  
+                  ..%X11#sxSendBuf.STW1 := ;
+              ELSE
+                  
+                  
+                  #swStatus := ;
+                  #Error := ;
+              END_IF;
+          ELSE
+              
+              
+              IF #swStatus =  THEN
+                  #swStatus := ;
+                  #Error := ;
+              END_IF;
+          END_IF;
+          
+          
+          
+          IF ..%X12#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X13#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X14#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X15#sxRecvBuf.EPosZSW1 THEN
+              #swEPosZSW1 := #swEPosZSW1 OR ;
+          ELSE
+              #swEPosZSW1 := #swEPosZSW1 AND ;
+          END_IF;
+          
+          
+          
+          
+          IF ..%X0#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X1#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X2#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X3#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X4#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X5#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X6#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X7#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X8#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X9#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X10#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X11#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X12#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X13#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X14#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          
+          
+          IF ..%X15#sxRecvBuf.EPosZSW2 THEN
+              #swEPosZSW2 := #swEPosZSW2 OR ;
+          ELSE
+              #swEPosZSW2 := #swEPosZSW2 AND ;
+          END_IF;
+          
+          #sbReady := ..%X1#sxRecvBuf.ZSW1;
+          
+          #AxisEnabled := ..%X2#sxRecvBuf.ZSW1;
+          #sbIOp := ..%X2#sxRecvBuf.ZSW1;
+          
+          #AxisError := ..%X3#sxRecvBuf.ZSW1;
+          #sbFault := ..%X3#sxRecvBuf.ZSW1;
+          
+          #AxisWarn := ..%X7#sxRecvBuf.ZSW1;
+          #sbAlarm := ..%X7#sxRecvBuf.ZSW1;
+          
+          #AxisPosOk := ..%X10#sxRecvBuf.ZSW1;
+          #AxisRef := ..%X11#sxRecvBuf.ZSW1;
+          
+          #sbAccel := ..%X14#sxRecvBuf.ZSW1;
+          #sbDecel := ..%X15#sxRecvBuf.ZSW1;
+          
+          #ActVelocity := (.#sxRecvBuf.Velocity);
+          #ActPosition := (.#sxRecvBuf.Position);
+          #ActMode := #ModePos;
+          #ActWarn := .#sxRecvBuf.WarnNr;
+          #ActFault := .#sxRecvBuf.ErrNr;
+          
+          #Lockout := ..%X6#sxRecvBuf.ZSW1;
+      END_IF;
+  ELSE
+      
+      
+      #Error := ;
+      #swStatus := ; 
+      
+  END_IF;
+  
+  #Status := #swStatus;
+  #EPosZSW1 := #swEPosZSW1;
+  #EPosZSW2 := #swEPosZSW2;
+END_FUNCTION_BLOCK

@@ -1,0 +1,21 @@
+FUNCTION_BLOCK "ST10_FB_S7connect"
+VAR_INPUT
+  "CLOCK_0.2_SEC" : Bool;
+END_VAR
+VAR
+  Always_On : Bool;
+  Status_Get : Array[1..6] of Struct;
+  Status_Put : Array[1..6] of Struct;
+  GET_Instance1 : GET;
+  GET_Instance2 : GET;
+  PUT_Instance1 : PUT;
+  PUT_Instance2 : PUT;
+  PLs : Array[1..6] of Bool;
+  TON : Array[1..5] of TON_TIME;
+  NextStation_OffLine : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/09_CuringOven/ST10_FB_S7connect.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

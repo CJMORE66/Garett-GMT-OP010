@@ -1,0 +1,22 @@
+TYPE "UDT_Stopper_FB"
+STRUCT
+  In : STRUCT
+    iSensor : Bool;
+    iNextSensor : Bool;
+    iNextValve : Bool;
+    iPresentDwell : Time;
+    iNextEmptyDwell : Time;
+    iReleaseClear : Bool;
+    iReleaseDwell : Time;
+    iReleaseFaultTimer : Time;
+    iReachFaultTimer : Time;
+  END_STRUCT;
+  Out : STRUCT
+    oValve : Bool;
+    oReleaseCompleted : Bool;
+    oReleaseFault : Bool;
+    oReachFault : Bool;
+    oNotClear : Bool;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

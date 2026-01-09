@@ -1,0 +1,46 @@
+FUNCTION_BLOCK "StopperCtrl"
+VAR_INPUT
+  i_SysRun : Bool;
+  i_AutoMode : Bool;
+  i_AutoRunnig : Bool;
+  i_Reset : Bool;
+  i_LineRunning : Bool;
+  i_PalletArrivedNextStation : Bool;
+  i_StopperSensor : Bool;
+  "i_Cyl-Home" : Bool;
+  i_NextStationReady : Bool;
+  i_PresentDelayTime : Time;
+  i_ReleaseDelayTime : Time;
+END_VAR
+VAR_OUTPUT
+  o_StopperClyWP : Bool;
+  o_StopperClyHP : Bool;
+END_VAR
+VAR_IN_OUT
+  io_NextyStopperStatus : Int;
+  io_Interface : "UDT_StopperInterface";
+  io_MotorCWRun : Bool;
+  io_MotorCCWRun : Bool;
+END_VAR
+VAR
+  s_Sequence : Int;
+  s_SequenceEnable : Bool;
+  s_SequenceFirstEnable : Bool;
+  s_StopperSensorOnDelay : TON_TIME;
+  s_StopperSensorOffDelay : TON_TIME;
+  s_PalletMissingConfirmDelay : TON_TIME;
+  s_PalletToNextStationDelay : TON_TIME;
+  s_SequenceFirstAutoDelay : TON_TIME;
+  s_SequenceFirstAuto : Int;
+  s_StopperSensor : Bool;
+  s_PalletArrivedNextStation : Bool;
+  P : Array[0..10] of Bool;
+END_VAR
+VAR_TEMP
+  t_AlwaysOn : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/26_Stopper/01_FuncationBlock/StopperCtrl.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

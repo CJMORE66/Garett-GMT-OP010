@@ -1,0 +1,95 @@
+FUNCTION "ST10Cyl_interface1-10" : Void
+VAR_INPUT
+  AlwaysON : Bool;
+  E_stop : Bool;
+END_VAR
+VAR_TEMP
+  tTest : Bool;
+  i : Int;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/01_Cylinder/ST10Cyl_interface1-10.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  IF ..Station_Sys.Manual.Mode THEN
+      
+      FOR #i :=  TO  BY 
+          
+      DO
+          .[#i].. := ;
+          
+      END_FOR;
+      
+  END_IF;
+  
+  
+  .[].. := iA-Loading-01HorizontalCylinderInWP;
+  .[].. := iA-Loading-01HorizontalCylinderInHP;
+  
+  oA-Loading-01HorizontalCylinderToWP := .[]..;
+  oA-Loading-01HorizontalCylinderToHP := .[]..;
+  
+  
+  .[].. := iA-Loading-01UpDownTakeCylinderInWP;
+  .[].. := iA-Loading-01UpDownTakeCylinderInHP;
+  
+  oA-Loading-01UpDownTakeCylinderToWP := .[]..;
+  oA-Loading-01UpDownTakeCylinderToHP := .[]..;
+  
+  
+  .[].. := iA-Loading-02HorizontalCylinderInWP  ;
+  .[].. := iA-Loading-02HorizontalCylinderInHP  ;
+  
+  oA-Loading-02HorizontalCylinderToWP := .[]..;
+  oA-Loading-02HorizontalCylinderToHP := .[]..;
+  
+  
+  .[].. := iA-Loading-02UpDownTakeCylinderInWP;
+  .[].. := iA-Loading-02UpDownTakeCylinderInHP;
+  
+  oA-Loading-02UpDownTakeCylinderToWP := .[]..;
+  oA-Loading-02UpDownTakeCylinderToHP := .[]..;
+  
+  
+  .[].. := iB-PressFitting-01GripperCylinderInWP;
+  .[].. := iB-PressFitting-01GripperCylinderInHP;
+  
+  oB-PressFitting-01GripperCylinderToWP := .[]..;
+  oB-PressFitting-01GripperCylinderToHP := .[]..;
+  
+  
+  .[].. := iB-PressFitting-01CylinderInWP ;
+  .[].. := iB-PressFitting-01CylinderInHP ;
+  
+  oB-PressFitting-01CylinderToWP := .[]..;
+  oB-PressFitting-01CylinderToHP := .[]..;
+  
+  
+  .[].. := iB-PressFitting-02GripperCylinderInWP;
+  .[].. := iB-PressFitting-02GripperCylinderInHP;
+  
+  oB-PressFitting-02GripperCylinderToWP := .[]..;
+  oB-PressFitting-02GripperCylinderToHP := .[]..;
+  
+  
+  .[].. := iB-PressFitting-02CylinderInWP;
+  .[].. := iB-PressFitting-02CylinderInHP;
+  
+  oB-PressFitting-02CylinderToWP := .[]..;
+  oB-PressFitting-02CylinderToHP := .[]..;
+  
+  
+  .[].. := iC-LocationCylinderInWP;
+  .[].. := iC-LocationCylinderInHP;
+  
+  oC-LocationCylinderToWP := .[]..;
+  oC-LocationCylinderToHP := .[]..;
+  
+  
+  .[].. := .[].. ;
+  .[].. := .[].. ;
+  
+  .[].. := .[]..;
+  .[].. := .[]..;
+END_FUNCTION

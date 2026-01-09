@@ -1,0 +1,36 @@
+FUNCTION "Motorr" : Void
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/31_Motor_1/Motorr.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  oH-shaftLifting_Start := .[]..;
+  oH-shaftLifting_CCWStart := .[].. ;
+  oH-shaftLifting_SpeedChange := .[]..;
+  // Network 2
+  oH-shaftLoading_CW := .[]..;
+  oH-shaftLoading_CCW := .[].. OR (..Station_Sys.Auto.Mode AND ...AutoProcessControl.Global.H.EmptyPallet);
+  oH-shaftTake_CW := .[]..;
+  // Network 3
+  oJ-magnetLifting_Start := .[]..;
+  oJ-magnetLifting_CCWStart := .[]..;
+  oJ-magnetLifting_SpeedChange := .[]..;
+  // Network 4
+  J-magnet Loading _CW := .[]..;
+  J-magnet Loading _CCW := .[].. OR (..Station_Sys.Auto.Mode AND ...AutoProcessControl.Global.J.EmptyPallet);
+  J-magnet Take _CW := .[]..;
+  // Network 5
+  oK-Lifting3_Start := .[]..;
+  oK-Lifting3_CCWStart := .[]..;
+  oK-Lifting3_SpeedChange := .[]..;
+  // Network 6
+  K-Loading _CW := .[]..;
+  K-Loading _CCW := .[].. OR (..Station_Sys.Auto.Mode AND ...AutoProcessControl.Global.K.EmptyPallet);
+  K-Take _CW := .[]..;
+  // Network 7
+  oL-Unloading_CW := .[]..;
+  oL-Unloading_CCW := .[]..;
+  // Network 8
+  L-Unloading _LineMotor_CW := .[]..;
+  L-Unloading _LineMotor_CCW := .[].. OR (..Station_Sys.Auto.Mode AND ...AutoProcessControl.Global.L.EmptyPallet);
+END_FUNCTION

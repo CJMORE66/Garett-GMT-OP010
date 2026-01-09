@@ -1,0 +1,49 @@
+DATA_BLOCK "ST10_RecipeDB"
+VAR
+  Recipe : STRUCT
+    RecipeTag : String[50];
+    RecordName : String[50];
+    PreConfigType : String[50];
+    Pulse : Bool;
+    Trigger : Bool;
+    PosEdg : Bool;
+    Alarm : Bool;
+    Ret : Bool;
+    Equal : Bool;
+    Pls : Bool;
+    time : Int;
+    Spare : Array[0..38] of Byte;
+    DataRecord_TransferStatus : Int;
+  END_STRUCT;
+  ParameterElement : STRUCT
+    TypeName : String[50];
+    TypeID : USInt;
+    FixtureID : Array[1..16] of Byte;
+    A1_TableFixtureCode : Array[0..10] of String[128];
+    A2_TableFixtureCode : Array[0..10] of String[128];
+    A1RingUnloadingFixtureCode : String[128];
+    E1LoadingNGFixtureCode : String[128];
+    ShaftScanFixtureCode : String[128];
+    B1PressFixtureCode : String[128];
+    CGlueFixtureCode : String[128];
+    B1PressCylFixtureCode : String[128];
+    A2RingUnloadingFixtureCode : String[128];
+    E2UnloadingNGFixtureCode : String[128];
+    B2PressFixtureCode : String[128];
+    CGlueNGFixtureCode : String[128];
+    B2PressCylFixtureCode : String[128];
+    R1GripperFixtureCode : Array[0..6] of String[128];
+    R2GripperFixtureCode : Array[0..6] of String[128];
+    R3GripperFixtureCode : Array[0..6] of String[128];
+    B1PressProgram : Int;
+    B2PressProgram : Int;
+    CGlueShaftIV3Program_1 : Word;
+    CGlueShaftIV3Program_2 : Word;
+    CGlueShaftIV3Program_3 : Word;
+    CGlueShaftIV3Program_4 : Word;
+    CGlueMagnetIV3Program : Word;
+    CGlueProgram : Int;
+  END_STRUCT;
+END_VAR
+BEGIN
+END_DATA_BLOCK

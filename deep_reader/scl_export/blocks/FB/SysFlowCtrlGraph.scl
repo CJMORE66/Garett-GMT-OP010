@@ -1,0 +1,112 @@
+FUNCTION_BLOCK "SysFlowCtrlGraph"
+VAR_INPUT
+  iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+VAR_IN_OUT
+  ioPM_Inface : "RCS_PMInterface_V1";
+  ioGraphCtrl : G7_MOPPlus_V6;
+END_VAR
+VAR
+  sHis : Array[0..7] of Bool;
+  sSetInitialDelay : TON_TIME;
+  S_NEXT_Delay : Array[0..1] of TON_TIME;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/02_Comm/02_SysMode/SysFlowCtrlGraph.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+      
+      .#ioGraphCtrl.AUTO := .#ioGraphCtrl.SUP := ..#iSysInface.Auto.Mode;
+      
+      
+      .#ioGraphCtrl.MAN :=  .#iSysInface.ManualMode;
+      .#ioGraphCtrl.OFF := .#ioPM_Inface.AlarmImdilyStop OR .#iSysInface.ManualMode;
+      IF .#iSysInface.ManualMode OR .#ioPM_Inface.AlarmImdilyStop THEN
+          .#ioPM_Inface.InitialRun      := ;
+          .#ioPM_Inface.InitialOK       := ;
+          .#ioPM_Inface.WaitRunning     := ;
+          
+          .#ioPM_Inface.UnPause    := ;
+          .#ioPM_Inface.ProcessComplete := ;
+       
+      END_IF;
+      
+      
+      
+      
+      
+      IF NOT .#iSysInface.ManualMode AND .#iSysInface.SysRun AND .#ioPM_Inface.InitialOK AND NOT .#ioPM_Inface.Alarm
+          AND NOT .#ioPM_Inface.AlarmImdilyStop AND NOT ..#iSysInface.Auto.RunningPause THEN
+          IF ..#iSysInface.Auto.StartAuto AND .#iSysInface.Ready AND  NOT  .#ioPM_Inface.Running  THEN
+              .#ioPM_Inface.Running := ;
+          END_IF;
+      ELSE
+          .#ioPM_Inface.Running := ;
+      END_IF;
+      
+      
+             
+      
+      
+      
+      
+      
+      .#ioGraphCtrl.TAP := ..#iSysInface.Auto.StepMode;
+      .#ioGraphCtrl.T_PUSH := ..#iSysInface.Auto.StepMode AND .#ioPM_Inface.SetNextStep AND NOT [];
+      [] := .#ioPM_Inface.SetNextStep;
+      
+      
+      .#ioGraphCtrl.LOCK    := ;
+      .#ioGraphCtrl.IL_PERM := ;
+      .#ioGraphCtrl.T_PERM  := ;
+      
+  END_REGION
+  REGION 
+      
+      #sSetInitialDelay( := .#iSysInface.SetInitial OR .#ioPM_Inface.SetInitial,
+                         := );
+      
+      IF .#sSetInitialDelay.Q AND .#iSysInface.SysRun AND NOT .#iSysInface.ManualMode THEN
+          
+          IF NOT [] THEN
+              
+              
+              
+              
+              
+              
+              .#ioGraphCtrl.INIT := .#sSetInitialDelay.Q;
+          END_IF;
+          
+      ELSE
+          .#ioGraphCtrl.INIT := ;
+      END_IF;
+      [] := .#sSetInitialDelay.Q;
+  END_REGION
+  REGION 
+      
+      .#ioGraphCtrl.ACK := .#iSysInface.Reset;
+      
+      
+  END_REGION
+  REGION 
+      .#ioGraphCtrl.HALT :=(.#ioPM_Inface.InitialOK AND NOT .#ioPM_Inface.Running )  OR   .#ioPM_Inface.Alarm OR .#ioPM_Inface.AlarmImdilyStop ; 
+      .#ioGraphCtrl.OPS_ZERO := .#iSysInface.ManualMode OR NOT .#iSysInface.SysRun OR .#ioPM_Inface.AlarmImdilyStop ;
+      .#ioGraphCtrl.TMS_HALT := .#iSysInface.ManualMode OR NOT .#iSysInface.SysRun OR .#ioPM_Inface.AlarmImdilyStop;
+  END_REGION
+      
+      
+  []( := ,
+                 := .#ioGraphCtrl.S_NEXT);
+  IF []. THEN
+      .#ioGraphCtrl.S_NEXT := ;
+      
+  END_IF;
+  []( := ,
+                    := NOT .#ioGraphCtrl.S_NEXT);
+  IF []. THEN
+      .#ioGraphCtrl.S_NEXT := ;
+  END_IF;
+END_FUNCTION_BLOCK

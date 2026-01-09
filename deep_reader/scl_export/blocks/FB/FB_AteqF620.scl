@@ -1,0 +1,966 @@
+FUNCTION_BLOCK "FB_AteqF620"
+VAR_INPUT
+  iHWID_Slot1 : HW_IO;
+  iHWID_Slot2 : HW_IO;
+  iHWID_Slot3 : HW_IO;
+  iHWID_Slot4 : HW_IO;
+  iHWID_Slot5 : HW_IO;
+  iHWID_Slot6 : HW_IO;
+  iHWID_Slot7 : HW_IO;
+  iHWID_Slot8 : HW_IO;
+  iSysRun : Bool;
+  iReset : Bool;
+  iAuto : Bool;
+  iManual : Bool;
+  iTimeout : Time;
+END_VAR
+VAR_OUTPUT
+  oDeviceReady : Bool;
+  oReady : Bool;
+  oError : Bool;
+  oSetProgOk : Bool;
+  oMeasureOk : Bool;
+  oErrorCode : UInt;
+  oFillTime : Real;
+  oStabTime : Real;
+  oTeatTime : Real;
+  oDumpTime : Real;
+  oResult : STRUCT
+    PassPart : Bool;
+    FailTestPart : Bool;
+    FailRefPart : Bool;
+    Alarm : Bool;
+    PressureError : Bool;
+    PartRecoverable : Bool;
+    CalibError : Bool;
+    CalibCheckError : Bool;
+    AtrFault : Bool;
+    Leak : STRUCT
+      Value : Real;
+      Unit : String[10];
+    END_STRUCT;
+  END_STRUCT;
+  oPressure : STRUCT
+    Value : Real;
+    Unit : String[10];
+  END_STRUCT;
+  oActProgStep : UInt;
+  oActProgNo : UInt;
+  oElapsedTime : Time;
+END_VAR
+VAR_IN_OUT
+  ioSetProg : Bool;
+  ioMeasure : Bool;
+  ioSpecialCycle : Bool;
+  ioReadProTime : Bool;
+END_VAR
+VAR
+  sHMI : "RCS_typeAteqF620Visual";
+  sAuto : STRUCT
+    Set : STRUCT
+      ProgNo : UInt;
+    END_STRUCT;
+  END_STRUCT;
+  sHelp : STRUCT
+    First : Bool;
+    AutoOld : Bool;
+    ManualOld : Bool;
+    ResetRis : Bool;
+    ResetOld : Bool;
+    SetProgRis : Bool;
+    SetProgOld : Bool;
+    SetProgAct : Bool;
+    MeasureRis : Bool;
+    MeasureOld : Bool;
+    MeasureAct : Bool;
+    EnableTime : Bool;
+    Abort : Bool;
+    OrderCnt : UInt;
+    Step : Array[1..2] of UInt;
+    CmdTimer : TON_TIME;
+    Set : STRUCT
+      ProgNo : UInt;
+    END_STRUCT;
+  END_STRUCT;
+  sRecv : STRUCT
+    Echo : STRUCT
+      Reset : Bool;
+      Start : Bool;
+      StartSpec : Bool;
+      ProgramSel : Bool;
+      ReadPara : Bool;
+      ReadLastResult : Bool;
+      Status : UInt;
+    END_STRUCT;
+    Result : STRUCT
+      PassPart : Bool;
+      FailTestPart : Bool;
+      FailRefPart : Bool;
+      Alarm : Bool;
+      PressureError : Bool;
+      PartRecoverable : Bool;
+      CalibError : Bool;
+      CalibCheckError : Bool;
+      AtrFault : Bool;
+      Leak : STRUCT
+        Value : Real;
+        Unit : String[10];
+      END_STRUCT;
+    END_STRUCT;
+    CycleEnd : Bool;
+    ErrorCode : UInt;
+    ActProgram : UInt;
+    ResultCnt : UInt;
+    ActTestType : UInt;
+    ActProgStep : UInt;
+    ActPressure : UDInt;
+    PressureUnitCode : UDInt;
+    ActLeak : UDInt;
+    LeakUnitCode : UDInt;
+    FillTime : UDInt;
+    StabTime : UDInt;
+    TeatTime : UDInt;
+    DumpTime : UDInt;
+  END_STRUCT;
+  sSend : STRUCT
+    Reset : Bool;
+    Start : Bool;
+    StartSpec : Bool;
+    ProgramSel : Bool;
+    ReadPara : Bool;
+    ReadLastResult : Bool;
+    ProgNo : UInt;
+  END_STRUCT;
+  sArrayInput : Array[1..#cSlotAmount, 1..#cFieldbusBytes] of Byte;
+  sArrayOutput : Array[1..#cSlotAmount, 1..#cFieldbusBytes] of Byte;
+  SpecialCycleStep : Int;
+  ReadProTimeStep : Int;
+  IEC_Timer_0_Instance : TON_TIME;
+  IEC_Timer_1_Instance : TON_TIME;
+  IEC_Timer_0_Instance_1 : TON_TIME;
+  IEC_Timer_1_Instance_1 : TON_TIME;
+  IEC_Timer_2_Instance_1 : TON_TIME;
+END_VAR
+VAR_TEMP
+  tIndex : UInt;
+  tLoop : Int;
+  tZero : Byte;
+  tRetval : STRUCT
+    LocallyErrID : Word;
+    DPRD : Array[1..#cSlotAmount] of Int;
+    DPWR : Array[1..#cSlotAmount] of Int;
+    FILL : Int;
+  END_STRUCT;
+END_VAR
+VAR_CONSTANT
+  cSlotAmount : UInt;
+  cFieldbusBytes : UInt;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/03_Device/211 ATEQ LeakTest/FB_AteqF620.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  REGION 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  END_REGION
+  REGION 
+      
+      
+      
+      
+      
+      
+      
+      
+  END_REGION
+  
+  IF NOT .#sHelp.First THEN
+      
+      .#sHelp.Abort := ;
+      #oDeviceReady := ;
+      #oReady := ;
+      #oSetProgOk := ;
+      #oMeasureOk := ;
+      #oErrorCode := ;
+      #oElapsedTime := ;
+      #tZero := ;
+      .#tRetval.FILL := ( := #tZero,  => #oResult);
+      ..#sHMI.Status.InstanceName := ();
+      .#sHelp.First := ;
+  ELSE
+      
+      FOR #tLoop :=  TO () DO
+          ( := ,
+                     := ,
+                     => [#tLoop, ]);
+      END_FOR;
+      
+      
+      .[] := ( := #iHWID_Slot1,
+                                    => []);
+      .[] := ( := #iHWID_Slot2,
+                                    => []);
+      .[] := ( := #iHWID_Slot3,
+                                    => []);
+      .[] := ( := #iHWID_Slot4,
+                                    => []);
+      IF (.[] <> ) OR (.[] <> ) OR (.[] <> ) OR (.[] <> ) THEN
+          #oErrorCode := ; 
+      END_IF;
+      
+      
+      ..#sRecv.Echo.Reset := [, ].%X0;
+      ..#sRecv.Echo.Start := [, ].%X1;
+      ..#sRecv.Echo.StartSpec := [, ].%X2;
+      ..#sRecv.Echo.ProgramSel := [, ].%X3;
+      ..#sRecv.Echo.ReadPara := [, ].%X5;
+      ..#sRecv.Echo.ReadLastResult := [, ].%X7;
+      ..#sRecv.Result.PassPart := [, ].%X0;
+      ..#sRecv.Result.FailTestPart := [, ].%X1;
+      ..#sRecv.Result.FailRefPart := [, ].%X2;
+      ..#sRecv.Result.Alarm := [, ].%X3;
+      ..#sRecv.Result.PressureError := [, ].%X4;
+      .#sRecv.CycleEnd := [, ].%X5;
+      ..#sRecv.Result.PartRecoverable := [, ].%X6;
+      ..#sRecv.Result.CalibError := [, ].%X7;
+      ..#sRecv.Result.CalibCheckError := [, ].%X0;
+      ..#sRecv.Result.AtrFault := [, ].%X1;
+      ...#sRecv.Result.Leak.Value := (.#sRecv.ActLeak) / ;
+      #oFillTime := (.#sRecv.FillTime) / ;
+      #oStabTime := (.#sRecv.StabTime) / ;
+      #oTeatTime := (.#sRecv.TeatTime) / ;
+      #oDumpTime := (.#sRecv.DumpTime) / ;
+      ...%B0#sRecv.Echo.Status := [, ];
+      ...%B1#sRecv.Echo.Status := [, ];
+      ..%B0#sRecv.ErrorCode := [, ];
+      ..%B1#sRecv.ErrorCode := [, ];
+      ..%B0#sRecv.ActProgram := [, ];
+      ..%B1#sRecv.ActProgram := [, ];
+      ..%B0#sRecv.ActProgStep := [, ];
+      ..%B1#sRecv.ActProgStep := [, ];
+      ..%B0#sRecv.ActPressure := [, ];
+      ..%B1#sRecv.ActPressure := [, ];
+      ..%B2#sRecv.ActPressure := [, ];
+      ..%B3#sRecv.ActPressure := [, ];
+      ..%B0#sRecv.PressureUnitCode := [, ];
+      ..%B1#sRecv.PressureUnitCode := [, ];
+      ..%B2#sRecv.PressureUnitCode := [, ];
+      ..%B3#sRecv.PressureUnitCode := [, ];
+      ..%B0#sRecv.ActLeak := [, ];
+      ..%B1#sRecv.ActLeak := [, ];
+      ..%B2#sRecv.ActLeak := [, ];
+      ..%B3#sRecv.ActLeak := [, ];
+      ..%B0#sRecv.LeakUnitCode := [, ];
+      ..%B1#sRecv.LeakUnitCode := [, ];
+      ..%B2#sRecv.LeakUnitCode := [, ];
+      ..%B3#sRecv.LeakUnitCode := [, ];
+      ..%B0#sRecv.FillTime := [, ];
+      ..%B1#sRecv.FillTime := [, ];
+      ..%B2#sRecv.FillTime := [, ];
+      ..%B3#sRecv.FillTime := [, ];
+      ..%B0#sRecv.StabTime := [, ];
+      ..%B1#sRecv.StabTime := [, ];
+      ..%B2#sRecv.StabTime := [, ];
+      ..%B3#sRecv.StabTime := [, ];
+      ..%B0#sRecv.TeatTime := [, ];
+      ..%B1#sRecv.TeatTime := [, ];
+      ..%B2#sRecv.TeatTime := [, ];
+      ..%B3#sRecv.TeatTime := [, ];
+      ..%B0#sRecv.DumpTime := [, ];
+      ..%B1#sRecv.DumpTime := [, ];
+      ..%B2#sRecv.DumpTime := [, ];
+      ..%B3#sRecv.DumpTime := [, ];
+      
+      
+      
+      CASE .#sRecv.LeakUnitCode OF
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          :
+              ...#sRecv.Result.Leak.Unit := ;
+          ELSE
+              ;
+      END_CASE;
+      
+      
+      IF NOT #iSysRun OR (#iManual XOR .#sHelp.ManualOld) OR (#iAuto XOR .#sHelp.AutoOld) THEN
+          ..#sHMI.Trigger.SetProg := ;
+          ..#sHMI.Trigger.Measure := ;
+          #ioSetProg := ;
+          #ioMeasure := ;
+          
+          
+      END_IF;
+      .#sHelp.ManualOld := #iManual;
+      .#sHelp.AutoOld := #iAuto;
+      
+      
+      IF #iManual THEN
+          #ioSetProg := ;
+          #ioMeasure := ;
+      ELSIF #iAuto THEN
+          ..#sHMI.Trigger.SetProg := ;
+          ..#sHMI.Trigger.Measure := ;
+      END_IF;
+      .#sHelp.ResetRis := NOT .#sHelp.ResetOld AND #iReset;
+      .#sHelp.ResetOld := #iReset;
+      .#sHelp.SetProgRis := NOT .#sHelp.SetProgOld AND (..#sHMI.Trigger.SetProg OR #ioSetProg);
+      .#sHelp.SetProgOld := ..#sHMI.Trigger.SetProg OR #ioSetProg;
+      .#sHelp.MeasureRis := NOT .#sHelp.MeasureOld AND (..#sHMI.Trigger.Measure OR #ioMeasure);
+      .#sHelp.MeasureOld := ..#sHMI.Trigger.Measure OR #ioMeasure;
+      
+      
+      .#sHelp.OrderCnt := ;
+      IF .#sHelp.SetProgOld THEN
+          .#sHelp.OrderCnt := .#sHelp.OrderCnt + ;
+      END_IF;
+      IF .#sHelp.MeasureOld THEN
+          .#sHelp.OrderCnt := .#sHelp.OrderCnt + ;
+      END_IF;
+      IF (.#sHelp.OrderCnt > ) AND (#oErrorCode = ) THEN
+          #oErrorCode := ; 
+      END_IF;
+      IF (#oErrorCode = ) AND NOT #oReady THEN
+          IF .#sHelp.SetProgRis OR .#sHelp.MeasureRis THEN
+              #oErrorCode := ; 
+          END_IF;
+      END_IF;
+      
+      
+      IF (.#sHelp.OrderCnt = ) THEN
+          IF .#sHelp.ResetRis THEN
+              #oErrorCode := ;
+              .#sSend.Reset := ;
+          ELSE
+              .#sSend.Reset := ;
+          END_IF;
+      END_IF;
+      
+      
+      .#sHelp.CmdTimer( := .#sHelp.EnableTime,
+                       := #iTimeout);
+      
+      REGION 
+          #tIndex := ;
+          
+          IF (#oErrorCode = ) AND .#sHelp.SetProgRis THEN
+              #tZero := ;
+              .#tRetval.FILL := ( := #tZero,  => #oResult);
+              IF #iAuto THEN
+                  .#sHelp.Set := .#sAuto.Set;
+              ELSE
+                  .#sHelp.Set := .#sHMI.Set;
+              END_IF;
+              IF (..#sHelp.Set.ProgNo >= ) AND (..#sHelp.Set.ProgNo <= ) THEN
+                  .#sHelp.Abort := ;
+                  .#sHelp.SetProgAct := ;
+                  .[#tIndex] := ;
+              ELSE
+                  #oErrorCode := ;
+              END_IF;
+          END_IF;
+          
+          IF NOT .#sHelp.SetProgOld THEN
+              #oSetProgOk := ;
+              IF .#sHelp.SetProgAct THEN
+                  .#sHelp.Abort := ;
+              END_IF;
+          END_IF;
+          
+          IF .#sHelp.SetProgAct THEN
+              CASE .[#tIndex] OF
+                  :  
+                      IF .#sRecv.ErrorCode <>  THEN
+                          .[#tIndex] := ;
+                      ELSE
+                          .[#tIndex] := ;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Status =  THEN
+                          .#sSend.Reset := ;
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Reset AND .#sRecv.ErrorCode =  THEN
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Reset AND .#sRecv.ErrorCode <>  THEN
+                          .#sSend.Reset := ;
+                          .#sHelp.EnableTime := ;
+                          IF .#sRecv.ErrorCode =  THEN
+                              .[#tIndex] := .[#tIndex] + ;
+                          ELSE
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF (..#sRecv.Echo.Status = ) THEN
+                          .#sSend.ProgNo := ..#sHelp.Set.ProgNo - ;
+                          .#sSend.ProgramSel := ;
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.ProgramSel AND .#sRecv.ErrorCode =  THEN
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.ProgramSel AND .#sRecv.ErrorCode <>  THEN
+                          .#sSend.ProgramSel := ;
+                          .#sHelp.EnableTime := ;
+                          IF .#sRecv.ErrorCode =  THEN
+                              .[#tIndex] := ;
+                          ELSE
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  ,,,,,:
+                      .#sSend.Reset := ;
+                      .#sSend.ProgramSel := ;
+                      .#sHelp.SetProgAct := ;
+                      ..#sHMI.Trigger.SetProg := ;
+                      .#sHelp.Abort := ;
+                      IF #oErrorCode =  THEN
+                          #oSetProgOk := ;
+                      END_IF;
+              END_CASE;
+          END_IF;
+      END_REGION
+      
+      REGION 
+          #tIndex := ;
+          
+          IF (#oErrorCode = ) AND .#sHelp.MeasureRis THEN
+              #tZero := ;
+              .#tRetval.FILL := ( := #tZero,  => #oResult);
+              IF #iAuto THEN
+                  .#sHelp.Set := .#sAuto.Set;
+              ELSE
+                  .#sHelp.Set := .#sHMI.Set;
+              END_IF;
+              .#sHelp.Abort := ;
+              .#sHelp.MeasureAct := ;
+              .[#tIndex] := ;
+          END_IF;
+          
+          IF NOT .#sHelp.MeasureOld THEN
+              #oMeasureOk := ;
+              IF .#sHelp.MeasureAct THEN
+                  .#sHelp.Abort := ;
+              END_IF;
+          END_IF;
+          
+          IF .#sHelp.MeasureAct THEN
+              CASE .[#tIndex] OF
+                  :  
+                      IF .#sRecv.ErrorCode <>  THEN
+                          .[#tIndex] := ;
+                      ELSE
+                          .[#tIndex] := ;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Status =  THEN
+                          .#sSend.Reset := ;
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Reset AND .#sRecv.ErrorCode =  THEN
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Reset AND .#sRecv.ErrorCode <>  THEN
+                          .#sSend.Reset := ;
+                          .#sHelp.EnableTime := ;
+                          IF .#sRecv.ErrorCode =  THEN
+                              .[#tIndex] := .[#tIndex] + ;
+                          ELSE
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF (..#sRecv.Echo.Status = ) THEN
+                          .#sSend.Start := ;
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Start AND .#sRecv.ErrorCode =  THEN
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.Start AND .#sRecv.ErrorCode <>  THEN
+                          .#sSend.Start := ;
+                          .#sHelp.EnableTime := ;
+                          IF .#sRecv.ErrorCode =  THEN
+                              .[#tIndex] := .[#tIndex] + ;
+                          ELSE
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      ELSIF .#sHelp.Abort THEN
+                          .[#tIndex] := ;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF (..#sRecv.Echo.Status = ) AND .#sRecv.CycleEnd THEN
+                          .#sSend.ReadLastResult := ;
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.ReadLastResult AND .#sRecv.ErrorCode =  THEN
+                          .#sHelp.EnableTime := ;
+                          .[#tIndex] := .[#tIndex] + ;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      IF ..#sRecv.Echo.ReadLastResult AND .#sRecv.ErrorCode <>  THEN
+                          .#sSend.ReadLastResult := ;
+                          .#sHelp.EnableTime := ;
+                          IF .#sRecv.ErrorCode =  THEN
+                              .[#tIndex] := ;
+                          ELSE
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      ELSE
+                          .#sHelp.EnableTime := ;
+                          IF ..#sHelp.CmdTimer.Q THEN
+                              #oErrorCode := ;
+                              .[#tIndex] := ;
+                          END_IF;
+                      END_IF;
+                      
+                  :  
+                      .[#tIndex] := ;
+                      
+                  ,,,,,,,,,,:
+                      .#sSend.Reset := ;
+                      .#sSend.Start := ;
+                      .#sSend.ReadLastResult := ;
+                      .#sHelp.MeasureAct := ;
+                      ..#sHMI.Trigger.Measure := ;
+                      .#sHelp.Abort := ;
+                      IF #oErrorCode =  THEN
+                          #oResult := .#sRecv.Result;
+                          #oMeasureOk := ;
+                      END_IF;
+              END_CASE;
+          END_IF;
+      END_REGION
+      
+      
+      #oDeviceReady := .#sRecv.CycleEnd;
+      .#oPressure.Value := (.#sRecv.ActPressure) / ;
+      CASE .#sRecv.PressureUnitCode OF
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          :
+              .#oPressure.Unit := ;
+          ELSE
+              ;
+      END_CASE;
+      #oActProgStep := .#sRecv.ActProgStep;
+      #oActProgNo := .#sRecv.ActProgram + ;
+      
+      
+      ..#sHMI.Status.DeviceReady := #oDeviceReady;
+      ..#sHMI.Status.Ready := #oReady;
+      ..#sHMI.Status.Error := #oError;
+      ..#sHMI.Status.SetProgOk := #oSetProgOk;
+      ..#sHMI.Status.MeasureOk := #oMeasureOk;
+      ..#sHMI.Status.ErrorCode := #oErrorCode;
+      ..#sHMI.Status.Result := #oResult;
+      ..#sHMI.Status.Pressure := #oPressure;
+      ..#sHMI.Status.ActProgStep := #oActProgStep;
+      ..#sHMI.Status.ActProgNo := #oActProgNo;
+      ..#sHMI.Status.ElapsedTime := #oElapsedTime;
+      
+      
+      IF (#oErrorCode = ) AND (.#sHelp.OrderCnt = ) AND #oDeviceReady AND NOT .#sHelp.SetProgAct AND NOT .#sHelp.MeasureAct THEN
+          #oReady := ;
+      ELSE
+          #oReady := ;
+      END_IF;
+      
+      
+      [, ].%X0 := .#sSend.Reset;
+      [, ].%X1 := .#sSend.Start;
+      [, ].%X2 := .#sSend.StartSpec;
+      [, ].%X3 := .#sSend.ProgramSel AND ClockMemory0.8s;
+      [, ].%X5 := .#sSend.ReadPara ;
+      [, ].%X7 := .#sSend.ReadLastResult AND ClockMemory0.8s;
+      [, ] := ..%B0#sSend.ProgNo;
+      REGION 
+          
+          IF NOT #ioSpecialCycle THEN
+              #SpecialCycleStep := ;
+          END_IF;
+          IF #ioSpecialCycle AND #SpecialCycleStep =  AND #oReady AND #oDeviceReady THEN
+              #SpecialCycleStep := ;
+          END_IF;
+          #IEC_Timer_0_Instance( := #SpecialCycleStep = ,
+                                 := );
+          #IEC_Timer_1_Instance( := #SpecialCycleStep = ,
+                                 := );
+          CASE #SpecialCycleStep OF
+              :
+                  .#sHelp.EnableTime := ;
+                  [, ] := ;
+                  [, ] := ;
+                  IF .#IEC_Timer_0_Instance.Q THEN
+                      #SpecialCycleStep := ;
+                  END_IF;
+              :
+                  .#sHelp.EnableTime := ;
+                  [, ] := ;
+                  [, ] := ;
+                  .#sSend.StartSpec := ;
+                  IF .#IEC_Timer_1_Instance.Q THEN
+                      #SpecialCycleStep := ;
+                  END_IF;
+                  
+              :
+                  .#sHelp.EnableTime := ;
+                  .#sSend.Start := ;
+                  #SpecialCycleStep := ;
+              :
+                  IF ..#sRecv.Echo.StartSpec THEN
+                      .#sHelp.EnableTime := ;
+                      #SpecialCycleStep := ;
+                  END_IF;
+                  .#sHelp.EnableTime := ;
+                  IF ..#sHelp.CmdTimer.Q THEN
+                      #oErrorCode := ;
+                      #SpecialCycleStep := ;
+                  END_IF;
+              :
+                  IF NOT #oReady AND NOT #oDeviceReady THEN
+                      .#sHelp.EnableTime := ;
+                      .#sSend.Start := .#sSend.StartSpec := ;
+                      #SpecialCycleStep := ;
+                  END_IF;
+                  .#sHelp.EnableTime := ;
+                  IF ..#sHelp.CmdTimer.Q THEN
+                      #oErrorCode := ;
+                      #SpecialCycleStep := ;
+                  END_IF;
+              :
+                  IF #oReady AND #oDeviceReady THEN
+                      #ioSpecialCycle := .#sSend.StartSpec := ;
+                      .#sHelp.EnableTime := ;
+                  END_IF;
+              :
+                  .#sSend.Start := .#sSend.StartSpec := ;
+                  #ioSpecialCycle := ;
+          END_CASE;
+          
+      END_REGION
+      REGION 
+          
+          IF NOT #ioReadProTime THEN
+              #ReadProTimeStep := ;
+          END_IF;
+          IF #ioReadProTime AND #ReadProTimeStep =  AND #oReady AND #oDeviceReady THEN
+              #ReadProTimeStep := ;
+          END_IF;
+          #IEC_Timer_0_Instance_1( := #ReadProTimeStep = ,
+                                 := );
+        #IEC_Timer_1_Instance_1( := #ReadProTimeStep = ,
+                                 := );
+        
+          CASE #ReadProTimeStep OF
+              :
+                  .#sHelp.EnableTime := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  #ReadProTimeStep := ;
+                  
+              :
+                  .#sHelp.EnableTime := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  [, ] := ;
+                  
+                  IF .#IEC_Timer_0_Instance_1.Q THEN
+                      .#sSend.ReadPara := ;
+                  END_IF;
+                  IF  ..#sRecv.Echo.ReadPara OR .#IEC_Timer_1_Instance_1.Q THEN
+                      #ReadProTimeStep := ;
+                  END_IF;
+              :
+                  .#sHelp.EnableTime := ;
+                 
+                  #ReadProTimeStep := ;
+              :
+                  #ReadProTimeStep := ;
+                  .#sHelp.EnableTime := ;
+                  IF ..#sHelp.CmdTimer.Q THEN 
+                      #oErrorCode := ;
+                      #ReadProTimeStep := ;
+                  END_IF;
+              :
+                  #ReadProTimeStep := ;
+                  
+              :
+                  IF #oReady AND #oDeviceReady THEN
+                      #ioReadProTime := .#sSend.ReadPara := ;
+                      .#sHelp.EnableTime := ;
+                  END_IF;
+              :
+                  .#sSend.Start := .#sSend.ReadPara := ;
+                  #ioReadProTime := ;
+          END_CASE;
+          
+      END_REGION
+      
+      
+      .[] := ( := #iHWID_Slot5,
+                                    := []);
+      .[] := ( := #iHWID_Slot6,
+                                    := []);
+      .[] := ( := #iHWID_Slot7,
+                                    := []);
+      .[] := ( := #iHWID_Slot8,
+                                    := []);
+      IF .[] <>  OR
+          .[] <>  OR
+          .[] <>  OR
+          .[] <>   THEN
+          #oErrorCode := ; 
+      END_IF;
+      
+      
+      .#tRetval.LocallyErrID := ();
+      IF .#tRetval.LocallyErrID <>  THEN
+          
+          FOR #tLoop :=  TO () DO
+              ( := ,
+                         := ,
+                         => [#tLoop, ]);
+          END_FOR;
+          #oErrorCode := ; 
+      END_IF;
+      
+  END_IF;
+END_FUNCTION_BLOCK

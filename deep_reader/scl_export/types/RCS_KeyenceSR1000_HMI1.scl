@@ -1,0 +1,36 @@
+TYPE "RCS_KeyenceSR1000_HMI1"
+STRUCT
+  Manual : STRUCT
+    Preset : Bool;
+    Trigger : Bool;
+  END_STRUCT;
+  Status : STRUCT
+    Ready : Bool;
+    Busy : Bool;
+    Failure : Bool;
+    Complete : Bool;
+    ReadOk : Bool;
+    ReadNok : Bool;
+    TimeOut : Bool;
+    Error : Bool;
+    ErrorCode : UInt;
+    Sequence : Int;
+    iReTriggerTimes : USInt;
+    CurrentLength : UInt;
+    CurrentCode : String[128];
+    LastCode : String[128];
+  END_STRUCT;
+  Indata : STRUCT
+    ReadComplete : Bool;
+    ReadFailure : Bool;
+    GeneralErrorCode : UInt;
+    ReadResultCode : UInt;
+    ResultDataSize : UInt;
+  END_STRUCT;
+  Outdata : STRUCT
+    ReadCompleteClear : Bool;
+    ErrorClear : Bool;
+    ReadRequest : Bool;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

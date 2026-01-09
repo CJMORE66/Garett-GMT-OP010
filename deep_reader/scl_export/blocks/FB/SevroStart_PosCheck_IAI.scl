@@ -1,0 +1,72 @@
+FUNCTION_BLOCK "SevroStart&PosCheck_IAI"
+VAR_INPUT
+  iRef_Homed : Bool;
+  iStandstill : Bool;
+  iReset : Bool;
+  interlcok : Bool;
+  "iActual Posi" : Real;
+  "iTol+" : Real;
+  "iTol-" : Real;
+  iStartTon : Time;
+END_VAR
+VAR_OUTPUT
+  oStartPos : Bool;
+  DoublePosError : Bool;
+END_VAR
+VAR_IN_OUT
+  ioPoint : Array[0..39] of Struct;
+  ioList : "PosList_IAI";
+  ioPosNumberSelect : Int;
+END_VAR
+VAR
+  TON : Array[0..1] of TON_TIME;
+  StartCount : Int;
+END_VAR
+VAR_TEMP
+  "Actual Posi+Tol" : Real;
+  "Actual Posi-Tol" : Real;
+  Index : Array[0..7] of Int;
+  PosStart : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/22_IAI/ServoCheck/SevroStart&PosCheck_IAI.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  [] := ;
+  #PosStart := ;
+  FOR [] :=  TO  DO
+      IF [[]]. THEN
+          
+          #ioPosNumberSelect := [];
+          #PosStart := ;
+          EXIT;
+      END_IF;
+  END_FOR;
+  [] := ;
+  #StartCount := ;
+  FOR [] :=  TO  DO
+      IF [[]]. THEN
+          
+          #StartCount := #StartCount+;
+        
+          
+      END_IF;
+      IF [] =  THEN
+          
+          EXIT;
+      END_IF;
+          
+  END_FOR;
+  // Network 2
+  [] := ;
+  FOR [] :=  TO  DO
+      IF .[ []].>= #Actual Posi-Tol
+          AND .[ []].<= #Actual Posi+Tol
+      THEN
+        [[]]. := ;
+      ELSE
+          [[]]. := ;
+      END_IF;
+  END_FOR;
+END_FUNCTION_BLOCK

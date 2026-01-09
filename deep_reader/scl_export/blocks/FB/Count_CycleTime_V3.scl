@@ -1,0 +1,138 @@
+FUNCTION_BLOCK "Count_CycleTime_V3"
+VAR_INPUT
+  iAlwaysOn : Bool;
+  iProcessStart : Bool;
+  iProcessComplete : Bool;
+  iProcessResult : DInt;
+END_VAR
+VAR_IN_OUT
+  ioCount : "RCS_SysCount_V1";
+  ioTotalCycleTime : "RCS_SysCycleTime_V1";
+  ioMachineCycleTime : "RCS_SysCycleTime_V1";
+END_VAR
+VAR
+  sFlow : STRUCT
+    pls : Array[0..15] of Bool;
+    sDTStart : Date_And_Time;
+    sDTRes : Date_And_Time;
+    sDTOld : Date_And_Time;
+    sDTRuntime : Date_And_Time;
+    sDTRunning : Date_And_Time;
+    sDTCurrent : Date_And_Time;
+    Run_Minute : Int;
+    Run_Hour : Int;
+    Run_Day : Int;
+    AutoRun_Minute : Int;
+    AutoRun_Hour : Int;
+    AutoRun_Day : Int;
+  END_STRUCT;
+END_VAR
+VAR_TEMP
+  tStart : Bool;
+  tStop : Bool;
+  tAutorunning : Bool;
+  tpt : Int;
+  tpRet : Int;
+  tpResult : Time;
+  tDint : DInt;
+  tReal : Array[0..1] of Real;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/02_Comm/01_Count_CycleTime/Count_CycleTime_V3.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  #tStart := #iProcessStart AND NOT .[];
+  .[] := #iProcessStart;
+  #tStop := #iProcessComplete AND NOT .[];
+  .[] := #iProcessComplete;
+  
+  
+  
+  
+  IF  THEN
+      IF #tStart THEN
+          #tpRet := (.#sFlow.sDTStart);
+      END_IF;
+      IF #tStop THEN
+          
+          
+          .[] := ;
+          #tpRet := (.#sFlow.sDTRes);
+          [] := ((( := .#sFlow.sDTRes,  :=.#sFlow.sDTStart )));
+          .[] :=  []/;
+          
+          
+          .[] := ;
+          [] := ((( := .#sFlow.sDTRes,  := .#sFlow.sDTOld)));
+          #tpRet := (.#sFlow.sDTOld);
+          .[] := []/;
+          FOR #tpt :=  TO  BY   DO
+              
+              .[#tpt] := .[#tpt - ];
+              .[] := .[] + .[#tpt];
+              
+              .[#tpt] := .[#tpt - ];
+              .[] := .[] + .[#tpt];
+          END_FOR;
+          
+          .[] := .[] / ;
+          
+          .[] := .[] / ;
+          
+          
+          IF #iProcessResult =  THEN
+              .[] := .[] + ;
+              .#ioCount.OKHolding := .#ioCount.OKHolding + ;
+          END_IF;
+          IF #iProcessResult > THEN
+              .[] := .[] + ;
+              .#ioCount.NGHolding:=.#ioCount.NGHolding+;
+          END_IF;
+          IF #iProcessResult >= THEN
+              .#ioCount.Total := .#ioCount.Total + ;
+          END_IF;
+          .#ioCount.OKHolding := .#ioCount.OKHolding + ;
+          
+          CASE #iProcessResult OF
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+              :  
+                  .[] := .[] + ;
+                  
+          END_CASE;
+      END_IF;
+      
+  END_IF;
+  
+  IF .#ioCount.ClearOK AND NOT .[] THEN
+      .[] := ;
+      
+  END_IF;
+  .[] := .#ioCount.ClearOK;
+  IF .#ioCount.ClearNG AND NOT .[] THEN
+      FOR #tpt :=  TO  DO
+           .[#tpt] := ;
+       END_FOR;
+  END_IF;
+  .[] := .#ioCount.ClearNG;
+  IF .#ioCount.ClearTotal AND NOT .[] THEN
+      .#ioCount.Total := ;
+      
+  END_IF;
+  .[] := .#ioCount.ClearTotal;
+END_FUNCTION_BLOCK

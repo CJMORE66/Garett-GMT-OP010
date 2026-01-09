@@ -1,0 +1,55 @@
+TYPE "ST_GeneralAnalog"
+STRUCT
+  Common : STRUCT
+    nMode : Int;
+    bEnable : Bool;
+    bError : Bool;
+    bWarning : Bool;
+    bReset : Bool;
+    bDone : Bool;
+    bScreenActive : Bool;
+    nErrorNo : Int;
+    nWarningNo : Int;
+    nLastStep : Int;
+    nCurrentStep : Int;
+    nNextStep : Int;
+    tMaxProcessTime : Time;
+    tActProcessTime : Time;
+  END_STRUCT;
+  In : STRUCT
+    nActualValueX : UInt;
+  END_STRUCT;
+  Out : STRUCT
+    bReserved : Bool;
+  END_STRUCT;
+  Para : STRUCT
+    General : STRUCT
+      rActualValueY : Real;
+      rSlope : Real;
+      rConstant : Real;
+      aPos : Array[1..2] of Struct;
+    END_STRUCT;
+    Set : STRUCT
+      rLimitMin : Real;
+      rLimitMax : Real;
+      aLimit : Array[0..9] of Struct;
+      nUnitX : Int;
+      nUnitY : Int;
+    END_STRUCT;
+    Result : STRUCT
+      bOk : Bool;
+      bNok : Bool;
+      bOverMin : Bool;
+      bOverMax : Bool;
+      rValueY : Real;
+    END_STRUCT;
+    Record : STRUCT
+      bClear : Bool;
+      nSetNumber : Int;
+      nActNumber : Int;
+      rAverageValueY : Real;
+      aValueY : Array[1..50] of Real;
+    END_STRUCT;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

@@ -1,0 +1,1062 @@
+FUNCTION_BLOCK "KistlerPresser _FB"
+VAR_INPUT
+  iHW_ID_Input : HW_SUBMODULE;
+  iHW_ID_Output : HW_SUBMODULE;
+  iSafetyInterlock : Bool;
+  iContinueInterlock : Bool;
+  iFltQuit : Bool;
+  iSnEnable : Bool;
+  iJogSpeed : Real;
+  iJogMaxForce : Real;
+  iCalibForce : Real;
+  iXEncReference : Real;
+  iReadIdentifier : Any;
+  iReadPressData : Any;
+  iWriteIdentifier : Any;
+  iWritePressData : Any;
+  iSpareByte : Array[0..19] of Byte;
+END_VAR
+VAR_OUTPUT
+  oFltNo : Word;
+  oError : Bool;
+  oReady : Bool;
+  oRdyAmp : Bool;
+  oRdyCmd : Bool;
+  oZeroXOk : Bool;
+  oSetXRefOk : Bool;
+  oHomeOk : Bool;
+  oStartCycleOk : Bool;
+  oCycleOK : Bool;
+  oCycleNOK : Bool;
+  oWaitRequest : Bool;
+  oInHomePos : Bool;
+  oRunSeq : Bool;
+  oActProgNo : Int;
+  oActLabelID : Int;
+  oActSensorPos : Real;
+  oActServoPos : Real;
+  oActForce : Real;
+  oActXEncRefValue : Real;
+END_VAR
+VAR
+  ProgNo : Int;
+  SelectSeq : Int;
+  ZeroX : Bool;
+  SetXRef : Bool;
+  Homing : Bool;
+  StartCycle : Bool;
+  ContinueSeq : Bool;
+  JogPos : Bool;
+  JogNeg : Bool;
+  JogPosActive : Bool;
+  JogNegActive : Bool;
+  SpareByte : Array[0..67] of Byte;
+  InputMessages : STRUCT
+    StatusBits : STRUCT
+      "MIRROR-START" : Bool;
+      "MIRROR-TARE-Y" : Bool;
+      "MIRROR-ZERO X" : Bool;
+      "MIRROR-STEST-X" : Bool;
+      "MIRROR-STEST-Y" : Bool;
+      "ReservedBit000.5" : Bool;
+      "MASTER-MEAS" : Bool;
+      "INC-ZERO" : Bool;
+      "ReservedBit001.0" : Bool;
+      "MIRROR-ACK-ADMIN" : Bool;
+      "ReservedBit001.2" : Bool;
+      "MIRROR-ACCESS" : Bool;
+      AUTO : Bool;
+      "STAT-RESET" : Bool;
+      "STAT-DISABLE" : Bool;
+      "TARE-EXTENDED-Y" : Bool;
+      MP : Byte;
+      "ReservedBit003.0" : Bool;
+      "ReservedBit003.1" : Bool;
+      "RESET-SN-GENERATOR" : Bool;
+      "ReservedBit003.3" : Bool;
+      "ReservedBit003.4" : Bool;
+      "BREAKETEST-ACTIVE" : Bool;
+      "ReservedBit003.6" : Bool;
+      "ReservedBit003.7" : Bool;
+      UNI : Byte;
+      ReservedByte005 : Byte;
+      READY : Bool;
+      "OK-TOTAL" : Bool;
+      "NOK-TOTAL" : Bool;
+      "NO-PASS" : Bool;
+      "ReservedBit006.4" : Bool;
+      "ReservedBit006.5" : Bool;
+      WARN : Bool;
+      ALARM : Bool;
+      S1 : Bool;
+      S2 : Bool;
+      "ReservedBit007.2" : Bool;
+      "ReservedBit007.3" : Bool;
+      "ReservedBit007.4" : Bool;
+      "ReservedBit007.5" : Bool;
+      "ReservedBit007.6" : Bool;
+      "ReservedBit007.7" : Bool;
+      "O-UNI" : Byte;
+      "DRIVE-ENABLE" : Bool;
+      "RUN-SEQUENCE" : Bool;
+      "DRIVE-TO-HOMEPOS" : Bool;
+      "DRIVE-TO-REFPOS" : Bool;
+      "JOG-FW" : Bool;
+      "JOG-BW" : Bool;
+      "WAIT-REQUEST" : Bool;
+      "BRAKETEST-DONE" : Bool;
+      "SEQUENCE-STOPPED" : Bool;
+      "SEQUENCE-END" : Bool;
+      "ONLINE-EO-NOK" : Bool;
+      "EXT-STOP" : Bool;
+      "SEQUENCE-ERROR" : Bool;
+      "DRIVE-ENABLED" : Bool;
+      "HOMEPOS-REACHED" : Bool;
+      "REFPOS-REACHED" : Bool;
+      STANDSTILL : Bool;
+      "BRAKETEST-REQ" : Bool;
+      "SERVO-WARN" : Bool;
+      "SERVO-ERROR" : Bool;
+      "SMES-ACTIVE" : Bool;
+      "SMST2-ACTIVE" : Bool;
+      "SMM1-ACTIVE" : Bool;
+      "USER-MODE-ACTIVE" : Bool;
+      SEQUENCE : Byte;
+      "LABEL-ID" : Byte;
+      "CFG-MP" : Byte;
+      "ReservedBit015.0" : Bool;
+      "ReservedBit015.1" : Bool;
+      "ReservedBit015.2" : Bool;
+      "ReservedBit015.3" : Bool;
+      "ReservedBit015.4" : Bool;
+      "ReservedBit015.5" : Bool;
+      "ReservedBit015.6" : Bool;
+      "GLOBAL-CFG-MP" : Bool;
+      "MIRRIR-CFG-ADR" : Byte;
+      "MIRRIR-CFG-LENGTH" : Byte;
+      "SELECT-PAGE" : Byte;
+      "TRANSMISSION-FAULT" : Bool;
+      ACK : Bool;
+      "DEVICE-AVAILABLE" : Bool;
+      "ReservedBit019.3" : Bool;
+      "CHANGEDSELECTED-MP" : Bool;
+      "ReservedBit019.5" : Bool;
+      "CHANGED--GLOBAL" : Bool;
+      "BACKUP-REQUEST" : Bool;
+    END_STRUCT;
+    FreelyArea : STRUCT
+      XEncRefValue : Real;
+      CurValueX_1 : Real;
+      CurValueX_2 : Real;
+      CurValueY : Real;
+      SerialNnmber : Array[36..85] of Byte;
+      "pvCurveXMIN-X" : Real;
+      "pvCurveXMAX-X" : Real;
+      "pvCurveYMIN-Y" : Real;
+      "pvCurveYMAX-Y" : Real;
+      PressData : Array[86..203] of Byte;
+    END_STRUCT;
+  END_STRUCT;
+  OutputMessages : STRUCT
+    ControlBits : STRUCT
+      START : Bool;
+      "TARE-Y" : Bool;
+      "ZERO X" : Bool;
+      "STEST-X" : Bool;
+      "STEST-Y" : Bool;
+      "ReservedBit000.5" : Bool;
+      "MASTER-MEAS" : Bool;
+      "INC-ZERO" : Bool;
+      "ReservedBit001.0" : Bool;
+      "ACK-ADMIN" : Bool;
+      "ReservedBit001.2" : Bool;
+      ACCESS : Bool;
+      AUTO : Bool;
+      "STAT-RESET" : Bool;
+      "STAT-DISABLE" : Bool;
+      "TARE-EXTENDED-Y" : Bool;
+      MP : Byte;
+      "ReservedBit003.0" : Bool;
+      "ReservedBit003.1" : Bool;
+      "RESET-SN-GENERATOR" : Bool;
+      "ReservedBit003.3" : Bool;
+      "ReservedBit003.4" : Bool;
+      "ReservedBit003.5" : Bool;
+      "ReservedBit003.6" : Bool;
+      "ReservedBit003.7" : Bool;
+      UNI : Byte;
+      ReservedByte005 : Byte;
+      ReservedByte006 : Byte;
+      ReservedByte007 : Byte;
+      ReservedByte008 : Byte;
+      "DRIVE-ENABLE" : Bool;
+      "RUN-SEQUENCE" : Bool;
+      "DRIVE-TO-HOMEPOS" : Bool;
+      "DRIVE-TO-REFPOS" : Bool;
+      "JOG-FW" : Bool;
+      "JOG-BW" : Bool;
+      "CONTNUEFROM-WAIT" : Bool;
+      "MANUAL-BRAKETEST" : Bool;
+      "ReservedBit010.0" : Bool;
+      "ReservedBit010.1" : Bool;
+      "ReservedBit010.2" : Bool;
+      "SEQ-EXT-STOP-REQ" : Bool;
+      "ReservedBit010.4" : Bool;
+      "ReservedBit010.5" : Bool;
+      "ReservedBit010.6" : Bool;
+      "ReservedBit010.7" : Bool;
+      ReservedByte011 : Byte;
+      "CURRENT SEQUENCE" : Byte;
+      ReservedByte013 : Byte;
+      "CFG-MP" : Byte;
+      "ReservedBit015.0" : Bool;
+      "ReservedBit015.1" : Bool;
+      "ReservedBit015.2" : Bool;
+      "ReservedBit015.3" : Bool;
+      "ReservedBit015.4" : Bool;
+      "ReservedBit015.5" : Bool;
+      "ReservedBit015.6" : Bool;
+      "GLOBAL-CFG-MP" : Bool;
+      "CFG-ADDRESS" : Byte;
+      "CFG-LENGTH" : Byte;
+      "SELECT-PAGE" : Byte;
+      "SAVE-TO-MP" : Bool;
+      STROBE : Bool;
+      "ReservedBit019.2" : Bool;
+      "ReservedBit019.3" : Bool;
+      "RESET-CHANGED-SELECTED-MP" : Bool;
+      "ReservedBit019.5" : Bool;
+      "RESET-CHANGEDGLOBAL" : Bool;
+      "BACKUP-REQUEST" : Bool;
+    END_STRUCT;
+    FreelyArea : STRUCT
+      XEncRefValue : Real;
+      JogSpeed : Real;
+      JogMaxForce : Real;
+      CalibForce : Real;
+      SerialNnmber : Array[36..85] of Byte;
+      PressData : Array[86..219] of Byte;
+    END_STRUCT;
+  END_STRUCT;
+  Info : STRUCT
+    ProgNo : Byte;
+    SelectSeq : Byte;
+    SelectPage : Byte;
+    CfgAddress : Byte;
+    CfgLength : Byte;
+    Cancel : Bool;
+    ContinueSeq : Bool;
+  END_STRUCT;
+  SetXRefRise : Bool;
+  JogRise : Bool;
+  HomingRise : Bool;
+  StartCycleRise : Bool;
+  FltQuitRise : Bool;
+  SetXRefOld : Bool;
+  JogOld : Bool;
+  HomingOld : Bool;
+  StartCycleOld : Bool;
+  FltQuitOld : Bool;
+  SetXRefAct : Bool;
+  JogAct : Bool;
+  HomeAct : Bool;
+  CycleAct : Bool;
+  OrderCount : Int;
+  Index : Int;
+  Step : Array[1..5] of Int;
+  Ref_Timer_IN : Bool;
+  JogTimer_IN : Bool;
+  HomeTimer_IN : Bool;
+  SeqTimer_IN : Bool;
+  HomeTime : Time;
+  SeqTime : Time;
+  Ref_Timer : TON_TIME;
+  Jog_Timer : TON_TIME;
+  Home_Timer : TON_TIME;
+  Seq_Timer : TON_TIME;
+END_VAR
+VAR_TEMP
+  tmpSource : Byte;
+  tmpRetVal : Int;
+  pTempPNIOData : Any;
+  pTempPressdata : Any;
+  pAnyPressdata : STRUCT
+    SyntaxID : Byte;
+    DataType : Byte;
+    DataCount : Int;
+    DBNumber : Word;
+    BytePointer : DWord;
+  END_STRUCT;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/23_Kistler/KistlerPresser _FB.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  #pTempPNIOData := #InputMessages;
+  #tmpRetVal := ( := #iHW_ID_Input,
+                          => #pTempPNIOData);
+  IF #tmpRetVal <>  THEN
+      GOTO ;
+  END_IF;
+  #pTempPressdata := #iReadIdentifier;
+  IF .#pAnyPressdata.DataType =  AND .#pAnyPressdata.DataCount >  THEN
+      #tmpRetVal := ( := ..#InputMessages.FreelyArea.SerialNnmber,  => #pTempPressdata);
+  END_IF;
+  #pTempPressdata := #iReadPressData;
+  IF .#pAnyPressdata.DataType =  AND .#pAnyPressdata.DataCount >  THEN
+      #tmpRetVal := ( := ..#InputMessages.FreelyArea.PressData,  => #pTempPressdata);
+  END_IF;
+  #oActXEncRefValue := ..#InputMessages.FreelyArea.XEncRefValue;
+  #oActProgNo := (..#InputMessages.StatusBits.MP);
+  #oActLabelID := (..#InputMessages.StatusBits.LABEL-ID);
+  #oActSensorPos := ..#InputMessages.FreelyArea.CurValueX_1;
+  #oActServoPos := ..#InputMessages.FreelyArea.CurValueX_2;
+  #oActForce := ..#InputMessages.FreelyArea.CurValueY;
+  #oInHomePos := ..#InputMessages.StatusBits.HOMEPOS-REACHED;
+  #oRunSeq := ..#InputMessages.StatusBits.RUN-SEQUENCE;
+  #JogPosActive := ..#InputMessages.StatusBits.JOG-FW;
+  #JogNegActive := ..#InputMessages.StatusBits.JOG-BW;
+  IF #iSafetyInterlock AND NOT ..#InputMessages.StatusBits.SMES-ACTIVE THEN
+      #oRdyAmp := ..#InputMessages.StatusBits.DRIVE-ENABLED;
+      ..#OutputMessages.ControlBits.DRIVE-ENABLE := ;
+  ELSE
+      #oRdyAmp := ;
+      ..#OutputMessages.ControlBits.DRIVE-ENABLE := ;
+  END_IF;
+  #FltQuitRise := NOT #FltQuitOld AND #iFltQuit;
+  #FltQuitOld := #iFltQuit;
+  #SetXRefRise := NOT #SetXRefOld AND #SetXRef;
+  #SetXRefOld := #SetXRef;
+  #HomingRise := NOT #HomingOld AND #Homing;
+  #HomingOld := #Homing;
+  #JogRise := NOT #JogOld AND (#JogPos OR #JogNeg);
+  #JogOld := #JogPos OR #JogNeg;
+  #StartCycleRise := NOT #StartCycleOld AND #StartCycle;
+  #StartCycleOld := #StartCycle;
+  IF #FltQuitRise THEN
+      IF #OrderCount =  THEN
+          #oFltNo := ;
+      END_IF;
+      ..#OutputMessages.ControlBits.ACK-ADMIN := ;
+  ELSE
+      ..#OutputMessages.ControlBits.ACK-ADMIN := ;
+  END_IF;
+  IF NOT ..#InputMessages.StatusBits.DEVICE-AVAILABLE OR ..#InputMessages.StatusBits.ALARM THEN
+      IF #oFltNo =  THEN
+          #oFltNo := ;
+      END_IF;
+  END_IF;
+  IF ..#InputMessages.StatusBits.SERVO-ERROR THEN
+      IF #oFltNo =  THEN
+          #oFltNo := ;
+      END_IF;
+  END_IF;
+  IF ..#InputMessages.StatusBits.USER-MODE-ACTIVE THEN
+      IF #oFltNo =  THEN
+          #oFltNo := ;
+      END_IF;
+  END_IF;
+  IF #oFltNo =  THEN
+      IF #JogRise OR #HomingRise OR #StartCycleRise THEN
+          IF NOT #oRdyCmd THEN
+              #oFltNo := ;
+          END_IF;
+      END_IF;
+  END_IF;
+  #OrderCount := ;
+  IF #JogPos OR #JogNeg THEN
+      #OrderCount := #OrderCount + ;
+  END_IF;
+  IF #Homing THEN
+      #OrderCount := #OrderCount + ;
+  END_IF;
+  IF #StartCycle THEN
+      #OrderCount := #OrderCount + ;
+  END_IF;
+  IF #SetXRef THEN
+      #OrderCount := #OrderCount + ;
+  END_IF;
+  IF #OrderCount >  THEN
+      IF #oFltNo =  THEN
+          #oFltNo := ;
+      END_IF;
+  END_IF;
+  IF (#oFltNo = )
+  THEN
+      IF (#ProgNo < ) OR
+          (#ProgNo > )
+      THEN
+          #oFltNo := ;
+      END_IF;
+  END_IF;
+  IF #oFltNo =  THEN
+      IF #SelectSeq <  OR #SelectSeq >  THEN
+          #oFltNo := ;
+      END_IF;
+  END_IF;
+  
+  
+  
+  #Index := ;
+  IF NOT #SetXRef THEN
+      IF #SetXRefAct THEN
+          ..#OutputMessages.ControlBits.STROBE := ;
+          #SetXRefAct := ;
+      END_IF;
+  END_IF;
+  IF #oFltNo =  AND #SetXRefRise THEN
+      .#Info.ProgNo := (#ProgNo);
+      .#Info.SelectSeq := (#SelectSeq);
+      .#Info.SelectPage := ;
+      .#Info.CfgAddress := ;
+      .#Info.CfgLength := ;
+      #SetXRefAct := ;
+      #oSetXRefOk := ;
+      [#Index] := ;
+  END_IF;
+  #Ref_Timer_IN := ;
+  IF #SetXRefAct THEN
+      CASE [#Index] OF
+          :
+              #Ref_Timer_IN := ;
+              [#Index] := [#Index] + ;
+              
+          :
+              IF ..#InputMessages.StatusBits.READY THEN
+                  #Ref_Timer_IN := ;
+                  ..#OutputMessages.ControlBits.CFG-MP := .#Info.ProgNo;
+                  ..#OutputMessages.ControlBits.SELECT-PAGE := .#Info.SelectPage;
+                  ..#OutputMessages.ControlBits.CFG-ADDRESS := .#Info.CfgAddress;
+                  ..#OutputMessages.ControlBits.CFG-LENGTH := .#Info.CfgLength;
+                  ..#OutputMessages.ControlBits.SAVE-TO-MP := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #Ref_Timer_IN := ;
+                  IF .#Ref_Timer.Q THEN
+                      #Ref_Timer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                      
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.CFG-MP = .#Info.ProgNo AND ..#InputMessages.StatusBits.SELECT-PAGE = .#Info.SelectPage AND ..#InputMessages.StatusBits.MIRRIR-CFG-ADR = .#Info.CfgAddress AND ..#InputMessages.StatusBits.MIRRIR-CFG-LENGTH = .#Info.CfgLength THEN
+                  #Ref_Timer_IN := ;
+                  ..#OutputMessages.ControlBits.STROBE := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #Ref_Timer_IN := ;
+                  IF .#Ref_Timer.Q THEN
+                      #Ref_Timer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.ACK THEN
+                  #Ref_Timer_IN := ;
+                  IF ..#InputMessages.StatusBits.TRANSMISSION-FAULT THEN
+                      #oFltNo := ;
+                  ELSE
+                      ..#OutputMessages.ControlBits.STROBE := ;
+                      [#Index] := ;
+                  END_IF;
+              ELSE
+                  #Ref_Timer_IN := ;
+                  IF .#Ref_Timer.Q THEN
+                      #Ref_Timer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              #Ref_Timer_IN := ;
+              ..#OutputMessages.ControlBits.STROBE := ;
+              #SetXRefAct := ;
+              IF #oFltNo =  THEN
+                  #oSetXRefOk := ;
+              END_IF;
+              
+          ELSE
+              ;
+      END_CASE;
+  END_IF;
+  #Ref_Timer( := #Ref_Timer_IN,
+              := );
+  
+  
+  
+  #Index := ;
+  IF NOT #JogPos AND NOT #JogNeg THEN
+      IF #JogAct THEN
+          .#Info.Cancel := ;
+      END_IF;
+  END_IF;
+  IF #oFltNo =  AND #JogRise THEN
+      .#Info.ProgNo := (#ProgNo);
+      .#Info.SelectSeq := (#SelectSeq);
+      .#Info.SelectPage := ;
+      .#Info.CfgAddress := ;
+      .#Info.CfgLength := ;
+      #JogAct := ;
+      [#Index] := ;
+  END_IF;
+  #JogTimer_IN := ;
+  IF #JogAct THEN
+      CASE [#Index] OF
+          :
+              #JogTimer_IN := ;
+              [#Index] := [#Index] + ;
+              
+          :
+              IF ..#InputMessages.StatusBits.READY THEN
+                  #JogTimer_IN := ;
+                  ..#OutputMessages.ControlBits.CFG-MP := .#Info.ProgNo;
+                  ..#OutputMessages.ControlBits.SELECT-PAGE := .#Info.SelectPage;
+                  ..#OutputMessages.ControlBits.CFG-ADDRESS := .#Info.CfgAddress;
+                  ..#OutputMessages.ControlBits.CFG-LENGTH := .#Info.CfgLength;
+                  ..#OutputMessages.ControlBits.SAVE-TO-MP := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #JogTimer_IN := ;
+                  IF .#Jog_Timer.Q THEN
+                      #JogTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.CFG-MP = .#Info.ProgNo AND ..#InputMessages.StatusBits.SELECT-PAGE = .#Info.SelectPage AND ..#InputMessages.StatusBits.MIRRIR-CFG-ADR = .#Info.CfgAddress AND ..#InputMessages.StatusBits.MIRRIR-CFG-LENGTH = .#Info.CfgLength THEN
+                  #JogTimer_IN := ;
+                  ..#OutputMessages.ControlBits.STROBE := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #JogTimer_IN := ;
+                  IF .#Jog_Timer.Q THEN
+                      #JogTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.ACK THEN
+                  #JogTimer_IN := ;
+                  IF ..#InputMessages.StatusBits.TRANSMISSION-FAULT THEN
+                      #oFltNo := ;
+                  ELSE
+                      ..#OutputMessages.ControlBits.STROBE := ;
+                      [#Index] := [#Index] + ;
+                  END_IF;
+              ELSE
+                  #JogTimer_IN := ;
+                  IF .#Jog_Timer.Q THEN
+                      #JogTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              [#Index] := [#Index] + ;
+              
+          :
+              IF ..#InputMessages.StatusBits.DRIVE-ENABLED THEN
+                  #JogTimer_IN := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #JogTimer_IN := ;
+                  IF .#Jog_Timer.Q THEN
+                      #JogTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF #JogPos AND NOT #JogNeg THEN
+                  ..#OutputMessages.ControlBits.JOG-FW := ;
+                  ..#OutputMessages.ControlBits.JOG-BW := ;
+              ELSIF NOT #JogPos AND #JogNeg THEN
+                  ..#OutputMessages.ControlBits.JOG-FW := ;
+                  ..#OutputMessages.ControlBits.JOG-BW := ;
+              ELSE
+                  [#Index] := ;
+              END_IF;
+              
+          :
+              #JogTimer_IN := ;
+              ..#OutputMessages.ControlBits.STROBE := ;
+              ..#OutputMessages.ControlBits.JOG-FW := ;
+              ..#OutputMessages.ControlBits.JOG-BW := ;
+              #JogAct := ;
+              
+          ELSE
+              ;
+              
+      END_CASE;
+  END_IF;
+  #Jog_Timer( := #JogTimer_IN,
+              := );
+  
+  
+  
+  #Index := ;
+  IF NOT #Homing THEN
+      #oHomeOk := ;
+      IF #HomeAct THEN
+          ..#OutputMessages.ControlBits.STROBE := ;
+          ..#OutputMessages.ControlBits.AUTO := ;
+          ..#OutputMessages.ControlBits.DRIVE-TO-HOMEPOS := ;
+          ..#OutputMessages.ControlBits.DRIVE-TO-REFPOS := ;
+          #HomeAct := ;
+      END_IF;
+  END_IF;
+  
+  
+  IF ..#InputMessages.StatusBits.READY AND #HomingRise AND NOT ..#InputMessages.StatusBits.ALARM AND NOT ..#InputMessages.StatusBits.WARN THEN
+      .#Info.ProgNo := (#ProgNo);
+      #HomeAct := ;
+      #oHomeOk := ;
+      [#Index] := ;
+  END_IF;
+  #HomeTimer_IN := ;
+  IF #HomeAct THEN
+      CASE [#Index] OF
+          :
+              #HomeTimer_IN := ;
+              #HomeTime := ;
+              [#Index] := [#Index] + ;
+              
+          :
+              
+              IF ..#InputMessages.StatusBits.READY AND NOT ..#InputMessages.StatusBits.ALARM AND NOT ..#InputMessages.StatusBits.WARN THEN
+                  #HomeTimer_IN := ;
+                  ..#OutputMessages.ControlBits.AUTO := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.READY AND ..#InputMessages.StatusBits.AUTO THEN
+                  #HomeTimer_IN := ;
+                  ..#OutputMessages.ControlBits.MP := .#Info.ProgNo;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.MP = .#Info.ProgNo THEN
+                  #HomeTimer_IN := ;
+                  ..#OutputMessages.ControlBits.AUTO := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF NOT ..#InputMessages.StatusBits.AUTO THEN
+                  #HomeTimer_IN := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.HOMEPOS-REACHED THEN
+                  [#Index] := ;
+              ELSIF ..#InputMessages.StatusBits.DRIVE-ENABLED AND NOT ..#InputMessages.StatusBits.SEQUENCE-STOPPED AND NOT ..#InputMessages.StatusBits.HOMEPOS-REACHED THEN
+                  #HomeTimer_IN := ;
+                  ..#OutputMessages.ControlBits.DRIVE-TO-HOMEPOS := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.DRIVE-TO-HOMEPOS THEN
+                  #HomeTimer_IN := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.HOMEPOS-REACHED THEN
+                  #HomeTimer_IN := ;
+                  ..#OutputMessages.ControlBits.DRIVE-TO-HOMEPOS := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF NOT ..#InputMessages.StatusBits.DRIVE-TO-HOMEPOS THEN
+                  #HomeTimer_IN := ;
+                  [#Index] := ;
+              ELSE
+                  #HomeTimer_IN := ;
+                  #HomeTime := ;
+                  IF .#Home_Timer.Q THEN
+                      #HomeTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              #HomeTimer_IN := ;
+              ..#OutputMessages.ControlBits.STROBE := ;
+              ..#OutputMessages.ControlBits.AUTO := ;
+              ..#OutputMessages.ControlBits.DRIVE-TO-HOMEPOS := ;
+              ..#OutputMessages.ControlBits.DRIVE-TO-REFPOS := ;
+              
+              #HomeAct := ;
+              IF #oFltNo =  THEN
+                  #oHomeOk := ;
+              END_IF;
+              
+          ELSE
+              ;
+              
+      END_CASE;
+  END_IF;
+  #Home_Timer( := #HomeTimer_IN,
+               := #HomeTime);
+  
+  
+  
+  #Index := ;
+  IF NOT #StartCycle THEN
+      #oStartCycleOk := ;
+      IF #CycleAct THEN
+          ..#OutputMessages.ControlBits.AUTO := ;
+          ..#OutputMessages.ControlBits.STROBE := ;
+          ..#OutputMessages.ControlBits.RUN-SEQUENCE := ;
+          ..#OutputMessages.ControlBits.CONTNUEFROM-WAIT := ;
+          #CycleAct := ;
+      END_IF;
+  END_IF;
+  IF #oFltNo =  AND #StartCycleRise THEN
+      .#Info.ProgNo := (#ProgNo);
+      .#Info.SelectSeq := (#SelectSeq);
+      .#Info.SelectPage := ;
+      .#Info.CfgAddress := ;
+      #pTempPressdata := #iWritePressData;
+      .#Info.CfgLength := (.#pAnyPressdata.DataCount) + ;
+      #CycleAct := ;
+      #oStartCycleOk := ;
+      #oCycleOK := ;
+      #oCycleNOK := ;
+      [#Index] := ;
+      [#Index + ] := ;
+      IF .#Info.SelectSeq =  THEN
+          #tmpRetVal := ( := #iWriteIdentifier,
+                                => ..#OutputMessages.FreelyArea.SerialNnmber);
+          #tmpRetVal := ( := #iWritePressData,
+                                => ..#OutputMessages.FreelyArea.PressData);
+      END_IF;
+  END_IF;
+  #oWaitRequest := ..#InputMessages.StatusBits.WAIT-REQUEST;
+  ..#OutputMessages.ControlBits.CONTNUEFROM-WAIT := #ContinueSeq AND #iContinueInterlock;
+  #SeqTimer_IN := ;
+  IF #CycleAct THEN
+      CASE [#Index] OF
+          :
+              #SeqTimer_IN := ;
+              IF #iSnEnable THEN
+                  [#Index] := [#Index] + ;
+              ELSE
+                  [#Index] := ;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.READY THEN
+                  #SeqTimer_IN := ;
+                  ..#OutputMessages.ControlBits.CFG-MP := .#Info.ProgNo;
+                  ..#OutputMessages.ControlBits.SELECT-PAGE := .#Info.SelectPage;
+                  ..#OutputMessages.ControlBits.CFG-ADDRESS := .#Info.CfgAddress;
+                  ..#OutputMessages.ControlBits.CFG-LENGTH := .#Info.CfgLength;
+                  ..#OutputMessages.ControlBits.SAVE-TO-MP := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.CFG-MP = .#Info.ProgNo AND ..#InputMessages.StatusBits.SELECT-PAGE = .#Info.SelectPage AND ..#InputMessages.StatusBits.MIRRIR-CFG-ADR = .#Info.CfgAddress AND ..#InputMessages.StatusBits.MIRRIR-CFG-LENGTH = .#Info.CfgLength THEN
+                  #SeqTimer_IN := ;
+                  ..#OutputMessages.ControlBits.STROBE := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.ACK THEN
+                  #SeqTimer_IN := ;
+                  IF ..#InputMessages.StatusBits.TRANSMISSION-FAULT THEN
+                      #oFltNo := ;
+                  ELSE
+                      ..#OutputMessages.ControlBits.STROBE := ;
+                      [#Index] := [#Index] + ;
+                  END_IF;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              [#Index] := [#Index] + ;
+              
+          :
+              IF ..#InputMessages.StatusBits.READY THEN
+                  #SeqTimer_IN := ;
+                  ..#OutputMessages.ControlBits.AUTO := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.DRIVE-ENABLED AND NOT ..#InputMessages.StatusBits.SEQUENCE-STOPPED AND ..#InputMessages.StatusBits.READY AND ..#InputMessages.StatusBits.AUTO THEN
+                  #SeqTimer_IN := ;
+                  ..#OutputMessages.ControlBits.MP := .#Info.ProgNo;
+                  ..#OutputMessages.ControlBits.CURRENT SEQUENCE := .#Info.SelectSeq;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.MP = .#Info.ProgNo AND ..#InputMessages.StatusBits.SEQUENCE = .#Info.SelectSeq THEN
+                  #SeqTimer_IN := ;
+                  ..#OutputMessages.ControlBits.RUN-SEQUENCE := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.RUN-SEQUENCE AND NOT ..#InputMessages.StatusBits.SEQUENCE-END AND ..#InputMessages.StatusBits.DRIVE-ENABLED AND NOT ..#InputMessages.StatusBits.WARN AND NOT ..#InputMessages.StatusBits.ALARM THEN
+                  #SeqTimer_IN := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.SEQUENCE-STOPPED AND ..#InputMessages.StatusBits.SEQUENCE-END THEN
+                  #SeqTimer_IN := ;
+                  ..#OutputMessages.ControlBits.RUN-SEQUENCE := ;
+                  [#Index] := [#Index] + ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              IF NOT ..#InputMessages.StatusBits.RUN-SEQUENCE AND NOT ..#InputMessages.StatusBits.SEQUENCE-STOPPED THEN
+                  #SeqTimer_IN := ;
+                  [#Index] := ;
+              ELSE
+                  ;
+                  #SeqTimer_IN := ;
+                  #SeqTime := ;
+                  IF .#Seq_Timer.Q THEN
+                      #SeqTimer_IN := ;
+                      #oFltNo := ;
+                      [#Index] := ;
+                  END_IF;
+              END_IF;
+              
+          :
+              #SeqTimer_IN := ;
+              ..#OutputMessages.ControlBits.AUTO := ;
+              ..#OutputMessages.ControlBits.STROBE := ;
+              ..#OutputMessages.ControlBits.RUN-SEQUENCE := ;
+              ..#OutputMessages.ControlBits.CONTNUEFROM-WAIT := ;
+              #CycleAct := ;
+              IF #oFltNo =  THEN
+                  #oStartCycleOk := ;
+              END_IF;
+              #tmpSource := ;
+              #tmpRetVal := ( := #tmpSource,  => ..#OutputMessages.FreelyArea.SerialNnmber);
+              #tmpRetVal := ( := #tmpSource,  => ..#OutputMessages.FreelyArea.PressData);
+          ELSE
+              ;
+      END_CASE;
+      
+      CASE [#Index + ] OF
+          :
+              IF ..#InputMessages.StatusBits.READY AND ..#OutputMessages.ControlBits.RUN-SEQUENCE THEN
+                  [#Index + ] := ;
+              END_IF;
+              
+          :
+              IF NOT ..#InputMessages.StatusBits.READY THEN
+                  [#Index + ] := ;
+              END_IF;
+              
+          :
+              IF ..#InputMessages.StatusBits.READY THEN
+              
+                  #oCycleOK := ..#InputMessages.StatusBits.OK-TOTAL AND NOT ..#InputMessages.StatusBits.NOK-TOTAL;
+                  #oCycleNOK := NOT ..#InputMessages.StatusBits.OK-TOTAL OR ..#InputMessages.StatusBits.NOK-TOTAL;
+                  [#Index + ] := ;
+              END_IF;
+              
+          ELSE
+              ;
+              
+      END_CASE;
+  END_IF;
+  #Seq_Timer( := #SeqTimer_IN,
+              := #SeqTime);
+  IF #OrderCount <>  THEN
+      ..#OutputMessages.ControlBits.AUTO := ;
+      ..#OutputMessages.ControlBits.STROBE := ;
+      ..#OutputMessages.ControlBits.RUN-SEQUENCE := ;
+      ..#OutputMessages.ControlBits.CONTNUEFROM-WAIT := ;
+      ..#OutputMessages.ControlBits.DRIVE-TO-HOMEPOS := ;
+      ..#OutputMessages.ControlBits.DRIVE-TO-REFPOS := ;
+      ..#OutputMessages.ControlBits.JOG-FW := ;
+      ..#OutputMessages.ControlBits.JOG-BW := ;
+  END_IF;
+  IF #OrderCount =  THEN
+      ..#OutputMessages.ControlBits.MP := (#ProgNo);
+  END_IF;
+  #oError := #oFltNo <> ;
+  #oReady := #oFltNo =  AND #oRdyAmp;
+  #oRdyCmd := #oFltNo =  AND #oRdyAmp AND NOT #JogAct AND NOT #HomeAct AND NOT #CycleAct AND NOT #SetXRefAct AND NOT #JogPos AND NOT #JogNeg AND NOT #Homing AND NOT #StartCycle AND NOT #SetXRef AND NOT ..#InputMessages.StatusBits.RUN-SEQUENCE;
+  IF #oRdyCmd OR ..#InputMessages.StatusBits.WAIT-REQUEST THEN
+      ..#OutputMessages.ControlBits.ZERO X := #ZeroX;
+  ELSE
+      ..#OutputMessages.ControlBits.ZERO X := ;
+  END_IF;
+  #oZeroXOk := ..#InputMessages.StatusBits.MIRROR-ZERO X;
+  ..#OutputMessages.FreelyArea.XEncRefValue := #iXEncReference;
+  ..#OutputMessages.FreelyArea.JogSpeed := #iJogSpeed;
+  ..#OutputMessages.FreelyArea.JogMaxForce := #iJogMaxForce;
+  ..#OutputMessages.FreelyArea.CalibForce := #iCalibForce;
+  #pTempPNIOData := #OutputMessages;
+  #tmpRetVal := ( := #iHW_ID_Output,
+                          := #pTempPNIOData);
+  IF #tmpRetVal <>  THEN
+      GOTO ;
+  END_IF;
+  
+   := ;
+  RETURN;
+  
+  :
+  #oError := ;
+   := ;
+  RETURN;
+END_FUNCTION_BLOCK

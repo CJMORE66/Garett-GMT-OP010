@@ -1,0 +1,52 @@
+FUNCTION_BLOCK "FB_Tower_4Lamp"
+VAR_INPUT
+  iReady : Bool;
+  iManual_Mode : Bool;
+  iAuto_Mode : Bool;
+  iAuto_Running : Bool;
+  iCheck_Mode : Bool;
+  iIdle : Bool;
+  iWarning : Bool;
+  iFault : Bool;
+  "i0.5s_Pulse" : Bool;
+  i1s_Pulse : Bool;
+  i2s_Pulse : Bool;
+  iResetButton : Bool;
+  "iE-StopButtonOK" : Bool;
+  iSafetyGateClosed : Bool;
+  iSafetyGateRelayOK : Bool;
+  iPowerOn : Bool;
+  iMachineHomePos : Bool;
+  iWorkAreaLightButton : Bool;
+  iTest_Lamp : Bool;
+END_VAR
+VAR_OUTPUT
+  oRed_Lamp : Bool;
+  oYellow_Lamp : Bool;
+  oGreen_Lamp : Bool;
+  oBlue_Lamp : Bool;
+  oBuzzer : Bool;
+  oPowerOn : Bool;
+  oResetLamp : Bool;
+  oWorkArea1_LightingOn : Bool;
+  oWorkArea2_LightingOn : Bool;
+  oWorkArea3_LightingOn : Bool;
+END_VAR
+VAR_IN_OUT
+  ioStationWaitingLoadPart : Bool;
+  ioBuzzerON : Bool;
+  ioBuzzerSetVal : Int;
+END_VAR
+VAR
+  TON : Array[0..10] of TON_TIME;
+  sRed_Lamp : Bool;
+  sResetButtonPressed : Bool;
+  sBuzzerOnCurrentVal : Int;
+  P_TRIG : Array[0..10] of Bool;
+  N_TRIG : Array[0..10] of Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/03_Device/04 Lamp/FB_Tower_4Lamp.xml
+  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+END_FUNCTION_BLOCK

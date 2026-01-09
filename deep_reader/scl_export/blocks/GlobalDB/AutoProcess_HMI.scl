@@ -1,0 +1,17 @@
+DATA_BLOCK "AutoProcess_HMI"
+VAR
+  IndexProcess : Int;
+  ActualSHowingData : "ProcessData";
+  Data_handling : STRUCT
+    DeleteData : Bool;
+    UpdateData_switch : Bool;
+    UpdateData_Confirm : Bool;
+    FinalConfirm_Write : Bool;
+    ChangePending : Bool;
+    ConfirmDialogActive : Bool;
+    LastIndex : Int;
+  END_STRUCT;
+  StationHasProduct : Array[1..16] of Bool;
+END_VAR
+BEGIN
+END_DATA_BLOCK

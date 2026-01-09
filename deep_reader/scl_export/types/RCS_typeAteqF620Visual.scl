@@ -1,0 +1,42 @@
+TYPE "RCS_typeAteqF620Visual"
+STRUCT
+  Trigger : STRUCT
+    SetProg : Bool;
+    Measure : Bool;
+  END_STRUCT;
+  Set : STRUCT
+    ProgNo : UInt;
+  END_STRUCT;
+  Status : STRUCT
+    InstanceName : WString[20];
+    DeviceReady : Bool;
+    Ready : Bool;
+    Error : Bool;
+    SetProgOk : Bool;
+    MeasureOk : Bool;
+    ErrorCode : UInt;
+    Result : STRUCT
+      PassPart : Bool;
+      FailTestPart : Bool;
+      FailRefPart : Bool;
+      Alarm : Bool;
+      PressureError : Bool;
+      PartRecoverable : Bool;
+      CalibError : Bool;
+      CalibCheckError : Bool;
+      AtrFault : Bool;
+      Leak : STRUCT
+        Value : Real;
+        Unit : String[10];
+      END_STRUCT;
+    END_STRUCT;
+    Pressure : STRUCT
+      Value : Real;
+      Unit : String[10];
+    END_STRUCT;
+    ActProgStep : UInt;
+    ActProgNo : UInt;
+    ElapsedTime : Time;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

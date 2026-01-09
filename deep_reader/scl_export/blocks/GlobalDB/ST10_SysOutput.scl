@@ -1,0 +1,28 @@
+DATA_BLOCK "ST10_SysOutput"
+VAR
+  oTowerLight : STRUCT
+    Red : Bool;
+    Yellow : Bool;
+    Green : Bool;
+    Blue : Bool;
+  END_STRUCT;
+  HMIButtonLight : STRUCT
+    ControlOn : Bool;
+    ControlOff : Bool;
+    MachineStart : Bool;
+    MachineStop : Bool;
+    ResetButton : Bool;
+    "Manual/Auto" : Bool;
+    SafetyGateUnlock : Bool;
+  END_STRUCT;
+  BoxLight : STRUCT
+    oMachineStartLight : Bool;
+    oMachineStopLight : Bool;
+    oResetLight : Bool;
+    oSafetyGateUnlockLight : Bool;
+  END_STRUCT;
+  SafetyDoorCoil : Array[1..20] of Bool;
+  MaterialDoorCoil : Array[1..20] of Bool;
+END_VAR
+BEGIN
+END_DATA_BLOCK

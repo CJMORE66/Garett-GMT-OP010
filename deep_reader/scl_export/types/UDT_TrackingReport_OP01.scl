@@ -1,0 +1,15 @@
+TYPE "UDT_TrackingReport_OP01"
+STRUCT
+  Date : DTL;
+  "P-LineID" : String[18];
+  "P-StationID" : String[18];
+  "P-PalletNo" : Int;
+  "P-PalletType" : Byte;
+  "P-PalletStatus" : Byte;
+  "P-CT_Total" : Real;
+  "P-CT_Sub" : Array[1..20] of Real;
+  "P-Data" : "PLCtoMES_OP_ProcessData_OP220";
+  "P-PartID" : Array[1..10] of String[48];
+  "P-SubPartID" : Array[1..10] of String[48];
+END_STRUCT;
+END_TYPE

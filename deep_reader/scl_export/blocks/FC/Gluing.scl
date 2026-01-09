@@ -1,0 +1,16 @@
+FUNCTION "Gluing" : Void
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/28_Gluing/Gluing.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  ..GluingControl.Input.GluingDeviceReady := iC- GluingDeviceReady;
+  ..GluingControl.Input.GluingFault := iC- GluingFault;
+  ..GluingControl.Input.GluingRefillTank := iC- GluingRefillTank;
+  ..GluingControl.Input.GluingTankEmpty := iC- GluingTankEmpty;
+  
+  oC-GluingPro_X := ..GluingControl.Output.GluingPro_X;
+  oC-GluingPro_Y := ..GluingControl.Output.GluingPro_Y;
+  oC-GluingPro_Z := ..GluingControl.Output.GluingPro_Z;
+  oC-GluingReset := ..GluingControl.Output.GluingReset;
+END_FUNCTION

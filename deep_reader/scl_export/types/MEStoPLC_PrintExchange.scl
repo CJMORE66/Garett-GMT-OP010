@@ -1,0 +1,11 @@
+TYPE "MEStoPLC_PrintExchange"
+STRUCT
+  "M-PrintDataDone" : Bool;
+  "M-PrintDataOK" : Bool;
+  "M-PrintDataNG" : Bool;
+  "M-PrintData" : Array[1..10] of String[48];
+  "M-PrintDataErrCode" : Int;
+  "M-PrintDataErrMsg" : String[98];
+  Reserve : Array[1..396] of Byte;
+END_STRUCT;
+END_TYPE

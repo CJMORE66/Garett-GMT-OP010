@@ -1,0 +1,30 @@
+TYPE "HMI_Axis"
+STRUCT
+  INPUT : STRUCT
+    Axis_ID : Int;
+    Speed : Int;
+    SimplyTrigger : Bool;
+    ListTrigger : Bool;
+    ListPosID : Int;
+    SimplyPos : Real;
+    Enable : Bool;
+    "Jog+" : Bool;
+    "Jog-" : Bool;
+    Homing : Bool;
+    Stop : Bool;
+  END_STRUCT;
+  OUTPUT : STRUCT
+    Ready : Bool;
+    Alarm : Bool;
+    Warming : Bool;
+    RunEnd : Bool;
+    Interference : Bool;
+    "Reference Point" : Bool;
+    CurrentPosition : Real;
+    CurrentSpeed : Real;
+    TargetPosition : Real;
+    Enable : Bool;
+    MAX_Axis : Int;
+  END_STRUCT;
+END_STRUCT;
+END_TYPE

@@ -1,0 +1,130 @@
+DATA_BLOCK "Station_Sys"
+VAR
+  ScreenNo : Int;
+  SpareB01 : Array[0..7] of Byte;
+  Status : "RCS_SysStatus_V1";
+  Input : STRUCT
+    OP1 : STRUCT
+      "Function 1" : Bool;
+      "Function 2" : Bool;
+      "Function 3" : Bool;
+      "Function 4" : Bool;
+      "Function 5" : Bool;
+      "Function 6" : Bool;
+      "Function 7" : Bool;
+      "Function 8" : Bool;
+    END_STRUCT;
+    OP2 : STRUCT
+      "Function 1" : Bool;
+      "Function 2" : Bool;
+      "Function 3" : Bool;
+    END_STRUCT;
+    OP3 : STRUCT
+      "Function 1" : Bool;
+      "Function 2" : Bool;
+      "Function 3" : Bool;
+    END_STRUCT;
+  END_STRUCT;
+  SpareB02 : Array[0..13] of Byte;
+  HMI : STRUCT
+    AP : STRUCT
+      S1 : Int;
+      CurrentScreenID : Int;
+      S3 : Int;
+      S4 : Int;
+      S5 : Int;
+    END_STRUCT;
+  END_STRUCT;
+  Cmd : "RCS_SysCmd_V1";
+  SpareB03 : Array[0..7] of Byte;
+  Interface : "RCS_SysComInterface_V1";
+  SpareB04 : Array[0..3] of Byte;
+  Initial : STRUCT
+    Set : Bool;
+    Running : Bool;
+    OK : Bool;
+  END_STRUCT;
+  SpareB05 : Array[0..27] of Byte;
+  Auto : "RCS_SysAuto_V1";
+  SpareB10 : Array[0..5] of Byte;
+  A : STRUCT
+    "Device1 Auto control" : Bool;
+    "Device2 Auto control" : Bool;
+    "Device3 Auto control" : Bool;
+    "Device4 Auto control" : Bool;
+    "Device 01" : STRUCT
+      "Function 1" : Bool;
+      "Function 2" : Bool;
+      "Function 3" : Bool;
+    END_STRUCT;
+    "Device 02" : STRUCT
+      "Function 1" : Bool;
+      "Function 2" : Bool;
+      "Function 3" : Bool;
+    END_STRUCT;
+  END_STRUCT;
+  SpareB11 : Array[0..33] of Byte;
+  Manual : "RCS_SysManual_V1";
+  SpareB12 : Array[0..6] of Byte;
+  M : STRUCT
+    "Device1 Manual control" : Bool;
+    "Device2 Manual control" : Bool;
+    "Device3 Manual control" : Bool;
+    "Device4 Manual control" : Bool;
+  END_STRUCT;
+  SpareB13 : Array[0..37] of Byte;
+  Safety : "RCS_SysSafety_V1";
+  SpareB20 : Array[0..9] of Byte;
+  Signal : STRUCT
+    MainPressureSwitch1 : Bool;
+    MainPressureSwitch2 : Bool;
+    MainPressureSwitch3 : Bool;
+  END_STRUCT;
+  SpareB21 : Array[0..36] of Byte;
+  Flag : STRUCT
+    Processstart : Bool;
+    PeocessComplete : Bool;
+    IndexTable : STRUCT
+      Interlock : Bool;
+      TableRunning : Bool;
+      StopandPosition : Bool;
+      PositionOK : Bool;
+      PositionNG : Bool;
+      FixtureOK : Bool;
+      FixtureNG : Bool;
+      InitialOK : Bool;
+    END_STRUCT;
+  END_STRUCT;
+  SpareB22 : Array[0..5] of Byte;
+  P : STRUCT
+    Record : Bool;
+    "Set index run" : Bool;
+    initial : Array[0..7] of Bool;
+  END_STRUCT;
+  SpareB23 : Array[0..5] of Byte;
+  N : STRUCT
+    Spare : Bool;
+  END_STRUCT;
+  SpareB24 : Array[0..17] of Byte;
+  Alarm : "RCS_SysAlarmWarning_V1";
+  SpareB30 : Array[0..7] of Byte;
+  Warning : "RCS_SysAlarmWarning_V1";
+  SpareB31 : Array[0..7] of Byte;
+  AlarmTimes : STRUCT
+    ForceStop : Bool;
+    Reset : Bool;
+    Limit : Int;
+  END_STRUCT;
+  SpareB33 : Array[0..5] of Byte;
+  AlarmWarning : Int;
+  SpareB34 : Array[0..17] of Byte;
+  Count : "RCS_SysCount_V1";
+  SpareB40 : Array[0..11] of Byte;
+  TotalCycleTime : "RCS_SysCycleTime_V1";
+  SpareB41 : Array[0..11] of Byte;
+  MachineCycleTime : "RCS_SysCycleTime_V1";
+  SpareB42 : Array[0..11] of Byte;
+  UserName : String[20];
+END_VAR
+BEGIN
+END_DATA_BLOCK

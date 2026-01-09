@@ -1,0 +1,141 @@
+FUNCTION "CylinderCtrl_V2" : Void
+VAR_INPUT
+  iReset : Bool;
+  iRun : Bool;
+  iEStop : Bool;
+  iManualMode : Bool;
+  iAutoMode : Bool;
+  iEnableAlarm : Bool;
+  iPulse100mS : Bool;
+  iPulse1S : Bool;
+  iCyDBNO : Word;
+  iCyCounts : Int;
+  iDevAlarmDBNum : Word;
+END_VAR
+VAR_TEMP
+  CyInterface : "Cyl";
+  CyRany : Any;
+  cyRSany : STRUCT
+    SyntaxID : Byte;
+    DataType : Byte;
+    RepetitionFactor : Int;
+    DB_Number : Word;
+    MemoryAreaAddress : DWord;
+  END_STRUCT;
+  CyDany : Any;
+  CyDSany : STRUCT
+    SyntaxID : Byte;
+    DataType : Byte;
+    RepetitionFactor : Int;
+    DB_Number : Word;
+    MemoryAreaAddress : DWord;
+  END_STRUCT;
+  tpCounts : Int;
+  tpi : Int;
+  tpRetVal : Int;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/03_Device/101_Cylinder/CylinderCtrl_V2.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  IF #iCyCounts >  THEN
+      #tpCounts := ;
+  ELSE
+      #tpCounts := #iCyCounts;
+  END_IF;
+  
+  FOR #tpi :=  TO #tpCounts- DO
+      
+      .#cyRSany.SyntaxID := ;
+      .#cyRSany.DataType := ;
+      .#cyRSany.RepetitionFactor := ;
+      .#cyRSany.DB_Number := #iCyDBNO;
+      .#cyRSany.MemoryAreaAddress :=  OR (( := (#tpi * ),  := ));
+      
+      .#CyDSany.SyntaxID := ;
+      .#CyDSany.DataType := ;
+      .#CyDSany.RepetitionFactor := ;
+      .#CyDSany.DB_Number := ;
+      .#CyDSany.MemoryAreaAddress :=  OR (( := (),  := ));
+      #tpRetVal := ( := #CyRany,  => #CyDany);
+      
+      ( := #iReset,
+                        := #iRun,
+                        := #iEStop,
+                        := #iManualMode,
+                        := #iAutoMode,
+                        := #iEnableAlarm,
+                        := #iPulse100mS,
+                        := #iPulse1S,
+                        := ..#CyInterface.In.Error,
+                        := ..#CyInterface.In.GoWorkInterlock,
+                        := ..#CyInterface.In.GoHomeInterlock,
+                        := ..#CyInterface.In.WorkPositionSensor,
+                        := ..#CyInterface.In.HomePositionSensor,
+                        := ..#CyInterface.In.ValveType,
+                        := ..#CyInterface.In.ManualOutputType,
+                        := ..#CyInterface.In.FaultTime,
+                        := ..#CyInterface.In.OnPositionTime,
+                          :=..#CyInterface.Inout.ResetOut,
+                        := ..#CyInterface.Out.GoWorkPosition,
+                        := ..#CyInterface.Out.GoHomePosition,
+                        => ..#CyInterface.Out.GoWPButtonActive,
+                        => ..#CyInterface.Out.GoHPButtonActive,
+                        := ..#CyInterface.Out.GoWorkFault,
+                        := ..#CyInterface.Out.GoHomeFault,
+                        := ..#CyInterface.Out.SensorPositionFault,
+                        => ..#CyInterface.Out.CyNO,
+                        := ..#CyInterface.Inout.ManualGoWork,
+                        := ..#CyInterface.Inout.ManualGoHome,
+                        := ..#CyInterface.Inout.AutoGoWork,
+                        := ..#CyInterface.Inout.AutoGoHome,
+                        := ..#CyInterface.S.GoWorkTime,
+                        := ..#CyInterface.S.GoHomeTime,
+                        := ..#CyInterface.S.WorkFaultTime,
+                        := ..#CyInterface.S.HomeFaultTime,
+                        := ..#CyInterface.S.BothSensorOnTime,
+                        := ..#CyInterface.S.Pulse100mSP,
+                        := ..#CyInterface.S.AutoGoWorkP,
+                        := ..#CyInterface.S.AutoGoHomeP,
+                        := ..#CyInterface.S.GoWork100mSP,
+                        := ..#CyInterface.S.GoHome100mSP,
+                        := ..#CyInterface.S.BothSensorOn100mSP,
+                        := ..#CyInterface.S.Alarm,
+                        := ..#CyInterface.S.spare1,
+                        := ..#CyInterface.S.spare2);
+      
+        ( := ,
+                   :=  * (#tpi MOD ) + ,
+                   :=  #tpi / ,
+                   := #iDevAlarmDBNum,
+                   := ..#CyInterface.Out.GoWorkFault);
+        ( := ,
+                   :=  * (#tpi MOD ) + ,
+                   :=  #tpi / ,
+                   := #iDevAlarmDBNum,
+                   := ..#CyInterface.Out.GoHomeFault);
+        ( := ,
+                   :=  * (#tpi MOD ) + ,
+                   :=  #tpi / ,
+                   := #iDevAlarmDBNum,
+                   := ..#CyInterface.Out.SensorPositionFault);
+      ..#CyInterface.Out.CyNO := (#tpi+);
+      
+      .#cyRSany.SyntaxID := ;
+      .#cyRSany.DataType := ;
+      .#cyRSany.RepetitionFactor := ;
+      .#cyRSany.DB_Number := ;
+      .#cyRSany.MemoryAreaAddress :=  OR (( := (),  := ));
+      
+      .#CyDSany.SyntaxID := ;
+      .#CyDSany.DataType := ;
+      .#CyDSany.RepetitionFactor := ;
+      .#CyDSany.DB_Number := #iCyDBNO;
+      .#CyDSany.MemoryAreaAddress :=  OR (( := (#tpi*  + ),  := ));
+      #tpRetVal := ( := #CyRany,  => #CyDany);
+      
+      
+     
+  END_FOR;
+END_FUNCTION

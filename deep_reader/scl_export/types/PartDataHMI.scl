@@ -1,0 +1,20 @@
+TYPE "PartDataHMI"
+STRUCT
+  PartQuality : DInt;
+  BoxDisplayID : Int;
+  PartQualitySet : DInt;
+  CMD : STRUCT
+    ClearCurrentBox : Bool;
+    ClearAllBox : Bool;
+    "PartQuality+1" : Bool;
+    "PartQuality-1" : Bool;
+    PartQualityAck : Bool;
+  END_STRUCT;
+  Waring : STRUCT
+    Insufficient : Bool;
+    BufferBoxFull : Bool;
+    ScannCodeInvalid : Bool;
+  END_STRUCT;
+  PartDataDispaly : "PartCodeStruct_UDT";
+END_STRUCT;
+END_TYPE

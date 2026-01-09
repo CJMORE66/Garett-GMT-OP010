@@ -1,0 +1,22 @@
+TYPE "Motor_Control"
+STRUCT
+  Manual : STRUCT
+    Start : Bool;
+    CCWStart : Bool;
+    SpeedChange : Bool;
+  END_STRUCT;
+  Auto : STRUCT
+    Start : Bool;
+    CCWStart : Bool;
+    SpeedChange : Bool;
+  END_STRUCT;
+  OutControl : STRUCT
+    o_Start : Bool;
+    o_CCWStart : Bool;
+    o_SpeedChanged : Bool;
+    o_Ready : Bool;
+    o_Alarm : Bool;
+  END_STRUCT;
+  Error : Array[0..15] of Bool;
+END_STRUCT;
+END_TYPE

@@ -1,0 +1,28 @@
+FUNCTION_BLOCK "FB_Next"
+VAR_INPUT
+  I_bEnable : Bool;
+  I_bSeqMode : Bool;
+  I_tTimeValue : Time;
+END_VAR
+VAR_OUTPUT
+  O_bStart : Bool;
+END_VAR
+VAR
+  ton_Delay : TON_TIME;
+  bStartdelay : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: SCL
+  // Zdroj XML: EXPORT/Program blocks/03_Device/999 Base/999.0 General/999.0.3 FB/FB_Next.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  IF #I_bEnable AND #I_bSeqMode AND (.#ton_Delay.Q =  OR #I_tTimeValue = ) THEN
+      #bStartdelay := ;    
+  END_IF;
+  #ton_Delay( := #bStartdelay,
+              := #I_tTimeValue);
+  #O_bStart := .#ton_Delay.Q;
+  IF .#ton_Delay.Q OR NOT #I_bEnable THEN
+      #bStartdelay := ; 
+  END_IF;
+END_FUNCTION_BLOCK

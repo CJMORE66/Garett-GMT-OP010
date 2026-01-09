@@ -1,0 +1,452 @@
+FUNCTION "ST10_Flow22_JMagnetLifting" : Void
+VERSION : 1.0
+VAR_INPUT
+  Enable : BOOL;
+END_VAR
+VAR_TEMP
+  idx : INT;
+  tr_cond : ARRAY[1..607] OF BOOL;
+  next_active : ARRAY[1..237] OF BOOL;
+END_VAR
+BEGIN
+  IF NOT Enable THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.Initialized := FALSE;
+    FOR idx := 1 TO 237 DO
+      "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.PalltReleaseRuning := FALSE;
+    RETURN;
+  END_IF;
+
+  IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.Initialized THEN
+    FOR idx := 1 TO 237 DO
+      "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[idx] := FALSE;
+      "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[idx] := FALSE;
+    END_FOR;
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[1] := TRUE;
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.Initialized := TRUE;
+  END_IF;
+
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[117] THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckShaftLiftingCylinderPos := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckShaftLiftingCylinderPos + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckShaftLiftingCylinderPos := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[21] THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckStopPalletExist := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckStopPalletExist + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckStopPalletExist := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[23] THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCCWStart := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCCWStart + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCCWStart := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[24] THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCWStart := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCWStart + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCWStart := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[134] THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.RequestRobotPickPallet := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.RequestRobotPickPallet + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.RequestRobotPickPallet := T#0S;
+  END_IF;
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[22] THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.TimeDelay := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.TimeDelay + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.TimeDelay := T#0S;
+  END_IF;
+
+  IF ((TRUE) AND (TRUE)) AND (iJ-magnetLiftingPalletDischargeDetection) THEN
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.TON_ET[0] := "DB_ST10_Flow22_JMagnetLifting_State".Flow.TON_ET[0] + OB1_PREV_CYCLE;
+  ELSE
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.TON_ET[0] := T#0S;
+  END_IF;
+  "DB_ST10_Flow22_JMagnetLifting_State".Flow.TON_Q[0] := "DB_ST10_Flow22_JMagnetLifting_State".Flow.TON_ET[0] >= t#1000ms;
+
+  tr_cond[1] := (TRUE) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.iSysInface.Ready);
+  tr_cond[2] := TRUE;
+  tr_cond[3] := TRUE;
+  tr_cond[4] := TRUE;
+  tr_cond[8] := ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Home.DO163_HomeSeqOK)) OR ((TRUE) AND (KukaRobot2_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME));
+  tr_cond[10] := (TRUE) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.ioPM_Inface.Running);
+  tr_cond[21] := ("DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckShaftLiftingCylinderPos) > (t#2000MS);
+  tr_cond[22] := (TRUE) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.iSysInface.Reset);
+  tr_cond[23] := ("DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckStopPalletExist) > (t#1000MS);
+  tr_cond[24] := ("DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.TimeDelay) > (t#5000MS);
+  tr_cond[26] := ("DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.CheckStopPalletExist) > (t#1000MS);
+  tr_cond[27] := ("DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCCWStart) > (t#5000MS);
+  tr_cond[28] := (("DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.MotorCWStart) > (t#5000MS)) AND (NOT (iJ-MagnetMiddleDetection));
+  tr_cond[29] := TRUE;
+  tr_cond[30] := TRUE;
+  tr_cond[31] := (TRUE) AND (NOT (iJ-magnetLiftingPalletDischargeDetection));
+  tr_cond[32] := (TRUE) AND (iJ-magnetLiftingPalletDischargeDetection);
+  tr_cond[33] := (((KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO7_Pallet1Count) > (49)) AND (NOT ("DB_ST10_Flow22_JMagnetLifting_State".AutoProcessControl.Global.J.EmptyPallet))) OR (("DB_ST10_Flow22_JMagnetLifting_State".Flow.StepTime.RequestRobotPickPallet) > (t#2000MS));
+  tr_cond[35] := ((TRUE) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.TON_Q[0])) AND (NOT (iJ-MagnetMiddleDetection));
+  tr_cond[36] := (KukaRobot2_CtrlDB.sROBtoPLC.User.Public.GO7_Pallet1Count) = (1);
+  tr_cond[100] := (((((TRUE) AND (NOT ("DB_ST10_Flow22_JMagnetLifting_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow22_JMagnetLifting_State".Flow.iSysInface.Auto.RunningOver))) AND (NOT ("DB_ST10_Flow22_JMagnetLifting_State".Flow.iSysInface.Auto.OneCycleMode))) OR ((((((TRUE) AND (NOT ("DB_ST10_Flow22_JMagnetLifting_State".Flow.ioPM_Inface.AlarmCycleStop))) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.ioPM_Inface.Running)) AND (NOT ("DB_ST10_Flow22_JMagnetLifting_State".Flow.iSysInface.Auto.RunningOver))) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.iSysInface.Auto.OneCycleMode)) AND ("DB_ST10_Flow22_JMagnetLifting_State".Flow.ioPM_Inface.TriggerOneCycle));
+  tr_cond[116] := ((TRUE) AND (ST10Cylinder.Cy[31].In.WorkPositionSensor)) AND (NOT (ST10Cylinder.Cy[31].In.HomePositionSensor));
+  tr_cond[117] := ((TRUE) AND (NOT (ST10Cylinder.Cy[31].In.WorkPositionSensor))) AND (ST10Cylinder.Cy[31].In.HomePositionSensor);
+  tr_cond[119] := ((TRUE) AND (ST10Cylinder.Cy[31].In.WorkPositionSensor)) AND (NOT (ST10Cylinder.Cy[31].In.HomePositionSensor));
+  tr_cond[134] := ((TRUE) AND (NOT (ST10Cylinder.Cy[32].In.WorkPositionSensor))) AND (ST10Cylinder.Cy[32].In.HomePositionSensor);
+  tr_cond[135] := ((TRUE) AND (ST10Cylinder.Cy[32].In.WorkPositionSensor)) AND (NOT (ST10Cylinder.Cy[32].In.HomePositionSensor));
+  tr_cond[136] := ((((TRUE) AND (NOT (iJ-magnetTakeDetection1))) AND (NOT (iJ-MagnetMiddleDetection))) AND (ST10Cylinder.Cy[37].Inout.AutoGoHome)) AND (NOT (ST10Cylinder.Cy[37].Inout.AutoGoWork));
+  tr_cond[137] := ((TRUE) AND (NOT (ST10Cylinder.Cy[32].In.WorkPositionSensor))) AND (ST10Cylinder.Cy[32].In.HomePositionSensor);
+  tr_cond[138] := ((TRUE) AND (NOT (ST10Cylinder.Cy[31].In.WorkPositionSensor))) AND (ST10Cylinder.Cy[31].In.HomePositionSensor);
+  tr_cond[139] := ((TRUE) AND (iJ-magnetTakeDetection1)) AND (NOT (iJ-MagnetMiddleDetection));
+  tr_cond[140] := TRUE;
+  tr_cond[141] := ((TRUE) AND (ST10Cylinder.Cy[31].In.WorkPositionSensor)) AND (NOT (ST10Cylinder.Cy[31].In.HomePositionSensor));
+  tr_cond[142] := ((TRUE) AND ("DB_ST10_Flow22_JMagnetLifting_State".AutoProcessControl.Global.J.EmptyPallet)) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO241_PickPalletInside));
+  tr_cond[143] := ((TRUE) AND (NOT (ST10Cylinder.Cy[32].In.WorkPositionSensor))) AND (ST10Cylinder.Cy[32].In.HomePositionSensor);
+  tr_cond[144] := (TRUE) AND (NOT ("DB_ST10_Flow22_JMagnetLifting_State".AutoProcessControl.Global.J.EmptyPallet));
+  tr_cond[145] := ((TRUE) AND (NOT (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO241_PickPalletInside))) AND (KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO242_PickPalletFinish);
+  tr_cond[249] := TRUE;
+  tr_cond[607] := TRUE;
+
+  FOR idx := 1 TO 237 DO
+    next_active[idx] := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[idx];
+  END_FOR;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[1] THEN
+    // Step 1: F22_Initial
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[1] THEN
+      #ioPM_Inface.InitialRun := TRUE;
+      #ioPM_Inface.InitialOK := FALSE;
+      #ioPM_Inface.WaitRunning := FALSE;
+      #ioPM_Inface.Running := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.UnPause := FALSE;
+      "Station_Sys".Cmd.Calibration := FALSE;
+      "Station_Sys".Cmd.ChangeOver := FALSE;
+      "Station_Sys".Cmd.Reserve := FALSE;
+      "Station_Sys".Cmd.OneCycle := FALSE;
+    END_IF;
+    IF tr_cond[1] THEN
+      next_active[1] := FALSE;
+      next_active[2] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[2] THEN
+    // Step 2: S2
+    IF tr_cond[2] THEN
+      next_active[2] := FALSE;
+      next_active[3] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[3] THEN
+    // Step 3: S3
+    IF tr_cond[607] THEN
+      next_active[3] := FALSE;
+      next_active[4] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[4] THEN
+    // Step 4: S4
+    IF tr_cond[3] THEN
+      next_active[4] := FALSE;
+      next_active[5] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[5] THEN
+    // Step 5: S5_MESInitial
+    IF tr_cond[4] THEN
+      next_active[5] := FALSE;
+      next_active[8] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[8] THEN
+    // Step 8: WaitRobotInitialFinish
+    IF tr_cond[8] THEN
+      next_active[8] := FALSE;
+      next_active[117] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[10] THEN
+    // Step 10: S10_InitialFinish
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[10] THEN
+      #ioPM_Inface.InitialOK := TRUE;
+    END_IF;
+    IF tr_cond[10] THEN
+      next_active[10] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[20] THEN
+    // Step 20: StatusError
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[20] THEN
+      "ST10_DeviceError".J.MagnetLine.LiftingCylStatusError := TRUE;
+    END_IF;
+    IF tr_cond[22] THEN
+      next_active[20] := FALSE;
+      next_active[117] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[21] THEN
+    // Step 21: CheckStopPalletExist
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[22] THEN
+    // Step 22: TimeDelay
+    IF tr_cond[24] THEN
+      next_active[22] := FALSE;
+      next_active[21] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[23] THEN
+    // Step 23: MotorCCWStart
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[23] THEN
+      "MotorControl".Dev[2].Auto.CCWStart := TRUE;
+      "MotorControl".Dev[2].Auto.Start := TRUE;
+    END_IF;
+    IF tr_cond[27] THEN
+      next_active[23] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[24] THEN
+    // Step 24: MotorCWStart
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[24] THEN
+      "MotorControl".Dev[2].Auto.CCWStart := FALSE;
+      "MotorControl".Dev[2].Auto.Start := TRUE;
+    END_IF;
+    IF tr_cond[28] THEN
+      next_active[24] := FALSE;
+      next_active[131] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[100] THEN
+    // Step 100: ProcessStart
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[100] THEN
+      #ioPM_Inface.InitialRun := FALSE;
+      #ioPM_Inface.ProcessComplete := FALSE;
+      #ioPM_Inface.ProcessStart := FALSE;
+      #ioPM_Inface.InitialOK := TRUE;
+      #ioPM_Inface.WaitRunning := TRUE;
+      #ioPM_Inface.ProcessResult:=0;
+      "ST10_GeneralData".FlowControl_Handshake[21].Start := FALSE;
+      "ST10_GeneralData".FlowControl_Handshake[21].Done := FALSE;
+      "MotorControl".Dev[2].Auto.CCWStart := FALSE;
+      "MotorControl".Dev[2].Auto.Start := FALSE;
+    END_IF;
+    IF tr_cond[100] THEN
+      next_active[100] := FALSE;
+      next_active[133] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[116] THEN
+    // Step 116: H-shaftLiftingLiftingCylinderToWP
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[116] THEN
+      "ST10Cylinder".Cy[31].Inout.AutoGoHome := FALSE;
+      "ST10Cylinder".Cy[31].Inout.AutoGoWork := TRUE;
+    END_IF;
+    IF tr_cond[116] THEN
+      next_active[116] := FALSE;
+      next_active[10] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[117] THEN
+    // Step 117: CheckShaftLiftingCylinderPos
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[129] THEN
+    // Step 129: J-magnetLiftingPalletLocationCylindertoHP
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[129] THEN
+      "ST10Cylinder".Cy[32].Inout.AutoGoHome := TRUE;
+      "ST10Cylinder".Cy[32].Inout.AutoGoWork := FALSE;
+    END_IF;
+    IF tr_cond[134] THEN
+      next_active[129] := FALSE;
+      next_active[24] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[130] THEN
+    // Step 130: J-magnetLiftingPalletLocationCylindertoWP_1
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[130] THEN
+      "ST10Cylinder".Cy[32].Inout.AutoGoHome := FALSE;
+      "ST10Cylinder".Cy[32].Inout.AutoGoWork := TRUE;
+    END_IF;
+    IF tr_cond[135] THEN
+      next_active[130] := FALSE;
+      next_active[134] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[131] THEN
+    // Step 131: Step131
+    IF tr_cond[29] THEN
+      next_active[131] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[132] THEN
+    // Step 132: MotorStop
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[132] THEN
+      "MotorControl".Dev[2].Auto.CCWStart := FALSE;
+      "MotorControl".Dev[2].Auto.Start := FALSE;
+    END_IF;
+    IF tr_cond[30] THEN
+      next_active[132] := FALSE;
+      next_active[116] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[133] THEN
+    // Step 133: CheckPalletExist
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[134] THEN
+    // Step 134: RequestRobotPickPallet
+    "DB_ST10_Flow22_JMagnetLifting_State".AutoProcessControl.J_MagnetLine.Robot2PickPrimit := TRUE;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[135] THEN
+    // Step 135: WaitingPalletUnloading
+    IF tr_cond[136] THEN
+      next_active[135] := FALSE;
+      next_active[140] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[136] THEN
+    // Step 136: PalletRequest
+    "DB_ST10_Flow22_JMagnetLifting_State".AutoProcessControl.Global.J.LoadStopRequestPallet_4 := TRUE;
+    IF tr_cond[35] THEN
+      next_active[136] := FALSE;
+      next_active[137] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[137] THEN
+    // Step 137: RobotCountClear0
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[137] THEN
+      "MotorControl".Dev[2].Auto.Start := FALSE;
+    END_IF;
+    "KukaRobot2_CtrlDB".sPLCtoROB.User.Cycle.DI242_NewPallet := TRUE;
+    IF tr_cond[36] THEN
+      next_active[137] := FALSE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[138] THEN
+    // Step 138: J-magnetLiftingPalletLocationCylindertoHP_2
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[138] THEN
+      "ST10Cylinder".Cy[32].Inout.AutoGoHome := TRUE;
+      "ST10Cylinder".Cy[32].Inout.AutoGoWork := FALSE;
+    END_IF;
+    IF tr_cond[137] THEN
+      next_active[138] := FALSE;
+      next_active[139] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[139] THEN
+    // Step 139: J-magnetLiftingPalletLocationCylindertoHP_3
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[139] THEN
+      "ST10Cylinder".Cy[31].Inout.AutoGoHome := TRUE;
+      "ST10Cylinder".Cy[31].Inout.AutoGoWork := FALSE;
+    END_IF;
+    IF tr_cond[138] THEN
+      next_active[139] := FALSE;
+      next_active[135] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[140] THEN
+    // Step 140: MotorCCWRun
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[140] THEN
+      "MotorControl".Dev[2].Auto.CCWStart := TRUE;
+      "MotorControl".Dev[2].Auto.Start := TRUE;
+      "MotorControl".Dev[14].Auto.CCWStart := FALSE;
+      "MotorControl".Dev[14].Auto.Start := TRUE;
+    END_IF;
+    IF tr_cond[139] THEN
+      next_active[140] := FALSE;
+      next_active[141] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[141] THEN
+    // Step 141: Motor Stop
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[141] THEN
+      "MotorControl".Dev[2].Auto.CCWStart := FALSE;
+      "MotorControl".Dev[2].Auto.Start := FALSE;
+    END_IF;
+    IF tr_cond[140] THEN
+      next_active[141] := FALSE;
+      next_active[142] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[142] THEN
+    // Step 142: J-magnetLiftingCylinderToWP
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[142] THEN
+      "ST10Cylinder".Cy[31].Inout.AutoGoHome := FALSE;
+      "ST10Cylinder".Cy[31].Inout.AutoGoWork := TRUE;
+    END_IF;
+    IF tr_cond[141] THEN
+      next_active[142] := FALSE;
+      next_active[237] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[143] THEN
+    // Step 143: J-magnetLiftingPalletLocationCylindertoHP_4
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[143] THEN
+      "ST10Cylinder".Cy[32].Inout.AutoGoHome := TRUE;
+      "ST10Cylinder".Cy[32].Inout.AutoGoWork := FALSE;
+    END_IF;
+    IF tr_cond[143] THEN
+      next_active[143] := FALSE;
+      next_active[144] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[144] THEN
+    // Step 144: MotorCCWRun_1
+    IF NOT "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[144] THEN
+      "MotorControl".Dev[2].Auto.CCWStart := TRUE;
+      "MotorControl".Dev[2].Auto.Start := TRUE;
+    END_IF;
+    IF tr_cond[144] THEN
+      next_active[144] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[145] THEN
+    // Step 145: WaitRobotTaskFinish
+    IF tr_cond[145] THEN
+      next_active[145] := FALSE;
+      next_active[138] := TRUE;
+    END_IF;
+  END_IF;
+
+  IF "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[237] THEN
+    // Step 237: Process Finish
+    IF tr_cond[249] THEN
+      next_active[237] := FALSE;
+      next_active[100] := TRUE;
+    END_IF;
+  END_IF;
+
+  FOR idx := 1 TO 237 DO
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepPrev[idx] := "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[idx];
+    "DB_ST10_Flow22_JMagnetLifting_State".Flow.StepActive[idx] := next_active[idx];
+  END_FOR;
+END_FUNCTION

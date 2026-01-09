@@ -1,0 +1,75 @@
+FUNCTION "ST10Cyl_interface21-30" : Void
+VAR_INPUT
+  AlwaysON : Bool;
+  E_stop : Bool;
+END_VAR
+VAR_TEMP
+  tTest : Bool;
+END_VAR
+BEGIN
+  // Původní jazyk: LAD
+  // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/01_Cylinder/ST10Cyl_interface21-30.xml
+  // --- Rekonstruovaný StructuredText (best-effort) ---
+  // Network 1
+  .[].. := iH-shaftLiftingLiftingCylinderInWP ;
+  .[].. := iH-shaftLiftingLiftingCylinderInHP ;
+  
+  oH-shaftLiftingLiftingCylinderToWP := .[]..;
+  oH-shaftLiftingLiftingCylinderToHP := .[]..;
+  
+  
+  .[].. := iH-shaftLiftingPalletLocationCylinderInWP ;
+  .[].. :=iH-shaftLiftingPalletLocationCylinderInHP  ;
+  
+  oH-shaftLiftingPalletLocationCylinderToWP := .[]..;
+  oH-shaftLiftingPalletLocationCylinderToHP := .[]..;
+  
+  
+  .[].. := oH-shaftLoadingStopperCylinder1_ToWP;
+  .[].. := oH-shaftLoadingStopperCylinder1_ToHP ;
+  
+  oH-shaftLoadingStopperCylinder1_ToWP := .[]..;
+  oH-shaftLoadingStopperCylinder1_ToHP := .[]..;
+  
+  
+  .[].. := oH-shaftLoadingStopperCylinder2_ToWP ;
+  .[].. := oH-shaftLoadingStopperCylinder2_ToHP;
+  
+  oH-shaftLoadingStopperCylinder2_ToWP := .[]..;
+  oH-shaftLoadingStopperCylinder2_ToHP := .[]..;
+  
+  
+  .[].. := oH-shaftLoadingStopperCylinder3_ToWP;
+  .[].. := oH-shaftLoadingStopperCylinder3_ToHP;
+  
+  oH-shaftLoadingStopperCylinder3_ToWP := .[]..;
+  oH-shaftLoadingStopperCylinder3_ToHP := .[]..;
+  
+  
+  .[].. := oH-shaftLoadingStopperCylinder4_ToWP;
+  .[].. := oH-shaftLoadingStopperCylinder4_ToHP ;
+  
+  oH-shaftLoadingStopperCylinder4_ToWP := .[]..;
+  oH-shaftLoadingStopperCylinder4_ToHP := .[]..;
+  
+  
+  .[].. :=oH-shaftTakeStopperCylinder1_ToWP ;
+  .[].. :=oH-shaftTakeStopperCylinder1_ToHP;
+  
+  oH-shaftTakeStopperCylinder1_ToWP :=.[]..;
+  oH-shaftTakeStopperCylinder1_ToHP := .[]..;
+  
+  
+  .[].. :=oH-shaftTakeStopperCylinder2_ToWP ;
+  .[].. := oH-shaftTakeStopperCylinder2_ToHP;
+  
+  oH-shaftTakeStopperCylinder2_ToWP := .[]..;
+  oH-shaftTakeStopperCylinder2_ToHP := .[]..;
+  
+  
+  .[].. :=oH-shaftTakeStopperCylinder3_ToWP ;
+  .[].. :=oH-shaftTakeStopperCylinder3_ToHP;
+  
+  oH-shaftTakeStopperCylinder3_ToWP := .[]..;
+  oH-shaftTakeStopperCylinder3_ToHP := .[]..;
+END_FUNCTION
