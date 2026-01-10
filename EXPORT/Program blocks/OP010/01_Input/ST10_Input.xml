@@ -1,0 +1,1290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>ST10_Input</Name>
+      <Namespace />
+      <Number>1001</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text>注：本程序用来处理需要滤波，延时、计算的输入信号
+</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="GlobalVariable" UId="21">
+    <Symbol UId="22">
+      <Component Name="ST10_SysInput" UId="23">
+        <BooleanAttribute Name="HasQuotes" UId="24">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="25" />
+      <Component Name="HMI_Button" UId="26" />
+      <Token Text="." UId="27" />
+      <Component Name="ControlOn" UId="28" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="29" />
+  <Token Text=":=" UId="30" />
+  <Blank Num="1" UId="31" />
+  <Access Scope="GlobalVariable" UId="32">
+    <Symbol UId="33">
+      <Component Name="iHMI Control On" UId="34" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="35" />
+  <NewLine Num="1" UId="36" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="37">
+    <Text UId="38">"ST350_SysInput".HMI_Button.ControlOff:=</Text>
+  </LineComment>
+  <NewLine Num="1" UId="39" />
+  <Access Scope="GlobalVariable" UId="40">
+    <Symbol UId="41">
+      <Component Name="ST10_SysInput" UId="42">
+        <BooleanAttribute Name="HasQuotes" UId="43">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="44" />
+      <Component Name="HMI_Button" UId="45" />
+      <Token Text="." UId="46" />
+      <Component Name="MachineStart" UId="47" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="48" />
+  <Token Text=":=" UId="49" />
+  <Blank Num="1" UId="50" />
+  <Access Scope="GlobalVariable" UId="51">
+    <Symbol UId="52">
+      <Component Name="iHMI Machine Start" UId="53" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="54" />
+  <NewLine Num="1" UId="55" />
+  <Access Scope="GlobalVariable" UId="56">
+    <Symbol UId="57">
+      <Component Name="ST10_SysInput" UId="58">
+        <BooleanAttribute Name="HasQuotes" UId="59">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="60" />
+      <Component Name="HMI_Button" UId="61" />
+      <Token Text="." UId="62" />
+      <Component Name="MachineStop" UId="63" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="64" />
+  <Token Text=":=" UId="65" />
+  <Blank Num="1" UId="66" />
+  <Access Scope="GlobalVariable" UId="67">
+    <Symbol UId="68">
+      <Component Name="iHMI Machine Stop" UId="69" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="70" />
+  <NewLine Num="1" UId="71" />
+  <Access Scope="GlobalVariable" UId="72">
+    <Symbol UId="73">
+      <Component Name="ST10_SysInput" UId="74">
+        <BooleanAttribute Name="HasQuotes" UId="75">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="76" />
+      <Component Name="HMI_Button" UId="77" />
+      <Token Text="." UId="78" />
+      <Component Name="ResetButton" UId="79" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="80" />
+  <Token Text=":=" UId="81" />
+  <Blank Num="1" UId="82" />
+  <Access Scope="GlobalVariable" UId="83">
+    <Symbol UId="84">
+      <Component Name="iHMI ResetButton" UId="85" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="86" />
+  <NewLine Num="1" UId="87" />
+  <Access Scope="GlobalVariable" UId="88">
+    <Symbol UId="89">
+      <Component Name="ST10_SysInput" UId="90">
+        <BooleanAttribute Name="HasQuotes" UId="91">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="92" />
+      <Component Name="HMI_Button" UId="93" />
+      <Token Text="." UId="94" />
+      <Component Name="Manual/Auto" UId="95" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="96" />
+  <Token Text=":=" UId="97" />
+  <Blank Num="1" UId="98" />
+  <Access Scope="GlobalVariable" UId="99">
+    <Symbol UId="100">
+      <Component Name="iHMI Manual/Auto" UId="101" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="102" />
+  <NewLine Num="1" UId="103" />
+  <Access Scope="GlobalVariable" UId="104">
+    <Symbol UId="105">
+      <Component Name="ST10_SysInput" UId="106">
+        <BooleanAttribute Name="HasQuotes" UId="107">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="108" />
+      <Component Name="HMI_Button" UId="109" />
+      <Token Text="." UId="110" />
+      <Component Name="SafetyGateUnlock" UId="111" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="112" />
+  <Token Text=":=" UId="113" />
+  <Blank Num="1" UId="114" />
+  <Access Scope="GlobalVariable" UId="115">
+    <Symbol UId="116">
+      <Component Name="iHMI Safety Gate Unlock" UId="117" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="118" />
+  <NewLine Num="1" UId="119" />
+  <Access Scope="GlobalVariable" UId="120">
+    <Symbol UId="121">
+      <Component Name="ST10_SysInput" UId="122">
+        <BooleanAttribute Name="HasQuotes" UId="123">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="124" />
+      <Component Name="HMI_Button" UId="125" />
+      <Token Text="." UId="126" />
+      <Component Name="E-Stop" UId="127" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="128" />
+  <Token Text=":=" UId="129" />
+  <Blank Num="2" UId="130" />
+  <Access Scope="GlobalVariable" UId="131">
+    <Symbol UId="132">
+      <Component Name="iHMI E-Stop" UId="133" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="134" />
+  <NewLine Num="1" UId="135" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>HMI信号映射</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>HMI signal mapping</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="GlobalVariable" UId="21">
+    <Symbol UId="22">
+      <Component Name="ST10_SysInput" UId="23">
+        <BooleanAttribute Name="HasQuotes" UId="24">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="25" />
+      <Component Name="Sys" UId="26" />
+      <Token Text="." UId="27" />
+      <Component Name="iCircuitBreakerOK1" UId="28" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="29" />
+  <Token Text=":=" UId="30" />
+  <Blank Num="1" UId="31" />
+  <Access Scope="GlobalVariable" UId="32">
+    <Symbol UId="33">
+      <Component Name="iCircuit Breaker OK_1" UId="34" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="35" />
+  <NewLine Num="1" UId="36" />
+  <Access Scope="GlobalVariable" UId="37">
+    <Symbol UId="38">
+      <Component Name="ST10_SysInput" UId="39">
+        <BooleanAttribute Name="HasQuotes" UId="40">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="41" />
+      <Component Name="Sys" UId="42" />
+      <Token Text="." UId="43" />
+      <Component Name="iCircuitBreakerOK2" UId="44" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="45" />
+  <Token Text=":=" UId="46" />
+  <Blank Num="1" UId="47" />
+  <Access Scope="GlobalVariable" UId="48">
+    <Symbol UId="49">
+      <Component Name="iCircuit Breaker OK_2" UId="50" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="51" />
+  <NewLine Num="1" UId="52" />
+  <Access Scope="GlobalVariable" UId="53">
+    <Symbol UId="54">
+      <Component Name="ST10_SysInput" UId="55">
+        <BooleanAttribute Name="HasQuotes" UId="56">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="57" />
+      <Component Name="Sys" UId="58" />
+      <Token Text="." UId="59" />
+      <Component Name="iPressure" UId="60" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="61" />
+  <Blank Num="1" UId="62" />
+  <Access Scope="GlobalVariable" UId="63">
+    <Symbol UId="64">
+      <Component Name="iPressure" UId="65">
+        <BooleanAttribute Name="HasQuotes" UId="66">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="67" />
+  <NewLine Num="1" UId="68" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="13" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>Sys IO Image</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>Sys IO Image</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="17" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="GlobalVariable" UId="21">
+    <Symbol UId="22">
+      <Component Name="ST10_SysInput" UId="23">
+        <BooleanAttribute Name="HasQuotes" UId="24">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="25" />
+      <Component Name="iE-StopPB" UId="26">
+        <Token Text="[" UId="27" />
+        <Access Scope="LiteralConstant" UId="28">
+          <Constant UId="29">
+            <ConstantValue UId="31">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="32" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="33" />
+  <Token Text=":=" UId="34" />
+  <Blank Num="1" UId="35" />
+  <Access Scope="GlobalVariable" UId="36">
+    <Symbol UId="37">
+      <Component Name="iE_StopButton2_A01" UId="38">
+        <BooleanAttribute Name="HasQuotes" UId="39">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="40" />
+  <NewLine Num="1" UId="41" />
+  <Access Scope="GlobalVariable" UId="42">
+    <Symbol UId="43">
+      <Component Name="ST10_SysInput" UId="44">
+        <BooleanAttribute Name="HasQuotes" UId="45">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="46" />
+      <Component Name="iE-StopPB" UId="47">
+        <Token Text="[" UId="48" />
+        <Access Scope="LiteralConstant" UId="49">
+          <Constant UId="50">
+            <ConstantValue UId="52">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="53" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="54" />
+  <Token Text=":=" UId="55" />
+  <Blank Num="1" UId="56" />
+  <Access Scope="GlobalVariable" UId="57">
+    <Symbol UId="58">
+      <Component Name="iE_StopButton3_A02" UId="59">
+        <BooleanAttribute Name="HasQuotes" UId="60">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="61" />
+  <NewLine Num="1" UId="62" />
+  <Access Scope="GlobalVariable" UId="63">
+    <Symbol UId="64">
+      <Component Name="ST10_SysInput" UId="65">
+        <BooleanAttribute Name="HasQuotes" UId="66">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="67" />
+      <Component Name="iE-StopPB" UId="68">
+        <Token Text="[" UId="69" />
+        <Access Scope="LiteralConstant" UId="70">
+          <Constant UId="71">
+            <ConstantValue UId="73">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="74" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="75" />
+  <Token Text=":=" UId="76" />
+  <Blank Num="1" UId="77" />
+  <Access Scope="GlobalVariable" UId="78">
+    <Symbol UId="79">
+      <Component Name="iE_StopButton4_H" UId="80">
+        <BooleanAttribute Name="HasQuotes" UId="81">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="82" />
+  <NewLine Num="1" UId="83" />
+  <Access Scope="GlobalVariable" UId="84">
+    <Symbol UId="85">
+      <Component Name="ST10_SysInput" UId="86">
+        <BooleanAttribute Name="HasQuotes" UId="87">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="88" />
+      <Component Name="iE-StopPB" UId="89">
+        <Token Text="[" UId="90" />
+        <Access Scope="LiteralConstant" UId="91">
+          <Constant UId="92">
+            <ConstantValue UId="94">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="95" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="96" />
+  <Token Text=":=" UId="97" />
+  <Blank Num="1" UId="98" />
+  <Access Scope="GlobalVariable" UId="99">
+    <Symbol UId="100">
+      <Component Name="iE_StopButton5_J" UId="101">
+        <BooleanAttribute Name="HasQuotes" UId="102">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="103" />
+  <NewLine Num="1" UId="104" />
+  <Access Scope="GlobalVariable" UId="105">
+    <Symbol UId="106">
+      <Component Name="ST10_SysInput" UId="107">
+        <BooleanAttribute Name="HasQuotes" UId="108">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="109" />
+      <Component Name="iE-StopPB" UId="110">
+        <Token Text="[" UId="111" />
+        <Access Scope="LiteralConstant" UId="112">
+          <Constant UId="113">
+            <ConstantValue UId="115">5</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="116" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="117" />
+  <Token Text=":=" UId="118" />
+  <Blank Num="1" UId="119" />
+  <Access Scope="GlobalVariable" UId="120">
+    <Symbol UId="121">
+      <Component Name="iE_StopButton6_K" UId="122">
+        <BooleanAttribute Name="HasQuotes" UId="123">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="124" />
+  <NewLine Num="1" UId="125" />
+  <Access Scope="GlobalVariable" UId="126">
+    <Symbol UId="127">
+      <Component Name="ST10_SysInput" UId="128">
+        <BooleanAttribute Name="HasQuotes" UId="129">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="130" />
+      <Component Name="iE-StopPB" UId="131">
+        <Token Text="[" UId="132" />
+        <Access Scope="LiteralConstant" UId="133">
+          <Constant UId="134">
+            <ConstantValue UId="136">6</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="137" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="138" />
+  <Token Text=":=" UId="139" />
+  <Blank Num="1" UId="140" />
+  <Access Scope="GlobalVariable" UId="141">
+    <Symbol UId="142">
+      <Component Name="iE_StopButton7_L" UId="143">
+        <BooleanAttribute Name="HasQuotes" UId="144">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="145" />
+  <NewLine Num="1" UId="146" />
+  <Access Scope="GlobalVariable" UId="147">
+    <Symbol UId="148">
+      <Component Name="ST10_SysInput" UId="149">
+        <BooleanAttribute Name="HasQuotes" UId="150">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="151" />
+      <Component Name="iE-StopPB" UId="152">
+        <Token Text="[" UId="153" />
+        <Access Scope="LiteralConstant" UId="154">
+          <Constant UId="155">
+            <ConstantValue UId="157">7</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="158" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="159" />
+  <Token Text=":=" UId="160" />
+  <Blank Num="1" UId="161" />
+  <Access Scope="GlobalVariable" UId="162">
+    <Symbol UId="163">
+      <Component Name="iH_StopButton" UId="164">
+        <BooleanAttribute Name="HasQuotes" UId="165">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="166" />
+  <NewLine Num="1" UId="167" />
+  <Access Scope="GlobalVariable" UId="168">
+    <Symbol UId="169">
+      <Component Name="ST10_SysInput" UId="170">
+        <BooleanAttribute Name="HasQuotes" UId="171">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="172" />
+      <Component Name="iE-StopPB" UId="173">
+        <Token Text="[" UId="174" />
+        <Access Scope="LiteralConstant" UId="175">
+          <Constant UId="176">
+            <ConstantValue UId="178">8</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="179" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="180" />
+  <Token Text=":=" UId="181" />
+  <Blank Num="1" UId="182" />
+  <Access Scope="GlobalVariable" UId="183">
+    <Symbol UId="184">
+      <Component Name="iJ_StopButton" UId="185">
+        <BooleanAttribute Name="HasQuotes" UId="186">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="187" />
+  <NewLine Num="1" UId="188" />
+  <Access Scope="GlobalVariable" UId="189">
+    <Symbol UId="190">
+      <Component Name="ST10_SysInput" UId="191">
+        <BooleanAttribute Name="HasQuotes" UId="192">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="193" />
+      <Component Name="iE-StopPB" UId="194">
+        <Token Text="[" UId="195" />
+        <Access Scope="LiteralConstant" UId="196">
+          <Constant UId="197">
+            <ConstantValue UId="199">9</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="200" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="201" />
+  <Token Text=":=" UId="202" />
+  <Blank Num="1" UId="203" />
+  <Access Scope="GlobalVariable" UId="204">
+    <Symbol UId="205">
+      <Component Name="iK_StopButton" UId="206">
+        <BooleanAttribute Name="HasQuotes" UId="207">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="208" />
+  <NewLine Num="1" UId="209" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="18" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="19" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1C" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>iE-StopPB</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>iE-StopPB</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="20" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <LineComment Inserted="true" NoClosingBracket="false" UId="21">
+    <Text UId="22">
+"ST350_SysInput".iSafetyGatFeedBack[1] := "iSafety door Locking FeedBack_1";
+"ST350_SysInput".iSafetyGatFeedBack[2] := "iSafety door Locking FeedBack_2";
+"ST350_SysInput".iSafetyGatFeedBack[3] := "iSafety door Locking FeedBack_3";
+"ST350_SysInput".iSafetyGatFeedBack[4] := "iSafety door Locking FeedBack_4";
+"ST350_SysInput".iSafetyGatFeedBack[5] := "iSafety door Locking FeedBack_5";
+"ST350_SysInput".iSafetyGatFeedBack[6] := "iSafety door Locking FeedBack_6";
+"ST350_SysInput".iSafetyGatFeedBack[7] := "iSafety door Locking FeedBack_7";
+"ST350_SysInput".iSafetyGatFeedBack[8] := "iSafety door Locking FeedBack_8";
+</Text>
+  </LineComment>
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="21" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="22" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="25" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="26" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>iSafetyGatFeedBack</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>iSafetyGatFeedBack</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="28" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="29" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="GlobalVariable" UId="21">
+    <Symbol UId="22">
+      <Component Name="ST10_SysInput" UId="23">
+        <BooleanAttribute Name="HasQuotes" UId="24">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="25" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="26">
+        <Token Text="[" UId="27" />
+        <Access Scope="LiteralConstant" UId="28">
+          <Constant UId="29">
+            <ConstantValue UId="31">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="32" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="33" />
+  <Token Text=":=" UId="34" />
+  <Blank Num="1" UId="35" />
+  <Access Scope="GlobalVariable" UId="36">
+    <Symbol UId="37">
+      <Component Name="iSafety door Locking FeedBack_1" UId="38" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="39" />
+  <NewLine Num="1" UId="40" />
+  <Access Scope="GlobalVariable" UId="41">
+    <Symbol UId="42">
+      <Component Name="ST10_SysInput" UId="43">
+        <BooleanAttribute Name="HasQuotes" UId="44">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="45" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="46">
+        <Token Text="[" UId="47" />
+        <Access Scope="LiteralConstant" UId="48">
+          <Constant UId="49">
+            <ConstantValue UId="51">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="52" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="53" />
+  <Token Text=":=" UId="54" />
+  <Blank Num="1" UId="55" />
+  <Access Scope="GlobalVariable" UId="56">
+    <Symbol UId="57">
+      <Component Name="iSafety door Locking FeedBack_2" UId="58" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="59" />
+  <NewLine Num="1" UId="60" />
+  <Access Scope="GlobalVariable" UId="61">
+    <Symbol UId="62">
+      <Component Name="ST10_SysInput" UId="63">
+        <BooleanAttribute Name="HasQuotes" UId="64">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="65" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="66">
+        <Token Text="[" UId="67" />
+        <Access Scope="LiteralConstant" UId="68">
+          <Constant UId="69">
+            <ConstantValue UId="71">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="72" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="73" />
+  <Token Text=":=" UId="74" />
+  <Blank Num="1" UId="75" />
+  <Access Scope="GlobalVariable" UId="76">
+    <Symbol UId="77">
+      <Component Name="iSafety door Locking FeedBack_3" UId="78" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="79" />
+  <NewLine Num="1" UId="80" />
+  <Access Scope="GlobalVariable" UId="81">
+    <Symbol UId="82">
+      <Component Name="ST10_SysInput" UId="83">
+        <BooleanAttribute Name="HasQuotes" UId="84">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="85" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="86">
+        <Token Text="[" UId="87" />
+        <Access Scope="LiteralConstant" UId="88">
+          <Constant UId="89">
+            <ConstantValue UId="91">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="92" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="93" />
+  <Token Text=":=" UId="94" />
+  <Blank Num="1" UId="95" />
+  <Access Scope="GlobalVariable" UId="96">
+    <Symbol UId="97">
+      <Component Name="iSafety door Locking FeedBack_4" UId="98" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="99" />
+  <NewLine Num="1" UId="100" />
+  <Access Scope="GlobalVariable" UId="101">
+    <Symbol UId="102">
+      <Component Name="ST10_SysInput" UId="103">
+        <BooleanAttribute Name="HasQuotes" UId="104">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="105" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="106">
+        <Token Text="[" UId="107" />
+        <Access Scope="LiteralConstant" UId="108">
+          <Constant UId="109">
+            <ConstantValue UId="111">5</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="112" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="113" />
+  <Token Text=":=" UId="114" />
+  <Blank Num="1" UId="115" />
+  <Access Scope="GlobalVariable" UId="116">
+    <Symbol UId="117">
+      <Component Name="iSafety door Locking FeedBack_5" UId="118" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="119" />
+  <NewLine Num="1" UId="120" />
+  <Access Scope="GlobalVariable" UId="121">
+    <Symbol UId="122">
+      <Component Name="ST10_SysInput" UId="123">
+        <BooleanAttribute Name="HasQuotes" UId="124">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="125" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="126">
+        <Token Text="[" UId="127" />
+        <Access Scope="LiteralConstant" UId="128">
+          <Constant UId="129">
+            <ConstantValue UId="131">6</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="132" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="133" />
+  <Token Text=":=" UId="134" />
+  <Blank Num="1" UId="135" />
+  <Access Scope="GlobalVariable" UId="136">
+    <Symbol UId="137">
+      <Component Name="iSafety door Locking FeedBack_6" UId="138" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="139" />
+  <NewLine Num="1" UId="140" />
+  <Access Scope="GlobalVariable" UId="141">
+    <Symbol UId="142">
+      <Component Name="ST10_SysInput" UId="143">
+        <BooleanAttribute Name="HasQuotes" UId="144">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="145" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="146">
+        <Token Text="[" UId="147" />
+        <Access Scope="LiteralConstant" UId="148">
+          <Constant UId="149">
+            <ConstantValue UId="151">7</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="152" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="153" />
+  <Token Text=":=" UId="154" />
+  <Blank Num="1" UId="155" />
+  <Access Scope="GlobalVariable" UId="156">
+    <Symbol UId="157">
+      <Component Name="iSafety door Locking FeedBack_7" UId="158" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="159" />
+  <NewLine Num="1" UId="160" />
+  <Access Scope="GlobalVariable" UId="161">
+    <Symbol UId="162">
+      <Component Name="ST10_SysInput" UId="163">
+        <BooleanAttribute Name="HasQuotes" UId="164">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="165" />
+      <Component Name="iSafetydoorLockingFeedBack" UId="166">
+        <Token Text="[" UId="167" />
+        <Access Scope="LiteralConstant" UId="168">
+          <Constant UId="169">
+            <ConstantValue UId="171">8</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="172" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="173" />
+  <Token Text=":=" UId="174" />
+  <Blank Num="1" UId="175" />
+  <Access Scope="GlobalVariable" UId="176">
+    <Symbol UId="177">
+      <Component Name="iSafety door Locking FeedBack_8" UId="178" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="179" />
+  <NewLine Num="4" UId="180" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="2E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>iSafetydoorLockingFeedBack</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>iSafetydoorLockingFeedBack</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="31" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="32" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="GlobalVariable" UId="21">
+    <Symbol UId="22">
+      <Component Name="ST10_SysInput" UId="23">
+        <BooleanAttribute Name="HasQuotes" UId="24">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="25" />
+      <Component Name="iMaterieldoorLockingFeedBack" UId="26">
+        <Token Text="[" UId="27" />
+        <Access Scope="LiteralConstant" UId="28">
+          <Constant UId="29">
+            <ConstantValue UId="31">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="32" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="33" />
+  <Token Text=":=" UId="34" />
+  <Blank Num="1" UId="35" />
+  <Access Scope="GlobalVariable" UId="36">
+    <Symbol UId="37">
+      <Component Name="iMateriel Door Locking FeedBack_H1" UId="38" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="39" />
+  <NewLine Num="1" UId="40" />
+  <Access Scope="GlobalVariable" UId="41">
+    <Symbol UId="42">
+      <Component Name="ST10_SysInput" UId="43">
+        <BooleanAttribute Name="HasQuotes" UId="44">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="45" />
+      <Component Name="iMaterieldoorLockingFeedBack" UId="46">
+        <Token Text="[" UId="47" />
+        <Access Scope="LiteralConstant" UId="48">
+          <Constant UId="49">
+            <ConstantValue UId="51">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="52" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="53" />
+  <Token Text=":=" UId="54" />
+  <Blank Num="1" UId="55" />
+  <Access Scope="GlobalVariable" UId="56">
+    <Symbol UId="57">
+      <Component Name="iMateriel Door Locking FeedBack_H2" UId="58" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="59" />
+  <NewLine Num="1" UId="60" />
+  <Access Scope="GlobalVariable" UId="61">
+    <Symbol UId="62">
+      <Component Name="ST10_SysInput" UId="63">
+        <BooleanAttribute Name="HasQuotes" UId="64">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="65" />
+      <Component Name="iMaterieldoorLockingFeedBack" UId="66">
+        <Token Text="[" UId="67" />
+        <Access Scope="LiteralConstant" UId="68">
+          <Constant UId="69">
+            <ConstantValue UId="71">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="72" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="73" />
+  <Token Text=":=" UId="74" />
+  <Blank Num="1" UId="75" />
+  <Access Scope="GlobalVariable" UId="76">
+    <Symbol UId="77">
+      <Component Name="iMateriel Door Locking FeedBack_J1" UId="78" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="79" />
+  <NewLine Num="1" UId="80" />
+  <Access Scope="GlobalVariable" UId="81">
+    <Symbol UId="82">
+      <Component Name="ST10_SysInput" UId="83">
+        <BooleanAttribute Name="HasQuotes" UId="84">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="85" />
+      <Component Name="iMaterieldoorLockingFeedBack" UId="86">
+        <Token Text="[" UId="87" />
+        <Access Scope="LiteralConstant" UId="88">
+          <Constant UId="89">
+            <ConstantValue UId="91">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="92" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="93" />
+  <Token Text=":=" UId="94" />
+  <Blank Num="1" UId="95" />
+  <Access Scope="GlobalVariable" UId="96">
+    <Symbol UId="97">
+      <Component Name="iMateriel Door Locking FeedBack_J2" UId="98" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="99" />
+  <NewLine Num="1" UId="100" />
+  <Access Scope="GlobalVariable" UId="101">
+    <Symbol UId="102">
+      <Component Name="ST10_SysInput" UId="103">
+        <BooleanAttribute Name="HasQuotes" UId="104">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="105" />
+      <Component Name="iMaterieldoorLockingFeedBack" UId="106">
+        <Token Text="[" UId="107" />
+        <Access Scope="LiteralConstant" UId="108">
+          <Constant UId="109">
+            <ConstantValue UId="111">5</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="112" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="113" />
+  <Token Text=":=" UId="114" />
+  <Blank Num="1" UId="115" />
+  <Access Scope="GlobalVariable" UId="116">
+    <Symbol UId="117">
+      <Component Name="iMateriel Door Locking FeedBack_K1" UId="118" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="119" />
+  <NewLine Num="1" UId="120" />
+  <Access Scope="GlobalVariable" UId="121">
+    <Symbol UId="122">
+      <Component Name="ST10_SysInput" UId="123">
+        <BooleanAttribute Name="HasQuotes" UId="124">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="125" />
+      <Component Name="iMaterieldoorLockingFeedBack" UId="126">
+        <Token Text="[" UId="127" />
+        <Access Scope="LiteralConstant" UId="128">
+          <Constant UId="129">
+            <ConstantValue UId="131">6</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="132" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="133" />
+  <Token Text=":=" UId="134" />
+  <Blank Num="1" UId="135" />
+  <Access Scope="GlobalVariable" UId="136">
+    <Symbol UId="137">
+      <Component Name="iMateriel Door Locking FeedBack_K2" UId="138" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="139" />
+  <NewLine Num="1" UId="140" />
+  <Access Scope="GlobalVariable" UId="141">
+    <Symbol UId="142">
+      <Component Name="ST10_SysInput" UId="143">
+        <BooleanAttribute Name="HasQuotes" UId="144">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="145" />
+      <Component Name="iMaterieldoorLockingFeedBack" UId="146">
+        <Token Text="[" UId="147" />
+        <Access Scope="LiteralConstant" UId="148">
+          <Constant UId="149">
+            <ConstantValue UId="151">7</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="152" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="153" />
+  <Token Text=":=" UId="154" />
+  <Blank Num="1" UId="155" />
+  <Access Scope="GlobalVariable" UId="156">
+    <Symbol UId="157">
+      <Component Name="iMateriel Door Locking FeedBack_L1" UId="158" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="159" />
+  <NewLine Num="4" UId="160" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="33" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="35" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="36" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="37" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="38" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>iSafetydoorLockingFeedBack</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="39" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>iSafetydoorLockingFeedBack</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="3B" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="3C" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3D" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3E" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

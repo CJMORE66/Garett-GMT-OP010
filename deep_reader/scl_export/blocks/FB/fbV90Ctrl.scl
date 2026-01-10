@@ -103,5 +103,150 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/25_V90/V90_Standard/fbV90Ctrl.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF NOT #tNormalON THEN #tNormalON := TRUE; END_IF;
+  // Network 2
+  IF #tNormalON THEN #tHome := FALSE; END_IF;
+  #sCMMT.ConfigEPos := #tNormalON;
+  #sCMMT.ConfigEPos := (#tNormalON AND #iLimitSoftActive);
+  #sCMMT.ConfigEPos := (#tNormalON AND #iLimitSwitchActive);
+  #tCancelTask := (((#tNormalON AND #iSysRun) AND #iEstop) AND #iInterlock);
+  #tPauseTask := #tNormalON;
+  #sCMMT.ConfigEPos := (#tNormalON AND #iHomeSwitch);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Coil UId=42: nelze určit podmínku (vstupní síť).
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Ne(1)
+  // RCoil UId=37: nelze určit podmínku (vstupní síť).
+  // Coil UId=38: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), PContact(2), Eq(1), O(1)
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(6), Move(6), NContact(2), Ne(2), Eq(1), TON(1)
+  // Coil UId=87: nelze určit podmínku (vstupní síť).
+  // Coil UId=93: nelze určit podmínku (vstupní síť).
+  // Coil UId=99: nelze určit podmínku (vstupní síť).
+  // RCoil UId=104: nelze určit podmínku (vstupní síť).
+  // RCoil UId=105: nelze určit podmínku (vstupní síť).
+  // RCoil UId=110: nelze určit podmínku (vstupní síť).
+  // SCoil UId=115: nelze určit podmínku (vstupní síť).
+  // RCoil UId=116: nelze určit podmínku (vstupní síť).
+  // RCoil UId=117: nelze určit podmínku (vstupní síť).
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(4), O(1)
+  // Coil UId=57: nelze určit podmínku (vstupní síť).
+  // Coil UId=67: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(6), Move(6), PContact(3)
+  // RCoil UId=81: nelze určit podmínku (vstupní síť).
+  // SCoil UId=83: nelze určit podmínku (vstupní síť).
+  // SCoil UId=92: nelze určit podmínku (vstupní síť).
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(15), Eq(7), TON(2), O(1)
+  // RCoil UId=102: nelze určit podmínku (vstupní síť).
+  // RCoil UId=103: nelze určit podmínku (vstupní síť).
+  // SCoil UId=124: nelze určit podmínku (vstupní síť).
+  // SCoil UId=125: nelze určit podmínku (vstupní síť).
+  // RCoil UId=144: nelze určit podmínku (vstupní síť).
+  // RCoil UId=145: nelze určit podmínku (vstupní síť).
+  // SCoil UId=147: nelze určit podmínku (vstupní síť).
+  // RCoil UId=152: nelze určit podmínku (vstupní síť).
+  // RCoil UId=153: nelze určit podmínku (vstupní síť).
+  // Network 9
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), Eq(2), TON(1)
+  // Network 10
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(17), Eq(12), O(3), Ge(2), PContact(1), TON(1), Le(1)
+  // RCoil UId=164: nelze určit podmínku (vstupní síť).
+  // SCoil UId=166: nelze určit podmínku (vstupní síť).
+  // SCoil UId=169: nelze určit podmínku (vstupní síť).
+  // RCoil UId=170: nelze určit podmínku (vstupní síť).
+  // RCoil UId=171: nelze určit podmínku (vstupní síť).
+  // SCoil UId=175: nelze určit podmínku (vstupní síť).
+  // SCoil UId=183: nelze určit podmínku (vstupní síť).
+  // SCoil UId=193: nelze určit podmínku (vstupní síť).
+  // SCoil UId=199: nelze určit podmínku (vstupní síť).
+  // RCoil UId=200: nelze určit podmínku (vstupní síť).
+  // SCoil UId=204: nelze určit podmínku (vstupní síť).
+  // SCoil UId=210: nelze určit podmínku (vstupní síť).
+  // SCoil UId=213: nelze určit podmínku (vstupní síť).
+  // Coil UId=215: nelze určit podmínku (vstupní síť).
+  // SCoil UId=219: nelze určit podmínku (vstupní síť).
+  // SCoil UId=223: nelze určit podmínku (vstupní síť).
+  // SCoil UId=225: nelze určit podmínku (vstupní síť).
+  // RCoil UId=227: nelze určit podmínku (vstupní síť).
+  // SCoil UId=228: nelze určit podmínku (vstupní síť).
+  // RCoil UId=238: nelze určit podmínku (vstupní síť).
+  // RCoil UId=239: nelze určit podmínku (vstupní síť).
+  // RCoil UId=240: nelze určit podmínku (vstupní síť).
+  // RCoil UId=241: nelze určit podmínku (vstupní síť).
+  // SCoil UId=243: nelze určit podmínku (vstupní síť).
+  // RCoil UId=245: nelze určit podmínku (vstupní síť).
+  // RCoil UId=246: nelze určit podmínku (vstupní síť).
+  // RCoil UId=247: nelze určit podmínku (vstupní síť).
+  // RCoil UId=248: nelze určit podmínku (vstupní síť).
+  // SCoil UId=251: nelze určit podmínku (vstupní síť).
+  // Coil UId=253: nelze určit podmínku (vstupní síť).
+  // Network 11
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Network 12
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(2), O(1), Ne(1)
+  // Coil UId=51: nelze určit podmínku (vstupní síť).
+  // Coil UId=53: nelze určit podmínku (vstupní síť).
+  // RCoil UId=54: nelze určit podmínku (vstupní síť).
+  // RCoil UId=55: nelze určit podmínku (vstupní síť).
+  // RCoil UId=56: nelze určit podmínku (vstupní síť).
+  // Network 13
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), O(1)
+  // Network 14
+  // Network 15
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(5), O(3), Ge(2), Le(2), Add(1), Sub(1)
+  // Coil UId=70: nelze určit podmínku (vstupní síť).
+  // Network 16
+  #Position_PV := (#tNormalON AND #Position_sensor_1);
+  #Position_PV := (#tNormalON AND #Position_sensor_2);
+  #Position_PV := (#tNormalON AND #Position_sensor_3);
+  #Position_PV := (#tNormalON AND #Position_sensor_4);
+  // Network 17
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(16), Move(8), O(1)
+  // Coil UId=105: nelze určit podmínku (vstupní síť).
+  // Network 18
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(30), Eq(30)
+  // Coil UId=160: nelze určit podmínku (vstupní síť).
+  // Coil UId=172: nelze určit podmínku (vstupní síť).
+  // Coil UId=184: nelze určit podmínku (vstupní síť).
+  // Coil UId=196: nelze určit podmínku (vstupní síť).
+  // Coil UId=208: nelze určit podmínku (vstupní síť).
+  // Coil UId=220: nelze určit podmínku (vstupní síť).
+  // Coil UId=232: nelze určit podmínku (vstupní síť).
+  // Coil UId=244: nelze určit podmínku (vstupní síť).
+  // Coil UId=256: nelze určit podmínku (vstupní síť).
+  // Coil UId=268: nelze určit podmínku (vstupní síť).
+  // Network 19
+  #oHomeRef := (#tNormalON AND #sCMMT.AxisRef);
+  #oWarning := (#tNormalON AND #sCMMT.AxisWarn);
+  #oRunning := (#tNormalON AND #sRunning);
+  #oHoming := (#tNormalON AND #sHoming);
+  #oServoPosOK := ((#tNormalON AND #sPosOK) AND #sCMMT.AxisPosOk);
+  #oServoEnable := (#tNormalON AND #sCMMT.AxisEnabled);
+  #oInterlock := ((#tNormalON AND #iInterlock) AND #sCMMT.AxisRef);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(5), Eq(2), Ne(2)
+  // Network 20
+  IF #sPls THEN #sPls := FALSE; END_IF;
 END_FUNCTION_BLOCK

@@ -42,5 +42,46 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/26_Stopper/01_FuncationBlock/StopperCtrl.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // Coil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 2
+  #s_SequenceEnable := (((((#t_AlwaysOn AND #i_SysRun) AND #i_AutoRunnig) AND #i_AutoMode) AND NOT #io_Interface.ArrNextError) AND NOT #io_Interface.MissingError);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // RCoil UId=43: nelze určit podmínku (vstupní síť).
+  // RCoil UId=44: nelze určit podmínku (vstupní síť).
+  // RCoil UId=45: nelze určit podmínku (vstupní síť).
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Eq(1), TON(1)
+  // RCoil UId=43: nelze určit podmínku (vstupní síť).
+  // RCoil UId=44: nelze určit podmínku (vstupní síť).
+  // Coil UId=54: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(4), Move(2), TON(1)
+  // Coil UId=45: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), Move(1)
+  // Coil UId=33: nelze určit podmínku (vstupní síť).
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), Eq(2), TON(1), PBox(1)
+  // SCoil UId=43: nelze určit podmínku (vstupní síť).
+  // RCoil UId=44: nelze určit podmínku (vstupní síť).
+  // SCoil UId=45: nelze určit podmínku (vstupní síť).
+  // RCoil UId=55: nelze určit podmínku (vstupní síť).
+  // SCoil UId=56: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), Move(1), TON(1)
+  // Coil UId=41: nelze určit podmínku (vstupní síť).
+  // RCoil UId=42: nelze určit podmínku (vstupní síť).
+  // SCoil UId=43: nelze určit podmínku (vstupní síť).
+  // RCoil UId=44: nelze určit podmínku (vstupní síť).
+  // SCoil UId=51: nelze určit podmínku (vstupní síť).
 END_FUNCTION_BLOCK

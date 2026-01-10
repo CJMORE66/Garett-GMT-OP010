@@ -13,4 +13,34 @@ BEGIN
   oC-GluingPro_Y := ..GluingControl.Output.GluingPro_Y;
   oC-GluingPro_Z := ..GluingControl.Output.GluingPro_Z;
   oC-GluingReset := ..GluingControl.Output.GluingReset;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  GluingControl.Output.GluingReset := ((AlwaysTRUE AND Station_Sys.Cmd.Reset) AND GluingControl.Input.GluingFault);
+  // Network 2
+  IF (AlwaysTRUE AND Station_Sys.Auto.Mode) THEN GluingControl.Control.Manual_X := FALSE; END_IF;
+  IF (AlwaysTRUE AND Station_Sys.Manual.Mode) THEN GluingControl.Control.Auto_Start := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(4), Eq(3), Le(1), Gt(1), Move(1), TONR(1)
+  // Coil UId=75: nelze určit podmínku (vstupní síť).
+  // Coil UId=83: nelze určit podmínku (vstupní síť).
+  // Coil UId=91: nelze určit podmínku (vstupní síť).
+  // RCoil UId=94: nelze určit podmínku (vstupní síť).
+  // RCoil UId=95: nelze určit podmínku (vstupní síť).
+  // RCoil UId=98: nelze určit podmínku (vstupní síť).
+  // RCoil UId=99: nelze určit podmínku (vstupní síť).
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=57: nelze určit podmínku (vstupní síť).
+  // Coil UId=58: nelze určit podmínku (vstupní síť).
+  // Coil UId=60: nelze určit podmínku (vstupní síť).
+  // Network 4
+  IF (AlwaysTRUE AND Station_Sys.Auto.Mode) THEN GluingControl.Control.ManualTest_X := FALSE; END_IF;
+  // Network 5
+  IF (((AlwaysTRUE AND Station_Sys.Manual.Mode) AND NOT GluingControl.GlueCalibratonMode) AND ServoV90_DeviceCtl.V90Servo) THEN GluingControl.Control.ManualTest_X := FALSE; END_IF;
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1), PBox(1), TONR(1), Eq(1)
+  // RCoil UId=48: nelze určit podmínku (vstupní síť).
+  // RCoil UId=49: nelze určit podmínku (vstupní síť).
 END_FUNCTION

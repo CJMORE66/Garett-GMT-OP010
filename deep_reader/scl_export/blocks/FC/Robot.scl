@@ -39,4 +39,131 @@ BEGIN
   ....KukaRobot3_CtrlDB.sPLCtoROB.User.Home.DI189_ScanNG3_3:=.[] := iE2-UnloadingRingScanNG_3;
   ....KukaRobot3_CtrlDB.sPLCtoROB.User.Home.DI190_ScanNG3_4:=.[] := iE2-UnloadingRingScanNG_2;
   ....KukaRobot3_CtrlDB.sPLCtoROB.User.Home.DI191_ScanNG3_5:=.[] := iE2-UnloadingRingScanNG_1;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // Network 2
+  // Network 3
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(4), Eq(3), Ne(2), O(1)
+  // Coil UId=69: nelze určit podmínku (vstupní síť).
+  // Coil UId=78: nelze určit podmínku (vstupní síť).
+  // Coil UId=87: nelze určit podmínku (vstupní síť).
+  // Coil UId=98: nelze určit podmínku (vstupní síť).
+  // Network 5
+  IF (AlwaysTRUE AND Station_Sys.Manual.Mode) THEN Robot_DB.RobotFlag_1 := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // RCoil UId=30: nelze určit podmínku (vstupní síť).
+  // RCoil UId=31: nelze určit podmínku (vstupní síť).
+  // RCoil UId=32: nelze určit podmínku (vstupní síť).
+  // Network 6
+  IF (AlwaysTRUE AND Station_Sys.Auto.Mode) THEN Robot_DB.Control.Robot1GripControl := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // RCoil UId=29: nelze určit podmínku (vstupní síť).
+  // RCoil UId=30: nelze určit podmínku (vstupní síť).
+  // Network 7
+  IF (AlwaysTRUE AND KukaRobot1_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME) THEN KukaRobot1_CtrlDB.sPLCtoROB.User.Home.DI169_RobotMoved := FALSE; END_IF;
+  IF (AlwaysTRUE AND KukaRobot2_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME) THEN KukaRobot2_CtrlDB.sPLCtoROB.User.Home.DI169_RobotMoved := FALSE; END_IF;
+  IF (AlwaysTRUE AND KukaRobot3_CtrlDB.sROBtoPLC.Sys.SO.IN_HOME) THEN KukaRobot3_CtrlDB.sPLCtoROB.User.Home.DI169_RobotMoved := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(3)
+  // SCoil UId=55: nelze určit podmínku (vstupní síť).
+  // SCoil UId=62: nelze určit podmínku (vstupní síť).
+  // SCoil UId=69: nelze určit podmínku (vstupní síť).
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3)
+  // Network 9
+  Robot_DB.Robot_1.GripCompareCodeOK := ((((AlwaysTRUE AND Robot_DB.Robot_1.GripCompareCodeOK_1) AND Robot_DB.Robot_1.GripCompareCodeOK_2) AND Robot_DB.Robot_1.GripCompareCodeOK_3) AND Robot_DB.Robot_1.GripCompareCodeOK_4);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(4), Ne(4)
+  // Coil UId=50: nelze určit podmínku (vstupní síť).
+  // Coil UId=53: nelze určit podmínku (vstupní síť).
+  // Coil UId=56: nelze určit podmínku (vstupní síť).
+  // Coil UId=59: nelze určit podmínku (vstupní síť).
+  // Network 10
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ge(1), Move(1)
+  // Coil UId=30: nelze určit podmínku (vstupní síť).
+  // Network 11
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(7), O(2), PBox(2), TON(2), Not(1), Eq(1), Ge(1)
+  // SCoil UId=79: nelze určit podmínku (vstupní síť).
+  // RCoil UId=88: nelze určit podmínku (vstupní síť).
+  // Network 12
+  ChangeOver_DB.Robot_1.NoTaskRunning := (((((((((((NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO225_ScanPosInside AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO241_SPalletPickInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO249_ShaftScanPutInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO253_SScanPickInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO257_TablePickInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO261_RingScanInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO265_LoadNGInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO273_PressShaftPutInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO277_PressRingPutInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO289_GluePutInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO305_GripScanInside) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO300_HomeInside);
+  // Network 13
+  KukaRobot2_CtrlDB.sPLCtoROB.User.Home.DI170 := (AlwaysTRUE AND KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO180_Robot2Area);
+  // Network 14
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Eq(1)
+  // SCoil UId=39: nelze určit podmínku (vstupní síť).
+  // SCoil UId=43: nelze určit podmínku (vstupní síť).
+  // Network 15
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(2), TON(2)
+  // Network 16
+  Robot_DB.Robot_2.GripCompareCodeOK := ((((AlwaysTRUE AND Robot_DB.Robot_2.GripCompareCodeOK_1) AND Robot_DB.Robot_2.GripCompareCodeOK_2) AND Robot_DB.Robot_2.GripCompareCodeOK_3) AND Robot_DB.Robot_2.GripCompareCodeOK_4);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(4), Ne(4)
+  // Coil UId=50: nelze určit podmínku (vstupní síť).
+  // Coil UId=53: nelze určit podmínku (vstupní síť).
+  // Coil UId=56: nelze určit podmínku (vstupní síť).
+  // Coil UId=59: nelze určit podmínku (vstupní síť).
+  // Network 17
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ge(1), Move(1)
+  // Coil UId=30: nelze určit podmínku (vstupní síť).
+  // Network 18
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(10), O(4), PBox(3), TON(3), Not(2), Eq(1), Ge(1)
+  // SCoil UId=114: nelze určit podmínku (vstupní síť).
+  // RCoil UId=123: nelze určit podmínku (vstupní síť).
+  // SCoil UId=132: nelze určit podmínku (vstupní síť).
+  // RCoil UId=141: nelze určit podmínku (vstupní síť).
+  // Network 19
+  ChangeOver_DB.Robot_2.NoTaskRunning := (((((((((NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO241_PickPalletInside AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO249_ScanNGPutInside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO253_GlueNGPutInside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO257_PickPartInside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO261_ScanPartInside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO265_GluePutInside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO269_GluePickInside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO273_PressPutPart1Inside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO300_HomeInside) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.User.Cycle.DO305_GripScanInside);
+  // Network 20
+  KukaRobot1_CtrlDB.sPLCtoROB.User.Home.DI170 := (AlwaysTRUE AND KukaRobot2_CtrlDB.sROBtoPLC.User.Home.DO182_Robot1Area);
+  KukaRobot3_CtrlDB.sPLCtoROB.User.Home.DI170 := (AlwaysTRUE AND KukaRobot2_CtrlDB.sROBtoPLC.User.Home.DO181_Robot3Area);
+  // Network 21
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Eq(1)
+  // SCoil UId=39: nelze určit podmínku (vstupní síť).
+  // SCoil UId=43: nelze určit podmínku (vstupní síť).
+  // Network 22
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(2), TON(2)
+  // Network 23
+  Robot_DB.Robot_3.GripCompareCodeOK := ((((AlwaysTRUE AND Robot_DB.Robot_3.GripCompareCodeOK_1) AND Robot_DB.Robot_3.GripCompareCodeOK_2) AND Robot_DB.Robot_3.GripCompareCodeOK_3) AND Robot_DB.Robot_3.GripCompareCodeOK_4);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(4), Ne(4)
+  // Coil UId=50: nelze určit podmínku (vstupní síť).
+  // Coil UId=53: nelze určit podmínku (vstupní síť).
+  // Coil UId=56: nelze určit podmínku (vstupní síť).
+  // Coil UId=59: nelze určit podmínku (vstupní síť).
+  // Network 24
+  KukaRobot3_CtrlDB.sPLCtoROB.User.Gripper.DI133_PartOnGrip1 := (AlwaysTRUE AND iF-ROOBT3Gripper1Detection);
+  KukaRobot3_CtrlDB.sPLCtoROB.User.Gripper.DI134_PartOnGrip2 := (AlwaysTRUE AND iF-ROOBT3Gripper2Detection-);
+  // Network 25
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ge(1), Move(1)
+  // Coil UId=30: nelze určit podmínku (vstupní síť).
+  // Network 26
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(7), PBox(2), TON(2), O(1), Not(1), Eq(1), Ge(1)
+  // SCoil UId=84: nelze určit podmínku (vstupní síť).
+  // RCoil UId=93: nelze určit podmínku (vstupní síť).
+  // Network 27
+  ChangeOver_DB.Robot_3.NoTaskRunning := ((((((((((((NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO225_ScanPosInside AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO241_PickPalletInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO249_PickMagnetInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO253_PickGlueNGInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO257_PickTableInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO261_ScanRingtInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO265_LoadNGInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO273_PressPutPart1Inside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO277_PressPutRingInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO281_PressPickInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO289_PutOkPartInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO300_HomeInside) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.User.Cycle.DO305_GripScanInside);
+  // Network 28
+  KukaRobot2_CtrlDB.sPLCtoROB.User.Home.DI171 := (AlwaysTRUE AND KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO178_Robot2Area);
+  // Network 29
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Eq(1)
+  // SCoil UId=39: nelze určit podmínku (vstupní síť).
+  // SCoil UId=43: nelze určit podmínku (vstupní síť).
+  // Network 30
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(2), TON(2)
 END_FUNCTION

@@ -45,5 +45,48 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/03_Device/201 Stopper/FB_Stopper.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  #Stopper.Sensor := #iSensor;
+  #oValve := #Stopper.Valve;
+  #Stopper.NextSensor := #iNextSensor;
+  #Stopper.NextValve := #iNextValve;
+  // --- Poznámky / omezení převodu ---
+  // Coil UId=34: nelze určit podmínku (vstupní síť).
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(2)
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // Coil UId=33: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // Coil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=44: nelze určit podmínku (vstupní síť).
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=42: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Coil UId=30: nelze určit podmínku (vstupní síť).
+  // Coil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(2), O(2)
+  // Coil UId=42: nelze určit podmínku (vstupní síť).
+  // Coil UId=43: nelze určit podmínku (vstupní síť).
+  // Coil UId=51: nelze určit podmínku (vstupní síť).
+  // Coil UId=52: nelze určit podmínku (vstupní síť).
+  // Network 9
+  #oNotClear := (((#iSysInface.ManualMode AND #io_Dev.ReleasePB) AND NOT #Stopper.ReleaseClear) AND NOT #Stopper.Valve);
+  IF #iSysInface.ManualMode THEN #io_Dev.AutoTrg := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Coil UId=34: nelze určit podmínku (vstupní síť).
 END_FUNCTION_BLOCK

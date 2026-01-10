@@ -30,4 +30,15 @@ BEGIN
                         := .[#FixtureIndex]);
       
   END_FOR;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  Station_Sys.Cmd.OnOffLine := ST10_GeneralData.FunctionDeSelect.MES.FunctionDeSelected;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1), BLKMOV(1)
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(2)
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
 END_FUNCTION

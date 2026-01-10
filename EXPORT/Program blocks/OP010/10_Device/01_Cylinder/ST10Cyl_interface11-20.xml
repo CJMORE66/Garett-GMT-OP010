@@ -1,0 +1,4060 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="AlwaysON" Datatype="Bool" Accessibility="Public" />
+    <Member Name="E_stop" Datatype="Bool" Accessibility="Public" />
+  </Section>
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Temp">
+    <Member Name="tTest" Datatype="Bool" />
+  </Section>
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>ST10Cyl_interface11-20</Name>
+      <Namespace />
+      <Number>1021</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <NewLine Num="1" UId="21" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="22">
+    <Text UId="23">Cylinder11 IO   E-NG-01NGLocationCylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="24" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="25">
+    <Text UId="26">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="27" />
+  <Access Scope="GlobalVariable" UId="28">
+    <Symbol UId="29">
+      <Component Name="ST10Cylinder" UId="30">
+        <BooleanAttribute Name="HasQuotes" UId="31">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="32" />
+      <Component Name="Cy" UId="33">
+        <Token Text="[" UId="34" />
+        <Access Scope="LiteralConstant" UId="35">
+          <Constant UId="36">
+            <ConstantValue UId="38">11</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="39" />
+      </Component>
+      <Token Text="." UId="40" />
+      <Component Name="In" UId="41" />
+      <Token Text="." UId="42" />
+      <Component Name="WorkPositionSensor" UId="43" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="44" />
+  <Token Text=":=" UId="45" />
+  <Blank Num="1" UId="46" />
+  <Access Scope="GlobalVariable" UId="47">
+    <Symbol UId="48">
+      <Component Name="iE-NG-01NGLocationCylinderInWP" UId="49" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="50" />
+  <NewLine Num="1" UId="51" />
+  <Access Scope="GlobalVariable" UId="52">
+    <Symbol UId="53">
+      <Component Name="ST10Cylinder" UId="54">
+        <BooleanAttribute Name="HasQuotes" UId="55">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="56" />
+      <Component Name="Cy" UId="57">
+        <Token Text="[" UId="58" />
+        <Access Scope="LiteralConstant" UId="59">
+          <Constant UId="60">
+            <ConstantValue UId="62">11</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="63" />
+      </Component>
+      <Token Text="." UId="64" />
+      <Component Name="In" UId="65" />
+      <Token Text="." UId="66" />
+      <Component Name="HomePositionSensor" UId="67" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="68" />
+  <Token Text=":=" UId="69" />
+  <Blank Num="1" UId="70" />
+  <Access Scope="GlobalVariable" UId="71">
+    <Symbol UId="72">
+      <Component Name="iE-NG-01NGLocationCylinderInHP" UId="73" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="74" />
+  <NewLine Num="1" UId="75" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="76">
+    <Text UId="77">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="78" />
+  <Access Scope="GlobalVariable" UId="79">
+    <Symbol UId="80">
+      <Component Name="oE-NG-01NGLocationCylinderToWP" UId="81" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="82" />
+  <Token Text=":=" UId="83" />
+  <Blank Num="1" UId="84" />
+  <Access Scope="GlobalVariable" UId="85">
+    <Symbol UId="86">
+      <Component Name="ST10Cylinder" UId="87">
+        <BooleanAttribute Name="HasQuotes" UId="88">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="89" />
+      <Component Name="Cy" UId="90">
+        <Token Text="[" UId="91" />
+        <Access Scope="LiteralConstant" UId="92">
+          <Constant UId="93">
+            <ConstantValue UId="95">11</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="96" />
+      </Component>
+      <Token Text="." UId="97" />
+      <Component Name="Out" UId="98" />
+      <Token Text="." UId="99" />
+      <Component Name="GoWorkPosition" UId="100" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="101" />
+  <NewLine Num="1" UId="102" />
+  <Access Scope="GlobalVariable" UId="103">
+    <Symbol UId="104">
+      <Component Name="oE-NG-01NGLocationCylinderToHP" UId="105" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="106" />
+  <Token Text=":=" UId="107" />
+  <Blank Num="1" UId="108" />
+  <Access Scope="GlobalVariable" UId="109">
+    <Symbol UId="110">
+      <Component Name="ST10Cylinder" UId="111">
+        <BooleanAttribute Name="HasQuotes" UId="112">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="113" />
+      <Component Name="Cy" UId="114">
+        <Token Text="[" UId="115" />
+        <Access Scope="LiteralConstant" UId="116">
+          <Constant UId="117">
+            <ConstantValue UId="119">11</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="120" />
+      </Component>
+      <Token Text="." UId="121" />
+      <Component Name="Out" UId="122" />
+      <Token Text="." UId="123" />
+      <Component Name="GoHomePosition" UId="124" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="125" />
+  <NewLine Num="2" UId="126" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="127">
+    <Text UId="128">Cylinder12 IO  E-NG-02NGLocationCylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="129" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="130">
+    <Text UId="131">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="132" />
+  <Access Scope="GlobalVariable" UId="133">
+    <Symbol UId="134">
+      <Component Name="ST10Cylinder" UId="135">
+        <BooleanAttribute Name="HasQuotes" UId="136">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="137" />
+      <Component Name="Cy" UId="138">
+        <Token Text="[" UId="139" />
+        <Access Scope="LiteralConstant" UId="140">
+          <Constant UId="141">
+            <ConstantValue UId="143">12</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="144" />
+      </Component>
+      <Token Text="." UId="145" />
+      <Component Name="In" UId="146" />
+      <Token Text="." UId="147" />
+      <Component Name="WorkPositionSensor" UId="148" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="149" />
+  <Token Text=":=" UId="150" />
+  <Blank Num="1" UId="151" />
+  <Access Scope="GlobalVariable" UId="152">
+    <Symbol UId="153">
+      <Component Name="iE-NG-02NGLocationCylinderInWP" UId="154" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="155" />
+  <NewLine Num="1" UId="156" />
+  <Access Scope="GlobalVariable" UId="157">
+    <Symbol UId="158">
+      <Component Name="ST10Cylinder" UId="159">
+        <BooleanAttribute Name="HasQuotes" UId="160">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="161" />
+      <Component Name="Cy" UId="162">
+        <Token Text="[" UId="163" />
+        <Access Scope="LiteralConstant" UId="164">
+          <Constant UId="165">
+            <ConstantValue UId="167">12</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="168" />
+      </Component>
+      <Token Text="." UId="169" />
+      <Component Name="In" UId="170" />
+      <Token Text="." UId="171" />
+      <Component Name="HomePositionSensor" UId="172" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="173" />
+  <Token Text=":=" UId="174" />
+  <Blank Num="1" UId="175" />
+  <Access Scope="GlobalVariable" UId="176">
+    <Symbol UId="177">
+      <Component Name="iE-NG-02NGLocationCylinderInHP" UId="178" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="179" />
+  <NewLine Num="1" UId="180" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="181">
+    <Text UId="182">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="183" />
+  <Access Scope="GlobalVariable" UId="184">
+    <Symbol UId="185">
+      <Component Name="oE-NG-02NGLocationCylinderToWP" UId="186" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="187" />
+  <Token Text=":=" UId="188" />
+  <Blank Num="1" UId="189" />
+  <Access Scope="GlobalVariable" UId="190">
+    <Symbol UId="191">
+      <Component Name="ST10Cylinder" UId="192">
+        <BooleanAttribute Name="HasQuotes" UId="193">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="194" />
+      <Component Name="Cy" UId="195">
+        <Token Text="[" UId="196" />
+        <Access Scope="LiteralConstant" UId="197">
+          <Constant UId="198">
+            <ConstantValue UId="200">12</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="201" />
+      </Component>
+      <Token Text="." UId="202" />
+      <Component Name="Out" UId="203" />
+      <Token Text="." UId="204" />
+      <Component Name="GoWorkPosition" UId="205" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="206" />
+  <NewLine Num="1" UId="207" />
+  <Access Scope="GlobalVariable" UId="208">
+    <Symbol UId="209">
+      <Component Name="oE-NG-02NGLocationCylinderToHP" UId="210" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="211" />
+  <Token Text=":=" UId="212" />
+  <Blank Num="1" UId="213" />
+  <Access Scope="GlobalVariable" UId="214">
+    <Symbol UId="215">
+      <Component Name="ST10Cylinder" UId="216">
+        <BooleanAttribute Name="HasQuotes" UId="217">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="218" />
+      <Component Name="Cy" UId="219">
+        <Token Text="[" UId="220" />
+        <Access Scope="LiteralConstant" UId="221">
+          <Constant UId="222">
+            <ConstantValue UId="224">12</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="225" />
+      </Component>
+      <Token Text="." UId="226" />
+      <Component Name="Out" UId="227" />
+      <Token Text="." UId="228" />
+      <Component Name="GoHomePosition" UId="229" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="230" />
+  <NewLine Num="2" UId="231" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="232">
+    <Text UId="233">Cylinder13 IO  F-ROOBT1Gripper1Cylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="234" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="235">
+    <Text UId="236">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="237" />
+  <Access Scope="GlobalVariable" UId="238">
+    <Symbol UId="239">
+      <Component Name="KukaRobot1_CtrlDB" UId="240">
+        <BooleanAttribute Name="HasQuotes" UId="241">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="242" />
+      <Component Name="sPLCtoROB" UId="243" />
+      <Token Text="." UId="244" />
+      <Component Name="User" UId="245" />
+      <Token Text="." UId="246" />
+      <Component Name="Gripper" UId="247" />
+      <Token Text="." UId="248" />
+      <Component Name="DI129_Grip1WP" UId="249" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="250" />
+  <Access Scope="GlobalVariable" UId="251">
+    <Symbol UId="252">
+      <Component Name="ST10Cylinder" UId="253">
+        <BooleanAttribute Name="HasQuotes" UId="254">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="255" />
+      <Component Name="Cy" UId="256">
+        <Token Text="[" UId="257" />
+        <Access Scope="LiteralConstant" UId="258">
+          <Constant UId="259">
+            <ConstantValue UId="261">13</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="262" />
+      </Component>
+      <Token Text="." UId="263" />
+      <Component Name="In" UId="264" />
+      <Token Text="." UId="265" />
+      <Component Name="WorkPositionSensor" UId="266" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="267" />
+  <Token Text=":=" UId="268" />
+  <Blank Num="1" UId="269" />
+  <Access Scope="GlobalVariable" UId="270">
+    <Symbol UId="271">
+      <Component Name="iF-ROOBT1Gripper1CylinderInWP" UId="272" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="273" />
+  <Token Text=";" UId="274" />
+  <NewLine Num="1" UId="275" />
+  <Access Scope="GlobalVariable" UId="276">
+    <Symbol UId="277">
+      <Component Name="KukaRobot1_CtrlDB" UId="278">
+        <BooleanAttribute Name="HasQuotes" UId="279">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="280" />
+      <Component Name="sPLCtoROB" UId="281" />
+      <Token Text="." UId="282" />
+      <Component Name="User" UId="283" />
+      <Token Text="." UId="284" />
+      <Component Name="Gripper" UId="285" />
+      <Token Text="." UId="286" />
+      <Component Name="DI130_Grip1HP" UId="287" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="288" />
+  <Token Text=":=" UId="289" />
+  <Blank Num="1" UId="290" />
+  <Access Scope="GlobalVariable" UId="291">
+    <Symbol UId="292">
+      <Component Name="ST10Cylinder" UId="293">
+        <BooleanAttribute Name="HasQuotes" UId="294">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="295" />
+      <Component Name="Cy" UId="296">
+        <Token Text="[" UId="297" />
+        <Access Scope="LiteralConstant" UId="298">
+          <Constant UId="299">
+            <ConstantValue UId="301">13</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="302" />
+      </Component>
+      <Token Text="." UId="303" />
+      <Component Name="In" UId="304" />
+      <Token Text="." UId="305" />
+      <Component Name="HomePositionSensor" UId="306" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="307" />
+  <Token Text=":=" UId="308" />
+  <Blank Num="1" UId="309" />
+  <Access Scope="GlobalVariable" UId="310">
+    <Symbol UId="311">
+      <Component Name="iF-ROOBT1Gripper1CylinderInHP" UId="312" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="313" />
+  <Token Text=";" UId="314" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="315">
+    <Text UId="316">"TON".TON[0].Q;</Text>
+  </LineComment>
+  <NewLine Num="2" UId="317" />
+  <Token Text="IF" UId="318" />
+  <Blank Num="2" UId="319" />
+  <Token Text="NOT" UId="320" />
+  <Blank Num="1" UId="321" />
+  <Access Scope="GlobalVariable" UId="322">
+    <Symbol UId="323">
+      <Component Name="Robot_DB" UId="324">
+        <BooleanAttribute Name="HasQuotes" UId="325">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="326" />
+      <Component Name="Control" UId="327" />
+      <Token Text="." UId="328" />
+      <Component Name="Robot1GripControl" UId="329" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="330" />
+  <Token Text="THEN" UId="331" />
+  <NewLine Num="1" UId="332" />
+  <Blank Num="4" UId="333" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="334">
+    <Text UId="335">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="336" />
+  <Blank Num="4" UId="337" />
+  <Access Scope="GlobalVariable" UId="338">
+    <Symbol UId="339">
+      <Component Name="oF-ROOBT1Gripper1CylinderToWP" UId="340" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="341" />
+  <Token Text=":=" UId="342" />
+  <Blank Num="1" UId="343" />
+  <Access Scope="GlobalVariable" UId="344">
+    <Symbol UId="345">
+      <Component Name="KukaRobot1_CtrlDB" UId="346">
+        <BooleanAttribute Name="HasQuotes" UId="347">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="348" />
+      <Component Name="sROBtoPLC" UId="349" />
+      <Token Text="." UId="350" />
+      <Component Name="User" UId="351" />
+      <Token Text="." UId="352" />
+      <Component Name="Gripper" UId="353" />
+      <Token Text="." UId="354" />
+      <Component Name="DO129_Grip1GoWork" UId="355" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="356" />
+  <NewLine Num="1" UId="357" />
+  <Blank Num="4" UId="358" />
+  <Access Scope="GlobalVariable" UId="359">
+    <Symbol UId="360">
+      <Component Name="oF-ROOBT1Gripper1CylinderToHP" UId="361" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="362" />
+  <Token Text=":=" UId="363" />
+  <Blank Num="1" UId="364" />
+  <Access Scope="GlobalVariable" UId="365">
+    <Symbol UId="366">
+      <Component Name="KukaRobot1_CtrlDB" UId="367">
+        <BooleanAttribute Name="HasQuotes" UId="368">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="369" />
+      <Component Name="sROBtoPLC" UId="370" />
+      <Token Text="." UId="371" />
+      <Component Name="User" UId="372" />
+      <Token Text="." UId="373" />
+      <Component Name="Gripper" UId="374" />
+      <Token Text="." UId="375" />
+      <Component Name="DO130_Grip1GoHome" UId="376" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="377" />
+  <NewLine Num="1" UId="378" />
+  <Token Text="ELSE" UId="379" />
+  <NewLine Num="1" UId="380" />
+  <Blank Num="4" UId="381" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="382">
+    <Text UId="383">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="384" />
+  <Blank Num="4" UId="385" />
+  <Access Scope="GlobalVariable" UId="386">
+    <Symbol UId="387">
+      <Component Name="oF-ROOBT1Gripper1CylinderToWP" UId="388" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="389" />
+  <Token Text=":=" UId="390" />
+  <Blank Num="1" UId="391" />
+  <Access Scope="GlobalVariable" UId="392">
+    <Symbol UId="393">
+      <Component Name="ST10Cylinder" UId="394">
+        <BooleanAttribute Name="HasQuotes" UId="395">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="396" />
+      <Component Name="Cy" UId="397">
+        <Token Text="[" UId="398" />
+        <Access Scope="LiteralConstant" UId="399">
+          <Constant UId="400">
+            <ConstantValue UId="402">13</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="403" />
+      </Component>
+      <Token Text="." UId="404" />
+      <Component Name="Out" UId="405" />
+      <Token Text="." UId="406" />
+      <Component Name="GoWorkPosition" UId="407" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="408" />
+  <NewLine Num="1" UId="409" />
+  <Blank Num="4" UId="410" />
+  <Access Scope="GlobalVariable" UId="411">
+    <Symbol UId="412">
+      <Component Name="oF-ROOBT1Gripper1CylinderToHP" UId="413" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="414" />
+  <Token Text=":=" UId="415" />
+  <Blank Num="1" UId="416" />
+  <Access Scope="GlobalVariable" UId="417">
+    <Symbol UId="418">
+      <Component Name="ST10Cylinder" UId="419">
+        <BooleanAttribute Name="HasQuotes" UId="420">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="421" />
+      <Component Name="Cy" UId="422">
+        <Token Text="[" UId="423" />
+        <Access Scope="LiteralConstant" UId="424">
+          <Constant UId="425">
+            <ConstantValue UId="427">13</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="428" />
+      </Component>
+      <Token Text="." UId="429" />
+      <Component Name="Out" UId="430" />
+      <Token Text="." UId="431" />
+      <Component Name="GoHomePosition" UId="432" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="433" />
+  <NewLine Num="1" UId="434" />
+  <Token Text="END_IF" UId="435" />
+  <Token Text=";" UId="436" />
+  <NewLine Num="1" UId="437" />
+  <Access Scope="GlobalVariable" UId="438">
+    <Symbol UId="439">
+      <Component Name="TON" UId="440">
+        <BooleanAttribute Name="HasQuotes" UId="441">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="442" />
+      <Component Name="TON" UId="443">
+        <Token Text="[" UId="444" />
+        <Access Scope="LiteralConstant" UId="445">
+          <Constant UId="446">
+            <ConstantValue UId="448">0</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="449" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Access Scope="Call" UId="450">
+    <Instruction UId="451">
+      <Token Text="(" UId="452" />
+      <Parameter Name="IN" UId="453">
+        <Token Text=":=" UId="454" />
+        <Access Scope="GlobalVariable" UId="455">
+          <Symbol UId="456">
+            <Component Name="oF-ROOBT1Gripper1CylinderToHP" UId="457" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="458" />
+        <Token Text="AND" UId="459" />
+        <Blank Num="1" UId="460" />
+        <Token Text="NOT" UId="461" />
+        <Access Scope="GlobalVariable" UId="462">
+          <Symbol UId="463">
+            <Component Name="iF-ROOBT1Gripper1CylinderInWP" UId="464" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="465" />
+      <Parameter Name="PT" UId="466">
+        <Token Text=":=" UId="467" />
+        <Access Scope="TypedConstant" UId="468">
+          <Constant UId="469">
+            <ConstantValue UId="470">T#500MS</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="471" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="472" />
+  <NewLine Num="3" UId="473" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="474">
+    <Text UId="475">Cylinder14 IO  F-ROOBT1Gripper2Cylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="476" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="477">
+    <Text UId="478">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="479" />
+  <Access Scope="GlobalVariable" UId="480">
+    <Symbol UId="481">
+      <Component Name="KukaRobot1_CtrlDB" UId="482">
+        <BooleanAttribute Name="HasQuotes" UId="483">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="484" />
+      <Component Name="sPLCtoROB" UId="485" />
+      <Token Text="." UId="486" />
+      <Component Name="User" UId="487" />
+      <Token Text="." UId="488" />
+      <Component Name="Gripper" UId="489" />
+      <Token Text="." UId="490" />
+      <Component Name="DI131_Grip2WP" UId="491" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="492" />
+  <Access Scope="GlobalVariable" UId="493">
+    <Symbol UId="494">
+      <Component Name="ST10Cylinder" UId="495">
+        <BooleanAttribute Name="HasQuotes" UId="496">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="497" />
+      <Component Name="Cy" UId="498">
+        <Token Text="[" UId="499" />
+        <Access Scope="LiteralConstant" UId="500">
+          <Constant UId="501">
+            <ConstantValue UId="503">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="504" />
+      </Component>
+      <Token Text="." UId="505" />
+      <Component Name="In" UId="506" />
+      <Token Text="." UId="507" />
+      <Component Name="WorkPositionSensor" UId="508" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="509" />
+  <Token Text=":=" UId="510" />
+  <Blank Num="1" UId="511" />
+  <Access Scope="GlobalVariable" UId="512">
+    <Symbol UId="513">
+      <Component Name="iF-ROOBT1Gripper2CylinderInWP" UId="514" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="515" />
+  <NewLine Num="1" UId="516" />
+  <Access Scope="GlobalVariable" UId="517">
+    <Symbol UId="518">
+      <Component Name="KukaRobot1_CtrlDB" UId="519">
+        <BooleanAttribute Name="HasQuotes" UId="520">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="521" />
+      <Component Name="sPLCtoROB" UId="522" />
+      <Token Text="." UId="523" />
+      <Component Name="User" UId="524" />
+      <Token Text="." UId="525" />
+      <Component Name="Gripper" UId="526" />
+      <Token Text="." UId="527" />
+      <Component Name="DI132_Grip2HP" UId="528" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="529" />
+  <Access Scope="GlobalVariable" UId="530">
+    <Symbol UId="531">
+      <Component Name="ST10Cylinder" UId="532">
+        <BooleanAttribute Name="HasQuotes" UId="533">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="534" />
+      <Component Name="Cy" UId="535">
+        <Token Text="[" UId="536" />
+        <Access Scope="LiteralConstant" UId="537">
+          <Constant UId="538">
+            <ConstantValue UId="540">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="541" />
+      </Component>
+      <Token Text="." UId="542" />
+      <Component Name="In" UId="543" />
+      <Token Text="." UId="544" />
+      <Component Name="HomePositionSensor" UId="545" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="546" />
+  <Token Text=":=" UId="547" />
+  <Blank Num="1" UId="548" />
+  <Access Scope="GlobalVariable" UId="549">
+    <Symbol UId="550">
+      <Component Name="iF-ROOBT1Gripper2CylinderInHP" UId="551" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="552" />
+  <NewLine Num="2" UId="553" />
+  <Token Text="IF" UId="554" />
+  <Blank Num="1" UId="555" />
+  <Token Text="NOT" UId="556" />
+  <Blank Num="1" UId="557" />
+  <Access Scope="GlobalVariable" UId="558">
+    <Symbol UId="559">
+      <Component Name="Robot_DB" UId="560">
+        <BooleanAttribute Name="HasQuotes" UId="561">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="562" />
+      <Component Name="Control" UId="563" />
+      <Token Text="." UId="564" />
+      <Component Name="Robot1GripControl" UId="565" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="566" />
+  <Token Text="THEN" UId="567" />
+  <NewLine Num="1" UId="568" />
+  <Blank Num="4" UId="569" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="570">
+    <Text UId="571">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="572" />
+  <Blank Num="4" UId="573" />
+  <Access Scope="GlobalVariable" UId="574">
+    <Symbol UId="575">
+      <Component Name="oF-ROOBT1Gripper2CylinderToWP" UId="576" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="577" />
+  <Token Text=":=" UId="578" />
+  <Access Scope="GlobalVariable" UId="579">
+    <Symbol UId="580">
+      <Component Name="ST10Cylinder" UId="581">
+        <BooleanAttribute Name="HasQuotes" UId="582">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="583" />
+      <Component Name="Cy" UId="584">
+        <Token Text="[" UId="585" />
+        <Access Scope="LiteralConstant" UId="586">
+          <Constant UId="587">
+            <ConstantValue UId="589">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="590" />
+      </Component>
+      <Token Text="." UId="591" />
+      <Component Name="Inout" UId="592" />
+      <Token Text="." UId="593" />
+      <Component Name="AutoGoWork" UId="594" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="595" />
+  <Access Scope="GlobalVariable" UId="596">
+    <Symbol UId="597">
+      <Component Name="KukaRobot1_CtrlDB" UId="598">
+        <BooleanAttribute Name="HasQuotes" UId="599">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="600" />
+      <Component Name="sROBtoPLC" UId="601" />
+      <Token Text="." UId="602" />
+      <Component Name="User" UId="603" />
+      <Token Text="." UId="604" />
+      <Component Name="Gripper" UId="605" />
+      <Token Text="." UId="606" />
+      <Component Name="DO131_Grip2GoWork" UId="607" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="608" />
+  <NewLine Num="1" UId="609" />
+  <Blank Num="4" UId="610" />
+  <Access Scope="GlobalVariable" UId="611">
+    <Symbol UId="612">
+      <Component Name="oF-ROOBT1Gripper2CylinderToHP" UId="613" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="614" />
+  <Token Text=":=" UId="615" />
+  <Access Scope="GlobalVariable" UId="616">
+    <Symbol UId="617">
+      <Component Name="ST10Cylinder" UId="618">
+        <BooleanAttribute Name="HasQuotes" UId="619">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="620" />
+      <Component Name="Cy" UId="621">
+        <Token Text="[" UId="622" />
+        <Access Scope="LiteralConstant" UId="623">
+          <Constant UId="624">
+            <ConstantValue UId="626">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="627" />
+      </Component>
+      <Token Text="." UId="628" />
+      <Component Name="Inout" UId="629" />
+      <Token Text="." UId="630" />
+      <Component Name="AutoGoHome" UId="631" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="632" />
+  <Access Scope="GlobalVariable" UId="633">
+    <Symbol UId="634">
+      <Component Name="KukaRobot1_CtrlDB" UId="635">
+        <BooleanAttribute Name="HasQuotes" UId="636">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="637" />
+      <Component Name="sROBtoPLC" UId="638" />
+      <Token Text="." UId="639" />
+      <Component Name="User" UId="640" />
+      <Token Text="." UId="641" />
+      <Component Name="Gripper" UId="642" />
+      <Token Text="." UId="643" />
+      <Component Name="DO132_Grip2GoHome" UId="644" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="645" />
+  <NewLine Num="1" UId="646" />
+  <Token Text="ELSE" UId="647" />
+  <NewLine Num="1" UId="648" />
+  <Blank Num="4" UId="649" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="650">
+    <Text UId="651">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="652" />
+  <Blank Num="4" UId="653" />
+  <Access Scope="GlobalVariable" UId="654">
+    <Symbol UId="655">
+      <Component Name="oF-ROOBT1Gripper2CylinderToWP" UId="656" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="657" />
+  <Token Text=":=" UId="658" />
+  <Blank Num="1" UId="659" />
+  <Access Scope="GlobalVariable" UId="660">
+    <Symbol UId="661">
+      <Component Name="ST10Cylinder" UId="662">
+        <BooleanAttribute Name="HasQuotes" UId="663">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="664" />
+      <Component Name="Cy" UId="665">
+        <Token Text="[" UId="666" />
+        <Access Scope="LiteralConstant" UId="667">
+          <Constant UId="668">
+            <ConstantValue UId="670">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="671" />
+      </Component>
+      <Token Text="." UId="672" />
+      <Component Name="Out" UId="673" />
+      <Token Text="." UId="674" />
+      <Component Name="GoWorkPosition" UId="675" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="676" />
+  <NewLine Num="1" UId="677" />
+  <Blank Num="4" UId="678" />
+  <Access Scope="GlobalVariable" UId="679">
+    <Symbol UId="680">
+      <Component Name="oF-ROOBT1Gripper2CylinderToHP" UId="681" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="682" />
+  <Token Text=":=" UId="683" />
+  <Blank Num="1" UId="684" />
+  <Access Scope="GlobalVariable" UId="685">
+    <Symbol UId="686">
+      <Component Name="ST10Cylinder" UId="687">
+        <BooleanAttribute Name="HasQuotes" UId="688">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="689" />
+      <Component Name="Cy" UId="690">
+        <Token Text="[" UId="691" />
+        <Access Scope="LiteralConstant" UId="692">
+          <Constant UId="693">
+            <ConstantValue UId="695">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="696" />
+      </Component>
+      <Token Text="." UId="697" />
+      <Component Name="Out" UId="698" />
+      <Token Text="." UId="699" />
+      <Component Name="GoHomePosition" UId="700" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="701" />
+  <NewLine Num="1" UId="702" />
+  <Token Text="END_IF" UId="703" />
+  <Token Text=";" UId="704" />
+  <NewLine Num="1" UId="705" />
+  <Blank Num="4" UId="706" />
+  <NewLine Num="1" UId="707" />
+  <Blank Num="4" UId="708" />
+  <NewLine Num="1" UId="709" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="710">
+    <Text UId="711">Cylinder15 IO  F-ROOBT2Gripper1Cylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="712" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="713">
+    <Text UId="714">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="715" />
+  <Access Scope="GlobalVariable" UId="716">
+    <Symbol UId="717">
+      <Component Name="KukaRobot2_CtrlDB" UId="718">
+        <BooleanAttribute Name="HasQuotes" UId="719">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="720" />
+      <Component Name="sPLCtoROB" UId="721" />
+      <Token Text="." UId="722" />
+      <Component Name="User" UId="723" />
+      <Token Text="." UId="724" />
+      <Component Name="Gripper" UId="725" />
+      <Token Text="." UId="726" />
+      <Component Name="DI129_Grip1WP" UId="727" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="728" />
+  <Access Scope="GlobalVariable" UId="729">
+    <Symbol UId="730">
+      <Component Name="ST10Cylinder" UId="731">
+        <BooleanAttribute Name="HasQuotes" UId="732">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="733" />
+      <Component Name="Cy" UId="734">
+        <Token Text="[" UId="735" />
+        <Access Scope="LiteralConstant" UId="736">
+          <Constant UId="737">
+            <ConstantValue UId="739">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="740" />
+      </Component>
+      <Token Text="." UId="741" />
+      <Component Name="In" UId="742" />
+      <Token Text="." UId="743" />
+      <Component Name="WorkPositionSensor" UId="744" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="745" />
+  <Token Text=":=" UId="746" />
+  <Blank Num="1" UId="747" />
+  <Access Scope="GlobalVariable" UId="748">
+    <Symbol UId="749">
+      <Component Name="iF-ROOBT2Gripper1CylinderInWP" UId="750" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="751" />
+  <NewLine Num="1" UId="752" />
+  <Access Scope="GlobalVariable" UId="753">
+    <Symbol UId="754">
+      <Component Name="KukaRobot2_CtrlDB" UId="755">
+        <BooleanAttribute Name="HasQuotes" UId="756">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="757" />
+      <Component Name="sPLCtoROB" UId="758" />
+      <Token Text="." UId="759" />
+      <Component Name="User" UId="760" />
+      <Token Text="." UId="761" />
+      <Component Name="Gripper" UId="762" />
+      <Token Text="." UId="763" />
+      <Component Name="DI130_Grip1HP" UId="764" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="765" />
+  <Token Text=":=" UId="766" />
+  <Blank Num="1" UId="767" />
+  <Access Scope="GlobalVariable" UId="768">
+    <Symbol UId="769">
+      <Component Name="ST10Cylinder" UId="770">
+        <BooleanAttribute Name="HasQuotes" UId="771">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="772" />
+      <Component Name="Cy" UId="773">
+        <Token Text="[" UId="774" />
+        <Access Scope="LiteralConstant" UId="775">
+          <Constant UId="776">
+            <ConstantValue UId="778">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="779" />
+      </Component>
+      <Token Text="." UId="780" />
+      <Component Name="In" UId="781" />
+      <Token Text="." UId="782" />
+      <Component Name="HomePositionSensor" UId="783" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="784" />
+  <Token Text=":=" UId="785" />
+  <Access Scope="GlobalVariable" UId="786">
+    <Symbol UId="787">
+      <Component Name="iF-ROOBT2Gripper1CylinderInHP" UId="788" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="789" />
+  <NewLine Num="2" UId="790" />
+  <Token Text="IF" UId="791" />
+  <Blank Num="1" UId="792" />
+  <Token Text="NOT" UId="793" />
+  <Blank Num="1" UId="794" />
+  <Access Scope="GlobalVariable" UId="795">
+    <Symbol UId="796">
+      <Component Name="Robot_DB" UId="797">
+        <BooleanAttribute Name="HasQuotes" UId="798">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="799" />
+      <Component Name="Control" UId="800" />
+      <Token Text="." UId="801" />
+      <Component Name="Robot2GripControl" UId="802" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="803" />
+  <Token Text="THEN" UId="804" />
+  <NewLine Num="1" UId="805" />
+  <Blank Num="4" UId="806" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="807">
+    <Text UId="808">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="809" />
+  <Blank Num="4" UId="810" />
+  <Access Scope="GlobalVariable" UId="811">
+    <Symbol UId="812">
+      <Component Name="oF-ROOBT2Gripper1CylinderToWP" UId="813" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="814" />
+  <Token Text=":=" UId="815" />
+  <Access Scope="GlobalVariable" UId="816">
+    <Symbol UId="817">
+      <Component Name="ST10Cylinder" UId="818">
+        <BooleanAttribute Name="HasQuotes" UId="819">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="820" />
+      <Component Name="Cy" UId="821">
+        <Token Text="[" UId="822" />
+        <Access Scope="LiteralConstant" UId="823">
+          <Constant UId="824">
+            <ConstantValue UId="826">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="827" />
+      </Component>
+      <Token Text="." UId="828" />
+      <Component Name="Inout" UId="829" />
+      <Token Text="." UId="830" />
+      <Component Name="AutoGoWork" UId="831" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="832" />
+  <Access Scope="GlobalVariable" UId="833">
+    <Symbol UId="834">
+      <Component Name="KukaRobot2_CtrlDB" UId="835">
+        <BooleanAttribute Name="HasQuotes" UId="836">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="837" />
+      <Component Name="sROBtoPLC" UId="838" />
+      <Token Text="." UId="839" />
+      <Component Name="User" UId="840" />
+      <Token Text="." UId="841" />
+      <Component Name="Gripper" UId="842" />
+      <Token Text="." UId="843" />
+      <Component Name="DO129_Grip1GoWork" UId="844" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="845" />
+  <NewLine Num="1" UId="846" />
+  <Blank Num="4" UId="847" />
+  <Access Scope="GlobalVariable" UId="848">
+    <Symbol UId="849">
+      <Component Name="oF-ROOBT2Gripper1CylinderToHP" UId="850" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="851" />
+  <Token Text=":=" UId="852" />
+  <Access Scope="GlobalVariable" UId="853">
+    <Symbol UId="854">
+      <Component Name="ST10Cylinder" UId="855">
+        <BooleanAttribute Name="HasQuotes" UId="856">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="857" />
+      <Component Name="Cy" UId="858">
+        <Token Text="[" UId="859" />
+        <Access Scope="LiteralConstant" UId="860">
+          <Constant UId="861">
+            <ConstantValue UId="863">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="864" />
+      </Component>
+      <Token Text="." UId="865" />
+      <Component Name="Inout" UId="866" />
+      <Token Text="." UId="867" />
+      <Component Name="AutoGoHome" UId="868" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="869" />
+  <Access Scope="GlobalVariable" UId="870">
+    <Symbol UId="871">
+      <Component Name="KukaRobot2_CtrlDB" UId="872">
+        <BooleanAttribute Name="HasQuotes" UId="873">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="874" />
+      <Component Name="sROBtoPLC" UId="875" />
+      <Token Text="." UId="876" />
+      <Component Name="User" UId="877" />
+      <Token Text="." UId="878" />
+      <Component Name="Gripper" UId="879" />
+      <Token Text="." UId="880" />
+      <Component Name="DO130_Grip1GoHome" UId="881" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="882" />
+  <NewLine Num="1" UId="883" />
+  <Token Text="ELSE" UId="884" />
+  <NewLine Num="1" UId="885" />
+  <Blank Num="4" UId="886" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="887">
+    <Text UId="888">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="889" />
+  <Blank Num="4" UId="890" />
+  <Access Scope="GlobalVariable" UId="891">
+    <Symbol UId="892">
+      <Component Name="oF-ROOBT2Gripper1CylinderToWP" UId="893" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="894" />
+  <Token Text=":=" UId="895" />
+  <Blank Num="1" UId="896" />
+  <Access Scope="GlobalVariable" UId="897">
+    <Symbol UId="898">
+      <Component Name="ST10Cylinder" UId="899">
+        <BooleanAttribute Name="HasQuotes" UId="900">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="901" />
+      <Component Name="Cy" UId="902">
+        <Token Text="[" UId="903" />
+        <Access Scope="LiteralConstant" UId="904">
+          <Constant UId="905">
+            <ConstantValue UId="907">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="908" />
+      </Component>
+      <Token Text="." UId="909" />
+      <Component Name="Out" UId="910" />
+      <Token Text="." UId="911" />
+      <Component Name="GoWorkPosition" UId="912" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="913" />
+  <NewLine Num="1" UId="914" />
+  <Blank Num="4" UId="915" />
+  <Access Scope="GlobalVariable" UId="916">
+    <Symbol UId="917">
+      <Component Name="oF-ROOBT2Gripper1CylinderToHP" UId="918" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="919" />
+  <Token Text=":=" UId="920" />
+  <Blank Num="1" UId="921" />
+  <Access Scope="GlobalVariable" UId="922">
+    <Symbol UId="923">
+      <Component Name="ST10Cylinder" UId="924">
+        <BooleanAttribute Name="HasQuotes" UId="925">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="926" />
+      <Component Name="Cy" UId="927">
+        <Token Text="[" UId="928" />
+        <Access Scope="LiteralConstant" UId="929">
+          <Constant UId="930">
+            <ConstantValue UId="932">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="933" />
+      </Component>
+      <Token Text="." UId="934" />
+      <Component Name="Out" UId="935" />
+      <Token Text="." UId="936" />
+      <Component Name="GoHomePosition" UId="937" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="938" />
+  <NewLine Num="1" UId="939" />
+  <Token Text="END_IF" UId="940" />
+  <Token Text=";" UId="941" />
+  <NewLine Num="4" UId="942" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="943">
+    <Text UId="944">Cylinder16 IO  F-ROOBT2Gripper2Cylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="945" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="946">
+    <Text UId="947">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="948" />
+  <Access Scope="GlobalVariable" UId="949">
+    <Symbol UId="950">
+      <Component Name="KukaRobot2_CtrlDB" UId="951">
+        <BooleanAttribute Name="HasQuotes" UId="952">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="953" />
+      <Component Name="sPLCtoROB" UId="954" />
+      <Token Text="." UId="955" />
+      <Component Name="User" UId="956" />
+      <Token Text="." UId="957" />
+      <Component Name="Gripper" UId="958" />
+      <Token Text="." UId="959" />
+      <Component Name="DI131_Grip2WP" UId="960" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="961" />
+  <Access Scope="GlobalVariable" UId="962">
+    <Symbol UId="963">
+      <Component Name="ST10Cylinder" UId="964">
+        <BooleanAttribute Name="HasQuotes" UId="965">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="966" />
+      <Component Name="Cy" UId="967">
+        <Token Text="[" UId="968" />
+        <Access Scope="LiteralConstant" UId="969">
+          <Constant UId="970">
+            <ConstantValue UId="972">16</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="973" />
+      </Component>
+      <Token Text="." UId="974" />
+      <Component Name="In" UId="975" />
+      <Token Text="." UId="976" />
+      <Component Name="WorkPositionSensor" UId="977" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="978" />
+  <Token Text=":=" UId="979" />
+  <Blank Num="1" UId="980" />
+  <Access Scope="GlobalVariable" UId="981">
+    <Symbol UId="982">
+      <Component Name="iF-ROOBT2Gripper2CylinderInWP" UId="983" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="984" />
+  <NewLine Num="1" UId="985" />
+  <Access Scope="GlobalVariable" UId="986">
+    <Symbol UId="987">
+      <Component Name="KukaRobot2_CtrlDB" UId="988">
+        <BooleanAttribute Name="HasQuotes" UId="989">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="990" />
+      <Component Name="sPLCtoROB" UId="991" />
+      <Token Text="." UId="992" />
+      <Component Name="User" UId="993" />
+      <Token Text="." UId="994" />
+      <Component Name="Gripper" UId="995" />
+      <Token Text="." UId="996" />
+      <Component Name="DI132_Grip2HP" UId="997" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="998" />
+  <Access Scope="GlobalVariable" UId="999">
+    <Symbol UId="1000">
+      <Component Name="ST10Cylinder" UId="1001">
+        <BooleanAttribute Name="HasQuotes" UId="1002">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1003" />
+      <Component Name="Cy" UId="1004">
+        <Token Text="[" UId="1005" />
+        <Access Scope="LiteralConstant" UId="1006">
+          <Constant UId="1007">
+            <ConstantValue UId="1009">16</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1010" />
+      </Component>
+      <Token Text="." UId="1011" />
+      <Component Name="In" UId="1012" />
+      <Token Text="." UId="1013" />
+      <Component Name="HomePositionSensor" UId="1014" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1015" />
+  <Token Text=":=" UId="1016" />
+  <Blank Num="1" UId="1017" />
+  <Access Scope="GlobalVariable" UId="1018">
+    <Symbol UId="1019">
+      <Component Name="iF-ROOBT2Gripper2CylinderInHP" UId="1020" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1021" />
+  <NewLine Num="2" UId="1022" />
+  <Token Text="IF" UId="1023" />
+  <Blank Num="1" UId="1024" />
+  <Token Text="NOT" UId="1025" />
+  <Blank Num="1" UId="1026" />
+  <Access Scope="GlobalVariable" UId="1027">
+    <Symbol UId="1028">
+      <Component Name="Robot_DB" UId="1029">
+        <BooleanAttribute Name="HasQuotes" UId="1030">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1031" />
+      <Component Name="Control" UId="1032" />
+      <Token Text="." UId="1033" />
+      <Component Name="Robot2GripControl" UId="1034" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1035" />
+  <Token Text="THEN" UId="1036" />
+  <NewLine Num="1" UId="1037" />
+  <Blank Num="4" UId="1038" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1039">
+    <Text UId="1040">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1041" />
+  <Blank Num="4" UId="1042" />
+  <Access Scope="GlobalVariable" UId="1043">
+    <Symbol UId="1044">
+      <Component Name="oF-ROOBT2Gripper2CylinderToWP" UId="1045" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1046" />
+  <Token Text=":=" UId="1047" />
+  <Access Scope="GlobalVariable" UId="1048">
+    <Symbol UId="1049">
+      <Component Name="ST10Cylinder" UId="1050">
+        <BooleanAttribute Name="HasQuotes" UId="1051">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1052" />
+      <Component Name="Cy" UId="1053">
+        <Token Text="[" UId="1054" />
+        <Access Scope="LiteralConstant" UId="1055">
+          <Constant UId="1056">
+            <ConstantValue UId="1058">16</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1059" />
+      </Component>
+      <Token Text="." UId="1060" />
+      <Component Name="Inout" UId="1061" />
+      <Token Text="." UId="1062" />
+      <Component Name="AutoGoWork" UId="1063" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1064" />
+  <Blank Num="1" UId="1065" />
+  <Access Scope="GlobalVariable" UId="1066">
+    <Symbol UId="1067">
+      <Component Name="KukaRobot2_CtrlDB" UId="1068">
+        <BooleanAttribute Name="HasQuotes" UId="1069">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1070" />
+      <Component Name="sROBtoPLC" UId="1071" />
+      <Token Text="." UId="1072" />
+      <Component Name="User" UId="1073" />
+      <Token Text="." UId="1074" />
+      <Component Name="Gripper" UId="1075" />
+      <Token Text="." UId="1076" />
+      <Component Name="DO131_Grip2GoWork" UId="1077" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1078" />
+  <NewLine Num="1" UId="1079" />
+  <Blank Num="4" UId="1080" />
+  <Access Scope="GlobalVariable" UId="1081">
+    <Symbol UId="1082">
+      <Component Name="oF-ROOBT2Gripper2CylinderToHP" UId="1083" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1084" />
+  <Token Text=":=" UId="1085" />
+  <Access Scope="GlobalVariable" UId="1086">
+    <Symbol UId="1087">
+      <Component Name="ST10Cylinder" UId="1088">
+        <BooleanAttribute Name="HasQuotes" UId="1089">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1090" />
+      <Component Name="Cy" UId="1091">
+        <Token Text="[" UId="1092" />
+        <Access Scope="LiteralConstant" UId="1093">
+          <Constant UId="1094">
+            <ConstantValue UId="1096">16</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1097" />
+      </Component>
+      <Token Text="." UId="1098" />
+      <Component Name="Inout" UId="1099" />
+      <Token Text="." UId="1100" />
+      <Component Name="AutoGoHome" UId="1101" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1102" />
+  <Blank Num="1" UId="1103" />
+  <Access Scope="GlobalVariable" UId="1104">
+    <Symbol UId="1105">
+      <Component Name="KukaRobot2_CtrlDB" UId="1106">
+        <BooleanAttribute Name="HasQuotes" UId="1107">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1108" />
+      <Component Name="sROBtoPLC" UId="1109" />
+      <Token Text="." UId="1110" />
+      <Component Name="User" UId="1111" />
+      <Token Text="." UId="1112" />
+      <Component Name="Gripper" UId="1113" />
+      <Token Text="." UId="1114" />
+      <Component Name="DO132_Grip2GoHome" UId="1115" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1116" />
+  <NewLine Num="1" UId="1117" />
+  <Token Text="ELSE" UId="1118" />
+  <NewLine Num="1" UId="1119" />
+  <Blank Num="4" UId="1120" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1121">
+    <Text UId="1122">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1123" />
+  <Blank Num="4" UId="1124" />
+  <Access Scope="GlobalVariable" UId="1125">
+    <Symbol UId="1126">
+      <Component Name="oF-ROOBT2Gripper2CylinderToWP" UId="1127" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1128" />
+  <Token Text=":=" UId="1129" />
+  <Blank Num="1" UId="1130" />
+  <Access Scope="GlobalVariable" UId="1131">
+    <Symbol UId="1132">
+      <Component Name="ST10Cylinder" UId="1133">
+        <BooleanAttribute Name="HasQuotes" UId="1134">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1135" />
+      <Component Name="Cy" UId="1136">
+        <Token Text="[" UId="1137" />
+        <Access Scope="LiteralConstant" UId="1138">
+          <Constant UId="1139">
+            <ConstantValue UId="1141">16</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1142" />
+      </Component>
+      <Token Text="." UId="1143" />
+      <Component Name="Out" UId="1144" />
+      <Token Text="." UId="1145" />
+      <Component Name="GoWorkPosition" UId="1146" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1147" />
+  <NewLine Num="1" UId="1148" />
+  <Blank Num="4" UId="1149" />
+  <Access Scope="GlobalVariable" UId="1150">
+    <Symbol UId="1151">
+      <Component Name="oF-ROOBT2Gripper2CylinderToHP" UId="1152" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1153" />
+  <Token Text=":=" UId="1154" />
+  <Blank Num="1" UId="1155" />
+  <Access Scope="GlobalVariable" UId="1156">
+    <Symbol UId="1157">
+      <Component Name="ST10Cylinder" UId="1158">
+        <BooleanAttribute Name="HasQuotes" UId="1159">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1160" />
+      <Component Name="Cy" UId="1161">
+        <Token Text="[" UId="1162" />
+        <Access Scope="LiteralConstant" UId="1163">
+          <Constant UId="1164">
+            <ConstantValue UId="1166">16</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1167" />
+      </Component>
+      <Token Text="." UId="1168" />
+      <Component Name="Out" UId="1169" />
+      <Token Text="." UId="1170" />
+      <Component Name="GoHomePosition" UId="1171" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1172" />
+  <NewLine Num="1" UId="1173" />
+  <Token Text="END_IF" UId="1174" />
+  <Token Text=";" UId="1175" />
+  <NewLine Num="2" UId="1176" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1177">
+    <Text UId="1178">Cylinder17 IO  F-ROOBT3Gripper1Cylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1179" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1180">
+    <Text UId="1181">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1182" />
+  <Access Scope="GlobalVariable" UId="1183">
+    <Symbol UId="1184">
+      <Component Name="KukaRobot3_CtrlDB" UId="1185">
+        <BooleanAttribute Name="HasQuotes" UId="1186">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1187" />
+      <Component Name="sPLCtoROB" UId="1188" />
+      <Token Text="." UId="1189" />
+      <Component Name="User" UId="1190" />
+      <Token Text="." UId="1191" />
+      <Component Name="Gripper" UId="1192" />
+      <Token Text="." UId="1193" />
+      <Component Name="DI129_Grip1WP" UId="1194" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1195" />
+  <Access Scope="GlobalVariable" UId="1196">
+    <Symbol UId="1197">
+      <Component Name="ST10Cylinder" UId="1198">
+        <BooleanAttribute Name="HasQuotes" UId="1199">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1200" />
+      <Component Name="Cy" UId="1201">
+        <Token Text="[" UId="1202" />
+        <Access Scope="LiteralConstant" UId="1203">
+          <Constant UId="1204">
+            <ConstantValue UId="1206">17</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1207" />
+      </Component>
+      <Token Text="." UId="1208" />
+      <Component Name="In" UId="1209" />
+      <Token Text="." UId="1210" />
+      <Component Name="WorkPositionSensor" UId="1211" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1212" />
+  <Token Text=":=" UId="1213" />
+  <Blank Num="1" UId="1214" />
+  <Access Scope="GlobalVariable" UId="1215">
+    <Symbol UId="1216">
+      <Component Name="iF-ROOBT3Gripper1CylinderInWP" UId="1217" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1218" />
+  <NewLine Num="1" UId="1219" />
+  <Access Scope="GlobalVariable" UId="1220">
+    <Symbol UId="1221">
+      <Component Name="KukaRobot3_CtrlDB" UId="1222">
+        <BooleanAttribute Name="HasQuotes" UId="1223">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1224" />
+      <Component Name="sPLCtoROB" UId="1225" />
+      <Token Text="." UId="1226" />
+      <Component Name="User" UId="1227" />
+      <Token Text="." UId="1228" />
+      <Component Name="Gripper" UId="1229" />
+      <Token Text="." UId="1230" />
+      <Component Name="DI130_Grip1HP" UId="1231" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1232" />
+  <Access Scope="GlobalVariable" UId="1233">
+    <Symbol UId="1234">
+      <Component Name="ST10Cylinder" UId="1235">
+        <BooleanAttribute Name="HasQuotes" UId="1236">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1237" />
+      <Component Name="Cy" UId="1238">
+        <Token Text="[" UId="1239" />
+        <Access Scope="LiteralConstant" UId="1240">
+          <Constant UId="1241">
+            <ConstantValue UId="1243">17</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1244" />
+      </Component>
+      <Token Text="." UId="1245" />
+      <Component Name="In" UId="1246" />
+      <Token Text="." UId="1247" />
+      <Component Name="HomePositionSensor" UId="1248" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1249" />
+  <Token Text=":=" UId="1250" />
+  <Blank Num="1" UId="1251" />
+  <Access Scope="GlobalVariable" UId="1252">
+    <Symbol UId="1253">
+      <Component Name="iF-ROOBT3Gripper1CylinderInHP" UId="1254" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1255" />
+  <NewLine Num="2" UId="1256" />
+  <Token Text="IF" UId="1257" />
+  <Blank Num="1" UId="1258" />
+  <Token Text="NOT" UId="1259" />
+  <Blank Num="1" UId="1260" />
+  <Access Scope="GlobalVariable" UId="1261">
+    <Symbol UId="1262">
+      <Component Name="Robot_DB" UId="1263">
+        <BooleanAttribute Name="HasQuotes" UId="1264">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1265" />
+      <Component Name="Control" UId="1266" />
+      <Token Text="." UId="1267" />
+      <Component Name="Robot3GripControl" UId="1268" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1269" />
+  <Token Text="THEN" UId="1270" />
+  <NewLine Num="1" UId="1271" />
+  <Blank Num="4" UId="1272" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1273">
+    <Text UId="1274">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1275" />
+  <Blank Num="4" UId="1276" />
+  <Access Scope="GlobalVariable" UId="1277">
+    <Symbol UId="1278">
+      <Component Name="oF-ROOBT3Gripper1CylinderToWP" UId="1279" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1280" />
+  <Token Text=":=" UId="1281" />
+  <Access Scope="GlobalVariable" UId="1282">
+    <Symbol UId="1283">
+      <Component Name="ST10Cylinder" UId="1284">
+        <BooleanAttribute Name="HasQuotes" UId="1285">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1286" />
+      <Component Name="Cy" UId="1287">
+        <Token Text="[" UId="1288" />
+        <Access Scope="LiteralConstant" UId="1289">
+          <Constant UId="1290">
+            <ConstantValue UId="1292">17</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1293" />
+      </Component>
+      <Token Text="." UId="1294" />
+      <Component Name="Inout" UId="1295" />
+      <Token Text="." UId="1296" />
+      <Component Name="AutoGoWork" UId="1297" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1298" />
+  <Access Scope="GlobalVariable" UId="1299">
+    <Symbol UId="1300">
+      <Component Name="KukaRobot3_CtrlDB" UId="1301">
+        <BooleanAttribute Name="HasQuotes" UId="1302">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1303" />
+      <Component Name="sROBtoPLC" UId="1304" />
+      <Token Text="." UId="1305" />
+      <Component Name="User" UId="1306" />
+      <Token Text="." UId="1307" />
+      <Component Name="Gripper" UId="1308" />
+      <Token Text="." UId="1309" />
+      <Component Name="DO129_Grip1GoWork" UId="1310" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1311" />
+  <NewLine Num="1" UId="1312" />
+  <Blank Num="4" UId="1313" />
+  <Access Scope="GlobalVariable" UId="1314">
+    <Symbol UId="1315">
+      <Component Name="oF-ROOBT3Gripper1CylinderToHP" UId="1316" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1317" />
+  <Token Text=":=" UId="1318" />
+  <Access Scope="GlobalVariable" UId="1319">
+    <Symbol UId="1320">
+      <Component Name="ST10Cylinder" UId="1321">
+        <BooleanAttribute Name="HasQuotes" UId="1322">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1323" />
+      <Component Name="Cy" UId="1324">
+        <Token Text="[" UId="1325" />
+        <Access Scope="LiteralConstant" UId="1326">
+          <Constant UId="1327">
+            <ConstantValue UId="1329">17</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1330" />
+      </Component>
+      <Token Text="." UId="1331" />
+      <Component Name="Inout" UId="1332" />
+      <Token Text="." UId="1333" />
+      <Component Name="AutoGoHome" UId="1334" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1335" />
+  <Access Scope="GlobalVariable" UId="1336">
+    <Symbol UId="1337">
+      <Component Name="KukaRobot3_CtrlDB" UId="1338">
+        <BooleanAttribute Name="HasQuotes" UId="1339">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1340" />
+      <Component Name="sROBtoPLC" UId="1341" />
+      <Token Text="." UId="1342" />
+      <Component Name="User" UId="1343" />
+      <Token Text="." UId="1344" />
+      <Component Name="Gripper" UId="1345" />
+      <Token Text="." UId="1346" />
+      <Component Name="DO130_Grip1GoHome" UId="1347" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1348" />
+  <NewLine Num="1" UId="1349" />
+  <Token Text="ELSE" UId="1350" />
+  <NewLine Num="1" UId="1351" />
+  <Blank Num="4" UId="1352" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1353">
+    <Text UId="1354">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1355" />
+  <Blank Num="4" UId="1356" />
+  <Access Scope="GlobalVariable" UId="1357">
+    <Symbol UId="1358">
+      <Component Name="oF-ROOBT3Gripper1CylinderToWP" UId="1359" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1360" />
+  <Token Text=":=" UId="1361" />
+  <Blank Num="1" UId="1362" />
+  <Access Scope="GlobalVariable" UId="1363">
+    <Symbol UId="1364">
+      <Component Name="ST10Cylinder" UId="1365">
+        <BooleanAttribute Name="HasQuotes" UId="1366">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1367" />
+      <Component Name="Cy" UId="1368">
+        <Token Text="[" UId="1369" />
+        <Access Scope="LiteralConstant" UId="1370">
+          <Constant UId="1371">
+            <ConstantValue UId="1373">17</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1374" />
+      </Component>
+      <Token Text="." UId="1375" />
+      <Component Name="Out" UId="1376" />
+      <Token Text="." UId="1377" />
+      <Component Name="GoWorkPosition" UId="1378" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1379" />
+  <NewLine Num="1" UId="1380" />
+  <Blank Num="4" UId="1381" />
+  <Access Scope="GlobalVariable" UId="1382">
+    <Symbol UId="1383">
+      <Component Name="oF-ROOBT3Gripper1CylinderToHP" UId="1384" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1385" />
+  <Token Text=":=" UId="1386" />
+  <Blank Num="1" UId="1387" />
+  <Access Scope="GlobalVariable" UId="1388">
+    <Symbol UId="1389">
+      <Component Name="ST10Cylinder" UId="1390">
+        <BooleanAttribute Name="HasQuotes" UId="1391">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1392" />
+      <Component Name="Cy" UId="1393">
+        <Token Text="[" UId="1394" />
+        <Access Scope="LiteralConstant" UId="1395">
+          <Constant UId="1396">
+            <ConstantValue UId="1398">17</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1399" />
+      </Component>
+      <Token Text="." UId="1400" />
+      <Component Name="Out" UId="1401" />
+      <Token Text="." UId="1402" />
+      <Component Name="GoHomePosition" UId="1403" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1404" />
+  <NewLine Num="1" UId="1405" />
+  <Token Text="END_IF" UId="1406" />
+  <Token Text=";" UId="1407" />
+  <NewLine Num="3" UId="1408" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1409">
+    <Text UId="1410">Cylinder18 IO  F-ROOBT3Gripper2Cylinder</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1411" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1412">
+    <Text UId="1413">Input</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1414" />
+  <Access Scope="GlobalVariable" UId="1415">
+    <Symbol UId="1416">
+      <Component Name="KukaRobot3_CtrlDB" UId="1417">
+        <BooleanAttribute Name="HasQuotes" UId="1418">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1419" />
+      <Component Name="sPLCtoROB" UId="1420" />
+      <Token Text="." UId="1421" />
+      <Component Name="User" UId="1422" />
+      <Token Text="." UId="1423" />
+      <Component Name="Gripper" UId="1424" />
+      <Token Text="." UId="1425" />
+      <Component Name="DI131_Grip2WP" UId="1426" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1427" />
+  <Access Scope="GlobalVariable" UId="1428">
+    <Symbol UId="1429">
+      <Component Name="ST10Cylinder" UId="1430">
+        <BooleanAttribute Name="HasQuotes" UId="1431">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1432" />
+      <Component Name="Cy" UId="1433">
+        <Token Text="[" UId="1434" />
+        <Access Scope="LiteralConstant" UId="1435">
+          <Constant UId="1436">
+            <ConstantValue UId="1438">18</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1439" />
+      </Component>
+      <Token Text="." UId="1440" />
+      <Component Name="In" UId="1441" />
+      <Token Text="." UId="1442" />
+      <Component Name="WorkPositionSensor" UId="1443" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1444" />
+  <Token Text=":=" UId="1445" />
+  <Blank Num="1" UId="1446" />
+  <Access Scope="GlobalVariable" UId="1447">
+    <Symbol UId="1448">
+      <Component Name="iF-ROOBT3Gripper2CylinderInWP" UId="1449" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1450" />
+  <NewLine Num="1" UId="1451" />
+  <Access Scope="GlobalVariable" UId="1452">
+    <Symbol UId="1453">
+      <Component Name="KukaRobot3_CtrlDB" UId="1454">
+        <BooleanAttribute Name="HasQuotes" UId="1455">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1456" />
+      <Component Name="sPLCtoROB" UId="1457" />
+      <Token Text="." UId="1458" />
+      <Component Name="User" UId="1459" />
+      <Token Text="." UId="1460" />
+      <Component Name="Gripper" UId="1461" />
+      <Token Text="." UId="1462" />
+      <Component Name="DI132_Grip2HP" UId="1463" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1464" />
+  <Token Text=":=" UId="1465" />
+  <Blank Num="1" UId="1466" />
+  <Access Scope="GlobalVariable" UId="1467">
+    <Symbol UId="1468">
+      <Component Name="ST10Cylinder" UId="1469">
+        <BooleanAttribute Name="HasQuotes" UId="1470">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1471" />
+      <Component Name="Cy" UId="1472">
+        <Token Text="[" UId="1473" />
+        <Access Scope="LiteralConstant" UId="1474">
+          <Constant UId="1475">
+            <ConstantValue UId="1477">18</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1478" />
+      </Component>
+      <Token Text="." UId="1479" />
+      <Component Name="In" UId="1480" />
+      <Token Text="." UId="1481" />
+      <Component Name="HomePositionSensor" UId="1482" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1483" />
+  <Token Text=":=" UId="1484" />
+  <Blank Num="1" UId="1485" />
+  <Access Scope="GlobalVariable" UId="1486">
+    <Symbol UId="1487">
+      <Component Name="iF-ROOBT3Gripper2CylinderInHP" UId="1488" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1489" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1490">
+    <Text UId="1491">"TON".TON[1].Q;</Text>
+  </LineComment>
+  <NewLine Num="2" UId="1492" />
+  <Token Text="IF" UId="1493" />
+  <Blank Num="1" UId="1494" />
+  <Token Text="NOT" UId="1495" />
+  <Blank Num="1" UId="1496" />
+  <Access Scope="GlobalVariable" UId="1497">
+    <Symbol UId="1498">
+      <Component Name="Robot_DB" UId="1499">
+        <BooleanAttribute Name="HasQuotes" UId="1500">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1501" />
+      <Component Name="Control" UId="1502" />
+      <Token Text="." UId="1503" />
+      <Component Name="Robot3GripControl" UId="1504" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1505" />
+  <Token Text="THEN" UId="1506" />
+  <NewLine Num="1" UId="1507" />
+  <Blank Num="4" UId="1508" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1509">
+    <Text UId="1510">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1511" />
+  <Blank Num="4" UId="1512" />
+  <Access Scope="GlobalVariable" UId="1513">
+    <Symbol UId="1514">
+      <Component Name="oF-ROOBT3Gripper2CylinderToWP" UId="1515" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1516" />
+  <Token Text=":=" UId="1517" />
+  <Access Scope="GlobalVariable" UId="1518">
+    <Symbol UId="1519">
+      <Component Name="ST10Cylinder" UId="1520">
+        <BooleanAttribute Name="HasQuotes" UId="1521">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1522" />
+      <Component Name="Cy" UId="1523">
+        <Token Text="[" UId="1524" />
+        <Access Scope="LiteralConstant" UId="1525">
+          <Constant UId="1526">
+            <ConstantValue UId="1528">18</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1529" />
+      </Component>
+      <Token Text="." UId="1530" />
+      <Component Name="Inout" UId="1531" />
+      <Token Text="." UId="1532" />
+      <Component Name="AutoGoWork" UId="1533" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1534" />
+  <Access Scope="GlobalVariable" UId="1535">
+    <Symbol UId="1536">
+      <Component Name="KukaRobot3_CtrlDB" UId="1537">
+        <BooleanAttribute Name="HasQuotes" UId="1538">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1539" />
+      <Component Name="sROBtoPLC" UId="1540" />
+      <Token Text="." UId="1541" />
+      <Component Name="User" UId="1542" />
+      <Token Text="." UId="1543" />
+      <Component Name="Gripper" UId="1544" />
+      <Token Text="." UId="1545" />
+      <Component Name="DO131_Grip2GoWork" UId="1546" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1547" />
+  <NewLine Num="1" UId="1548" />
+  <Blank Num="4" UId="1549" />
+  <Access Scope="GlobalVariable" UId="1550">
+    <Symbol UId="1551">
+      <Component Name="oF-ROOBT3Gripper2CylinderToHP" UId="1552" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1553" />
+  <Token Text=":=" UId="1554" />
+  <Access Scope="GlobalVariable" UId="1555">
+    <Symbol UId="1556">
+      <Component Name="ST10Cylinder" UId="1557">
+        <BooleanAttribute Name="HasQuotes" UId="1558">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1559" />
+      <Component Name="Cy" UId="1560">
+        <Token Text="[" UId="1561" />
+        <Access Scope="LiteralConstant" UId="1562">
+          <Constant UId="1563">
+            <ConstantValue UId="1565">18</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1566" />
+      </Component>
+      <Token Text="." UId="1567" />
+      <Component Name="Inout" UId="1568" />
+      <Token Text="." UId="1569" />
+      <Component Name="AutoGoHome" UId="1570" />
+    </Symbol>
+  </Access>
+  <Token Text=":=" UId="1571" />
+  <Access Scope="GlobalVariable" UId="1572">
+    <Symbol UId="1573">
+      <Component Name="KukaRobot3_CtrlDB" UId="1574">
+        <BooleanAttribute Name="HasQuotes" UId="1575">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1576" />
+      <Component Name="sROBtoPLC" UId="1577" />
+      <Token Text="." UId="1578" />
+      <Component Name="User" UId="1579" />
+      <Token Text="." UId="1580" />
+      <Component Name="Gripper" UId="1581" />
+      <Token Text="." UId="1582" />
+      <Component Name="DO132_Grip2GoHome" UId="1583" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1584" />
+  <NewLine Num="1" UId="1585" />
+  <Token Text="ELSE" UId="1586" />
+  <NewLine Num="1" UId="1587" />
+  <Blank Num="4" UId="1588" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1589">
+    <Text UId="1590">Output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1591" />
+  <Blank Num="4" UId="1592" />
+  <Access Scope="GlobalVariable" UId="1593">
+    <Symbol UId="1594">
+      <Component Name="oF-ROOBT3Gripper2CylinderToWP" UId="1595" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1596" />
+  <Token Text=":=" UId="1597" />
+  <Blank Num="1" UId="1598" />
+  <Access Scope="GlobalVariable" UId="1599">
+    <Symbol UId="1600">
+      <Component Name="ST10Cylinder" UId="1601">
+        <BooleanAttribute Name="HasQuotes" UId="1602">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1603" />
+      <Component Name="Cy" UId="1604">
+        <Token Text="[" UId="1605" />
+        <Access Scope="LiteralConstant" UId="1606">
+          <Constant UId="1607">
+            <ConstantValue UId="1609">18</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1610" />
+      </Component>
+      <Token Text="." UId="1611" />
+      <Component Name="Out" UId="1612" />
+      <Token Text="." UId="1613" />
+      <Component Name="GoWorkPosition" UId="1614" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1615" />
+  <NewLine Num="1" UId="1616" />
+  <Blank Num="4" UId="1617" />
+  <Access Scope="GlobalVariable" UId="1618">
+    <Symbol UId="1619">
+      <Component Name="oF-ROOBT3Gripper2CylinderToHP" UId="1620" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1621" />
+  <Token Text=":=" UId="1622" />
+  <Blank Num="1" UId="1623" />
+  <Access Scope="GlobalVariable" UId="1624">
+    <Symbol UId="1625">
+      <Component Name="ST10Cylinder" UId="1626">
+        <BooleanAttribute Name="HasQuotes" UId="1627">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1628" />
+      <Component Name="Cy" UId="1629">
+        <Token Text="[" UId="1630" />
+        <Access Scope="LiteralConstant" UId="1631">
+          <Constant UId="1632">
+            <ConstantValue UId="1634">18</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1635" />
+      </Component>
+      <Token Text="." UId="1636" />
+      <Component Name="Out" UId="1637" />
+      <Token Text="." UId="1638" />
+      <Component Name="GoHomePosition" UId="1639" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1640" />
+  <NewLine Num="1" UId="1641" />
+  <Token Text="END_IF" UId="1642" />
+  <Token Text=";" UId="1643" />
+  <NewLine Num="2" UId="1644" />
+  <Access Scope="GlobalVariable" UId="1645">
+    <Symbol UId="1646">
+      <Component Name="TON" UId="1647">
+        <BooleanAttribute Name="HasQuotes" UId="1648">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1649" />
+      <Component Name="TON" UId="1650">
+        <Token Text="[" UId="1651" />
+        <Access Scope="LiteralConstant" UId="1652">
+          <Constant UId="1653">
+            <ConstantValue UId="1655">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1656" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Access Scope="Call" UId="1657">
+    <Instruction UId="1658">
+      <Token Text="(" UId="1659" />
+      <Parameter Name="IN" UId="1660">
+        <Blank Num="1" UId="1661" />
+        <Token Text=":=" UId="1662" />
+        <Blank Num="1" UId="1663" />
+        <Access Scope="GlobalVariable" UId="1664">
+          <Symbol UId="1665">
+            <Component Name="oF-ROOBT3Gripper2CylinderToHP" UId="1666" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="1667" />
+        <Token Text="AND" UId="1668" />
+        <Blank Num="1" UId="1669" />
+        <Token Text="NOT" UId="1670" />
+        <Blank Num="1" UId="1671" />
+        <Access Scope="GlobalVariable" UId="1672">
+          <Symbol UId="1673">
+            <Component Name="iF-ROOBT3Gripper2CylinderInWP" UId="1674" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1675" />
+      <NewLine Num="1" UId="1676" />
+      <Blank Num="13" UId="1677" />
+      <Parameter Name="PT" UId="1678">
+        <Blank Num="1" UId="1679" />
+        <Token Text=":=" UId="1680" />
+        <Blank Num="1" UId="1681" />
+        <Access Scope="TypedConstant" UId="1682">
+          <Constant UId="1683">
+            <ConstantValue UId="1684">T#500MS</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1685" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="1686" />
+  <NewLine Num="2" UId="1687" />
+  <LineComment Inserted="true" NoClosingBracket="false" UId="1688">
+    <Text UId="1689">
+//Cylinder19 IO  D-washer Loading Horizontal
+//Input
+"ST10Cylinder".Cy[19].In.WorkPositionSensor := ("D-washer Loading Cylinder Middle Cylinder InHP" AND "D-washer Loading Horizontal Cylinder InWP")
+                                            OR ("D-washer Loading Cylinder Middle Cylinder InWP" AND "D-washer Loading Horizontal Cylinder InWP1");
+"ST10Cylinder".Cy[19].In.HomePositionSensor := "D-washer Loading Horizontal Cylinder InHP";
+//Output
+"D-washer Loading Horizontal Cylinder ToWP" := "ST10Cylinder".Cy[19].Out.GoWorkPosition;
+"D-washer Loading Horizontal Cylinder ToHP" := "ST10Cylinder".Cy[19].Out.GoHomePosition;
+
+//Cylinder20 IO  D-washer Loading Cylinder Middle
+//Input
+"ST10Cylinder".Cy[20].In.WorkPositionSensor := "D-washer Loading Cylinder Middle Cylinder InWP";
+"ST10Cylinder".Cy[20].In.HomePositionSensor := "D-washer Loading Cylinder Middle Cylinder InHP";
+//Output
+"D-washer Loading Cylinder Middle Cylinder ToWP" := "ST10Cylinder".Cy[20].Out.GoWorkPosition;
+"D-washer Loading Cylinder Middle Cylinder ToHP" := "ST10Cylinder".Cy[20].Out.GoHomePosition;
+</Text>
+  </LineComment>
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>Cylinder 11-20 IO Interface (SCL)</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>Cylinder 11-20 IO Interface (SCL)</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>11</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>11</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>11</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>11</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="Inout" />
+        <Component Name="ResetOut" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="28" />
+    <Part Name="Contact" UId="29" />
+    <Part Name="Coil" UId="30" />
+    <Part Name="Coil" UId="31" />
+    <Part Name="Contact" UId="32">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="33" />
+    <Part Name="RCoil" UId="34" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="32" Name="in" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+      <NameCon UId="31" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="25" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <NameCon UId="32" Name="out" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="13" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY11 interface    E-NG-01NGLocationCylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY11 interface    E-NG-01NGLocationCylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="17" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>12</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>12</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>12</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="27" />
+    <Part Name="Contact" UId="28" />
+    <Part Name="Coil" UId="29" />
+    <Part Name="Coil" UId="30" />
+    <Part Name="Contact" UId="31">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="32" />
+  </Parts>
+  <Wires>
+    <Wire UId="33">
+      <Powerrail />
+      <NameCon UId="27" Name="in" />
+    </Wire>
+    <Wire UId="34">
+      <IdentCon UId="21" />
+      <NameCon UId="27" Name="operand" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="27" Name="out" />
+      <NameCon UId="28" Name="in" />
+      <NameCon UId="31" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="22" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="23" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <IdentCon UId="24" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="25" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="31" Name="out" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="26" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="18" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="19" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1C" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY12 interface   E-NG-02NGLocationCylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY12 interface   E-NG-02NGLocationCylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="20" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Robot_DB" />
+        <Component Name="Control" />
+        <Component Name="Robot1GripControl" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>13</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>13</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>13</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="28" />
+    <Part Name="Contact" UId="29" />
+    <Part Name="Contact" UId="30" />
+    <Part Name="Coil" UId="31" />
+    <Part Name="Coil" UId="32" />
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="34" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="in" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="25" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="21" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="22" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="25" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="26" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY13 interface   F-ROOBT1Gripper1Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY13 interface   F-ROOBT1Gripper1Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="28" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="29" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Robot_DB" />
+        <Component Name="Control" />
+        <Component Name="Robot1GripControl" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>14</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>14</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>14</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="28" />
+    <Part Name="Contact" UId="29" />
+    <Part Name="Contact" UId="30" />
+    <Part Name="Coil" UId="31" />
+    <Part Name="Coil" UId="32" />
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="34" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="in" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="25" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="2E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY14 interface    F-ROOBT1Gripper2Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY14 interface    F-ROOBT1Gripper2Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="31" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="32" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Robot_DB" />
+        <Component Name="Control" />
+        <Component Name="Robot2GripControl" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>15</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>15</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>15</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="28" />
+    <Part Name="Contact" UId="29" />
+    <Part Name="Contact" UId="30" />
+    <Part Name="Coil" UId="31" />
+    <Part Name="Coil" UId="32" />
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="34" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="in" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="25" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="33" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="35" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="36" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="37" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="38" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY15 interface   F-ROOBT2Gripper1Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="39" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY15 interface   F-ROOBT2Gripper1Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="3B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Robot_DB" />
+        <Component Name="Control" />
+        <Component Name="Robot2GripControl" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>16</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>16</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>16</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="28" />
+    <Part Name="Contact" UId="29" />
+    <Part Name="Contact" UId="30" />
+    <Part Name="Coil" UId="31" />
+    <Part Name="Coil" UId="32" />
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="34" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="in" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="25" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="3C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="40" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="41" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY16 interface   F-ROOBT2Gripper2Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="42" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY16 interface   F-ROOBT2Gripper2Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="43" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="44" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Robot_DB" />
+        <Component Name="Control" />
+        <Component Name="Robot3GripControl" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>17</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>17</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>17</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="28" />
+    <Part Name="Contact" UId="29" />
+    <Part Name="Contact" UId="30" />
+    <Part Name="Coil" UId="31" />
+    <Part Name="Coil" UId="32" />
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="34" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="in" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="25" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="45" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="46" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="47" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="48" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="49" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="4A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY17 interface  F-ROOBT3Gripper1Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="4B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY17 interface  F-ROOBT3Gripper1Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="4C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="4D" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Robot_DB" />
+        <Component Name="Control" />
+        <Component Name="Robot3GripControl" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>18</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>18</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>18</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="28" />
+    <Part Name="Contact" UId="29" />
+    <Part Name="Contact" UId="30" />
+    <Part Name="Coil" UId="31" />
+    <Part Name="Coil" UId="32" />
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="34" />
+  </Parts>
+  <Wires>
+    <Wire UId="35">
+      <Powerrail />
+      <NameCon UId="28" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="in" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="25" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="45">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="4F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="50" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="51" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="52" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="53" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY18 interface  F-ROOBT3Gripper2Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="54" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY18 interface  F-ROOBT3Gripper2Cylinder</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="55" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="56" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>19</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>19</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>19</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="27" />
+    <Part Name="Contact" UId="28" />
+    <Part Name="Coil" UId="29" />
+    <Part Name="Coil" UId="30" />
+    <Part Name="Contact" UId="31">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="32" />
+  </Parts>
+  <Wires>
+    <Wire UId="33">
+      <Powerrail />
+      <NameCon UId="27" Name="in" />
+    </Wire>
+    <Wire UId="34">
+      <IdentCon UId="21" />
+      <NameCon UId="27" Name="operand" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="27" Name="out" />
+      <NameCon UId="28" Name="in" />
+      <NameCon UId="31" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="22" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="23" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <IdentCon UId="24" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="25" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="31" Name="out" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="26" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="57" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="58" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="59" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="5B" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="5C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY19 interface</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY19 interface</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="5F" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="E_stop" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>20</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoWorkInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>20</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="GoHomeInterlock" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="AlwaysON" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="ST10Cylinder" />
+        <Component Name="Cy" AccessModifier="Array">
+          <Access Scope="LiteralConstant">
+            <Constant>
+              <ConstantType>DInt</ConstantType>
+              <ConstantValue>20</ConstantValue>
+            </Constant>
+          </Access>
+        </Component>
+        <Component Name="In" />
+        <Component Name="Error" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="27" />
+    <Part Name="Contact" UId="28" />
+    <Part Name="Coil" UId="29" />
+    <Part Name="Coil" UId="30" />
+    <Part Name="Contact" UId="31">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="32" />
+  </Parts>
+  <Wires>
+    <Wire UId="33">
+      <Powerrail />
+      <NameCon UId="27" Name="in" />
+    </Wire>
+    <Wire UId="34">
+      <IdentCon UId="21" />
+      <NameCon UId="27" Name="operand" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="27" Name="out" />
+      <NameCon UId="28" Name="in" />
+      <NameCon UId="31" Name="in" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="22" />
+      <NameCon UId="28" Name="operand" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="out" />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="23" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <IdentCon UId="24" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="25" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="31" Name="out" />
+      <NameCon UId="32" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="26" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="60" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="61" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="62" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="63" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="64" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="65" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>CY20 interface</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="66" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text>CY20 interface</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="67" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="68" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="69" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6A" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6B" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

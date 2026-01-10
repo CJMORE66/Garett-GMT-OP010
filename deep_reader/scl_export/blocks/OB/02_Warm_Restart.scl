@@ -13,5 +13,9 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/01_OB/02_Warm Restart.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF NOT Sys.COM.AlwaysON THEN Sys.COM.AlwaysON := TRUE; END_IF;
+  // Network 2
+  Sys.COM.PLCRestarted := Sys.COM.AlwaysON;
 END_ORGANIZATION_BLOCK

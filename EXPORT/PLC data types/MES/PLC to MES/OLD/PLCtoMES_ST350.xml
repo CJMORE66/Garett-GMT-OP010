@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Common" Datatype="&quot;PLCtoMES_Common&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送公共交互数据到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-HeartBeat" Datatype="Bool" />
+          <Member Name="P-AtPreStop" Datatype="Bool" />
+          <Member Name="P-AtPro" Datatype="Bool" />
+          <Member Name="P-AtWork" Datatype="Bool" />
+          <Member Name="P-EquipStatus" Datatype="Byte" />
+          <Member Name="P-EquipMode" Datatype="Byte" />
+          <Member Name="P-BuffQTY" Datatype="Array[1..10] of DInt" />
+          <Member Name="Reserve" Datatype="Array[1..155] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="MainCheckIn" Datatype="&quot;PLCtoMES_MainCheckIn&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送主件请求交互数据到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-PartIDReq" Datatype="Bool" />
+          <Member Name="P-PartType" Datatype="String[28]" />
+          <Member Name="P-PartID" Datatype="Array[1..10] of String[48]" />
+          <Member Name="P-RecipeVer" Datatype="String[18]" />
+          <Member Name="P-DeviceID" Datatype="Int" />
+          <Member Name="P-MoldID" Datatype="Int" />
+          <Member Name="Reserve" Datatype="Array[1..443] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="SubCheckIn" Datatype="&quot;PLCtoMES_SubCheckIn&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送子零件绑定交互数据到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-SubPartID" Datatype="String[48]" />
+          <Member Name="P-SubPartReq" Datatype="Bool" />
+          <Member Name="Reserve" Datatype="Array[1..247] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Processing" Datatype="&quot;PLCtoMES_ProcessingExchange&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送Processing请求,表明工件已经入不可逆工艺,比如压装工位等</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-ProcessingPartID" Datatype="String[48]" />
+          <Member Name="P-ProcessingReq" Datatype="Bool" />
+          <Member Name="Reserve" Datatype="Array[1..248] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="MainCheckOut" Datatype="&quot;PLCtoMES_MainCheckOut&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送保存请求到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-DataSaveReq" Datatype="Bool" />
+          <Member Name="P-PartType" Datatype="String[28]" />
+          <Member Name="P-PartID" Datatype="Array[1..10] of String[48]" />
+          <Member Name="P-SubPartID" Datatype="Array[1..10] of String[48]" />
+          <Member Name="P-PartResult" Datatype="Byte" />
+          <Member Name="P-RecipeVer" Datatype="String[18]" />
+          <Member Name="Reserve" Datatype="Array[1..1146] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="PrintExchange" Datatype="&quot;PLCtoMES_PrintExchange&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送打印交互数据到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-PrintReq" Datatype="Bool" />
+          <Member Name="P-PrintPartID" Datatype="Array[1..10] of String[48]" />
+          <Member Name="Reserve" Datatype="Array[1..498] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="AGVExchange" Datatype="&quot;PLCtoMES_AGVExchange&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送AGV交互数据到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-MaterielCall" Datatype="Byte" />
+          <Member Name="P-PosCall1" Datatype="Byte" />
+          <Member Name="P-PosCall2" Datatype="Byte" />
+          <Member Name="P-PosCall3" Datatype="Byte" />
+          <Member Name="P-PosCall4" Datatype="Byte" />
+          <Member Name="P-PosCall5" Datatype="Byte" />
+          <Member Name="P-PalletNo1" Datatype="String[38]" />
+          <Member Name="P-PalletNo2" Datatype="String[38]" />
+          <Member Name="P-PalletNo3" Datatype="String[38]" />
+          <Member Name="P-PalletNo4" Datatype="String[38]" />
+          <Member Name="P-PalletNo5" Datatype="String[38]" />
+          <Member Name="Reserve" Datatype="Array[1..794] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="ProcessData" Datatype="&quot;PLCtoMES_MainCheckOutProcessData_OP220&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送结果数据到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-LineID" Datatype="String[18]" />
+          <Member Name="P-StationID" Datatype="String[18]" />
+          <Member Name="P-PalletNo" Datatype="Int" />
+          <Member Name="P-PalletType" Datatype="Byte" />
+          <Member Name="P-PalletStatus" Datatype="Byte" />
+          <Member Name="P-CT_Total" Datatype="Real" />
+          <Member Name="P-CT_Sub" Datatype="Array[1..20] of Real" />
+          <Member Name="P-Data" Datatype="&quot;PLCtoMES_OP_ProcessData_OP220&quot;">
+            <Sections>
+              <Section Name="None">
+                <Member Name="DATA" Datatype="Real" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Reserve" Datatype="Array[1..1700] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="AlarmExchange" Datatype="&quot;PLCtoMES_AlarmExchange&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送设备报警数据到MES</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-Alarm[X]" Datatype="Array[1..1024] of Bool" />
+          <Member Name="Reserve" Datatype="Array[1..872] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="RealTimeData" Datatype="&quot;PLCtoMES_RealTimeData&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">PLC发送实时数据到MES,MES实时读取工艺过程数据区</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="P-RealTimeData" Datatype="Array[1..64] of &quot;PLCtoMES_ProcessData&quot;">
+            <Sections>
+              <Section Name="None">
+                <Member Name="SubResult" Datatype="Byte" />
+                <Member Name="SubUSL" Datatype="Real" />
+                <Member Name="SubResultValue" Datatype="Real" />
+                <Member Name="SubLSL" Datatype="Real" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Reserve" Datatype="Array[1..100] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <IsFailsafeCompliant>false</IsFailsafeCompliant>
+      <Name>PLCtoMES_ST350</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

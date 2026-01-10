@@ -16,4 +16,71 @@ BEGIN
                 :=,
                 =>#tRel,
                 :=.KistlerPresser2_DB.ShaftID);
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(1)
+  // Network 3
+  ProcessData_1.PressInterlock_1 := ((Station_Sys.Status.Run AND Station_Sys.Status.EStopOK) AND KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO177_PressPut1Area);
+  ProcessData_1.PressInterlock_1 := ((Station_Sys.Status.Run AND Station_Sys.Status.EStopOK) AND KukaRobot1_CtrlDB.sROBtoPLC.User.Home.DO178_PressPut2Area);
+  ProcessData_1.PressInterlock_1 := (Station_Sys.Status.Run AND Station_Sys.Status.EStopOK);
+  ProcessData_1.PressInterlock_1 := (Station_Sys.Status.Run AND Station_Sys.Status.EStopOK);
+  ProcessData_1.OP40.2.Kistler_Interlock := ((((((Station_Sys.Status.Run AND Station_Sys.Status.EStopOK) AND ProcessData_1.PressInterlock_1) AND ProcessData_1.PressInterlock_1) AND ProcessData_1.PressInterlock_1) AND ProcessData_1.PressInterlock_1) AND ProcessData_1.PressInterlock_1);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2), Eq(2)
+  // Coil UId=57: nelze určit podmínku (vstupní síť).
+  // Coil UId=68: nelze určit podmínku (vstupní síť).
+  // Coil UId=72: nelze určit podmínku (vstupní síť).
+  // Network 4
+  ProcessData_1.OP40.2.KistlerPress_autoInterlock := Station_Sys.Status.Run;
+  // Network 5
+  IF NOT Station_Sys.Status.Run THEN DB_maXYmosNC1.StartCycle := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // RCoil UId=27: nelze určit podmínku (vstupní síť).
+  // RCoil UId=28: nelze určit podmínku (vstupní síť).
+  // Network 6
+  IF (Station_Sys.Status.Run AND NOT Station_Sys.Manual.Mode) THEN ProcessData_1.Calibartion_1 := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(6), Eq(3), Ne(3), Le(1), O(1)
+  // Network 7
+  ProcessData_1.OP40.2.Kistler_Continue_Interlock := Sys.COM.AlwaysON;
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(8), O(2), Ne(1)
+  // RCoil UId=75: nelze určit podmínku (vstupní síť).
+  // RCoil UId=79: nelze určit podmínku (vstupní síť).
+  // Network 9
+  // Network 10
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(1)
+  // Network 11
+  ProcessData_1.PressInterlock_2 := ((Station_Sys.Status.Run AND Station_Sys.Status.EStopOK) AND KukaRobot2_CtrlDB.sROBtoPLC.User.Home.DO180_PressPutArea);
+  ProcessData_1.PressInterlock_2 := ((Station_Sys.Status.Run AND Station_Sys.Status.EStopOK) AND KukaRobot3_CtrlDB.sROBtoPLC.User.Home.DO177_PressPut1Area);
+  ProcessData_1.PressInterlock_2 := (Station_Sys.Status.Run AND Station_Sys.Status.EStopOK);
+  ProcessData_1.PressInterlock_2 := (Station_Sys.Status.Run AND Station_Sys.Status.EStopOK);
+  ProcessData_1.OP40.3.Kistler_Interlock := ((((((Station_Sys.Status.Run AND Station_Sys.Status.EStopOK) AND ProcessData_1.PressInterlock_2) AND ProcessData_1.PressInterlock_2) AND ProcessData_1.PressInterlock_2) AND ProcessData_1.PressInterlock_2) AND ProcessData_1.PressInterlock_2);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2), Eq(2)
+  // Coil UId=57: nelze určit podmínku (vstupní síť).
+  // Coil UId=68: nelze určit podmínku (vstupní síť).
+  // Coil UId=72: nelze určit podmínku (vstupní síť).
+  // Network 12
+  ProcessData_1.OP40.3.KistlerPress_autoInterlock := Station_Sys.Status.Run;
+  // Network 13
+  IF NOT Station_Sys.Status.Run THEN DB_maXYmosNC1.StartCycle := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // RCoil UId=27: nelze určit podmínku (vstupní síť).
+  // RCoil UId=28: nelze určit podmínku (vstupní síť).
+  // Network 14
+  IF (Station_Sys.Status.Run AND NOT Station_Sys.Manual.Mode) THEN ProcessData_1.Calibartion_2 := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(6), Eq(3), Ne(3), Le(1), O(1)
+  // Network 15
+  ProcessData_1.OP40.3.Kistler_Continue_Interlock := Sys.COM.AlwaysON;
+  // Network 16
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(8), O(2), Ne(1)
+  // RCoil UId=75: nelze určit podmínku (vstupní síť).
+  // RCoil UId=79: nelze určit podmínku (vstupní síť).
 END_FUNCTION

@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="IndexProcess" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="en-GB">1 A_ScanRotate, 2 F_Robot1Grip1, 3 F_Robot1Grip2, 4 B_Press1, 5 C_Glue, 6 F_Robot2Grip1, 7 F_Robot2Grip2, 8 C_GlueNGBuffer, 9 C_MagnScanNGBuffer, 10 B_Press2, 11 F_Robot3Grip1, 12 F_Robot3Grip2, 13 H_ShafeLine, 14 J_ShafeLine, 15 K_ShafeLine, 16 L_ShafeLine</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="ActualSHowingData" Datatype="&quot;ProcessData&quot;" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="None">
+          <Member Name="PartStatus" Datatype="Int" />
+          <Member Name="PartSNGCode" Datatype="Int" />
+          <Member Name="PartRemoveFlag" Datatype="Bool" />
+          <Member Name="Spare1" Datatype="Bool" />
+          <Member Name="Spare2" Datatype="Bool" />
+          <Member Name="Spare3" Datatype="Bool" />
+          <Member Name="Spare4" Datatype="Bool" />
+          <Member Name="Spare5" Datatype="Bool" />
+          <Member Name="Spare6" Datatype="Bool" />
+          <Member Name="Spare7" Datatype="Bool" />
+          <Member Name="Spare8" Datatype="Bool" />
+          <Member Name="Spare9" Datatype="Bool" />
+          <Member Name="Spare10" Datatype="Bool" />
+          <Member Name="Spare11" Datatype="Bool" />
+          <Member Name="Spare12" Datatype="Bool" />
+          <Member Name="Spare13" Datatype="Bool" />
+          <Member Name="Spare14" Datatype="Bool" />
+          <Member Name="Spare15" Datatype="Bool" />
+          <Member Name="ShaftCode" Datatype="String[128]" />
+          <Member Name="RingCode_1" Datatype="String[128]" />
+          <Member Name="Code_1" Datatype="String[128]" />
+          <Member Name="RingCode_2" Datatype="String[128]" />
+          <Member Name="TableCode_1" Datatype="String[128]" />
+          <Member Name="TableCode_2" Datatype="String[128]" />
+          <Member Name="Press1Program" Datatype="Int" />
+          <Member Name="Press1FinalPosition" Datatype="Real" />
+          <Member Name="Press1FinalForce" Datatype="Real" />
+          <Member Name="Press2Program" Datatype="Int" />
+          <Member Name="Press2FinalPosition" Datatype="Real" />
+          <Member Name="Press2FinalForce" Datatype="Real" />
+          <Member Name="IV3_ShaftCheckResult" Datatype="Int" />
+          <Member Name="IV3_ShaftScore_1" Datatype="Int" />
+          <Member Name="IV3_ShaftScore_2" Datatype="Int" />
+          <Member Name="IV3_ShaftScore_3" Datatype="Int" />
+          <Member Name="IV3_ShaftScore_4" Datatype="Int" />
+          <Member Name="IV3_MagnetCheckResult" Datatype="Int" />
+          <Member Name="IV3_MagnetScore" Datatype="Int" />
+          <Member Name="Spare_3" Datatype="Array[0..89] of Int" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Data_handling" Datatype="Struct" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+      <Member Name="DeleteData" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+      </Member>
+      <Member Name="UpdateData_switch" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+      </Member>
+      <Member Name="UpdateData_Confirm" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">1. step - request to confirm old new data</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="FinalConfirm_Write" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">2.  final acceptance for data update</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="ChangePending" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">changes are ready for actual index</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="ConfirmDialogActive" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">Confirm dialog active</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="LastIndex" Datatype="Int">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">internal - memory for last index</MultiLanguageText>
+        </Comment>
+      </Member>
+    </Member>
+    <Member Name="StationHasProduct" Datatype="Array[1..16] of Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
+      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
+      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>AutoProcess_HMI</Name>
+      <Namespace />
+      <Number>1666</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

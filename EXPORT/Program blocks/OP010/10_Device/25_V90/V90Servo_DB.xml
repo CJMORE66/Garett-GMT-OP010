@@ -1,0 +1,1882 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <InstanceOfName>V90_Servo</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="Servo_380A1" Datatype="&quot;fbV90Ctrl&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iSysRun" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="iEstop" Datatype="Bool" />
+          <Member Name="iAuto" Datatype="Bool" />
+          <Member Name="iManual" Datatype="Bool" />
+          <Member Name="iConnect" Datatype="Bool" />
+          <Member Name="iStep" Datatype="Bool" />
+          <Member Name="iInterlock" Datatype="Bool" />
+          <Member Name="iManJog+" Datatype="Bool" />
+          <Member Name="iManJog-" Datatype="Bool" />
+          <Member Name="iManStart" Datatype="Bool" />
+          <Member Name="iManListStart" Datatype="Bool" />
+          <Member Name="iAutoStart" Datatype="Bool" />
+          <Member Name="iLimitSwitchActive" Datatype="Bool" />
+          <Member Name="iLimitSoftActive" Datatype="Bool" />
+          <Member Name="iRunningTimeout" Datatype="Time" />
+          <Member Name="iHomingTimeout" Datatype="Time" />
+          <Member Name="iAutoPosition" Datatype="DInt" />
+          <Member Name="iAutoVelocity" Datatype="Int" />
+          <Member Name="iManListPosition" Datatype="DInt" />
+          <Member Name="iManListVelocity" Datatype="Int" />
+          <Member Name="iManPosition" Datatype="DInt" />
+          <Member Name="iManVelocity" Datatype="Int" />
+          <Member Name="iMode" Datatype="Int" />
+          <Member Name="iAListNumber" Datatype="Int" />
+          <Member Name="iMListNumber" Datatype="Int" />
+          <Member Name="iHWIDSTW" Datatype="HW_IO" />
+          <Member Name="iHWIDZSW" Datatype="HW_IO" />
+          <Member Name="iHardwareId" Datatype="HW_IO" />
+          <Member Name="iSpecJog" Datatype="Bool" />
+          <Member Name="iHomeSwitch" Datatype="Bool" />
+          <Member Name="iIndexTableON" Datatype="Bool" />
+          <Member Name="Position_sensor_1" Datatype="Bool" />
+          <Member Name="Position_sensor_2" Datatype="Bool" />
+          <Member Name="Position_sensor_3" Datatype="Bool" />
+          <Member Name="Position_sensor_4" Datatype="Bool" />
+          <Member Name="Type" Datatype="Bool" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oReady" Datatype="Bool" />
+          <Member Name="oWarning" Datatype="Bool" />
+          <Member Name="oError" Datatype="Bool" />
+          <Member Name="oInterlock" Datatype="Bool" />
+          <Member Name="oServoEnable" Datatype="Bool" />
+          <Member Name="oRunning" Datatype="Bool" />
+          <Member Name="oHoming" Datatype="Bool" />
+          <Member Name="oHomeRef" Datatype="Bool" />
+          <Member Name="oServoPosOK" Datatype="Bool" />
+          <Member Name="oErrorCode" Datatype="Int" />
+          <Member Name="oStatus" Datatype="Int" />
+          <Member Name="oActPosition" Datatype="DInt" />
+          <Member Name="oTargetPos" Datatype="DInt" />
+          <Member Name="oPosOK" Datatype="Array[1..20] of Bool" />
+          <Member Name="oDisable" Datatype="Bool" />
+          <Member Name="oSensorInPos" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioManEnale" Datatype="Bool" />
+          <Member Name="ioAutoEnale" Datatype="Bool" />
+          <Member Name="ioHome" Datatype="Bool" />
+          <Member Name="ioHomeWrite" Datatype="Bool" />
+          <Member Name="ioBusy" Datatype="Bool" />
+          <Member Name="ioDone" Datatype="Bool" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="sStep" Datatype="Array[1..4] of Int" />
+          <Member Name="sPls" Datatype="Array[1..16] of Bool" />
+          <Member Name="sErrorCode" Datatype="Int" />
+          <Member Name="sPosOK" Datatype="Bool" />
+          <Member Name="sRunning" Datatype="Bool" />
+          <Member Name="sHoming" Datatype="Bool" />
+          <Member Name="sCancel" Datatype="Bool" />
+          <Member Name="sMan/List" Datatype="Bool" />
+          <Member Name="sCMMT" Datatype="&quot;SINA_POS&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="ModePos" Datatype="Int" />
+                <Member Name="EnableAxis" Datatype="Bool" />
+                <Member Name="CancelTraversing" Datatype="Bool" />
+                <Member Name="IntermediateStop" Datatype="Bool" />
+                <Member Name="Positive" Datatype="Bool" />
+                <Member Name="Negative" Datatype="Bool" />
+                <Member Name="Jog1" Datatype="Bool" />
+                <Member Name="Jog2" Datatype="Bool" />
+                <Member Name="FlyRef" Datatype="Bool" />
+                <Member Name="AckError" Datatype="Bool" />
+                <Member Name="ExecuteMode" Datatype="Bool" />
+                <Member Name="Position" Datatype="DInt" />
+                <Member Name="Velocity" Datatype="DInt" />
+                <Member Name="OverV" Datatype="Int" />
+                <Member Name="OverAcc" Datatype="Int" />
+                <Member Name="OverDec" Datatype="Int" />
+                <Member Name="ConfigEPos" Datatype="DWord" />
+                <Member Name="HWIDSTW" Datatype="HW_IO" />
+                <Member Name="HWIDZSW" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="AxisEnabled" Datatype="Bool" />
+                <Member Name="AxisPosOk" Datatype="Bool" />
+                <Member Name="AxisRef" Datatype="Bool" />
+                <Member Name="AxisWarn" Datatype="Bool" />
+                <Member Name="AxisError" Datatype="Bool" />
+                <Member Name="Lockout" Datatype="Bool" />
+                <Member Name="ActVelocity" Datatype="DInt" />
+                <Member Name="ActPosition" Datatype="DInt" />
+                <Member Name="ActMode" Datatype="Int" />
+                <Member Name="EPosZSW1" Datatype="Word" />
+                <Member Name="EPosZSW2" Datatype="Word" />
+                <Member Name="ActWarn" Datatype="Word" />
+                <Member Name="ActFault" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="Status" Datatype="Word" />
+                <Member Name="DiagID" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbOff1Edge" Datatype="Bool" />
+                <Member Name="sbOff1" Datatype="Bool" />
+                <Member Name="sbExecuteEdge" Datatype="Bool" />
+                <Member Name="sbExecute" Datatype="Bool" />
+                <Member Name="sbRefTypEdge" Datatype="Bool" />
+                <Member Name="sbRefTyp" Datatype="Bool" />
+                <Member Name="sbMdiStart" Datatype="Bool" />
+                <Member Name="sbMdiStartEdge" Datatype="Bool" />
+                <Member Name="sbRefStart" Datatype="Bool" />
+                <Member Name="sbJogInc" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbIOp" Datatype="Bool" />
+                <Member Name="sbAccel" Datatype="Bool" />
+                <Member Name="sbDecel" Datatype="Bool" />
+                <Member Name="sbAlarm" Datatype="Bool" />
+                <Member Name="sbFault" Datatype="Bool" />
+                <Member Name="sbFWD" Datatype="Bool" />
+                <Member Name="sbBWD" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="swStatus" Datatype="Word" />
+                <Member Name="swEPosZSW1" Datatype="Word" />
+                <Member Name="swEPosZSW2" Datatype="Word" />
+                <Member Name="siExecuteCyc" Datatype="Int" />
+                <Member Name="siRefTypCyc" Datatype="Int" />
+                <Member Name="siJogIncCyc" Datatype="Int" />
+                <Member Name="siMdiStartCyc" Datatype="Int" />
+                <Member Name="siRefActRetry" Datatype="Int" />
+                <Member Name="siModePos" Datatype="Int" />
+                <Member Name="siModePosMax" Datatype="Int" />
+                <Member Name="siCycWait" Datatype="Int" />
+                <Member Name="siRetryMax" Datatype="Int" />
+                <Member Name="sbModePos" Datatype="Bool" />
+                <Member Name="sxSendBuf" Datatype="Struct">
+                  <Member Name="STW1" Datatype="Word" />
+                  <Member Name="EPosSTW1" Datatype="Word" />
+                  <Member Name="EPosSTW2" Datatype="Word" />
+                  <Member Name="STW2" Datatype="Word" />
+                  <Member Name="OverrideV" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="OverrideA" Datatype="Word" />
+                  <Member Name="OverrideD" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+                <Member Name="sxRecvBuf" Datatype="Struct">
+                  <Member Name="ZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW2" Datatype="Word" />
+                  <Member Name="ZSW2" Datatype="Word" />
+                  <Member Name="NotUsed" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="ErrNr" Datatype="Word" />
+                  <Member Name="WarnNr" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sPara" Datatype="&quot;SINA_PARA_S&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="Start" Datatype="Bool" />
+                <Member Name="ReadWrite" Datatype="Bool" />
+                <Member Name="Parameter" Datatype="Int" />
+                <Member Name="Index" Datatype="Int" />
+                <Member Name="ValueWrite1" Datatype="Real" />
+                <Member Name="ValueWrite2" Datatype="DInt" />
+                <Member Name="AxisNo" Datatype="Byte" />
+                <Member Name="hardwareId" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Ready" Datatype="Bool" />
+                <Member Name="Busy" Datatype="Bool" />
+                <Member Name="Done" Datatype="Bool" />
+                <Member Name="ValueRead1" Datatype="Real" />
+                <Member Name="ValueRead2" Datatype="DInt" />
+                <Member Name="Format" Datatype="Byte" />
+                <Member Name="ErrorNo" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="ErrorId" Datatype="DWord" />
+                <Member Name="DiagId" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbWrError" Datatype="Bool" />
+                <Member Name="sbWrDone" Datatype="Bool" />
+                <Member Name="sbRdError" Datatype="Bool" />
+                <Member Name="sbWrBusy" Datatype="Bool" />
+                <Member Name="sbRdBusy" Datatype="Bool" />
+                <Member Name="sbWrStart" Datatype="Bool" />
+                <Member Name="sbRdStart" Datatype="Bool" />
+                <Member Name="sbWrStart1" Datatype="Bool" />
+                <Member Name="sbRdStart1" Datatype="Bool" />
+                <Member Name="sbWrStart2" Datatype="Bool" />
+                <Member Name="sbRdStart2" Datatype="Bool" />
+                <Member Name="sbStart" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbRead" Datatype="Bool" />
+                <Member Name="sbWrite" Datatype="Bool" />
+                <Member Name="sbParaNo" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="sbError" Datatype="Bool" />
+                <Member Name="sbDone" Datatype="Bool" />
+                <Member Name="syFormat" Datatype="Byte" />
+                <Member Name="syAxisNo" Datatype="Byte" />
+                <Member Name="siReqRef" Datatype="Int" />
+                <Member Name="siErrorId" Datatype="Int" />
+                <Member Name="siErrorCount" Datatype="Int" />
+                <Member Name="siMaxErrCount" Datatype="Int" />
+                <Member Name="swParaError" Datatype="Word" />
+                <Member Name="sxReqParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxParaAdress" Datatype="Struct">
+                    <Member Name="syAttr" Datatype="Byte" />
+                    <Member Name="syElemNo" Datatype="Byte" />
+                    <Member Name="siParaNo" Datatype="Int" />
+                    <Member Name="siIndex" Datatype="Int" />
+                  </Member>
+                </Member>
+                <Member Name="sxChaParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..12] of Byte" />
+                </Member>
+                <Member Name="sxRespParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..6] of Byte" />
+                </Member>
+                <Member Name="RDREC_1" Datatype="RDREC" Version="1.0">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="MLEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="VALID" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="WRREC_1" Datatype="WRREC" Version="1.1">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="DONE" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="siLenHeader" Datatype="Int" />
+                <Member Name="siLenParaMulti" Datatype="Int" />
+                <Member Name="siLenChaPara" Datatype="Int" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sRunningTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sHomingTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sEnableDelay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sManDirHis" Datatype="DInt" />
+          <Member Name="sManListHis" Datatype="Int" />
+          <Member Name="sAutoListHis" Datatype="Int" />
+          <Member Name="Position_PV" Datatype="Int" />
+          <Member Name="Conv_Pos_PV" Datatype="Int" />
+          <Member Name="Delay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_1" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_2" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_3" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo_381A1" Datatype="&quot;fbV90Ctrl&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iSysRun" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="iEstop" Datatype="Bool" />
+          <Member Name="iAuto" Datatype="Bool" />
+          <Member Name="iManual" Datatype="Bool" />
+          <Member Name="iConnect" Datatype="Bool" />
+          <Member Name="iStep" Datatype="Bool" />
+          <Member Name="iInterlock" Datatype="Bool" />
+          <Member Name="iManJog+" Datatype="Bool" />
+          <Member Name="iManJog-" Datatype="Bool" />
+          <Member Name="iManStart" Datatype="Bool" />
+          <Member Name="iManListStart" Datatype="Bool" />
+          <Member Name="iAutoStart" Datatype="Bool" />
+          <Member Name="iLimitSwitchActive" Datatype="Bool" />
+          <Member Name="iLimitSoftActive" Datatype="Bool" />
+          <Member Name="iRunningTimeout" Datatype="Time" />
+          <Member Name="iHomingTimeout" Datatype="Time" />
+          <Member Name="iAutoPosition" Datatype="DInt" />
+          <Member Name="iAutoVelocity" Datatype="Int" />
+          <Member Name="iManListPosition" Datatype="DInt" />
+          <Member Name="iManListVelocity" Datatype="Int" />
+          <Member Name="iManPosition" Datatype="DInt" />
+          <Member Name="iManVelocity" Datatype="Int" />
+          <Member Name="iMode" Datatype="Int" />
+          <Member Name="iAListNumber" Datatype="Int" />
+          <Member Name="iMListNumber" Datatype="Int" />
+          <Member Name="iHWIDSTW" Datatype="HW_IO" />
+          <Member Name="iHWIDZSW" Datatype="HW_IO" />
+          <Member Name="iHardwareId" Datatype="HW_IO" />
+          <Member Name="iSpecJog" Datatype="Bool" />
+          <Member Name="iHomeSwitch" Datatype="Bool" />
+          <Member Name="iIndexTableON" Datatype="Bool" />
+          <Member Name="Position_sensor_1" Datatype="Bool" />
+          <Member Name="Position_sensor_2" Datatype="Bool" />
+          <Member Name="Position_sensor_3" Datatype="Bool" />
+          <Member Name="Position_sensor_4" Datatype="Bool" />
+          <Member Name="Type" Datatype="Bool" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oReady" Datatype="Bool" />
+          <Member Name="oWarning" Datatype="Bool" />
+          <Member Name="oError" Datatype="Bool" />
+          <Member Name="oInterlock" Datatype="Bool" />
+          <Member Name="oServoEnable" Datatype="Bool" />
+          <Member Name="oRunning" Datatype="Bool" />
+          <Member Name="oHoming" Datatype="Bool" />
+          <Member Name="oHomeRef" Datatype="Bool" />
+          <Member Name="oServoPosOK" Datatype="Bool" />
+          <Member Name="oErrorCode" Datatype="Int" />
+          <Member Name="oStatus" Datatype="Int" />
+          <Member Name="oActPosition" Datatype="DInt" />
+          <Member Name="oTargetPos" Datatype="DInt" />
+          <Member Name="oPosOK" Datatype="Array[1..20] of Bool" />
+          <Member Name="oDisable" Datatype="Bool" />
+          <Member Name="oSensorInPos" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioManEnale" Datatype="Bool" />
+          <Member Name="ioAutoEnale" Datatype="Bool" />
+          <Member Name="ioHome" Datatype="Bool" />
+          <Member Name="ioHomeWrite" Datatype="Bool" />
+          <Member Name="ioBusy" Datatype="Bool" />
+          <Member Name="ioDone" Datatype="Bool" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="sStep" Datatype="Array[1..4] of Int" />
+          <Member Name="sPls" Datatype="Array[1..16] of Bool" />
+          <Member Name="sErrorCode" Datatype="Int" />
+          <Member Name="sPosOK" Datatype="Bool" />
+          <Member Name="sRunning" Datatype="Bool" />
+          <Member Name="sHoming" Datatype="Bool" />
+          <Member Name="sCancel" Datatype="Bool" />
+          <Member Name="sMan/List" Datatype="Bool" />
+          <Member Name="sCMMT" Datatype="&quot;SINA_POS&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="ModePos" Datatype="Int" />
+                <Member Name="EnableAxis" Datatype="Bool" />
+                <Member Name="CancelTraversing" Datatype="Bool" />
+                <Member Name="IntermediateStop" Datatype="Bool" />
+                <Member Name="Positive" Datatype="Bool" />
+                <Member Name="Negative" Datatype="Bool" />
+                <Member Name="Jog1" Datatype="Bool" />
+                <Member Name="Jog2" Datatype="Bool" />
+                <Member Name="FlyRef" Datatype="Bool" />
+                <Member Name="AckError" Datatype="Bool" />
+                <Member Name="ExecuteMode" Datatype="Bool" />
+                <Member Name="Position" Datatype="DInt" />
+                <Member Name="Velocity" Datatype="DInt" />
+                <Member Name="OverV" Datatype="Int" />
+                <Member Name="OverAcc" Datatype="Int" />
+                <Member Name="OverDec" Datatype="Int" />
+                <Member Name="ConfigEPos" Datatype="DWord" />
+                <Member Name="HWIDSTW" Datatype="HW_IO" />
+                <Member Name="HWIDZSW" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="AxisEnabled" Datatype="Bool" />
+                <Member Name="AxisPosOk" Datatype="Bool" />
+                <Member Name="AxisRef" Datatype="Bool" />
+                <Member Name="AxisWarn" Datatype="Bool" />
+                <Member Name="AxisError" Datatype="Bool" />
+                <Member Name="Lockout" Datatype="Bool" />
+                <Member Name="ActVelocity" Datatype="DInt" />
+                <Member Name="ActPosition" Datatype="DInt" />
+                <Member Name="ActMode" Datatype="Int" />
+                <Member Name="EPosZSW1" Datatype="Word" />
+                <Member Name="EPosZSW2" Datatype="Word" />
+                <Member Name="ActWarn" Datatype="Word" />
+                <Member Name="ActFault" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="Status" Datatype="Word" />
+                <Member Name="DiagID" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbOff1Edge" Datatype="Bool" />
+                <Member Name="sbOff1" Datatype="Bool" />
+                <Member Name="sbExecuteEdge" Datatype="Bool" />
+                <Member Name="sbExecute" Datatype="Bool" />
+                <Member Name="sbRefTypEdge" Datatype="Bool" />
+                <Member Name="sbRefTyp" Datatype="Bool" />
+                <Member Name="sbMdiStart" Datatype="Bool" />
+                <Member Name="sbMdiStartEdge" Datatype="Bool" />
+                <Member Name="sbRefStart" Datatype="Bool" />
+                <Member Name="sbJogInc" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbIOp" Datatype="Bool" />
+                <Member Name="sbAccel" Datatype="Bool" />
+                <Member Name="sbDecel" Datatype="Bool" />
+                <Member Name="sbAlarm" Datatype="Bool" />
+                <Member Name="sbFault" Datatype="Bool" />
+                <Member Name="sbFWD" Datatype="Bool" />
+                <Member Name="sbBWD" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="swStatus" Datatype="Word" />
+                <Member Name="swEPosZSW1" Datatype="Word" />
+                <Member Name="swEPosZSW2" Datatype="Word" />
+                <Member Name="siExecuteCyc" Datatype="Int" />
+                <Member Name="siRefTypCyc" Datatype="Int" />
+                <Member Name="siJogIncCyc" Datatype="Int" />
+                <Member Name="siMdiStartCyc" Datatype="Int" />
+                <Member Name="siRefActRetry" Datatype="Int" />
+                <Member Name="siModePos" Datatype="Int" />
+                <Member Name="siModePosMax" Datatype="Int" />
+                <Member Name="siCycWait" Datatype="Int" />
+                <Member Name="siRetryMax" Datatype="Int" />
+                <Member Name="sbModePos" Datatype="Bool" />
+                <Member Name="sxSendBuf" Datatype="Struct">
+                  <Member Name="STW1" Datatype="Word" />
+                  <Member Name="EPosSTW1" Datatype="Word" />
+                  <Member Name="EPosSTW2" Datatype="Word" />
+                  <Member Name="STW2" Datatype="Word" />
+                  <Member Name="OverrideV" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="OverrideA" Datatype="Word" />
+                  <Member Name="OverrideD" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+                <Member Name="sxRecvBuf" Datatype="Struct">
+                  <Member Name="ZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW2" Datatype="Word" />
+                  <Member Name="ZSW2" Datatype="Word" />
+                  <Member Name="NotUsed" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="ErrNr" Datatype="Word" />
+                  <Member Name="WarnNr" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sPara" Datatype="&quot;SINA_PARA_S&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="Start" Datatype="Bool" />
+                <Member Name="ReadWrite" Datatype="Bool" />
+                <Member Name="Parameter" Datatype="Int" />
+                <Member Name="Index" Datatype="Int" />
+                <Member Name="ValueWrite1" Datatype="Real" />
+                <Member Name="ValueWrite2" Datatype="DInt" />
+                <Member Name="AxisNo" Datatype="Byte" />
+                <Member Name="hardwareId" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Ready" Datatype="Bool" />
+                <Member Name="Busy" Datatype="Bool" />
+                <Member Name="Done" Datatype="Bool" />
+                <Member Name="ValueRead1" Datatype="Real" />
+                <Member Name="ValueRead2" Datatype="DInt" />
+                <Member Name="Format" Datatype="Byte" />
+                <Member Name="ErrorNo" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="ErrorId" Datatype="DWord" />
+                <Member Name="DiagId" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbWrError" Datatype="Bool" />
+                <Member Name="sbWrDone" Datatype="Bool" />
+                <Member Name="sbRdError" Datatype="Bool" />
+                <Member Name="sbWrBusy" Datatype="Bool" />
+                <Member Name="sbRdBusy" Datatype="Bool" />
+                <Member Name="sbWrStart" Datatype="Bool" />
+                <Member Name="sbRdStart" Datatype="Bool" />
+                <Member Name="sbWrStart1" Datatype="Bool" />
+                <Member Name="sbRdStart1" Datatype="Bool" />
+                <Member Name="sbWrStart2" Datatype="Bool" />
+                <Member Name="sbRdStart2" Datatype="Bool" />
+                <Member Name="sbStart" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbRead" Datatype="Bool" />
+                <Member Name="sbWrite" Datatype="Bool" />
+                <Member Name="sbParaNo" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="sbError" Datatype="Bool" />
+                <Member Name="sbDone" Datatype="Bool" />
+                <Member Name="syFormat" Datatype="Byte" />
+                <Member Name="syAxisNo" Datatype="Byte" />
+                <Member Name="siReqRef" Datatype="Int" />
+                <Member Name="siErrorId" Datatype="Int" />
+                <Member Name="siErrorCount" Datatype="Int" />
+                <Member Name="siMaxErrCount" Datatype="Int" />
+                <Member Name="swParaError" Datatype="Word" />
+                <Member Name="sxReqParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxParaAdress" Datatype="Struct">
+                    <Member Name="syAttr" Datatype="Byte" />
+                    <Member Name="syElemNo" Datatype="Byte" />
+                    <Member Name="siParaNo" Datatype="Int" />
+                    <Member Name="siIndex" Datatype="Int" />
+                  </Member>
+                </Member>
+                <Member Name="sxChaParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..12] of Byte" />
+                </Member>
+                <Member Name="sxRespParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..6] of Byte" />
+                </Member>
+                <Member Name="RDREC_1" Datatype="RDREC" Version="1.0">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="MLEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="VALID" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="WRREC_1" Datatype="WRREC" Version="1.1">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="DONE" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="siLenHeader" Datatype="Int" />
+                <Member Name="siLenParaMulti" Datatype="Int" />
+                <Member Name="siLenChaPara" Datatype="Int" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sRunningTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sHomingTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sEnableDelay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sManDirHis" Datatype="DInt" />
+          <Member Name="sManListHis" Datatype="Int" />
+          <Member Name="sAutoListHis" Datatype="Int" />
+          <Member Name="Position_PV" Datatype="Int" />
+          <Member Name="Conv_Pos_PV" Datatype="Int" />
+          <Member Name="Delay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_1" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_2" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_3" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo_382A1" Datatype="&quot;fbV90Ctrl&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iSysRun" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="iEstop" Datatype="Bool" />
+          <Member Name="iAuto" Datatype="Bool" />
+          <Member Name="iManual" Datatype="Bool" />
+          <Member Name="iConnect" Datatype="Bool" />
+          <Member Name="iStep" Datatype="Bool" />
+          <Member Name="iInterlock" Datatype="Bool" />
+          <Member Name="iManJog+" Datatype="Bool" />
+          <Member Name="iManJog-" Datatype="Bool" />
+          <Member Name="iManStart" Datatype="Bool" />
+          <Member Name="iManListStart" Datatype="Bool" />
+          <Member Name="iAutoStart" Datatype="Bool" />
+          <Member Name="iLimitSwitchActive" Datatype="Bool" />
+          <Member Name="iLimitSoftActive" Datatype="Bool" />
+          <Member Name="iRunningTimeout" Datatype="Time" />
+          <Member Name="iHomingTimeout" Datatype="Time" />
+          <Member Name="iAutoPosition" Datatype="DInt" />
+          <Member Name="iAutoVelocity" Datatype="Int" />
+          <Member Name="iManListPosition" Datatype="DInt" />
+          <Member Name="iManListVelocity" Datatype="Int" />
+          <Member Name="iManPosition" Datatype="DInt" />
+          <Member Name="iManVelocity" Datatype="Int" />
+          <Member Name="iMode" Datatype="Int" />
+          <Member Name="iAListNumber" Datatype="Int" />
+          <Member Name="iMListNumber" Datatype="Int" />
+          <Member Name="iHWIDSTW" Datatype="HW_IO" />
+          <Member Name="iHWIDZSW" Datatype="HW_IO" />
+          <Member Name="iHardwareId" Datatype="HW_IO" />
+          <Member Name="iSpecJog" Datatype="Bool" />
+          <Member Name="iHomeSwitch" Datatype="Bool" />
+          <Member Name="iIndexTableON" Datatype="Bool" />
+          <Member Name="Position_sensor_1" Datatype="Bool" />
+          <Member Name="Position_sensor_2" Datatype="Bool" />
+          <Member Name="Position_sensor_3" Datatype="Bool" />
+          <Member Name="Position_sensor_4" Datatype="Bool" />
+          <Member Name="Type" Datatype="Bool" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oReady" Datatype="Bool" />
+          <Member Name="oWarning" Datatype="Bool" />
+          <Member Name="oError" Datatype="Bool" />
+          <Member Name="oInterlock" Datatype="Bool" />
+          <Member Name="oServoEnable" Datatype="Bool" />
+          <Member Name="oRunning" Datatype="Bool" />
+          <Member Name="oHoming" Datatype="Bool" />
+          <Member Name="oHomeRef" Datatype="Bool" />
+          <Member Name="oServoPosOK" Datatype="Bool" />
+          <Member Name="oErrorCode" Datatype="Int" />
+          <Member Name="oStatus" Datatype="Int" />
+          <Member Name="oActPosition" Datatype="DInt" />
+          <Member Name="oTargetPos" Datatype="DInt" />
+          <Member Name="oPosOK" Datatype="Array[1..20] of Bool" />
+          <Member Name="oDisable" Datatype="Bool" />
+          <Member Name="oSensorInPos" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioManEnale" Datatype="Bool" />
+          <Member Name="ioAutoEnale" Datatype="Bool" />
+          <Member Name="ioHome" Datatype="Bool" />
+          <Member Name="ioHomeWrite" Datatype="Bool" />
+          <Member Name="ioBusy" Datatype="Bool" />
+          <Member Name="ioDone" Datatype="Bool" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="sStep" Datatype="Array[1..4] of Int" />
+          <Member Name="sPls" Datatype="Array[1..16] of Bool" />
+          <Member Name="sErrorCode" Datatype="Int" />
+          <Member Name="sPosOK" Datatype="Bool" />
+          <Member Name="sRunning" Datatype="Bool" />
+          <Member Name="sHoming" Datatype="Bool" />
+          <Member Name="sCancel" Datatype="Bool" />
+          <Member Name="sMan/List" Datatype="Bool" />
+          <Member Name="sCMMT" Datatype="&quot;SINA_POS&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="ModePos" Datatype="Int" />
+                <Member Name="EnableAxis" Datatype="Bool" />
+                <Member Name="CancelTraversing" Datatype="Bool" />
+                <Member Name="IntermediateStop" Datatype="Bool" />
+                <Member Name="Positive" Datatype="Bool" />
+                <Member Name="Negative" Datatype="Bool" />
+                <Member Name="Jog1" Datatype="Bool" />
+                <Member Name="Jog2" Datatype="Bool" />
+                <Member Name="FlyRef" Datatype="Bool" />
+                <Member Name="AckError" Datatype="Bool" />
+                <Member Name="ExecuteMode" Datatype="Bool" />
+                <Member Name="Position" Datatype="DInt" />
+                <Member Name="Velocity" Datatype="DInt" />
+                <Member Name="OverV" Datatype="Int" />
+                <Member Name="OverAcc" Datatype="Int" />
+                <Member Name="OverDec" Datatype="Int" />
+                <Member Name="ConfigEPos" Datatype="DWord" />
+                <Member Name="HWIDSTW" Datatype="HW_IO" />
+                <Member Name="HWIDZSW" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="AxisEnabled" Datatype="Bool" />
+                <Member Name="AxisPosOk" Datatype="Bool" />
+                <Member Name="AxisRef" Datatype="Bool" />
+                <Member Name="AxisWarn" Datatype="Bool" />
+                <Member Name="AxisError" Datatype="Bool" />
+                <Member Name="Lockout" Datatype="Bool" />
+                <Member Name="ActVelocity" Datatype="DInt" />
+                <Member Name="ActPosition" Datatype="DInt" />
+                <Member Name="ActMode" Datatype="Int" />
+                <Member Name="EPosZSW1" Datatype="Word" />
+                <Member Name="EPosZSW2" Datatype="Word" />
+                <Member Name="ActWarn" Datatype="Word" />
+                <Member Name="ActFault" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="Status" Datatype="Word" />
+                <Member Name="DiagID" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbOff1Edge" Datatype="Bool" />
+                <Member Name="sbOff1" Datatype="Bool" />
+                <Member Name="sbExecuteEdge" Datatype="Bool" />
+                <Member Name="sbExecute" Datatype="Bool" />
+                <Member Name="sbRefTypEdge" Datatype="Bool" />
+                <Member Name="sbRefTyp" Datatype="Bool" />
+                <Member Name="sbMdiStart" Datatype="Bool" />
+                <Member Name="sbMdiStartEdge" Datatype="Bool" />
+                <Member Name="sbRefStart" Datatype="Bool" />
+                <Member Name="sbJogInc" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbIOp" Datatype="Bool" />
+                <Member Name="sbAccel" Datatype="Bool" />
+                <Member Name="sbDecel" Datatype="Bool" />
+                <Member Name="sbAlarm" Datatype="Bool" />
+                <Member Name="sbFault" Datatype="Bool" />
+                <Member Name="sbFWD" Datatype="Bool" />
+                <Member Name="sbBWD" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="swStatus" Datatype="Word" />
+                <Member Name="swEPosZSW1" Datatype="Word" />
+                <Member Name="swEPosZSW2" Datatype="Word" />
+                <Member Name="siExecuteCyc" Datatype="Int" />
+                <Member Name="siRefTypCyc" Datatype="Int" />
+                <Member Name="siJogIncCyc" Datatype="Int" />
+                <Member Name="siMdiStartCyc" Datatype="Int" />
+                <Member Name="siRefActRetry" Datatype="Int" />
+                <Member Name="siModePos" Datatype="Int" />
+                <Member Name="siModePosMax" Datatype="Int" />
+                <Member Name="siCycWait" Datatype="Int" />
+                <Member Name="siRetryMax" Datatype="Int" />
+                <Member Name="sbModePos" Datatype="Bool" />
+                <Member Name="sxSendBuf" Datatype="Struct">
+                  <Member Name="STW1" Datatype="Word" />
+                  <Member Name="EPosSTW1" Datatype="Word" />
+                  <Member Name="EPosSTW2" Datatype="Word" />
+                  <Member Name="STW2" Datatype="Word" />
+                  <Member Name="OverrideV" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="OverrideA" Datatype="Word" />
+                  <Member Name="OverrideD" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+                <Member Name="sxRecvBuf" Datatype="Struct">
+                  <Member Name="ZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW2" Datatype="Word" />
+                  <Member Name="ZSW2" Datatype="Word" />
+                  <Member Name="NotUsed" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="ErrNr" Datatype="Word" />
+                  <Member Name="WarnNr" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sPara" Datatype="&quot;SINA_PARA_S&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="Start" Datatype="Bool" />
+                <Member Name="ReadWrite" Datatype="Bool" />
+                <Member Name="Parameter" Datatype="Int" />
+                <Member Name="Index" Datatype="Int" />
+                <Member Name="ValueWrite1" Datatype="Real" />
+                <Member Name="ValueWrite2" Datatype="DInt" />
+                <Member Name="AxisNo" Datatype="Byte" />
+                <Member Name="hardwareId" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Ready" Datatype="Bool" />
+                <Member Name="Busy" Datatype="Bool" />
+                <Member Name="Done" Datatype="Bool" />
+                <Member Name="ValueRead1" Datatype="Real" />
+                <Member Name="ValueRead2" Datatype="DInt" />
+                <Member Name="Format" Datatype="Byte" />
+                <Member Name="ErrorNo" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="ErrorId" Datatype="DWord" />
+                <Member Name="DiagId" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbWrError" Datatype="Bool" />
+                <Member Name="sbWrDone" Datatype="Bool" />
+                <Member Name="sbRdError" Datatype="Bool" />
+                <Member Name="sbWrBusy" Datatype="Bool" />
+                <Member Name="sbRdBusy" Datatype="Bool" />
+                <Member Name="sbWrStart" Datatype="Bool" />
+                <Member Name="sbRdStart" Datatype="Bool" />
+                <Member Name="sbWrStart1" Datatype="Bool" />
+                <Member Name="sbRdStart1" Datatype="Bool" />
+                <Member Name="sbWrStart2" Datatype="Bool" />
+                <Member Name="sbRdStart2" Datatype="Bool" />
+                <Member Name="sbStart" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbRead" Datatype="Bool" />
+                <Member Name="sbWrite" Datatype="Bool" />
+                <Member Name="sbParaNo" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="sbError" Datatype="Bool" />
+                <Member Name="sbDone" Datatype="Bool" />
+                <Member Name="syFormat" Datatype="Byte" />
+                <Member Name="syAxisNo" Datatype="Byte" />
+                <Member Name="siReqRef" Datatype="Int" />
+                <Member Name="siErrorId" Datatype="Int" />
+                <Member Name="siErrorCount" Datatype="Int" />
+                <Member Name="siMaxErrCount" Datatype="Int" />
+                <Member Name="swParaError" Datatype="Word" />
+                <Member Name="sxReqParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxParaAdress" Datatype="Struct">
+                    <Member Name="syAttr" Datatype="Byte" />
+                    <Member Name="syElemNo" Datatype="Byte" />
+                    <Member Name="siParaNo" Datatype="Int" />
+                    <Member Name="siIndex" Datatype="Int" />
+                  </Member>
+                </Member>
+                <Member Name="sxChaParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..12] of Byte" />
+                </Member>
+                <Member Name="sxRespParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..6] of Byte" />
+                </Member>
+                <Member Name="RDREC_1" Datatype="RDREC" Version="1.0">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="MLEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="VALID" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="WRREC_1" Datatype="WRREC" Version="1.1">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="DONE" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="siLenHeader" Datatype="Int" />
+                <Member Name="siLenParaMulti" Datatype="Int" />
+                <Member Name="siLenChaPara" Datatype="Int" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sRunningTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sHomingTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sEnableDelay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sManDirHis" Datatype="DInt" />
+          <Member Name="sManListHis" Datatype="Int" />
+          <Member Name="sAutoListHis" Datatype="Int" />
+          <Member Name="Position_PV" Datatype="Int" />
+          <Member Name="Conv_Pos_PV" Datatype="Int" />
+          <Member Name="Delay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_1" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_2" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_3" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo_383A1" Datatype="&quot;fbV90Ctrl&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iSysRun" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="iEstop" Datatype="Bool" />
+          <Member Name="iAuto" Datatype="Bool" />
+          <Member Name="iManual" Datatype="Bool" />
+          <Member Name="iConnect" Datatype="Bool" />
+          <Member Name="iStep" Datatype="Bool" />
+          <Member Name="iInterlock" Datatype="Bool" />
+          <Member Name="iManJog+" Datatype="Bool" />
+          <Member Name="iManJog-" Datatype="Bool" />
+          <Member Name="iManStart" Datatype="Bool" />
+          <Member Name="iManListStart" Datatype="Bool" />
+          <Member Name="iAutoStart" Datatype="Bool" />
+          <Member Name="iLimitSwitchActive" Datatype="Bool" />
+          <Member Name="iLimitSoftActive" Datatype="Bool" />
+          <Member Name="iRunningTimeout" Datatype="Time" />
+          <Member Name="iHomingTimeout" Datatype="Time" />
+          <Member Name="iAutoPosition" Datatype="DInt" />
+          <Member Name="iAutoVelocity" Datatype="Int" />
+          <Member Name="iManListPosition" Datatype="DInt" />
+          <Member Name="iManListVelocity" Datatype="Int" />
+          <Member Name="iManPosition" Datatype="DInt" />
+          <Member Name="iManVelocity" Datatype="Int" />
+          <Member Name="iMode" Datatype="Int" />
+          <Member Name="iAListNumber" Datatype="Int" />
+          <Member Name="iMListNumber" Datatype="Int" />
+          <Member Name="iHWIDSTW" Datatype="HW_IO" />
+          <Member Name="iHWIDZSW" Datatype="HW_IO" />
+          <Member Name="iHardwareId" Datatype="HW_IO" />
+          <Member Name="iSpecJog" Datatype="Bool" />
+          <Member Name="iHomeSwitch" Datatype="Bool" />
+          <Member Name="iIndexTableON" Datatype="Bool" />
+          <Member Name="Position_sensor_1" Datatype="Bool" />
+          <Member Name="Position_sensor_2" Datatype="Bool" />
+          <Member Name="Position_sensor_3" Datatype="Bool" />
+          <Member Name="Position_sensor_4" Datatype="Bool" />
+          <Member Name="Type" Datatype="Bool" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oReady" Datatype="Bool" />
+          <Member Name="oWarning" Datatype="Bool" />
+          <Member Name="oError" Datatype="Bool" />
+          <Member Name="oInterlock" Datatype="Bool" />
+          <Member Name="oServoEnable" Datatype="Bool" />
+          <Member Name="oRunning" Datatype="Bool" />
+          <Member Name="oHoming" Datatype="Bool" />
+          <Member Name="oHomeRef" Datatype="Bool" />
+          <Member Name="oServoPosOK" Datatype="Bool" />
+          <Member Name="oErrorCode" Datatype="Int" />
+          <Member Name="oStatus" Datatype="Int" />
+          <Member Name="oActPosition" Datatype="DInt" />
+          <Member Name="oTargetPos" Datatype="DInt" />
+          <Member Name="oPosOK" Datatype="Array[1..20] of Bool" />
+          <Member Name="oDisable" Datatype="Bool" />
+          <Member Name="oSensorInPos" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioManEnale" Datatype="Bool" />
+          <Member Name="ioAutoEnale" Datatype="Bool" />
+          <Member Name="ioHome" Datatype="Bool" />
+          <Member Name="ioHomeWrite" Datatype="Bool" />
+          <Member Name="ioBusy" Datatype="Bool" />
+          <Member Name="ioDone" Datatype="Bool" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="sStep" Datatype="Array[1..4] of Int" />
+          <Member Name="sPls" Datatype="Array[1..16] of Bool" />
+          <Member Name="sErrorCode" Datatype="Int" />
+          <Member Name="sPosOK" Datatype="Bool" />
+          <Member Name="sRunning" Datatype="Bool" />
+          <Member Name="sHoming" Datatype="Bool" />
+          <Member Name="sCancel" Datatype="Bool" />
+          <Member Name="sMan/List" Datatype="Bool" />
+          <Member Name="sCMMT" Datatype="&quot;SINA_POS&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="ModePos" Datatype="Int" />
+                <Member Name="EnableAxis" Datatype="Bool" />
+                <Member Name="CancelTraversing" Datatype="Bool" />
+                <Member Name="IntermediateStop" Datatype="Bool" />
+                <Member Name="Positive" Datatype="Bool" />
+                <Member Name="Negative" Datatype="Bool" />
+                <Member Name="Jog1" Datatype="Bool" />
+                <Member Name="Jog2" Datatype="Bool" />
+                <Member Name="FlyRef" Datatype="Bool" />
+                <Member Name="AckError" Datatype="Bool" />
+                <Member Name="ExecuteMode" Datatype="Bool" />
+                <Member Name="Position" Datatype="DInt" />
+                <Member Name="Velocity" Datatype="DInt" />
+                <Member Name="OverV" Datatype="Int" />
+                <Member Name="OverAcc" Datatype="Int" />
+                <Member Name="OverDec" Datatype="Int" />
+                <Member Name="ConfigEPos" Datatype="DWord" />
+                <Member Name="HWIDSTW" Datatype="HW_IO" />
+                <Member Name="HWIDZSW" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="AxisEnabled" Datatype="Bool" />
+                <Member Name="AxisPosOk" Datatype="Bool" />
+                <Member Name="AxisRef" Datatype="Bool" />
+                <Member Name="AxisWarn" Datatype="Bool" />
+                <Member Name="AxisError" Datatype="Bool" />
+                <Member Name="Lockout" Datatype="Bool" />
+                <Member Name="ActVelocity" Datatype="DInt" />
+                <Member Name="ActPosition" Datatype="DInt" />
+                <Member Name="ActMode" Datatype="Int" />
+                <Member Name="EPosZSW1" Datatype="Word" />
+                <Member Name="EPosZSW2" Datatype="Word" />
+                <Member Name="ActWarn" Datatype="Word" />
+                <Member Name="ActFault" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="Status" Datatype="Word" />
+                <Member Name="DiagID" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbOff1Edge" Datatype="Bool" />
+                <Member Name="sbOff1" Datatype="Bool" />
+                <Member Name="sbExecuteEdge" Datatype="Bool" />
+                <Member Name="sbExecute" Datatype="Bool" />
+                <Member Name="sbRefTypEdge" Datatype="Bool" />
+                <Member Name="sbRefTyp" Datatype="Bool" />
+                <Member Name="sbMdiStart" Datatype="Bool" />
+                <Member Name="sbMdiStartEdge" Datatype="Bool" />
+                <Member Name="sbRefStart" Datatype="Bool" />
+                <Member Name="sbJogInc" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbIOp" Datatype="Bool" />
+                <Member Name="sbAccel" Datatype="Bool" />
+                <Member Name="sbDecel" Datatype="Bool" />
+                <Member Name="sbAlarm" Datatype="Bool" />
+                <Member Name="sbFault" Datatype="Bool" />
+                <Member Name="sbFWD" Datatype="Bool" />
+                <Member Name="sbBWD" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="swStatus" Datatype="Word" />
+                <Member Name="swEPosZSW1" Datatype="Word" />
+                <Member Name="swEPosZSW2" Datatype="Word" />
+                <Member Name="siExecuteCyc" Datatype="Int" />
+                <Member Name="siRefTypCyc" Datatype="Int" />
+                <Member Name="siJogIncCyc" Datatype="Int" />
+                <Member Name="siMdiStartCyc" Datatype="Int" />
+                <Member Name="siRefActRetry" Datatype="Int" />
+                <Member Name="siModePos" Datatype="Int" />
+                <Member Name="siModePosMax" Datatype="Int" />
+                <Member Name="siCycWait" Datatype="Int" />
+                <Member Name="siRetryMax" Datatype="Int" />
+                <Member Name="sbModePos" Datatype="Bool" />
+                <Member Name="sxSendBuf" Datatype="Struct">
+                  <Member Name="STW1" Datatype="Word" />
+                  <Member Name="EPosSTW1" Datatype="Word" />
+                  <Member Name="EPosSTW2" Datatype="Word" />
+                  <Member Name="STW2" Datatype="Word" />
+                  <Member Name="OverrideV" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="OverrideA" Datatype="Word" />
+                  <Member Name="OverrideD" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+                <Member Name="sxRecvBuf" Datatype="Struct">
+                  <Member Name="ZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW1" Datatype="Word" />
+                  <Member Name="EPosZSW2" Datatype="Word" />
+                  <Member Name="ZSW2" Datatype="Word" />
+                  <Member Name="NotUsed" Datatype="Word" />
+                  <Member Name="Position" Datatype="DWord" />
+                  <Member Name="Velocity" Datatype="DWord" />
+                  <Member Name="ErrNr" Datatype="Word" />
+                  <Member Name="WarnNr" Datatype="Word" />
+                  <Member Name="Reserve" Datatype="Word" />
+                </Member>
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sPara" Datatype="&quot;SINA_PARA_S&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="Start" Datatype="Bool" />
+                <Member Name="ReadWrite" Datatype="Bool" />
+                <Member Name="Parameter" Datatype="Int" />
+                <Member Name="Index" Datatype="Int" />
+                <Member Name="ValueWrite1" Datatype="Real" />
+                <Member Name="ValueWrite2" Datatype="DInt" />
+                <Member Name="AxisNo" Datatype="Byte" />
+                <Member Name="hardwareId" Datatype="HW_IO" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Ready" Datatype="Bool" />
+                <Member Name="Busy" Datatype="Bool" />
+                <Member Name="Done" Datatype="Bool" />
+                <Member Name="ValueRead1" Datatype="Real" />
+                <Member Name="ValueRead2" Datatype="DInt" />
+                <Member Name="Format" Datatype="Byte" />
+                <Member Name="ErrorNo" Datatype="Word" />
+                <Member Name="Error" Datatype="Bool" />
+                <Member Name="ErrorId" Datatype="DWord" />
+                <Member Name="DiagId" Datatype="Word" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="sbWrError" Datatype="Bool" />
+                <Member Name="sbWrDone" Datatype="Bool" />
+                <Member Name="sbRdError" Datatype="Bool" />
+                <Member Name="sbWrBusy" Datatype="Bool" />
+                <Member Name="sbRdBusy" Datatype="Bool" />
+                <Member Name="sbWrStart" Datatype="Bool" />
+                <Member Name="sbRdStart" Datatype="Bool" />
+                <Member Name="sbWrStart1" Datatype="Bool" />
+                <Member Name="sbRdStart1" Datatype="Bool" />
+                <Member Name="sbWrStart2" Datatype="Bool" />
+                <Member Name="sbRdStart2" Datatype="Bool" />
+                <Member Name="sbStart" Datatype="Bool" />
+                <Member Name="sbReady" Datatype="Bool" />
+                <Member Name="sbRead" Datatype="Bool" />
+                <Member Name="sbWrite" Datatype="Bool" />
+                <Member Name="sbParaNo" Datatype="Bool" />
+                <Member Name="sbBusy" Datatype="Bool" />
+                <Member Name="sbError" Datatype="Bool" />
+                <Member Name="sbDone" Datatype="Bool" />
+                <Member Name="syFormat" Datatype="Byte" />
+                <Member Name="syAxisNo" Datatype="Byte" />
+                <Member Name="siReqRef" Datatype="Int" />
+                <Member Name="siErrorId" Datatype="Int" />
+                <Member Name="siErrorCount" Datatype="Int" />
+                <Member Name="siMaxErrCount" Datatype="Int" />
+                <Member Name="swParaError" Datatype="Word" />
+                <Member Name="sxReqParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxParaAdress" Datatype="Struct">
+                    <Member Name="syAttr" Datatype="Byte" />
+                    <Member Name="syElemNo" Datatype="Byte" />
+                    <Member Name="siParaNo" Datatype="Int" />
+                    <Member Name="siIndex" Datatype="Int" />
+                  </Member>
+                </Member>
+                <Member Name="sxChaParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..12] of Byte" />
+                </Member>
+                <Member Name="sxRespParaMulti" Datatype="Struct">
+                  <Member Name="sxHeader" Datatype="Struct">
+                    <Member Name="syReqRef" Datatype="Byte" />
+                    <Member Name="syReqId" Datatype="Byte" />
+                    <Member Name="syAxisNo" Datatype="Byte" />
+                    <Member Name="syParaNo" Datatype="Byte" />
+                  </Member>
+                  <Member Name="sxData" Datatype="Array[1..6] of Byte" />
+                </Member>
+                <Member Name="RDREC_1" Datatype="RDREC" Version="1.0">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="MLEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="VALID" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="WRREC_1" Datatype="WRREC" Version="1.1">
+                  <Sections>
+                    <Section Name="Input">
+                      <Member Name="REQ" Datatype="Bool" />
+                      <Member Name="ID" Datatype="HW_IO" />
+                      <Member Name="INDEX" Datatype="DInt" />
+                      <Member Name="LEN" Datatype="UInt" />
+                    </Section>
+                    <Section Name="Output">
+                      <Member Name="DONE" Datatype="Bool" />
+                      <Member Name="BUSY" Datatype="Bool" />
+                      <Member Name="ERROR" Datatype="Bool" />
+                      <Member Name="STATUS" Datatype="DWord" />
+                    </Section>
+                    <Section Name="InOut">
+                      <Member Name="RECORD" Datatype="Variant" />
+                    </Section>
+                    <Section Name="Static" />
+                  </Sections>
+                </Member>
+                <Member Name="siLenHeader" Datatype="Int" />
+                <Member Name="siLenParaMulti" Datatype="Int" />
+                <Member Name="siLenChaPara" Datatype="Int" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sRunningTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sHomingTimeout" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sEnableDelay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="sManDirHis" Datatype="DInt" />
+          <Member Name="sManListHis" Datatype="Int" />
+          <Member Name="sAutoListHis" Datatype="Int" />
+          <Member Name="Position_PV" Datatype="Int" />
+          <Member Name="Conv_Pos_PV" Datatype="Int" />
+          <Member Name="Delay" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_1" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_2" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Delay_3" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo1" Datatype="&quot;SevroStart&amp;PosCheck&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iRef_Homed" Datatype="Bool" />
+          <Member Name="iStandstill" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="interlcok" Datatype="Bool" />
+          <Member Name="iActual Posi" Datatype="DInt" />
+          <Member Name="iTol+" Datatype="DInt" />
+          <Member Name="iTol-" Datatype="DInt" />
+          <Member Name="iStartTon" Datatype="Time" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oStartPos" Datatype="Bool" />
+          <Member Name="DoublePosError" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioPoint" Datatype="Array[0..39] of Struct">
+            <Member Name="Start" Datatype="Bool" />
+            <Member Name="Achieve" Datatype="Bool" />
+          </Member>
+          <Member Name="ioList" Datatype="&quot;PosList&quot;">
+            <Sections>
+              <Section Name="None" />
+            </Sections>
+          </Member>
+          <Member Name="ioPosNumberSelect" Datatype="Int" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="TON" Datatype="Array[0..1] of TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="StartCount" Datatype="Int" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo2" Datatype="&quot;SevroStart&amp;PosCheck&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iRef_Homed" Datatype="Bool" />
+          <Member Name="iStandstill" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="interlcok" Datatype="Bool" />
+          <Member Name="iActual Posi" Datatype="DInt" />
+          <Member Name="iTol+" Datatype="DInt" />
+          <Member Name="iTol-" Datatype="DInt" />
+          <Member Name="iStartTon" Datatype="Time" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oStartPos" Datatype="Bool" />
+          <Member Name="DoublePosError" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioPoint" Datatype="Array[0..39] of Struct">
+            <Member Name="Start" Datatype="Bool" />
+            <Member Name="Achieve" Datatype="Bool" />
+          </Member>
+          <Member Name="ioList" Datatype="&quot;PosList&quot;">
+            <Sections>
+              <Section Name="None" />
+            </Sections>
+          </Member>
+          <Member Name="ioPosNumberSelect" Datatype="Int" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="TON" Datatype="Array[0..1] of TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="StartCount" Datatype="Int" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo3" Datatype="&quot;SevroStart&amp;PosCheck&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iRef_Homed" Datatype="Bool" />
+          <Member Name="iStandstill" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="interlcok" Datatype="Bool" />
+          <Member Name="iActual Posi" Datatype="DInt" />
+          <Member Name="iTol+" Datatype="DInt" />
+          <Member Name="iTol-" Datatype="DInt" />
+          <Member Name="iStartTon" Datatype="Time" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oStartPos" Datatype="Bool" />
+          <Member Name="DoublePosError" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioPoint" Datatype="Array[0..39] of Struct">
+            <Member Name="Start" Datatype="Bool" />
+            <Member Name="Achieve" Datatype="Bool" />
+          </Member>
+          <Member Name="ioList" Datatype="&quot;PosList&quot;">
+            <Sections>
+              <Section Name="None" />
+            </Sections>
+          </Member>
+          <Member Name="ioPosNumberSelect" Datatype="Int" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="TON" Datatype="Array[0..1] of TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="StartCount" Datatype="Int" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo4" Datatype="&quot;SevroStart&amp;PosCheck&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="iRef_Homed" Datatype="Bool" />
+          <Member Name="iStandstill" Datatype="Bool" />
+          <Member Name="iReset" Datatype="Bool" />
+          <Member Name="interlcok" Datatype="Bool" />
+          <Member Name="iActual Posi" Datatype="DInt" />
+          <Member Name="iTol+" Datatype="DInt" />
+          <Member Name="iTol-" Datatype="DInt" />
+          <Member Name="iStartTon" Datatype="Time" />
+        </Section>
+        <Section Name="Output">
+          <Member Name="oStartPos" Datatype="Bool" />
+          <Member Name="DoublePosError" Datatype="Bool" />
+        </Section>
+        <Section Name="InOut">
+          <Member Name="ioPoint" Datatype="Array[0..39] of Struct">
+            <Member Name="Start" Datatype="Bool" />
+            <Member Name="Achieve" Datatype="Bool" />
+          </Member>
+          <Member Name="ioList" Datatype="&quot;PosList&quot;">
+            <Sections>
+              <Section Name="None" />
+            </Sections>
+          </Member>
+          <Member Name="ioPosNumberSelect" Datatype="Int" />
+        </Section>
+        <Section Name="Static">
+          <Member Name="TON" Datatype="Array[0..1] of TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="StartCount" Datatype="Int" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Servo2SafetyPos" Datatype="DInt" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Servo4SafetyPos" Datatype="DInt" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="IEC_Timer_0_Instance" Datatype="TON_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="None">
+          <Member Name="PT" Datatype="Time" />
+          <Member Name="ET" Datatype="Time" />
+          <Member Name="IN" Datatype="Bool" />
+          <Member Name="Q" Datatype="Bool" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="P" Datatype="Array[0..10] of Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>V90Servo_DB</Name>
+      <Namespace />
+      <Number>2500</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

@@ -1,0 +1,839 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <HeaderAuthor>STD</HeaderAuthor>
+      <HeaderFamily>RCS</HeaderFamily>
+      <HeaderName />
+      <HeaderVersion>18.0</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="iCheckType" Datatype="String" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Person Confirm input type ID/NAME</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iPulse*500ms" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">pulse</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iReset" Datatype="Bool" Accessibility="Public" />
+  </Section>
+  <Section Name="Output">
+    <Member Name="oPulse" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">system pulse[HMI Variable Must keep continous mode]</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="oEqual" Datatype="Bool" Accessibility="Public" />
+  </Section>
+  <Section Name="InOut">
+    <Member Name="ioPreConfigType" Datatype="String" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">to be changed recipe ID/NAME</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="ioCurrentName" Datatype="String" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">current recipe record name</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iotime" Datatype="Int" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">time record</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="ioTrigger" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">trigger for changeing over</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="ioPosEdg" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">postive edge bit</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="ioAlarm" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Changover time out</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="ioPls" Datatype="Bool" Accessibility="Public" />
+  </Section>
+  <Section Name="Temp">
+    <Member Name="tpPosEdg" Datatype="Bool" />
+    <Member Name="tpPls" Datatype="Bool" />
+  </Section>
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">0-NG/1-OK</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>ChangeOver</Name>
+      <Namespace />
+      <Number>3002</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>true</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <LineComment Inserted="false" NoClosingBracket="false" UId="21">
+    <Text UId="22">---------------------------------------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="23" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="24">
+    <Text UId="25">FunctionName:ChangeOverV3</Text>
+  </LineComment>
+  <NewLine Num="1" UId="26" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="27">
+    <Text UId="28">FunctionDescription:ChangeOver</Text>
+  </LineComment>
+  <NewLine Num="1" UId="29" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="30">
+    <Text UId="31">---------------------------------------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="32" />
+  <LineComment Inserted="true" NoClosingBracket="false" UId="33">
+    <Text UId="34">in:
+
+iPreConfigType  String
+iLastType   String
+iPulse*500ms    Bool
+iTrigger    Bool
+
+
+//inout:
+//out:
+oPulse  Bool
+oAlarm  Bool
+
+</Text>
+  </LineComment>
+  <NewLine Num="1" UId="35" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="36">
+    <Text UId="37">---------------------------------------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="38" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="39">
+    <Text UId="40">Version:V2</Text>
+  </LineComment>
+  <NewLine Num="1" UId="41" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="42">
+    <Text UId="43">D&amp;T:2016-11-125</Text>
+  </LineComment>
+  <NewLine Num="1" UId="44" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="45">
+    <Text UId="46">Group:RCS</Text>
+  </LineComment>
+  <NewLine Num="1" UId="47" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="48">
+    <Text UId="49">Author:JM</Text>
+  </LineComment>
+  <NewLine Num="1" UId="50" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="51">
+    <Text UId="52">-------------------------Modify1----------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="53" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="54">
+    <Text UId="55">Version:V3.0</Text>
+  </LineComment>
+  <NewLine Num="1" UId="56" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="57">
+    <Text UId="58">D&amp;T:2016-11-28</Text>
+  </LineComment>
+  <NewLine Num="1" UId="59" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="60">
+    <Text UId="61">Group: RCS</Text>
+  </LineComment>
+  <NewLine Num="1" UId="62" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="63">
+    <Text UId="64">Author:JM</Text>
+  </LineComment>
+  <NewLine Num="1" UId="65" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="66">
+    <Text UId="67">Modify: add timeout bit </Text>
+  </LineComment>
+  <NewLine Num="1" UId="68" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="69">
+    <Text UId="70">-------------------------Modify2----------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="71" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="72">
+    <Text UId="73">Version:V3.0</Text>
+  </LineComment>
+  <NewLine Num="1" UId="74" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="75">
+    <Text UId="76">D&amp;T:20180416</Text>
+  </LineComment>
+  <NewLine Num="1" UId="77" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="78">
+    <Text UId="79">Group: RCS</Text>
+  </LineComment>
+  <NewLine Num="1" UId="80" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="81">
+    <Text UId="82">Author:JM</Text>
+  </LineComment>
+  <NewLine Num="1" UId="83" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="84">
+    <Text UId="85">Modify:</Text>
+  </LineComment>
+  <NewLine Num="1" UId="86" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="87">
+    <Text UId="88"> Add pls flag in order to keep paramter that download after modifier safe.</Text>
+  </LineComment>
+  <NewLine Num="1" UId="89" />
+  <Access Scope="LocalVariable" UId="90">
+    <Symbol UId="91">
+      <Component Name="tpPls" UId="92" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="93" />
+  <Token Text=":=" UId="94" />
+  <Blank Num="1" UId="95" />
+  <Access Scope="LocalVariable" UId="96">
+    <Symbol UId="97">
+      <Component Name="ioTrigger" UId="98" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="99" />
+  <Token Text="AND" UId="100" />
+  <Blank Num="1" UId="101" />
+  <Token Text="NOT" UId="102" />
+  <Blank Num="1" UId="103" />
+  <Access Scope="LocalVariable" UId="104">
+    <Symbol UId="105">
+      <Component Name="ioPls" UId="106" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="107" />
+  <NewLine Num="1" UId="108" />
+  <Access Scope="LocalVariable" UId="109">
+    <Symbol UId="110">
+      <Component Name="ioPls" UId="111" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="112" />
+  <Token Text=":=" UId="113" />
+  <Blank Num="1" UId="114" />
+  <Access Scope="LocalVariable" UId="115">
+    <Symbol UId="116">
+      <Component Name="ioTrigger" UId="117" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="118" />
+  <NewLine Num="1" UId="119" />
+  <Access Scope="LocalVariable" UId="120">
+    <Symbol UId="121">
+      <Component Name="tpPosEdg" UId="122" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="123" />
+  <Token Text=":=" UId="124" />
+  <Blank Num="1" UId="125" />
+  <Access Scope="LocalVariable" UId="126">
+    <Symbol UId="127">
+      <Component Name="iPulse*500ms" UId="128" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="129" />
+  <Token Text="AND" UId="130" />
+  <Blank Num="1" UId="131" />
+  <Token Text="NOT" UId="132" />
+  <Blank Num="1" UId="133" />
+  <Access Scope="LocalVariable" UId="134">
+    <Symbol UId="135">
+      <Component Name="ioPosEdg" UId="136" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="137" />
+  <NewLine Num="1" UId="138" />
+  <Access Scope="LocalVariable" UId="139">
+    <Symbol UId="140">
+      <Component Name="ioPosEdg" UId="141" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="142" />
+  <Token Text=":=" UId="143" />
+  <Blank Num="1" UId="144" />
+  <Access Scope="LocalVariable" UId="145">
+    <Symbol UId="146">
+      <Component Name="iPulse*500ms" UId="147" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="148" />
+  <NewLine Num="1" UId="149" />
+  <Access Scope="LocalVariable" UId="150">
+    <Symbol UId="151">
+      <Component Name="oEqual" UId="152" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="153" />
+  <Token Text=":=" UId="154" />
+  <Blank Num="1" UId="155" />
+  <Access Scope="LocalVariable" UId="156">
+    <Symbol UId="157">
+      <Component Name="ioPreConfigType" UId="158" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="159" />
+  <Token Text="=" UId="160" />
+  <Blank Num="1" UId="161" />
+  <Access Scope="LocalVariable" UId="162">
+    <Symbol UId="163">
+      <Component Name="iCheckType" UId="164" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="165" />
+  <Token Text="AND" UId="166" />
+  <Blank Num="1" UId="167" />
+  <Access Scope="LocalVariable" UId="168">
+    <Symbol UId="169">
+      <Component Name="ioPreConfigType" UId="170" />
+    </Symbol>
+  </Access>
+  <Token Text="&lt;&gt;" UId="171" />
+  <Access Scope="LiteralConstant" UId="172">
+    <Constant UId="173">
+      <ConstantValue UId="175">''</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="176" />
+  <NewLine Num="3" UId="177" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="178">
+    <Text UId="179"> IF #tpPls THEN</Text>
+  </LineComment>
+  <NewLine Num="1" UId="180" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="181">
+    <Text UId="182">     #ioPreConfigType:='';</Text>
+  </LineComment>
+  <NewLine Num="1" UId="183" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="184">
+    <Text UId="185"> END_IF;</Text>
+  </LineComment>
+  <NewLine Num="1" UId="186" />
+  <Token Text="IF" UId="187" />
+  <Blank Num="1" UId="188" />
+  <Token Text="(" UId="189" />
+  <Access Scope="LocalVariable" UId="190">
+    <Symbol UId="191">
+      <Component Name="iReset" UId="192" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="193" />
+  <Token Text="AND" UId="194" />
+  <Blank Num="1" UId="195" />
+  <Access Scope="LocalVariable" UId="196">
+    <Symbol UId="197">
+      <Component Name="ioAlarm" UId="198" />
+    </Symbol>
+  </Access>
+  <Token Text=")" UId="199" />
+  <Blank Num="1" UId="200" />
+  <Token Text="OR" UId="201" />
+  <Blank Num="1" UId="202" />
+  <Access Scope="LocalVariable" UId="203">
+    <Symbol UId="204">
+      <Component Name="oEqual" UId="205" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="206" />
+  <Token Text="THEN" UId="207" />
+  <NewLine Num="1" UId="208" />
+  <Blank Num="4" UId="209" />
+  <Access Scope="LocalVariable" UId="210">
+    <Symbol UId="211">
+      <Component Name="ioAlarm" UId="212" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="213" />
+  <Token Text=":=" UId="214" />
+  <Blank Num="1" UId="215" />
+  <Access Scope="LiteralConstant" UId="216">
+    <Constant UId="217">
+      <ConstantValue UId="219">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="220" />
+  <NewLine Num="1" UId="221" />
+  <Token Text="END_IF" UId="222" />
+  <Token Text=";" UId="223" />
+  <NewLine Num="1" UId="224" />
+  <Token Text="IF" UId="225" />
+  <Blank Num="1" UId="226" />
+  <Token Text="NOT" UId="227" />
+  <Blank Num="1" UId="228" />
+  <Access Scope="LocalVariable" UId="229">
+    <Symbol UId="230">
+      <Component Name="ioTrigger" UId="231" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="232" />
+  <Token Text="THEN" UId="233" />
+  <NewLine Num="1" UId="234" />
+  <Blank Num="4" UId="235" />
+  <Access Scope="LocalVariable" UId="236">
+    <Symbol UId="237">
+      <Component Name="ChangeOver" UId="238" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="239" />
+  <Token Text=":=" UId="240" />
+  <Blank Num="1" UId="241" />
+  <Access Scope="LiteralConstant" UId="242">
+    <Constant UId="243">
+      <ConstantValue UId="245">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="246" />
+  <NewLine Num="1" UId="247" />
+  <Blank Num="4" UId="248" />
+  <Access Scope="LocalVariable" UId="249">
+    <Symbol UId="250">
+      <Component Name="iotime" UId="251" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="252" />
+  <Token Text=":=" UId="253" />
+  <Blank Num="1" UId="254" />
+  <Access Scope="LiteralConstant" UId="255">
+    <Constant UId="256">
+      <ConstantValue UId="258">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="259" />
+  <NewLine Num="1" UId="260" />
+  <Blank Num="4" UId="261" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="262">
+    <Text UId="263"> #oAlarm := 0;</Text>
+  </LineComment>
+  <NewLine Num="1" UId="264" />
+  <Blank Num="4" UId="265" />
+  <Token Text="RETURN" UId="266" />
+  <Token Text=";" UId="267" />
+  <NewLine Num="1" UId="268" />
+  <Token Text="ELSE" UId="269" />
+  <NewLine Num="1" UId="270" />
+  <Blank Num="4" UId="271" />
+  <Token Text="IF" UId="272" />
+  <Blank Num="1" UId="273" />
+  <Access Scope="LocalVariable" UId="274">
+    <Symbol UId="275">
+      <Component Name="tpPosEdg" UId="276" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="277" />
+  <Token Text="THEN" UId="278" />
+  <NewLine Num="1" UId="279" />
+  <Blank Num="8" UId="280" />
+  <Access Scope="LocalVariable" UId="281">
+    <Symbol UId="282">
+      <Component Name="iotime" UId="283" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="284" />
+  <Token Text=":=" UId="285" />
+  <Blank Num="1" UId="286" />
+  <Access Scope="LocalVariable" UId="287">
+    <Symbol UId="288">
+      <Component Name="iotime" UId="289" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="290" />
+  <Token Text="+" UId="291" />
+  <Blank Num="1" UId="292" />
+  <Access Scope="LiteralConstant" UId="293">
+    <Constant UId="294">
+      <ConstantValue UId="296">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="297" />
+  <NewLine Num="1" UId="298" />
+  <Blank Num="4" UId="299" />
+  <Token Text="END_IF" UId="300" />
+  <Token Text=";" UId="301" />
+  <NewLine Num="1" UId="302" />
+  <Blank Num="4" UId="303" />
+  <Token Text="IF" UId="304" />
+  <Blank Num="1" UId="305" />
+  <Access Scope="LocalVariable" UId="306">
+    <Symbol UId="307">
+      <Component Name="iotime" UId="308" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="309" />
+  <Token Text="&gt;=" UId="310" />
+  <Blank Num="1" UId="311" />
+  <Access Scope="LiteralConstant" UId="312">
+    <Constant UId="313">
+      <ConstantValue UId="315">10</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="316" />
+  <Token Text="THEN" UId="317" />
+  <NewLine Num="1" UId="318" />
+  <Blank Num="8" UId="319" />
+  <Access Scope="LocalVariable" UId="320">
+    <Symbol UId="321">
+      <Component Name="ioAlarm" UId="322" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="323" />
+  <Token Text=":=" UId="324" />
+  <Blank Num="1" UId="325" />
+  <Access Scope="LiteralConstant" UId="326">
+    <Constant UId="327">
+      <ConstantValue UId="329">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="330" />
+  <NewLine Num="1" UId="331" />
+  <Blank Num="8" UId="332" />
+  <Access Scope="LocalVariable" UId="333">
+    <Symbol UId="334">
+      <Component Name="ioTrigger" UId="335" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="336" />
+  <Token Text=":=" UId="337" />
+  <Blank Num="1" UId="338" />
+  <Access Scope="LiteralConstant" UId="339">
+    <Constant UId="340">
+      <ConstantValue UId="342">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="343" />
+  <NewLine Num="1" UId="344" />
+  <Blank Num="8" UId="345" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="346">
+    <Text UId="347"> ELSE</Text>
+  </LineComment>
+  <NewLine Num="1" UId="348" />
+  <Blank Num="8" UId="349" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="350">
+    <Text UId="351">     #oAlarm := 0;</Text>
+  </LineComment>
+  <NewLine Num="1" UId="352" />
+  <Blank Num="4" UId="353" />
+  <Token Text="END_IF" UId="354" />
+  <Token Text=";" UId="355" />
+  <NewLine Num="1" UId="356" />
+  <Blank Num="4" UId="357" />
+  <Access Scope="LocalVariable" UId="358">
+    <Symbol UId="359">
+      <Component Name="ChangeOver" UId="360" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="361" />
+  <Token Text=":=" UId="362" />
+  <Blank Num="1" UId="363" />
+  <Access Scope="LiteralConstant" UId="364">
+    <Constant UId="365">
+      <ConstantValue UId="367">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="368" />
+  <NewLine Num="1" UId="369" />
+  <Blank Num="4" UId="370" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="371">
+    <Text UId="372"> #tpCurrentProductlen := LEN(#tpCurrentProduct);</Text>
+  </LineComment>
+  <NewLine Num="1" UId="373" />
+  <Blank Num="4" UId="374" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="375">
+    <Text UId="376"> #tpLastProductlen := LEN(#tpLastProduct);</Text>
+  </LineComment>
+  <NewLine Num="1" UId="377" />
+  <Blank Num="4" UId="378" />
+  <Token Text="IF" UId="379" />
+  <Blank Num="1" UId="380" />
+  <Access Scope="LocalVariable" UId="381">
+    <Symbol UId="382">
+      <Component Name="ioPreConfigType" UId="383" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="384" />
+  <Token Text="&lt;&gt;" UId="385" />
+  <Blank Num="1" UId="386" />
+  <Access Scope="LocalVariable" UId="387">
+    <Symbol UId="388">
+      <Component Name="iCheckType" UId="389" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="390" />
+  <Token Text="THEN" UId="391" />
+  <NewLine Num="1" UId="392" />
+  <Blank Num="8" UId="393" />
+  <Access Scope="LocalVariable" UId="394">
+    <Symbol UId="395">
+      <Component Name="oPulse" UId="396" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="397" />
+  <Token Text=":=" UId="398" />
+  <Blank Num="1" UId="399" />
+  <Access Scope="LocalVariable" UId="400">
+    <Symbol UId="401">
+      <Component Name="iPulse*500ms" UId="402" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="403" />
+  <NewLine Num="1" UId="404" />
+  <Blank Num="8" UId="405" />
+  <Token Text="RETURN" UId="406" />
+  <Token Text=";" UId="407" />
+  <NewLine Num="1" UId="408" />
+  <Blank Num="4" UId="409" />
+  <Token Text="ELSE" UId="410" />
+  <NewLine Num="1" UId="411" />
+  <Blank Num="8" UId="412" />
+  <Token Text="IF" UId="413" />
+  <Blank Num="1" UId="414" />
+  <Access Scope="LocalVariable" UId="415">
+    <Symbol UId="416">
+      <Component Name="ioCurrentName" UId="417" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="418" />
+  <Token Text="&lt;&gt;" UId="419" />
+  <Blank Num="1" UId="420" />
+  <Access Scope="LocalVariable" UId="421">
+    <Symbol UId="422">
+      <Component Name="ioPreConfigType" UId="423" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="424" />
+  <Token Text="THEN" UId="425" />
+  <NewLine Num="1" UId="426" />
+  <Blank Num="12" UId="427" />
+  <Access Scope="LocalVariable" UId="428">
+    <Symbol UId="429">
+      <Component Name="ioCurrentName" UId="430" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="431" />
+  <Token Text=":=" UId="432" />
+  <Blank Num="1" UId="433" />
+  <Access Scope="LocalVariable" UId="434">
+    <Symbol UId="435">
+      <Component Name="ioPreConfigType" UId="436" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="437" />
+  <NewLine Num="1" UId="438" />
+  <Blank Num="8" UId="439" />
+  <Token Text="END_IF" UId="440" />
+  <Token Text=";" UId="441" />
+  <NewLine Num="1" UId="442" />
+  <Blank Num="8" UId="443" />
+  <Access Scope="LocalVariable" UId="444">
+    <Symbol UId="445">
+      <Component Name="iotime" UId="446" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="447" />
+  <Token Text=":=" UId="448" />
+  <Blank Num="1" UId="449" />
+  <Access Scope="LiteralConstant" UId="450">
+    <Constant UId="451">
+      <ConstantValue UId="453">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="454" />
+  <NewLine Num="1" UId="455" />
+  <Blank Num="8" UId="456" />
+  <Access Scope="LocalVariable" UId="457">
+    <Symbol UId="458">
+      <Component Name="ioAlarm" UId="459" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="460" />
+  <Token Text=":=" UId="461" />
+  <Blank Num="1" UId="462" />
+  <Access Scope="LiteralConstant" UId="463">
+    <Constant UId="464">
+      <ConstantValue UId="466">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="467" />
+  <NewLine Num="1" UId="468" />
+  <Blank Num="8" UId="469" />
+  <Access Scope="LocalVariable" UId="470">
+    <Symbol UId="471">
+      <Component Name="oPulse" UId="472" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="473" />
+  <Token Text=":=" UId="474" />
+  <Blank Num="1" UId="475" />
+  <Access Scope="LiteralConstant" UId="476">
+    <Constant UId="477">
+      <ConstantValue UId="479">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="480" />
+  <NewLine Num="1" UId="481" />
+  <Blank Num="8" UId="482" />
+  <Access Scope="LocalVariable" UId="483">
+    <Symbol UId="484">
+      <Component Name="ChangeOver" UId="485" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="486" />
+  <Token Text=":=" UId="487" />
+  <Blank Num="1" UId="488" />
+  <Access Scope="LiteralConstant" UId="489">
+    <Constant UId="490">
+      <ConstantValue UId="492">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="493" />
+  <NewLine Num="1" UId="494" />
+  <Blank Num="8" UId="495" />
+  <Access Scope="LocalVariable" UId="496">
+    <Symbol UId="497">
+      <Component Name="ioTrigger" UId="498" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="499" />
+  <Token Text=":=" UId="500" />
+  <Blank Num="1" UId="501" />
+  <Access Scope="LiteralConstant" UId="502">
+    <Constant UId="503">
+      <ConstantValue UId="505">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="506" />
+  <NewLine Num="1" UId="507" />
+  <Blank Num="8" UId="508" />
+  <Access Scope="PredefinedVariable" UId="509">
+    <PredefinedVariable Name="ENO" UId="510" />
+  </Access>
+  <Blank Num="1" UId="511" />
+  <Token Text=":=" UId="512" />
+  <Blank Num="1" UId="513" />
+  <Access Scope="LiteralConstant" UId="514">
+    <Constant UId="515">
+      <ConstantValue UId="517">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="518" />
+  <NewLine Num="1" UId="519" />
+  <Blank Num="4" UId="520" />
+  <Token Text="END_IF" UId="521" />
+  <Token Text=";" UId="522" />
+  <NewLine Num="1" UId="523" />
+  <Blank Num="4" UId="524" />
+  <NewLine Num="1" UId="525" />
+  <Token Text="END_IF" UId="526" />
+  <Token Text=";" UId="527" />
+  <NewLine Num="1" UId="528" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text>ChangeOverV3</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

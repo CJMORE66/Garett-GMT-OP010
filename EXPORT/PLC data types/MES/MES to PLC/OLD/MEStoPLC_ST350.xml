@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Common" Datatype="&quot;MEStoPLC_Common&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈公共区</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-MesOnline" Datatype="Bool" />
+          <Member Name="M-HeartBeat" Datatype="Bool" />
+          <Member Name="Reserve" Datatype="Array[1..197] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="MainCheckIn" Datatype="&quot;MEStoPLC_MainCheckIn&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈主件查询结果</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-OrderNum" Datatype="String[48]" />
+          <Member Name="M-PartType" Datatype="String[28]" />
+          <Member Name="M-PartID" Datatype="String[48]" />
+          <Member Name="M-PartIDReqDone" Datatype="Bool" />
+          <Member Name="M-RecipeDone" Datatype="Bool" />
+          <Member Name="M-PartOK" Datatype="Bool" />
+          <Member Name="M-PartNG" Datatype="Bool" />
+          <Member Name="M-PartStatus" Datatype="Byte" />
+          <Member Name="M-PartRouting" Datatype="Byte" />
+          <Member Name="M-RecipeVer" Datatype="String[18]" />
+          <Member Name="M-ErrorCode" Datatype="Int" />
+          <Member Name="M-ErrorMsg" Datatype="String[98]" />
+          <Member Name="Reserve" Datatype="Array[1..744] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="SubCheckIn" Datatype="&quot;MEStoPLC_SubCheckIn&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈子件查询结果</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-SubPartDone" Datatype="Bool" />
+          <Member Name="M-SubPartOK" Datatype="Bool" />
+          <Member Name="M-SubPartNG" Datatype="Bool" />
+          <Member Name="M-SubPartErrorCode" Datatype="Int" />
+          <Member Name="M-SubPartErrorMsg" Datatype="String[98]" />
+          <Member Name="Reserve" Datatype="Array[1..196] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="Processing" Datatype="&quot;MEStoPLC_ProcessingExchange&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈Processing记录结果</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-ProcessingDone" Datatype="Bool" />
+          <Member Name="Reserve" Datatype="Array[1..298] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="MainCheckOut" Datatype="&quot;MEStoPLC_MainCheckOut&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈主件保存结果</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-DataSaveDone" Datatype="Bool" />
+          <Member Name="M-DataSaveOK" Datatype="Bool" />
+          <Member Name="M-DataSaveNG" Datatype="Bool" />
+          <Member Name="M-DataSaveErrCode" Datatype="Int" />
+          <Member Name="M-DataSaveErrMsg" Datatype="String[98]" />
+          <Member Name="Reserve" Datatype="Array[1..2096] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="PrintExchange" Datatype="&quot;MEStoPLC_PrintExchange&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈打印数据</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-PrintDataDone" Datatype="Bool" />
+          <Member Name="M-PrintDataOK" Datatype="Bool" />
+          <Member Name="M-PrintDataNG" Datatype="Bool" />
+          <Member Name="M-PrintData" Datatype="Array[1..10] of String[48]" />
+          <Member Name="M-PrintDataErrCode" Datatype="Int" />
+          <Member Name="M-PrintDataErrMsg" Datatype="String[98]" />
+          <Member Name="Reserve" Datatype="Array[1..396] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="AGVExchange" Datatype="&quot;MEStoPLC_AGVExchange&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈AGV查询结果</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-PosCallDone1" Datatype="Byte" />
+          <Member Name="M-PosCallDone2" Datatype="Byte" />
+          <Member Name="M-PosCallDone3" Datatype="Byte" />
+          <Member Name="M-PosCallDone4" Datatype="Byte" />
+          <Member Name="M-PosCallDone5" Datatype="Byte" />
+          <Member Name="Reserve" Datatype="Array[1..994] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="RecipeData" Datatype="&quot;MEStoPLC_RecipeData_OP220&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">MES反馈配方参数数据</MultiLanguageText>
+      </Comment>
+      <Sections>
+        <Section Name="None">
+          <Member Name="M-PartType" Datatype="String[28]" />
+          <Member Name="M-PartTypeRecordNr" Datatype="Int" />
+          <Member Name="M-RecipeVer" Datatype="String[18]" />
+          <Member Name="M-RecipeParameter" Datatype="&quot;MEStoPLC_RecipeParameter_OP220&quot;">
+            <Sections>
+              <Section Name="None">
+                <Member Name="Press" Datatype="&quot;PresserRecipe&quot;">
+                  <Sections>
+                    <Section Name="None">
+                      <Member Name="PressCurveStartPosUL" Datatype="Real" />
+                      <Member Name="PressCurveStartPosLL" Datatype="Real" />
+                      <Member Name="PressCurveStartForceUL" Datatype="Real" />
+                      <Member Name="PressCurveStartForceLL" Datatype="Real" />
+                      <Member Name="PressCurveMiddlePosUL" Datatype="Real" />
+                      <Member Name="PressCurveMiddlePosLL" Datatype="Real" />
+                      <Member Name="PressCurveMiddleForceUL" Datatype="Real" />
+                      <Member Name="PressCurveMiddleForceLL" Datatype="Real" />
+                      <Member Name="PressCurveFinalPosUL" Datatype="Real" />
+                      <Member Name="PressCurveFinalPosLL" Datatype="Real" />
+                      <Member Name="PressCurveFinalForceUL" Datatype="Real" />
+                      <Member Name="PressCurveFinalForceLL" Datatype="Real" />
+                      <Member Name="PresserProgramNum" Datatype="Int" />
+                    </Section>
+                  </Sections>
+                </Member>
+                <Member Name="ATEQ" Datatype="&quot;ATEQRecipe&quot;">
+                  <Sections>
+                    <Section Name="None">
+                      <Member Name="RessureCurrentValueUL" Datatype="Real" />
+                      <Member Name="RessureCurrentValueLL" Datatype="Real" />
+                      <Member Name="LeakCurrentValueUL" Datatype="Real" />
+                      <Member Name="LeakCurrentValueLL" Datatype="Real" />
+                      <Member Name="PositivePressureProgNo" Datatype="Int" />
+                      <Member Name="NegativePressureProgNo" Datatype="Int" />
+                    </Section>
+                  </Sections>
+                </Member>
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="Reserve" Datatype="Array[1..1436] of Byte" />
+        </Section>
+      </Sections>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <IsFailsafeCompliant>false</IsFailsafeCompliant>
+      <Name>MEStoPLC_ST350</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

@@ -17,4 +17,70 @@ BEGIN
           .[#FlankWord] := ;
       END_FOR;
   END_IF;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // Network 2
+  // Network 3
+  // Network 4
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(2), O(1)
+  // SCoil UId=36: nelze určit podmínku (vstupní síť).
+  // RCoil UId=37: nelze určit podmínku (vstupní síť).
+  // SCoil UId=38: nelze určit podmínku (vstupní síť).
+  // RCoil UId=39: nelze určit podmínku (vstupní síť).
+  // Network 6
+  // Network 7
+  // Network 8
+  // Network 9
+  // Network 10
+  // Network 11
+  // Network 12
+  // Network 13
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(2), O(1)
+  // SCoil UId=36: nelze určit podmínku (vstupní síť).
+  // RCoil UId=37: nelze určit podmínku (vstupní síť).
+  // SCoil UId=38: nelze určit podmínku (vstupní síť).
+  // RCoil UId=39: nelze určit podmínku (vstupní síť).
+  // Network 14
+  // Network 15
+  // Network 16
+  // Network 17
+  // Network 18
+  // Network 19
+  // Network 20
+  // Network 21
+  // Network 22
+  // Network 23
+  // Network 24
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Lt(1), Gt(1), O(1), TON(1), PBox(1), BLKMOV(1)
+  // Network 25
+  IF ((AlwaysTRUE AND AutoProcessControl.Global.ALL_EmptyPallet) AND NOT iL-UnloadingTransplantingPalletInPlaceDetection) THEN AutoProcessControl.Global.L.EmptyPallet := TRUE; END_IF;
+  #tBool := (((((((AlwaysTRUE AND NOT iH-shaftLoadingDetection1) AND NOT iH-shaftLoadingDetection2) AND NOT iH-shaftLoadingDetection3) AND NOT iH-shaftLoadingDetection4) AND NOT iH-shaftLiftingPalletDischarge) AND NOT iH-shaftPalletEmptyCheck4) AND NOT iH-shaftTakeGateDetection);
+  #tBool := (((((((((((AlwaysTRUE AND #tBool) AND NOT iJ-magnetLiftingPalletDischargeDetection) AND NOT J-mganePalletEmptyCheck4) AND NOT iJ-magnetLoadingDetection4) AND NOT J-mganePalletEmptyCheck3) AND NOT iJ-magnetLoadingDetection3) AND NOT J-mganePalletEmptyCheck2) AND NOT iJ-magnetLoadingDetection2) AND NOT J-mganePalletEmptyCheck1) AND NOT iJ-magnetLoadingDetection1) AND NOT iJ-magnetTakeGateDetection);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(3), TON(1)
+  // SCoil UId=75: nelze určit podmínku (vstupní síť).
+  // SCoil UId=76: nelze určit podmínku (vstupní síť).
+  // SCoil UId=77: nelze určit podmínku (vstupní síť).
+  // SCoil UId=79: nelze určit podmínku (vstupní síť).
+  // RCoil UId=84: nelze určit podmínku (vstupní síť).
+  // RCoil UId=85: nelze určit podmínku (vstupní síť).
+  // RCoil UId=86: nelze určit podmínku (vstupní síť).
+  // RCoil UId=87: nelze určit podmínku (vstupní síť).
+  // RCoil UId=88: nelze určit podmínku (vstupní síť).
+  // RCoil UId=91: nelze určit podmínku (vstupní síť).
+  // Coil UId=123: nelze určit podmínku (vstupní síť).
+  // Network 26
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Eq(1), Not(1)
+  // Network 27
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(49), Eq(9)
+  // Network 28
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(16), TON(2), O(1)
+  // Coil UId=87: nelze určit podmínku (vstupní síť).
 END_FUNCTION

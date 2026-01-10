@@ -31,4 +31,24 @@ BEGIN
   IF ...[]. THEN
       ...ST10_GeneralData.HMI.Win.Win := ...ST10_GeneralData.HMI.Win.WinBullfer;
       END_IF;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF Sys.COM.AlwaysOFF THEN Sys.COM.AlwaysOFF := FALSE; END_IF;
+  IF NOT Sys.COM.AlwaysON THEN Sys.COM.AlwaysON := TRUE; END_IF;
+  // Network 2
+  Sys.COM.FlashTime100mS := (Sys.COM.AlwaysON AND ClockMemory0.1s);
+  Sys.COM.FlashTime200mS := (Sys.COM.AlwaysON AND ClockMemory0.2s);
+  Sys.COM.FlashTime500mS := (Sys.COM.AlwaysON AND ClockMemory0.5s);
+  Sys.COM.FlashTime1S := (Sys.COM.AlwaysON AND ClockMemory1s);
+  Sys.COM.FlashTime2S := (Sys.COM.AlwaysON AND ClockMemory2s);
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): WR_SYS_T(1)
+  // RCoil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // Network 5
+  // Network 6
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
 END_ORGANIZATION_BLOCK

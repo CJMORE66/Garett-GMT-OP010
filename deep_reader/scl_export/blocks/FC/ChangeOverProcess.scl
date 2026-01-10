@@ -5,5 +5,113 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/03_Auto/01ChangeOver/ChangeOverProcess.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF ((AlwaysTRUE AND ChangeOver_DB.Global.ChangeOverSelected) AND AutoProcessControl.Global.ALL_BeltPalletEmptyFinish) THEN ChangeOver_DB.Global.ChangeOverRequest := TRUE; END_IF;
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO305_GripScanInside) THEN ChangeOver_DB.Global.ScanFixtureFlag_ChangeOver := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(2), PBox(2)
+  // SCoil UId=49: nelze určit podmínku (vstupní síť).
+  // SCoil UId=50: nelze určit podmínku (vstupní síť).
+  // RCoil UId=55: nelze určit podmínku (vstupní síť).
+  // RCoil UId=59: nelze určit podmínku (vstupní síť).
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(26), Move(16), O(2), PBox(2)
+  // RCoil UId=167: nelze určit podmínku (vstupní síť).
+  // SCoil UId=168: nelze určit podmínku (vstupní síť).
+  // RCoil UId=176: nelze určit podmínku (vstupní síť).
+  // Network 3
+  IF (AlwaysTRUE AND NOT Station_Sys.Auto.Mode) THEN ChangeOver_DB.Global.ManualModeFlag := TRUE; END_IF;
+  IF ((((AlwaysTRUE AND ST10_GeneralData.FunctionDeSelect.Global.FunctionDeSelected_ScanFixture) AND NOT ChangeOver_DB.Global.ScanFixtureFlag_ChangeOver) AND NOT ChangeOver_DB.Global.ChangeOverSelected) AND NOT ChangeOver_DB.Global.ChangeOverRequest) THEN ChangeOver_DB.Global.ScanFixtureFlag := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(12), O(1)
+  // RCoil UId=80: nelze určit podmínku (vstupní síť).
+  // SCoil UId=86: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1), PBox(1), Move(1)
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Ne(1), PBox(1)
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), PBox(2), Ne(1), Eq(1)
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1), PBox(1), Move(1)
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1), PBox(1), Move(1)
+  // Network 9
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Ne(1), PBox(1)
+  // Network 10
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), PBox(2), Ne(1), Eq(1)
+  // Network 11
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1), PBox(1), Move(1)
+  // Network 12
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Ne(1), PBox(1)
+  // Network 13
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), Ne(2), PBox(2), Eq(1)
+  // Network 14
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(16), Move(16), Ne(8), Not(8), O(1)
+  // Coil UId=155: nelze určit podmínku (vstupní síť).
+  // Network 15
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(16), Move(16), Ne(8), Not(8), O(1)
+  // Coil UId=155: nelze určit podmínku (vstupní síť).
+  // Network 16
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(8), Move(8), Ne(4), Not(4), O(1)
+  // Coil UId=91: nelze určit podmínku (vstupní síť).
+  // Network 17
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(8), Move(8), Ne(4), Not(4), O(1)
+  // Coil UId=91: nelze určit podmínku (vstupní síť).
+  // Network 18
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(8), Move(8), Ne(4), Not(4), O(1)
+  // Coil UId=91: nelze určit podmínku (vstupní síť).
+  // Network 19
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(12), Move(12), Ne(6), Not(6), O(1)
+  // Coil UId=123: nelze určit podmínku (vstupní síť).
+  // Network 20
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(10), Move(10), Ne(5), Not(5), O(1)
+  // Coil UId=107: nelze určit podmínku (vstupní síť).
+  // Network 21
+  IF (((((((AlwaysTRUE AND NOT AutoProcessData.GlobalData.Table1CodeOKFlag) AND NOT AutoProcessData.GlobalData.Table2CodeOKFlag) AND NOT AutoProcessData.GlobalData.Robot1GripperCodeOKFlag) AND NOT AutoProcessData.GlobalData.Robot2GripperCodeOKFlag) AND NOT AutoProcessData.GlobalData.Robot3GripperCodeOKFlag) AND NOT AutoProcessData.GlobalData.Fixture1CodeOKFlag) AND NOT AutoProcessData.GlobalData.Fixture2CodeOKFlag) THEN ChangeOver_DB.Global.AllFixtureScanCompareOk := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(1)
+  // SCoil UId=49: nelze určit podmínku (vstupní síť).
+  // RCoil UId=50: nelze určit podmínku (vstupní síť).
+  // Network 22
+  IF ((AlwaysTRUE AND ChangeOver_DB.Robot_1.HMI_MaintenancePosReqSel) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.User.Cycle.DO297_MaintainInside) THEN ChangeOver_DB.Robot_1.MaintenancePosReqSelFlag := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1), TON(1)
+  // Coil UId=44: nelze určit podmínku (vstupní síť).
+  // Network 23
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(1), O(1), TON(1)
+  // SCoil UId=37: nelze určit podmínku (vstupní síť).
+  // Coil UId=46: nelze určit podmínku (vstupní síť).
+  // Network 24
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(1), TON(1)
+  // SCoil UId=34: nelze určit podmínku (vstupní síť).
+  // Coil UId=39: nelze určit podmínku (vstupní síť).
+  // Network 25
+  ChangeOver_DB.Global.Station_empty := (((AlwaysTRUE AND ChangeOver_DB.Robot_1.EmptyFinish) AND ChangeOver_DB.Robot_2.EmptyFinish) AND ChangeOver_DB.Robot_3.EmptyFinish);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(12)
+  // Coil UId=66: nelze určit podmínku (vstupní síť).
+  // Coil UId=77: nelze určit podmínku (vstupní síť).
+  // Coil UId=80: nelze určit podmínku (vstupní síť).
 END_FUNCTION

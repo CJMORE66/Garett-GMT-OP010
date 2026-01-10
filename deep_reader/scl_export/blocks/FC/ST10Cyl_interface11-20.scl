@@ -106,4 +106,46 @@ BEGIN
   END_IF;
   .[]( := oF-ROOBT3Gripper2CylinderToHP AND NOT iF-ROOBT3Gripper2CylinderInWP,
                 := );
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  IF #AlwaysON THEN ST10Cylinder.Cy := FALSE; END_IF;
+  // Network 2
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 3
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot1GripControl);
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot1GripControl);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 4
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot1GripControl);
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot1GripControl);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 5
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot2GripControl);
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot2GripControl);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 6
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot2GripControl);
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot2GripControl);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 7
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot3GripControl);
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot3GripControl);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 8
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot3GripControl);
+  ST10Cylinder.Cy := ((#AlwaysON AND #E_stop) AND Robot_DB.Control.Robot3GripControl);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 9
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
+  // Network 10
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND #E_stop);
+  ST10Cylinder.Cy := (#AlwaysON AND NOT #AlwaysON);
 END_FUNCTION

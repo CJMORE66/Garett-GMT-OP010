@@ -22,5 +22,46 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/31_Motor_1/MotorContro.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF (#iAlwaysTrue AND #iAuto) THEN #Control.Manual.Start := FALSE; END_IF;
+  IF (#iAlwaysTrue AND NOT #iAuto) THEN #Control.Auto.Start := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1), Move(1)
+  // RCoil UId=38: nelze určit podmínku (vstupní síť).
+  // RCoil UId=39: nelze určit podmínku (vstupní síť).
+  // RCoil UId=42: nelze určit podmínku (vstupní síť).
+  // RCoil UId=43: nelze určit podmínku (vstupní síť).
+  // Network 2
+  #Control.OutControl.o_Ready := ((#iAlwaysTrue AND NOT #i_Alarm) AND #i_Interlock);
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(3), O(2)
+  // Coil UId=48: nelze určit podmínku (vstupní síť).
+  // RCoil UId=51: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(3), O(2)
+  // Coil UId=50: nelze určit podmínku (vstupní síť).
+  // RCoil UId=53: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), O(1)
+  // Coil UId=40: nelze určit podmínku (vstupní síť).
+  // Network 6
+  IF ((#iAlwaysTrue AND NOT #Control.Error) AND #TON) THEN #Control.Error := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Network 7
+  IF ((#iAlwaysTrue AND NOT #Control.Error) AND #TON) THEN #Control.Error := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Network 8
+  IF ((#iAlwaysTrue AND NOT #Control.Error) AND #TON) THEN #Control.Error := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Network 9
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1)
+  // Coil UId=27: nelze určit podmínku (vstupní síť).
 END_FUNCTION_BLOCK

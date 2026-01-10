@@ -69,4 +69,14 @@ BEGIN
           [[]]. := ;
       END_IF;
   END_FOR;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF #iReset THEN #DoublePosError := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), TON(1), Gt(1)
+  // Coil UId=39: nelze určit podmínku (vstupní síť).
+  // SCoil UId=41: nelze určit podmínku (vstupní síť).
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Add(1), Sub(1)
 END_FUNCTION_BLOCK

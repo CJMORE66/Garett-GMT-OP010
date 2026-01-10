@@ -33,4 +33,46 @@ BEGIN
   // Network 8
   L-Unloading _LineMotor_CW := .[]..;
   L-Unloading _LineMotor_CCW := .[].. OR (..Station_Sys.Auto.Mode AND ...AutoProcessControl.Global.L.EmptyPallet);
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // Network 2
+  // Network 3
+  // Network 4
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND AutoProcessControl.Global.H.EmptyPallet) THEN MotorControl.Dev := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(2), Lt(2), Move(2)
+  // RCoil UId=50: nelze určit podmínku (vstupní síť).
+  // RCoil UId=51: nelze určit podmínku (vstupní síť).
+  // RCoil UId=55: nelze určit podmínku (vstupní síť).
+  // RCoil UId=56: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // Network 6
+  // Network 7
+  // Network 8
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND AutoProcessControl.Global.J.EmptyPallet) THEN MotorControl.Dev := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(2), Lt(2), Move(2)
+  // RCoil UId=50: nelze určit podmínku (vstupní síť).
+  // RCoil UId=51: nelze určit podmínku (vstupní síť).
+  // RCoil UId=55: nelze určit podmínku (vstupní síť).
+  // RCoil UId=56: nelze určit podmínku (vstupní síť).
+  // Network 9
+  // Network 10
+  // Network 11
+  // Network 12
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND AutoProcessControl.Global.K.EmptyPallet) THEN MotorControl.Dev := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(2), Lt(2), Move(2)
+  // RCoil UId=50: nelze určit podmínku (vstupní síť).
+  // RCoil UId=51: nelze určit podmínku (vstupní síť).
+  // RCoil UId=55: nelze určit podmínku (vstupní síť).
+  // RCoil UId=56: nelze určit podmínku (vstupní síť).
+  // Network 13
+  // Network 14
+  // Network 15
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND AutoProcessControl.Global.L.EmptyPallet) THEN MotorControl.Dev := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1), Lt(1), Move(1)
+  // RCoil UId=42: nelze určit podmínku (vstupní síť).
+  // RCoil UId=43: nelze určit podmínku (vstupní síť).
 END_FUNCTION

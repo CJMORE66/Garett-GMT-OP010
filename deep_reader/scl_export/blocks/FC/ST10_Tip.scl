@@ -2,5 +2,36 @@ FUNCTION "ST10_Tip" : Void
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/07_Tip/ST10_Tip.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  ST10_TipDB.Global.1.ControlOn := (((((((AlwaysTRUE AND NOT ST10_SysInput.HMI_Button.E-Stop) AND NOT ST10_SysInput.iE-StopPB) AND NOT ST10_SysInput.iE-StopPB) AND NOT ST10_SysInput.iE-StopPB) AND NOT ST10_SysInput.iE-StopPB) AND NOT ST10_SysInput.iE-StopPB) AND NOT Station_Sys.Status.ControlOn);
+  // Network 2
+  ST10_TipDB.Global.1.Reset := (Station_Sys.Status.ControlOn AND Station_Sys.Alarm.ON);
+  // Network 3
+  ST10_TipDB.Global.2 := ((Station_Sys.Status.ControlOn AND NOT ST10_TipDB.Global.1.Reset) AND NOT ST10_RecipeDB.Recipe.Equal);
+  // Network 4
+  ST10_TipDB.Global.1.SelectAutoMode := (((Station_Sys.Status.ControlOn AND NOT ST10_TipDB.Global.1.Reset) AND ST10_RecipeDB.Recipe.Equal) AND NOT Station_Sys.Interface.Auto.Mode);
+  // Network 5
+  ST10_TipDB.Global.2 := (((Station_Sys.Status.ControlOn AND NOT ST10_TipDB.Global.1.Reset) AND ST10_RecipeDB.Recipe.Equal) AND NOT Station_Sys.Initial.OK);
+  // Network 6
+  ST10_TipDB.Global.1.AutoModeRunning := ((((((Station_Sys.Status.ControlOn AND NOT ST10_TipDB.Global.1.Reset) AND ST10_RecipeDB.Recipe.Equal) AND Station_Sys.Interface.Auto.Mode) AND Station_Sys.Initial.OK) AND NOT Station_Sys.Interface.Auto.Running) AND NOT Station_Sys.Interface.Auto.AllRun);
+  // Network 7
+  ST10_TipDB.OP1.Take off product := AlwaysFALSE;
+  // Network 8
+  ST10_TipDB.Global.6 := (((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT AutoProcessControl.H_ShafeLine.Robot1PickPrimit) AND NOT iH-shaftLiftingPalletDischarge);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Coil UId=37: nelze určit podmínku (vstupní síť).
+  // Network 9
+  ST10_TipDB.Global.6 := (((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT AutoProcessControl.J_MagnetLine.Robot2PickPrimit) AND NOT iJ-magnetLiftingPalletDischargeDetection);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Coil UId=37: nelze určit podmínku (vstupní síť).
+  // Network 10
+  ST10_TipDB.Global.6 := (((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT AlwaysTRUE) AND NOT AlwaysTRUE);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Coil UId=39: nelze určit podmínku (vstupní síť).
+  // Network 11
+  ST10_TipDB.Global.6 := (((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT AutoProcessControl.L_ShafeLine.Robot3PutPrimit) AND AutoProcessControl.Global.L.LoadStopRequestPallet_3);
 END_FUNCTION

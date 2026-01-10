@@ -5,5 +5,28 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/06_Warning/ST10_Warning.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF #tpAlwayoff THEN #tpAlwayoff := FALSE; END_IF;
+  // Network 2
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3810A1);
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_IV3811A1);
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND ST10_GeneralData.FunctionDeSelect.C.FunctionDeSelected_Glue);
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND ST10_GeneralData.FunctionDeSelect.MES.FunctionDeSelected);
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND ST10_GeneralData.FunctionDeSelect.Global.FunctionDeSelected_ScanFixture);
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.2 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  // Network 3
+  ST10_WarningDB.Global.6 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.6 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.6 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.6 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.6 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.6 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.7 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.7 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  ST10_WarningDB.Global.7 := (NOT #tpAlwayoff AND #tpAlwayoff);
+  // Network 4
+  ST10_WarningDB.Global.10 := (((NOT #tpAlwayoff AND Station_Sys.Cmd.Calibration) AND Station_Sys.Auto.Mode) AND NOT Station_Sys.Initial.OK);
 END_FUNCTION

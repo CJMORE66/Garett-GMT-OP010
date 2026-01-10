@@ -6,6 +6,7 @@ import dataclasses
 import html
 import json
 import re
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
@@ -248,6 +249,429 @@ def extract_structured_text_code(path: Path) -> list[str]:
     return outputs
 
 
+@dataclasses.dataclass
+class FlgNetPart:
+    name: str
+    uid: str
+    negated: set[str]
+
+
+@dataclasses.dataclass
+class FlgNetNetwork:
+    title: str
+    comment: str
+    scl_lines: list[str]
+    warnings: list[str]
+
+
+class _DSU:
+    def __init__(self) -> None:
+        self.parent: dict[str, str] = {}
+
+    def find(self, x: str) -> str:
+        p = self.parent.get(x)
+        if p is None:
+            self.parent[x] = x
+            return x
+        if p != x:
+            self.parent[x] = self.find(p)
+        return self.parent[x]
+
+    def union(self, a: str, b: str) -> None:
+        ra = self.find(a)
+        rb = self.find(b)
+        if ra != rb:
+            self.parent[rb] = ra
+
+
+def _fmt_or(exprs: list[str]) -> str:
+    exprs = [e for e in exprs if e and e != "FALSE"]
+    if not exprs:
+        return "FALSE"
+    if "TRUE" in exprs:
+        return "TRUE"
+    uniq: list[str] = []
+    seen = set()
+    for e in exprs:
+        if e not in seen:
+            seen.add(e)
+            uniq.append(e)
+    if len(uniq) == 1:
+        return uniq[0]
+    return "(" + " OR ".join(uniq) + ")"
+
+
+def _fmt_and(a: str, b: str) -> str:
+    if a == "FALSE" or b == "FALSE":
+        return "FALSE"
+    if a == "TRUE":
+        return b
+    if b == "TRUE":
+        return a
+    if a == b:
+        return a
+    return "(" + a + " AND " + b + ")"
+
+
+def _pin(kind: str, uid: str, name: str | None = None) -> str:
+    if name is None:
+        return f"{kind}:{uid}"
+    return f"{kind}:{uid}:{name}"
+
+
+def extract_statement_list_networks(path: Path) -> list[tuple[str, str, list[str]]]:
+    """
+    Extract tokenized STL (StatementList) networks into readable pseudo text.
+    Output is for review only (not SCL).
+    Returns list of (title, comment, lines).
+    """
+    nets: list[tuple[str, str, list[str]]] = []
+
+    in_compile = False
+    compile_title = ""
+    compile_comment = ""
+    in_title = False
+    in_comment = False
+    in_text = False
+
+    in_stmtlist = False
+    in_stmt = False
+    stmt_tokens: list[str] = []
+    stmt_lines: list[str] = []
+
+    def flush_network() -> None:
+        nonlocal stmt_lines, compile_title, compile_comment
+        if stmt_lines:
+            nets.append((compile_title, compile_comment, stmt_lines))
+        stmt_lines = []
+
+    for event, elem in ET.iterparse(path, events=("start", "end")):
+        tag = strip_ns(elem.tag)
+        if event == "start":
+            if tag == "SW.Blocks.CompileUnit":
+                in_compile = True
+                compile_title = ""
+                compile_comment = ""
+            elif in_compile and tag == "MultilingualText":
+                comp = elem.attrib.get("CompositionName")
+                if comp == "Title":
+                    in_title = True
+                elif comp == "Comment":
+                    in_comment = True
+            elif (in_title or in_comment) and tag == "Text":
+                in_text = True
+            elif tag == "StatementList":
+                in_stmtlist = True
+                stmt_lines = []
+            elif in_stmtlist and tag == "StlStatement":
+                in_stmt = True
+                stmt_tokens = []
+            elif in_stmt and tag == "StlToken":
+                t = elem.attrib.get("Text", "")
+                if t and t != "EMPTY_LINE":
+                    stmt_tokens.append(t)
+        elif event == "end":
+            if tag == "Text" and in_text:
+                txt = (elem.text or "").strip()
+                if txt:
+                    if in_title and not compile_title:
+                        compile_title = txt
+                    if in_comment and not compile_comment:
+                        compile_comment = txt
+                in_text = False
+            elif tag == "MultilingualText":
+                in_title = False
+                in_comment = False
+            elif tag == "StlStatement" and in_stmt:
+                line = " ".join(stmt_tokens).strip()
+                if line:
+                    stmt_lines.append(line)
+                in_stmt = False
+                stmt_tokens = []
+            elif tag == "StatementList" and in_stmtlist:
+                in_stmtlist = False
+                flush_network()
+            elif tag == "SW.Blocks.CompileUnit" and in_compile:
+                in_compile = False
+            elem.clear()
+
+    return nets
+
+
+def extract_flgnet_lad_networks(path: Path) -> list[FlgNetNetwork]:
+    """
+    Best-effort conversion for LAD/FBD FlgNet networks to simple SCL statements.
+
+    Supports a conservative subset:
+    - Contact + Coil / SCoil / RCoil networks (series/parallel as boolean expressions)
+    - Everything else is reported as warnings (kept as comments in output).
+
+    Output is intended for review only and is NOT guaranteed to compile or preserve behavior.
+    """
+    networks: list[FlgNetNetwork] = []
+
+    in_compile = False
+    compile_title = ""
+    compile_comment = ""
+    in_title = False
+    in_comment = False
+    in_text = False
+
+    in_flgnet = False
+    access_scope: dict[str, str] = {}
+    access_components: dict[str, list[str]] = {}
+    parts: dict[str, FlgNetPart] = {}
+    wires: list[list[str]] = []
+    wire_nodes: list[str] = []
+    in_access = False
+    cur_access_uid: str | None = None
+    in_symbol = False
+    cur_part: FlgNetPart | None = None
+    cur_wire_powerrail = False
+    unsupported_part_counts: Counter[str] = Counter()
+
+    def flush_network() -> None:
+        nonlocal access_scope, access_components, parts, wires, wire_nodes, cur_wire_powerrail, unsupported_part_counts
+        if not in_flgnet and not parts and not wires and not access_components:
+            return
+
+        dsu = _DSU()
+        net_power: set[str] = set()
+        net_ident_access: defaultdict[str, set[str]] = defaultdict(set)
+
+        for nodes in wires:
+            if not nodes:
+                continue
+            first = nodes[0]
+            for n in nodes[1:]:
+                dsu.union(first, n)
+            if "Powerrail" in nodes:
+                net_power.add(dsu.find(first))
+            for n in nodes:
+                if n.startswith("IdentCon:"):
+                    _, auid = n.split(":", 1)
+                    net_ident_access[dsu.find(first)].add(auid)
+
+        access_symbol: dict[str, str] = {}
+        for auid, comps in access_components.items():
+            scope = access_scope.get(auid, "")
+            sym = ".".join(comps)
+            if scope == "LocalVariable":
+                sym = "#" + sym
+            access_symbol[auid] = sym
+
+        net_symbol: dict[str, str] = {}
+        for net, auids in net_ident_access.items():
+            for auid in sorted(auids):
+                sym = access_symbol.get(auid)
+                if sym:
+                    net_symbol[net] = sym
+                    break
+
+        def net_of(node: str) -> str:
+            return dsu.find(node)
+
+        contacts: list[FlgNetPart] = []
+        coils: list[FlgNetPart] = []
+        for p in parts.values():
+            if p.name == "Contact":
+                contacts.append(p)
+            elif p.name in {"Coil", "SCoil", "RCoil"}:
+                coils.append(p)
+
+        contact_defs: list[tuple[str, str, str, bool]] = []
+        warnings: list[str] = []
+        for c in contacts:
+            in_node = _pin("NameCon", c.uid, "in")
+            out_node = _pin("NameCon", c.uid, "out")
+            op_node = _pin("NameCon", c.uid, "operand")
+            in_net = net_of(in_node)
+            out_net = net_of(out_node)
+            op_net = net_of(op_node)
+            op_sym = net_symbol.get(op_net, "")
+            if not op_sym:
+                warnings.append(f"Contact UId={c.uid}: nelze určit operand symbol.")
+                continue
+            neg = "operand" in c.negated
+            contact_defs.append((in_net, out_net, op_sym, neg))
+
+        net_drivers: defaultdict[str, set[str]] = defaultdict(set)
+        for n in net_power:
+            net_drivers[n].add("TRUE")
+
+        net_expr: dict[str, str] = {}
+
+        def recompute() -> None:
+            nonlocal net_expr
+            net_expr = {}
+            for n, drivers in net_drivers.items():
+                net_expr[n] = _fmt_or(sorted(drivers))
+
+        recompute()
+        for _ in range(200):
+            changed = False
+            for in_net, out_net, op_sym, neg in contact_defs:
+                in_expr = net_expr.get(in_net)
+                if not in_expr:
+                    continue
+                op_expr = f"NOT {op_sym}" if neg else op_sym
+                out_driver = _fmt_and(in_expr, op_expr)
+                if out_driver and out_driver != "FALSE":
+                    if out_driver not in net_drivers[out_net]:
+                        net_drivers[out_net].add(out_driver)
+                        changed = True
+            if not changed:
+                break
+            recompute()
+
+        scl_lines: list[str] = []
+        if compile_title:
+            scl_lines.append(f"// Síť: {compile_title}")
+        if compile_comment:
+            scl_lines.append(f"// Komentář: {compile_comment}")
+
+        if unsupported_part_counts:
+            top = ", ".join([f"{k}({v})" for k, v in unsupported_part_counts.most_common(8)])
+            warnings.append(f"Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): {top}")
+
+        for coil in coils:
+            in_node = _pin("NameCon", coil.uid, "in")
+            op_node = _pin("NameCon", coil.uid, "operand")
+            in_net = net_of(in_node)
+            op_net = net_of(op_node)
+            cond = net_expr.get(in_net, "")
+            target = net_symbol.get(op_net, "")
+            if not target:
+                warnings.append(f"{coil.name} UId={coil.uid}: nelze určit cílový symbol.")
+                continue
+            if not cond:
+                warnings.append(f"{coil.name} UId={coil.uid}: nelze určit podmínku (vstupní síť).")
+                continue
+            if coil.name == "Coil":
+                scl_lines.append(f"{target} := {cond};")
+            elif coil.name == "SCoil":
+                scl_lines.append(f"IF {cond} THEN {target} := TRUE; END_IF;")
+            elif coil.name == "RCoil":
+                scl_lines.append(f"IF {cond} THEN {target} := FALSE; END_IF;")
+
+        if warnings:
+            scl_lines.append("// --- Poznámky / omezení převodu ---")
+            for w in warnings[:40]:
+                scl_lines.append("// " + w)
+
+        networks.append(
+            FlgNetNetwork(
+                title=compile_title,
+                comment=compile_comment,
+                scl_lines=scl_lines,
+                warnings=warnings,
+            )
+        )
+
+        access_scope = {}
+        access_components = {}
+        parts = {}
+        wires = []
+        wire_nodes = []
+        cur_wire_powerrail = False
+        unsupported_part_counts = Counter()
+
+    for event, elem in ET.iterparse(path, events=("start", "end")):
+        tag = strip_ns(elem.tag)
+        if event == "start":
+            if tag == "SW.Blocks.CompileUnit":
+                in_compile = True
+                compile_title = ""
+                compile_comment = ""
+            elif in_compile and tag == "MultilingualText":
+                comp = elem.attrib.get("CompositionName")
+                if comp == "Title":
+                    in_title = True
+                elif comp == "Comment":
+                    in_comment = True
+            elif (in_title or in_comment) and tag == "Text":
+                in_text = True
+            elif tag == "FlgNet":
+                in_flgnet = True
+                access_scope = {}
+                access_components = {}
+                parts = {}
+                wires = []
+                unsupported_part_counts = Counter()
+            elif in_flgnet and tag == "Access":
+                in_access = True
+                cur_access_uid = elem.attrib.get("UId")
+                cur_access_scope = elem.attrib.get("Scope")
+                if cur_access_uid:
+                    access_scope[cur_access_uid] = cur_access_scope or ""
+                    access_components[cur_access_uid] = []
+            elif in_flgnet and in_access and tag == "Symbol":
+                in_symbol = True
+            elif in_flgnet and in_access and in_symbol and tag == "Component":
+                nm = elem.attrib.get("Name")
+                if nm and cur_access_uid:
+                    access_components[cur_access_uid].append(nm)
+            elif in_flgnet and tag == "Part":
+                nm = elem.attrib.get("Name", "")
+                uid = elem.attrib.get("UId", "")
+                cur_part = FlgNetPart(name=nm, uid=uid, negated=set())
+                if cur_part.uid:
+                    parts[cur_part.uid] = cur_part
+                    if nm not in {"Contact", "Coil", "SCoil", "RCoil"}:
+                        unsupported_part_counts[nm] += 1
+            elif in_flgnet and cur_part is not None and tag == "Negated":
+                n = elem.attrib.get("Name")
+                if n:
+                    cur_part.negated.add(n)
+            elif in_flgnet and tag == "Wire":
+                wire_nodes = []
+                cur_wire_powerrail = False
+            elif in_flgnet and tag == "Powerrail":
+                cur_wire_powerrail = True
+            elif in_flgnet and tag == "NameCon":
+                uid = elem.attrib.get("UId", "")
+                nm = elem.attrib.get("Name", "")
+                if uid and nm:
+                    wire_nodes.append(_pin("NameCon", uid, nm))
+            elif in_flgnet and tag == "IdentCon":
+                uid = elem.attrib.get("UId", "")
+                if uid:
+                    wire_nodes.append(_pin("IdentCon", uid))
+        elif event == "end":
+            if tag == "Text" and in_text:
+                txt = (elem.text or "").strip()
+                if txt:
+                    if in_title and not compile_title:
+                        compile_title = txt
+                    if in_comment and not compile_comment:
+                        compile_comment = txt
+                in_text = False
+            elif tag == "MultilingualText":
+                in_title = False
+                in_comment = False
+            elif tag == "Access":
+                in_access = False
+                cur_access_uid = None
+                in_symbol = False
+            elif tag == "Part":
+                cur_part = None
+            elif tag == "Wire":
+                if cur_wire_powerrail:
+                    wire_nodes.append("Powerrail")
+                if wire_nodes:
+                    wires.append(wire_nodes)
+                wire_nodes = []
+                cur_wire_powerrail = False
+            elif tag == "FlgNet" and in_flgnet:
+                in_flgnet = False
+                flush_network()
+            elif tag == "SW.Blocks.CompileUnit" and in_compile:
+                in_compile = False
+            elem.clear()
+
+    return networks
+
+
 def emit_member_lines(members: list[Member], indent: str) -> list[str]:
     lines: list[str] = []
     for m in members:
@@ -281,8 +705,10 @@ def main() -> int:
         "export_root": export_root.as_posix(),
         "outputs": [],
         "notes": [
-            "These SCL files are generated for review. LAD/FBD/STL/GRAPH logic is not automatically translated.",
+            "These SCL files are generated for review only.",
             "StructuredText networks are reconstructed best-effort from tokenized XML and may not compile as-is.",
+            "LAD/FBD FlgNet networks are converted best-effort for simple Contact/Coil patterns; complex networks are kept as comments with warnings.",
+            "STL StatementList is reconstructed as comments (not executable SCL).",
         ],
     }
 
@@ -339,6 +765,8 @@ def main() -> int:
 
         sections = parse_interface_sections(xml_path)
         st_networks = extract_structured_text_code(xml_path)
+        flgnet_networks = extract_flgnet_lad_networks(xml_path) if lang in {"LAD", "FBD"} else []
+        stl_networks = extract_statement_list_networks(xml_path) if lang == "STL" else []
 
         out_subdir = out_root / "blocks" / kind
         out_path = out_subdir / f"{safe_filename(name)}.scl"
@@ -428,14 +856,34 @@ def main() -> int:
         scl_lines.append("BEGIN")
         scl_lines.append(f"  // Původní jazyk: {lang or 'unknown'}")
         scl_lines.append(f"  // Zdroj XML: {xml_path.as_posix()}")
+        has_any_logic = False
         if st_networks:
+            has_any_logic = True
             scl_lines.append("  // --- Rekonstruovaný StructuredText (best-effort) ---")
             for i, code in enumerate(st_networks, start=1):
                 scl_lines.append(f"  // Network {i}")
                 for line in code.splitlines():
                     scl_lines.append("  " + line)
-        else:
-            scl_lines.append("  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)")
+        if flgnet_networks:
+            has_any_logic = True
+            scl_lines.append("  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---")
+            for i, net in enumerate(flgnet_networks, start=1):
+                scl_lines.append(f"  // Network {i}")
+                for line in net.scl_lines:
+                    scl_lines.append("  " + line)
+        if stl_networks:
+            has_any_logic = True
+            scl_lines.append("  // --- STL (StatementList) rekonstruováno jako komentář ---")
+            for i, (title, comment, lines) in enumerate(stl_networks, start=1):
+                scl_lines.append(f"  // Network {i}")
+                if title:
+                    scl_lines.append(f"  // Síť: {title}")
+                if comment:
+                    scl_lines.append(f"  // Komentář: {comment}")
+                for ln in lines[:2000]:
+                    scl_lines.append("  // " + ln)
+        if not has_any_logic:
+            scl_lines.append("  // (Nebylo nalezeno StructuredText/FlgNet/StatementList; logika může být v GRAPH nebo v nepodporované reprezentaci.)")
         scl_lines.append("END_" + ("ORGANIZATION_BLOCK" if kind == "OB" else ("FUNCTION_BLOCK" if kind == "FB" else "FUNCTION")))
 
         write_text(out_path, "\n".join(scl_lines) + "\n")
@@ -448,6 +896,8 @@ def main() -> int:
                 "status": "block_interface_exported",
                 "original_language": lang,
                 "structured_text_networks": len(st_networks),
+                "flgnet_networks": len(flgnet_networks),
+                "statementlist_networks": len(stl_networks),
             }
         )
 

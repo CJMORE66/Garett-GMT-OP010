@@ -43,4 +43,87 @@ BEGIN
   ..PalletNGData.UnLoadingNGPallet.NG_3_3 := iE2-UnloadingRingScanNG_3;
   ..PalletNGData.UnLoadingNGPallet.NG_3_4 := iE2-UnloadingRingScanNG_2;
   ..PalletNGData.UnLoadingNGPallet.NG_3_5 := iE2-UnloadingRingScanNG_1;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // Network 2
+  // Network 3
+  // Network 4
+  PalletNGData.LoadingNGPallet.Interlock_1 := ((AlwaysTRUE AND ST10Cylinder.Cy) AND NOT ST10Cylinder.Cy);
+  PalletNGData.LoadingNGPallet.Interlock_1 := (AlwaysTRUE AND iE-NG-01Detection);
+  PalletNGData.LoadingNGPallet.Interlock_1 := AlwaysTRUE;
+  PalletNGData.LoadingNGPallet.Interlock_1 := AlwaysTRUE;
+  PalletNGData.LoadingNGPallet.Interlock_1 := ((((AlwaysTRUE AND PalletNGData.LoadingNGPallet.Interlock_1) AND PalletNGData.LoadingNGPallet.Interlock_1) AND PalletNGData.LoadingNGPallet.Interlock_1) AND PalletNGData.LoadingNGPallet.Interlock_1);
+  // --- Poznámky / omezení převodu ---
+  // Coil UId=49: nelze určit podmínku (vstupní síť).
+  // Coil UId=50: nelze určit podmínku (vstupní síť).
+  // Network 5
+  IF (((((((AlwaysTRUE AND Station_Sys.Status.Run) AND NOT AutoProcessControl.Robot_1.NGPutFlag) AND AlwaysTRUE) AND Station_Sys.Auto.Mode) AND PalletNGData.LoadingNGPallet.OpenFlag) AND ST10_Flow5_FRobot_1_iDB.RobotTaskSelect.X) AND KukaRobot1_CtrlDB.sROBtoPLC.Sys.SO.ROB_STOPPED) THEN ST10Cylinder.Cy := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(7), Eq(6), PBox(4), Ne(4)
+  // SCoil UId=100: nelze určit podmínku (vstupní síť).
+  // RCoil UId=101: nelze určit podmínku (vstupní síť).
+  // SCoil UId=102: nelze určit podmínku (vstupní síť).
+  // RCoil UId=103: nelze určit podmínku (vstupní síť).
+  // RCoil UId=108: nelze určit podmínku (vstupní síť).
+  // SCoil UId=109: nelze určit podmínku (vstupní síť).
+  // RCoil UId=110: nelze určit podmínku (vstupní síť).
+  // SCoil UId=111: nelze určit podmínku (vstupní síť).
+  // SCoil UId=117: nelze určit podmínku (vstupní síť).
+  // RCoil UId=121: nelze určit podmínku (vstupní síť).
+  // SCoil UId=122: nelze určit podmínku (vstupní síť).
+  // RCoil UId=123: nelze určit podmínku (vstupní síť).
+  // SCoil UId=124: nelze určit podmínku (vstupní síť).
+  // RCoil UId=125: nelze určit podmínku (vstupní síť).
+  // RCoil UId=131: nelze určit podmínku (vstupní síť).
+  // SCoil UId=132: nelze určit podmínku (vstupní síť).
+  // RCoil UId=133: nelze určit podmínku (vstupní síť).
+  // Network 6
+  IF (AlwaysTRUE AND NOT Station_Sys.Auto.Mode) THEN PalletNGData.LoadingNGPallet.OpenFlag := FALSE; END_IF;
+  // Network 7
+  PalletNGData.LoadingNGPallet.Ready_4 := (((AlwaysTRUE AND oE-NG-01SafetyGate) AND NOT iE-NG-01 Safety Gate_Open) AND NOT iE-NG-01 Safety Gate_UnLock);
+  // Network 8
+  AutoProcessControl.NG_1.Robot1PutPrimit_1 := ((AlwaysTRUE AND PalletNGData.LoadingNGPallet.Ready_4) AND PalletNGData.LoadingNGPallet.Ready_1);
+  AutoProcessControl.NG_1.Robot1PutPrimit_2 := ((AlwaysTRUE AND PalletNGData.LoadingNGPallet.Ready_4) AND PalletNGData.LoadingNGPallet.Ready_2);
+  AutoProcessControl.NG_1.Robot1PutPrimit_3 := ((AlwaysTRUE AND PalletNGData.LoadingNGPallet.Ready_4) AND PalletNGData.LoadingNGPallet.Ready_3);
+  // Network 9
+  // Network 10
+  // Network 11
+  // Network 12
+  PalletNGData.UnLoadingNGPallet.Interlock_1 := ((AlwaysTRUE AND ST10Cylinder.Cy) AND NOT ST10Cylinder.Cy);
+  PalletNGData.UnLoadingNGPallet.Interlock_1 := (AlwaysTRUE AND iE-NG-02Detection);
+  PalletNGData.UnLoadingNGPallet.Interlock_1 := AlwaysTRUE;
+  PalletNGData.UnLoadingNGPallet.Interlock_1 := AlwaysTRUE;
+  PalletNGData.UnLoadingNGPallet.Interlock_1 := ((((AlwaysTRUE AND PalletNGData.UnLoadingNGPallet.Interlock_1) AND PalletNGData.UnLoadingNGPallet.Interlock_1) AND PalletNGData.UnLoadingNGPallet.Interlock_1) AND PalletNGData.UnLoadingNGPallet.Interlock_1);
+  // --- Poznámky / omezení převodu ---
+  // Coil UId=49: nelze určit podmínku (vstupní síť).
+  // Coil UId=50: nelze určit podmínku (vstupní síť).
+  // Network 13
+  IF (((((((AlwaysTRUE AND Station_Sys.Status.Run) AND NOT AutoProcessControl.Robot_3.NGPutFlag) AND AlwaysTRUE) AND Station_Sys.Auto.Mode) AND PalletNGData.UnLoadingNGPallet.OpenFlag) AND ST10_Flow15_FRobot_3_iDB.RobotTaskSelect.X) AND KukaRobot3_CtrlDB.sROBtoPLC.Sys.SO.ROB_STOPPED) THEN ST10Cylinder.Cy := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(7), Eq(6), PBox(4), Ne(4)
+  // SCoil UId=100: nelze určit podmínku (vstupní síť).
+  // RCoil UId=101: nelze určit podmínku (vstupní síť).
+  // SCoil UId=102: nelze určit podmínku (vstupní síť).
+  // RCoil UId=103: nelze určit podmínku (vstupní síť).
+  // RCoil UId=108: nelze určit podmínku (vstupní síť).
+  // SCoil UId=109: nelze určit podmínku (vstupní síť).
+  // RCoil UId=110: nelze určit podmínku (vstupní síť).
+  // SCoil UId=111: nelze určit podmínku (vstupní síť).
+  // SCoil UId=117: nelze určit podmínku (vstupní síť).
+  // RCoil UId=121: nelze určit podmínku (vstupní síť).
+  // SCoil UId=122: nelze určit podmínku (vstupní síť).
+  // RCoil UId=123: nelze určit podmínku (vstupní síť).
+  // SCoil UId=124: nelze určit podmínku (vstupní síť).
+  // RCoil UId=125: nelze určit podmínku (vstupní síť).
+  // RCoil UId=131: nelze určit podmínku (vstupní síť).
+  // SCoil UId=132: nelze určit podmínku (vstupní síť).
+  // RCoil UId=133: nelze určit podmínku (vstupní síť).
+  // Network 14
+  IF (AlwaysTRUE AND NOT Station_Sys.Auto.Mode) THEN PalletNGData.UnLoadingNGPallet.OpenFlag := FALSE; END_IF;
+  // Network 15
+  PalletNGData.UnLoadingNGPallet.Ready_4 := (((AlwaysTRUE AND oE-NG-02SafetyGate) AND NOT iE-NG-02 Safety Gate_Open) AND NOT iE-NG-02 Safety Gate_UnLock);
+  // Network 16
+  AutoProcessControl.NG_2.Robot3PutPrimit_1 := ((AlwaysTRUE AND PalletNGData.UnLoadingNGPallet.Ready_4) AND PalletNGData.UnLoadingNGPallet.Ready_1);
+  AutoProcessControl.NG_2.Robot3PutPrimit_2 := ((AlwaysTRUE AND PalletNGData.UnLoadingNGPallet.Ready_4) AND PalletNGData.UnLoadingNGPallet.Ready_2);
+  AutoProcessControl.NG_2.Robot3PutPrimit_3 := ((AlwaysTRUE AND PalletNGData.UnLoadingNGPallet.Ready_4) AND PalletNGData.UnLoadingNGPallet.Ready_3);
 END_FUNCTION_BLOCK

@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.OB ID="0">
+    <AttributeList>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Temp">
+    <Member Name="OB82_EV_CLASS" Datatype="Byte">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">16#39, Event class 3, Entering event state, Internal fault event</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_FLT_ID" Datatype="Byte">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">16#XX, Fault identifcation code</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_PRIORITY" Datatype="Byte">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Priority of OB Execution</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_OB_NUMBR" Datatype="Byte">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">82 (Organization block 82, OB82)</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_RESERVED_1" Datatype="Byte">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Reserved for system</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_IO_FLAG" Datatype="Byte">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Input (01010100), Output (01010101)</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_MDL_ADDR" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Base address of module with fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_MDL_DEFECT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Module defective</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_INT_FAULT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Internal fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_EXT_FAULT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">External fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_PNT_INFO" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Point information</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_EXT_VOLTAGE" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">External voltage low</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_FLD_CONNCTR" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Field wiring connector missing</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_NO_CONFIG" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Module has no configuration data</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_CONFIG_ERR" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Module has configuration error</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_MDL_TYPE" Datatype="Byte">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Type of module</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_SUB_NDL_ERR" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Sub-Module is missing or has error</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_COMM_FAULT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Communication fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_MDL_STOP" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Module is stopped</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_WTCH_DOG_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Watch dog timer stopped module</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_INT_PS_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Internal power supply fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_PRIM_BATT_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Primary battery is in fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_BCKUP_BATT_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Backup battery is in fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_RESERVED_2" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Reserved for system</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_RACK_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Rack fault, only for bus interface module</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_PROC_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Processor fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_EPROM_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">EPROM fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_RAM_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">RAM fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_ADU_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">ADU fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_FUSE_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Fuse fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_HW_INTR_FLT" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Hardware interupt input in fault</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_RESERVED_3" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Reserved for system</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="OB82_DATE_TIME" Datatype="Date_And_Time">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Date and time OB82 started</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+  <Section Name="Constant" />
+</Sections></Interface>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>09_I/O_FLT1</Name>
+      <Namespace />
+      <Number>82</Number>
+      <ProgrammingLanguage>STL</ProgrammingLanguage>
+      <SecondaryType>DiagnosticErrorInterrupt</SecondaryType>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StatementList xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StatementList/v4">
+  <StlStatement UId="22">
+    <StlToken Text="EMPTY_LINE" />
+  </StlStatement>
+  <StlStatement UId="23">
+    <StlToken Text="EMPTY_LINE" />
+  </StlStatement>
+</StatementList></NetworkSource>
+          <ProgrammingLanguage>STL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text> "I/O Point Fault"</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.OB>
+</Document>

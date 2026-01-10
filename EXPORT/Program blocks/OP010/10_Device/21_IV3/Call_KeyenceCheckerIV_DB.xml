@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <InstanceOfName>Call_KeyenceCheckerIV</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="InsKeyenceCheckerIV3810A1" Datatype="&quot;FB_KeyenceCheckerIV3&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="I_nID" Datatype="Int" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut" />
+        <Section Name="Static">
+          <Member Name="rtrigManualMode" Datatype="R_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="ftrigManualMode" Datatype="F_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="****Common*******" Datatype="Bool" />
+          <Member Name="nStep" Datatype="Int" />
+          <Member Name="nNextStep" Datatype="Int" />
+          <Member Name="nLastStep" Datatype="Int" />
+          <Member Name="bCondition" Datatype="Bool" />
+          <Member Name="fbNextstep" Datatype="&quot;FB_Next&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="I_bEnable" Datatype="Bool" />
+                <Member Name="I_bSeqMode" Datatype="Bool" />
+                <Member Name="I_tTimeValue" Datatype="Time" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="O_bStart" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="ton_Delay" Datatype="TON_TIME" Version="1.0">
+                  <Sections>
+                    <Section Name="None">
+                      <Member Name="PT" Datatype="Time" />
+                      <Member Name="ET" Datatype="Time" />
+                      <Member Name="IN" Datatype="Bool" />
+                      <Member Name="Q" Datatype="Bool" />
+                    </Section>
+                  </Sections>
+                </Member>
+                <Member Name="bStartdelay" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="tonProcessOvertime" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="****Local******" Datatype="Bool" />
+          <Member Name="aToolResultReset" Datatype="Array[1..64] of Bool" />
+          <Member Name="ToolResultResult" Datatype="Array[1..64] of Struct">
+            <Member Name="nToolMatchingRate" Datatype="Word" />
+            <Member Name="nToolMatchingRateMAX" Datatype="Word" />
+            <Member Name="nToolMatchingRateMIN" Datatype="Word" />
+            <Member Name="nToolLowerLimitValue" Datatype="Word" />
+            <Member Name="nToolUpperLimitValue" Datatype="Word" />
+            <Member Name="nDecimalPosition" Datatype="Word" />
+            <Member Name="nPitchPresentValueMAX/ColorAverageH (hue)" Datatype="Word" />
+            <Member Name="nPitchPresentValueMIN/ColorAverageS(saturation)" Datatype="Word" />
+            <Member Name="nNumberOfPitches/ColorAverageV(brightness)/BrightnessAverage" Datatype="Word" />
+            <Member Name="nReserved1" Datatype="Word" />
+          </Member>
+          <Member Name="bCompleteToggleSign" Datatype="Bool" />
+          <Member Name="rtrigCompleteToggle" Datatype="R_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="ftrigCompleteToggle" Datatype="F_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="nIdx" Datatype="Int" />
+          <Member Name="nTriggerFailCount" Datatype="Byte" />
+          <Member Name="****Instruction******" Datatype="Bool" />
+          <Member Name="nWord" Datatype="Word" />
+          <Member Name="nDWord" Datatype="DWord" />
+          <Member Name="nIndex3" Datatype="Int" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="InsKeyenceCheckerIV3811A1" Datatype="&quot;FB_KeyenceCheckerIV3&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="I_nID" Datatype="Int" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut" />
+        <Section Name="Static">
+          <Member Name="rtrigManualMode" Datatype="R_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="ftrigManualMode" Datatype="F_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="****Common*******" Datatype="Bool" />
+          <Member Name="nStep" Datatype="Int" />
+          <Member Name="nNextStep" Datatype="Int" />
+          <Member Name="nLastStep" Datatype="Int" />
+          <Member Name="bCondition" Datatype="Bool" />
+          <Member Name="fbNextstep" Datatype="&quot;FB_Next&quot;">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="I_bEnable" Datatype="Bool" />
+                <Member Name="I_bSeqMode" Datatype="Bool" />
+                <Member Name="I_tTimeValue" Datatype="Time" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="O_bStart" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="ton_Delay" Datatype="TON_TIME" Version="1.0">
+                  <Sections>
+                    <Section Name="None">
+                      <Member Name="PT" Datatype="Time" />
+                      <Member Name="ET" Datatype="Time" />
+                      <Member Name="IN" Datatype="Bool" />
+                      <Member Name="Q" Datatype="Bool" />
+                    </Section>
+                  </Sections>
+                </Member>
+                <Member Name="bStartdelay" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="tonProcessOvertime" Datatype="TON_TIME" Version="1.0">
+            <Sections>
+              <Section Name="None">
+                <Member Name="PT" Datatype="Time" />
+                <Member Name="ET" Datatype="Time" />
+                <Member Name="IN" Datatype="Bool" />
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="****Local******" Datatype="Bool" />
+          <Member Name="aToolResultReset" Datatype="Array[1..64] of Bool" />
+          <Member Name="ToolResultResult" Datatype="Array[1..64] of Struct">
+            <Member Name="nToolMatchingRate" Datatype="Word" />
+            <Member Name="nToolMatchingRateMAX" Datatype="Word" />
+            <Member Name="nToolMatchingRateMIN" Datatype="Word" />
+            <Member Name="nToolLowerLimitValue" Datatype="Word" />
+            <Member Name="nToolUpperLimitValue" Datatype="Word" />
+            <Member Name="nDecimalPosition" Datatype="Word" />
+            <Member Name="nPitchPresentValueMAX/ColorAverageH (hue)" Datatype="Word" />
+            <Member Name="nPitchPresentValueMIN/ColorAverageS(saturation)" Datatype="Word" />
+            <Member Name="nNumberOfPitches/ColorAverageV(brightness)/BrightnessAverage" Datatype="Word" />
+            <Member Name="nReserved1" Datatype="Word" />
+          </Member>
+          <Member Name="bCompleteToggleSign" Datatype="Bool" />
+          <Member Name="rtrigCompleteToggle" Datatype="R_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="ftrigCompleteToggle" Datatype="F_TRIG" Version="1.0">
+            <Sections>
+              <Section Name="Input">
+                <Member Name="CLK" Datatype="Bool" />
+              </Section>
+              <Section Name="Output">
+                <Member Name="Q" Datatype="Bool" />
+              </Section>
+              <Section Name="InOut" />
+              <Section Name="Static">
+                <Member Name="Stat_Bit" Datatype="Bool" />
+              </Section>
+            </Sections>
+          </Member>
+          <Member Name="nIdx" Datatype="Int" />
+          <Member Name="nTriggerFailCount" Datatype="Byte" />
+          <Member Name="****Instruction******" Datatype="Bool" />
+          <Member Name="nWord" Datatype="Word" />
+          <Member Name="nDWord" Datatype="DWord" />
+          <Member Name="nIndex3" Datatype="Int" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="nIndex" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>Call_KeyenceCheckerIV_DB</Name>
+      <Namespace />
+      <Number>2100</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

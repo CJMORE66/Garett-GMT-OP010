@@ -16,5 +16,22 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/03_Device/212 Analog/FB_Analog.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  #io_Dev.Common.bEnable := #iSysInface.SysRun;
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2)
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Normalize(1), Scale_X(1)
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Lt(1), Gt(1), Ge(1), Le(1)
+  // Coil UId=33: nelze určit podmínku (vstupní síť).
+  // Coil UId=35: nelze určit podmínku (vstupní síť).
+  // Coil UId=38: nelze určit podmínku (vstupní síť).
 END_FUNCTION_BLOCK

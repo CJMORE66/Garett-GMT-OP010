@@ -48,5 +48,46 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/03_Device/04 Lamp/FB_Tower_4Lamp.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(3), Eq(2), Ne(1), Lt(1)
+  // Coil UId=41: nelze určit podmínku (vstupní síť).
+  // Coil UId=51: nelze určit podmínku (vstupní síť).
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=44: nelze určit podmínku (vstupní síť).
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=40: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // Coil UId=33: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(4), Move(4), Lt(1), Add(1), Ge(1), TON(1)
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Le(1), PBox(1), Move(1), Lt(1), O(1)
+  // Coil UId=42: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // Coil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=40: nelze určit podmínku (vstupní síť).
+  // Network 9
+  IF (((#iE-StopButtonOK AND #iSafetyGateClosed) AND NOT #iPowerOn) AND #iResetButton) THEN #sResetButtonPressed := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): NBox(1)
+  // RCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 10
+  #oWorkArea1_LightingOn := #iWorkAreaLightButton;
+  #oWorkArea2_LightingOn := #iWorkAreaLightButton;
+  #oWorkArea3_LightingOn := #iWorkAreaLightButton;
 END_FUNCTION_BLOCK

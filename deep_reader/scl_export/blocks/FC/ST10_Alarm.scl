@@ -11,5 +11,463 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/05_Alarm/ST10_Alarm.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF #tpAlwayoff THEN #tpAlwayoff := FALSE; END_IF;
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Network 3
+  IF (AlwaysTRUE AND NOT Station_Sys.Status.MainPressureOK) THEN ST10_GlobalError.COM.MainPneumaticPressure1NOK := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.COM.StationHardwareError := TRUE; END_IF;
+  IF ((AlwaysTRUE AND ChangeOver_DB.Global.ChangeOverSelected) AND NOT AutoProcessControl.Global.ALL_BeltPalletEmptyFinish) THEN ST10_GlobalError.COM.ChangeStyleError := TRUE; END_IF;
+  // Network 4
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation01 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation02 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation03 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation03 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DiagnosticDataBlock.Profinet.Status) THEN ST10_GlobalError.Hardware.PNSlaveStation03 := TRUE; END_IF;
+  // Network 5
+  IF ((AlwaysTRUE AND NOT DiagnosticDataBlock.DP.Status) AND AlwaysFALSE) THEN ST10_GlobalError.Hardware.ValveIsland := TRUE; END_IF;
+  IF (AlwaysTRUE AND #tpAlwayoff) THEN ST10_GlobalError.Hardware.ValveIsland := TRUE; END_IF;
+  // Network 6
+  IF (AlwaysTRUE AND ST10_SysInput.HMI_Button.E-Stop) THEN ST10_GlobalError.Safety.HMIEstopPBActivated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB1Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB2Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB3Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB4Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB5Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB6Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB7Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB8Activated := TRUE; END_IF;
+  IF (AlwaysTRUE AND ST10_SysInput.iE-StopPB) THEN ST10_GlobalError.Safety.TableEstopPB9Activated := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(5)
+  // SCoil UId=81: nelze určit podmínku (vstupní síť).
+  // SCoil UId=85: nelze určit podmínku (vstupní síť).
+  // SCoil UId=89: nelze určit podmínku (vstupní síť).
+  // SCoil UId=93: nelze určit podmínku (vstupní síť).
+  // SCoil UId=97: nelze určit podmínku (vstupní síť).
+  // Network 7
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT ST10_SysOutput.SafetyDoorCoil) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_1) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_2) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_3) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_4) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_5) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_6) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_7) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety door Locking FeedBack_8) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT iSafety Door Locking FeedBack) THEN ST10_GlobalError.SafetyDoor.No := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // SCoil UId=101: nelze určit podmínku (vstupní síť).
+  // Network 8
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotLock_1 := (AlwaysTRUE AND NOT ST10_SysOutput.MaterialDoorCoil);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotLock_2 := (AlwaysTRUE AND NOT ST10_SysOutput.MaterialDoorCoil);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotLock_3 := (AlwaysTRUE AND NOT ST10_SysOutput.MaterialDoorCoil);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotLock_4 := (AlwaysTRUE AND NOT ST10_SysOutput.MaterialDoorCoil);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotLock_5 := (AlwaysTRUE AND NOT ST10_SysOutput.MaterialDoorCoil);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotLock_6 := (AlwaysTRUE AND NOT ST10_SysOutput.MaterialDoorCoil);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotLock_7 := (AlwaysTRUE AND NOT ST10_SysOutput.MaterialDoorCoil);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotClose_1 := (AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_H1);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotClose_2 := (AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_H2);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotClose_3 := (AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_J1);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotClose_4 := (AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_J2);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotClose_5 := (AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_K1);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotClose_6 := (AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_K2);
+  ST10_GlobalError.SafetyDoor.MaterialDoor.NotClose_7 := (AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_L1);
+  // Network 9
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(4)
+  // Coil UId=46: nelze určit podmínku (vstupní síť).
+  // Coil UId=52: nelze určit podmínku (vstupní síť).
+  // Coil UId=58: nelze určit podmínku (vstupní síť).
+  // Coil UId=62: nelze určit podmínku (vstupní síť).
+  // Network 10
+  IF (Station_Sys.Status.EnableAlarm AND #tpAlwayoff) THEN ST10_GlobalError.Product := TRUE; END_IF;
+  IF (Station_Sys.Status.EnableAlarm AND #tpAlwayoff) THEN ST10_GlobalError.Product := TRUE; END_IF;
+  IF (Station_Sys.Status.EnableAlarm AND #tpAlwayoff) THEN ST10_GlobalError.Product := TRUE; END_IF;
+  // Network 11
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=37: nelze určit podmínku (vstupní síť).
+  // Coil UId=42: nelze určit podmínku (vstupní síť).
+  // Network 12
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(3)
+  // Coil UId=39: nelze určit podmínku (vstupní síť).
+  // Coil UId=44: nelze určit podmínku (vstupní síť).
+  // Coil UId=49: nelze určit podmínku (vstupní síť).
+  // Network 13
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(1), CTU(1), Eq(1)
+  // SCoil UId=34: nelze určit podmínku (vstupní síť).
+  // Network 14
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(1), CTU(1), Eq(1)
+  // SCoil UId=34: nelze určit podmínku (vstupní síť).
+  // Network 15
+  IF ServoV90_A1.Out.oError THEN ST10_DeviceError.A.A_Spare_2.Servo_380A1 := TRUE; END_IF;
+  IF ServoV90_A2.Out.oError THEN ST10_DeviceError.A.A_Spare_2.Servo_381A1 := TRUE; END_IF;
+  IF KeyenceSR1000Ctrl_800A1DB.oError THEN ST10_DeviceError.A.A_Spare_2.Scan_800A1 := TRUE; END_IF;
+  IF KeyenceSR1000Ctrl_801A1DB.oError THEN ST10_DeviceError.A.A_Spare_2.Scan_801A1 := TRUE; END_IF;
+  IF KeyenceSR1000Ctrl_804A1DB.oError THEN ST10_DeviceError.A.A_Spare_2.Scan_804A1 := TRUE; END_IF;
+  // Network 16
+  IF DB_maXYmosNC1.oError THEN ST10_DeviceError.B.B_Spare_1.Kistler_Press1_372A1 := TRUE; END_IF;
+  IF DB_maXYmosNC2.oError THEN ST10_DeviceError.B.B_Spare_1.Kistler_Press2_375A1 := TRUE; END_IF;
+  IF KeyenceSR1000Ctrl_806A1DB.oError THEN ST10_DeviceError.B.B_Spare_1.Scan_806A1 := TRUE; END_IF;
+  // Network 17
+  IF (AlwaysTRUE AND NOT GluingControl.Input.GluingFault) THEN ST10_DeviceError.C.CGlueing.SysError := TRUE; END_IF;
+  // Network 18
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // Coil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 19
+  IF (AlwaysTRUE AND Axis_FB_DB.IAI_Axis) THEN ST10_DeviceError.C.CGlueing.Z := TRUE; END_IF;
+  IF (AlwaysTRUE AND Axis_FB_DB.IAI_Axis) THEN ST10_DeviceError.C.CGlueing.X := TRUE; END_IF;
+  IF (AlwaysTRUE AND Axis_FB_DB.IAI_Axis) THEN ST10_DeviceError.C.CGlueing.Y := TRUE; END_IF;
+  IF (AlwaysTRUE AND ServoV90_A3.Out.oError) THEN ST10_DeviceError.C.C_Spare_2.Servo_382A1 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DB_KeyenceCheckerIV3.aDev) THEN ST10_DeviceError.C.C_Spare_2.IV3_810A1 := TRUE; END_IF;
+  IF (AlwaysTRUE AND DB_KeyenceCheckerIV3.aDev) THEN ST10_DeviceError.C.C_Spare_2.IV3_811A1 := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT GluingControl.Input.GluingFault) THEN ST10_DeviceError.C.C_Spare_2.GluingFault := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT GluingControl.Input.GluingRefillTank) THEN ST10_DeviceError.C.C_Spare_2.GluingRefillTank := TRUE; END_IF;
+  IF (AlwaysTRUE AND NOT GluingControl.Input.GluingTankEmpty) THEN ST10_DeviceError.C.C_Spare_2.GluingTankEmpty := TRUE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=61: nelze určit podmínku (vstupní síť).
+  // Network 20
+  IF (AlwaysTRUE AND KukaRobot1_CtrlDB.sPLCtoROB.User.Home.DI169_RobotMoved) THEN ST10_DeviceError.F.Robot_1.ManualMoved := TRUE; END_IF;
+  ST10_DeviceError.F.Robot_2.ManualMoved := (AlwaysTRUE AND KukaRobot2_CtrlDB.sPLCtoROB.User.Home.DI169_RobotMoved);
+  ST10_DeviceError.F.Robot_3.ManualMoved := (AlwaysTRUE AND KukaRobot3_CtrlDB.sPLCtoROB.User.Home.DI169_RobotMoved);
+  // Network 21
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT KukaRobot1_CtrlDB.sROBtoPLC.Sys.SO.EXT) THEN ST10_DeviceError.F.Robot_1.EXT Fault := TRUE; END_IF;
+  // Network 22
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=29: nelze určit podmínku (vstupní síť).
+  // Network 23
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT KukaRobot2_CtrlDB.sROBtoPLC.Sys.SO.EXT) THEN ST10_DeviceError.F.Robot_2.EXT Fault := TRUE; END_IF;
+  // Network 24
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=29: nelze určit podmínku (vstupní síť).
+  // Network 25
+  IF ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT KukaRobot3_CtrlDB.sROBtoPLC.Sys.SO.EXT) THEN ST10_DeviceError.F.Robot_3.EXT Fault := TRUE; END_IF;
+  // Network 26
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=29: nelze určit podmínku (vstupní síť).
+  // Network 27
+  IF KeyenceSR1000Ctrl_805A1DB.oError THEN ST10_DeviceError.F.F_Spare_1.Scan_805A1 := TRUE; END_IF;
+  IF KukaRobot1_CtrlDB.oError THEN ST10_DeviceError.F.F_Spare_1.Robot_1 := TRUE; END_IF;
+  IF KukaRobot2_CtrlDB.oError THEN ST10_DeviceError.F.F_Spare_1.Robot_2 := TRUE; END_IF;
+  IF KukaRobot3_CtrlDB.oError THEN ST10_DeviceError.F.F_Spare_1.Robot_3 := TRUE; END_IF;
+  // Network 28
+  IF MotorControl.Dev THEN ST10_DeviceError.H.Spare_1.H-shaftLifting_Motor := TRUE; END_IF;
+  IF MotorControl.Dev THEN ST10_DeviceError.H.Spare_1.H-shaftLoad_Motor := TRUE; END_IF;
+  IF MotorControl.Dev THEN ST10_DeviceError.H.Spare_1.H-shaftUnLoad_Motor := TRUE; END_IF;
+  // Network 29
+  IF MotorControl.Dev THEN ST10_DeviceError.J.Spare_1.J-MagnetLifting_Motor := TRUE; END_IF;
+  IF MotorControl.Dev THEN ST10_DeviceError.J.Spare_1.J-MagnetLoad_Motor := TRUE; END_IF;
+  IF MotorControl.Dev THEN ST10_DeviceError.J.Spare_1.J-MagnetUnLoad_Motor := TRUE; END_IF;
+  // Network 30
+  IF MotorControl.Dev THEN ST10_DeviceError.K.Spare_1.K-Lifting_Motor := TRUE; END_IF;
+  IF MotorControl.Dev THEN ST10_DeviceError.K.Spare_1.K-ReserveLoad_Motor := TRUE; END_IF;
+  IF MotorControl.Dev THEN ST10_DeviceError.K.Spare_1.K-ReserveUnLoad_Motor := TRUE; END_IF;
+  // Network 31
+  IF MotorControl.Dev THEN ST10_DeviceError.L.Spare_2.L-Unloading_Motor := TRUE; END_IF;
+  IF MotorControl.Dev THEN ST10_DeviceError.L.Spare_2.L-Unloading _LineMotor := TRUE; END_IF;
+  // Network 32
+  IF ((AlwaysTRUE AND NOT ST10_SysInput.Sys.iCircuitBreakerOK1) AND NOT AlwaysTRUE) THEN ST10_GlobalError.Breaker.Trip := TRUE; END_IF;
+  IF ((AlwaysTRUE AND NOT iMateriel Door Locking FeedBack_H2) AND AlwaysFALSE) THEN ST10_GlobalError.Breaker.Trip := TRUE; END_IF;
+  IF (AlwaysTRUE AND #tpAlwayoff) THEN ST10_GlobalError.Breaker.Trip := TRUE; END_IF;
+  // Network 33
+  // Network 34
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): FILL(2), Move(1)
+  // Network 35
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(2)
+  // Coil UId=30: nelze určit podmínku (vstupní síť).
+  // Coil UId=32: nelze určit podmínku (vstupní síť).
+  // Network 36
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1)
+  // Coil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 37
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Ne(1)
+  // Coil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 38
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(3), Move(3)
+  // Network 39
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 40
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 41
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 42
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 43
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 44
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 45
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 46
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 47
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 48
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 49
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 50
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 51
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(3), Move(3)
+  // Network 52
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 53
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 54
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 55
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 56
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 57
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 58
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 59
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 60
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 61
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 62
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 63
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 64
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(3), Move(3)
+  // Network 65
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 66
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 67
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 68
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 69
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 70
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 71
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 72
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 73
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 74
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 75
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 76
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 77
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), O(1)
+  // Network 78
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 79
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 80
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 81
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 82
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 83
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 84
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(1)
+  // SCoil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 85
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2)
+  // Network 86
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), O(1)
+  // Network 87
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), O(1)
+  // Network 88
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), O(1)
+  // Network 89
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), O(1)
+  // Network 90
+  // --- Poznámky / omezení převodu ---
+  // Contact UId=95: nelze určit operand symbol.
+  // Contact UId=103: nelze určit operand symbol.
+  // Contact UId=111: nelze určit operand symbol.
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(6)
+  // Coil UId=72: nelze určit podmínku (vstupní síť).
+  // Coil UId=80: nelze určit podmínku (vstupní síť).
+  // Coil UId=88: nelze určit podmínku (vstupní síť).
+  // Coil UId=96: nelze určit podmínku (vstupní síť).
+  // Coil UId=104: nelze určit podmínku (vstupní síť).
+  // Coil UId=112: nelze určit podmínku (vstupní síť).
+  // Network 91
+  ST10_DeviceError.E.NG_1.NG 1 DoorOpen := ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT oE-NG-01SafetyGate);
+  // Network 92
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), O(1)
+  // Network 93
+  // --- Poznámky / omezení převodu ---
+  // Contact UId=95: nelze určit operand symbol.
+  // Contact UId=103: nelze určit operand symbol.
+  // Contact UId=111: nelze určit operand symbol.
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(6)
+  // Coil UId=72: nelze určit podmínku (vstupní síť).
+  // Coil UId=80: nelze určit podmínku (vstupní síť).
+  // Coil UId=88: nelze určit podmínku (vstupní síť).
+  // Coil UId=96: nelze určit podmínku (vstupní síť).
+  // Coil UId=104: nelze určit podmínku (vstupní síť).
+  // Coil UId=112: nelze určit podmínku (vstupní síť).
+  // Network 94
+  ST10_DeviceError.E.NG_1.NG 2 DoorOpen := ((AlwaysTRUE AND Station_Sys.Auto.Mode) AND NOT oE-NG-02SafetyGate);
+  // Network 95
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2), Move(2)
+  // Network 96
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2), Move(2)
+  // Network 97
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), O(1)
+  // Network 98
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), O(2)
+  // Network 99
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3), O(2)
 END_FUNCTION

@@ -1,0 +1,2224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <HeaderAuthor>JM</HeaderAuthor>
+      <HeaderFamily>RCS</HeaderFamily>
+      <HeaderName />
+      <HeaderVersion>18.2</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="iReset" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">reset action</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iRun" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">system run</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iEStop" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">e_stop monitor</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iManualMode" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">manual mode</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iAutoMode" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">auto mode</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iEnableAlarm" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">alarm will popup up</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iPulse100mS" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">pulse *100ms</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iPulse1S" Datatype="Bool" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">pulse*1s</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iCyDBNO" Datatype="Word" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Interface data block number</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iCyCounts" Datatype="Int" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">total counts of cylinder to be used[must be&gt;=1 and &lt;=100]</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="iDevAlarmDBNum" Datatype="Word" Accessibility="Public">
+      <Comment>
+        <MultiLanguageText Lang="zh-CN">Device Alarm DataBlock Alarm</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Temp">
+    <Member Name="CyInterface" Datatype="&quot;Cyl&quot;">
+      <Sections>
+        <Section Name="None">
+          <Member Name="In" Datatype="Struct">
+            <Member Name="Error" Datatype="Bool" />
+            <Member Name="GoWorkInterlock" Datatype="Bool" />
+            <Member Name="GoHomeInterlock" Datatype="Bool" />
+            <Member Name="WorkPositionSensor" Datatype="Bool" />
+            <Member Name="HomePositionSensor" Datatype="Bool" />
+            <Member Name="ValveType" Datatype="Bool" />
+            <Member Name="ManualOutputType" Datatype="Bool" />
+            <Member Name="FaultTime" Datatype="Int" />
+            <Member Name="OnPositionTime" Datatype="Int" />
+          </Member>
+          <Member Name="Inout" Datatype="Struct">
+            <Member Name="ManualGoWork" Datatype="Bool" />
+            <Member Name="ManualGoHome" Datatype="Bool" />
+            <Member Name="AutoGoWork" Datatype="Bool" />
+            <Member Name="AutoGoHome" Datatype="Bool" />
+            <Member Name="ResetOut" Datatype="Bool" />
+          </Member>
+          <Member Name="S" Datatype="Struct">
+            <Member Name="GoWorkTime" Datatype="Int" />
+            <Member Name="GoHomeTime" Datatype="Int" />
+            <Member Name="WorkFaultTime" Datatype="Int" />
+            <Member Name="HomeFaultTime" Datatype="Int" />
+            <Member Name="BothSensorOnTime" Datatype="Int" />
+            <Member Name="Pulse100mSP" Datatype="Bool" />
+            <Member Name="AutoGoWorkP" Datatype="Bool" />
+            <Member Name="AutoGoHomeP" Datatype="Bool" />
+            <Member Name="GoWork100mSP" Datatype="Bool" />
+            <Member Name="GoHome100mSP" Datatype="Bool" />
+            <Member Name="BothSensorOn100mSP" Datatype="Bool" />
+            <Member Name="Alarm" Datatype="Bool" />
+            <Member Name="spare1" Datatype="Bool" />
+            <Member Name="spare2" Datatype="Byte" />
+          </Member>
+          <Member Name="Out" Datatype="Struct">
+            <Member Name="GoWorkPosition" Datatype="Bool" />
+            <Member Name="GoHomePosition" Datatype="Bool" />
+            <Member Name="GoWPButtonActive" Datatype="Bool" />
+            <Member Name="GoHPButtonActive" Datatype="Bool" />
+            <Member Name="GoWorkFault" Datatype="Bool" />
+            <Member Name="GoHomeFault" Datatype="Bool" />
+            <Member Name="SensorPositionFault" Datatype="Bool" />
+            <Member Name="CyNO" Datatype="Byte" />
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="CyRany" Datatype="Any" />
+    <Member Name="cyRSany" Datatype="Struct">
+      <AttributeList>
+        <StringAttribute Name="At" SystemDefined="true">CyRany</StringAttribute>
+      </AttributeList>
+      <Member Name="SyntaxID" Datatype="Byte" />
+      <Member Name="DataType" Datatype="Byte" />
+      <Member Name="RepetitionFactor" Datatype="Int" />
+      <Member Name="DB_Number" Datatype="Word" />
+      <Member Name="MemoryAreaAddress" Datatype="DWord" />
+    </Member>
+    <Member Name="CyDany" Datatype="Any" />
+    <Member Name="CyDSany" Datatype="Struct">
+      <AttributeList>
+        <StringAttribute Name="At" SystemDefined="true">CyDany</StringAttribute>
+      </AttributeList>
+      <Member Name="SyntaxID" Datatype="Byte" />
+      <Member Name="DataType" Datatype="Byte" />
+      <Member Name="RepetitionFactor" Datatype="Int" />
+      <Member Name="DB_Number" Datatype="Word" />
+      <Member Name="MemoryAreaAddress" Datatype="DWord" />
+    </Member>
+    <Member Name="tpCounts" Datatype="Int" />
+    <Member Name="tpi" Datatype="Int" />
+    <Member Name="tpRetVal" Datatype="Int" />
+  </Section>
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>CylinderCtrl_V2</Name>
+      <Namespace />
+      <Number>3011</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>true</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text>this function is only used for cylinder control</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <LineComment Inserted="false" NoClosingBracket="false" UId="21">
+    <Text UId="22">---------------------------------------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="23" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="24">
+    <Text UId="25">FunctionName:CylinderV3</Text>
+  </LineComment>
+  <NewLine Num="1" UId="26" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="27">
+    <Text UId="28">FunctionDescription:Cylinder Control block</Text>
+  </LineComment>
+  <NewLine Num="1" UId="29" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="30">
+    <Text UId="31">---------------------------------------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="32" />
+  <LineComment Inserted="true" NoClosingBracket="false" UId="33">
+    <Text UId="34">in:
+
+#iReset  Bool            reset action
+#iRun    Bool            system run
+#iE_stop Bool            e_stop monitor
+#iManualMode Bool        manual mode
+#iAutoMode   Bool        auto mode
+#iEnableAlarm    Bool        alarm will popup up
+#iPulse_100mS    Bool        pulse *100ms
+iPulse_1S   Bool        pulse*1s
+iCyDBNO Int Int     Interface data block number
+iCyCounts   Int     total counts OF "Cylinder" TO be used[must be&gt;=1 AND &lt;=100]
+
+//inout:
+//out:
+</Text>
+  </LineComment>
+  <NewLine Num="1" UId="35" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="36">
+    <Text UId="37">---------------------------------------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="38" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="39">
+    <Text UId="40">Version:V3</Text>
+  </LineComment>
+  <NewLine Num="1" UId="41" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="42">
+    <Text UId="43">D&amp;T:2016-11-14</Text>
+  </LineComment>
+  <NewLine Num="1" UId="44" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="45">
+    <Text UId="46">Group:RCS</Text>
+  </LineComment>
+  <NewLine Num="1" UId="47" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="48">
+    <Text UId="49">Author:JiangMing</Text>
+  </LineComment>
+  <NewLine Num="1" UId="50" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="51">
+    <Text UId="52">-------------------------Modify1----------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="53" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="54">
+    <Text UId="55">Version:</Text>
+  </LineComment>
+  <NewLine Num="1" UId="56" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="57">
+    <Text UId="58">D&amp;T:2016-11-17</Text>
+  </LineComment>
+  <NewLine Num="1" UId="59" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="60">
+    <Text UId="61">Group: RCS</Text>
+  </LineComment>
+  <NewLine Num="1" UId="62" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="63">
+    <Text UId="64">Author:JiangMing</Text>
+  </LineComment>
+  <NewLine Num="1" UId="65" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="66">
+    <Text UId="67">Modify:Update cylinder no as output interface</Text>
+  </LineComment>
+  <NewLine Num="1" UId="68" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="69">
+    <Text UId="70">-------------------------Modify2----------------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="71" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="72">
+    <Text UId="73">Version:       V18.3</Text>
+  </LineComment>
+  <NewLine Num="1" UId="74" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="75">
+    <Text UId="76">D&amp;T:           2020-06-11</Text>
+  </LineComment>
+  <NewLine Num="1" UId="77" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="78">
+    <Text UId="79">Group:         RCS</Text>
+  </LineComment>
+  <NewLine Num="1" UId="80" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="81">
+    <Text UId="82">Author:        JM</Text>
+  </LineComment>
+  <NewLine Num="1" UId="83" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="84">
+    <Text UId="85">Modify:        1.MaxCylinder count 200 </Text>
+  </LineComment>
+  <NewLine Num="1" UId="86" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="87">
+    <Text UId="88">               2.Refine alarm interface</Text>
+  </LineComment>
+  <NewLine Num="1" UId="89" />
+  <Token Text="IF" UId="90" />
+  <Blank Num="1" UId="91" />
+  <Access Scope="LocalVariable" UId="92">
+    <Symbol UId="93">
+      <Component Name="iCyCounts" UId="94" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="95" />
+  <Token Text="&gt;" UId="96" />
+  <Blank Num="1" UId="97" />
+  <Access Scope="LiteralConstant" UId="98">
+    <Constant UId="99">
+      <ConstantValue UId="101">200</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="102" />
+  <Token Text="THEN" UId="103" />
+  <NewLine Num="1" UId="104" />
+  <Blank Num="4" UId="105" />
+  <Access Scope="LocalVariable" UId="106">
+    <Symbol UId="107">
+      <Component Name="tpCounts" UId="108" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="109" />
+  <Token Text=":=" UId="110" />
+  <Blank Num="1" UId="111" />
+  <Access Scope="LiteralConstant" UId="112">
+    <Constant UId="113">
+      <ConstantValue UId="115">200</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="116" />
+  <NewLine Num="1" UId="117" />
+  <Token Text="ELSE" UId="118" />
+  <NewLine Num="1" UId="119" />
+  <Blank Num="4" UId="120" />
+  <Access Scope="LocalVariable" UId="121">
+    <Symbol UId="122">
+      <Component Name="tpCounts" UId="123" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="124" />
+  <Token Text=":=" UId="125" />
+  <Blank Num="1" UId="126" />
+  <Access Scope="LocalVariable" UId="127">
+    <Symbol UId="128">
+      <Component Name="iCyCounts" UId="129" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="130" />
+  <NewLine Num="1" UId="131" />
+  <Token Text="END_IF" UId="132" />
+  <Token Text=";" UId="133" />
+  <NewLine Num="1" UId="134" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="135">
+    <Text UId="136">input</Text>
+  </LineComment>
+  <NewLine Num="2" UId="137" />
+  <Token Text="FOR" UId="138" />
+  <Blank Num="1" UId="139" />
+  <Access Scope="LocalVariable" UId="140">
+    <Symbol UId="141">
+      <Component Name="tpi" UId="142" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="143" />
+  <Token Text=":=" UId="144" />
+  <Blank Num="1" UId="145" />
+  <Access Scope="LiteralConstant" UId="146">
+    <Constant UId="147">
+      <ConstantValue UId="149">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="150" />
+  <Token Text="TO" UId="151" />
+  <Blank Num="1" UId="152" />
+  <Access Scope="LocalVariable" UId="153">
+    <Symbol UId="154">
+      <Component Name="tpCounts" UId="155" />
+    </Symbol>
+  </Access>
+  <Token Text="-" UId="156" />
+  <Access Scope="LiteralConstant" UId="157">
+    <Constant UId="158">
+      <ConstantValue UId="160">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="161" />
+  <Token Text="DO" UId="162" />
+  <NewLine Num="1" UId="163" />
+  <Blank Num="4" UId="164" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="165">
+    <Text UId="166">****************************************************************************************//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="167" />
+  <Blank Num="4" UId="168" />
+  <Access Scope="LocalVariable" UId="169">
+    <Symbol UId="170">
+      <Component Name="cyRSany" UId="171" />
+      <Token Text="." UId="172" />
+      <Component Name="SyntaxID" UId="173" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="174" />
+  <Token Text=":=" UId="175" />
+  <Blank Num="1" UId="176" />
+  <Access Scope="LiteralConstant" UId="177">
+    <Constant UId="178">
+      <ConstantValue UId="180">16#10</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="181" />
+  <NewLine Num="1" UId="182" />
+  <Blank Num="4" UId="183" />
+  <Access Scope="LocalVariable" UId="184">
+    <Symbol UId="185">
+      <Component Name="cyRSany" UId="186" />
+      <Token Text="." UId="187" />
+      <Component Name="DataType" UId="188" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="189" />
+  <Token Text=":=" UId="190" />
+  <Blank Num="1" UId="191" />
+  <Access Scope="LiteralConstant" UId="192">
+    <Constant UId="193">
+      <ConstantValue UId="195">16#02</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="196" />
+  <NewLine Num="1" UId="197" />
+  <Blank Num="4" UId="198" />
+  <Access Scope="LocalVariable" UId="199">
+    <Symbol UId="200">
+      <Component Name="cyRSany" UId="201" />
+      <Token Text="." UId="202" />
+      <Component Name="RepetitionFactor" UId="203" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="204" />
+  <Token Text=":=" UId="205" />
+  <Blank Num="1" UId="206" />
+  <Access Scope="LiteralConstant" UId="207">
+    <Constant UId="208">
+      <ConstantValue UId="210">22</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="211" />
+  <NewLine Num="1" UId="212" />
+  <Blank Num="4" UId="213" />
+  <Access Scope="LocalVariable" UId="214">
+    <Symbol UId="215">
+      <Component Name="cyRSany" UId="216" />
+      <Token Text="." UId="217" />
+      <Component Name="DB_Number" UId="218" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="219" />
+  <Token Text=":=" UId="220" />
+  <Blank Num="1" UId="221" />
+  <Access Scope="LocalVariable" UId="222">
+    <Symbol UId="223">
+      <Component Name="iCyDBNO" UId="224" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="225" />
+  <NewLine Num="1" UId="226" />
+  <Blank Num="4" UId="227" />
+  <Access Scope="LocalVariable" UId="228">
+    <Symbol UId="229">
+      <Component Name="cyRSany" UId="230" />
+      <Token Text="." UId="231" />
+      <Component Name="MemoryAreaAddress" UId="232" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="233" />
+  <Token Text=":=" UId="234" />
+  <Blank Num="1" UId="235" />
+  <Access Scope="LiteralConstant" UId="236">
+    <Constant UId="237">
+      <ConstantValue UId="239">16#8400_0000</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="240" />
+  <Token Text="OR" UId="241" />
+  <Blank Num="1" UId="242" />
+  <Token Text="(" UId="243" />
+  <Access Scope="Call" UId="244">
+    <Instruction Name="SHL" UId="245">
+      <Token Text="(" UId="246" />
+      <Parameter Name="IN" UId="247">
+        <Blank Num="1" UId="248" />
+        <Token Text=":=" UId="249" />
+        <Blank Num="1" UId="250" />
+        <Access Scope="Call" UId="251">
+          <Instruction Name="INT_TO_DWORD" UId="252">
+            <Token Text="(" UId="253" />
+            <NamelessParameter UId="254">
+              <Access Scope="LocalVariable" UId="255">
+                <Symbol UId="256">
+                  <Component Name="tpi" UId="257" />
+                </Symbol>
+              </Access>
+              <Blank Num="1" UId="258" />
+              <Token Text="*" UId="259" />
+              <Blank Num="1" UId="260" />
+              <Access Scope="LiteralConstant" UId="261">
+                <Constant UId="262">
+                  <ConstantValue UId="264">22</ConstantValue>
+                </Constant>
+              </Access>
+            </NamelessParameter>
+            <Token Text=")" UId="266" />
+          </Instruction>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="267" />
+      <Blank Num="1" UId="268" />
+      <Parameter Name="N" UId="269">
+        <Blank Num="1" UId="270" />
+        <Token Text=":=" UId="271" />
+        <Blank Num="1" UId="272" />
+        <Access Scope="LiteralConstant" UId="273">
+          <Constant UId="274">
+            <ConstantValue UId="276">3</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="278" />
+    </Instruction>
+  </Access>
+  <Token Text=")" UId="279" />
+  <Token Text=";" UId="280" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="281">
+    <Text UId="282">/</Text>
+  </LineComment>
+  <NewLine Num="1" UId="283" />
+  <Blank Num="4" UId="284" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="285">
+    <Text UId="286">-----------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="287" />
+  <Blank Num="4" UId="288" />
+  <Access Scope="LocalVariable" UId="289">
+    <Symbol UId="290">
+      <Component Name="CyDSany" UId="291" />
+      <Token Text="." UId="292" />
+      <Component Name="SyntaxID" UId="293" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="294" />
+  <Token Text=":=" UId="295" />
+  <Blank Num="1" UId="296" />
+  <Access Scope="LiteralConstant" UId="297">
+    <Constant UId="298">
+      <ConstantValue UId="300">16#10</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="301" />
+  <NewLine Num="1" UId="302" />
+  <Blank Num="4" UId="303" />
+  <Access Scope="LocalVariable" UId="304">
+    <Symbol UId="305">
+      <Component Name="CyDSany" UId="306" />
+      <Token Text="." UId="307" />
+      <Component Name="DataType" UId="308" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="309" />
+  <Token Text=":=" UId="310" />
+  <Blank Num="1" UId="311" />
+  <Access Scope="LiteralConstant" UId="312">
+    <Constant UId="313">
+      <ConstantValue UId="315">16#02</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="316" />
+  <NewLine Num="1" UId="317" />
+  <Blank Num="4" UId="318" />
+  <Access Scope="LocalVariable" UId="319">
+    <Symbol UId="320">
+      <Component Name="CyDSany" UId="321" />
+      <Token Text="." UId="322" />
+      <Component Name="RepetitionFactor" UId="323" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="324" />
+  <Token Text=":=" UId="325" />
+  <Blank Num="1" UId="326" />
+  <Access Scope="LiteralConstant" UId="327">
+    <Constant UId="328">
+      <ConstantValue UId="330">22</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="331" />
+  <NewLine Num="1" UId="332" />
+  <Blank Num="4" UId="333" />
+  <Access Scope="LocalVariable" UId="334">
+    <Symbol UId="335">
+      <Component Name="CyDSany" UId="336" />
+      <Token Text="." UId="337" />
+      <Component Name="DB_Number" UId="338" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="339" />
+  <Token Text=":=" UId="340" />
+  <Blank Num="1" UId="341" />
+  <Access Scope="LiteralConstant" UId="342">
+    <Constant UId="343">
+      <ConstantValue UId="345">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="346" />
+  <NewLine Num="1" UId="347" />
+  <Blank Num="4" UId="348" />
+  <Access Scope="LocalVariable" UId="349">
+    <Symbol UId="350">
+      <Component Name="CyDSany" UId="351" />
+      <Token Text="." UId="352" />
+      <Component Name="MemoryAreaAddress" UId="353" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="354" />
+  <Token Text=":=" UId="355" />
+  <Blank Num="1" UId="356" />
+  <Access Scope="LiteralConstant" UId="357">
+    <Constant UId="358">
+      <ConstantValue UId="360">16#8700_0000</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="361" />
+  <Token Text="OR" UId="362" />
+  <Blank Num="1" UId="363" />
+  <Token Text="(" UId="364" />
+  <Access Scope="Call" UId="365">
+    <Instruction Name="SHL" UId="366">
+      <Token Text="(" UId="367" />
+      <Parameter Name="IN" UId="368">
+        <Blank Num="1" UId="369" />
+        <Token Text=":=" UId="370" />
+        <Blank Num="1" UId="371" />
+        <Access Scope="Call" UId="372">
+          <Instruction Name="INT_TO_DWORD" UId="373">
+            <Token Text="(" UId="374" />
+            <NamelessParameter UId="375">
+              <Access Scope="LiteralConstant" UId="376">
+                <Constant UId="377">
+                  <ConstantValue UId="379">0</ConstantValue>
+                </Constant>
+              </Access>
+            </NamelessParameter>
+            <Token Text=")" UId="381" />
+          </Instruction>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="382" />
+      <Blank Num="1" UId="383" />
+      <Parameter Name="N" UId="384">
+        <Blank Num="1" UId="385" />
+        <Token Text=":=" UId="386" />
+        <Blank Num="1" UId="387" />
+        <Access Scope="LiteralConstant" UId="388">
+          <Constant UId="389">
+            <ConstantValue UId="391">3</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="393" />
+    </Instruction>
+  </Access>
+  <Token Text=")" UId="394" />
+  <Token Text=";" UId="395" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="396">
+    <Text UId="397">/</Text>
+  </LineComment>
+  <NewLine Num="1" UId="398" />
+  <Blank Num="4" UId="399" />
+  <Access Scope="LocalVariable" UId="400">
+    <Symbol UId="401">
+      <Component Name="tpRetVal" UId="402" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="403" />
+  <Token Text=":=" UId="404" />
+  <Blank Num="1" UId="405" />
+  <Access Scope="Call" UId="406">
+    <Instruction Name="BLKMOV" UId="407">
+      <Token Text="(" UId="408" />
+      <Parameter Name="SRCBLK" UId="409">
+        <Blank Num="1" UId="410" />
+        <Token Text=":=" UId="411" />
+        <Blank Num="1" UId="412" />
+        <Access Scope="LocalVariable" UId="413">
+          <Symbol UId="414">
+            <Component Name="CyRany" UId="415" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="416" />
+      <Blank Num="1" UId="417" />
+      <Parameter Name="DSTBLK" UId="418">
+        <Blank Num="1" UId="419" />
+        <Token Text="=&gt;" UId="420" />
+        <Blank Num="1" UId="421" />
+        <Access Scope="LocalVariable" UId="422">
+          <Symbol UId="423">
+            <Component Name="CyDany" UId="424" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="426" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="427" />
+  <NewLine Num="1" UId="428" />
+  <Blank Num="4" UId="429" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="430">
+    <Text UId="431">***************************************************************************************//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="432" />
+  <Blank Num="4" UId="433" />
+  <Access Scope="Call" UId="434">
+    <CallInfo UId="435" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="437">
+        <Component Name="CylinderModule_V2" UId="436" />
+      </Instance>
+      <Token Text="(" UId="438" />
+      <Parameter Name="iReset" UId="439">
+        <Blank Num="1" UId="440" />
+        <Token Text=":=" UId="441" />
+        <Blank Num="1" UId="442" />
+        <Access Scope="LocalVariable" UId="443">
+          <Symbol UId="444">
+            <Component Name="iReset" UId="445" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="446" />
+      <NewLine Num="1" UId="447" />
+      <Blank Num="21" UId="448" />
+      <Parameter Name="iRun" UId="449">
+        <Blank Num="1" UId="450" />
+        <Token Text=":=" UId="451" />
+        <Blank Num="1" UId="452" />
+        <Access Scope="LocalVariable" UId="453">
+          <Symbol UId="454">
+            <Component Name="iRun" UId="455" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="456" />
+      <NewLine Num="1" UId="457" />
+      <Blank Num="21" UId="458" />
+      <Parameter Name="iEStop" UId="459">
+        <Blank Num="1" UId="460" />
+        <Token Text=":=" UId="461" />
+        <Blank Num="1" UId="462" />
+        <Access Scope="LocalVariable" UId="463">
+          <Symbol UId="464">
+            <Component Name="iEStop" UId="465" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="466" />
+      <NewLine Num="1" UId="467" />
+      <Blank Num="21" UId="468" />
+      <Parameter Name="iManualMode" UId="469">
+        <Blank Num="1" UId="470" />
+        <Token Text=":=" UId="471" />
+        <Blank Num="1" UId="472" />
+        <Access Scope="LocalVariable" UId="473">
+          <Symbol UId="474">
+            <Component Name="iManualMode" UId="475" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="476" />
+      <NewLine Num="1" UId="477" />
+      <Blank Num="21" UId="478" />
+      <Parameter Name="iAutoMode" UId="479">
+        <Blank Num="1" UId="480" />
+        <Token Text=":=" UId="481" />
+        <Blank Num="1" UId="482" />
+        <Access Scope="LocalVariable" UId="483">
+          <Symbol UId="484">
+            <Component Name="iAutoMode" UId="485" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="486" />
+      <NewLine Num="1" UId="487" />
+      <Blank Num="21" UId="488" />
+      <Parameter Name="iEnableAlarm" UId="489">
+        <Blank Num="1" UId="490" />
+        <Token Text=":=" UId="491" />
+        <Blank Num="1" UId="492" />
+        <Access Scope="LocalVariable" UId="493">
+          <Symbol UId="494">
+            <Component Name="iEnableAlarm" UId="495" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="496" />
+      <NewLine Num="1" UId="497" />
+      <Blank Num="21" UId="498" />
+      <Parameter Name="iPulse100mS" UId="499">
+        <Blank Num="1" UId="500" />
+        <Token Text=":=" UId="501" />
+        <Blank Num="1" UId="502" />
+        <Access Scope="LocalVariable" UId="503">
+          <Symbol UId="504">
+            <Component Name="iPulse100mS" UId="505" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="506" />
+      <NewLine Num="1" UId="507" />
+      <Blank Num="21" UId="508" />
+      <Parameter Name="iPulse1S" UId="509">
+        <Blank Num="1" UId="510" />
+        <Token Text=":=" UId="511" />
+        <Blank Num="1" UId="512" />
+        <Access Scope="LocalVariable" UId="513">
+          <Symbol UId="514">
+            <Component Name="iPulse1S" UId="515" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="516" />
+      <NewLine Num="1" UId="517" />
+      <Blank Num="21" UId="518" />
+      <Parameter Name="iError" UId="519">
+        <Blank Num="1" UId="520" />
+        <Token Text=":=" UId="521" />
+        <Blank Num="1" UId="522" />
+        <Access Scope="LocalVariable" UId="523">
+          <Symbol UId="524">
+            <Component Name="CyInterface" UId="525" />
+            <Token Text="." UId="526" />
+            <Component Name="In" UId="527" />
+            <Token Text="." UId="528" />
+            <Component Name="Error" UId="529" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="530" />
+      <NewLine Num="1" UId="531" />
+      <Blank Num="21" UId="532" />
+      <Parameter Name="iGoWorkInterlock" UId="533">
+        <Blank Num="1" UId="534" />
+        <Token Text=":=" UId="535" />
+        <Blank Num="1" UId="536" />
+        <Access Scope="LocalVariable" UId="537">
+          <Symbol UId="538">
+            <Component Name="CyInterface" UId="539" />
+            <Token Text="." UId="540" />
+            <Component Name="In" UId="541" />
+            <Token Text="." UId="542" />
+            <Component Name="GoWorkInterlock" UId="543" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="544" />
+      <NewLine Num="1" UId="545" />
+      <Blank Num="21" UId="546" />
+      <Parameter Name="iGoHomeInterlock" UId="547">
+        <Blank Num="1" UId="548" />
+        <Token Text=":=" UId="549" />
+        <Blank Num="1" UId="550" />
+        <Access Scope="LocalVariable" UId="551">
+          <Symbol UId="552">
+            <Component Name="CyInterface" UId="553" />
+            <Token Text="." UId="554" />
+            <Component Name="In" UId="555" />
+            <Token Text="." UId="556" />
+            <Component Name="GoHomeInterlock" UId="557" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="558" />
+      <NewLine Num="1" UId="559" />
+      <Blank Num="21" UId="560" />
+      <Parameter Name="iWorkPositionSensor" UId="561">
+        <Blank Num="1" UId="562" />
+        <Token Text=":=" UId="563" />
+        <Blank Num="1" UId="564" />
+        <Access Scope="LocalVariable" UId="565">
+          <Symbol UId="566">
+            <Component Name="CyInterface" UId="567" />
+            <Token Text="." UId="568" />
+            <Component Name="In" UId="569" />
+            <Token Text="." UId="570" />
+            <Component Name="WorkPositionSensor" UId="571" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="572" />
+      <NewLine Num="1" UId="573" />
+      <Blank Num="21" UId="574" />
+      <Parameter Name="iHomePositionSensor" UId="575">
+        <Blank Num="1" UId="576" />
+        <Token Text=":=" UId="577" />
+        <Blank Num="1" UId="578" />
+        <Access Scope="LocalVariable" UId="579">
+          <Symbol UId="580">
+            <Component Name="CyInterface" UId="581" />
+            <Token Text="." UId="582" />
+            <Component Name="In" UId="583" />
+            <Token Text="." UId="584" />
+            <Component Name="HomePositionSensor" UId="585" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="586" />
+      <NewLine Num="1" UId="587" />
+      <Blank Num="21" UId="588" />
+      <Parameter Name="iValveType" UId="589">
+        <Blank Num="1" UId="590" />
+        <Token Text=":=" UId="591" />
+        <Blank Num="1" UId="592" />
+        <Access Scope="LocalVariable" UId="593">
+          <Symbol UId="594">
+            <Component Name="CyInterface" UId="595" />
+            <Token Text="." UId="596" />
+            <Component Name="In" UId="597" />
+            <Token Text="." UId="598" />
+            <Component Name="ValveType" UId="599" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="600" />
+      <NewLine Num="1" UId="601" />
+      <Blank Num="21" UId="602" />
+      <Parameter Name="iManualOutputType" UId="603">
+        <Blank Num="1" UId="604" />
+        <Token Text=":=" UId="605" />
+        <Blank Num="1" UId="606" />
+        <Access Scope="LocalVariable" UId="607">
+          <Symbol UId="608">
+            <Component Name="CyInterface" UId="609" />
+            <Token Text="." UId="610" />
+            <Component Name="In" UId="611" />
+            <Token Text="." UId="612" />
+            <Component Name="ManualOutputType" UId="613" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="614" />
+      <NewLine Num="1" UId="615" />
+      <Blank Num="21" UId="616" />
+      <Parameter Name="iFaultTime" UId="617">
+        <Blank Num="1" UId="618" />
+        <Token Text=":=" UId="619" />
+        <Blank Num="1" UId="620" />
+        <Access Scope="LocalVariable" UId="621">
+          <Symbol UId="622">
+            <Component Name="CyInterface" UId="623" />
+            <Token Text="." UId="624" />
+            <Component Name="In" UId="625" />
+            <Token Text="." UId="626" />
+            <Component Name="FaultTime" UId="627" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="628" />
+      <NewLine Num="1" UId="629" />
+      <Blank Num="21" UId="630" />
+      <Parameter Name="iOnPositionTime" UId="631">
+        <Blank Num="1" UId="632" />
+        <Token Text=":=" UId="633" />
+        <Blank Num="1" UId="634" />
+        <Access Scope="LocalVariable" UId="635">
+          <Symbol UId="636">
+            <Component Name="CyInterface" UId="637" />
+            <Token Text="." UId="638" />
+            <Component Name="In" UId="639" />
+            <Token Text="." UId="640" />
+            <Component Name="OnPositionTime" UId="641" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="642" />
+      <NewLine Num="1" UId="643" />
+      <Blank Num="24" UId="644" />
+      <Parameter Name="ioResetOut" UId="645">
+        <Token Text=":=" UId="646" />
+        <Access Scope="LocalVariable" UId="647">
+          <Symbol UId="648">
+            <Component Name="CyInterface" UId="649" />
+            <Token Text="." UId="650" />
+            <Component Name="Inout" UId="651" />
+            <Token Text="." UId="652" />
+            <Component Name="ResetOut" UId="653" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="654" />
+      <NewLine Num="1" UId="655" />
+      <Blank Num="21" UId="656" />
+      <Parameter Name="ioGoWorkPosition" UId="657">
+        <Blank Num="1" UId="658" />
+        <Token Text=":=" UId="659" />
+        <Blank Num="1" UId="660" />
+        <Access Scope="LocalVariable" UId="661">
+          <Symbol UId="662">
+            <Component Name="CyInterface" UId="663" />
+            <Token Text="." UId="664" />
+            <Component Name="Out" UId="665" />
+            <Token Text="." UId="666" />
+            <Component Name="GoWorkPosition" UId="667" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="668" />
+      <NewLine Num="1" UId="669" />
+      <Blank Num="21" UId="670" />
+      <Parameter Name="ioGoHomePosition" UId="671">
+        <Blank Num="1" UId="672" />
+        <Token Text=":=" UId="673" />
+        <Blank Num="1" UId="674" />
+        <Access Scope="LocalVariable" UId="675">
+          <Symbol UId="676">
+            <Component Name="CyInterface" UId="677" />
+            <Token Text="." UId="678" />
+            <Component Name="Out" UId="679" />
+            <Token Text="." UId="680" />
+            <Component Name="GoHomePosition" UId="681" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="682" />
+      <NewLine Num="1" UId="683" />
+      <Blank Num="21" UId="684" />
+      <Parameter Name="oGoWP_ButtonActive" UId="685">
+        <Blank Num="1" UId="686" />
+        <Token Text="=&gt;" UId="687" />
+        <Blank Num="1" UId="688" />
+        <Access Scope="LocalVariable" UId="689">
+          <Symbol UId="690">
+            <Component Name="CyInterface" UId="691" />
+            <Token Text="." UId="692" />
+            <Component Name="Out" UId="693" />
+            <Token Text="." UId="694" />
+            <Component Name="GoWPButtonActive" UId="695" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="696" />
+      <NewLine Num="1" UId="697" />
+      <Blank Num="21" UId="698" />
+      <Parameter Name="oGoHP_ButtonActive" UId="699">
+        <Blank Num="1" UId="700" />
+        <Token Text="=&gt;" UId="701" />
+        <Blank Num="1" UId="702" />
+        <Access Scope="LocalVariable" UId="703">
+          <Symbol UId="704">
+            <Component Name="CyInterface" UId="705" />
+            <Token Text="." UId="706" />
+            <Component Name="Out" UId="707" />
+            <Token Text="." UId="708" />
+            <Component Name="GoHPButtonActive" UId="709" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="710" />
+      <NewLine Num="1" UId="711" />
+      <Blank Num="21" UId="712" />
+      <Parameter Name="ioGoWorkFault" UId="713">
+        <Blank Num="1" UId="714" />
+        <Token Text=":=" UId="715" />
+        <Blank Num="1" UId="716" />
+        <Access Scope="LocalVariable" UId="717">
+          <Symbol UId="718">
+            <Component Name="CyInterface" UId="719" />
+            <Token Text="." UId="720" />
+            <Component Name="Out" UId="721" />
+            <Token Text="." UId="722" />
+            <Component Name="GoWorkFault" UId="723" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="724" />
+      <NewLine Num="1" UId="725" />
+      <Blank Num="21" UId="726" />
+      <Parameter Name="ioGoHomeFault" UId="727">
+        <Blank Num="1" UId="728" />
+        <Token Text=":=" UId="729" />
+        <Blank Num="1" UId="730" />
+        <Access Scope="LocalVariable" UId="731">
+          <Symbol UId="732">
+            <Component Name="CyInterface" UId="733" />
+            <Token Text="." UId="734" />
+            <Component Name="Out" UId="735" />
+            <Token Text="." UId="736" />
+            <Component Name="GoHomeFault" UId="737" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="738" />
+      <NewLine Num="1" UId="739" />
+      <Blank Num="21" UId="740" />
+      <Parameter Name="ioSensorPositionFault" UId="741">
+        <Blank Num="1" UId="742" />
+        <Token Text=":=" UId="743" />
+        <Blank Num="1" UId="744" />
+        <Access Scope="LocalVariable" UId="745">
+          <Symbol UId="746">
+            <Component Name="CyInterface" UId="747" />
+            <Token Text="." UId="748" />
+            <Component Name="Out" UId="749" />
+            <Token Text="." UId="750" />
+            <Component Name="SensorPositionFault" UId="751" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="752" />
+      <NewLine Num="1" UId="753" />
+      <Blank Num="21" UId="754" />
+      <Parameter Name="oCyNo" UId="755">
+        <Blank Num="1" UId="756" />
+        <Token Text="=&gt;" UId="757" />
+        <Blank Num="1" UId="758" />
+        <Access Scope="LocalVariable" UId="759">
+          <Symbol UId="760">
+            <Component Name="CyInterface" UId="761" />
+            <Token Text="." UId="762" />
+            <Component Name="Out" UId="763" />
+            <Token Text="." UId="764" />
+            <Component Name="CyNO" UId="765" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="766" />
+      <NewLine Num="1" UId="767" />
+      <Blank Num="21" UId="768" />
+      <Parameter Name="ioManualGoWork" UId="769">
+        <Blank Num="1" UId="770" />
+        <Token Text=":=" UId="771" />
+        <Blank Num="1" UId="772" />
+        <Access Scope="LocalVariable" UId="773">
+          <Symbol UId="774">
+            <Component Name="CyInterface" UId="775" />
+            <Token Text="." UId="776" />
+            <Component Name="Inout" UId="777" />
+            <Token Text="." UId="778" />
+            <Component Name="ManualGoWork" UId="779" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="780" />
+      <NewLine Num="1" UId="781" />
+      <Blank Num="21" UId="782" />
+      <Parameter Name="ioManualGoHome" UId="783">
+        <Blank Num="1" UId="784" />
+        <Token Text=":=" UId="785" />
+        <Blank Num="1" UId="786" />
+        <Access Scope="LocalVariable" UId="787">
+          <Symbol UId="788">
+            <Component Name="CyInterface" UId="789" />
+            <Token Text="." UId="790" />
+            <Component Name="Inout" UId="791" />
+            <Token Text="." UId="792" />
+            <Component Name="ManualGoHome" UId="793" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="794" />
+      <NewLine Num="1" UId="795" />
+      <Blank Num="21" UId="796" />
+      <Parameter Name="ioAutoGoWork" UId="797">
+        <Blank Num="1" UId="798" />
+        <Token Text=":=" UId="799" />
+        <Blank Num="1" UId="800" />
+        <Access Scope="LocalVariable" UId="801">
+          <Symbol UId="802">
+            <Component Name="CyInterface" UId="803" />
+            <Token Text="." UId="804" />
+            <Component Name="Inout" UId="805" />
+            <Token Text="." UId="806" />
+            <Component Name="AutoGoWork" UId="807" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="808" />
+      <NewLine Num="1" UId="809" />
+      <Blank Num="21" UId="810" />
+      <Parameter Name="ioAutoGoHome" UId="811">
+        <Blank Num="1" UId="812" />
+        <Token Text=":=" UId="813" />
+        <Blank Num="1" UId="814" />
+        <Access Scope="LocalVariable" UId="815">
+          <Symbol UId="816">
+            <Component Name="CyInterface" UId="817" />
+            <Token Text="." UId="818" />
+            <Component Name="Inout" UId="819" />
+            <Token Text="." UId="820" />
+            <Component Name="AutoGoHome" UId="821" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="822" />
+      <NewLine Num="1" UId="823" />
+      <Blank Num="21" UId="824" />
+      <Parameter Name="ioGoWorkTime" UId="825">
+        <Blank Num="1" UId="826" />
+        <Token Text=":=" UId="827" />
+        <Blank Num="1" UId="828" />
+        <Access Scope="LocalVariable" UId="829">
+          <Symbol UId="830">
+            <Component Name="CyInterface" UId="831" />
+            <Token Text="." UId="832" />
+            <Component Name="S" UId="833" />
+            <Token Text="." UId="834" />
+            <Component Name="GoWorkTime" UId="835" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="836" />
+      <NewLine Num="1" UId="837" />
+      <Blank Num="21" UId="838" />
+      <Parameter Name="ioGoHomeTime" UId="839">
+        <Blank Num="1" UId="840" />
+        <Token Text=":=" UId="841" />
+        <Blank Num="1" UId="842" />
+        <Access Scope="LocalVariable" UId="843">
+          <Symbol UId="844">
+            <Component Name="CyInterface" UId="845" />
+            <Token Text="." UId="846" />
+            <Component Name="S" UId="847" />
+            <Token Text="." UId="848" />
+            <Component Name="GoHomeTime" UId="849" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="850" />
+      <NewLine Num="1" UId="851" />
+      <Blank Num="21" UId="852" />
+      <Parameter Name="ioWorkFaultTime" UId="853">
+        <Blank Num="1" UId="854" />
+        <Token Text=":=" UId="855" />
+        <Blank Num="1" UId="856" />
+        <Access Scope="LocalVariable" UId="857">
+          <Symbol UId="858">
+            <Component Name="CyInterface" UId="859" />
+            <Token Text="." UId="860" />
+            <Component Name="S" UId="861" />
+            <Token Text="." UId="862" />
+            <Component Name="WorkFaultTime" UId="863" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="864" />
+      <NewLine Num="1" UId="865" />
+      <Blank Num="21" UId="866" />
+      <Parameter Name="ioHomeFaultTime" UId="867">
+        <Blank Num="1" UId="868" />
+        <Token Text=":=" UId="869" />
+        <Blank Num="1" UId="870" />
+        <Access Scope="LocalVariable" UId="871">
+          <Symbol UId="872">
+            <Component Name="CyInterface" UId="873" />
+            <Token Text="." UId="874" />
+            <Component Name="S" UId="875" />
+            <Token Text="." UId="876" />
+            <Component Name="HomeFaultTime" UId="877" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="878" />
+      <NewLine Num="1" UId="879" />
+      <Blank Num="21" UId="880" />
+      <Parameter Name="ioBothSensorOnTime" UId="881">
+        <Blank Num="1" UId="882" />
+        <Token Text=":=" UId="883" />
+        <Blank Num="1" UId="884" />
+        <Access Scope="LocalVariable" UId="885">
+          <Symbol UId="886">
+            <Component Name="CyInterface" UId="887" />
+            <Token Text="." UId="888" />
+            <Component Name="S" UId="889" />
+            <Token Text="." UId="890" />
+            <Component Name="BothSensorOnTime" UId="891" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="892" />
+      <NewLine Num="1" UId="893" />
+      <Blank Num="21" UId="894" />
+      <Parameter Name="ioPulse100mSP" UId="895">
+        <Blank Num="1" UId="896" />
+        <Token Text=":=" UId="897" />
+        <Blank Num="1" UId="898" />
+        <Access Scope="LocalVariable" UId="899">
+          <Symbol UId="900">
+            <Component Name="CyInterface" UId="901" />
+            <Token Text="." UId="902" />
+            <Component Name="S" UId="903" />
+            <Token Text="." UId="904" />
+            <Component Name="Pulse100mSP" UId="905" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="906" />
+      <NewLine Num="1" UId="907" />
+      <Blank Num="21" UId="908" />
+      <Parameter Name="ioAutoGoWorkP" UId="909">
+        <Blank Num="1" UId="910" />
+        <Token Text=":=" UId="911" />
+        <Blank Num="1" UId="912" />
+        <Access Scope="LocalVariable" UId="913">
+          <Symbol UId="914">
+            <Component Name="CyInterface" UId="915" />
+            <Token Text="." UId="916" />
+            <Component Name="S" UId="917" />
+            <Token Text="." UId="918" />
+            <Component Name="AutoGoWorkP" UId="919" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="920" />
+      <NewLine Num="1" UId="921" />
+      <Blank Num="21" UId="922" />
+      <Parameter Name="ioAutoGoHomeP" UId="923">
+        <Blank Num="1" UId="924" />
+        <Token Text=":=" UId="925" />
+        <Blank Num="1" UId="926" />
+        <Access Scope="LocalVariable" UId="927">
+          <Symbol UId="928">
+            <Component Name="CyInterface" UId="929" />
+            <Token Text="." UId="930" />
+            <Component Name="S" UId="931" />
+            <Token Text="." UId="932" />
+            <Component Name="AutoGoHomeP" UId="933" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="934" />
+      <NewLine Num="1" UId="935" />
+      <Blank Num="21" UId="936" />
+      <Parameter Name="ioGoWork100mSP" UId="937">
+        <Blank Num="1" UId="938" />
+        <Token Text=":=" UId="939" />
+        <Blank Num="1" UId="940" />
+        <Access Scope="LocalVariable" UId="941">
+          <Symbol UId="942">
+            <Component Name="CyInterface" UId="943" />
+            <Token Text="." UId="944" />
+            <Component Name="S" UId="945" />
+            <Token Text="." UId="946" />
+            <Component Name="GoWork100mSP" UId="947" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="948" />
+      <NewLine Num="1" UId="949" />
+      <Blank Num="21" UId="950" />
+      <Parameter Name="ioGoHome100mSP" UId="951">
+        <Blank Num="1" UId="952" />
+        <Token Text=":=" UId="953" />
+        <Blank Num="1" UId="954" />
+        <Access Scope="LocalVariable" UId="955">
+          <Symbol UId="956">
+            <Component Name="CyInterface" UId="957" />
+            <Token Text="." UId="958" />
+            <Component Name="S" UId="959" />
+            <Token Text="." UId="960" />
+            <Component Name="GoHome100mSP" UId="961" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="962" />
+      <NewLine Num="1" UId="963" />
+      <Blank Num="21" UId="964" />
+      <Parameter Name="ioBothSensorOn100mSP" UId="965">
+        <Blank Num="1" UId="966" />
+        <Token Text=":=" UId="967" />
+        <Blank Num="1" UId="968" />
+        <Access Scope="LocalVariable" UId="969">
+          <Symbol UId="970">
+            <Component Name="CyInterface" UId="971" />
+            <Token Text="." UId="972" />
+            <Component Name="S" UId="973" />
+            <Token Text="." UId="974" />
+            <Component Name="BothSensorOn100mSP" UId="975" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="976" />
+      <NewLine Num="1" UId="977" />
+      <Blank Num="21" UId="978" />
+      <Parameter Name="ioAlarm" UId="979">
+        <Blank Num="1" UId="980" />
+        <Token Text=":=" UId="981" />
+        <Blank Num="1" UId="982" />
+        <Access Scope="LocalVariable" UId="983">
+          <Symbol UId="984">
+            <Component Name="CyInterface" UId="985" />
+            <Token Text="." UId="986" />
+            <Component Name="S" UId="987" />
+            <Token Text="." UId="988" />
+            <Component Name="Alarm" UId="989" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="990" />
+      <NewLine Num="1" UId="991" />
+      <Blank Num="21" UId="992" />
+      <Parameter Name="ioSpare1" UId="993">
+        <Blank Num="1" UId="994" />
+        <Token Text=":=" UId="995" />
+        <Blank Num="1" UId="996" />
+        <Access Scope="LocalVariable" UId="997">
+          <Symbol UId="998">
+            <Component Name="CyInterface" UId="999" />
+            <Token Text="." UId="1000" />
+            <Component Name="S" UId="1001" />
+            <Token Text="." UId="1002" />
+            <Component Name="spare1" UId="1003" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1004" />
+      <NewLine Num="1" UId="1005" />
+      <Blank Num="21" UId="1006" />
+      <Parameter Name="ioSpare2" UId="1007">
+        <Blank Num="1" UId="1008" />
+        <Token Text=":=" UId="1009" />
+        <Blank Num="1" UId="1010" />
+        <Access Scope="LocalVariable" UId="1011">
+          <Symbol UId="1012">
+            <Component Name="CyInterface" UId="1013" />
+            <Token Text="." UId="1014" />
+            <Component Name="S" UId="1015" />
+            <Token Text="." UId="1016" />
+            <Component Name="spare2" UId="1017" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1018" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1019" />
+  <NewLine Num="1" UId="1020" />
+  <Blank Num="4" UId="1021" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1022">
+    <Text UId="1023">*******************************************************************************//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1024" />
+  <Blank Num="6" UId="1025" />
+  <Access Scope="Call" UId="1026">
+    <Instruction Name="POKE_BOOL" UId="1027">
+      <Token Text="(" UId="1028" />
+      <Parameter Name="area" UId="1029">
+        <Blank Num="1" UId="1030" />
+        <Token Text=":=" UId="1031" />
+        <Blank Num="1" UId="1032" />
+        <Access Scope="LiteralConstant" UId="1033">
+          <Constant UId="1034">
+            <ConstantValue UId="1036">16#84</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1037" />
+      <NewLine Num="1" UId="1038" />
+      <Blank Num="16" UId="1039" />
+      <Parameter Name="bitOffset" UId="1040">
+        <Blank Num="1" UId="1041" />
+        <Token Text=":=" UId="1042" />
+        <Blank Num="1" UId="1043" />
+        <Access Scope="LiteralConstant" UId="1044">
+          <Constant UId="1045">
+            <ConstantValue UId="1047">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Blank Num="1" UId="1048" />
+        <Token Text="*" UId="1049" />
+        <Blank Num="1" UId="1050" />
+        <Token Text="(" UId="1051" />
+        <Access Scope="LocalVariable" UId="1052">
+          <Symbol UId="1053">
+            <Component Name="tpi" UId="1054" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="1055" />
+        <Token Text="MOD" UId="1056" />
+        <Blank Num="1" UId="1057" />
+        <Access Scope="LiteralConstant" UId="1058">
+          <Constant UId="1059">
+            <ConstantValue UId="1061">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text=")" UId="1062" />
+        <Blank Num="1" UId="1063" />
+        <Token Text="+" UId="1064" />
+        <Blank Num="1" UId="1065" />
+        <Access Scope="LiteralConstant" UId="1066">
+          <Constant UId="1067">
+            <ConstantValue UId="1069">0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1070" />
+      <NewLine Num="1" UId="1071" />
+      <Blank Num="16" UId="1072" />
+      <Parameter Name="byteOffset" UId="1073">
+        <Blank Num="1" UId="1074" />
+        <Token Text=":=" UId="1075" />
+        <Blank Num="2" UId="1076" />
+        <Access Scope="LocalVariable" UId="1077">
+          <Symbol UId="1078">
+            <Component Name="tpi" UId="1079" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="1080" />
+        <Token Text="/" UId="1081" />
+        <Blank Num="1" UId="1082" />
+        <Access Scope="LiteralConstant" UId="1083">
+          <Constant UId="1084">
+            <ConstantValue UId="1086">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1087" />
+      <NewLine Num="1" UId="1088" />
+      <Blank Num="16" UId="1089" />
+      <Parameter Name="dbNumber" UId="1090">
+        <Blank Num="1" UId="1091" />
+        <Token Text=":=" UId="1092" />
+        <Blank Num="1" UId="1093" />
+        <Access Scope="LocalVariable" UId="1094">
+          <Symbol UId="1095">
+            <Component Name="iDevAlarmDBNum" UId="1096" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1097" />
+      <NewLine Num="1" UId="1098" />
+      <Blank Num="16" UId="1099" />
+      <Parameter Name="value" UId="1100">
+        <Blank Num="1" UId="1101" />
+        <Token Text=":=" UId="1102" />
+        <Blank Num="1" UId="1103" />
+        <Access Scope="LocalVariable" UId="1104">
+          <Symbol UId="1105">
+            <Component Name="CyInterface" UId="1106" />
+            <Token Text="." UId="1107" />
+            <Component Name="Out" UId="1108" />
+            <Token Text="." UId="1109" />
+            <Component Name="GoWorkFault" UId="1110" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1111" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="1112" />
+  <NewLine Num="1" UId="1113" />
+  <Blank Num="6" UId="1114" />
+  <Access Scope="Call" UId="1115">
+    <Instruction Name="POKE_BOOL" UId="1116">
+      <Token Text="(" UId="1117" />
+      <Parameter Name="area" UId="1118">
+        <Blank Num="1" UId="1119" />
+        <Token Text=":=" UId="1120" />
+        <Blank Num="1" UId="1121" />
+        <Access Scope="LiteralConstant" UId="1122">
+          <Constant UId="1123">
+            <ConstantValue UId="1125">16#84</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1126" />
+      <NewLine Num="1" UId="1127" />
+      <Blank Num="16" UId="1128" />
+      <Parameter Name="bitOffset" UId="1129">
+        <Blank Num="1" UId="1130" />
+        <Token Text=":=" UId="1131" />
+        <Blank Num="1" UId="1132" />
+        <Access Scope="LiteralConstant" UId="1133">
+          <Constant UId="1134">
+            <ConstantValue UId="1136">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Blank Num="1" UId="1137" />
+        <Token Text="*" UId="1138" />
+        <Blank Num="1" UId="1139" />
+        <Token Text="(" UId="1140" />
+        <Access Scope="LocalVariable" UId="1141">
+          <Symbol UId="1142">
+            <Component Name="tpi" UId="1143" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="1144" />
+        <Token Text="MOD" UId="1145" />
+        <Blank Num="1" UId="1146" />
+        <Access Scope="LiteralConstant" UId="1147">
+          <Constant UId="1148">
+            <ConstantValue UId="1150">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text=")" UId="1151" />
+        <Blank Num="1" UId="1152" />
+        <Token Text="+" UId="1153" />
+        <Blank Num="1" UId="1154" />
+        <Access Scope="LiteralConstant" UId="1155">
+          <Constant UId="1156">
+            <ConstantValue UId="1158">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1159" />
+      <NewLine Num="1" UId="1160" />
+      <Blank Num="16" UId="1161" />
+      <Parameter Name="byteOffset" UId="1162">
+        <Blank Num="1" UId="1163" />
+        <Token Text=":=" UId="1164" />
+        <Blank Num="2" UId="1165" />
+        <Access Scope="LocalVariable" UId="1166">
+          <Symbol UId="1167">
+            <Component Name="tpi" UId="1168" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="1169" />
+        <Token Text="/" UId="1170" />
+        <Blank Num="1" UId="1171" />
+        <Access Scope="LiteralConstant" UId="1172">
+          <Constant UId="1173">
+            <ConstantValue UId="1175">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1176" />
+      <NewLine Num="1" UId="1177" />
+      <Blank Num="16" UId="1178" />
+      <Parameter Name="dbNumber" UId="1179">
+        <Blank Num="1" UId="1180" />
+        <Token Text=":=" UId="1181" />
+        <Blank Num="1" UId="1182" />
+        <Access Scope="LocalVariable" UId="1183">
+          <Symbol UId="1184">
+            <Component Name="iDevAlarmDBNum" UId="1185" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1186" />
+      <NewLine Num="1" UId="1187" />
+      <Blank Num="16" UId="1188" />
+      <Parameter Name="value" UId="1189">
+        <Blank Num="1" UId="1190" />
+        <Token Text=":=" UId="1191" />
+        <Blank Num="1" UId="1192" />
+        <Access Scope="LocalVariable" UId="1193">
+          <Symbol UId="1194">
+            <Component Name="CyInterface" UId="1195" />
+            <Token Text="." UId="1196" />
+            <Component Name="Out" UId="1197" />
+            <Token Text="." UId="1198" />
+            <Component Name="GoHomeFault" UId="1199" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1200" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="1201" />
+  <NewLine Num="1" UId="1202" />
+  <Blank Num="6" UId="1203" />
+  <Access Scope="Call" UId="1204">
+    <Instruction Name="POKE_BOOL" UId="1205">
+      <Token Text="(" UId="1206" />
+      <Parameter Name="area" UId="1207">
+        <Blank Num="1" UId="1208" />
+        <Token Text=":=" UId="1209" />
+        <Blank Num="1" UId="1210" />
+        <Access Scope="LiteralConstant" UId="1211">
+          <Constant UId="1212">
+            <ConstantValue UId="1214">16#84</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1215" />
+      <NewLine Num="1" UId="1216" />
+      <Blank Num="16" UId="1217" />
+      <Parameter Name="bitOffset" UId="1218">
+        <Blank Num="1" UId="1219" />
+        <Token Text=":=" UId="1220" />
+        <Blank Num="1" UId="1221" />
+        <Access Scope="LiteralConstant" UId="1222">
+          <Constant UId="1223">
+            <ConstantValue UId="1225">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Blank Num="1" UId="1226" />
+        <Token Text="*" UId="1227" />
+        <Blank Num="1" UId="1228" />
+        <Token Text="(" UId="1229" />
+        <Access Scope="LocalVariable" UId="1230">
+          <Symbol UId="1231">
+            <Component Name="tpi" UId="1232" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="1233" />
+        <Token Text="MOD" UId="1234" />
+        <Blank Num="1" UId="1235" />
+        <Access Scope="LiteralConstant" UId="1236">
+          <Constant UId="1237">
+            <ConstantValue UId="1239">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text=")" UId="1240" />
+        <Blank Num="1" UId="1241" />
+        <Token Text="+" UId="1242" />
+        <Blank Num="1" UId="1243" />
+        <Access Scope="LiteralConstant" UId="1244">
+          <Constant UId="1245">
+            <ConstantValue UId="1247">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1248" />
+      <NewLine Num="1" UId="1249" />
+      <Blank Num="16" UId="1250" />
+      <Parameter Name="byteOffset" UId="1251">
+        <Blank Num="1" UId="1252" />
+        <Token Text=":=" UId="1253" />
+        <Blank Num="2" UId="1254" />
+        <Access Scope="LocalVariable" UId="1255">
+          <Symbol UId="1256">
+            <Component Name="tpi" UId="1257" />
+          </Symbol>
+        </Access>
+        <Blank Num="1" UId="1258" />
+        <Token Text="/" UId="1259" />
+        <Blank Num="1" UId="1260" />
+        <Access Scope="LiteralConstant" UId="1261">
+          <Constant UId="1262">
+            <ConstantValue UId="1264">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1265" />
+      <NewLine Num="1" UId="1266" />
+      <Blank Num="16" UId="1267" />
+      <Parameter Name="dbNumber" UId="1268">
+        <Blank Num="1" UId="1269" />
+        <Token Text=":=" UId="1270" />
+        <Blank Num="1" UId="1271" />
+        <Access Scope="LocalVariable" UId="1272">
+          <Symbol UId="1273">
+            <Component Name="iDevAlarmDBNum" UId="1274" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1275" />
+      <NewLine Num="1" UId="1276" />
+      <Blank Num="16" UId="1277" />
+      <Parameter Name="value" UId="1278">
+        <Blank Num="1" UId="1279" />
+        <Token Text=":=" UId="1280" />
+        <Blank Num="1" UId="1281" />
+        <Access Scope="LocalVariable" UId="1282">
+          <Symbol UId="1283">
+            <Component Name="CyInterface" UId="1284" />
+            <Token Text="." UId="1285" />
+            <Component Name="Out" UId="1286" />
+            <Token Text="." UId="1287" />
+            <Component Name="SensorPositionFault" UId="1288" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1289" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="1290" />
+  <NewLine Num="1" UId="1291" />
+  <Blank Num="4" UId="1292" />
+  <Access Scope="LocalVariable" UId="1293">
+    <Symbol UId="1294">
+      <Component Name="CyInterface" UId="1295" />
+      <Token Text="." UId="1296" />
+      <Component Name="Out" UId="1297" />
+      <Token Text="." UId="1298" />
+      <Component Name="CyNO" UId="1299" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1300" />
+  <Token Text=":=" UId="1301" />
+  <Blank Num="1" UId="1302" />
+  <Access Scope="Call" UId="1303">
+    <Instruction Name="INT_TO_BYTE" UId="1304">
+      <Token Text="(" UId="1305" />
+      <NamelessParameter UId="1306">
+        <Access Scope="LocalVariable" UId="1307">
+          <Symbol UId="1308">
+            <Component Name="tpi" UId="1309" />
+          </Symbol>
+        </Access>
+        <Token Text="+" UId="1310" />
+        <Access Scope="LiteralConstant" UId="1311">
+          <Constant UId="1312">
+            <ConstantValue UId="1314">1</ConstantValue>
+          </Constant>
+        </Access>
+      </NamelessParameter>
+      <Token Text=")" UId="1316" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="1317" />
+  <NewLine Num="1" UId="1318" />
+  <Blank Num="4" UId="1319" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1320">
+    <Text UId="1321">output</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1322" />
+  <Blank Num="4" UId="1323" />
+  <Access Scope="LocalVariable" UId="1324">
+    <Symbol UId="1325">
+      <Component Name="cyRSany" UId="1326" />
+      <Token Text="." UId="1327" />
+      <Component Name="SyntaxID" UId="1328" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1329" />
+  <Token Text=":=" UId="1330" />
+  <Blank Num="1" UId="1331" />
+  <Access Scope="LiteralConstant" UId="1332">
+    <Constant UId="1333">
+      <ConstantValue UId="1335">16#10</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1336" />
+  <NewLine Num="1" UId="1337" />
+  <Blank Num="4" UId="1338" />
+  <Access Scope="LocalVariable" UId="1339">
+    <Symbol UId="1340">
+      <Component Name="cyRSany" UId="1341" />
+      <Token Text="." UId="1342" />
+      <Component Name="DataType" UId="1343" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1344" />
+  <Token Text=":=" UId="1345" />
+  <Blank Num="1" UId="1346" />
+  <Access Scope="LiteralConstant" UId="1347">
+    <Constant UId="1348">
+      <ConstantValue UId="1350">16#02</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1351" />
+  <NewLine Num="1" UId="1352" />
+  <Blank Num="4" UId="1353" />
+  <Access Scope="LocalVariable" UId="1354">
+    <Symbol UId="1355">
+      <Component Name="cyRSany" UId="1356" />
+      <Token Text="." UId="1357" />
+      <Component Name="RepetitionFactor" UId="1358" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1359" />
+  <Token Text=":=" UId="1360" />
+  <Blank Num="1" UId="1361" />
+  <Access Scope="LiteralConstant" UId="1362">
+    <Constant UId="1363">
+      <ConstantValue UId="1365">16</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1366" />
+  <NewLine Num="1" UId="1367" />
+  <Blank Num="4" UId="1368" />
+  <Access Scope="LocalVariable" UId="1369">
+    <Symbol UId="1370">
+      <Component Name="cyRSany" UId="1371" />
+      <Token Text="." UId="1372" />
+      <Component Name="DB_Number" UId="1373" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1374" />
+  <Token Text=":=" UId="1375" />
+  <Blank Num="1" UId="1376" />
+  <Access Scope="LiteralConstant" UId="1377">
+    <Constant UId="1378">
+      <ConstantValue UId="1380">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1381" />
+  <NewLine Num="1" UId="1382" />
+  <Blank Num="4" UId="1383" />
+  <Access Scope="LocalVariable" UId="1384">
+    <Symbol UId="1385">
+      <Component Name="cyRSany" UId="1386" />
+      <Token Text="." UId="1387" />
+      <Component Name="MemoryAreaAddress" UId="1388" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1389" />
+  <Token Text=":=" UId="1390" />
+  <Blank Num="1" UId="1391" />
+  <Access Scope="LiteralConstant" UId="1392">
+    <Constant UId="1393">
+      <ConstantValue UId="1395">16#8700_0000</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="1396" />
+  <Token Text="OR" UId="1397" />
+  <Blank Num="1" UId="1398" />
+  <Token Text="(" UId="1399" />
+  <Access Scope="Call" UId="1400">
+    <Instruction Name="SHL" UId="1401">
+      <Token Text="(" UId="1402" />
+      <Parameter Name="IN" UId="1403">
+        <Blank Num="1" UId="1404" />
+        <Token Text=":=" UId="1405" />
+        <Blank Num="1" UId="1406" />
+        <Access Scope="Call" UId="1407">
+          <Instruction Name="INT_TO_DWORD" UId="1408">
+            <Token Text="(" UId="1409" />
+            <NamelessParameter UId="1410">
+              <Access Scope="LiteralConstant" UId="1411">
+                <Constant UId="1412">
+                  <ConstantValue UId="1414">6</ConstantValue>
+                </Constant>
+              </Access>
+            </NamelessParameter>
+            <Token Text=")" UId="1416" />
+          </Instruction>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1417" />
+      <Blank Num="1" UId="1418" />
+      <Parameter Name="N" UId="1419">
+        <Blank Num="1" UId="1420" />
+        <Token Text=":=" UId="1421" />
+        <Blank Num="1" UId="1422" />
+        <Access Scope="LiteralConstant" UId="1423">
+          <Constant UId="1424">
+            <ConstantValue UId="1426">3</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1428" />
+    </Instruction>
+  </Access>
+  <Token Text=")" UId="1429" />
+  <Token Text=";" UId="1430" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1431">
+    <Text UId="1432">/</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1433" />
+  <Blank Num="4" UId="1434" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1435">
+    <Text UId="1436">-----------------------------//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1437" />
+  <Blank Num="4" UId="1438" />
+  <Access Scope="LocalVariable" UId="1439">
+    <Symbol UId="1440">
+      <Component Name="CyDSany" UId="1441" />
+      <Token Text="." UId="1442" />
+      <Component Name="SyntaxID" UId="1443" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1444" />
+  <Token Text=":=" UId="1445" />
+  <Blank Num="1" UId="1446" />
+  <Access Scope="LiteralConstant" UId="1447">
+    <Constant UId="1448">
+      <ConstantValue UId="1450">16#10</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1451" />
+  <NewLine Num="1" UId="1452" />
+  <Blank Num="4" UId="1453" />
+  <Access Scope="LocalVariable" UId="1454">
+    <Symbol UId="1455">
+      <Component Name="CyDSany" UId="1456" />
+      <Token Text="." UId="1457" />
+      <Component Name="DataType" UId="1458" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1459" />
+  <Token Text=":=" UId="1460" />
+  <Blank Num="1" UId="1461" />
+  <Access Scope="LiteralConstant" UId="1462">
+    <Constant UId="1463">
+      <ConstantValue UId="1465">16#02</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1466" />
+  <NewLine Num="1" UId="1467" />
+  <Blank Num="4" UId="1468" />
+  <Access Scope="LocalVariable" UId="1469">
+    <Symbol UId="1470">
+      <Component Name="CyDSany" UId="1471" />
+      <Token Text="." UId="1472" />
+      <Component Name="RepetitionFactor" UId="1473" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1474" />
+  <Token Text=":=" UId="1475" />
+  <Blank Num="1" UId="1476" />
+  <Access Scope="LiteralConstant" UId="1477">
+    <Constant UId="1478">
+      <ConstantValue UId="1480">16</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1481" />
+  <NewLine Num="1" UId="1482" />
+  <Blank Num="4" UId="1483" />
+  <Access Scope="LocalVariable" UId="1484">
+    <Symbol UId="1485">
+      <Component Name="CyDSany" UId="1486" />
+      <Token Text="." UId="1487" />
+      <Component Name="DB_Number" UId="1488" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1489" />
+  <Token Text=":=" UId="1490" />
+  <Blank Num="1" UId="1491" />
+  <Access Scope="LocalVariable" UId="1492">
+    <Symbol UId="1493">
+      <Component Name="iCyDBNO" UId="1494" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1495" />
+  <NewLine Num="1" UId="1496" />
+  <Blank Num="4" UId="1497" />
+  <Access Scope="LocalVariable" UId="1498">
+    <Symbol UId="1499">
+      <Component Name="CyDSany" UId="1500" />
+      <Token Text="." UId="1501" />
+      <Component Name="MemoryAreaAddress" UId="1502" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1503" />
+  <Token Text=":=" UId="1504" />
+  <Blank Num="1" UId="1505" />
+  <Access Scope="LiteralConstant" UId="1506">
+    <Constant UId="1507">
+      <ConstantValue UId="1509">16#8400_0000</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="1510" />
+  <Token Text="OR" UId="1511" />
+  <Blank Num="1" UId="1512" />
+  <Token Text="(" UId="1513" />
+  <Access Scope="Call" UId="1514">
+    <Instruction Name="SHL" UId="1515">
+      <Token Text="(" UId="1516" />
+      <Parameter Name="IN" UId="1517">
+        <Blank Num="1" UId="1518" />
+        <Token Text=":=" UId="1519" />
+        <Blank Num="1" UId="1520" />
+        <Access Scope="Call" UId="1521">
+          <Instruction Name="INT_TO_DWORD" UId="1522">
+            <Token Text="(" UId="1523" />
+            <NamelessParameter UId="1524">
+              <Access Scope="LocalVariable" UId="1525">
+                <Symbol UId="1526">
+                  <Component Name="tpi" UId="1527" />
+                </Symbol>
+              </Access>
+              <Token Text="*" UId="1528" />
+              <Blank Num="1" UId="1529" />
+              <Access Scope="LiteralConstant" UId="1530">
+                <Constant UId="1531">
+                  <ConstantValue UId="1533">22</ConstantValue>
+                </Constant>
+              </Access>
+              <Blank Num="1" UId="1534" />
+              <Token Text="+" UId="1535" />
+              <Blank Num="1" UId="1536" />
+              <Access Scope="LiteralConstant" UId="1537">
+                <Constant UId="1538">
+                  <ConstantValue UId="1540">6</ConstantValue>
+                </Constant>
+              </Access>
+            </NamelessParameter>
+            <Token Text=")" UId="1542" />
+          </Instruction>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1543" />
+      <Blank Num="1" UId="1544" />
+      <Parameter Name="N" UId="1545">
+        <Blank Num="1" UId="1546" />
+        <Token Text=":=" UId="1547" />
+        <Blank Num="1" UId="1548" />
+        <Access Scope="LiteralConstant" UId="1549">
+          <Constant UId="1550">
+            <ConstantValue UId="1552">3</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1554" />
+    </Instruction>
+  </Access>
+  <Token Text=")" UId="1555" />
+  <Token Text=";" UId="1556" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1557">
+    <Text UId="1558">/</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1559" />
+  <Blank Num="4" UId="1560" />
+  <Access Scope="LocalVariable" UId="1561">
+    <Symbol UId="1562">
+      <Component Name="tpRetVal" UId="1563" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1564" />
+  <Token Text=":=" UId="1565" />
+  <Blank Num="1" UId="1566" />
+  <Access Scope="Call" UId="1567">
+    <Instruction Name="BLKMOV" UId="1568">
+      <Token Text="(" UId="1569" />
+      <Parameter Name="SRCBLK" UId="1570">
+        <Blank Num="1" UId="1571" />
+        <Token Text=":=" UId="1572" />
+        <Blank Num="1" UId="1573" />
+        <Access Scope="LocalVariable" UId="1574">
+          <Symbol UId="1575">
+            <Component Name="CyRany" UId="1576" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1577" />
+      <Blank Num="1" UId="1578" />
+      <Parameter Name="DSTBLK" UId="1579">
+        <Blank Num="1" UId="1580" />
+        <Token Text="=&gt;" UId="1581" />
+        <Blank Num="1" UId="1582" />
+        <Access Scope="LocalVariable" UId="1583">
+          <Symbol UId="1584">
+            <Component Name="CyDany" UId="1585" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1587" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="1588" />
+  <NewLine Num="1" UId="1589" />
+  <Blank Num="4" UId="1590" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1591">
+    <Text UId="1592">******************************************************************************//</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1593" />
+  <Blank Num="4" UId="1594" />
+  <NewLine Num="1" UId="1595" />
+  <Blank Num="3" UId="1596" />
+  <NewLine Num="1" UId="1597" />
+  <Token Text="END_FOR" UId="1598" />
+  <Token Text=";" UId="1599" />
+  <NewLine Num="2" UId="1600" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text>CylinderV3</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

@@ -52,5 +52,51 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/03_Device/101_Cylinder/CylinderModule_V2.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF (#iRun AND NOT #iAutoMode) THEN #ioAutoGoWork := FALSE; END_IF;
+  IF (#iRun AND NOT #iManualMode) THEN #ioManualGoWork := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PContact(2)
+  // RCoil UId=36: nelze určit podmínku (vstupní síť).
+  // RCoil UId=38: nelze určit podmínku (vstupní síť).
+  // RCoil UId=41: nelze určit podmínku (vstupní síť).
+  // RCoil UId=44: nelze určit podmínku (vstupní síť).
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // RCoil UId=32: nelze určit podmínku (vstupní síť).
+  // RCoil UId=33: nelze určit podmínku (vstupní síť).
+  // RCoil UId=34: nelze určit podmínku (vstupní síť).
+  // RCoil UId=35: nelze určit podmínku (vstupní síť).
+  // RCoil UId=36: nelze určit podmínku (vstupní síť).
+  // RCoil UId=37: nelze určit podmínku (vstupní síť).
+  // Network 3
+  #oGoWP_ButtonActive := ((((#iRun AND #iEStop) AND #iManualMode) AND NOT #iError) AND #iGoWorkInterlock);
+  #oGoHP_ButtonActive := ((((#iRun AND #iEStop) AND #iManualMode) AND NOT #iError) AND #iGoHomeInterlock);
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(2)
+  // Coil UId=69: nelze určit podmínku (vstupní síť).
+  // Coil UId=84: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Add(2), Not(1), PBox(1), PContact(1), Lt(1), Ge(1)
+  // SCoil UId=53: nelze určit podmínku (vstupní síť).
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Add(2), Not(1), PBox(1), PContact(1), Lt(1), Ge(1)
+  // SCoil UId=53: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Not(1), Move(1), PContact(1), Lt(1), Add(1), Ge(1)
+  // SCoil UId=45: nelze určit podmínku (vstupní síť).
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // Coil UId=29: nelze určit podmínku (vstupní síť).
+  // Network 9
+  IF #iReset THEN #ioGoWorkFault := FALSE; END_IF;
+  IF #iReset THEN #ioGoHomeFault := FALSE; END_IF;
+  IF #iReset THEN #ioSensorPositionFault := FALSE; END_IF;
 END_FUNCTION

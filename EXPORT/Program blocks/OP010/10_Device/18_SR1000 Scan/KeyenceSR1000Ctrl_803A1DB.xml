@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <InstanceOfName>KeyenceSR1000Ctrl</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="iI_Address" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="iO_Address" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="iSysRun" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="iReset" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="iAuto" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="iManual" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="iReTriggerLimitTimes" Datatype="USInt" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+  <Section Name="Output">
+    <Member Name="oReady" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="oComplete" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="oError" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="oErrorCode" Datatype="UInt" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+  <Section Name="InOut">
+    <Member Name="ioAutoTrigger" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+  <Section Name="Static">
+    <Member Name="sHMI" Datatype="&quot;RCS_KeyenceSR1000_HMI1&quot;" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="None">
+          <Member Name="Manual" Datatype="Struct">
+            <Member Name="Preset" Datatype="Bool" />
+            <Member Name="Trigger" Datatype="Bool" />
+          </Member>
+          <Member Name="Status" Datatype="Struct">
+            <Member Name="Ready" Datatype="Bool" />
+            <Member Name="Busy" Datatype="Bool" />
+            <Member Name="Failure" Datatype="Bool" />
+            <Member Name="Complete" Datatype="Bool" />
+            <Member Name="ReadOk" Datatype="Bool" />
+            <Member Name="ReadNok" Datatype="Bool" />
+            <Member Name="TimeOut" Datatype="Bool" />
+            <Member Name="Error" Datatype="Bool" />
+            <Member Name="ErrorCode" Datatype="UInt" />
+            <Member Name="Sequence" Datatype="Int" />
+            <Member Name="iReTriggerTimes" Datatype="USInt" />
+            <Member Name="CurrentLength" Datatype="UInt" />
+            <Member Name="CurrentCode" Datatype="String[128]" />
+            <Member Name="LastCode" Datatype="String[128]" />
+          </Member>
+          <Member Name="Indata" Datatype="Struct">
+            <Member Name="ReadComplete" Datatype="Bool" />
+            <Member Name="ReadFailure" Datatype="Bool" />
+            <Member Name="GeneralErrorCode" Datatype="UInt" />
+            <Member Name="ReadResultCode" Datatype="UInt" />
+            <Member Name="ResultDataSize" Datatype="UInt" />
+          </Member>
+          <Member Name="Outdata" Datatype="Struct">
+            <Member Name="ReadCompleteClear" Datatype="Bool" />
+            <Member Name="ErrorClear" Datatype="Bool" />
+            <Member Name="ReadRequest" Datatype="Bool" />
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="sCtrl" Datatype="Struct" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+      <Member Name="Sequence" Datatype="Int">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+      </Member>
+    </Member>
+    <Member Name="sCurrentCode" Datatype="String[128]" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="sInData" Datatype="&quot;RCS_KeyenceSR1000_Input1&quot;" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="None">
+          <Member Name="HandshakeAndGeneralErrorStatus" Datatype="Struct">
+            <Member Name="Error" Datatype="Bool" />
+            <Member Name="ResultDataAvailable" Datatype="Bool" />
+            <Member Name="ResultDataStrobe" Datatype="Bool" />
+            <Member Name="ReservedBit3" Datatype="Bool" />
+            <Member Name="ReservedBit4" Datatype="Bool" />
+            <Member Name="ReservedBit5" Datatype="Bool" />
+            <Member Name="BufferOverflowError" Datatype="Bool" />
+            <Member Name="GeneralError" Datatype="Bool" />
+          </Member>
+          <Member Name="BusyStatus" Datatype="Struct">
+            <Member Name="Busy" Datatype="Bool" />
+            <Member Name="TrggerBusy" Datatype="Bool" />
+            <Member Name="LockBusy" Datatype="Bool" />
+            <Member Name="ModeBusy" Datatype="Bool" />
+            <Member Name="ErrorBusy" Datatype="Bool" />
+            <Member Name="FileBusy" Datatype="Bool" />
+            <Member Name="ReservedBit6" Datatype="Bool" />
+            <Member Name="ReservedBit7" Datatype="Bool" />
+          </Member>
+          <Member Name="CompletionStatus" Datatype="Struct">
+            <Member Name="ReadComplete" Datatype="Bool" />
+            <Member Name="PresetComplete" Datatype="Bool" />
+            <Member Name="RegisterPresetComplete" Datatype="Bool" />
+            <Member Name="TuneComplete" Datatype="Bool" />
+            <Member Name="BloadComplete" Datatype="Bool" />
+            <Member Name="ReservedBit5" Datatype="Bool" />
+            <Member Name="ReservedBit6" Datatype="Bool" />
+            <Member Name="ExtRequestComplete" Datatype="Bool" />
+          </Member>
+          <Member Name="ErrorStatus" Datatype="Struct">
+            <Member Name="ReadFailure" Datatype="Bool" />
+            <Member Name="PresetFailure" Datatype="Bool" />
+            <Member Name="RegisterPresetDataFailure" Datatype="Bool" />
+            <Member Name="TuneFailure" Datatype="Bool" />
+            <Member Name="BloadFailure" Datatype="Bool" />
+            <Member Name="ReservedBit5" Datatype="Bool" />
+            <Member Name="ReservedBit6" Datatype="Bool" />
+            <Member Name="ExtRequestFailure" Datatype="Bool" />
+          </Member>
+          <Member Name="TerminalStatus" Datatype="Struct">
+            <Member Name="IN1" Datatype="Bool" />
+            <Member Name="IN2" Datatype="Bool" />
+            <Member Name="ReservedBit2" Datatype="Bool" />
+            <Member Name="ReservedBit3" Datatype="Bool" />
+            <Member Name="OUT1" Datatype="Bool" />
+            <Member Name="OUT2" Datatype="Bool" />
+            <Member Name="OUT3" Datatype="Bool" />
+            <Member Name="ReservedBit7" Datatype="Bool" />
+          </Member>
+          <Member Name="UnstableReadStatus" Datatype="Struct">
+            <Member Name="Unstable" Datatype="Bool" />
+            <Member Name="MatchingLevelUnstable" Datatype="Bool" />
+            <Member Name="ISO_IEC15415Unstable" Datatype="Bool" />
+            <Member Name="AIMDPM_Unstable" Datatype="Bool" />
+            <Member Name="SAEAS9132Unstable" Datatype="Bool" />
+            <Member Name="ReservedBit5" Datatype="Bool" />
+            <Member Name="ReservedBit6" Datatype="Bool" />
+            <Member Name="ReservedBit7" Datatype="Bool" />
+          </Member>
+          <Member Name="MatchingLevelAndTotalEvaluationGradeStatus" Datatype="Struct">
+            <Member Name="MatchingLevel" Datatype="UInt" />
+            <Member Name="ISO_IEC15415Grade" Datatype="UInt" />
+            <Member Name="AIMDPM _Grade" Datatype="UInt" />
+            <Member Name="ReservedInt4" Datatype="UInt" />
+          </Member>
+          <Member Name="OperationResultStatus" Datatype="Struct">
+            <Member Name="ReadResultCode" Datatype="UInt" />
+            <Member Name="PresetResultCode" Datatype="UInt" />
+            <Member Name="RegisterPresetDataResultCode" Datatype="UInt" />
+            <Member Name="TuneResultCode" Datatype="UInt" />
+            <Member Name="BloadResultCode" Datatype="UInt" />
+            <Member Name="ReservedInt5" Datatype="UInt" />
+            <Member Name="ReservedInt6" Datatype="UInt" />
+            <Member Name="ExtReqResultCode" Datatype="UInt" />
+            <Member Name="GeneralErrorCode" Datatype="UInt" />
+            <Member Name="SlaveID" Datatype="UInt" />
+          </Member>
+          <Member Name="ReadData" Datatype="Struct">
+            <Member Name="ResultDataReadyCount" Datatype="UInt" />
+            <Member Name="ResultDataUpdateCount" Datatype="UInt" />
+            <Member Name="TriggerInputCountForMaster" Datatype="UInt" />
+            <Member Name="ResultDataSize" Datatype="UInt" />
+            <Member Name="ResultData" Datatype="Array[1..128] of Char" />
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="sOutData" Datatype="&quot;RCS_KeyenceSR1000_Output1&quot;" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="None">
+          <Member Name="LatchAndErrorClearControl" Datatype="Struct">
+            <Member Name="ReservedBit0" Datatype="Bool" />
+            <Member Name="ResultDataLatch" Datatype="Bool" />
+            <Member Name="ReservedBit2" Datatype="Bool" />
+            <Member Name="ReservedBit3" Datatype="Bool" />
+            <Member Name="ReservedBit4" Datatype="Bool" />
+            <Member Name="ReservedBit5" Datatype="Bool" />
+            <Member Name="ReservedBit6" Datatype="Bool" />
+            <Member Name="ErrorClear" Datatype="Bool" />
+          </Member>
+          <Member Name="OperationInstructionControl" Datatype="Struct">
+            <Member Name="ReadRequest" Datatype="Bool" />
+            <Member Name="PresetRequest" Datatype="Bool" />
+            <Member Name="RegisterPresetDataRequest" Datatype="Bool" />
+            <Member Name="TuneRequest" Datatype="Bool" />
+            <Member Name="BloadRequest" Datatype="Bool" />
+            <Member Name="ReservedBit5" Datatype="Bool" />
+            <Member Name="ReservedBit6" Datatype="Bool" />
+            <Member Name="ReservedBit7" Datatype="Bool" />
+          </Member>
+          <Member Name="CompletionClearControl" Datatype="Struct">
+            <Member Name="ReadCompleteClear" Datatype="Bool" />
+            <Member Name="PresetCompleteClear" Datatype="Bool" />
+            <Member Name="RegisterPresetDataCompleteClear" Datatype="Bool" />
+            <Member Name="TuneCompleteClear" Datatype="Bool" />
+            <Member Name="BloadCompleteClear" Datatype="Bool" />
+            <Member Name="ReservedBit5" Datatype="Bool" />
+            <Member Name="ReservedBit6" Datatype="Bool" />
+            <Member Name="EXTRequestCompleteClear" Datatype="Bool" />
+          </Member>
+          <Member Name="ParameterBankNumber" Datatype="Struct">
+            <Member Name="BankNo_BloadFileNo" Datatype="UInt" />
+          </Member>
+          <Member Name="UserData" Datatype="Struct">
+            <Member Name="UserDataSize" Datatype="UInt" />
+            <Member Name="UserData" Datatype="Array[1..128] of Char" />
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="sAutoOld" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="sManualOld" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="sBusyTimeOut" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="sRunTimer" Datatype="TON_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="None">
+          <Member Name="PT" Datatype="Time" />
+          <Member Name="ET" Datatype="Time" />
+          <Member Name="IN" Datatype="Bool" />
+          <Member Name="Q" Datatype="Bool" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="sBusyTimer" Datatype="TON_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="None">
+          <Member Name="PT" Datatype="Time" />
+          <Member Name="ET" Datatype="Time" />
+          <Member Name="IN" Datatype="Bool" />
+          <Member Name="Q" Datatype="Bool" />
+        </Section>
+      </Sections>
+    </Member>
+    <Member Name="sFindCurrentPos" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>KeyenceSR1000Ctrl_803A1DB</Name>
+      <Namespace />
+      <Number>1802</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

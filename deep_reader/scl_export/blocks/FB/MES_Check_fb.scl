@@ -34,5 +34,66 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/11_MES/MES Check_fb.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Move(2), Eq(1)
+  // SCoil UId=41: nelze určit podmínku (vstupní síť).
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(10), Eq(6), TON(1), PBox(1), Add(1)
+  // RCoil UId=110: nelze určit podmínku (vstupní síť).
+  // RCoil UId=111: nelze určit podmínku (vstupní síť).
+  // RCoil UId=112: nelze určit podmínku (vstupní síť).
+  // RCoil UId=113: nelze určit podmínku (vstupní síť).
+  // SCoil UId=119: nelze určit podmínku (vstupní síť).
+  // RCoil UId=120: nelze určit podmínku (vstupní síť).
+  // SCoil UId=123: nelze určit podmínku (vstupní síť).
+  // RCoil UId=124: nelze určit podmínku (vstupní síť).
+  // Coil UId=127: nelze určit podmínku (vstupní síť).
+  // SCoil UId=132: nelze určit podmínku (vstupní síť).
+  // RCoil UId=133: nelze určit podmínku (vstupní síť).
+  // SCoil UId=138: nelze určit podmínku (vstupní síť).
+  // RCoil UId=139: nelze určit podmínku (vstupní síť).
+  // SCoil UId=144: nelze určit podmínku (vstupní síť).
+  // SCoil UId=146: nelze určit podmínku (vstupní síť).
+  // RCoil UId=147: nelze určit podmínku (vstupní síť).
+  // SCoil UId=152: nelze určit podmínku (vstupní síť).
+  // RCoil UId=153: nelze určit podmínku (vstupní síť).
+  // SCoil UId=158: nelze určit podmínku (vstupní síť).
+  // RCoil UId=159: nelze určit podmínku (vstupní síť).
+  // SCoil UId=162: nelze určit podmínku (vstupní síť).
+  // RCoil UId=163: nelze určit podmínku (vstupní síť).
+  // SCoil UId=167: nelze určit podmínku (vstupní síť).
+  // SCoil UId=172: nelze určit podmínku (vstupní síť).
+  // RCoil UId=173: nelze určit podmínku (vstupní síť).
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), PBox(1)
+  // SCoil UId=36: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(11), Eq(6), Add(2), TON(1), PBox(1)
+  // RCoil UId=106: nelze určit podmínku (vstupní síť).
+  // RCoil UId=107: nelze určit podmínku (vstupní síť).
+  // RCoil UId=108: nelze určit podmínku (vstupní síť).
+  // RCoil UId=109: nelze určit podmínku (vstupní síť).
+  // SCoil UId=115: nelze určit podmínku (vstupní síť).
+  // SCoil UId=118: nelze určit podmínku (vstupní síť).
+  // Coil UId=121: nelze určit podmínku (vstupní síť).
+  // SCoil UId=126: nelze určit podmínku (vstupní síť).
+  // SCoil UId=131: nelze určit podmínku (vstupní síť).
+  // SCoil UId=136: nelze určit podmínku (vstupní síť).
+  // SCoil UId=138: nelze určit podmínku (vstupní síť).
+  // SCoil UId=143: nelze určit podmínku (vstupní síť).
+  // SCoil UId=148: nelze určit podmínku (vstupní síť).
+  // SCoil UId=151: nelze určit podmínku (vstupní síť).
+  // SCoil UId=157: nelze určit podmínku (vstupní síť).
+  // SCoil UId=162: nelze určit podmínku (vstupní síť).
+  // Network 5
+  IF (#i_AlwaysTrue AND #Pls) THEN #Pls := FALSE; END_IF;
+  IF (#i_AlwaysTrue AND #Pls) THEN #Pls := FALSE; END_IF;
+  IF (#i_AlwaysTrue AND #i_Reset) THEN #o_CheckTimeOut := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // RCoil UId=36: nelze určit podmínku (vstupní síť).
 END_FUNCTION_BLOCK

@@ -1,0 +1,3834 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="iSysMode" Datatype="&quot;RCS_SysComInterface_V1&quot;" Accessibility="Public">
+      <Sections>
+        <Section Name="None">
+          <Member Name="CPUFristCycle" Datatype="Bool" />
+          <Member Name="SysRun" Datatype="Bool" />
+          <Member Name="Reset" Datatype="Bool" />
+          <Member Name="EstopOK" Datatype="Bool" />
+          <Member Name="SafetyDoorOK" Datatype="Bool" />
+          <Member Name="LightCurtainOK" Datatype="Bool" />
+          <Member Name="SetInitial" Datatype="Bool" />
+          <Member Name="InitialRun" Datatype="Bool" />
+          <Member Name="Ready" Datatype="Bool" />
+          <Member Name="ManualMode" Datatype="Bool" />
+          <Member Name="Auto" Datatype="&quot;RCS_SysAuto_V1&quot;">
+            <Sections>
+              <Section Name="None">
+                <Member Name="Mode" Datatype="Bool" />
+                <Member Name="Running" Datatype="Bool" />
+                <Member Name="RunningPause" Datatype="Bool" />
+                <Member Name="RunningOver" Datatype="Bool" />
+                <Member Name="StepMode" Datatype="Bool" />
+                <Member Name="OneCycleMode" Datatype="Bool" />
+                <Member Name="StartAuto" Datatype="Bool" />
+                <Member Name="AllRun" Datatype="Bool" />
+                <Member Name="Status" Datatype="Int" />
+              </Section>
+            </Sections>
+          </Member>
+        </Section>
+      </Sections>
+    </Member>
+  </Section>
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Temp">
+    <Member Name="idex" Datatype="Int" />
+  </Section>
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>ST10_SafetyGate</Name>
+      <Namespace />
+      <Number>1140</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <NewLine Num="2" UId="21" />
+  <Token Text="REGION" UId="22" />
+  <Blank Num="1" UId="23" />
+  <Text UId="24">SafetyGate 1    </Text>
+  <NewLine Num="1" UId="25" />
+  <Blank Num="4" UId="26" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="27">
+    <Text UId="28">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="29" />
+  <Blank Num="4" UId="30" />
+  <Access Scope="LocalVariable" UId="31">
+    <Symbol UId="32">
+      <Component Name="idex" UId="33" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="34" />
+  <Token Text=":=" UId="35" />
+  <Blank Num="1" UId="36" />
+  <Access Scope="LiteralConstant" UId="37">
+    <Constant UId="38">
+      <ConstantValue UId="40">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="41" />
+  <NewLine Num="1" UId="42" />
+  <Blank Num="4" UId="43" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="44">
+    <Text UId="45">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="46" />
+  <Blank Num="4" UId="47" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="48">
+    <Text UId="49" />
+  </LineComment>
+  <NewLine Num="1" UId="50" />
+  <Blank Num="4" UId="51" />
+  <Access Scope="Call" UId="52">
+    <CallInfo UId="53" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="54">
+        <Component Name="ST10_SafetyGate1_DB" UId="55">
+          <BooleanAttribute Name="HasQuotes" UId="56">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="57" />
+      <Parameter Name="iSysInface" UId="58">
+        <Blank Num="1" UId="59" />
+        <Token Text=":=" UId="60" />
+        <Blank Num="1" UId="61" />
+        <Access Scope="LocalVariable" UId="62">
+          <Symbol UId="63">
+            <Component Name="iSysMode" UId="64" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="65" />
+      <NewLine Num="1" UId="66" />
+      <Blank Num="26" UId="67" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="68">
+        <Blank Num="1" UId="69" />
+        <Token Text=":=" UId="70" />
+        <Blank Num="1" UId="71" />
+        <Token Text="NOT" UId="72" />
+        <Blank Num="1" UId="73" />
+        <Access Scope="GlobalVariable" UId="74">
+          <Symbol UId="75">
+            <Component Name="iSafety door Locking FeedBack_1" UId="76" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="77" />
+      <NewLine Num="1" UId="78" />
+      <Blank Num="26" UId="79" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="80">
+        <Blank Num="1" UId="81" />
+        <Token Text=":=" UId="82" />
+        <Blank Num="1" UId="83" />
+        <Access Scope="GlobalVariable" UId="84">
+          <Symbol UId="85">
+            <Component Name="ST10_SysOutput" UId="86">
+              <BooleanAttribute Name="HasQuotes" UId="87">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="88" />
+            <Component Name="SafetyDoorCoil" UId="89">
+              <Token Text="[" UId="90" />
+              <Access Scope="LiteralConstant" UId="91">
+                <Constant UId="92">
+                  <ConstantValue UId="94">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="95" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="96" />
+      <NewLine Num="1" UId="97" />
+      <Blank Num="26" UId="98" />
+      <Parameter Name="i1s_Pulse" UId="99">
+        <Blank Num="1" UId="100" />
+        <Token Text=":=" UId="101" />
+        <Blank Num="1" UId="102" />
+        <Access Scope="GlobalVariable" UId="103">
+          <Symbol UId="104">
+            <Component Name="ClockMemory1s" UId="105">
+              <BooleanAttribute Name="HasQuotes" UId="106">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="107" />
+      <NewLine Num="1" UId="108" />
+      <Blank Num="26" UId="109" />
+      <Parameter Name="iMode" UId="110">
+        <Blank Num="1" UId="111" />
+        <Token Text=":=" UId="112" />
+        <Access Scope="LiteralConstant" UId="113">
+          <Constant UId="114">
+            <ConstantValue UId="116">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="117" />
+      <NewLine Num="1" UId="118" />
+      <Blank Num="27" UId="119" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="120">
+        <Token Text="=&gt;" UId="121" />
+        <Access Scope="GlobalVariable" UId="122">
+          <Symbol UId="123">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="124">
+              <BooleanAttribute Name="HasQuotes" UId="125">true</BooleanAttribute>
+            </Component>
+            <Blank Num="1" UId="126" />
+            <Token Text="." UId="127" />
+            <Component Name="SafetyDoorLamp" UId="128">
+              <Token Text="[" UId="129" />
+              <Access Scope="LiteralConstant" UId="130">
+                <Constant UId="131">
+                  <ConstantValue UId="133">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="134" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="135" />
+      <NewLine Num="1" UId="136" />
+      <Blank Num="27" UId="137" />
+      <Parameter Name="ioSafetyGateLock" UId="138">
+        <Blank Num="1" UId="139" />
+        <Token Text=":=" UId="140" />
+        <Blank Num="1" UId="141" />
+        <Access Scope="GlobalVariable" UId="142">
+          <Symbol UId="143">
+            <Component Name="ST10_SysOutput" UId="144">
+              <BooleanAttribute Name="HasQuotes" UId="145">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="146" />
+            <Component Name="SafetyDoorCoil" UId="147">
+              <Token Text="[" UId="148" />
+              <Access Scope="LiteralConstant" UId="149">
+                <Constant UId="150">
+                  <ConstantValue UId="152">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="153" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="154" />
+      <NewLine Num="1" UId="155" />
+      <Blank Num="27" UId="156" />
+      <Parameter Name="ioHMI_Interface" UId="157">
+        <Blank Num="1" UId="158" />
+        <Token Text=":=" UId="159" />
+        <Blank Num="1" UId="160" />
+        <Access Scope="GlobalVariable" UId="161">
+          <Symbol UId="162">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="163">
+              <BooleanAttribute Name="HasQuotes" UId="164">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="165" />
+            <Component Name="aDev" UId="166">
+              <Token Text="[" UId="167" />
+              <Access Scope="LocalVariable" UId="168">
+                <Symbol UId="169">
+                  <Component Name="idex" UId="170" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="171" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="174" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="175" />
+  <NewLine Num="1" UId="176" />
+  <Blank Num="4" UId="177" />
+  <NewLine Num="1" UId="178" />
+  <Token Text="END_REGION" UId="179" />
+  <NewLine Num="2" UId="180" />
+  <Token Text="REGION" UId="181" />
+  <Blank Num="1" UId="182" />
+  <Text UId="183">SafetyGate 2    </Text>
+  <NewLine Num="1" UId="184" />
+  <Blank Num="4" UId="185" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="186">
+    <Text UId="187">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="188" />
+  <Blank Num="4" UId="189" />
+  <Access Scope="LocalVariable" UId="190">
+    <Symbol UId="191">
+      <Component Name="idex" UId="192" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="193" />
+  <Token Text=":=" UId="194" />
+  <Blank Num="1" UId="195" />
+  <Access Scope="LiteralConstant" UId="196">
+    <Constant UId="197">
+      <ConstantValue UId="199">2</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="200" />
+  <NewLine Num="1" UId="201" />
+  <Blank Num="4" UId="202" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="203">
+    <Text UId="204">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="205" />
+  <Blank Num="4" UId="206" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="207">
+    <Text UId="208" />
+  </LineComment>
+  <NewLine Num="1" UId="209" />
+  <Blank Num="4" UId="210" />
+  <Access Scope="Call" UId="211">
+    <CallInfo UId="212" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="213">
+        <Component Name="ST10_SafetyGate2_DB" UId="214">
+          <BooleanAttribute Name="HasQuotes" UId="215">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="216" />
+      <Parameter Name="iSysInface" UId="217">
+        <Blank Num="1" UId="218" />
+        <Token Text=":=" UId="219" />
+        <Blank Num="1" UId="220" />
+        <Access Scope="LocalVariable" UId="221">
+          <Symbol UId="222">
+            <Component Name="iSysMode" UId="223" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="224" />
+      <NewLine Num="1" UId="225" />
+      <Blank Num="26" UId="226" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="227">
+        <Blank Num="1" UId="228" />
+        <Token Text=":=" UId="229" />
+        <Blank Num="1" UId="230" />
+        <Token Text="NOT" UId="231" />
+        <Blank Num="1" UId="232" />
+        <Access Scope="GlobalVariable" UId="233">
+          <Symbol UId="234">
+            <Component Name="iSafety door Locking FeedBack_2" UId="235" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="236" />
+      <NewLine Num="1" UId="237" />
+      <Blank Num="26" UId="238" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="239">
+        <Blank Num="1" UId="240" />
+        <Token Text=":=" UId="241" />
+        <Blank Num="1" UId="242" />
+        <Access Scope="GlobalVariable" UId="243">
+          <Symbol UId="244">
+            <Component Name="ST10_SysOutput" UId="245">
+              <BooleanAttribute Name="HasQuotes" UId="246">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="247" />
+            <Component Name="SafetyDoorCoil" UId="248">
+              <Token Text="[" UId="249" />
+              <Access Scope="LiteralConstant" UId="250">
+                <Constant UId="251">
+                  <ConstantValue UId="253">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="254" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="255" />
+      <NewLine Num="1" UId="256" />
+      <Blank Num="26" UId="257" />
+      <Parameter Name="i1s_Pulse" UId="258">
+        <Blank Num="1" UId="259" />
+        <Token Text=":=" UId="260" />
+        <Blank Num="1" UId="261" />
+        <Access Scope="GlobalVariable" UId="262">
+          <Symbol UId="263">
+            <Component Name="ClockMemory1s" UId="264">
+              <BooleanAttribute Name="HasQuotes" UId="265">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="266" />
+      <NewLine Num="1" UId="267" />
+      <Blank Num="26" UId="268" />
+      <Parameter Name="iMode" UId="269">
+        <Blank Num="1" UId="270" />
+        <Token Text=":=" UId="271" />
+        <Access Scope="LiteralConstant" UId="272">
+          <Constant UId="273">
+            <ConstantValue UId="275">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="276" />
+      <NewLine Num="1" UId="277" />
+      <Blank Num="27" UId="278" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="279">
+        <Token Text="=&gt;" UId="280" />
+        <Blank Num="1" UId="281" />
+        <Access Scope="GlobalVariable" UId="282">
+          <Symbol UId="283">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="284">
+              <BooleanAttribute Name="HasQuotes" UId="285">true</BooleanAttribute>
+            </Component>
+            <Blank Num="1" UId="286" />
+            <Token Text="." UId="287" />
+            <Component Name="SafetyDoorLamp" UId="288">
+              <Token Text="[" UId="289" />
+              <Access Scope="LiteralConstant" UId="290">
+                <Constant UId="291">
+                  <ConstantValue UId="293">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="294" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="295" />
+      <NewLine Num="1" UId="296" />
+      <Blank Num="27" UId="297" />
+      <Parameter Name="ioSafetyGateLock" UId="298">
+        <Blank Num="1" UId="299" />
+        <Token Text=":=" UId="300" />
+        <Blank Num="1" UId="301" />
+        <Access Scope="GlobalVariable" UId="302">
+          <Symbol UId="303">
+            <Component Name="ST10_SysOutput" UId="304">
+              <BooleanAttribute Name="HasQuotes" UId="305">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="306" />
+            <Component Name="SafetyDoorCoil" UId="307">
+              <Token Text="[" UId="308" />
+              <Access Scope="LiteralConstant" UId="309">
+                <Constant UId="310">
+                  <ConstantValue UId="312">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="313" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="314" />
+      <NewLine Num="1" UId="315" />
+      <Blank Num="27" UId="316" />
+      <Parameter Name="ioHMI_Interface" UId="317">
+        <Blank Num="1" UId="318" />
+        <Token Text=":=" UId="319" />
+        <Blank Num="1" UId="320" />
+        <Access Scope="GlobalVariable" UId="321">
+          <Symbol UId="322">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="323">
+              <BooleanAttribute Name="HasQuotes" UId="324">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="325" />
+            <Component Name="aDev" UId="326">
+              <Token Text="[" UId="327" />
+              <Access Scope="LocalVariable" UId="328">
+                <Symbol UId="329">
+                  <Component Name="idex" UId="330" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="331" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="334" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="335" />
+  <NewLine Num="1" UId="336" />
+  <Blank Num="4" UId="337" />
+  <NewLine Num="1" UId="338" />
+  <Token Text="END_REGION" UId="339" />
+  <NewLine Num="1" UId="340" />
+  <Blank Num="24" UId="341" />
+  <NewLine Num="1" UId="342" />
+  <Token Text="REGION" UId="343" />
+  <Blank Num="1" UId="344" />
+  <Text UId="345">SafetyGate 3    </Text>
+  <NewLine Num="1" UId="346" />
+  <Blank Num="4" UId="347" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="348">
+    <Text UId="349">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="350" />
+  <Blank Num="4" UId="351" />
+  <Access Scope="LocalVariable" UId="352">
+    <Symbol UId="353">
+      <Component Name="idex" UId="354" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="355" />
+  <Token Text=":=" UId="356" />
+  <Blank Num="1" UId="357" />
+  <Access Scope="LiteralConstant" UId="358">
+    <Constant UId="359">
+      <ConstantValue UId="361">3</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="362" />
+  <NewLine Num="1" UId="363" />
+  <Blank Num="4" UId="364" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="365">
+    <Text UId="366">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="367" />
+  <Blank Num="4" UId="368" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="369">
+    <Text UId="370" />
+  </LineComment>
+  <NewLine Num="1" UId="371" />
+  <Blank Num="4" UId="372" />
+  <Access Scope="Call" UId="373">
+    <CallInfo UId="374" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="375">
+        <Component Name="ST10_SafetyGate3_DB" UId="376">
+          <BooleanAttribute Name="HasQuotes" UId="377">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="378" />
+      <Parameter Name="iSysInface" UId="379">
+        <Blank Num="1" UId="380" />
+        <Token Text=":=" UId="381" />
+        <Blank Num="1" UId="382" />
+        <Access Scope="LocalVariable" UId="383">
+          <Symbol UId="384">
+            <Component Name="iSysMode" UId="385" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="386" />
+      <NewLine Num="1" UId="387" />
+      <Blank Num="26" UId="388" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="389">
+        <Blank Num="1" UId="390" />
+        <Token Text=":=" UId="391" />
+        <Blank Num="1" UId="392" />
+        <Token Text="NOT" UId="393" />
+        <Blank Num="1" UId="394" />
+        <Access Scope="GlobalVariable" UId="395">
+          <Symbol UId="396">
+            <Component Name="iSafety door Locking FeedBack_3" UId="397" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="398" />
+      <NewLine Num="1" UId="399" />
+      <Blank Num="26" UId="400" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="401">
+        <Blank Num="1" UId="402" />
+        <Token Text=":=" UId="403" />
+        <Blank Num="1" UId="404" />
+        <Access Scope="GlobalVariable" UId="405">
+          <Symbol UId="406">
+            <Component Name="ST10_SysOutput" UId="407">
+              <BooleanAttribute Name="HasQuotes" UId="408">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="409" />
+            <Component Name="SafetyDoorCoil" UId="410">
+              <Token Text="[" UId="411" />
+              <Access Scope="LiteralConstant" UId="412">
+                <Constant UId="413">
+                  <ConstantValue UId="415">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="416" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="417" />
+      <NewLine Num="1" UId="418" />
+      <Blank Num="26" UId="419" />
+      <Parameter Name="i1s_Pulse" UId="420">
+        <Blank Num="1" UId="421" />
+        <Token Text=":=" UId="422" />
+        <Blank Num="1" UId="423" />
+        <Access Scope="GlobalVariable" UId="424">
+          <Symbol UId="425">
+            <Component Name="ClockMemory1s" UId="426">
+              <BooleanAttribute Name="HasQuotes" UId="427">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="428" />
+      <NewLine Num="1" UId="429" />
+      <Blank Num="26" UId="430" />
+      <Parameter Name="iMode" UId="431">
+        <Blank Num="1" UId="432" />
+        <Token Text=":=" UId="433" />
+        <Access Scope="LiteralConstant" UId="434">
+          <Constant UId="435">
+            <ConstantValue UId="437">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="438" />
+      <NewLine Num="1" UId="439" />
+      <Blank Num="27" UId="440" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="441">
+        <Token Text="=&gt;" UId="442" />
+        <Blank Num="1" UId="443" />
+        <Access Scope="GlobalVariable" UId="444">
+          <Symbol UId="445">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="446">
+              <BooleanAttribute Name="HasQuotes" UId="447">true</BooleanAttribute>
+            </Component>
+            <Blank Num="1" UId="448" />
+            <Token Text="." UId="449" />
+            <Component Name="SafetyDoorLamp" UId="450">
+              <Token Text="[" UId="451" />
+              <Access Scope="LiteralConstant" UId="452">
+                <Constant UId="453">
+                  <ConstantValue UId="455">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="456" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="457" />
+      <NewLine Num="1" UId="458" />
+      <Blank Num="27" UId="459" />
+      <Parameter Name="ioSafetyGateLock" UId="460">
+        <Blank Num="1" UId="461" />
+        <Token Text=":=" UId="462" />
+        <Blank Num="1" UId="463" />
+        <Access Scope="GlobalVariable" UId="464">
+          <Symbol UId="465">
+            <Component Name="ST10_SysOutput" UId="466">
+              <BooleanAttribute Name="HasQuotes" UId="467">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="468" />
+            <Component Name="SafetyDoorCoil" UId="469">
+              <Token Text="[" UId="470" />
+              <Access Scope="LiteralConstant" UId="471">
+                <Constant UId="472">
+                  <ConstantValue UId="474">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="475" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="476" />
+      <NewLine Num="1" UId="477" />
+      <Blank Num="27" UId="478" />
+      <Parameter Name="ioHMI_Interface" UId="479">
+        <Blank Num="1" UId="480" />
+        <Token Text=":=" UId="481" />
+        <Blank Num="1" UId="482" />
+        <Access Scope="GlobalVariable" UId="483">
+          <Symbol UId="484">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="485">
+              <BooleanAttribute Name="HasQuotes" UId="486">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="487" />
+            <Component Name="aDev" UId="488">
+              <Token Text="[" UId="489" />
+              <Access Scope="LocalVariable" UId="490">
+                <Symbol UId="491">
+                  <Component Name="idex" UId="492" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="493" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="496" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="497" />
+  <NewLine Num="1" UId="498" />
+  <Blank Num="4" UId="499" />
+  <NewLine Num="1" UId="500" />
+  <Token Text="END_REGION" UId="501" />
+  <NewLine Num="2" UId="502" />
+  <Token Text="REGION" UId="503" />
+  <Blank Num="1" UId="504" />
+  <Text UId="505">SafetyGate 4    </Text>
+  <NewLine Num="1" UId="506" />
+  <Blank Num="4" UId="507" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="508">
+    <Text UId="509">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="510" />
+  <Blank Num="4" UId="511" />
+  <Access Scope="LocalVariable" UId="512">
+    <Symbol UId="513">
+      <Component Name="idex" UId="514" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="515" />
+  <Token Text=":=" UId="516" />
+  <Blank Num="1" UId="517" />
+  <Access Scope="LiteralConstant" UId="518">
+    <Constant UId="519">
+      <ConstantValue UId="521">4</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="522" />
+  <NewLine Num="1" UId="523" />
+  <Blank Num="4" UId="524" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="525">
+    <Text UId="526">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="527" />
+  <Blank Num="4" UId="528" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="529">
+    <Text UId="530" />
+  </LineComment>
+  <NewLine Num="1" UId="531" />
+  <Blank Num="4" UId="532" />
+  <Access Scope="Call" UId="533">
+    <CallInfo UId="534" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="535">
+        <Component Name="ST10_SafetyGate4_DB" UId="536">
+          <BooleanAttribute Name="HasQuotes" UId="537">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="538" />
+      <Parameter Name="iSysInface" UId="539">
+        <Blank Num="1" UId="540" />
+        <Token Text=":=" UId="541" />
+        <Blank Num="1" UId="542" />
+        <Access Scope="LocalVariable" UId="543">
+          <Symbol UId="544">
+            <Component Name="iSysMode" UId="545" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="546" />
+      <NewLine Num="1" UId="547" />
+      <Blank Num="27" UId="548" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="549">
+        <Blank Num="1" UId="550" />
+        <Token Text=":=" UId="551" />
+        <Blank Num="1" UId="552" />
+        <Token Text="NOT" UId="553" />
+        <Blank Num="1" UId="554" />
+        <Access Scope="GlobalVariable" UId="555">
+          <Symbol UId="556">
+            <Component Name="iSafety door Locking FeedBack_4" UId="557" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="558" />
+      <NewLine Num="1" UId="559" />
+      <Blank Num="27" UId="560" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="561">
+        <Blank Num="1" UId="562" />
+        <Token Text=":=" UId="563" />
+        <Blank Num="1" UId="564" />
+        <Access Scope="GlobalVariable" UId="565">
+          <Symbol UId="566">
+            <Component Name="ST10_SysOutput" UId="567">
+              <BooleanAttribute Name="HasQuotes" UId="568">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="569" />
+            <Component Name="SafetyDoorCoil" UId="570">
+              <Token Text="[" UId="571" />
+              <Access Scope="LiteralConstant" UId="572">
+                <Constant UId="573">
+                  <ConstantValue UId="575">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="576" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="577" />
+      <NewLine Num="1" UId="578" />
+      <Blank Num="27" UId="579" />
+      <Parameter Name="i1s_Pulse" UId="580">
+        <Blank Num="1" UId="581" />
+        <Token Text=":=" UId="582" />
+        <Blank Num="1" UId="583" />
+        <Access Scope="GlobalVariable" UId="584">
+          <Symbol UId="585">
+            <Component Name="ClockMemory1s" UId="586">
+              <BooleanAttribute Name="HasQuotes" UId="587">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="588" />
+      <NewLine Num="1" UId="589" />
+      <Blank Num="27" UId="590" />
+      <Parameter Name="iMode" UId="591">
+        <Blank Num="1" UId="592" />
+        <Token Text=":=" UId="593" />
+        <Access Scope="LiteralConstant" UId="594">
+          <Constant UId="595">
+            <ConstantValue UId="597">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="598" />
+      <NewLine Num="1" UId="599" />
+      <Blank Num="27" UId="600" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="601">
+        <Token Text="=&gt;" UId="602" />
+        <Access Scope="GlobalVariable" UId="603">
+          <Symbol UId="604">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="605">
+              <BooleanAttribute Name="HasQuotes" UId="606">true</BooleanAttribute>
+            </Component>
+            <Blank Num="1" UId="607" />
+            <Token Text="." UId="608" />
+            <Component Name="SafetyDoorLamp" UId="609">
+              <Token Text="[" UId="610" />
+              <Access Scope="LiteralConstant" UId="611">
+                <Constant UId="612">
+                  <ConstantValue UId="614">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="615" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="616" />
+      <NewLine Num="1" UId="617" />
+      <Blank Num="27" UId="618" />
+      <Parameter Name="ioSafetyGateLock" UId="619">
+        <Blank Num="1" UId="620" />
+        <Token Text=":=" UId="621" />
+        <Blank Num="1" UId="622" />
+        <Access Scope="GlobalVariable" UId="623">
+          <Symbol UId="624">
+            <Component Name="ST10_SysOutput" UId="625">
+              <BooleanAttribute Name="HasQuotes" UId="626">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="627" />
+            <Component Name="SafetyDoorCoil" UId="628">
+              <Token Text="[" UId="629" />
+              <Access Scope="LiteralConstant" UId="630">
+                <Constant UId="631">
+                  <ConstantValue UId="633">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="634" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="635" />
+      <NewLine Num="1" UId="636" />
+      <Blank Num="27" UId="637" />
+      <Parameter Name="ioHMI_Interface" UId="638">
+        <Blank Num="1" UId="639" />
+        <Token Text=":=" UId="640" />
+        <Blank Num="1" UId="641" />
+        <Access Scope="GlobalVariable" UId="642">
+          <Symbol UId="643">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="644">
+              <BooleanAttribute Name="HasQuotes" UId="645">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="646" />
+            <Component Name="aDev" UId="647">
+              <Token Text="[" UId="648" />
+              <Access Scope="LocalVariable" UId="649">
+                <Symbol UId="650">
+                  <Component Name="idex" UId="651" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="652" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="655" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="656" />
+  <NewLine Num="1" UId="657" />
+  <Blank Num="4" UId="658" />
+  <NewLine Num="1" UId="659" />
+  <Token Text="END_REGION" UId="660" />
+  <NewLine Num="2" UId="661" />
+  <Token Text="REGION" UId="662" />
+  <Blank Num="1" UId="663" />
+  <Text UId="664">SafetyGate 5    </Text>
+  <NewLine Num="1" UId="665" />
+  <Blank Num="4" UId="666" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="667">
+    <Text UId="668">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="669" />
+  <Blank Num="4" UId="670" />
+  <Access Scope="LocalVariable" UId="671">
+    <Symbol UId="672">
+      <Component Name="idex" UId="673" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="674" />
+  <Token Text=":=" UId="675" />
+  <Blank Num="1" UId="676" />
+  <Access Scope="LiteralConstant" UId="677">
+    <Constant UId="678">
+      <ConstantValue UId="680">5</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="681" />
+  <NewLine Num="1" UId="682" />
+  <Blank Num="4" UId="683" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="684">
+    <Text UId="685">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="686" />
+  <Blank Num="4" UId="687" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="688">
+    <Text UId="689" />
+  </LineComment>
+  <NewLine Num="1" UId="690" />
+  <Blank Num="4" UId="691" />
+  <Access Scope="Call" UId="692">
+    <CallInfo UId="693" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="694">
+        <Component Name="ST10_SafetyGate5_DB" UId="695">
+          <BooleanAttribute Name="HasQuotes" UId="696">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="697" />
+      <Parameter Name="iSysInface" UId="698">
+        <Blank Num="1" UId="699" />
+        <Token Text=":=" UId="700" />
+        <Blank Num="1" UId="701" />
+        <Access Scope="LocalVariable" UId="702">
+          <Symbol UId="703">
+            <Component Name="iSysMode" UId="704" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="705" />
+      <NewLine Num="1" UId="706" />
+      <Blank Num="26" UId="707" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="708">
+        <Blank Num="1" UId="709" />
+        <Token Text=":=" UId="710" />
+        <Blank Num="1" UId="711" />
+        <Token Text="NOT" UId="712" />
+        <Blank Num="1" UId="713" />
+        <Access Scope="GlobalVariable" UId="714">
+          <Symbol UId="715">
+            <Component Name="iSafety door Locking FeedBack_5" UId="716" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="717" />
+      <NewLine Num="1" UId="718" />
+      <Blank Num="26" UId="719" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="720">
+        <Blank Num="1" UId="721" />
+        <Token Text=":=" UId="722" />
+        <Blank Num="1" UId="723" />
+        <Access Scope="GlobalVariable" UId="724">
+          <Symbol UId="725">
+            <Component Name="ST10_SysOutput" UId="726">
+              <BooleanAttribute Name="HasQuotes" UId="727">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="728" />
+            <Component Name="SafetyDoorCoil" UId="729">
+              <Token Text="[" UId="730" />
+              <Access Scope="LiteralConstant" UId="731">
+                <Constant UId="732">
+                  <ConstantValue UId="734">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="735" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="736" />
+      <NewLine Num="1" UId="737" />
+      <Blank Num="26" UId="738" />
+      <Parameter Name="i1s_Pulse" UId="739">
+        <Blank Num="1" UId="740" />
+        <Token Text=":=" UId="741" />
+        <Blank Num="1" UId="742" />
+        <Access Scope="GlobalVariable" UId="743">
+          <Symbol UId="744">
+            <Component Name="ClockMemory1s" UId="745">
+              <BooleanAttribute Name="HasQuotes" UId="746">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="747" />
+      <NewLine Num="1" UId="748" />
+      <Blank Num="26" UId="749" />
+      <Parameter Name="iMode" UId="750">
+        <Blank Num="1" UId="751" />
+        <Token Text=":=" UId="752" />
+        <Access Scope="LiteralConstant" UId="753">
+          <Constant UId="754">
+            <ConstantValue UId="756">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="757" />
+      <NewLine Num="1" UId="758" />
+      <Blank Num="26" UId="759" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="760">
+        <Blank Num="1" UId="761" />
+        <Token Text="=&gt;" UId="762" />
+        <Blank Num="1" UId="763" />
+        <Access Scope="GlobalVariable" UId="764">
+          <Symbol UId="765">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="766">
+              <BooleanAttribute Name="HasQuotes" UId="767">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="768" />
+            <Component Name="SafetyDoorLamp" UId="769">
+              <Token Text="[" UId="770" />
+              <Access Scope="LiteralConstant" UId="771">
+                <Constant UId="772">
+                  <ConstantValue UId="774">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="775" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="776" />
+      <NewLine Num="1" UId="777" />
+      <Blank Num="26" UId="778" />
+      <Parameter Name="ioSafetyGateLock" UId="779">
+        <Blank Num="1" UId="780" />
+        <Token Text=":=" UId="781" />
+        <Blank Num="1" UId="782" />
+        <Access Scope="GlobalVariable" UId="783">
+          <Symbol UId="784">
+            <Component Name="ST10_SysOutput" UId="785">
+              <BooleanAttribute Name="HasQuotes" UId="786">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="787" />
+            <Component Name="SafetyDoorCoil" UId="788">
+              <Token Text="[" UId="789" />
+              <Access Scope="LiteralConstant" UId="790">
+                <Constant UId="791">
+                  <ConstantValue UId="793">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="794" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="795" />
+      <NewLine Num="1" UId="796" />
+      <Blank Num="26" UId="797" />
+      <Parameter Name="ioHMI_Interface" UId="798">
+        <Blank Num="1" UId="799" />
+        <Token Text=":=" UId="800" />
+        <Blank Num="1" UId="801" />
+        <Access Scope="GlobalVariable" UId="802">
+          <Symbol UId="803">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="804">
+              <BooleanAttribute Name="HasQuotes" UId="805">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="806" />
+            <Component Name="aDev" UId="807">
+              <Token Text="[" UId="808" />
+              <Access Scope="LocalVariable" UId="809">
+                <Symbol UId="810">
+                  <Component Name="idex" UId="811" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="812" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="815" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="816" />
+  <NewLine Num="1" UId="817" />
+  <Blank Num="4" UId="818" />
+  <NewLine Num="1" UId="819" />
+  <Token Text="END_REGION" UId="820" />
+  <NewLine Num="2" UId="821" />
+  <Token Text="REGION" UId="822" />
+  <Blank Num="1" UId="823" />
+  <Text UId="824">SafetyGate 6    </Text>
+  <NewLine Num="1" UId="825" />
+  <Blank Num="4" UId="826" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="827">
+    <Text UId="828">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="829" />
+  <Blank Num="4" UId="830" />
+  <Access Scope="LocalVariable" UId="831">
+    <Symbol UId="832">
+      <Component Name="idex" UId="833" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="834" />
+  <Token Text=":=" UId="835" />
+  <Blank Num="1" UId="836" />
+  <Access Scope="LiteralConstant" UId="837">
+    <Constant UId="838">
+      <ConstantValue UId="840">6</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="841" />
+  <NewLine Num="1" UId="842" />
+  <Blank Num="4" UId="843" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="844">
+    <Text UId="845">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="846" />
+  <Blank Num="4" UId="847" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="848">
+    <Text UId="849" />
+  </LineComment>
+  <NewLine Num="1" UId="850" />
+  <Blank Num="4" UId="851" />
+  <Access Scope="Call" UId="852">
+    <CallInfo UId="853" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="854">
+        <Component Name="ST10_SafetyGate6_DB" UId="855">
+          <BooleanAttribute Name="HasQuotes" UId="856">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="857" />
+      <Parameter Name="iSysInface" UId="858">
+        <Blank Num="1" UId="859" />
+        <Token Text=":=" UId="860" />
+        <Blank Num="1" UId="861" />
+        <Access Scope="LocalVariable" UId="862">
+          <Symbol UId="863">
+            <Component Name="iSysMode" UId="864" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="865" />
+      <NewLine Num="1" UId="866" />
+      <Blank Num="26" UId="867" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="868">
+        <Blank Num="1" UId="869" />
+        <Token Text=":=" UId="870" />
+        <Blank Num="1" UId="871" />
+        <Token Text="NOT" UId="872" />
+        <Blank Num="1" UId="873" />
+        <Access Scope="GlobalVariable" UId="874">
+          <Symbol UId="875">
+            <Component Name="iSafety door Locking FeedBack_6" UId="876" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="877" />
+      <NewLine Num="1" UId="878" />
+      <Blank Num="26" UId="879" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="880">
+        <Blank Num="1" UId="881" />
+        <Token Text=":=" UId="882" />
+        <Blank Num="1" UId="883" />
+        <Access Scope="GlobalVariable" UId="884">
+          <Symbol UId="885">
+            <Component Name="ST10_SysOutput" UId="886">
+              <BooleanAttribute Name="HasQuotes" UId="887">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="888" />
+            <Component Name="SafetyDoorCoil" UId="889">
+              <Token Text="[" UId="890" />
+              <Access Scope="LiteralConstant" UId="891">
+                <Constant UId="892">
+                  <ConstantValue UId="894">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="895" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="896" />
+      <NewLine Num="1" UId="897" />
+      <Blank Num="26" UId="898" />
+      <Parameter Name="i1s_Pulse" UId="899">
+        <Blank Num="1" UId="900" />
+        <Token Text=":=" UId="901" />
+        <Blank Num="1" UId="902" />
+        <Access Scope="GlobalVariable" UId="903">
+          <Symbol UId="904">
+            <Component Name="ClockMemory1s" UId="905">
+              <BooleanAttribute Name="HasQuotes" UId="906">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="907" />
+      <NewLine Num="1" UId="908" />
+      <Blank Num="26" UId="909" />
+      <Parameter Name="iMode" UId="910">
+        <Blank Num="1" UId="911" />
+        <Token Text=":=" UId="912" />
+        <Access Scope="LiteralConstant" UId="913">
+          <Constant UId="914">
+            <ConstantValue UId="916">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="917" />
+      <NewLine Num="1" UId="918" />
+      <Blank Num="26" UId="919" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="920">
+        <Blank Num="1" UId="921" />
+        <Token Text="=&gt;" UId="922" />
+        <Blank Num="1" UId="923" />
+        <Access Scope="GlobalVariable" UId="924">
+          <Symbol UId="925">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="926">
+              <BooleanAttribute Name="HasQuotes" UId="927">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="928" />
+            <Component Name="SafetyDoorLamp" UId="929">
+              <Token Text="[" UId="930" />
+              <Access Scope="LiteralConstant" UId="931">
+                <Constant UId="932">
+                  <ConstantValue UId="934">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="935" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="936" />
+      <NewLine Num="1" UId="937" />
+      <Blank Num="26" UId="938" />
+      <Parameter Name="ioSafetyGateLock" UId="939">
+        <Blank Num="1" UId="940" />
+        <Token Text=":=" UId="941" />
+        <Blank Num="1" UId="942" />
+        <Access Scope="GlobalVariable" UId="943">
+          <Symbol UId="944">
+            <Component Name="ST10_SysOutput" UId="945">
+              <BooleanAttribute Name="HasQuotes" UId="946">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="947" />
+            <Component Name="SafetyDoorCoil" UId="948">
+              <Token Text="[" UId="949" />
+              <Access Scope="LiteralConstant" UId="950">
+                <Constant UId="951">
+                  <ConstantValue UId="953">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="954" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="955" />
+      <NewLine Num="1" UId="956" />
+      <Blank Num="26" UId="957" />
+      <Parameter Name="ioHMI_Interface" UId="958">
+        <Blank Num="1" UId="959" />
+        <Token Text=":=" UId="960" />
+        <Blank Num="1" UId="961" />
+        <Access Scope="GlobalVariable" UId="962">
+          <Symbol UId="963">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="964">
+              <BooleanAttribute Name="HasQuotes" UId="965">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="966" />
+            <Component Name="aDev" UId="967">
+              <Token Text="[" UId="968" />
+              <Access Scope="LocalVariable" UId="969">
+                <Symbol UId="970">
+                  <Component Name="idex" UId="971" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="972" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="975" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="976" />
+  <NewLine Num="1" UId="977" />
+  <Blank Num="4" UId="978" />
+  <NewLine Num="1" UId="979" />
+  <Blank Num="23" UId="980" />
+  <Token Text="END_REGION" UId="981" />
+  <NewLine Num="1" UId="982" />
+  <Blank Num="23" UId="983" />
+  <NewLine Num="1" UId="984" />
+  <Token Text="REGION" UId="985" />
+  <Blank Num="1" UId="986" />
+  <Text UId="987">SafetyGate 7    </Text>
+  <NewLine Num="1" UId="988" />
+  <Blank Num="4" UId="989" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="990">
+    <Text UId="991">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="992" />
+  <Blank Num="4" UId="993" />
+  <Access Scope="LocalVariable" UId="994">
+    <Symbol UId="995">
+      <Component Name="idex" UId="996" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="997" />
+  <Token Text=":=" UId="998" />
+  <Blank Num="1" UId="999" />
+  <Access Scope="LiteralConstant" UId="1000">
+    <Constant UId="1001">
+      <ConstantValue UId="1003">7</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1004" />
+  <NewLine Num="1" UId="1005" />
+  <Blank Num="4" UId="1006" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1007">
+    <Text UId="1008">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1009" />
+  <Blank Num="4" UId="1010" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1011">
+    <Text UId="1012" />
+  </LineComment>
+  <NewLine Num="1" UId="1013" />
+  <Blank Num="4" UId="1014" />
+  <Access Scope="Call" UId="1015">
+    <CallInfo UId="1016" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="1017">
+        <Component Name="ST10_SafetyGate7_DB" UId="1018">
+          <BooleanAttribute Name="HasQuotes" UId="1019">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="1020" />
+      <Parameter Name="iSysInface" UId="1021">
+        <Blank Num="1" UId="1022" />
+        <Token Text=":=" UId="1023" />
+        <Blank Num="1" UId="1024" />
+        <Access Scope="LocalVariable" UId="1025">
+          <Symbol UId="1026">
+            <Component Name="iSysMode" UId="1027" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1028" />
+      <NewLine Num="1" UId="1029" />
+      <Blank Num="26" UId="1030" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="1031">
+        <Blank Num="1" UId="1032" />
+        <Token Text=":=" UId="1033" />
+        <Blank Num="1" UId="1034" />
+        <Token Text="NOT" UId="1035" />
+        <Blank Num="1" UId="1036" />
+        <Access Scope="GlobalVariable" UId="1037">
+          <Symbol UId="1038">
+            <Component Name="iSafety door Locking FeedBack_7" UId="1039" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1040" />
+      <NewLine Num="1" UId="1041" />
+      <Blank Num="26" UId="1042" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="1043">
+        <Blank Num="1" UId="1044" />
+        <Token Text=":=" UId="1045" />
+        <Blank Num="1" UId="1046" />
+        <Access Scope="GlobalVariable" UId="1047">
+          <Symbol UId="1048">
+            <Component Name="ST10_SysOutput" UId="1049">
+              <BooleanAttribute Name="HasQuotes" UId="1050">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1051" />
+            <Component Name="SafetyDoorCoil" UId="1052">
+              <Token Text="[" UId="1053" />
+              <Access Scope="LiteralConstant" UId="1054">
+                <Constant UId="1055">
+                  <ConstantValue UId="1057">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1058" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1059" />
+      <NewLine Num="1" UId="1060" />
+      <Blank Num="26" UId="1061" />
+      <Parameter Name="i1s_Pulse" UId="1062">
+        <Blank Num="1" UId="1063" />
+        <Token Text=":=" UId="1064" />
+        <Blank Num="1" UId="1065" />
+        <Access Scope="GlobalVariable" UId="1066">
+          <Symbol UId="1067">
+            <Component Name="ClockMemory1s" UId="1068">
+              <BooleanAttribute Name="HasQuotes" UId="1069">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1070" />
+      <NewLine Num="1" UId="1071" />
+      <Blank Num="26" UId="1072" />
+      <Parameter Name="iMode" UId="1073">
+        <Blank Num="1" UId="1074" />
+        <Token Text=":=" UId="1075" />
+        <Access Scope="LiteralConstant" UId="1076">
+          <Constant UId="1077">
+            <ConstantValue UId="1079">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1080" />
+      <NewLine Num="1" UId="1081" />
+      <Blank Num="26" UId="1082" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="1083">
+        <Blank Num="1" UId="1084" />
+        <Token Text="=&gt;" UId="1085" />
+        <Blank Num="1" UId="1086" />
+        <Access Scope="GlobalVariable" UId="1087">
+          <Symbol UId="1088">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1089">
+              <BooleanAttribute Name="HasQuotes" UId="1090">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1091" />
+            <Component Name="SafetyDoorLamp" UId="1092">
+              <Token Text="[" UId="1093" />
+              <Access Scope="LiteralConstant" UId="1094">
+                <Constant UId="1095">
+                  <ConstantValue UId="1097">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1098" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1099" />
+      <NewLine Num="1" UId="1100" />
+      <Blank Num="26" UId="1101" />
+      <Parameter Name="ioSafetyGateLock" UId="1102">
+        <Blank Num="1" UId="1103" />
+        <Token Text=":=" UId="1104" />
+        <Blank Num="1" UId="1105" />
+        <Access Scope="GlobalVariable" UId="1106">
+          <Symbol UId="1107">
+            <Component Name="ST10_SysOutput" UId="1108">
+              <BooleanAttribute Name="HasQuotes" UId="1109">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1110" />
+            <Component Name="SafetyDoorCoil" UId="1111">
+              <Token Text="[" UId="1112" />
+              <Access Scope="LiteralConstant" UId="1113">
+                <Constant UId="1114">
+                  <ConstantValue UId="1116">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1117" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1118" />
+      <NewLine Num="1" UId="1119" />
+      <Blank Num="26" UId="1120" />
+      <Parameter Name="ioHMI_Interface" UId="1121">
+        <Blank Num="1" UId="1122" />
+        <Token Text=":=" UId="1123" />
+        <Blank Num="1" UId="1124" />
+        <Access Scope="GlobalVariable" UId="1125">
+          <Symbol UId="1126">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1127">
+              <BooleanAttribute Name="HasQuotes" UId="1128">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1129" />
+            <Component Name="aDev" UId="1130">
+              <Token Text="[" UId="1131" />
+              <Access Scope="LocalVariable" UId="1132">
+                <Symbol UId="1133">
+                  <Component Name="idex" UId="1134" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="1135" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1138" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1139" />
+  <NewLine Num="1" UId="1140" />
+  <Blank Num="4" UId="1141" />
+  <NewLine Num="1" UId="1142" />
+  <Token Text="END_REGION" UId="1143" />
+  <NewLine Num="2" UId="1144" />
+  <Token Text="REGION" UId="1145" />
+  <Blank Num="1" UId="1146" />
+  <Text UId="1147">SafetyGate 8    </Text>
+  <NewLine Num="1" UId="1148" />
+  <Blank Num="4" UId="1149" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1150">
+    <Text UId="1151">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1152" />
+  <Blank Num="4" UId="1153" />
+  <Access Scope="LocalVariable" UId="1154">
+    <Symbol UId="1155">
+      <Component Name="idex" UId="1156" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1157" />
+  <Token Text=":=" UId="1158" />
+  <Blank Num="1" UId="1159" />
+  <Access Scope="LiteralConstant" UId="1160">
+    <Constant UId="1161">
+      <ConstantValue UId="1163">8</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1164" />
+  <NewLine Num="1" UId="1165" />
+  <Blank Num="4" UId="1166" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1167">
+    <Text UId="1168">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1169" />
+  <Blank Num="4" UId="1170" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1171">
+    <Text UId="1172" />
+  </LineComment>
+  <NewLine Num="1" UId="1173" />
+  <Blank Num="4" UId="1174" />
+  <Access Scope="Call" UId="1175">
+    <CallInfo UId="1176" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="1177">
+        <Component Name="ST10_SafetyGate8_DB" UId="1178">
+          <BooleanAttribute Name="HasQuotes" UId="1179">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="1180" />
+      <Parameter Name="iSysInface" UId="1181">
+        <Blank Num="1" UId="1182" />
+        <Token Text=":=" UId="1183" />
+        <Blank Num="1" UId="1184" />
+        <Access Scope="LocalVariable" UId="1185">
+          <Symbol UId="1186">
+            <Component Name="iSysMode" UId="1187" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1188" />
+      <NewLine Num="1" UId="1189" />
+      <Blank Num="26" UId="1190" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="1191">
+        <Blank Num="1" UId="1192" />
+        <Token Text=":=" UId="1193" />
+        <Blank Num="1" UId="1194" />
+        <Token Text="NOT" UId="1195" />
+        <Blank Num="1" UId="1196" />
+        <Access Scope="GlobalVariable" UId="1197">
+          <Symbol UId="1198">
+            <Component Name="iSafety door Locking FeedBack_8" UId="1199" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1200" />
+      <NewLine Num="1" UId="1201" />
+      <Blank Num="26" UId="1202" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="1203">
+        <Blank Num="1" UId="1204" />
+        <Token Text=":=" UId="1205" />
+        <Blank Num="1" UId="1206" />
+        <Access Scope="GlobalVariable" UId="1207">
+          <Symbol UId="1208">
+            <Component Name="ST10_SysOutput" UId="1209">
+              <BooleanAttribute Name="HasQuotes" UId="1210">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1211" />
+            <Component Name="SafetyDoorCoil" UId="1212">
+              <Token Text="[" UId="1213" />
+              <Access Scope="LiteralConstant" UId="1214">
+                <Constant UId="1215">
+                  <ConstantValue UId="1217">8</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1218" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1219" />
+      <NewLine Num="1" UId="1220" />
+      <Blank Num="26" UId="1221" />
+      <Parameter Name="i1s_Pulse" UId="1222">
+        <Blank Num="1" UId="1223" />
+        <Token Text=":=" UId="1224" />
+        <Blank Num="1" UId="1225" />
+        <Access Scope="GlobalVariable" UId="1226">
+          <Symbol UId="1227">
+            <Component Name="ClockMemory1s" UId="1228">
+              <BooleanAttribute Name="HasQuotes" UId="1229">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1230" />
+      <NewLine Num="1" UId="1231" />
+      <Blank Num="26" UId="1232" />
+      <Parameter Name="iMode" UId="1233">
+        <Blank Num="1" UId="1234" />
+        <Token Text=":=" UId="1235" />
+        <Access Scope="LiteralConstant" UId="1236">
+          <Constant UId="1237">
+            <ConstantValue UId="1239">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1240" />
+      <NewLine Num="1" UId="1241" />
+      <Blank Num="26" UId="1242" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="1243">
+        <Blank Num="1" UId="1244" />
+        <Token Text="=&gt;" UId="1245" />
+        <Blank Num="1" UId="1246" />
+        <Access Scope="GlobalVariable" UId="1247">
+          <Symbol UId="1248">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1249">
+              <BooleanAttribute Name="HasQuotes" UId="1250">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1251" />
+            <Component Name="SafetyDoorLamp" UId="1252">
+              <Token Text="[" UId="1253" />
+              <Access Scope="LiteralConstant" UId="1254">
+                <Constant UId="1255">
+                  <ConstantValue UId="1257">8</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1258" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1259" />
+      <NewLine Num="1" UId="1260" />
+      <Blank Num="26" UId="1261" />
+      <Parameter Name="ioSafetyGateLock" UId="1262">
+        <Blank Num="1" UId="1263" />
+        <Token Text=":=" UId="1264" />
+        <Blank Num="1" UId="1265" />
+        <Access Scope="GlobalVariable" UId="1266">
+          <Symbol UId="1267">
+            <Component Name="ST10_SysOutput" UId="1268">
+              <BooleanAttribute Name="HasQuotes" UId="1269">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1270" />
+            <Component Name="SafetyDoorCoil" UId="1271">
+              <Token Text="[" UId="1272" />
+              <Access Scope="LiteralConstant" UId="1273">
+                <Constant UId="1274">
+                  <ConstantValue UId="1276">8</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1277" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1278" />
+      <NewLine Num="1" UId="1279" />
+      <Blank Num="26" UId="1280" />
+      <Parameter Name="ioHMI_Interface" UId="1281">
+        <Blank Num="1" UId="1282" />
+        <Token Text=":=" UId="1283" />
+        <Blank Num="1" UId="1284" />
+        <Access Scope="GlobalVariable" UId="1285">
+          <Symbol UId="1286">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1287">
+              <BooleanAttribute Name="HasQuotes" UId="1288">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1289" />
+            <Component Name="aDev" UId="1290">
+              <Token Text="[" UId="1291" />
+              <Access Scope="LocalVariable" UId="1292">
+                <Symbol UId="1293">
+                  <Component Name="idex" UId="1294" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="1295" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1298" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1299" />
+  <NewLine Num="1" UId="1300" />
+  <Blank Num="4" UId="1301" />
+  <NewLine Num="1" UId="1302" />
+  <Blank Num="23" UId="1303" />
+  <Token Text="END_REGION" UId="1304" />
+  <NewLine Num="1" UId="1305" />
+  <Blank Num="23" UId="1306" />
+  <NewLine Num="1" UId="1307" />
+  <Token Text="REGION" UId="1308" />
+  <Blank Num="1" UId="1309" />
+  <Text UId="1310">SafetyGate 9    </Text>
+  <NewLine Num="1" UId="1311" />
+  <Blank Num="1" UId="1312" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1313">
+    <Text UId="1314">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1315" />
+  <Blank Num="2" UId="1316" />
+  <Access Scope="LocalVariable" UId="1317">
+    <Symbol UId="1318">
+      <Component Name="idex" UId="1319" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1320" />
+  <Token Text=":=" UId="1321" />
+  <Blank Num="1" UId="1322" />
+  <Access Scope="LiteralConstant" UId="1323">
+    <Constant UId="1324">
+      <ConstantValue UId="1326">9</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1327" />
+  <NewLine Num="1" UId="1328" />
+  <Blank Num="1" UId="1329" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1330">
+    <Text UId="1331">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1332" />
+  <Blank Num="1" UId="1333" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1334">
+    <Text UId="1335" />
+  </LineComment>
+  <NewLine Num="1" UId="1336" />
+  <Blank Num="3" UId="1337" />
+  <Access Scope="Call" UId="1338">
+    <CallInfo UId="1339" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="1340">
+        <Component Name="ST10_SafetyGate9_DB" UId="1341">
+          <BooleanAttribute Name="HasQuotes" UId="1342">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="1343" />
+      <Parameter Name="iSysInface" UId="1344">
+        <Blank Num="1" UId="1345" />
+        <Token Text=":=" UId="1346" />
+        <Blank Num="1" UId="1347" />
+        <Access Scope="LocalVariable" UId="1348">
+          <Symbol UId="1349">
+            <Component Name="iSysMode" UId="1350" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1351" />
+      <NewLine Num="1" UId="1352" />
+      <Blank Num="25" UId="1353" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="1354">
+        <Blank Num="1" UId="1355" />
+        <Token Text=":=" UId="1356" />
+        <Blank Num="1" UId="1357" />
+        <Token Text="NOT" UId="1358" />
+        <Blank Num="1" UId="1359" />
+        <Access Scope="GlobalVariable" UId="1360">
+          <Symbol UId="1361">
+            <Component Name="iSafety Door Locking FeedBack" UId="1362" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1363" />
+      <NewLine Num="1" UId="1364" />
+      <Blank Num="24" UId="1365" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="1366">
+        <Blank Num="1" UId="1367" />
+        <Token Text=":=" UId="1368" />
+        <Blank Num="1" UId="1369" />
+        <Access Scope="GlobalVariable" UId="1370">
+          <Symbol UId="1371">
+            <Component Name="ST10_SysOutput" UId="1372">
+              <BooleanAttribute Name="HasQuotes" UId="1373">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1374" />
+            <Component Name="SafetyDoorCoil" UId="1375">
+              <Token Text="[" UId="1376" />
+              <Access Scope="LiteralConstant" UId="1377">
+                <Constant UId="1378">
+                  <ConstantValue UId="1380">9</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1381" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1382" />
+      <NewLine Num="1" UId="1383" />
+      <Blank Num="24" UId="1384" />
+      <Parameter Name="i1s_Pulse" UId="1385">
+        <Blank Num="1" UId="1386" />
+        <Token Text=":=" UId="1387" />
+        <Blank Num="1" UId="1388" />
+        <Access Scope="GlobalVariable" UId="1389">
+          <Symbol UId="1390">
+            <Component Name="ClockMemory1s" UId="1391">
+              <BooleanAttribute Name="HasQuotes" UId="1392">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1393" />
+      <NewLine Num="1" UId="1394" />
+      <Blank Num="24" UId="1395" />
+      <Parameter Name="iMode" UId="1396">
+        <Blank Num="1" UId="1397" />
+        <Token Text=":=" UId="1398" />
+        <Access Scope="LiteralConstant" UId="1399">
+          <Constant UId="1400">
+            <ConstantValue UId="1402">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1403" />
+      <NewLine Num="1" UId="1404" />
+      <Blank Num="25" UId="1405" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="1406">
+        <Blank Num="1" UId="1407" />
+        <Token Text="=&gt;" UId="1408" />
+        <Blank Num="1" UId="1409" />
+        <Access Scope="GlobalVariable" UId="1410">
+          <Symbol UId="1411">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1412">
+              <BooleanAttribute Name="HasQuotes" UId="1413">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1414" />
+            <Component Name="SafetyDoorLamp" UId="1415">
+              <Token Text="[" UId="1416" />
+              <Access Scope="LiteralConstant" UId="1417">
+                <Constant UId="1418">
+                  <ConstantValue UId="1420">9</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1421" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1422" />
+      <NewLine Num="1" UId="1423" />
+      <Blank Num="25" UId="1424" />
+      <Parameter Name="ioSafetyGateLock" UId="1425">
+        <Blank Num="1" UId="1426" />
+        <Token Text=":=" UId="1427" />
+        <Blank Num="1" UId="1428" />
+        <Access Scope="GlobalVariable" UId="1429">
+          <Symbol UId="1430">
+            <Component Name="ST10_SysOutput" UId="1431">
+              <BooleanAttribute Name="HasQuotes" UId="1432">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1433" />
+            <Component Name="SafetyDoorCoil" UId="1434">
+              <Token Text="[" UId="1435" />
+              <Access Scope="LiteralConstant" UId="1436">
+                <Constant UId="1437">
+                  <ConstantValue UId="1439">9</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1440" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1441" />
+      <NewLine Num="1" UId="1442" />
+      <Blank Num="25" UId="1443" />
+      <Parameter Name="ioHMI_Interface" UId="1444">
+        <Blank Num="1" UId="1445" />
+        <Token Text=":=" UId="1446" />
+        <Blank Num="1" UId="1447" />
+        <Access Scope="GlobalVariable" UId="1448">
+          <Symbol UId="1449">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1450">
+              <BooleanAttribute Name="HasQuotes" UId="1451">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1452" />
+            <Component Name="aDev" UId="1453">
+              <Token Text="[" UId="1454" />
+              <Access Scope="LocalVariable" UId="1455">
+                <Symbol UId="1456">
+                  <Component Name="idex" UId="1457" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="1458" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1461" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1462" />
+  <NewLine Num="1" UId="1463" />
+  <Blank Num="27" UId="1464" />
+  <NewLine Num="1" UId="1465" />
+  <Token Text="END_REGION" UId="1466" />
+  <NewLine Num="1" UId="1467" />
+  <Blank Num="23" UId="1468" />
+  <NewLine Num="1" UId="1469" />
+  <Token Text="REGION" UId="1470" />
+  <Blank Num="1" UId="1471" />
+  <Text UId="1472">SafetyGate 11    </Text>
+  <NewLine Num="1" UId="1473" />
+  <Blank Num="1" UId="1474" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1475">
+    <Text UId="1476">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1477" />
+  <Access Scope="LocalVariable" UId="1478">
+    <Symbol UId="1479">
+      <Component Name="idex" UId="1480" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1481" />
+  <Token Text=":=" UId="1482" />
+  <Blank Num="1" UId="1483" />
+  <Access Scope="LiteralConstant" UId="1484">
+    <Constant UId="1485">
+      <ConstantValue UId="1487">11</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1488" />
+  <NewLine Num="1" UId="1489" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1490">
+    <Text UId="1491">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1492" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1493">
+    <Text UId="1494" />
+  </LineComment>
+  <NewLine Num="1" UId="1495" />
+  <Access Scope="Call" UId="1496">
+    <CallInfo UId="1497" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="1498">
+        <Component Name="ST10_MaterialGate1_DB" UId="1499">
+          <BooleanAttribute Name="HasQuotes" UId="1500">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="1501" />
+      <Parameter Name="iSysInface" UId="1502">
+        <Blank Num="1" UId="1503" />
+        <Token Text=":=" UId="1504" />
+        <Blank Num="1" UId="1505" />
+        <Access Scope="LocalVariable" UId="1506">
+          <Symbol UId="1507">
+            <Component Name="iSysMode" UId="1508" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1509" />
+      <NewLine Num="1" UId="1510" />
+      <Blank Num="24" UId="1511" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="1512">
+        <Blank Num="1" UId="1513" />
+        <Token Text=":=" UId="1514" />
+        <Blank Num="1" UId="1515" />
+        <Token Text="NOT" UId="1516" />
+        <Blank Num="1" UId="1517" />
+        <Access Scope="GlobalVariable" UId="1518">
+          <Symbol UId="1519">
+            <Component Name="iMateriel Door Locking FeedBack_H1" UId="1520" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1521" />
+      <NewLine Num="1" UId="1522" />
+      <Blank Num="23" UId="1523" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="1524">
+        <Blank Num="1" UId="1525" />
+        <Token Text=":=" UId="1526" />
+        <Blank Num="1" UId="1527" />
+        <Access Scope="GlobalVariable" UId="1528">
+          <Symbol UId="1529">
+            <Component Name="ST10_SysOutput" UId="1530">
+              <BooleanAttribute Name="HasQuotes" UId="1531">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1532" />
+            <Component Name="MaterialDoorCoil" UId="1533">
+              <Token Text="[" UId="1534" />
+              <Access Scope="LiteralConstant" UId="1535">
+                <Constant UId="1536">
+                  <ConstantValue UId="1538">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1539" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1540" />
+      <NewLine Num="1" UId="1541" />
+      <Blank Num="23" UId="1542" />
+      <Parameter Name="i1s_Pulse" UId="1543">
+        <Blank Num="1" UId="1544" />
+        <Token Text=":=" UId="1545" />
+        <Blank Num="1" UId="1546" />
+        <Access Scope="GlobalVariable" UId="1547">
+          <Symbol UId="1548">
+            <Component Name="ClockMemory1s" UId="1549">
+              <BooleanAttribute Name="HasQuotes" UId="1550">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1551" />
+      <NewLine Num="1" UId="1552" />
+      <Blank Num="23" UId="1553" />
+      <Parameter Name="iMode" UId="1554">
+        <Blank Num="1" UId="1555" />
+        <Token Text=":=" UId="1556" />
+        <Access Scope="LiteralConstant" UId="1557">
+          <Constant UId="1558">
+            <ConstantValue UId="1560">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1561" />
+      <NewLine Num="1" UId="1562" />
+      <Blank Num="25" UId="1563" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="1564">
+        <Blank Num="1" UId="1565" />
+        <Token Text="=&gt;" UId="1566" />
+        <Blank Num="1" UId="1567" />
+        <Access Scope="GlobalVariable" UId="1568">
+          <Symbol UId="1569">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1570">
+              <BooleanAttribute Name="HasQuotes" UId="1571">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1572" />
+            <Component Name="SafetyDoorLamp" UId="1573">
+              <Token Text="[" UId="1574" />
+              <Access Scope="LiteralConstant" UId="1575">
+                <Constant UId="1576">
+                  <ConstantValue UId="1578">11</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1579" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1580" />
+      <NewLine Num="1" UId="1581" />
+      <Blank Num="25" UId="1582" />
+      <Parameter Name="ioSafetyGateLock" UId="1583">
+        <Blank Num="1" UId="1584" />
+        <Token Text=":=" UId="1585" />
+        <Blank Num="1" UId="1586" />
+        <Access Scope="GlobalVariable" UId="1587">
+          <Symbol UId="1588">
+            <Component Name="ST10_SysOutput" UId="1589">
+              <BooleanAttribute Name="HasQuotes" UId="1590">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1591" />
+            <Component Name="MaterialDoorCoil" UId="1592">
+              <Token Text="[" UId="1593" />
+              <Access Scope="LiteralConstant" UId="1594">
+                <Constant UId="1595">
+                  <ConstantValue UId="1597">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1598" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1599" />
+      <NewLine Num="1" UId="1600" />
+      <Blank Num="25" UId="1601" />
+      <Parameter Name="ioHMI_Interface" UId="1602">
+        <Blank Num="1" UId="1603" />
+        <Token Text=":=" UId="1604" />
+        <Blank Num="1" UId="1605" />
+        <Access Scope="GlobalVariable" UId="1606">
+          <Symbol UId="1607">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1608">
+              <BooleanAttribute Name="HasQuotes" UId="1609">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1610" />
+            <Component Name="aDev" UId="1611">
+              <Token Text="[" UId="1612" />
+              <Access Scope="LocalVariable" UId="1613">
+                <Symbol UId="1614">
+                  <Component Name="idex" UId="1615" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="1616" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1619" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1620" />
+  <NewLine Num="1" UId="1621" />
+  <Blank Num="27" UId="1622" />
+  <NewLine Num="1" UId="1623" />
+  <Token Text="END_REGION" UId="1624" />
+  <NewLine Num="2" UId="1625" />
+  <Token Text="REGION" UId="1626" />
+  <Blank Num="1" UId="1627" />
+  <Text UId="1628">SafetyGate 12    </Text>
+  <NewLine Num="1" UId="1629" />
+  <Blank Num="4" UId="1630" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1631">
+    <Text UId="1632">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1633" />
+  <Blank Num="4" UId="1634" />
+  <Access Scope="LocalVariable" UId="1635">
+    <Symbol UId="1636">
+      <Component Name="idex" UId="1637" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1638" />
+  <Token Text=":=" UId="1639" />
+  <Blank Num="1" UId="1640" />
+  <Access Scope="LiteralConstant" UId="1641">
+    <Constant UId="1642">
+      <ConstantValue UId="1644">12</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1645" />
+  <NewLine Num="1" UId="1646" />
+  <Blank Num="4" UId="1647" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1648">
+    <Text UId="1649">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1650" />
+  <Blank Num="4" UId="1651" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1652">
+    <Text UId="1653" />
+  </LineComment>
+  <NewLine Num="1" UId="1654" />
+  <Blank Num="4" UId="1655" />
+  <Access Scope="Call" UId="1656">
+    <CallInfo UId="1657" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="1658">
+        <Component Name="ST10_MaterialGate2_DB" UId="1659">
+          <BooleanAttribute Name="HasQuotes" UId="1660">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="1661" />
+      <Parameter Name="iSysInface" UId="1662">
+        <Blank Num="1" UId="1663" />
+        <Token Text=":=" UId="1664" />
+        <Blank Num="1" UId="1665" />
+        <Access Scope="LocalVariable" UId="1666">
+          <Symbol UId="1667">
+            <Component Name="iSysMode" UId="1668" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1669" />
+      <NewLine Num="1" UId="1670" />
+      <Blank Num="28" UId="1671" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="1672">
+        <Blank Num="1" UId="1673" />
+        <Token Text=":=" UId="1674" />
+        <Blank Num="1" UId="1675" />
+        <Token Text="NOT" UId="1676" />
+        <Blank Num="1" UId="1677" />
+        <Access Scope="GlobalVariable" UId="1678">
+          <Symbol UId="1679">
+            <Component Name="iMateriel Door Locking FeedBack_H2" UId="1680" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1681" />
+      <NewLine Num="1" UId="1682" />
+      <Blank Num="26" UId="1683" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="1684">
+        <Blank Num="1" UId="1685" />
+        <Token Text=":=" UId="1686" />
+        <Blank Num="1" UId="1687" />
+        <Access Scope="GlobalVariable" UId="1688">
+          <Symbol UId="1689">
+            <Component Name="ST10_SysOutput" UId="1690">
+              <BooleanAttribute Name="HasQuotes" UId="1691">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1692" />
+            <Component Name="MaterialDoorCoil" UId="1693">
+              <Token Text="[" UId="1694" />
+              <Access Scope="LiteralConstant" UId="1695">
+                <Constant UId="1696">
+                  <ConstantValue UId="1698">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1699" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1700" />
+      <NewLine Num="1" UId="1701" />
+      <Blank Num="26" UId="1702" />
+      <Parameter Name="i1s_Pulse" UId="1703">
+        <Blank Num="1" UId="1704" />
+        <Token Text=":=" UId="1705" />
+        <Blank Num="1" UId="1706" />
+        <Access Scope="GlobalVariable" UId="1707">
+          <Symbol UId="1708">
+            <Component Name="ClockMemory1s" UId="1709">
+              <BooleanAttribute Name="HasQuotes" UId="1710">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1711" />
+      <NewLine Num="1" UId="1712" />
+      <Blank Num="26" UId="1713" />
+      <Parameter Name="iMode" UId="1714">
+        <Blank Num="1" UId="1715" />
+        <Token Text=":=" UId="1716" />
+        <Access Scope="LiteralConstant" UId="1717">
+          <Constant UId="1718">
+            <ConstantValue UId="1720">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1721" />
+      <NewLine Num="1" UId="1722" />
+      <Blank Num="26" UId="1723" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="1724">
+        <Blank Num="1" UId="1725" />
+        <Token Text="=&gt;" UId="1726" />
+        <Blank Num="1" UId="1727" />
+        <Access Scope="GlobalVariable" UId="1728">
+          <Symbol UId="1729">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1730">
+              <BooleanAttribute Name="HasQuotes" UId="1731">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1732" />
+            <Component Name="SafetyDoorLamp" UId="1733">
+              <Token Text="[" UId="1734" />
+              <Access Scope="LiteralConstant" UId="1735">
+                <Constant UId="1736">
+                  <ConstantValue UId="1738">12</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1739" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1740" />
+      <NewLine Num="1" UId="1741" />
+      <Blank Num="26" UId="1742" />
+      <Parameter Name="ioSafetyGateLock" UId="1743">
+        <Blank Num="1" UId="1744" />
+        <Token Text=":=" UId="1745" />
+        <Blank Num="1" UId="1746" />
+        <Access Scope="GlobalVariable" UId="1747">
+          <Symbol UId="1748">
+            <Component Name="ST10_SysOutput" UId="1749">
+              <BooleanAttribute Name="HasQuotes" UId="1750">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1751" />
+            <Component Name="MaterialDoorCoil" UId="1752">
+              <Token Text="[" UId="1753" />
+              <Access Scope="LiteralConstant" UId="1754">
+                <Constant UId="1755">
+                  <ConstantValue UId="1757">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1758" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1759" />
+      <NewLine Num="1" UId="1760" />
+      <Blank Num="26" UId="1761" />
+      <Parameter Name="ioHMI_Interface" UId="1762">
+        <Blank Num="1" UId="1763" />
+        <Token Text=":=" UId="1764" />
+        <Blank Num="1" UId="1765" />
+        <Access Scope="GlobalVariable" UId="1766">
+          <Symbol UId="1767">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1768">
+              <BooleanAttribute Name="HasQuotes" UId="1769">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1770" />
+            <Component Name="aDev" UId="1771">
+              <Token Text="[" UId="1772" />
+              <Access Scope="LocalVariable" UId="1773">
+                <Symbol UId="1774">
+                  <Component Name="idex" UId="1775" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="1776" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1779" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1780" />
+  <NewLine Num="1" UId="1781" />
+  <Blank Num="4" UId="1782" />
+  <NewLine Num="1" UId="1783" />
+  <Token Text="END_REGION" UId="1784" />
+  <NewLine Num="2" UId="1785" />
+  <Token Text="REGION" UId="1786" />
+  <Blank Num="1" UId="1787" />
+  <Text UId="1788">SafetyGate 13    </Text>
+  <NewLine Num="1" UId="1789" />
+  <Blank Num="4" UId="1790" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1791">
+    <Text UId="1792">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1793" />
+  <Blank Num="4" UId="1794" />
+  <Access Scope="LocalVariable" UId="1795">
+    <Symbol UId="1796">
+      <Component Name="idex" UId="1797" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1798" />
+  <Token Text=":=" UId="1799" />
+  <Blank Num="1" UId="1800" />
+  <Access Scope="LiteralConstant" UId="1801">
+    <Constant UId="1802">
+      <ConstantValue UId="1804">13</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1805" />
+  <NewLine Num="1" UId="1806" />
+  <Blank Num="4" UId="1807" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1808">
+    <Text UId="1809">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1810" />
+  <Blank Num="4" UId="1811" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1812">
+    <Text UId="1813" />
+  </LineComment>
+  <NewLine Num="1" UId="1814" />
+  <Blank Num="4" UId="1815" />
+  <Access Scope="Call" UId="1816">
+    <CallInfo UId="1817" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="1818">
+        <Component Name="ST10_MaterialGate3_DB" UId="1819">
+          <BooleanAttribute Name="HasQuotes" UId="1820">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="1821" />
+      <Parameter Name="iSysInface" UId="1822">
+        <Blank Num="1" UId="1823" />
+        <Token Text=":=" UId="1824" />
+        <Blank Num="1" UId="1825" />
+        <Access Scope="LocalVariable" UId="1826">
+          <Symbol UId="1827">
+            <Component Name="iSysMode" UId="1828" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1829" />
+      <NewLine Num="1" UId="1830" />
+      <Blank Num="28" UId="1831" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="1832">
+        <Blank Num="1" UId="1833" />
+        <Token Text=":=" UId="1834" />
+        <Blank Num="1" UId="1835" />
+        <Token Text="NOT" UId="1836" />
+        <Blank Num="1" UId="1837" />
+        <Access Scope="GlobalVariable" UId="1838">
+          <Symbol UId="1839">
+            <Component Name="iMateriel Door Locking FeedBack_J1" UId="1840" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1841" />
+      <NewLine Num="1" UId="1842" />
+      <Blank Num="26" UId="1843" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="1844">
+        <Blank Num="1" UId="1845" />
+        <Token Text=":=" UId="1846" />
+        <Blank Num="1" UId="1847" />
+        <Access Scope="GlobalVariable" UId="1848">
+          <Symbol UId="1849">
+            <Component Name="ST10_SysOutput" UId="1850">
+              <BooleanAttribute Name="HasQuotes" UId="1851">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1852" />
+            <Component Name="MaterialDoorCoil" UId="1853">
+              <Token Text="[" UId="1854" />
+              <Access Scope="LiteralConstant" UId="1855">
+                <Constant UId="1856">
+                  <ConstantValue UId="1858">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1859" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1860" />
+      <NewLine Num="1" UId="1861" />
+      <Blank Num="26" UId="1862" />
+      <Parameter Name="i1s_Pulse" UId="1863">
+        <Blank Num="1" UId="1864" />
+        <Token Text=":=" UId="1865" />
+        <Blank Num="1" UId="1866" />
+        <Access Scope="GlobalVariable" UId="1867">
+          <Symbol UId="1868">
+            <Component Name="ClockMemory1s" UId="1869">
+              <BooleanAttribute Name="HasQuotes" UId="1870">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1871" />
+      <NewLine Num="1" UId="1872" />
+      <Blank Num="26" UId="1873" />
+      <Parameter Name="iMode" UId="1874">
+        <Blank Num="1" UId="1875" />
+        <Token Text=":=" UId="1876" />
+        <Access Scope="LiteralConstant" UId="1877">
+          <Constant UId="1878">
+            <ConstantValue UId="1880">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1881" />
+      <NewLine Num="1" UId="1882" />
+      <Blank Num="26" UId="1883" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="1884">
+        <Blank Num="1" UId="1885" />
+        <Token Text="=&gt;" UId="1886" />
+        <Blank Num="1" UId="1887" />
+        <Access Scope="GlobalVariable" UId="1888">
+          <Symbol UId="1889">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1890">
+              <BooleanAttribute Name="HasQuotes" UId="1891">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1892" />
+            <Component Name="SafetyDoorLamp" UId="1893">
+              <Token Text="[" UId="1894" />
+              <Access Scope="LiteralConstant" UId="1895">
+                <Constant UId="1896">
+                  <ConstantValue UId="1898">13</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1899" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1900" />
+      <NewLine Num="1" UId="1901" />
+      <Blank Num="26" UId="1902" />
+      <Parameter Name="ioSafetyGateLock" UId="1903">
+        <Blank Num="1" UId="1904" />
+        <Token Text=":=" UId="1905" />
+        <Blank Num="1" UId="1906" />
+        <Access Scope="GlobalVariable" UId="1907">
+          <Symbol UId="1908">
+            <Component Name="ST10_SysOutput" UId="1909">
+              <BooleanAttribute Name="HasQuotes" UId="1910">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1911" />
+            <Component Name="MaterialDoorCoil" UId="1912">
+              <Token Text="[" UId="1913" />
+              <Access Scope="LiteralConstant" UId="1914">
+                <Constant UId="1915">
+                  <ConstantValue UId="1917">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="1918" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1919" />
+      <NewLine Num="1" UId="1920" />
+      <Blank Num="26" UId="1921" />
+      <Parameter Name="ioHMI_Interface" UId="1922">
+        <Blank Num="1" UId="1923" />
+        <Token Text=":=" UId="1924" />
+        <Blank Num="1" UId="1925" />
+        <Access Scope="GlobalVariable" UId="1926">
+          <Symbol UId="1927">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="1928">
+              <BooleanAttribute Name="HasQuotes" UId="1929">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1930" />
+            <Component Name="aDev" UId="1931">
+              <Token Text="[" UId="1932" />
+              <Access Scope="LocalVariable" UId="1933">
+                <Symbol UId="1934">
+                  <Component Name="idex" UId="1935" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="1936" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="1939" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1940" />
+  <NewLine Num="1" UId="1941" />
+  <Blank Num="4" UId="1942" />
+  <NewLine Num="1" UId="1943" />
+  <Token Text="END_REGION" UId="1944" />
+  <NewLine Num="2" UId="1945" />
+  <Token Text="REGION" UId="1946" />
+  <Blank Num="1" UId="1947" />
+  <Text UId="1948">SafetyGate 14    </Text>
+  <NewLine Num="1" UId="1949" />
+  <Blank Num="4" UId="1950" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1951">
+    <Text UId="1952">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1953" />
+  <Blank Num="4" UId="1954" />
+  <Access Scope="LocalVariable" UId="1955">
+    <Symbol UId="1956">
+      <Component Name="idex" UId="1957" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="1958" />
+  <Token Text=":=" UId="1959" />
+  <Blank Num="1" UId="1960" />
+  <Access Scope="LiteralConstant" UId="1961">
+    <Constant UId="1962">
+      <ConstantValue UId="1964">14</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1965" />
+  <NewLine Num="1" UId="1966" />
+  <Blank Num="4" UId="1967" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1968">
+    <Text UId="1969">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="1970" />
+  <Blank Num="4" UId="1971" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="1972">
+    <Text UId="1973" />
+  </LineComment>
+  <NewLine Num="1" UId="1974" />
+  <Blank Num="4" UId="1975" />
+  <Access Scope="Call" UId="1976">
+    <CallInfo UId="1977" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="1978">
+        <Component Name="ST10_MaterialGate4_DB" UId="1979">
+          <BooleanAttribute Name="HasQuotes" UId="1980">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="1981" />
+      <Parameter Name="iSysInface" UId="1982">
+        <Blank Num="1" UId="1983" />
+        <Token Text=":=" UId="1984" />
+        <Blank Num="1" UId="1985" />
+        <Access Scope="LocalVariable" UId="1986">
+          <Symbol UId="1987">
+            <Component Name="iSysMode" UId="1988" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1989" />
+      <NewLine Num="1" UId="1990" />
+      <Blank Num="28" UId="1991" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="1992">
+        <Blank Num="1" UId="1993" />
+        <Token Text=":=" UId="1994" />
+        <Blank Num="1" UId="1995" />
+        <Token Text="NOT" UId="1996" />
+        <Blank Num="1" UId="1997" />
+        <Access Scope="GlobalVariable" UId="1998">
+          <Symbol UId="1999">
+            <Component Name="iMateriel Door Locking FeedBack_J2" UId="2000" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2001" />
+      <NewLine Num="1" UId="2002" />
+      <Blank Num="26" UId="2003" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="2004">
+        <Blank Num="1" UId="2005" />
+        <Token Text=":=" UId="2006" />
+        <Blank Num="1" UId="2007" />
+        <Access Scope="GlobalVariable" UId="2008">
+          <Symbol UId="2009">
+            <Component Name="ST10_SysOutput" UId="2010">
+              <BooleanAttribute Name="HasQuotes" UId="2011">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2012" />
+            <Component Name="MaterialDoorCoil" UId="2013">
+              <Token Text="[" UId="2014" />
+              <Access Scope="LiteralConstant" UId="2015">
+                <Constant UId="2016">
+                  <ConstantValue UId="2018">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2019" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2020" />
+      <NewLine Num="1" UId="2021" />
+      <Blank Num="26" UId="2022" />
+      <Parameter Name="i1s_Pulse" UId="2023">
+        <Blank Num="1" UId="2024" />
+        <Token Text=":=" UId="2025" />
+        <Blank Num="1" UId="2026" />
+        <Access Scope="GlobalVariable" UId="2027">
+          <Symbol UId="2028">
+            <Component Name="ClockMemory1s" UId="2029">
+              <BooleanAttribute Name="HasQuotes" UId="2030">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2031" />
+      <NewLine Num="1" UId="2032" />
+      <Blank Num="26" UId="2033" />
+      <Parameter Name="iMode" UId="2034">
+        <Blank Num="1" UId="2035" />
+        <Token Text=":=" UId="2036" />
+        <Access Scope="LiteralConstant" UId="2037">
+          <Constant UId="2038">
+            <ConstantValue UId="2040">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2041" />
+      <NewLine Num="1" UId="2042" />
+      <Blank Num="26" UId="2043" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="2044">
+        <Blank Num="1" UId="2045" />
+        <Token Text="=&gt;" UId="2046" />
+        <Blank Num="1" UId="2047" />
+        <Access Scope="GlobalVariable" UId="2048">
+          <Symbol UId="2049">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2050">
+              <BooleanAttribute Name="HasQuotes" UId="2051">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2052" />
+            <Component Name="SafetyDoorLamp" UId="2053">
+              <Token Text="[" UId="2054" />
+              <Access Scope="LiteralConstant" UId="2055">
+                <Constant UId="2056">
+                  <ConstantValue UId="2058">14</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2059" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2060" />
+      <NewLine Num="1" UId="2061" />
+      <Blank Num="26" UId="2062" />
+      <Parameter Name="ioSafetyGateLock" UId="2063">
+        <Blank Num="1" UId="2064" />
+        <Token Text=":=" UId="2065" />
+        <Blank Num="1" UId="2066" />
+        <Access Scope="GlobalVariable" UId="2067">
+          <Symbol UId="2068">
+            <Component Name="ST10_SysOutput" UId="2069">
+              <BooleanAttribute Name="HasQuotes" UId="2070">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2071" />
+            <Component Name="MaterialDoorCoil" UId="2072">
+              <Token Text="[" UId="2073" />
+              <Access Scope="LiteralConstant" UId="2074">
+                <Constant UId="2075">
+                  <ConstantValue UId="2077">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2078" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2079" />
+      <NewLine Num="1" UId="2080" />
+      <Blank Num="26" UId="2081" />
+      <Parameter Name="ioHMI_Interface" UId="2082">
+        <Blank Num="1" UId="2083" />
+        <Token Text=":=" UId="2084" />
+        <Blank Num="1" UId="2085" />
+        <Access Scope="GlobalVariable" UId="2086">
+          <Symbol UId="2087">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2088">
+              <BooleanAttribute Name="HasQuotes" UId="2089">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2090" />
+            <Component Name="aDev" UId="2091">
+              <Token Text="[" UId="2092" />
+              <Access Scope="LocalVariable" UId="2093">
+                <Symbol UId="2094">
+                  <Component Name="idex" UId="2095" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="2096" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="2099" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="2100" />
+  <NewLine Num="1" UId="2101" />
+  <Blank Num="2" UId="2102" />
+  <NewLine Num="1" UId="2103" />
+  <Token Text="END_REGION" UId="2104" />
+  <NewLine Num="2" UId="2105" />
+  <Token Text="REGION" UId="2106" />
+  <Blank Num="1" UId="2107" />
+  <Text UId="2108">SafetyGate 15    </Text>
+  <NewLine Num="1" UId="2109" />
+  <Blank Num="4" UId="2110" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2111">
+    <Text UId="2112">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2113" />
+  <Blank Num="4" UId="2114" />
+  <Access Scope="LocalVariable" UId="2115">
+    <Symbol UId="2116">
+      <Component Name="idex" UId="2117" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="2118" />
+  <Token Text=":=" UId="2119" />
+  <Blank Num="1" UId="2120" />
+  <Access Scope="LiteralConstant" UId="2121">
+    <Constant UId="2122">
+      <ConstantValue UId="2124">15</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="2125" />
+  <NewLine Num="1" UId="2126" />
+  <Blank Num="4" UId="2127" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2128">
+    <Text UId="2129">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2130" />
+  <Blank Num="4" UId="2131" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2132">
+    <Text UId="2133" />
+  </LineComment>
+  <NewLine Num="1" UId="2134" />
+  <Blank Num="4" UId="2135" />
+  <Access Scope="Call" UId="2136">
+    <CallInfo UId="2137" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="2138">
+        <Component Name="ST10_MaterialGate5_DB" UId="2139">
+          <BooleanAttribute Name="HasQuotes" UId="2140">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="2141" />
+      <Parameter Name="iSysInface" UId="2142">
+        <Blank Num="1" UId="2143" />
+        <Token Text=":=" UId="2144" />
+        <Blank Num="1" UId="2145" />
+        <Access Scope="LocalVariable" UId="2146">
+          <Symbol UId="2147">
+            <Component Name="iSysMode" UId="2148" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2149" />
+      <NewLine Num="1" UId="2150" />
+      <Blank Num="28" UId="2151" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="2152">
+        <Blank Num="1" UId="2153" />
+        <Token Text=":=" UId="2154" />
+        <Blank Num="1" UId="2155" />
+        <Token Text="NOT" UId="2156" />
+        <Blank Num="1" UId="2157" />
+        <Access Scope="GlobalVariable" UId="2158">
+          <Symbol UId="2159">
+            <Component Name="iMateriel Door Locking FeedBack_K1" UId="2160" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2161" />
+      <NewLine Num="1" UId="2162" />
+      <Blank Num="26" UId="2163" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="2164">
+        <Blank Num="1" UId="2165" />
+        <Token Text=":=" UId="2166" />
+        <Blank Num="1" UId="2167" />
+        <Access Scope="GlobalVariable" UId="2168">
+          <Symbol UId="2169">
+            <Component Name="ST10_SysOutput" UId="2170">
+              <BooleanAttribute Name="HasQuotes" UId="2171">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2172" />
+            <Component Name="MaterialDoorCoil" UId="2173">
+              <Token Text="[" UId="2174" />
+              <Access Scope="LiteralConstant" UId="2175">
+                <Constant UId="2176">
+                  <ConstantValue UId="2178">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2179" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2180" />
+      <NewLine Num="1" UId="2181" />
+      <Blank Num="26" UId="2182" />
+      <Parameter Name="i1s_Pulse" UId="2183">
+        <Blank Num="1" UId="2184" />
+        <Token Text=":=" UId="2185" />
+        <Blank Num="1" UId="2186" />
+        <Access Scope="GlobalVariable" UId="2187">
+          <Symbol UId="2188">
+            <Component Name="ClockMemory1s" UId="2189">
+              <BooleanAttribute Name="HasQuotes" UId="2190">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2191" />
+      <NewLine Num="1" UId="2192" />
+      <Blank Num="26" UId="2193" />
+      <Parameter Name="iMode" UId="2194">
+        <Blank Num="1" UId="2195" />
+        <Token Text=":=" UId="2196" />
+        <Access Scope="LiteralConstant" UId="2197">
+          <Constant UId="2198">
+            <ConstantValue UId="2200">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2201" />
+      <NewLine Num="1" UId="2202" />
+      <Blank Num="26" UId="2203" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="2204">
+        <Blank Num="1" UId="2205" />
+        <Token Text="=&gt;" UId="2206" />
+        <Blank Num="1" UId="2207" />
+        <Access Scope="GlobalVariable" UId="2208">
+          <Symbol UId="2209">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2210">
+              <BooleanAttribute Name="HasQuotes" UId="2211">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2212" />
+            <Component Name="SafetyDoorLamp" UId="2213">
+              <Token Text="[" UId="2214" />
+              <Access Scope="LiteralConstant" UId="2215">
+                <Constant UId="2216">
+                  <ConstantValue UId="2218">15</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2219" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2220" />
+      <NewLine Num="1" UId="2221" />
+      <Blank Num="26" UId="2222" />
+      <Parameter Name="ioSafetyGateLock" UId="2223">
+        <Blank Num="1" UId="2224" />
+        <Token Text=":=" UId="2225" />
+        <Blank Num="1" UId="2226" />
+        <Access Scope="GlobalVariable" UId="2227">
+          <Symbol UId="2228">
+            <Component Name="ST10_SysOutput" UId="2229">
+              <BooleanAttribute Name="HasQuotes" UId="2230">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2231" />
+            <Component Name="MaterialDoorCoil" UId="2232">
+              <Token Text="[" UId="2233" />
+              <Access Scope="LiteralConstant" UId="2234">
+                <Constant UId="2235">
+                  <ConstantValue UId="2237">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2238" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2239" />
+      <NewLine Num="1" UId="2240" />
+      <Blank Num="26" UId="2241" />
+      <Parameter Name="ioHMI_Interface" UId="2242">
+        <Blank Num="1" UId="2243" />
+        <Token Text=":=" UId="2244" />
+        <Blank Num="1" UId="2245" />
+        <Access Scope="GlobalVariable" UId="2246">
+          <Symbol UId="2247">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2248">
+              <BooleanAttribute Name="HasQuotes" UId="2249">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2250" />
+            <Component Name="aDev" UId="2251">
+              <Token Text="[" UId="2252" />
+              <Access Scope="LocalVariable" UId="2253">
+                <Symbol UId="2254">
+                  <Component Name="idex" UId="2255" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="2256" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="2259" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="2260" />
+  <NewLine Num="1" UId="2261" />
+  <Blank Num="4" UId="2262" />
+  <NewLine Num="1" UId="2263" />
+  <Token Text="END_REGION" UId="2264" />
+  <NewLine Num="2" UId="2265" />
+  <Token Text="REGION" UId="2266" />
+  <Blank Num="1" UId="2267" />
+  <Text UId="2268">SafetyGate 16    </Text>
+  <NewLine Num="1" UId="2269" />
+  <Blank Num="4" UId="2270" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2271">
+    <Text UId="2272">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2273" />
+  <Blank Num="4" UId="2274" />
+  <Access Scope="LocalVariable" UId="2275">
+    <Symbol UId="2276">
+      <Component Name="idex" UId="2277" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="2278" />
+  <Token Text=":=" UId="2279" />
+  <Blank Num="1" UId="2280" />
+  <Access Scope="LiteralConstant" UId="2281">
+    <Constant UId="2282">
+      <ConstantValue UId="2284">16</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="2285" />
+  <NewLine Num="1" UId="2286" />
+  <Blank Num="4" UId="2287" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2288">
+    <Text UId="2289">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2290" />
+  <Blank Num="4" UId="2291" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2292">
+    <Text UId="2293" />
+  </LineComment>
+  <NewLine Num="1" UId="2294" />
+  <Blank Num="4" UId="2295" />
+  <Access Scope="Call" UId="2296">
+    <CallInfo UId="2297" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="2298">
+        <Component Name="ST10_MaterialGate6_DB" UId="2299">
+          <BooleanAttribute Name="HasQuotes" UId="2300">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="2301" />
+      <Parameter Name="iSysInface" UId="2302">
+        <Blank Num="1" UId="2303" />
+        <Token Text=":=" UId="2304" />
+        <Blank Num="1" UId="2305" />
+        <Access Scope="LocalVariable" UId="2306">
+          <Symbol UId="2307">
+            <Component Name="iSysMode" UId="2308" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2309" />
+      <NewLine Num="1" UId="2310" />
+      <Blank Num="28" UId="2311" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="2312">
+        <Blank Num="1" UId="2313" />
+        <Token Text=":=" UId="2314" />
+        <Blank Num="1" UId="2315" />
+        <Token Text="NOT" UId="2316" />
+        <Blank Num="1" UId="2317" />
+        <Access Scope="GlobalVariable" UId="2318">
+          <Symbol UId="2319">
+            <Component Name="iMateriel Door Locking FeedBack_K2" UId="2320" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2321" />
+      <NewLine Num="1" UId="2322" />
+      <Blank Num="28" UId="2323" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="2324">
+        <Blank Num="1" UId="2325" />
+        <Token Text=":=" UId="2326" />
+        <Blank Num="1" UId="2327" />
+        <Access Scope="GlobalVariable" UId="2328">
+          <Symbol UId="2329">
+            <Component Name="ST10_SysOutput" UId="2330">
+              <BooleanAttribute Name="HasQuotes" UId="2331">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2332" />
+            <Component Name="MaterialDoorCoil" UId="2333">
+              <Token Text="[" UId="2334" />
+              <Access Scope="LiteralConstant" UId="2335">
+                <Constant UId="2336">
+                  <ConstantValue UId="2338">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2339" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2340" />
+      <NewLine Num="1" UId="2341" />
+      <Blank Num="28" UId="2342" />
+      <Parameter Name="i1s_Pulse" UId="2343">
+        <Blank Num="1" UId="2344" />
+        <Token Text=":=" UId="2345" />
+        <Blank Num="1" UId="2346" />
+        <Access Scope="GlobalVariable" UId="2347">
+          <Symbol UId="2348">
+            <Component Name="ClockMemory1s" UId="2349">
+              <BooleanAttribute Name="HasQuotes" UId="2350">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2351" />
+      <NewLine Num="1" UId="2352" />
+      <Blank Num="28" UId="2353" />
+      <Parameter Name="iMode" UId="2354">
+        <Blank Num="1" UId="2355" />
+        <Token Text=":=" UId="2356" />
+        <Access Scope="LiteralConstant" UId="2357">
+          <Constant UId="2358">
+            <ConstantValue UId="2360">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2361" />
+      <NewLine Num="1" UId="2362" />
+      <Blank Num="28" UId="2363" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="2364">
+        <Blank Num="1" UId="2365" />
+        <Token Text="=&gt;" UId="2366" />
+        <Blank Num="1" UId="2367" />
+        <Access Scope="GlobalVariable" UId="2368">
+          <Symbol UId="2369">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2370">
+              <BooleanAttribute Name="HasQuotes" UId="2371">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2372" />
+            <Component Name="SafetyDoorLamp" UId="2373">
+              <Token Text="[" UId="2374" />
+              <Access Scope="LiteralConstant" UId="2375">
+                <Constant UId="2376">
+                  <ConstantValue UId="2378">16</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2379" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2380" />
+      <NewLine Num="1" UId="2381" />
+      <Blank Num="28" UId="2382" />
+      <Parameter Name="ioSafetyGateLock" UId="2383">
+        <Blank Num="1" UId="2384" />
+        <Token Text=":=" UId="2385" />
+        <Blank Num="1" UId="2386" />
+        <Access Scope="GlobalVariable" UId="2387">
+          <Symbol UId="2388">
+            <Component Name="ST10_SysOutput" UId="2389">
+              <BooleanAttribute Name="HasQuotes" UId="2390">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2391" />
+            <Component Name="MaterialDoorCoil" UId="2392">
+              <Token Text="[" UId="2393" />
+              <Access Scope="LiteralConstant" UId="2394">
+                <Constant UId="2395">
+                  <ConstantValue UId="2397">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2398" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2399" />
+      <NewLine Num="1" UId="2400" />
+      <Blank Num="28" UId="2401" />
+      <Parameter Name="ioHMI_Interface" UId="2402">
+        <Blank Num="1" UId="2403" />
+        <Token Text=":=" UId="2404" />
+        <Blank Num="1" UId="2405" />
+        <Access Scope="GlobalVariable" UId="2406">
+          <Symbol UId="2407">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2408">
+              <BooleanAttribute Name="HasQuotes" UId="2409">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2410" />
+            <Component Name="aDev" UId="2411">
+              <Token Text="[" UId="2412" />
+              <Access Scope="LocalVariable" UId="2413">
+                <Symbol UId="2414">
+                  <Component Name="idex" UId="2415" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="2416" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="2419" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="2420" />
+  <NewLine Num="1" UId="2421" />
+  <Blank Num="4" UId="2422" />
+  <NewLine Num="1" UId="2423" />
+  <Token Text="END_REGION" UId="2424" />
+  <NewLine Num="2" UId="2425" />
+  <Token Text="REGION" UId="2426" />
+  <Blank Num="1" UId="2427" />
+  <Text UId="2428">SafetyGate 17    </Text>
+  <NewLine Num="1" UId="2429" />
+  <Blank Num="4" UId="2430" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2431">
+    <Text UId="2432">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2433" />
+  <Blank Num="4" UId="2434" />
+  <Access Scope="LocalVariable" UId="2435">
+    <Symbol UId="2436">
+      <Component Name="idex" UId="2437" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="2438" />
+  <Token Text=":=" UId="2439" />
+  <Blank Num="1" UId="2440" />
+  <Access Scope="LiteralConstant" UId="2441">
+    <Constant UId="2442">
+      <ConstantValue UId="2444">17</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="2445" />
+  <NewLine Num="1" UId="2446" />
+  <Blank Num="4" UId="2447" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2448">
+    <Text UId="2449">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2450" />
+  <Blank Num="4" UId="2451" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2452">
+    <Text UId="2453" />
+  </LineComment>
+  <NewLine Num="1" UId="2454" />
+  <Blank Num="4" UId="2455" />
+  <Access Scope="Call" UId="2456">
+    <CallInfo UId="2457" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="2458">
+        <Component Name="ST10_MaterialGate7_DB" UId="2459">
+          <BooleanAttribute Name="HasQuotes" UId="2460">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="2461" />
+      <Parameter Name="iSysInface" UId="2462">
+        <Blank Num="1" UId="2463" />
+        <Token Text=":=" UId="2464" />
+        <Blank Num="1" UId="2465" />
+        <Access Scope="LocalVariable" UId="2466">
+          <Symbol UId="2467">
+            <Component Name="iSysMode" UId="2468" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2469" />
+      <NewLine Num="1" UId="2470" />
+      <Blank Num="28" UId="2471" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="2472">
+        <Blank Num="1" UId="2473" />
+        <Token Text=":=" UId="2474" />
+        <Blank Num="1" UId="2475" />
+        <Token Text="NOT" UId="2476" />
+        <Blank Num="1" UId="2477" />
+        <Access Scope="GlobalVariable" UId="2478">
+          <Symbol UId="2479">
+            <Component Name="iMateriel Door Locking FeedBack_L1" UId="2480" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2481" />
+      <NewLine Num="1" UId="2482" />
+      <Blank Num="28" UId="2483" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="2484">
+        <Blank Num="1" UId="2485" />
+        <Token Text=":=" UId="2486" />
+        <Blank Num="1" UId="2487" />
+        <Access Scope="GlobalVariable" UId="2488">
+          <Symbol UId="2489">
+            <Component Name="ST10_SysOutput" UId="2490">
+              <BooleanAttribute Name="HasQuotes" UId="2491">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2492" />
+            <Component Name="MaterialDoorCoil" UId="2493">
+              <Token Text="[" UId="2494" />
+              <Access Scope="LiteralConstant" UId="2495">
+                <Constant UId="2496">
+                  <ConstantValue UId="2498">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2499" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2500" />
+      <NewLine Num="1" UId="2501" />
+      <Blank Num="28" UId="2502" />
+      <Parameter Name="i1s_Pulse" UId="2503">
+        <Blank Num="1" UId="2504" />
+        <Token Text=":=" UId="2505" />
+        <Blank Num="1" UId="2506" />
+        <Access Scope="GlobalVariable" UId="2507">
+          <Symbol UId="2508">
+            <Component Name="ClockMemory1s" UId="2509">
+              <BooleanAttribute Name="HasQuotes" UId="2510">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2511" />
+      <NewLine Num="1" UId="2512" />
+      <Blank Num="28" UId="2513" />
+      <Parameter Name="iMode" UId="2514">
+        <Blank Num="1" UId="2515" />
+        <Token Text=":=" UId="2516" />
+        <Access Scope="LiteralConstant" UId="2517">
+          <Constant UId="2518">
+            <ConstantValue UId="2520">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2521" />
+      <NewLine Num="1" UId="2522" />
+      <Blank Num="26" UId="2523" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="2524">
+        <Blank Num="1" UId="2525" />
+        <Token Text="=&gt;" UId="2526" />
+        <Blank Num="1" UId="2527" />
+        <Access Scope="GlobalVariable" UId="2528">
+          <Symbol UId="2529">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2530">
+              <BooleanAttribute Name="HasQuotes" UId="2531">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2532" />
+            <Component Name="SafetyDoorLamp" UId="2533">
+              <Token Text="[" UId="2534" />
+              <Access Scope="LiteralConstant" UId="2535">
+                <Constant UId="2536">
+                  <ConstantValue UId="2538">17</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2539" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2540" />
+      <NewLine Num="1" UId="2541" />
+      <Blank Num="26" UId="2542" />
+      <Parameter Name="ioSafetyGateLock" UId="2543">
+        <Blank Num="1" UId="2544" />
+        <Token Text=":=" UId="2545" />
+        <Blank Num="1" UId="2546" />
+        <Access Scope="GlobalVariable" UId="2547">
+          <Symbol UId="2548">
+            <Component Name="ST10_SysOutput" UId="2549">
+              <BooleanAttribute Name="HasQuotes" UId="2550">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2551" />
+            <Component Name="MaterialDoorCoil" UId="2552">
+              <Token Text="[" UId="2553" />
+              <Access Scope="LiteralConstant" UId="2554">
+                <Constant UId="2555">
+                  <ConstantValue UId="2557">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2558" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2559" />
+      <NewLine Num="1" UId="2560" />
+      <Blank Num="26" UId="2561" />
+      <Parameter Name="ioHMI_Interface" UId="2562">
+        <Blank Num="1" UId="2563" />
+        <Token Text=":=" UId="2564" />
+        <Blank Num="1" UId="2565" />
+        <Access Scope="GlobalVariable" UId="2566">
+          <Symbol UId="2567">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2568">
+              <BooleanAttribute Name="HasQuotes" UId="2569">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2570" />
+            <Component Name="aDev" UId="2571">
+              <Token Text="[" UId="2572" />
+              <Access Scope="LocalVariable" UId="2573">
+                <Symbol UId="2574">
+                  <Component Name="idex" UId="2575" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="2576" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="2579" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="2580" />
+  <NewLine Num="1" UId="2581" />
+  <Blank Num="4" UId="2582" />
+  <NewLine Num="1" UId="2583" />
+  <Token Text="END_REGION" UId="2584" />
+  <NewLine Num="2" UId="2585" />
+  <Token Text="REGION" UId="2586" />
+  <Blank Num="1" UId="2587" />
+  <Text UId="2588">SafetyGate 18    </Text>
+  <NewLine Num="1" UId="2589" />
+  <Blank Num="4" UId="2590" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2591">
+    <Text UId="2592">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2593" />
+  <Blank Num="4" UId="2594" />
+  <Access Scope="LocalVariable" UId="2595">
+    <Symbol UId="2596">
+      <Component Name="idex" UId="2597" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="2598" />
+  <Token Text=":=" UId="2599" />
+  <Blank Num="1" UId="2600" />
+  <Access Scope="LiteralConstant" UId="2601">
+    <Constant UId="2602">
+      <ConstantValue UId="2604">18</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="2605" />
+  <NewLine Num="1" UId="2606" />
+  <Blank Num="4" UId="2607" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2608">
+    <Text UId="2609">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2610" />
+  <Blank Num="4" UId="2611" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2612">
+    <Text UId="2613" />
+  </LineComment>
+  <NewLine Num="1" UId="2614" />
+  <Blank Num="4" UId="2615" />
+  <Access Scope="Call" UId="2616">
+    <CallInfo UId="2617" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="2618">
+        <Component Name="ST10_NGGate1_DB" UId="2619">
+          <BooleanAttribute Name="HasQuotes" UId="2620">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="2621" />
+      <Parameter Name="iSysInface" UId="2622">
+        <Blank Num="1" UId="2623" />
+        <Token Text=":=" UId="2624" />
+        <Blank Num="1" UId="2625" />
+        <Access Scope="LocalVariable" UId="2626">
+          <Symbol UId="2627">
+            <Component Name="iSysMode" UId="2628" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2629" />
+      <NewLine Num="1" UId="2630" />
+      <Blank Num="22" UId="2631" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="2632">
+        <Blank Num="1" UId="2633" />
+        <Token Text=":=" UId="2634" />
+        <Blank Num="2" UId="2635" />
+        <Access Scope="GlobalVariable" UId="2636">
+          <Symbol UId="2637">
+            <Component Name="iE-NG-01 Safety Gate_Open" UId="2638" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2639" />
+      <NewLine Num="1" UId="2640" />
+      <Blank Num="22" UId="2641" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="2642">
+        <Blank Num="1" UId="2643" />
+        <Token Text=":=" UId="2644" />
+        <Blank Num="1" UId="2645" />
+        <Access Scope="GlobalVariable" UId="2646">
+          <Symbol UId="2647">
+            <Component Name="iE-NG-01 Safety Gate_UnLock" UId="2648" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2649" />
+      <NewLine Num="1" UId="2650" />
+      <Blank Num="28" UId="2651" />
+      <Parameter Name="i1s_Pulse" UId="2652">
+        <Blank Num="1" UId="2653" />
+        <Token Text=":=" UId="2654" />
+        <Blank Num="1" UId="2655" />
+        <Access Scope="GlobalVariable" UId="2656">
+          <Symbol UId="2657">
+            <Component Name="ClockMemory1s" UId="2658">
+              <BooleanAttribute Name="HasQuotes" UId="2659">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2660" />
+      <NewLine Num="1" UId="2661" />
+      <Blank Num="28" UId="2662" />
+      <Parameter Name="iMode" UId="2663">
+        <Blank Num="1" UId="2664" />
+        <Token Text=":=" UId="2665" />
+        <Blank Num="1" UId="2666" />
+        <Access Scope="LiteralConstant" UId="2667">
+          <Constant UId="2668">
+            <ConstantValue UId="2670">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2671" />
+      <NewLine Num="1" UId="2672" />
+      <Blank Num="28" UId="2673" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="2674">
+        <Blank Num="1" UId="2675" />
+        <Token Text="=&gt;" UId="2676" />
+        <Blank Num="1" UId="2677" />
+        <Access Scope="GlobalVariable" UId="2678">
+          <Symbol UId="2679">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2680">
+              <BooleanAttribute Name="HasQuotes" UId="2681">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2682" />
+            <Component Name="SafetyDoorLamp" UId="2683">
+              <Token Text="[" UId="2684" />
+              <Access Scope="LiteralConstant" UId="2685">
+                <Constant UId="2686">
+                  <ConstantValue UId="2688">18</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2689" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2690" />
+      <NewLine Num="1" UId="2691" />
+      <Blank Num="28" UId="2692" />
+      <Parameter Name="ioSafetyGateLock" UId="2693">
+        <Blank Num="1" UId="2694" />
+        <Token Text=":=" UId="2695" />
+        <Blank Num="1" UId="2696" />
+        <Access Scope="GlobalVariable" UId="2697">
+          <Symbol UId="2698">
+            <Component Name="ST10_SysOutput" UId="2699">
+              <BooleanAttribute Name="HasQuotes" UId="2700">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2701" />
+            <Component Name="MaterialDoorCoil" UId="2702">
+              <Token Text="[" UId="2703" />
+              <Access Scope="LiteralConstant" UId="2704">
+                <Constant UId="2705">
+                  <ConstantValue UId="2707">8</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2708" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2709" />
+      <NewLine Num="1" UId="2710" />
+      <Blank Num="28" UId="2711" />
+      <Parameter Name="ioHMI_Interface" UId="2712">
+        <Blank Num="1" UId="2713" />
+        <Token Text=":=" UId="2714" />
+        <Blank Num="1" UId="2715" />
+        <Access Scope="GlobalVariable" UId="2716">
+          <Symbol UId="2717">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2718">
+              <BooleanAttribute Name="HasQuotes" UId="2719">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2720" />
+            <Component Name="aDev" UId="2721">
+              <Token Text="[" UId="2722" />
+              <Access Scope="LocalVariable" UId="2723">
+                <Symbol UId="2724">
+                  <Component Name="idex" UId="2725" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="2726" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="2729" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="2730" />
+  <NewLine Num="1" UId="2731" />
+  <Blank Num="4" UId="2732" />
+  <NewLine Num="1" UId="2733" />
+  <Token Text="END_REGION" UId="2734" />
+  <NewLine Num="2" UId="2735" />
+  <Token Text="REGION" UId="2736" />
+  <Blank Num="1" UId="2737" />
+  <Text UId="2738">SafetyGate 19    </Text>
+  <NewLine Num="1" UId="2739" />
+  <Blank Num="4" UId="2740" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2741">
+    <Text UId="2742">定义编号</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2743" />
+  <Blank Num="4" UId="2744" />
+  <Access Scope="LocalVariable" UId="2745">
+    <Symbol UId="2746">
+      <Component Name="idex" UId="2747" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="2748" />
+  <Token Text=":=" UId="2749" />
+  <Blank Num="1" UId="2750" />
+  <Access Scope="LiteralConstant" UId="2751">
+    <Constant UId="2752">
+      <ConstantValue UId="2754">19</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="2755" />
+  <NewLine Num="1" UId="2756" />
+  <Blank Num="4" UId="2757" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2758">
+    <Text UId="2759">功能块调用</Text>
+  </LineComment>
+  <NewLine Num="1" UId="2760" />
+  <Blank Num="4" UId="2761" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="2762">
+    <Text UId="2763" />
+  </LineComment>
+  <NewLine Num="1" UId="2764" />
+  <Blank Num="4" UId="2765" />
+  <Access Scope="Call" UId="2766">
+    <CallInfo UId="2767" BlockType="FB" Name="SafetyGate">
+      <Instance Scope="GlobalVariable" UId="2768">
+        <Component Name="ST10_NGGate2_DB" UId="2769">
+          <BooleanAttribute Name="HasQuotes" UId="2770">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="2771" />
+      <Parameter Name="iSysInface" UId="2772">
+        <Blank Num="1" UId="2773" />
+        <Token Text=":=" UId="2774" />
+        <Blank Num="1" UId="2775" />
+        <Access Scope="LocalVariable" UId="2776">
+          <Symbol UId="2777">
+            <Component Name="iSysMode" UId="2778" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2779" />
+      <NewLine Num="1" UId="2780" />
+      <Blank Num="22" UId="2781" />
+      <Parameter Name="iSafetyGate Opened Monitor" UId="2782">
+        <Blank Num="1" UId="2783" />
+        <Token Text=":=" UId="2784" />
+        <Blank Num="1" UId="2785" />
+        <Access Scope="GlobalVariable" UId="2786">
+          <Symbol UId="2787">
+            <Component Name="iE-NG-02 Safety Gate_Open" UId="2788" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2789" />
+      <NewLine Num="1" UId="2790" />
+      <Blank Num="22" UId="2791" />
+      <Parameter Name="iSafetyGate Locked Monitor" UId="2792">
+        <Blank Num="1" UId="2793" />
+        <Token Text=":=" UId="2794" />
+        <Blank Num="1" UId="2795" />
+        <Access Scope="GlobalVariable" UId="2796">
+          <Symbol UId="2797">
+            <Component Name="iE-NG-02 Safety Gate_UnLock" UId="2798" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2799" />
+      <NewLine Num="1" UId="2800" />
+      <Blank Num="22" UId="2801" />
+      <Parameter Name="i1s_Pulse" UId="2802">
+        <Blank Num="1" UId="2803" />
+        <Token Text=":=" UId="2804" />
+        <Blank Num="1" UId="2805" />
+        <Access Scope="GlobalVariable" UId="2806">
+          <Symbol UId="2807">
+            <Component Name="ClockMemory1s" UId="2808">
+              <BooleanAttribute Name="HasQuotes" UId="2809">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2810" />
+      <NewLine Num="1" UId="2811" />
+      <Blank Num="22" UId="2812" />
+      <Parameter Name="iMode" UId="2813">
+        <Blank Num="1" UId="2814" />
+        <Token Text=":=" UId="2815" />
+        <Blank Num="1" UId="2816" />
+        <Access Scope="LiteralConstant" UId="2817">
+          <Constant UId="2818">
+            <ConstantValue UId="2820">2</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2821" />
+      <NewLine Num="1" UId="2822" />
+      <Blank Num="22" UId="2823" />
+      <Parameter Name="oSafetyGate LockedLamp" UId="2824">
+        <Blank Num="1" UId="2825" />
+        <Token Text="=&gt;" UId="2826" />
+        <Blank Num="1" UId="2827" />
+        <Access Scope="GlobalVariable" UId="2828">
+          <Symbol UId="2829">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2830">
+              <BooleanAttribute Name="HasQuotes" UId="2831">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2832" />
+            <Component Name="SafetyDoorLamp" UId="2833">
+              <Token Text="[" UId="2834" />
+              <Access Scope="LiteralConstant" UId="2835">
+                <Constant UId="2836">
+                  <ConstantValue UId="2838">19</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2839" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2840" />
+      <NewLine Num="1" UId="2841" />
+      <Blank Num="22" UId="2842" />
+      <Parameter Name="ioSafetyGateLock" UId="2843">
+        <Blank Num="1" UId="2844" />
+        <Token Text=":=" UId="2845" />
+        <Blank Num="1" UId="2846" />
+        <Access Scope="GlobalVariable" UId="2847">
+          <Symbol UId="2848">
+            <Component Name="ST10_SysOutput" UId="2849">
+              <BooleanAttribute Name="HasQuotes" UId="2850">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2851" />
+            <Component Name="MaterialDoorCoil" UId="2852">
+              <Token Text="[" UId="2853" />
+              <Access Scope="LiteralConstant" UId="2854">
+                <Constant UId="2855">
+                  <ConstantValue UId="2857">9</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="2858" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="2859" />
+      <NewLine Num="1" UId="2860" />
+      <Blank Num="22" UId="2861" />
+      <Parameter Name="ioHMI_Interface" UId="2862">
+        <Blank Num="1" UId="2863" />
+        <Token Text=":=" UId="2864" />
+        <Blank Num="1" UId="2865" />
+        <Access Scope="GlobalVariable" UId="2866">
+          <Symbol UId="2867">
+            <Component Name="ST10_SafetyGate_InterfaceDB" UId="2868">
+              <BooleanAttribute Name="HasQuotes" UId="2869">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="2870" />
+            <Component Name="aDev" UId="2871">
+              <Token Text="[" UId="2872" />
+              <Access Scope="LocalVariable" UId="2873">
+                <Symbol UId="2874">
+                  <Component Name="idex" UId="2875" />
+                </Symbol>
+              </Access>
+              <Token Text="]" UId="2876" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="2879" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="2880" />
+  <NewLine Num="1" UId="2881" />
+  <Blank Num="4" UId="2882" />
+  <NewLine Num="1" UId="2883" />
+  <Token Text="END_REGION" UId="2884" />
+  <NewLine Num="6" UId="2885" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

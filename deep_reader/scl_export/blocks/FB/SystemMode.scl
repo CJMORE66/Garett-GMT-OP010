@@ -50,5 +50,38 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/02_Comm/02_SysMode/SystemMode.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF NOT #tAlwaysOn THEN #tAlwaysOn := TRUE; END_IF;
+  // Network 2
+  #oControlON := ((#tAlwaysOn AND #iEstopAllOK) AND #iControlOnMonitor);
+  IF ((#tAlwaysOn AND #iEstopAllOK) AND #iResetFault) THEN #oEStopOK := TRUE; END_IF;
+  IF (#tAlwaysOn AND NOT #iEstopAllOK) THEN #oEStopOK := FALSE; END_IF;
+  // Network 3
+  #oReset := (#tAlwaysOn AND #iResetFault);
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TOF(1)
+  // Coil UId=29: nelze určit podmínku (vstupní síť).
+  // Network 5
+  #oSafetyDoorOK := (#tAlwaysOn AND #iSafetyDoor);
+  #oLightCurtainOK := ((#tAlwaysOn AND #oControlON) AND #iLightCurtain);
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(6), O(6), Move(5), TON(1)
+  // Coil UId=87: nelze určit podmínku (vstupní síť).
+  // Coil UId=102: nelze určit podmínku (vstupní síť).
+  // Coil UId=110: nelze určit podmínku (vstupní síť).
+  // Coil UId=118: nelze určit podmínku (vstupní síť).
+  // Coil UId=129: nelze určit podmínku (vstupní síť).
+  // Coil UId=130: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TOF(1)
+  // Coil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 8
+  #oReady := (((((#oRun AND #oAutoMode) AND #oMainPressureOK) AND #iFixtureOK) AND #sChangeOverOK) AND #iAllDeviceOK);
+  // Network 9
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(5)
 END_FUNCTION_BLOCK

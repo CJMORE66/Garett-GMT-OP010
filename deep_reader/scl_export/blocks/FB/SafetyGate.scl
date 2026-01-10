@@ -29,5 +29,44 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/03_Device/102 SafetyGate/SafetyGate.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF NOT #tAlyways_On THEN #tAlyways_On := TRUE; END_IF;
+  // Network 2
+  IF #tAlyways_On THEN #tAlyways_Off := FALSE; END_IF;
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(1), O(1)
+  // SCoil UId=40: nelze určit podmínku (vstupní síť).
+  // RCoil UId=41: nelze určit podmínku (vstupní síť).
+  // SCoil UId=44: nelze určit podmínku (vstupní síť).
+  // RCoil UId=45: nelze určit podmínku (vstupní síť).
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Ne(1), NBox(1)
+  // RCoil UId=38: nelze určit podmínku (vstupní síť).
+  // RCoil UId=41: nelze určit podmínku (vstupní síť).
+  // RCoil UId=42: nelze určit podmínku (vstupní síť).
+  // RCoil UId=45: nelze určit podmínku (vstupní síť).
+  // RCoil UId=47: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), O(1)
+  // RCoil UId=38: nelze určit podmínku (vstupní síť).
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): TON(3), Eq(2), O(1)
+  // SCoil UId=60: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // Coil UId=31: nelze určit podmínku (vstupní síť).
+  // Network 8
+  #ioHMI_Interface.Status.Lock/Unlock Indicator := #ioSafetyGateLock;
+  // Network 9
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(3)
+  // Coil UId=39: nelze určit podmínku (vstupní síť).
+  // Coil UId=43: nelze určit podmínku (vstupní síť).
+  // Coil UId=47: nelze určit podmínku (vstupní síť).
 END_FUNCTION_BLOCK

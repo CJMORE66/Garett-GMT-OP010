@@ -279,4 +279,83 @@ BEGIN
       ..ServoV90_A3.IO.ioManEnale := ;
       ..ServoV90_A4.IO.ioManEnale := ;
   END_IF;
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // RCoil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Network 3
+  ServoV90_A1.Interlock.Case1 := Station_Sys.Status.Run;
+  ServoV90_A1.Interlock.Case2 := Station_Sys.Status.Run;
+  ServoV90_A1.In.iInterlock := ((Station_Sys.Status.Run AND ServoV90_A1.Interlock.Case1) AND ServoV90_A1.Interlock.Case2);
+  // Network 4
+  ServoV90_A1.IO.ioAutoEnale := (((AlwaysTRUE AND Station_Sys.Auto.Mode) AND Station_Sys.Status.Run) AND iALightCurtain_1);
+  IF (AlwaysTRUE AND NOT iALightCurtain_1) THEN ServoV90_A1.IO.ioManEnale := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Move(1)
+  // SCoil UId=46: nelze určit podmínku (vstupní síť).
+  // SCoil UId=50: nelze určit podmínku (vstupní síť).
+  // Network 5
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // RCoil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Network 8
+  ServoV90_A2.Interlock.Case1 := Station_Sys.Status.Run;
+  ServoV90_A2.Interlock.Case2 := Station_Sys.Status.Run;
+  ServoV90_A2.In.iInterlock := ((Station_Sys.Status.Run AND ServoV90_A2.Interlock.Case1) AND ServoV90_A2.Interlock.Case2);
+  // Network 9
+  ServoV90_A2.IO.ioAutoEnale := ((AlwaysTRUE AND Station_Sys.Status.Run) AND Station_Sys.Auto.Mode);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Move(1)
+  // SCoil UId=40: nelze určit podmínku (vstupní síť).
+  // SCoil UId=44: nelze určit podmínku (vstupní síť).
+  // Network 10
+  // Network 11
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // RCoil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 12
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Network 13
+  ServoV90_A3.Interlock.Case1 := Station_Sys.Status.Run;
+  ServoV90_A3.Interlock.Case2 := Station_Sys.Status.Run;
+  ServoV90_A3.In.iInterlock := ((Station_Sys.Status.Run AND ServoV90_A3.Interlock.Case1) AND ServoV90_A3.Interlock.Case2);
+  // Network 14
+  ServoV90_A3.IO.ioAutoEnale := ((AlwaysTRUE AND Station_Sys.Status.Run) AND Station_Sys.Auto.Mode);
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Move(1)
+  // SCoil UId=39: nelze určit podmínku (vstupní síť).
+  // SCoil UId=42: nelze určit podmínku (vstupní síť).
+  // Network 15
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(2), O(1)
+  // Network 16
+  IF ServoV90_DeviceCtl.V90Servo THEN ServoV90_DeviceCtl.V90Servo := FALSE; END_IF;
+  // Network 17
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): O(1)
+  // RCoil UId=27: nelze určit podmínku (vstupní síť).
+  // Network 18
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Network 19
+  ServoV90_A4.Interlock.Case1 := Station_Sys.Status.Run;
+  ServoV90_A4.Interlock.Case2 := Station_Sys.Status.Run;
+  ServoV90_A4.In.iInterlock := ((Station_Sys.Status.Run AND ServoV90_A4.Interlock.Case1) AND ServoV90_A4.Interlock.Case2);
+  // Network 20
+  ServoV90_A4.IO.ioAutoEnale := (((AlwaysTRUE AND Station_Sys.Status.Run) AND Station_Sys.Auto.Mode) AND iALightCurtain_2);
+  IF (AlwaysTRUE AND NOT iALightCurtain_2) THEN ServoV90_A4.IO.ioManEnale := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PBox(2), Move(1)
+  // SCoil UId=46: nelze určit podmínku (vstupní síť).
+  // SCoil UId=50: nelze určit podmínku (vstupní síť).
+  // Network 21
 END_FUNCTION_BLOCK

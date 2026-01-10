@@ -13,5 +13,63 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/11_MES/MES.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  IF Station_Sys.Interface.Auto.Mode THEN MES_CheckControl.ST1MesCheckIn := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // RCoil UId=32: nelze určit podmínku (vstupní síť).
+  // RCoil UId=33: nelze určit podmínku (vstupní síť).
+  // RCoil UId=34: nelze určit podmínku (vstupní síť).
+  // RCoil UId=35: nelze určit podmínku (vstupní síť).
+  // RCoil UId=36: nelze určit podmínku (vstupní síť).
+  // RCoil UId=37: nelze určit podmínku (vstupní síť).
+  // RCoil UId=38: nelze určit podmínku (vstupní síť).
+  // Network 2
+  PLCtoMES.PLC.Unload_HeartbeatSignal := (AlwaysTRUE AND ClockMemory2s);
+  // Network 3
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(4)
+  // Network 4
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), O(1), S_Move(1)
+  // Network 5
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(2), Eq(1), O(1), Move(1)
+  // Network 6
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), PBox(1), S_Move(1)
+  // Network 7
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(2), Eq(1), PBox(1), Move(1)
+  // Network 8
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(1)
+  // Network 9
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(7), S_Move(3), Eq(1), Ne(1)
+  // Network 10
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), PBox(1), S_Move(1)
+  // Network 11
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(2), Eq(1), PBox(1), Move(1)
+  // Network 12
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(1)
+  // Network 13
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(7), S_Move(3), Eq(1), Ne(1)
+  // Network 14
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Eq(1), PBox(1), S_Move(1)
+  // Network 15
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(2), Eq(1), PBox(1), Move(1)
+  // Network 16
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): S_Move(1)
+  // Network 17
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(7), S_Move(3), Eq(1), Ne(1)
+  // Network 18
 END_FUNCTION

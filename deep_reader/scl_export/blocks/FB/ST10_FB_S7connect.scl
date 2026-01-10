@@ -17,5 +17,19 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/OP010/10_Device/09_CuringOven/ST10_FB_S7connect.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): PUT(1)
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): GET(1)
+  // Network 3
+  ST10_PLC_PutDB.OutData.Global.Beat := (AlwaysTRUE AND ClockMemory0.5s);
+  // Network 4
+  ST10_PLC_PutDB.OutData.Global.AutoRunning := (AlwaysTRUE AND Station_Sys.Auto.Mode);
+  // Network 5
+  ST10_PLC_PutDB.OutData.Global.Spare_1 := Station_Sys.Status.EStopOK;
+  // Network 6
+  AutoProcessControl.Headt.PalletUnloadingPrimit := (AlwaysTRUE AND ST10_PLC_GetDB.InData.Control.AskPallet);
 END_FUNCTION_BLOCK

@@ -16,5 +16,18 @@ END_VAR
 BEGIN
   // Původní jazyk: LAD
   // Zdroj XML: EXPORT/Program blocks/03_Device/999 Base/FB_Step.xml
-  // (Žádný StructuredText network nebyl nalezen; LAD/STL/GRAPH není automaticky překládán.)
+  // --- LAD/FBD → SCL (orientační převod, jen pro revizi) ---
+  // Network 1
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(1)
+  // Network 2
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Eq(1), TON(1), O(1)
+  // RCoil UId=44: nelze určit podmínku (vstupní síť).
+  // RCoil UId=45: nelze určit podmínku (vstupní síť).
+  // Network 3
+  IF TRUE THEN #bInitialization := FALSE; END_IF;
+  // --- Poznámky / omezení převodu ---
+  // Síť obsahuje nepodporované prvky (ponecháno jen jako komentář): Move(2), Ne(1), Eq(1)
+  // Coil UId=32: nelze určit podmínku (vstupní síť).
 END_FUNCTION_BLOCK
