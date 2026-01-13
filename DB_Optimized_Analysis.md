@@ -1,0 +1,91 @@
+# TIA V18 Project DB Optimized Block Access Analysis
+
+## DBs with Optimized Block Access (MemoryLayout=Optimized)
+- GeneralDebug.xml
+- ST10_SysInput.xml
+- ST10_SysOutput.xml
+- AutoProcess_HMI.xml
+- TON.xml
+- Parameter.xml
+- ST10_SafetyGate_InterfaceDB.xml
+- ST10_Stopper_InterfaceDB.xml
+- OP10_GeneralAnalogDB.xml
+- DB_KeyenceCheckerIV3.xml
+- Debug.xml
+- DATA.xml
+- MotorControl.xml
+- PartData_Interface_DB.xml
+- DB_Commissioning.xml
+(and others)
+
+## DBs without Optimized Block Access (MemoryLayout=Standard)
+- DiagnosticDataBlock.xml
+- Sys.xml
+- ST10_GeneralData.xml
+- Station_Sys.xml
+- ChangeOver_DB.xml
+- AutoProcessControl.xml
+- AutoProcessData.xml
+- AutoProcessData_Buffer.xml
+- AutoProcessData_Buffer_Clear.xml
+- PalletRelease.xml
+- ST10_PM.xml
+- ST10_DeviceError.xml
+- ST10_GlobalError.xml
+- ST10_WarningDB.xml
+- ST10_TipDB.xml
+- OP010_MES_RecipeDB.xml
+- ST10_RecipeActiveDB.xml
+- ST10_RecipeDB.xml
+- ST10_RecipeDB_HMI.xml
+- ST10_PMCountCycleTime.xml
+- ST10Cylinder.xml
+- ST10_PLC_GetDB.xml
+- ST10_PLC_PutDB.xml
+- HMISystemDB.xml
+- IAI_A1.xml
+- IAI_A2.xml
+- IAI_A3.xml
+- IAI_DeviceCtl.xml
+- ModeDB.xml
+- KistlerPressData1.xml
+- KistlerPresser1_DB.xml
+- KistlerPressData2.xml
+- KistlerPresser2_DB.xml
+- ProcessData_1.xml
+- Robot_DB.xml
+- ServoV90_A1.xml
+- ServoV90_A2.xml
+- ServoV90_A3.xml
+- ServoV90_A4.xml
+- ServoV90_DeviceCtl.xml
+- ST10_DBInterface_Stopper.xml
+- PilzData.xml
+- GluingControl.xml
+- PalletNGData.xml
+- MotorData.xml
+- MEStoPLC.xml
+- MES_CheckControl.xml
+- MES_Log_DB.xml
+- PLCtoMES.xml
+- Scanner1LoadData.xml
+- Station1LoadData.xml
+- Station1UnLoadData.xml
+- Station2LoadData.xml
+- Station2UnLoadData.xml
+- Station3LoadData.xml
+- Station3UnLoadData.xml
+- Station4LoadData.xml
+- Station4UnLoadData.xml
+- Station5LoadData.xml
+- Station5UnLoadData.xml
+- Station6LoadData.xml
+- Station6UnLoadData.xml
+- Station7LoadData.xml
+- Station7UnLoadData.xml
+- Station8LoadData.xml
+- Station8UnLoadData.xml
+(and others)
+
+## DBs that can be switched to Optimized Block Access
+All DBs with Standard layout can be switched to Optimized, as they use only symbolic access.
