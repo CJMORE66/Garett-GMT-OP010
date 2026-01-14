@@ -1,0 +1,39 @@
+// Constants for V90 Servo and Gluing positions
+// Replace magic numbers with named constants
+
+TYPE
+    ServoPosition : STRUCT
+        Position : DInt;
+        Velocity : Int;
+        Name : String[20];
+    END_STRUCT;
+END_TYPE
+
+VAR_GLOBAL CONSTANT
+    // Servo indices
+    SERVO_Z := 3;
+
+    // Position indices for gluing
+    POS_IDLE := 1;
+    POS_HOMING := 2;
+    POS_APPROACH := 2;
+    POS_GLUE_START := 3;
+    POS_GLUE_END := 5;
+    POS_CLEAN := 6;
+
+    // Velocities
+    VEL_FAST := 500;
+    VEL_GLUE := 100;
+    VEL_MANUAL := 200;
+
+    // Timeouts
+    TIMEOUT_MOTION := T#5S;
+    TIMEOUT_HOMING := T#10S;
+    TIMEOUT_RUNNING := T#30S;
+
+    // Fault codes
+    FAULT_HOMING := 16#1001;
+    FAULT_MOTION := 16#1002;
+    FAULT_TIMEOUT := 16#2000;
+    FAULT_SAFETY := 16#3000;
+END_VAR

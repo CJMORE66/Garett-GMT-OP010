@@ -1,0 +1,105 @@
+DATA_BLOCK "DB_ST10_Recipe"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+"UDT_ST10_Recipe"
+BEGIN
+   Header.RecipeName := 'Default_OP10';
+   Header.RecipeID := 1;
+   Header.Version := 1;
+   Header.PartType := 'Product_1';
+   
+   Config.StationID := 350;
+   Config.PrevStationID := 345;
+   
+   General.StepTimeout := T#10S;
+   General.StepWarning := T#7S;
+   
+   Process.Timers.Delay_Short := T#300ms;
+   Process.Timers.Delay_Medium := T#1500ms;
+   Process.Timers.Delay_Long := T#3000ms;
+   Process.Timers.Cylinder_ActTime := T#500ms;
+   
+   Process.Limits.RetryLimit := 5;
+   
+   Process.Press.B1_Program := 1;
+   Process.Press.B2_Program := 1;
+   
+   Process.Vision.CGlueShaftIV3_Progs[1] := 16#0001;
+   Process.Vision.CGlueShaftIV3_Progs[2] := 16#0002;
+   Process.Vision.CGlueShaftIV3_Progs[3] := 16#0003;
+   Process.Vision.CGlueShaftIV3_Progs[4] := 16#0004;
+   Process.Vision.CGlueMagnetIV3_Prog := 16#0001;
+   Process.Vision.CGlueProgram := 1;
+
+   // Fixture Codes (Samples from existing DB)
+   Production.Fixtures.A1_Table[1] := 'SZ23055-OP010-E-Compressor-ring1 Loading tooling-1';
+   Production.Fixtures.A2_Table[1] := 'SZ23055-OP010-E-Compressor-ring2 Loading tooling-1';
+   Production.Fixtures.A1_RingUnload := 'SZ23055-OP010-E-Compresspr-ring1 cutting tool';
+   Production.Fixtures.B1_Press := 'SZ23055-OP010-E-Compressor-ring1 Below Positioning fixture -1';
+
+   // IAI_A1 StartValues
+   Motion.IAI_A1[1].Pos := 3419; Motion.IAI_A1[1].Vel := 10000;
+   Motion.IAI_A1[2].Pos := 48386; Motion.IAI_A1[2].Vel := 10000;
+   Motion.IAI_A1[3].Pos := 93294; Motion.IAI_A1[3].Vel := 10000;
+   Motion.IAI_A1[4].Pos := 138335; Motion.IAI_A1[4].Vel := 10000;
+   Motion.IAI_A1[5].Pos := 183464; Motion.IAI_A1[5].Vel := 10000;
+   Motion.IAI_A1[6].Pos := 228443; Motion.IAI_A1[6].Vel := 10000;
+   Motion.IAI_A1[7].Pos := 273535; Motion.IAI_A1[7].Vel := 10000;
+   Motion.IAI_A1[8].Pos := 318250; Motion.IAI_A1[8].Vel := 10000;
+
+   // IAI_A2 StartValues
+   Motion.IAI_A2[1].Pos := 3585; Motion.IAI_A2[1].Vel := 10000;
+   Motion.IAI_A2[2].Pos := 48610; Motion.IAI_A2[2].Vel := 10000;
+   Motion.IAI_A2[3].Pos := 93637; Motion.IAI_A2[3].Vel := 10000;
+   Motion.IAI_A2[4].Pos := 138606; Motion.IAI_A2[4].Vel := 10000;
+   Motion.IAI_A2[5].Pos := 183388; Motion.IAI_A2[5].Vel := 10000;
+   Motion.IAI_A2[6].Pos := 228458; Motion.IAI_A2[6].Vel := 10000;
+   Motion.IAI_A2[7].Pos := 273513; Motion.IAI_A2[7].Vel := 10000;
+   Motion.IAI_A2[8].Pos := 318501; Motion.IAI_A2[8].Vel := 10000;
+
+   // IAI_A3 StartValues
+   Motion.IAI_A3[1].Pos := 3585; Motion.IAI_A3[1].Vel := 10000;
+   Motion.IAI_A3[2].Pos := 48610; Motion.IAI_A3[2].Vel := 10000;
+   Motion.IAI_A3[3].Pos := 93637; Motion.IAI_A3[3].Vel := 10000;
+   Motion.IAI_A3[4].Pos := 138606; Motion.IAI_A3[4].Vel := 10000;
+   Motion.IAI_A3[5].Pos := 183388; Motion.IAI_A3[5].Vel := 10000;
+   Motion.IAI_A3[6].Pos := 228458; Motion.IAI_A3[6].Vel := 10000;
+   Motion.IAI_A3[7].Pos := 273513; Motion.IAI_A3[7].Vel := 10000;
+   Motion.IAI_A3[8].Pos := 318501; Motion.IAI_A3[8].Vel := 10000;
+
+   // ServoV90_A1 StartValues
+   Motion.ServoV90_A1[1].Pos := 3419.0; Motion.ServoV90_A1[1].Vel := 10000;
+   Motion.ServoV90_A1[2].Pos := 48386.0; Motion.ServoV90_A1[2].Vel := 10000;
+   Motion.ServoV90_A1[3].Pos := 93294.0; Motion.ServoV90_A1[3].Vel := 10000;
+   Motion.ServoV90_A1[4].Pos := 138335.0; Motion.ServoV90_A1[4].Vel := 10000;
+   Motion.ServoV90_A1[5].Pos := 183464.0; Motion.ServoV90_A1[5].Vel := 10000;
+   Motion.ServoV90_A1[6].Pos := 228443.0; Motion.ServoV90_A1[6].Vel := 10000;
+   Motion.ServoV90_A1[7].Pos := 273535.0; Motion.ServoV90_A1[7].Vel := 10000;
+   Motion.ServoV90_A1[8].Pos := 318250.0; Motion.ServoV90_A1[8].Vel := 10000;
+
+   // ServoV90_A2 StartValues
+   Motion.ServoV90_A2[1].Pos := 0.0; Motion.ServoV90_A2[1].Vel := 20000;
+   Motion.ServoV90_A2[2].Pos := 450000.0; Motion.ServoV90_A2[2].Vel := 10000;
+   Motion.ServoV90_A2[3].Pos := 900000.0; Motion.ServoV90_A2[3].Vel := 10000;
+   Motion.ServoV90_A2[4].Pos := 135000.0; Motion.ServoV90_A2[4].Vel := 10000;
+   Motion.ServoV90_A2[5].Pos := 180000.0; Motion.ServoV90_A2[5].Vel := 10000;
+   Motion.ServoV90_A2[6].Pos := 225000.0; Motion.ServoV90_A2[6].Vel := 10000;
+   Motion.ServoV90_A2[7].Pos := 270000.0; Motion.ServoV90_A2[7].Vel := 10000;
+   Motion.ServoV90_A2[8].Pos := 315000.0; Motion.ServoV90_A2[8].Vel := 10000;
+
+   // ServoV90_A3 StartValues 
+   Motion.ServoV90_A3[1].Pos := 0.0; Motion.ServoV90_A3[1].Vel := 20000;
+   
+   // ServoV90_A4 StartValues
+   Motion.ServoV90_A4[1].Pos := 0.0; Motion.ServoV90_A4[1].Vel := 20000;
+   Motion.ServoV90_A4[2].Pos := 680000.0; Motion.ServoV90_A4[2].Vel := 10000;
+   Motion.ServoV90_A4[3].Pos := 680000.0; Motion.ServoV90_A4[3].Vel := 10000;
+   Motion.ServoV90_A4[4].Pos := 680000.0; Motion.ServoV90_A4[4].Vel := 10000;
+   Motion.ServoV90_A4[5].Pos := 680000.0; Motion.ServoV90_A4[5].Vel := 10000;
+   Motion.ServoV90_A4[6].Pos := 680000.0; Motion.ServoV90_A4[6].Vel := 10000;
+   Motion.ServoV90_A4[7].Pos := 90000.0; Motion.ServoV90_A4[7].Vel := 10000;
+   Motion.ServoV90_A4[8].Pos := 180000.0; Motion.ServoV90_A4[8].Vel := 10000;
+   Motion.ServoV90_A4[9].Pos := 270000.0; Motion.ServoV90_A4[9].Vel := 10000;
+
+END_DATA_BLOCK

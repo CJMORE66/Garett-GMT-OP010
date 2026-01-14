@@ -1,0 +1,2363 @@
+﻿TYPE "KukaRobot_UserOutput_3"
+VERSION : 0.1
+   STRUCT
+      Public : Struct
+         GO_CurrentMode : USInt;
+         GO_CurrentPartType : USInt;
+         GO_SpeedActual : USInt;   //Robot speed
+         GO_RobotTaskSequence : Byte;
+         GO5_RobGrip1Status : Byte;   //Gripper 1 status
+         GO6_RobGrip2Status : Byte;   //Gripper 2 state
+         GO7_Pallet1Count : Byte;
+         GO8_UnloadingPalletCount : Byte;   //Pallet finished product count
+         GO9 : Byte;
+         GO10 : Byte;
+      END_STRUCT;
+      Gripper : Struct
+         DO129_Grip1GoWork : Bool;   //Clamp 1 goes to work position
+         DO130_Grip1GoHome : Bool;   //Clamp 1 to original position
+         DO131_Grip2GoWork : Bool;   //Clamp 2 goes to work position
+         DO132_Grip2GoHome : Bool;   //Clamp 2 to original position
+         DO133 : Bool;
+         DO134 : Bool;
+         DO135 : Bool;
+         DO136 : Bool;
+         DO137 : Bool;
+         DO138 : Bool;
+         DO139 : Bool;
+         DO140 : Bool;
+         DO141 : Bool;
+         DO142 : Bool;
+         DO143 : Bool;
+         DO144 : Bool;
+         DO145 : Bool;
+         DO146 : Bool;
+         DO147 : Bool;
+         DO148 : Bool;
+         DO149 : Bool;
+         DO150 : Bool;
+         DO151 : Bool;
+         DO152 : Bool;
+         DO153 : Bool;
+         DO154 : Bool;
+         DO155 : Bool;
+         DO156 : Bool;
+         DO157 : Bool;
+         DO158 : Bool;
+         DO159 : Bool;
+         DO160 : Bool;
+      END_STRUCT;
+      Home : Struct
+         DO161_WaitForHomeSeqStart : Bool;   //The robot waits for the command to be initialized
+         DO162_GoHomeFail : Bool;   //The robot fails to automatically return to Home
+         DO163_HomeSeqOK : Bool;   //Robot initialization completed
+         DO164_WaitForAutoStart : Bool;   //Robot waiting can automatically loop commands
+         DO165_AutoCycle : Bool;   //Robot automatic program loop
+         DO166 : Bool;
+         DO167 : Bool;
+         DO168 : Bool;
+         DO169 : Bool;
+         DO170 : Bool;
+         DO171 : Bool;
+         DO172 : Bool;
+         DO173 : Bool;
+         DO174 : Bool;
+         DO175 : Bool;
+         DO176 : Bool;
+         DO177_PressPut1Area : Bool;   //Press installation safety area (0 inside, 1 outside)
+         DO178_Robot2Area : Bool;   //Robot 2 safety zone (0 inside, 1 outside)
+         DO179_BufferArea : Bool;   //Buffer safe area
+         DO180_TableArea : Bool;   //Carousel retrieval safety area
+         DO181 : Bool;
+         DO182 : Bool;
+         DO183 : Bool;
+         DO184 : Bool;
+         DO185 : Bool;
+         DO186 : Bool;
+         DO187 : Bool;
+         DO188 : Bool;
+         DO189 : Bool;
+         DO190 : Bool;
+         DO191 : Bool;
+         DO192 : Bool;
+      END_STRUCT;
+      Special : Struct
+         DO193 : Bool;
+         DO194 : Bool;
+         DO195 : Bool;
+         DO196 : Bool;
+         DO197 : Bool;
+         DO198 : Bool;
+         DO199 : Bool;
+         DO200 : Bool;
+         DO201 : Bool;
+         DO202 : Bool;
+         DO203 : Bool;
+         DO204 : Bool;
+         DO205 : Bool;
+         DO206 : Bool;
+         DO207 : Bool;
+         DO208 : Bool;
+         DO209 : Bool;
+         DO210 : Bool;
+         DO211 : Bool;
+         DO212 : Bool;
+         DO213 : Bool;
+         DO214 : Bool;
+         DO215 : Bool;
+         DO216 : Bool;
+         DO217 : Bool;
+         DO218 : Bool;
+         DO219 : Bool;
+         DO220 : Bool;
+         DO221 : Bool;
+         DO222 : Bool;
+         DO223 : Bool;
+         DO224 : Bool;
+      END_STRUCT;
+      Cycle : Struct
+         DO225_ScanPosInside : Bool;   //During tool scanning process
+         DO226_ScanPos1Reach : Bool;   //The robot reaches the tool scanning 1 position
+         DO227_ScanPos2Reach : Bool;   //The robot reaches the tool scanning 2 position
+         DO228_ScanPos3Reach : Bool;   //The robot reaches position 3 of tool scanning code
+         DO229_ScanPos4Reach : Bool;   //The robot reaches position 4 of tool scanning code
+         DO230_ScanPos5Reach : Bool;   //The robot reaches position 5 of tool scanning code
+         DO231_ScanPos6Reach : Bool;   //The robot reaches position 6 of the tool scan code
+         DO232_ScanPos7Reach : Bool;   //The robot reaches position 7 of the workwear scan code
+         DO233_ScanPoseFinish : Bool;   //Workwear scan completed
+         DO234 : Bool;
+         DO235 : Bool;
+         DO236 : Bool;
+         DO237 : Bool;
+         DO238 : Bool;
+         DO239 : Bool;
+         DO240 : Bool;
+         DO241_PickPalletInside : Bool;
+         DO242_PickPalletFinish : Bool;
+         DO243_PickPalletFull : Bool;
+         DO244 : Bool;
+         DO245 : Bool;
+         DO246 : Bool;
+         DO247 : Bool;
+         DO248 : Bool;
+         DO249_PickMagnetInside : Bool;   //Magnet NG in the process of picking up materials
+         DO250_PickMagnetFinish : Bool;   //Magnet NG material retrieval completed
+         DO251 : Bool;
+         DO252 : Bool;
+         DO253_PickGlueNGInside : Bool;   //During the process of dispensing NG materials
+         DO254_PickGlueNGFinish : Bool;   //Dispensing NG material retrieval completed
+         DO255 : Bool;
+         DO256 : Bool;
+         DO257_PickTableInside : Bool;   //During the turntable retrieval process, 2# area small turntable
+         DO258_PickTableFinish : Bool;   //Turntable retrieval completed
+         DO259 : Bool;
+         DO260 : Bool;
+         DO261_ScanRingtInside : Bool;   //Ring scanning process
+         DO262_ScanRingFinish : Bool;   //Ring scan completed
+         DO263_ScanReach : Bool;   //Scan the code to reach the signal
+         DO264 : Bool;
+         DO265_LoadNGInside : Bool;   //During NG discharging process
+         DO266_LoadNGFinish : Bool;   //NG discharge completed
+         DO267 : Bool;
+         DO268 : Bool;
+         DO269 : Bool;
+         DO270 : Bool;
+         DO271 : Bool;
+         DO272 : Bool;
+         DO273_PressPutPart1Inside : Bool;
+         DO274_PressPutPart1Finish : Bool;
+         DO275 : Bool;
+         DO276 : Bool;
+         DO277_PressPutRingInside : Bool;   //During the discharging process of press-fitting Ring
+         DO278_PressPutRingFinish : Bool;   //Press-mounted Ring discharging completed
+         DO279_Press2Reach : Bool;
+         DO280 : Bool;
+         DO281_PressPickInside : Bool;   //During the press loading and picking process
+         DO282_PressPickFinish : Bool;   //Pressing and loading completed
+         DO283 : Bool;
+         DO284 : Bool;
+         DO285 : Bool;
+         DO286 : Bool;
+         DO287 : Bool;
+         DO288 : Bool;
+         DO289_PutOkPartInside : Bool;   //During the unloading process of finished parts
+         DO290_PutOkPartFinish : Bool;   //Finished parts blanking completed
+         DO291_PutPalletFull : Bool;   //Finished parts are fully loaded
+         DO292 : Bool;
+         DO293 : Bool;
+         DO294 : Bool;
+         DO295 : Bool;
+         DO296 : Bool;
+         DO297_MaintainInside : Bool;
+         DO298_MaintainFinish : Bool;
+         DO299 : Bool;
+         DO300_HomeInside : Bool;
+         DO301_HomeFinish : Bool;
+         DO302 : Bool;
+         DO303 : Bool;
+         DO304 : Bool;
+         DO305_GripScanInside : Bool;
+         DO306_GripScanFinish : Bool;
+         DO307_ScanPos1Reach : Bool;
+         DO308_ScanPos2Reach : Bool;
+         DO309_ScanPos3Reach : Bool;
+         DO310_ScanPos4Reach : Bool;
+         DO311 : Bool;
+         DO312 : Bool;
+         DO313 : Bool;
+         DO314 : Bool;
+         DO315 : Bool;
+         DO316 : Bool;
+         DO317 : Bool;
+         DO318 : Bool;
+         DO319 : Bool;
+         DO320 : Bool;
+         DO321 : Bool;
+         DO322 : Bool;
+         DO323 : Bool;
+         DO324 : Bool;
+         DO325 : Bool;
+         DO326 : Bool;
+         DO327 : Bool;
+         DO328 : Bool;
+         DO329 : Bool;
+         DO330 : Bool;
+         DO331 : Bool;
+         DO332 : Bool;
+         DO333 : Bool;
+         DO334 : Bool;
+         DO335 : Bool;
+         DO336 : Bool;
+         DO337 : Bool;
+         DO338 : Bool;
+         DO339 : Bool;
+         DO340 : Bool;
+         DO341 : Bool;
+         DO342 : Bool;
+         DO343 : Bool;
+         DO344 : Bool;
+         DO345 : Bool;
+         DO346 : Bool;
+         DO347 : Bool;
+         DO348 : Bool;
+         DO349 : Bool;
+         DO350 : Bool;
+         DO351 : Bool;
+         DO352 : Bool;
+         DO353 : Bool;
+         DO354 : Bool;
+         DO355 : Bool;
+         DO356 : Bool;
+         DO357 : Bool;
+         DO358 : Bool;
+         DO359 : Bool;
+         DO360 : Bool;
+         DO361 : Bool;
+         DO362 : Bool;
+         DO363 : Bool;
+         DO364 : Bool;
+         DO365 : Bool;
+         DO366 : Bool;
+         DO367 : Bool;
+         DO368 : Bool;
+         DO369 : Bool;
+         DO370 : Bool;
+         DO371 : Bool;
+         DO372 : Bool;
+         DO373 : Bool;
+         DO374 : Bool;
+         DO375 : Bool;
+         DO376 : Bool;
+         DO377 : Bool;
+         DO378 : Bool;
+         DO379 : Bool;
+         DO380 : Bool;
+         DO381 : Bool;
+         DO382 : Bool;
+         DO383 : Bool;
+         DO384 : Bool;
+         DO385 : Bool;
+         DO386 : Bool;
+         DO387 : Bool;
+         DO388 : Bool;
+         DO389 : Bool;
+         DO390 : Bool;
+         DO391 : Bool;
+         DO392 : Bool;
+         DO393 : Bool;
+         DO394 : Bool;
+         DO395 : Bool;
+         DO396 : Bool;
+         DO397 : Bool;
+         DO398 : Bool;
+         DO399 : Bool;
+         DO400 : Bool;
+         DO401 : Bool;
+         DO402 : Bool;
+         DO403 : Bool;
+         DO404 : Bool;
+         DO405 : Bool;
+         DO406 : Bool;
+         DO407 : Bool;
+         DO408 : Bool;
+         DO409 : Bool;
+         DO410 : Bool;
+         DO411 : Bool;
+         DO412 : Bool;
+         DO413 : Bool;
+         DO414 : Bool;
+         DO415 : Bool;
+         DO416 : Bool;
+      END_STRUCT;
+      Safety : Struct
+         DO417 : Bool;
+         DO418 : Bool;
+         DO419 : Bool;
+         DO420 : Bool;
+         DO421 : Bool;
+         DO422 : Bool;
+         DO423 : Bool;
+         DO424 : Bool;
+         DO425 : Bool;
+         DO426 : Bool;
+         DO427 : Bool;
+         DO428 : Bool;
+         DO429 : Bool;
+         DO430 : Bool;
+         DO431 : Bool;
+         DO432 : Bool;
+         DO433 : Bool;
+         DO434 : Bool;
+         DO435 : Bool;
+         DO436 : Bool;
+         DO437 : Bool;
+         DO438 : Bool;
+         DO439 : Bool;
+         DO440 : Bool;
+         DO441 : Bool;
+         DO442 : Bool;
+         DO443 : Bool;
+         DO444 : Bool;
+         DO445 : Bool;
+         DO446 : Bool;
+         DO447 : Bool;
+         DO448 : Bool;
+         DO449 : Bool;
+         DO450 : Bool;
+         DO451 : Bool;
+         DO452 : Bool;
+         DO453 : Bool;
+         DO454 : Bool;
+         DO455 : Bool;
+         DO456 : Bool;
+         DO457 : Bool;
+         DO458 : Bool;
+         DO459 : Bool;
+         DO460 : Bool;
+         DO461 : Bool;
+         DO462 : Bool;
+         DO463 : Bool;
+         DO464 : Bool;
+         DO465 : Bool;
+         DO466 : Bool;
+         DO467 : Bool;
+         DO468 : Bool;
+         DO469 : Bool;
+         DO470 : Bool;
+         DO471 : Bool;
+         DO472 : Bool;
+         DO473 : Bool;
+         DO474 : Bool;
+         DO475 : Bool;
+         DO476 : Bool;
+         DO477 : Bool;
+         DO478 : Bool;
+         DO479 : Bool;
+         DO480 : Bool;
+         DO481 : Bool;
+         DO482 : Bool;
+         DO483 : Bool;
+         DO484 : Bool;
+         DO485 : Bool;
+         DO486 : Bool;
+         DO487 : Bool;
+         DO488 : Bool;
+         DO489 : Bool;
+         DO490 : Bool;
+         DO491 : Bool;
+         DO492 : Bool;
+         DO493 : Bool;
+         DO494 : Bool;
+         DO495 : Bool;
+         DO496 : Bool;
+         DO497 : Bool;
+         DO498 : Bool;
+         DO499 : Bool;
+         DO500 : Bool;
+         DO501 : Bool;
+         DO502 : Bool;
+         DO503 : Bool;
+         DO504 : Bool;
+         DO505 : Bool;
+         DO506 : Bool;
+         DO507 : Bool;
+         DO508 : Bool;
+         DO509 : Bool;
+         DO510 : Bool;
+         DO511 : Bool;
+         DO512 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_UserOutput_2"
+VERSION : 0.1
+   STRUCT
+      Public : Struct
+         GO_CurrentMode : USInt;
+         GO_CurrentPartType : USInt;
+         GO_SpeedActual : USInt;
+         GO_RobotTaskSequence : Byte;
+         GO5_RobGrip1Status : Byte;
+         GO6_RobGrip2Status : Byte;
+         GO7_Pallet1Count : Byte;   //pallet 1 count
+         GO8_Pallet2Count : Byte;   //Pallet 2 count
+         GO9 : Byte;
+         GO10 : Byte;
+      END_STRUCT;
+      Gripper : Struct
+         DO129_Grip1GoWork : Bool;   //Clamp 1 goes to work position
+         DO130_Grip1GoHome : Bool;   //Clamp 1 to original position
+         DO131_Grip2GoWork : Bool;   //Clamp 2 goes to work position
+         DO132_Grip2GoHome : Bool;   //Clamp 2 to original position
+         DO133 : Bool;
+         DO134 : Bool;
+         DO135 : Bool;
+         DO136 : Bool;
+         DO137 : Bool;
+         DO138 : Bool;
+         DO139 : Bool;
+         DO140 : Bool;
+         DO141 : Bool;
+         DO142 : Bool;
+         DO143 : Bool;
+         DO144 : Bool;
+         DO145 : Bool;
+         DO146 : Bool;
+         DO147 : Bool;
+         DO148 : Bool;
+         DO149 : Bool;
+         DO150 : Bool;
+         DO151 : Bool;
+         DO152 : Bool;
+         DO153 : Bool;
+         DO154 : Bool;
+         DO155 : Bool;
+         DO156 : Bool;
+         DO157 : Bool;
+         DO158 : Bool;
+         DO159 : Bool;
+         DO160 : Bool;
+      END_STRUCT;
+      Home : Struct
+         DO161_WaitForHomeSeqStart : Bool;   //The robot waits for the command to be initialized
+         DO162_GoHomeFail : Bool;   //The robot fails to automatically return to Home
+         DO163_HomeSeqOK : Bool;   //Robot initialization completed
+         DO164_WaitForAutoStart : Bool;   //Robot waiting can automatically loop commands
+         DO165_AutoCycle : Bool;   //Robot automatic program loop
+         DO166 : Bool;
+         DO167 : Bool;
+         DO168 : Bool;
+         DO169 : Bool;
+         DO170 : Bool;
+         DO171 : Bool;
+         DO172 : Bool;
+         DO173 : Bool;
+         DO174 : Bool;
+         DO175 : Bool;
+         DO176 : Bool;
+         DO177_LinePickArea : Bool;   //Line body retrieval safety area (0 inside, 1 outside)
+         DO178_GlueArea : Bool;   //Dispensing safety area (0 inside, 1 outside)
+         DO179_BufferArea : Bool;   //Buffer safe area
+         DO180_PressPutArea : Bool;   //Press discharge safety area
+         DO181_Robot3Area : Bool;   //Robot 3 safe area
+         DO182_Robot1Area : Bool;
+         DO183 : Bool;
+         DO184 : Bool;
+         DO185 : Bool;
+         DO186 : Bool;
+         DO187 : Bool;
+         DO188 : Bool;
+         DO189 : Bool;
+         DO190 : Bool;
+         DO191 : Bool;
+         DO192 : Bool;
+      END_STRUCT;
+      Special : Struct
+         DO193 : Bool;
+         DO194 : Bool;
+         DO195 : Bool;
+         DO196 : Bool;
+         DO197 : Bool;
+         DO198 : Bool;
+         DO199 : Bool;
+         DO200 : Bool;
+         DO201 : Bool;
+         DO202 : Bool;
+         DO203 : Bool;
+         DO204 : Bool;
+         DO205 : Bool;
+         DO206 : Bool;
+         DO207 : Bool;
+         DO208 : Bool;
+         DO209 : Bool;
+         DO210 : Bool;
+         DO211 : Bool;
+         DO212 : Bool;
+         DO213 : Bool;
+         DO214 : Bool;
+         DO215 : Bool;
+         DO216 : Bool;
+         DO217 : Bool;
+         DO218 : Bool;
+         DO219 : Bool;
+         DO220 : Bool;
+         DO221 : Bool;
+         DO222 : Bool;
+         DO223 : Bool;
+         DO224 : Bool;
+      END_STRUCT;
+      Cycle : Struct
+         "DO225_" : Bool;
+         "DO226_" : Bool;
+         "DO227_" : Bool;
+         "DO228_" : Bool;
+         "DO229_" : Bool;
+         "DO230_" : Bool;
+         "DO231_" : Bool;
+         "DO232_" : Bool;
+         "DO233_" : Bool;
+         "DO234_" : Bool;
+         "DO235_" : Bool;
+         "DO236_" : Bool;
+         "DO237_" : Bool;
+         "DO238_" : Bool;
+         "DO239_" : Bool;
+         "DO240_" : Bool;
+         DO241_PickPalletInside : Bool;   //During the process of taking materials
+         DO242_PickPalletFinish : Bool;   //Retrieval completed
+         DO243_PickPalletFull : Bool;   //Empty the tray
+         DO244 : Bool;
+         DO245 : Bool;
+         DO246 : Bool;
+         DO247 : Bool;
+         DO248 : Bool;
+         DO249_ScanNGPutInside : Bool;   //Scanning code during NG discharging process
+         DO250_ScanNGPutFinish : Bool;   //Scan the QR code and the NG material discharging is completed.
+         DO251 : Bool;
+         DO252 : Bool;
+         DO253_GlueNGPutInside : Bool;   //During the dispensing process of NG dispensing
+         DO254_GlueNGPutFinish : Bool;   //Dispensing NG dispensing completed
+         DO255 : Bool;
+         DO256 : Bool;
+         DO257_PickPartInside : Bool;
+         DO258_PickPartFinish : Bool;
+         DO259 : Bool;
+         DO260 : Bool;
+         DO261_ScanPartInside : Bool;   //During the scanning process of picking up materials
+         DO262_ScanPartFinish : Bool;   //Retrieval and scanning completed
+         DO263_ScanReach : Bool;   //Scan the code to reach the signal
+         DO264 : Bool;
+         DO265_GluePutInside : Bool;   //Dispensing during dispensing process
+         DO266_GluePutFinish : Bool;   //Dispensing and dispensing completed
+         "DO267_" : Bool;
+         "DO268_" : Bool;
+         DO269_GluePickInside : Bool;   //Dispensing During the process of taking materials
+         DO270_GluePickFinish : Bool;   //Dispensing and dispensing are completed
+         "DO271_" : Bool;
+         "DO272_" : Bool;
+         DO273_PressPutPart1Inside : Bool;   //During the discharge process of the press
+         DO274_PressPutPart1Finish : Bool;   //Press discharge completed
+         "DO275_" : Bool;
+         "DO276_" : Bool;
+         "DO277_" : Bool;
+         "DO278_" : Bool;
+         "DO279_" : Bool;
+         "DO280_" : Bool;
+         "DO281_" : Bool;
+         "DO282_" : Bool;
+         "DO283_" : Bool;
+         "DO284_" : Bool;
+         "DO285_" : Bool;
+         "DO286_" : Bool;
+         "DO287_" : Bool;
+         "DO288_" : Bool;
+         "DO289_" : Bool;
+         "DO290_" : Bool;
+         "DO291_" : Bool;
+         DO292 : Bool;
+         DO293 : Bool;
+         DO294 : Bool;
+         DO295 : Bool;
+         DO296 : Bool;
+         DO297_MaintainInside : Bool;
+         DO298_MaintainFinish : Bool;
+         DO299 : Bool;
+         DO300_HomeInside : Bool;
+         DO301_HomeFinish : Bool;
+         DO302 : Bool;
+         DO303 : Bool;
+         DO304 : Bool;
+         DO305_GripScanInside : Bool;
+         DO306_GripScanFinish : Bool;
+         DO307_ScanPos1Reach : Bool;
+         DO308_ScanPos2Reach : Bool;
+         DO309_ScanPos3Reach : Bool;
+         DO310_ScanPos4Reach : Bool;
+         DO311 : Bool;
+         DO312 : Bool;
+         DO313 : Bool;
+         DO314 : Bool;
+         DO315 : Bool;
+         DO316 : Bool;
+         DO317 : Bool;
+         DO318 : Bool;
+         DO319 : Bool;
+         DO320 : Bool;
+         DO321 : Bool;
+         DO322 : Bool;
+         DO323 : Bool;
+         DO324 : Bool;
+         DO325 : Bool;
+         DO326 : Bool;
+         DO327 : Bool;
+         DO328 : Bool;
+         DO329 : Bool;
+         DO330 : Bool;
+         DO331 : Bool;
+         DO332 : Bool;
+         DO333 : Bool;
+         DO334 : Bool;
+         DO335 : Bool;
+         DO336 : Bool;
+         DO337 : Bool;
+         DO338 : Bool;
+         DO339 : Bool;
+         DO340 : Bool;
+         DO341 : Bool;
+         DO342 : Bool;
+         DO343 : Bool;
+         DO344 : Bool;
+         DO345 : Bool;
+         DO346 : Bool;
+         DO347 : Bool;
+         DO348 : Bool;
+         DO349 : Bool;
+         DO350 : Bool;
+         DO351 : Bool;
+         DO352 : Bool;
+         DO353 : Bool;
+         DO354 : Bool;
+         DO355 : Bool;
+         DO356 : Bool;
+         DO357 : Bool;
+         DO358 : Bool;
+         DO359 : Bool;
+         DO360 : Bool;
+         DO361 : Bool;
+         DO362 : Bool;
+         DO363 : Bool;
+         DO364 : Bool;
+         DO365 : Bool;
+         DO366 : Bool;
+         DO367 : Bool;
+         DO368 : Bool;
+         DO369 : Bool;
+         DO370 : Bool;
+         DO371 : Bool;
+         DO372 : Bool;
+         DO373 : Bool;
+         DO374 : Bool;
+         DO375 : Bool;
+         DO376 : Bool;
+         DO377 : Bool;
+         DO378 : Bool;
+         DO379 : Bool;
+         DO380 : Bool;
+         DO381 : Bool;
+         DO382 : Bool;
+         DO383 : Bool;
+         DO384 : Bool;
+         DO385 : Bool;
+         DO386 : Bool;
+         DO387 : Bool;
+         DO388 : Bool;
+         DO389 : Bool;
+         DO390 : Bool;
+         DO391 : Bool;
+         DO392 : Bool;
+         DO393 : Bool;
+         DO394 : Bool;
+         DO395 : Bool;
+         DO396 : Bool;
+         DO397 : Bool;
+         DO398 : Bool;
+         DO399 : Bool;
+         DO400 : Bool;
+         DO401 : Bool;
+         DO402 : Bool;
+         DO403 : Bool;
+         DO404 : Bool;
+         DO405 : Bool;
+         DO406 : Bool;
+         DO407 : Bool;
+         DO408 : Bool;
+         DO409 : Bool;
+         DO410 : Bool;
+         DO411 : Bool;
+         DO412 : Bool;
+         DO413 : Bool;
+         DO414 : Bool;
+         DO415 : Bool;
+         DO416 : Bool;
+      END_STRUCT;
+      Safety : Struct
+         DO417 : Bool;
+         DO418 : Bool;
+         DO419 : Bool;
+         DO420 : Bool;
+         DO421 : Bool;
+         DO422 : Bool;
+         DO423 : Bool;
+         DO424 : Bool;
+         DO425 : Bool;
+         DO426 : Bool;
+         DO427 : Bool;
+         DO428 : Bool;
+         DO429 : Bool;
+         DO430 : Bool;
+         DO431 : Bool;
+         DO432 : Bool;
+         DO433 : Bool;
+         DO434 : Bool;
+         DO435 : Bool;
+         DO436 : Bool;
+         DO437 : Bool;
+         DO438 : Bool;
+         DO439 : Bool;
+         DO440 : Bool;
+         DO441 : Bool;
+         DO442 : Bool;
+         DO443 : Bool;
+         DO444 : Bool;
+         DO445 : Bool;
+         DO446 : Bool;
+         DO447 : Bool;
+         DO448 : Bool;
+         DO449 : Bool;
+         DO450 : Bool;
+         DO451 : Bool;
+         DO452 : Bool;
+         DO453 : Bool;
+         DO454 : Bool;
+         DO455 : Bool;
+         DO456 : Bool;
+         DO457 : Bool;
+         DO458 : Bool;
+         DO459 : Bool;
+         DO460 : Bool;
+         DO461 : Bool;
+         DO462 : Bool;
+         DO463 : Bool;
+         DO464 : Bool;
+         DO465 : Bool;
+         DO466 : Bool;
+         DO467 : Bool;
+         DO468 : Bool;
+         DO469 : Bool;
+         DO470 : Bool;
+         DO471 : Bool;
+         DO472 : Bool;
+         DO473 : Bool;
+         DO474 : Bool;
+         DO475 : Bool;
+         DO476 : Bool;
+         DO477 : Bool;
+         DO478 : Bool;
+         DO479 : Bool;
+         DO480 : Bool;
+         DO481 : Bool;
+         DO482 : Bool;
+         DO483 : Bool;
+         DO484 : Bool;
+         DO485 : Bool;
+         DO486 : Bool;
+         DO487 : Bool;
+         DO488 : Bool;
+         DO489 : Bool;
+         DO490 : Bool;
+         DO491 : Bool;
+         DO492 : Bool;
+         DO493 : Bool;
+         DO494 : Bool;
+         DO495 : Bool;
+         DO496 : Bool;
+         DO497 : Bool;
+         DO498 : Bool;
+         DO499 : Bool;
+         DO500 : Bool;
+         DO501 : Bool;
+         DO502 : Bool;
+         DO503 : Bool;
+         DO504 : Bool;
+         DO505 : Bool;
+         DO506 : Bool;
+         DO507 : Bool;
+         DO508 : Bool;
+         DO509 : Bool;
+         DO510 : Bool;
+         DO511 : Bool;
+         DO512 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_UserInput_2"
+VERSION : 0.1
+   STRUCT
+      Public : Struct
+         GI_TaskMode : USInt;
+         GI_PartType : USInt;
+         GI_SpeedSet : USInt;
+         "GI_PosNo." : USInt;
+         GI_5 : Byte;
+         GI_6 : Byte;
+         GI_7 : Byte;
+         GI_8 : Byte;
+         GI_9 : Byte;
+         GI_10 : Byte;
+      END_STRUCT;
+      Gripper : Struct
+         DI129_Grip1WP : Bool;
+         DI130_Grip1HP : Bool;
+         DI131_Grip2WP : Bool;
+         DI132_Grip2HP : Bool;
+         DI133_PartOnGrip1 : Bool;
+         DI134_PartOnGrip2 : Bool;
+         DI135 : Bool;
+         DI136 : Bool;
+         DI137 : Bool;
+         DI138 : Bool;
+         DI139 : Bool;
+         DI140 : Bool;
+         DI141 : Bool;
+         DI142 : Bool;
+         DI143 : Bool;
+         DI144 : Bool;
+         DI145 : Bool;
+         DI146 : Bool;
+         DI147 : Bool;
+         DI148 : Bool;
+         DI149 : Bool;
+         DI150 : Bool;
+         DI151 : Bool;
+         DI152 : Bool;
+         DI153 : Bool;
+         DI154 : Bool;
+         DI155 : Bool;
+         DI156 : Bool;
+         DI157 : Bool;
+         DI158 : Bool;
+         DI159 : Bool;
+         DI160 : Bool;
+      END_STRUCT;
+      Home : Struct
+         DI161_HomeSeqStart : Bool;
+         DI162_AutoCycleStart : Bool;
+         DI163 : Bool;
+         DI164 : Bool;
+         DI165 : Bool;
+         DI166 : Bool;
+         DI167 : Bool;
+         DI168 : Bool;
+         DI169_RobotMoved : Bool;
+         DI170 : Bool;
+         DI171 : Bool;
+         DI172 : Bool;
+         DI173 : Bool;
+         DI174 : Bool;
+         DI175 : Bool;
+         DI176 : Bool;
+         DI177_NG1_1 : Bool;
+         DI178_NG1_2 : Bool;
+         DI179_NG1_3 : Bool;
+         DI180_NG1_4 : Bool;
+         DI181_NG1_5 : Bool;
+         DI182_NG2_1 : Bool;
+         DI183_NG2_2 : Bool;
+         DI184_NG2_3 : Bool;
+         DI185_NG2_4 : Bool;
+         DI186_NG2_5 : Bool;
+         DI187_NG3_1 : Bool;
+         DI188_NG3_2 : Bool;
+         DI189_NG3_3 : Bool;
+         DI190_NG3_4 : Bool;
+         DI191_NG3_5 : Bool;
+         DI192 : Bool;
+      END_STRUCT;
+      Special : Struct
+         DI193 : Bool;
+         DI194 : Bool;
+         DI195 : Bool;
+         DI196 : Bool;
+         DI197 : Bool;
+         DI198 : Bool;
+         DI199 : Bool;
+         DI200 : Bool;
+         DI201 : Bool;
+         DI202 : Bool;
+         DI203 : Bool;
+         DI204 : Bool;
+         DI205 : Bool;
+         DI206 : Bool;
+         DI207 : Bool;
+         DI208 : Bool;
+         DI209 : Bool;
+         DI210 : Bool;
+         DI211 : Bool;
+         DI212 : Bool;
+         DI213 : Bool;
+         DI214 : Bool;
+         DI215 : Bool;
+         DI216 : Bool;
+         DI217 : Bool;
+         DI218 : Bool;
+         DI219 : Bool;
+         DI220 : Bool;
+         DI221 : Bool;
+         DI222 : Bool;
+         DI223 : Bool;
+         DI224 : Bool;
+      END_STRUCT;
+      Cycle : Struct
+         DI225_ScanPosReq : Bool;
+         DI226_ScanPos1Complete : Bool;
+         DI227_ScanPos2Complete : Bool;
+         DI228_ScanPos3Complete : Bool;
+         DI229_ScanPos4Complete : Bool;
+         DI230_ScanPos5Complete : Bool;
+         DI231_ScanPos6Complete : Bool;
+         DI232_ScanPos7Complete : Bool;
+         DI233 : Bool;
+         DI234 : Bool;
+         DI235 : Bool;
+         DI236 : Bool;
+         DI237 : Bool;
+         DI238 : Bool;
+         DI239 : Bool;
+         DI240 : Bool;
+         DI241_PickPalletReq : Bool;   //Tray retrieval request
+         DI242_NewPallet : Bool;   //New material tray
+         DI243 : Bool;
+         DI244 : Bool;
+         DI245 : Bool;
+         DI246 : Bool;
+         DI247 : Bool;
+         DI248 : Bool;
+         DI249_ScanNGPutReq : Bool;   //Scan the QR code to request NG material release
+         DI250 : Bool;
+         DI251 : Bool;
+         DI252 : Bool;
+         DI253_GlueNGPutReq : Bool;   //Dispensing NG material dispensing request
+         DI254 : Bool;
+         DI255 : Bool;
+         DI256 : Bool;
+         DI257_PickPartReq : Bool;
+         DI258 : Bool;
+         DI259 : Bool;
+         DI260 : Bool;
+         DI261_ScanPartReq : Bool;   //Scan code to request after picking up materials
+         DI262_ScanPartComplete : Bool;   //Scan code completed
+         DI263 : Bool;
+         DI264 : Bool;
+         DI265_GluePutReq : Bool;   //Dispensing dispensing request
+         "DI266_" : Bool;
+         "DI267_" : Bool;
+         DI268 : Bool;
+         DI269_GluePickReq : Bool;   //Dispensing and retrieval request
+         DI270 : Bool;
+         DI271 : Bool;
+         DI272 : Bool;
+         DI273_PutPressReq : Bool;   //Pressing position discharging request
+         "DI274_" : Bool;
+         "DI275_" : Bool;
+         "DI276_" : Bool;
+         "DI277_" : Bool;
+         "DI278_" : Bool;
+         "DI279_" : Bool;
+         "DI280_" : Bool;
+         "DI281_" : Bool;
+         "DI282_" : Bool;
+         "DI283_" : Bool;
+         "DI284_" : Bool;
+         "DI285_" : Bool;
+         "DI286_" : Bool;
+         "DI287_" : Bool;
+         DI288 : Bool;
+         "DI289_" : Bool;
+         DI290 : Bool;
+         DI291 : Bool;
+         DI292 : Bool;
+         DI293 : Bool;
+         DI294 : Bool;
+         DI295 : Bool;
+         DI296 : Bool;
+         DI297_MaintainRequest : Bool;
+         DI298 : Bool;
+         DI299 : Bool;
+         DI300_HomeRequest : Bool;
+         DI301 : Bool;
+         DI302 : Bool;
+         DI303 : Bool;
+         DI304 : Bool;
+         DI305_GripScan : Bool;
+         DI306_ScanPartComplete : Bool;
+         DI307_ScanPartFinish : Bool;
+         DI308 : Bool;
+         DI309 : Bool;
+         DI310 : Bool;
+         DI311 : Bool;
+         DI312 : Bool;
+         DI313 : Bool;
+         DI314 : Bool;
+         DI315 : Bool;
+         DI316 : Bool;
+         DI317 : Bool;
+         DI318 : Bool;
+         DI319 : Bool;
+         DI320 : Bool;
+         DI321 : Bool;
+         DI322 : Bool;
+         DI323 : Bool;
+         DI324 : Bool;
+         DI325 : Bool;
+         DI326 : Bool;
+         DI327 : Bool;
+         DI328 : Bool;
+         DI329 : Bool;
+         DI330 : Bool;
+         DI331 : Bool;
+         DI332 : Bool;
+         DI333 : Bool;
+         DI334 : Bool;
+         DI335 : Bool;
+         DI336 : Bool;
+         Camera_Y : DInt;
+         Camera_Z : DInt;
+         Camera_R : DInt;
+      END_STRUCT;
+      Safety : Struct
+         DI433 : Bool;
+         DI434 : Bool;
+         DI435 : Bool;
+         DI436 : Bool;
+         DI437 : Bool;
+         DI438 : Bool;
+         DI439 : Bool;
+         DI440 : Bool;
+         DI441 : Bool;
+         DI442 : Bool;
+         DI443 : Bool;
+         DI444 : Bool;
+         DI445 : Bool;
+         DI446 : Bool;
+         DI447 : Bool;
+         DI448 : Bool;
+         DI449 : Bool;
+         DI450 : Bool;
+         DI451 : Bool;
+         DI452 : Bool;
+         DI453 : Bool;
+         DI454 : Bool;
+         DI455 : Bool;
+         DI456 : Bool;
+         DI457 : Bool;
+         DI458 : Bool;
+         DI459 : Bool;
+         DI460 : Bool;
+         DI461 : Bool;
+         DI462 : Bool;
+         DI463 : Bool;
+         DI464 : Bool;
+         DI465 : Bool;
+         DI466 : Bool;
+         DI467 : Bool;
+         DI468 : Bool;
+         DI469 : Bool;
+         DI470 : Bool;
+         DI471 : Bool;
+         DI472 : Bool;
+         DI473 : Bool;
+         DI474 : Bool;
+         DI475 : Bool;
+         DI476 : Bool;
+         DI477 : Bool;
+         DI478 : Bool;
+         DI479 : Bool;
+         DI480 : Bool;
+         DI481 : Bool;
+         DI482 : Bool;
+         DI483 : Bool;
+         DI484 : Bool;
+         DI485 : Bool;
+         DI486 : Bool;
+         DI487 : Bool;
+         DI488 : Bool;
+         DI489 : Bool;
+         DI490 : Bool;
+         DI491 : Bool;
+         DI492 : Bool;
+         DI493 : Bool;
+         DI494 : Bool;
+         DI495 : Bool;
+         DI496 : Bool;
+         DI497 : Bool;
+         DI498 : Bool;
+         DI499 : Bool;
+         DI500 : Bool;
+         DI501 : Bool;
+         DI502 : Bool;
+         DI503 : Bool;
+         DI504 : Bool;
+         DI505 : Bool;
+         DI506 : Bool;
+         DI507 : Bool;
+         DI508 : Bool;
+         DI509 : Bool;
+         DI510 : Bool;
+         DI511 : Bool;
+         DI512 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_UserInput_3"
+VERSION : 0.1
+   STRUCT
+      Public : Struct
+         GI_TaskMode : USInt;
+         GI_PartType : USInt;
+         GI_SpeedSet : USInt;
+         "GI_PosNo." : USInt;
+         GI_5 : Byte;
+         GI_6 : Byte;
+         GI_7 : Byte;
+         GI_8 : Byte;
+         GI_9 : Byte;
+         GI_10 : Byte;
+      END_STRUCT;
+      Gripper : Struct
+         DI129_Grip1WP : Bool;   //Clamp 1 working position
+         DI130_Grip1HP : Bool;   //Clamp 1 original position
+         DI131_Grip2WP : Bool;   //Clamp 2 working position
+         DI132_Grip2HP : Bool;   //Clamp 2 original position
+         DI133_PartOnGrip1 : Bool;   //Is the product Clamp 1 available?
+         DI134_PartOnGrip2 : Bool;   //Is there any product for Gripper 2?
+         DI135 : Bool;
+         DI136 : Bool;
+         DI137 : Bool;
+         DI138 : Bool;
+         DI139 : Bool;
+         DI140 : Bool;
+         DI141 : Bool;
+         DI142 : Bool;
+         DI143 : Bool;
+         DI144 : Bool;
+         DI145 : Bool;
+         DI146 : Bool;
+         DI147 : Bool;
+         DI148 : Bool;
+         DI149 : Bool;
+         DI150 : Bool;
+         DI151 : Bool;
+         DI152 : Bool;
+         DI153 : Bool;
+         DI154 : Bool;
+         DI155 : Bool;
+         DI156 : Bool;
+         DI157 : Bool;
+         DI158 : Bool;
+         DI159 : Bool;
+         DI160 : Bool;
+      END_STRUCT;
+      Home : Struct
+         DI161_HomeSeqStart : Bool;   //The robot can start initialization
+         DI162_AutoCycleStart : Bool;   //Robots can start automatic loops
+         DI163 : Bool;
+         DI164 : Bool;
+         DI165 : Bool;
+         DI166 : Bool;
+         DI167 : Bool;
+         DI168 : Bool;
+         DI169_RobotMoved : Bool;
+         DI170 : Bool;
+         DI171 : Bool;
+         DI172 : Bool;
+         DI173 : Bool;
+         DI174 : Bool;
+         DI175 : Bool;
+         DI176 : Bool;
+         DI177_PressNG1_1 : Bool;   //NG1_1 sensor mapping
+         DI178_PressNG1_2 : Bool;   //NG1_2 sensor mapping
+         DI179_PressNG1_3 : Bool;   //NG1_3 sensor mapping
+         DI180_PressNG1_4 : Bool;   //NG1_4 sensor mapping
+         DI181_PressNG1_5 : Bool;   //NG1_5 sensor mapping
+         DI182_GlueNG2_1 : Bool;   //NG2_1 sensor mapping
+         DI183_GlueNG2_2 : Bool;   //NG2_2 sensor mapping
+         DI184_GlueNG2_3 : Bool;   //NG2_3 sensor mapping
+         DI185_GlueNG2_4 : Bool;   //NG2_4 sensor mapping
+         DI186_GlueNG2_5 : Bool;   //NG2_5 sensor mapping
+         DI187_ScanNG3_1 : Bool;   //NG3_1 sensor mapping
+         DI188_ScanNG3_2 : Bool;   //NG3_2 sensor mapping
+         DI189_ScanNG3_3 : Bool;   //NG3_3 sensor mapping
+         DI190_ScanNG3_4 : Bool;   //NG3_4 sensor mapping
+         DI191_ScanNG3_5 : Bool;   //NG3_5 sensor mapping
+         DI192 : Bool;
+      END_STRUCT;
+      Special : Struct
+         DI193 : Bool;
+         DI194 : Bool;
+         DI195 : Bool;
+         DI196 : Bool;
+         DI197 : Bool;
+         DI198 : Bool;
+         DI199 : Bool;
+         DI200 : Bool;
+         DI201 : Bool;
+         DI202 : Bool;
+         DI203 : Bool;
+         DI204 : Bool;
+         DI205 : Bool;
+         DI206 : Bool;
+         DI207 : Bool;
+         DI208 : Bool;
+         DI209 : Bool;
+         DI210 : Bool;
+         DI211 : Bool;
+         DI212 : Bool;
+         DI213 : Bool;
+         DI214 : Bool;
+         DI215 : Bool;
+         DI216 : Bool;
+         DI217 : Bool;
+         DI218 : Bool;
+         DI219 : Bool;
+         DI220 : Bool;
+         DI221 : Bool;
+         DI222 : Bool;
+         DI223 : Bool;
+         DI224 : Bool;
+      END_STRUCT;
+      Cycle : Struct
+         DI225_ScanPosReq : Bool;   //Workwear scan code request
+         DI226_ScanPos1Complete : Bool;   //Workwear scan code 1 scan code completed
+         DI227_ScanPos2Complete : Bool;   //Workwear scan code 2 scan code completed
+         DI228_ScanPos3Complete : Bool;   //Workwear scan code 3 scan code completed
+         DI229_ScanPos4Complete : Bool;   //Workwear scan code 4 scan code completed
+         DI230_ScanPos5Complete : Bool;   //Workwear scan code 5 scan code completed
+         DI231_ScanPos6Complete : Bool;   //Workwear scan code 6 scan code completed
+         DI232_ScanPos7Complete : Bool;   //Workwear scan code 7 scan code completed
+         DI233 : Bool;
+         DI234 : Bool;
+         DI235 : Bool;
+         DI236 : Bool;
+         DI237 : Bool;
+         DI238 : Bool;
+         DI239 : Bool;
+         DI240 : Bool;
+         DI241_PickPalletReq : Bool;   //Tray retrieval request
+         DI242_NewPallet : Bool;   //New material tray
+         DI243 : Bool;
+         DI244 : Bool;
+         DI245 : Bool;
+         DI246 : Bool;
+         DI247 : Bool;
+         DI248 : Bool;
+         DI249_PickMagnetNGReq : Bool;   //Magnet reading code NG picking request
+         DI250 : Bool;
+         DI251 : Bool;
+         DI252 : Bool;
+         DI253_PickGlueNGReq : Bool;   //Dispensing NG material retrieval request
+         DI254 : Bool;
+         DI255 : Bool;
+         DI256 : Bool;
+         DI257_PickTableReq : Bool;   //Turntable retrieval request
+         DI258 : Bool;
+         DI259 : Bool;
+         DI260 : Bool;
+         DI261_ScanRingReq : Bool;   //Ring scan code request
+         DI262_ScanRingComplete : Bool;   //Ring scan completed
+         DI263 : Bool;
+         DI264 : Bool;
+         DI265_LoadPressNGReq1 : Bool;   //NG discharge request 1 press-fit NG
+         DI266_LoadGlueNGReq2 : Bool;   //NG discharge request 2 Glue NG
+         DI267_LoadScanNGReq3 : Bool;   //NG discharge request 3 Scan the code NG
+         DI268 : Bool;
+         DI269 : Bool;
+         DI270 : Bool;
+         DI271 : Bool;
+         DI272 : Bool;
+         DI273_PressPutPart1Req : Bool;
+         DI274 : Bool;
+         DI275 : Bool;
+         DI276 : Bool;
+         DI277_PressPutRingReq : Bool;   //Ring jaw 2 press discharge request
+         DI278_Press2Leave : Bool;
+         DI279 : Bool;
+         DI280 : Bool;
+         DI281_PressPickPartReq : Bool;   //Press unloading
+         DI282 : Bool;
+         DI283 : Bool;
+         DI284 : Bool;
+         DI285 : Bool;
+         DI286 : Bool;
+         DI287 : Bool;
+         DI288 : Bool;
+         DI289_PutOkPartReq : Bool;   //Finished parts blanking request
+         DI290_UnloadingNewPallet : Bool;   //New pallet for unloading finished parts
+         DI291 : Bool;
+         DI292 : Bool;
+         DI293 : Bool;
+         DI294 : Bool;
+         DI295 : Bool;
+         DI296 : Bool;
+         DI297_MaintainRequest : Bool;
+         DI298 : Bool;
+         DI299 : Bool;
+         DI300_HomeRequest : Bool;
+         DI301 : Bool;
+         DI302 : Bool;
+         DI303 : Bool;
+         DI304 : Bool;
+         DI305_GripScan : Bool;
+         DI306_ScanPartComplete : Bool;
+         DI307_ScanPartFinish : Bool;
+         DI308 : Bool;
+         DI309 : Bool;
+         DI310 : Bool;
+         DI311 : Bool;
+         DI312 : Bool;
+         DI313 : Bool;
+         DI314 : Bool;
+         DI315 : Bool;
+         DI316 : Bool;
+         DI317 : Bool;
+         DI318 : Bool;
+         DI319 : Bool;
+         DI320 : Bool;
+         DI321 : Bool;
+         DI322 : Bool;
+         DI323 : Bool;
+         DI324 : Bool;
+         DI325 : Bool;
+         DI326 : Bool;
+         DI327 : Bool;
+         DI328 : Bool;
+         DI329 : Bool;
+         DI330 : Bool;
+         DI331 : Bool;
+         DI332 : Bool;
+         DI333 : Bool;
+         DI334 : Bool;
+         DI335 : Bool;
+         DI336 : Bool;
+         Camera_Y : DInt;
+         Camera_Z : DInt;
+         Camera_R : DInt;
+      END_STRUCT;
+      Safety : Struct
+         DI433 : Bool;
+         DI434 : Bool;
+         DI435 : Bool;
+         DI436 : Bool;
+         DI437 : Bool;
+         DI438 : Bool;
+         DI439 : Bool;
+         DI440 : Bool;
+         DI441 : Bool;
+         DI442 : Bool;
+         DI443 : Bool;
+         DI444 : Bool;
+         DI445 : Bool;
+         DI446 : Bool;
+         DI447 : Bool;
+         DI448 : Bool;
+         DI449 : Bool;
+         DI450 : Bool;
+         DI451 : Bool;
+         DI452 : Bool;
+         DI453 : Bool;
+         DI454 : Bool;
+         DI455 : Bool;
+         DI456 : Bool;
+         DI457 : Bool;
+         DI458 : Bool;
+         DI459 : Bool;
+         DI460 : Bool;
+         DI461 : Bool;
+         DI462 : Bool;
+         DI463 : Bool;
+         DI464 : Bool;
+         DI465 : Bool;
+         DI466 : Bool;
+         DI467 : Bool;
+         DI468 : Bool;
+         DI469 : Bool;
+         DI470 : Bool;
+         DI471 : Bool;
+         DI472 : Bool;
+         DI473 : Bool;
+         DI474 : Bool;
+         DI475 : Bool;
+         DI476 : Bool;
+         DI477 : Bool;
+         DI478 : Bool;
+         DI479 : Bool;
+         DI480 : Bool;
+         DI481 : Bool;
+         DI482 : Bool;
+         DI483 : Bool;
+         DI484 : Bool;
+         DI485 : Bool;
+         DI486 : Bool;
+         DI487 : Bool;
+         DI488 : Bool;
+         DI489 : Bool;
+         DI490 : Bool;
+         DI491 : Bool;
+         DI492 : Bool;
+         DI493 : Bool;
+         DI494 : Bool;
+         DI495 : Bool;
+         DI496 : Bool;
+         DI497 : Bool;
+         DI498 : Bool;
+         DI499 : Bool;
+         DI500 : Bool;
+         DI501 : Bool;
+         DI502 : Bool;
+         DI503 : Bool;
+         DI504 : Bool;
+         DI505 : Bool;
+         DI506 : Bool;
+         DI507 : Bool;
+         DI508 : Bool;
+         DI509 : Bool;
+         DI510 : Bool;
+         DI511 : Bool;
+         DI512 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_UserOutput_1"
+VERSION : 0.1
+   STRUCT
+      Public : Struct
+         GO_CurrentMode : USInt;
+         GO_CurrentPartType : USInt;
+         GO_SpeedActual : USInt;
+         GO_RobotTaskSequence : Byte;
+         GO5_RobGrip1Status : Byte;
+         GO6_RobGrip2Status : Byte;
+         GO7 : Byte;
+         GO8 : Byte;
+         GO9 : Byte;
+         GO10 : Byte;
+      END_STRUCT;
+      Gripper : Struct
+         DO129_Grip1GoWork : Bool;
+         DO130_Grip1GoHome : Bool;
+         DO131_Grip2GoWork : Bool;
+         DO132_Grip2GoHome : Bool;
+         DO133 : Bool;
+         DO134 : Bool;
+         DO135 : Bool;
+         DO136 : Bool;
+         DO137 : Bool;
+         DO138 : Bool;
+         DO139 : Bool;
+         DO140 : Bool;
+         DO141 : Bool;
+         DO142 : Bool;
+         DO143 : Bool;
+         DO144 : Bool;
+         DO145 : Bool;
+         DO146 : Bool;
+         DO147 : Bool;
+         DO148 : Bool;
+         DO149 : Bool;
+         DO150 : Bool;
+         DO151 : Bool;
+         DO152 : Bool;
+         DO153 : Bool;
+         DO154 : Bool;
+         DO155 : Bool;
+         DO156 : Bool;
+         DO157 : Bool;
+         DO158 : Bool;
+         DO159 : Bool;
+         DO160 : Bool;
+      END_STRUCT;
+      Home : Struct
+         DO161_WaitForHomeSeqStart : Bool;
+         DO162_GoHomeFail : Bool;
+         DO163_HomeSeqOK : Bool;
+         DO164_WaitForAutoStart : Bool;
+         DO165_AutoCycle : Bool;
+         DO166 : Bool;
+         DO167 : Bool;
+         DO168 : Bool;
+         DO169 : Bool;
+         DO170 : Bool;
+         DO171 : Bool;
+         DO172 : Bool;
+         DO173 : Bool;
+         DO174 : Bool;
+         DO175 : Bool;
+         DO176 : Bool;
+         DO177_PressPut1Area : Bool;
+         DO178_PressPut2Area : Bool;
+         DO179_GlueArea : Bool;
+         DO180_Robot2Area : Bool;
+         DO181 : Bool;
+         DO182 : Bool;
+         DO183 : Bool;
+         DO184 : Bool;
+         DO185 : Bool;
+         DO186 : Bool;
+         DO187 : Bool;
+         DO188 : Bool;
+         DO189 : Bool;
+         DO190 : Bool;
+         DO191 : Bool;
+         DO192 : Bool;
+      END_STRUCT;
+      Special : Struct
+         DO193 : Bool;
+         DO194 : Bool;
+         DO195 : Bool;
+         DO196 : Bool;
+         DO197 : Bool;
+         DO198 : Bool;
+         DO199 : Bool;
+         DO200 : Bool;
+         DO201 : Bool;
+         DO202 : Bool;
+         DO203 : Bool;
+         DO204 : Bool;
+         DO205 : Bool;
+         DO206 : Bool;
+         DO207 : Bool;
+         DO208 : Bool;
+         DO209 : Bool;
+         DO210 : Bool;
+         DO211 : Bool;
+         DO212 : Bool;
+         DO213 : Bool;
+         DO214 : Bool;
+         DO215 : Bool;
+         DO216 : Bool;
+         DO217 : Bool;
+         DO218 : Bool;
+         DO219 : Bool;
+         DO220 : Bool;
+         DO221 : Bool;
+         DO222 : Bool;
+         DO223 : Bool;
+         DO224 : Bool;
+      END_STRUCT;
+      Cycle : Struct
+         DO225_ScanPosInside : Bool;
+         DO226_ScanPos1Reach : Bool;
+         DO227_ScanPos2Reach : Bool;
+         DO228_ScanPos3Reach : Bool;
+         DO229_ScanPos4Reach : Bool;
+         DO230_ScanPos5Reach : Bool;
+         DO231_ScanPos6Reach : Bool;
+         DO232_ScanPos7Reach : Bool;
+         DO233_ScanPoseFinish : Bool;
+         DO234 : Bool;
+         DO235 : Bool;
+         DO236 : Bool;
+         DO237 : Bool;
+         DO238 : Bool;
+         DO239 : Bool;
+         DO240 : Bool;
+         DO241_SPalletPickInside : Bool;   //During Shaft retrieval process
+         DO242_SPalletPickFinish : Bool;   //Shaft retrieval completed
+         DO243_SPalletPickFull : Bool;   //Shaft tray emptying
+         "DO244_" : Bool;
+         "DO245_" : Bool;
+         "DO246_" : Bool;
+         "DO247_" : Bool;
+         "DO248_" : Bool;
+         DO249_ShaftScanPutInside : Bool;   //During the unloading process at the Shaft code reading station
+         DO250_ShaftScanPutFinish : Bool;   //Shaft code reading station unloading completed
+         "DO251_" : Bool;
+         "DO252_" : Bool;
+         DO253_SScanPickInside : Bool;   //Shaft code reading station during the process of picking up materials
+         DO254_SScanPickFinish : Bool;   //Shaft code reading station picks up materials completed
+         "DO255_" : Bool;
+         "DO256_" : Bool;
+         DO257_TablePickInside : Bool;   //During the material retrieval process of the turntable Ring, 2# area small turntable
+         DO258_TablePickFinish : Bool;   //Turntable Ring material retrieval completed
+         "DO259_" : Bool;
+         "DO260_" : Bool;
+         DO261_RingScanInside : Bool;   //Ring scanning process
+         DO262_RingScanFinish : Bool;   //Ring scan completed
+         DO263_RingScanReach : Bool;   //Ring scan code in place signal
+         "DO264_" : Bool;
+         DO265_LoadNGInside : Bool;
+         DO266_LoadNGFinish : Bool;
+         "DO267_" : Bool;
+         "DO268_" : Bool;
+         "DO269_" : Bool;
+         "DO270_" : Bool;
+         "DO271_" : Bool;
+         "DO272_" : Bool;
+         DO273_PressShaftPutInside : Bool;   //During the discharging process of Shaft press
+         DO274_PressShaftPutFinish : Bool;   //Shaft press discharge completed
+         "DO275_" : Bool;
+         "DO276_" : Bool;
+         DO277_PressRingPutInside : Bool;   //During the unloading process of Ring press
+         DO278_PressRingPutFinish : Bool;   //Ring press unloading completed
+         DO279_Press2Reach : Bool;   //The robot reaches the discharging position above the press
+         "DO280_" : Bool;
+         DO281_PressPickInside : Bool;   //During the process of taking materials from the press
+         DO282_PressPickFinish : Bool;   //Press removal completed
+         "DO283_" : Bool;
+         "DO284_" : Bool;
+         "DO285_" : Bool;
+         "DO286_" : Bool;
+         "DO287_" : Bool;
+         "DO288_" : Bool;
+         DO289_GluePutInside : Bool;   //During dispensing and dispensing process
+         DO290_GluePutFinish : Bool;   //Dispensing and dispensing completed
+         DO291 : Bool;
+         DO292 : Bool;
+         DO293 : Bool;
+         DO294 : Bool;
+         DO295 : Bool;
+         DO296 : Bool;
+         DO297_MaintainInside : Bool;
+         DO298_MaintainFinish : Bool;
+         DO299 : Bool;
+         DO300_HomeInside : Bool;
+         DO301_HomeFinish : Bool;
+         DO302 : Bool;
+         DO303 : Bool;
+         DO304 : Bool;
+         DO305_GripScanInside : Bool;
+         DO306_GripScanFinish : Bool;
+         DO307_ScanPos1Reach : Bool;
+         DO308_ScanPos2Reach : Bool;
+         DO309_ScanPos3Reach : Bool;
+         DO310_ScanPos4Reach : Bool;
+         DO311 : Bool;
+         DO312 : Bool;
+         DO313 : Bool;
+         DO314 : Bool;
+         DO315 : Bool;
+         DO316 : Bool;
+         DO317 : Bool;
+         DO318 : Bool;
+         DO319 : Bool;
+         DO320 : Bool;
+         DO321 : Bool;
+         DO322 : Bool;
+         DO323 : Bool;
+         DO324 : Bool;
+         DO325 : Bool;
+         DO326 : Bool;
+         DO327 : Bool;
+         DO328 : Bool;
+         DO329 : Bool;
+         DO330 : Bool;
+         DO331 : Bool;
+         DO332 : Bool;
+         DO333 : Bool;
+         DO334 : Bool;
+         DO335 : Bool;
+         DO336 : Bool;
+         DO337 : Bool;
+         DO338 : Bool;
+         DO339 : Bool;
+         DO340 : Bool;
+         DO341 : Bool;
+         DO342 : Bool;
+         DO343 : Bool;
+         DO344 : Bool;
+         DO345 : Bool;
+         DO346 : Bool;
+         DO347 : Bool;
+         DO348 : Bool;
+         DO349 : Bool;
+         DO350 : Bool;
+         DO351 : Bool;
+         DO352 : Bool;
+         DO353 : Bool;
+         DO354 : Bool;
+         DO355 : Bool;
+         DO356 : Bool;
+         DO357 : Bool;
+         DO358 : Bool;
+         DO359 : Bool;
+         DO360 : Bool;
+         DO361 : Bool;
+         DO362 : Bool;
+         DO363 : Bool;
+         DO364 : Bool;
+         DO365 : Bool;
+         DO366 : Bool;
+         DO367 : Bool;
+         DO368 : Bool;
+         DO369 : Bool;
+         DO370 : Bool;
+         DO371 : Bool;
+         DO372 : Bool;
+         DO373 : Bool;
+         DO374 : Bool;
+         DO375 : Bool;
+         DO376 : Bool;
+         DO377 : Bool;
+         DO378 : Bool;
+         DO379 : Bool;
+         DO380 : Bool;
+         DO381 : Bool;
+         DO382 : Bool;
+         DO383 : Bool;
+         DO384 : Bool;
+         DO385 : Bool;
+         DO386 : Bool;
+         DO387 : Bool;
+         DO388 : Bool;
+         DO389 : Bool;
+         DO390 : Bool;
+         DO391 : Bool;
+         DO392 : Bool;
+         DO393 : Bool;
+         DO394 : Bool;
+         DO395 : Bool;
+         DO396 : Bool;
+         DO397 : Bool;
+         DO398 : Bool;
+         DO399 : Bool;
+         DO400 : Bool;
+         DO401 : Bool;
+         DO402 : Bool;
+         DO403 : Bool;
+         DO404 : Bool;
+         DO405 : Bool;
+         DO406 : Bool;
+         DO407 : Bool;
+         DO408 : Bool;
+         DO409 : Bool;
+         DO410 : Bool;
+         DO411 : Bool;
+         DO412 : Bool;
+         DO413 : Bool;
+         DO414 : Bool;
+         DO415 : Bool;
+         DO416 : Bool;
+      END_STRUCT;
+      Safety : Struct
+         DO417 : Bool;
+         DO418 : Bool;
+         DO419 : Bool;
+         DO420 : Bool;
+         DO421 : Bool;
+         DO422 : Bool;
+         DO423 : Bool;
+         DO424 : Bool;
+         DO425 : Bool;
+         DO426 : Bool;
+         DO427 : Bool;
+         DO428 : Bool;
+         DO429 : Bool;
+         DO430 : Bool;
+         DO431 : Bool;
+         DO432 : Bool;
+         DO433 : Bool;
+         DO434 : Bool;
+         DO435 : Bool;
+         DO436 : Bool;
+         DO437 : Bool;
+         DO438 : Bool;
+         DO439 : Bool;
+         DO440 : Bool;
+         DO441 : Bool;
+         DO442 : Bool;
+         DO443 : Bool;
+         DO444 : Bool;
+         DO445 : Bool;
+         DO446 : Bool;
+         DO447 : Bool;
+         DO448 : Bool;
+         DO449 : Bool;
+         DO450 : Bool;
+         DO451 : Bool;
+         DO452 : Bool;
+         DO453 : Bool;
+         DO454 : Bool;
+         DO455 : Bool;
+         DO456 : Bool;
+         DO457 : Bool;
+         DO458 : Bool;
+         DO459 : Bool;
+         DO460 : Bool;
+         DO461 : Bool;
+         DO462 : Bool;
+         DO463 : Bool;
+         DO464 : Bool;
+         DO465 : Bool;
+         DO466 : Bool;
+         DO467 : Bool;
+         DO468 : Bool;
+         DO469 : Bool;
+         DO470 : Bool;
+         DO471 : Bool;
+         DO472 : Bool;
+         DO473 : Bool;
+         DO474 : Bool;
+         DO475 : Bool;
+         DO476 : Bool;
+         DO477 : Bool;
+         DO478 : Bool;
+         DO479 : Bool;
+         DO480 : Bool;
+         DO481 : Bool;
+         DO482 : Bool;
+         DO483 : Bool;
+         DO484 : Bool;
+         DO485 : Bool;
+         DO486 : Bool;
+         DO487 : Bool;
+         DO488 : Bool;
+         DO489 : Bool;
+         DO490 : Bool;
+         DO491 : Bool;
+         DO492 : Bool;
+         DO493 : Bool;
+         DO494 : Bool;
+         DO495 : Bool;
+         DO496 : Bool;
+         DO497 : Bool;
+         DO498 : Bool;
+         DO499 : Bool;
+         DO500 : Bool;
+         DO501 : Bool;
+         DO502 : Bool;
+         DO503 : Bool;
+         DO504 : Bool;
+         DO505 : Bool;
+         DO506 : Bool;
+         DO507 : Bool;
+         DO508 : Bool;
+         DO509 : Bool;
+         DO510 : Bool;
+         DO511 : Bool;
+         DO512 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_UserInput_1"
+VERSION : 0.1
+   STRUCT
+      Public : Struct
+         GI_TaskMode : USInt;
+         GI_PartType : USInt;
+         GI_SpeedSet : USInt;
+         "GI_PosNo." : USInt;
+         GI_5 : Byte;
+         GI_6 : Byte;
+         GI_7 : Byte;
+         GI_8 : Byte;
+         GI_9 : Byte;
+         GI_10 : Byte;
+      END_STRUCT;
+      Gripper : Struct
+         DI129_Grip1WP : Bool;
+         DI130_Grip1HP : Bool;
+         DI131_Grip2WP : Bool;
+         DI132_Grip2HP : Bool;
+         DI133_PartOnGrip1 : Bool;
+         DI134_PartOnGrip2 : Bool;
+         DI135 : Bool;
+         DI136 : Bool;
+         DI137 : Bool;
+         DI138 : Bool;
+         DI139 : Bool;
+         DI140 : Bool;
+         DI141 : Bool;
+         DI142 : Bool;
+         DI143 : Bool;
+         DI144 : Bool;
+         DI145 : Bool;
+         DI146 : Bool;
+         DI147 : Bool;
+         DI148 : Bool;
+         DI149 : Bool;
+         DI150 : Bool;
+         DI151 : Bool;
+         DI152 : Bool;
+         DI153 : Bool;
+         DI154 : Bool;
+         DI155 : Bool;
+         DI156 : Bool;
+         DI157 : Bool;
+         DI158 : Bool;
+         DI159 : Bool;
+         DI160 : Bool;
+      END_STRUCT;
+      Home : Struct
+         DI161_HomeSeqStart : Bool;
+         DI162_AutoCycleStart : Bool;
+         DI163 : Bool;
+         DI164 : Bool;
+         DI165 : Bool;
+         DI166 : Bool;
+         DI167 : Bool;
+         DI168 : Bool;
+         DI169_RobotMoved : Bool;
+         DI170 : Bool;
+         DI171 : Bool;
+         DI172 : Bool;
+         DI173 : Bool;
+         DI174 : Bool;
+         DI175 : Bool;
+         DI176 : Bool;
+         DI177_NG1_1 : Bool;
+         DI178_NG1_2 : Bool;
+         DI179_NG1_3 : Bool;
+         DI180_NG1_4 : Bool;
+         DI181_NG1_5 : Bool;
+         DI182_NG2_1 : Bool;
+         DI183_NG2_2 : Bool;
+         DI184_NG2_3 : Bool;
+         DI185_NG2_4 : Bool;
+         DI186_NG2_5 : Bool;
+         DI187_NG3_1 : Bool;
+         DI188_NG3_2 : Bool;
+         DI189_NG3_3 : Bool;
+         DI190_NG3_4 : Bool;
+         DI191_NG3_5 : Bool;
+         DI192 : Bool;
+      END_STRUCT;
+      Special : Struct
+         DI193 : Bool;
+         DI194 : Bool;
+         DI195 : Bool;
+         DI196 : Bool;
+         DI197 : Bool;
+         DI198 : Bool;
+         DI199 : Bool;
+         DI200 : Bool;
+         DI201 : Bool;
+         DI202 : Bool;
+         DI203 : Bool;
+         DI204 : Bool;
+         DI205 : Bool;
+         DI206 : Bool;
+         DI207 : Bool;
+         DI208 : Bool;
+         DI209 : Bool;
+         DI210 : Bool;
+         DI211 : Bool;
+         DI212 : Bool;
+         DI213 : Bool;
+         DI214 : Bool;
+         DI215 : Bool;
+         DI216 : Bool;
+         DI217 : Bool;
+         DI218 : Bool;
+         DI219 : Bool;
+         DI220 : Bool;
+         DI221 : Bool;
+         DI222 : Bool;
+         DI223 : Bool;
+         DI224 : Bool;
+      END_STRUCT;
+      Cycle : Struct
+         DI225_ScanPosReq : Bool;
+         DI226_ScanPos1Complete : Bool;
+         DI227_ScanPos2Complete : Bool;
+         DI228_ScanPos3Complete : Bool;
+         DI229_ScanPos4Complete : Bool;
+         DI230_ScanPos5Complete : Bool;
+         DI231_ScanPos6Complete : Bool;
+         DI232_ScanPos7Complete : Bool;
+         DI233 : Bool;
+         DI234 : Bool;
+         DI235 : Bool;
+         DI236 : Bool;
+         DI237 : Bool;
+         DI238 : Bool;
+         DI239 : Bool;
+         DI240 : Bool;
+         DI241_PickShaftPalletReq : Bool;   //Material tray Shaft retrieval request
+         DI242_ShaftNewPallet : Bool;   //New material tray
+         DI243 : Bool;
+         DI244 : Bool;
+         DI245 : Bool;
+         DI246 : Bool;
+         DI247 : Bool;
+         DI248 : Bool;
+         DI249_ShaftScanPutReq : Bool;   //Shaft code reading and feeding request 4# area
+         "DI250_" : Bool;
+         "DI251_" : Bool;
+         "DI252_" : Bool;
+         DI253_ShaftScanPickReq : Bool;   //Shaft code reading and material retrieval request 4# area
+         "DI254_" : Bool;
+         "DI255_" : Bool;
+         "DI256_" : Bool;
+         DI257_TableRingPickReq : Bool;   //Turntable Ring retrieval request 2# area
+         "DI258_" : Bool;
+         "DI259_" : Bool;
+         "DI260_" : Bool;
+         DI261_RingScanReq : Bool;   //Ring scan code request
+         DI262_RingScanComplete : Bool;   //Ring scan completed
+         "DI263_" : Bool;
+         "DI264_" : Bool;
+         DI265_LoadPressNGReq1 : Bool;   //NG discharge request 1 press-fit NG
+         DI266_LoadShaftScanNGReq2 : Bool;   //NG feeding request 2 Shaft code reading NG
+         DI267_LoadRingScanNGReq3 : Bool;   //NG discharge request 3 Ring code reading NG
+         "DI268_" : Bool;
+         "DI269_" : Bool;
+         "DI270_" : Bool;
+         "DI271_" : Bool;
+         "DI272_" : Bool;
+         DI273_PressShaftPutReq : Bool;   //Shaft press discharge request below the press
+         "DI274_" : Bool;
+         "DI275_" : Bool;
+         "DI276_" : Bool;
+         DI277_PressRingPutReq : Bool;   //Ring press discharge request above the press
+         DI278_PressRingPutLeave : Bool;   //Press 2 secures the product and the robot can leave
+         "DI279_" : Bool;
+         "DI280_" : Bool;
+         DI281_PressPickShaftReq : Bool;   //Press unloading
+         "DI282_" : Bool;
+         "DI283_" : Bool;
+         "DI284_" : Bool;
+         "DI285_" : Bool;
+         "DI286_" : Bool;
+         "DI287_" : Bool;
+         "DI288_" : Bool;
+         DI289_GluePutReq : Bool;   //Dispensing dispensing request
+         DI290 : Bool;
+         DI291 : Bool;
+         DI292 : Bool;
+         DI293 : Bool;
+         DI294 : Bool;
+         DI295 : Bool;
+         DI296 : Bool;
+         DI297_MaintainRequest : Bool;
+         DI298 : Bool;
+         DI299 : Bool;
+         DI300_HomeRequest : Bool;
+         DI301 : Bool;
+         DI302 : Bool;
+         DI303 : Bool;
+         DI304 : Bool;
+         DI305_GripScan : Bool;
+         DI306_ScanPartComplete : Bool;
+         DI307_ScanPartFinish : Bool;
+         DI308 : Bool;
+         DI309 : Bool;
+         DI310 : Bool;
+         DI311 : Bool;
+         DI312 : Bool;
+         DI313 : Bool;
+         DI314 : Bool;
+         DI315 : Bool;
+         DI316 : Bool;
+         DI317 : Bool;
+         DI318 : Bool;
+         DI319 : Bool;
+         DI320 : Bool;
+         DI321 : Bool;
+         DI322 : Bool;
+         DI323 : Bool;
+         DI324 : Bool;
+         DI325 : Bool;
+         DI326 : Bool;
+         DI327 : Bool;
+         DI328 : Bool;
+         DI329 : Bool;
+         DI330 : Bool;
+         DI331 : Bool;
+         DI332 : Bool;
+         DI333 : Bool;
+         DI334 : Bool;
+         DI335 : Bool;
+         DI336 : Bool;
+         Camera_Y : DInt;
+         Camera_Z : DInt;
+         Camera_R : DInt;
+      END_STRUCT;
+      Safety : Struct
+         DI433 : Bool;
+         DI434 : Bool;
+         DI435 : Bool;
+         DI436 : Bool;
+         DI437 : Bool;
+         DI438 : Bool;
+         DI439 : Bool;
+         DI440 : Bool;
+         DI441 : Bool;
+         DI442 : Bool;
+         DI443 : Bool;
+         DI444 : Bool;
+         DI445 : Bool;
+         DI446 : Bool;
+         DI447 : Bool;
+         DI448 : Bool;
+         DI449 : Bool;
+         DI450 : Bool;
+         DI451 : Bool;
+         DI452 : Bool;
+         DI453 : Bool;
+         DI454 : Bool;
+         DI455 : Bool;
+         DI456 : Bool;
+         DI457 : Bool;
+         DI458 : Bool;
+         DI459 : Bool;
+         DI460 : Bool;
+         DI461 : Bool;
+         DI462 : Bool;
+         DI463 : Bool;
+         DI464 : Bool;
+         DI465 : Bool;
+         DI466 : Bool;
+         DI467 : Bool;
+         DI468 : Bool;
+         DI469 : Bool;
+         DI470 : Bool;
+         DI471 : Bool;
+         DI472 : Bool;
+         DI473 : Bool;
+         DI474 : Bool;
+         DI475 : Bool;
+         DI476 : Bool;
+         DI477 : Bool;
+         DI478 : Bool;
+         DI479 : Bool;
+         DI480 : Bool;
+         DI481 : Bool;
+         DI482 : Bool;
+         DI483 : Bool;
+         DI484 : Bool;
+         DI485 : Bool;
+         DI486 : Bool;
+         DI487 : Bool;
+         DI488 : Bool;
+         DI489 : Bool;
+         DI490 : Bool;
+         DI491 : Bool;
+         DI492 : Bool;
+         DI493 : Bool;
+         DI494 : Bool;
+         DI495 : Bool;
+         DI496 : Bool;
+         DI497 : Bool;
+         DI498 : Bool;
+         DI499 : Bool;
+         DI500 : Bool;
+         DI501 : Bool;
+         DI502 : Bool;
+         DI503 : Bool;
+         DI504 : Bool;
+         DI505 : Bool;
+         DI506 : Bool;
+         DI507 : Bool;
+         DI508 : Bool;
+         DI509 : Bool;
+         DI510 : Bool;
+         DI511 : Bool;
+         DI512 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_SysInput"
+VERSION : 0.1
+   STRUCT
+      SI : Struct
+         PGNO_PBIT : Byte;
+         PGNO_PARITY : Bool;
+         PGNO_VALID : Bool;
+         EXT_START : Bool;
+         MOVE_ENABLE : Bool;
+         CONF_MESS : Bool;
+         DRIVES_OFF : Bool;
+         DRIVES_ON : Bool;
+         I_O_ACT : Bool;
+         di_17 : Bool;
+         di_18 : Bool;
+         di_19 : Bool;
+         di_20 : Bool;
+         di_21 : Bool;
+         di_22 { ExternalVisible := 'False'} : Bool;
+         di_23 : Bool;
+         di_24 : Bool;
+         di_25 : Bool;
+         di_26 : Bool;
+         di_27 : Bool;
+         di_28 : Bool;
+         di_29 : Bool;
+         di_30 : Bool;
+         di_31 : Bool;
+         di_32 : Bool;
+         di_33 : Bool;
+         di_34 : Bool;
+         di_35 : Bool;
+         di_36 : Bool;
+         di_37 : Bool;
+         di_38 : Bool;
+         di_39 : Bool;
+         di_40 : Bool;
+         di_41 : Bool;
+         di_42 : Bool;
+         di_43 : Bool;
+         di_44 : Bool;
+         di_45 : Bool;
+         di_46 : Bool;
+         di_47 : Bool;
+         di_48 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_SysOutput"
+VERSION : 0.1
+   STRUCT
+      SO : Struct
+         RC_RDY1 : Bool;
+         ALARM_STOP : Bool;
+         USER_SAF : Bool;
+         PERI_RDY : Bool;
+         ROB_CAL : Bool;
+         I_O_ACTCONF : Bool;
+         STOPMESS : Bool;
+         ALARM_STOP_INTERN : Bool;
+         PGNO_FBIT_REFL : Byte;
+         PRO_ACT : Bool;
+         PGNO_REQ : Bool;
+         APPL_RUN : Bool;
+         PRO_MOVE : Bool;
+         IN_HOME : Bool;
+         IN_HOME1 : Bool;
+         IN_HOME2 : Bool;
+         IN_HOME3 : Bool;
+         IN_HOME4 : Bool;
+         IN_HOME5 : Bool;
+         ON_PATH : Bool;
+         NEAR_POSRET : Bool;
+         ROB_STOPPED : Bool;
+         T1 : Bool;
+         T2 : Bool;
+         AUT : Bool;
+         EXT : Bool;
+         do_34 : Bool;
+         do_35 : Bool;
+         do_36 : Bool;
+         do_37 : Bool;
+         do_38 : Bool;
+         do_39 : Bool;
+         do_40 : Bool;
+         do_41 : Bool;
+         do_42 : Bool;
+         do_43 : Bool;
+         do_44 : Bool;
+         do_45 : Bool;
+         do_46 : Bool;
+         do_47 : Bool;
+         do_48 : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
+TYPE "KukaRobot_HMI"
+VERSION : 0.1
+   STRUCT
+      PGNO_PBIT : USInt;
+      EXT_START : Bool;
+      MOVE_ENABLE : Bool;
+      CONF_MESS : Bool;
+      DRIVES_OFF : Bool;
+      DRIVES_ON : Bool;
+      I_O_ACT : Bool;
+      RC_RDY1 : Bool;
+      ALARM_STOP : Bool;
+      USER_SAF : Bool;
+      PERI_RDY : Bool;
+      ROB_CAL : Bool;
+      I_O_ACTCONF : Bool;
+      STOPMESS : Bool;
+      ALARM_STOP_INTERN : Bool;
+      PGNO_FBIT_REFL : USInt;
+      PRO_ACT : Bool;
+      APPL_RUN : Bool;
+      PRO_MOVE : Bool;
+      IN_HOME : Bool;
+      ON_PATH : Bool;
+      NEAR_POSRET : Bool;
+      T1 : Bool;
+      T2 : Bool;
+      AUT : Bool;
+      EXT : Bool;
+      TaskMode : USInt;
+      PartType : USInt;
+      SpeedSet : USInt;
+      HomeSeqStart : Bool;
+      AutoCycleStart : Bool;
+      CurrentMode : USInt;
+      CurrentPartType : USInt;
+      SpeedActual : USInt;
+      ProgramSequence : USInt;
+      WaitForHomeSeqStart : Bool;
+      GoHomeFail : Bool;
+      HomeSeqOK : Bool;
+      WaitForAutoCycleStart : Bool;
+      iTaskMode : USInt;
+      iPartType : USInt;
+      iSpeedValue : USInt;
+      iPGNO : USInt;
+      AutoStart : Bool;
+      SrartHome : Bool;
+      StartAutoCycle : Bool;
+      Ready : Bool;
+      StartComplete : Bool;
+      StartUpTimeOut : Bool;
+      Warning : Bool;
+      Error : Bool;
+      ErrorCode : Int;
+      Seconds : Int;
+      Minute : Int;
+      Hours : DInt;
+      CountPulse : Bool;
+      StartSeq : Int;
+   END_STRUCT;
+
+END_TYPE
+

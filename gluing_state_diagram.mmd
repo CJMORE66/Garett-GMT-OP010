@@ -1,0 +1,30 @@
+stateDiagram-v2
+    [*] --> IDLE : Initial
+    IDLE --> HOMING : StartGluing AND DeviceReady AND NOT TankEmpty
+    IDLE --> IDLE : NOT StartCondition
+
+    HOMING --> APPROACH : V90Servo[SERVO_Z].oHomeRef
+    HOMING --> FAULT : V90Servo[SERVO_Z].oError
+
+    APPROACH --> GLUE_START : V90Servo[SERVO_Z].oDone
+    APPROACH --> FAULT : V90Servo[SERVO_Z].oError
+
+    GLUE_START --> GLUE_CONTINUE : V90Servo[SERVO_Z].oDone
+    GLUE_START --> FAULT : V90Servo[SERVO_Z].oError
+
+    GLUE_CONTINUE --> CLEAN : V90Servo[SERVO_Z].oDone
+    GLUE_CONTINUE --> FAULT : V90Servo[SERVO_Z].oError
+
+    CLEAN --> IDLE : V90Servo[SERVO_Z].oDone
+    CLEAN --> FAULT : V90Servo[SERVO_Z].oError
+
+    FAULT --> HOMING : Reset AND RecoveryCount < 3
+    FAULT --> FAULT : NOT Reset OR RecoveryCount >= 3
+
+    note right of IDLE : Ready state, waiting for start
+    note right of HOMING : Homing Z-axis servo
+    note right of APPROACH : Move to approach position
+    note right of GLUE_START : Start glue dispensing at slow speed
+    note right of GLUE_CONTINUE : Continue to end position
+    note right of CLEAN : Move to clean position
+    note right of FAULT : Error state with retry logic

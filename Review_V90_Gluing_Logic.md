@@ -68,11 +68,11 @@ Nahraďte magická čísla pojmenovanými konstantami.
 *   Odstraňte zbytečnou kopírovací logiku (Network 1 v `Gluing.xml`). Mapujte IO přímo na rozhraní bloku nebo použijte dedikovanou funkci pro mapování IO, pokud chcete abstrahovat hardware.
 
 ### Shrnutí akcí
-| Oblast | Současný stav | Cílový stav | Obtížnost | Hodnota |
-| :--- | :--- | :--- | :--- | :--- |
-| **Motion Control** | `SINA_POS` (EPOS) Wrapper | **Technologický objekt (TO)** | Vysoká | ⭐⭐⭐⭐⭐ (Kritické pro kvalitu) |
-| **Logika sekvence** | Ladder (LAD) | **SCL Stavový automat** | Střední | ⭐⭐⭐⭐ (Udržitelnost) |
-| **Datová struktura** | Generická pole a čísla | **UDT a Konstanty** | Nízká | ⭐⭐⭐ |
-| **Wrapper** | "God Object" FB | **Modulární FC** (Power, Home, Move) | Střední | ⭐⭐⭐ |
+| Oblast                | Současný stav                 | Cílový stav                           | Obtížnost | Hodnota   |
+| :---                  | :---                          | :---                                  | :---      | :---      |
+| **Motion Control**    | `SINA_POS` (EPOS) Wrapper     | **Technologický objekt (TO)**         | Vysoká    | ⭐⭐⭐⭐⭐ (Kritické pro kvalitu) |
+| **Logika sekvence**   | Ladder (LAD)                  | **SCL Stavový automat**               | Střední   | ⭐⭐⭐⭐ (Udržitelnost) |
+| **Datová struktura**  | Generická pole a čísla        | **UDT a Konstanty**                   | Nízká     | ⭐⭐⭐ |
+| **Wrapper**           | "God Object" FB               | **Modulární FC** (Power, Home, Move)  | Střední        | ⭐⭐⭐   |
 
 **Závěr:** Pokud z nějakého důvodu (např. hardware omezení staršího CPU) nemůžete přejít na Technologické objekty, pak jako minimum **přepište logiku `Gluing` do SCL** a odstraňte "magická čísla" (hardcoded indexy polí).

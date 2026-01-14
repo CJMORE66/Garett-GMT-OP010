@@ -1,0 +1,115 @@
+FUNCTION "FC_Save_Current_Values" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+VAR_TEMP
+   i : Int;
+END_VAR
+
+BEGIN
+   // =================================================================================
+   // MOTION DATA (IAI) - Saving from Device DBs to Recipe DB
+   // =================================================================================
+   FOR #i := 1 TO 20 DO
+      // IAI A1
+      "DB_ST10_Recipe".Motion.IAI_A1[#i].Pos := "IAI_A1".Auto.Pos[#i].Pos;
+      "DB_ST10_Recipe".Motion.IAI_A1[#i].Vel := "IAI_A1".Auto.Pos[#i].Vel;
+      
+      // IAI A2
+      "DB_ST10_Recipe".Motion.IAI_A2[#i].Pos := "IAI_A2".Auto.Pos[#i].Pos;
+      "DB_ST10_Recipe".Motion.IAI_A2[#i].Vel := "IAI_A2".Auto.Pos[#i].Vel;
+      
+      // IAI A3
+      "DB_ST10_Recipe".Motion.IAI_A3[#i].Pos := "IAI_A3".Auto.Pos[#i].Pos;
+      "DB_ST10_Recipe".Motion.IAI_A3[#i].Vel := "IAI_A3".Auto.Pos[#i].Vel;
+   END_FOR;
+
+   // =================================================================================
+   // MOTION DATA (V90) - Saving from Device DBs to Recipe DB
+   // =================================================================================
+   FOR #i := 1 TO 20 DO
+      // Servo V90 A1
+      "DB_ST10_Recipe".Motion.ServoV90_A1[#i].Pos := "ServoV90_A1".Auto.Pos[#i].Pos;
+      "DB_ST10_Recipe".Motion.ServoV90_A1[#i].Vel := "ServoV90_A1".Auto.Pos[#i].Vel;
+      
+      // Servo V90 A2
+      "DB_ST10_Recipe".Motion.ServoV90_A2[#i].Pos := "ServoV90_A2".Auto.Pos[#i].Pos;
+      "DB_ST10_Recipe".Motion.ServoV90_A2[#i].Vel := "ServoV90_A2".Auto.Pos[#i].Vel;
+      
+      // Servo V90 A3
+      "DB_ST10_Recipe".Motion.ServoV90_A3[#i].Pos := "ServoV90_A3".Auto.Pos[#i].Pos;
+      "DB_ST10_Recipe".Motion.ServoV90_A3[#i].Vel := "ServoV90_A3".Auto.Pos[#i].Vel;
+      
+      // Servo V90 A4
+      "DB_ST10_Recipe".Motion.ServoV90_A4[#i].Pos := "ServoV90_A4".Auto.Pos[#i].Pos;
+      "DB_ST10_Recipe".Motion.ServoV90_A4[#i].Vel := "ServoV90_A4".Auto.Pos[#i].Vel;
+   END_FOR;
+
+   // =================================================================================
+   // PROCESS PARAMETERS - Saving from Active Recipe DB to New Master DB
+   // =================================================================================
+   
+   // Press Curves (Mapping from legacy names)
+   "DB_ST10_Recipe".Process.Press.Curve.StartPos_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveStartPosUL;
+   "DB_ST10_Recipe".Process.Press.Curve.StartPos_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveStartPosLL;
+   
+   "DB_ST10_Recipe".Process.Press.Curve.StartForce_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveStartForceUL;
+   "DB_ST10_Recipe".Process.Press.Curve.StartForce_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveStartForceLL;
+   
+   "DB_ST10_Recipe".Process.Press.Curve.MiddlePos_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveMiddlePosUL;
+   "DB_ST10_Recipe".Process.Press.Curve.MiddlePos_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveMiddlePosLL;
+   
+   "DB_ST10_Recipe".Process.Press.Curve.MiddleForce_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveMiddleForceUL;
+   "DB_ST10_Recipe".Process.Press.Curve.MiddleForce_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveMiddleForceLL;
+   
+   "DB_ST10_Recipe".Process.Press.Curve.FinalPos_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveFinalPosUL;
+   "DB_ST10_Recipe".Process.Press.Curve.FinalPos_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveFinalPosLL;
+   
+   "DB_ST10_Recipe".Process.Press.Curve.FinalForce_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveFinalForceUL;
+   "DB_ST10_Recipe".Process.Press.Curve.FinalForce_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PressCurveFinalForceLL;
+   
+   "DB_ST10_Recipe".Process.Press.Curve.ProgramNum := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".Press.PresserProgramNum;
+
+   // ATEQ Limits
+   "DB_ST10_Recipe".Process.ATEQ.Pressure_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".ATEQ.RessureCurrentValueUL;
+   "DB_ST10_Recipe".Process.ATEQ.Pressure_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".ATEQ.RessureCurrentValueLL;
+   "DB_ST10_Recipe".Process.ATEQ.Leak_UL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".ATEQ.LeakCurrentValueUL;
+   "DB_ST10_Recipe".Process.ATEQ.Leak_LL := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".ATEQ.LeakCurrentValueLL;
+   "DB_ST10_Recipe".Process.ATEQ.PosPressureProgNo := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".ATEQ.PositivePressureProgNo;
+   "DB_ST10_Recipe".Process.ATEQ.NegPressureProgNo := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-RecipeParameter".ATEQ.NegativePressureProgNo;
+
+   // =================================================================================
+   // FIXTURE CODES - Saving from Active Recipe DB
+   // =================================================================================
+   
+   // Tables
+   FOR #i := 0 TO 10 DO
+      "DB_ST10_Recipe".Production.Fixtures.A1_Table[#i] := "ST10_RecipeActiveDB".Recipe.ParameterElement.A1_TableFixtureCode[#i];
+      "DB_ST10_Recipe".Production.Fixtures.A2_Table[#i] := "ST10_RecipeActiveDB".Recipe.ParameterElement.A2_TableFixtureCode[#i];
+   END_FOR;
+   
+   // Single Fixtures
+   "DB_ST10_Recipe".Production.Fixtures.A1_RingUnload := "ST10_RecipeActiveDB".Recipe.ParameterElement.A1RingUnloadingFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.A2_RingUnload := "ST10_RecipeActiveDB".Recipe.ParameterElement.A2RingUnloadingFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.E1_LoadingNG := "ST10_RecipeActiveDB".Recipe.ParameterElement.E1LoadingNGFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.E2_UnloadingNG := "ST10_RecipeActiveDB".Recipe.ParameterElement.E2UnloadingNGFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.ShaftScan := "ST10_RecipeActiveDB".Recipe.ParameterElement.ShaftScanFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.B1_Press := "ST10_RecipeActiveDB".Recipe.ParameterElement.B1PressFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.B2_Press := "ST10_RecipeActiveDB".Recipe.ParameterElement.B2PressFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.C_Glue := "ST10_RecipeActiveDB".Recipe.ParameterElement.CGlueFixtureCode;
+   "DB_ST10_Recipe".Production.Fixtures.C_GlueNG := "ST10_RecipeActiveDB".Recipe.ParameterElement.CGlueNGFixtureCode;
+
+   // Robot Grippers
+   FOR #i := 0 TO 6 DO
+      "DB_ST10_Recipe".Production.Fixtures.R1_Gripper[#i] := "ST10_RecipeActiveDB".Recipe.ParameterElement.R1GripperFixtureCode[#i];
+      "DB_ST10_Recipe".Production.Fixtures.R2_Gripper[#i] := "ST10_RecipeActiveDB".Recipe.ParameterElement.R2GripperFixtureCode[#i];
+      "DB_ST10_Recipe".Production.Fixtures.R3_Gripper[#i] := "ST10_RecipeActiveDB".Recipe.ParameterElement.R3GripperFixtureCode[#i];
+   END_FOR;
+
+   // =================================================================================
+   // HEADER INFO
+   // =================================================================================
+   "DB_ST10_Recipe".Header.RecipeName := "ST10_RecipeActiveDB".Recipe.RecipeTag;
+   "DB_ST10_Recipe".Header.PartType := "ST10_RecipeActiveDB".Recipe.ParameterElement.TypeName;
+   "DB_ST10_Recipe".Header.PartTypeRecordNr := "ST10_RecipeActiveDB".Recipe.ProcessParameter."M-PartTypeRecordNr";
+
+END_FUNCTION

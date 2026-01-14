@@ -1,0 +1,206 @@
+
+// =================================================================================
+// UDT_Recipe_Descriptive_V2.scl
+// Version: 2.0
+//
+// Description:
+// CORRECTED based on user feedback. The IAI axes are for the 3-axis gluing nozzle.
+// This file defines a highly descriptive recipe structure for Station 10.
+// It replaces generic arrays with clearly named members for all motion positions
+// and robot gripper configurations, reflecting their true function.
+// =================================================================================
+
+
+// =================================================================================
+// BASE TYPES for Motion Points
+// =================================================================================
+
+TYPE "UDT_Motion_Point_IAI"
+   STRUCT
+      Pos : DInt;   // Target Position (um/pulse)
+      Vel : Int;    // Target Velocity (mm/s or %)
+   END_STRUCT;
+END_TYPE
+
+TYPE "UDT_Motion_Point_V90"
+   STRUCT
+      Pos : Real;   // Target Position (mm/deg)
+      Vel : Int;    // Target Velocity (mm/s or rpm)
+   END_STRUCT;
+END_TYPE
+
+
+// =================================================================================
+// DESCRIPTIVE UDTs FOR MOTION POSITIONS
+// =================================================================================
+
+// --- Positions for the 3-Axis Gluing Nozzle ---
+
+TYPE "UDT_Gluing_Head_Positions"
+   STRUCT
+      Home : "UDT_Motion_Point_IAI";                  // Position 1: Home position
+      Standby : "UDT_Motion_Point_IAI";               // Position 2: Standby, clear of all operations
+      
+      Path_Start_Pos : "UDT_Motion_Point_IAI";        // Position 3: Start of gluing path
+      Path_Via_Point_1 : "UDT_Motion_Point_IAI";      // Position 4: Intermediate point on path
+      Path_Via_Point_2 : "UDT_Motion_Point_IAI";      // Position 5: Intermediate point on path
+      Path_End_Pos : "UDT_Motion_Point_IAI";          // Position 6: End of gluing path
+      
+      Purge_Position_Approach : "UDT_Motion_Point_IAI"; // Position 7: Approach to purge/drip station
+      Purge_Position : "UDT_Motion_Point_IAI";          // Position 8: Position for purging nozzle
+      
+      Nozzle_Clean_Approach : "UDT_Motion_Point_IAI"; // Position 9: Approach to nozzle cleaning station
+      Nozzle_Clean_Position : "UDT_Motion_Point_IAI";   // Position 10: Position for cleaning cycle
+      
+      Vision_Check_Position : "UDT_Motion_Point_IAI"; // Position 11: Position for camera to check nozzle/part
+      
+      Service_Position : "UDT_Motion_Point_IAI";      // Position 12: For maintenance
+      
+      Spare_1 : "UDT_Motion_Point_IAI";               // Spare
+      Spare_2 : "UDT_Motion_Point_IAI";               // Spare
+      Spare_3 : "UDT_Motion_Point_IAI";               // Spare
+      Spare_4 : "UDT_Motion_Point_IAI";               // Spare
+      Spare_5 : "UDT_Motion_Point_IAI";               // Spare
+      Spare_6 : "UDT_Motion_Point_IAI";               // Spare
+      Spare_7 : "UDT_Motion_Point_IAI";               // Spare
+      Spare_8 : "UDT_Motion_Point_IAI";               // Spare
+   END_STRUCT;
+END_TYPE
+
+
+// --- Positions for the V90 Servo Axes ---
+
+TYPE "UDT_Auxiliary_Axis_Positions"
+   STRUCT
+      Home : "UDT_Motion_Point_V90";              // Position 1: Home or zero position
+      Work_Start_Pos : "UDT_Motion_Point_V90";    // Position 2: Start of work cycle / Position A
+      Work_End_Pos : "UDT_Motion_Point_V90";      // Position 3: End of work cycle / Position B
+      
+      Load_Pos : "UDT_Motion_Point_V90";          // Position 4: Position for loading
+      Unload_Pos : "UDT_Motion_Point_V90";        // Position 5: Position for unloading
+      
+      Press_Top_Position : "UDT_Motion_Point_V90"; // Position 6: Upper position for press
+      Press_Contact_Position : "UDT_Motion_Point_V90"; // Position 7: Contact position for press
+      
+      Intermediate_Pos_1 : "UDT_Motion_Point_V90"; // Position 8
+      
+      Spare_1 : "UDT_Motion_Point_V90";           // Position 9
+      Spare_2 : "UDT_Motion_Point_V90";           // Position 10
+   END_STRUCT;
+END_TYPE
+
+
+// =================================================================================
+// DESCRIPTIVE UDTs FOR ROBOT FIXTURE/GRIPPER CODES
+// (Same as V1, this was likely correct)
+// =================================================================================
+
+TYPE "UDT_Gripper_Fixture_Codes"
+   STRUCT
+      For_Part_Type_A : String[128]; // Fixture code for handling Part Type A
+      For_Part_Type_B : String[128]; // Fixture code for handling Part Type B
+      For_Part_Type_C : String[128]; // Fixture code for handling Part Type C
+      For_NG_Part : String[128];     // Fixture code for handling rejected parts
+      Unused_1 : String[128];
+      Unused_2 : String[128];
+   END_STRUCT;
+END_TYPE
+
+
+// =================================================================================
+// MAIN RECIPE UDT - RESTRUCTURED - V2
+// =================================================================================
+
+TYPE "UDT_ST10_Recipe_V2" // Use this new UDT for the recipe DB
+   STRUCT
+      Header : Struct
+         RecipeName : String[50];
+         RecipeID : USInt;
+         Version : UInt;
+         LastModified : DTL;
+         PartType : String[28];
+         PartTypeRecordNr : Int;
+      END_STRUCT;
+      
+      cfg : Struct   // Machine specific configuration
+         StationID : UInt;
+         PrevStationID : UInt;
+      END_STRUCT;
+      
+      General : Struct   // Global standard parameters
+         StepTimeout : Time;
+         StepWarning : Time;
+      END_STRUCT;
+      
+      Process : Struct   // Process specific parameters
+         Timers : Struct
+            Delay_Short : Time;
+            Delay_Medium : Time;
+            Delay_Long : Time;
+            Cylinder_ActTime : Time;
+         END_STRUCT;
+         Limits : Struct
+            RetryLimit : Int;
+         END_STRUCT;
+         Press : Struct
+            B1_Program : Int;
+            B2_Program : Int;
+            Curve : "UDT_Recipe_PressCurve"; // This UDT is from the original files
+         END_STRUCT;
+         ATEQ : "UDT_Recipe_ATEQ"; // This UDT is from the original files
+         Vision : Struct
+            CGlueShaftIV3_Progs : Array[1..4] of Word;
+            CGlueMagnetIV3_Prog : Word;
+            CGlueProgram : Int;
+         END_STRUCT;
+      END_STRUCT;
+      
+      Production : Struct
+         // Fixtures for Tables, etc. (Unchanged)
+         A1_Table : Array[0..10] of String[128];
+         A2_Table : Array[0..10] of String[128];
+         A1_RingUnload : String[128];
+         A2_RingUnload : String[128];
+         E1_LoadingNG : String[128];
+         E2_UnloadingNG : String[128];
+         ShaftScan : String[128];
+         B1_Press : String[128];
+         B2_Press : String[128];
+         B1_PressCyl : String[128];
+         B2_PressCyl : String[128];
+         C_Glue : String[128];
+         C_GlueNG : String[128];
+         
+         // Descriptive Gripper Fixture Codes
+         Shaft_Handling_Robot : Struct // R1
+            Gripper_A : "UDT_Gripper_Fixture_Codes";
+            Gripper_B : "UDT_Gripper_Fixture_Codes";
+         END_STRUCT;
+         Main_Assembly_Robot : Struct // R2
+            Gripper_A : "UDT_Gripper_Fixture_Codes";
+            Gripper_B : "UDT_Gripper_Fixture_Codes";
+         END_STRUCT;
+         Unloading_Robot : Struct // R3
+            Gripper_A : "UDT_Gripper_Fixture_Codes";
+            Gripper_B : "UDT_Gripper_Fixture_Codes";
+         END_STRUCT;
+         
+         FixtureID_Code : Array[1..16] of Byte;
+      END_STRUCT;
+      
+      Motion : Struct
+         // CORRECTED: IAI Axes are for the Gluing Nozzle
+         Gluing_Nozzle_X : "UDT_Gluing_Head_Positions"; // Was IAI_A1 / Gantry_X
+         Gluing_Nozzle_Y : "UDT_Gluing_Head_Positions"; // Was IAI_A2 / Gantry_Y
+         Gluing_Nozzle_Z : "UDT_Gluing_Head_Positions"; // Was IAI_A3 / Gantry_Z
+         
+         // CORRECTED: New assumed functions for V90 Axes
+         Press_1_Head_Axis : "UDT_Auxiliary_Axis_Positions";        // Was ServoV90_A1
+         Press_2_Head_Axis : "UDT_Auxiliary_Axis_Positions";        // Was ServoV90_A2
+         Main_Turntable_Axis : "UDT_Auxiliary_Axis_Positions";      // Was ServoV90_A3
+         Part_Infeed_Shuttle_Axis : "UDT_Auxiliary_Axis_Positions"; // Was ServoV90_A4
+      END_STRUCT;
+      
+      Spare : Array[0..10] of Byte;
+   END_STRUCT;
+END_TYPE

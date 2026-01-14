@@ -1,0 +1,128 @@
+TYPE "UDT_Motion_Point_IAI"
+   STRUCT
+      Pos : DInt;   // Target Position (um/pulse)
+      Vel : Int;    // Target Velocity (mm/s or %)
+   END_STRUCT;
+END_TYPE
+
+TYPE "UDT_Motion_Point_V90"
+   STRUCT
+      Pos : Real;   // Target Position (mm/deg)
+      Vel : Int;    // Target Velocity (mm/s or rpm)
+   END_STRUCT;
+END_TYPE
+
+TYPE "UDT_Recipe_PressCurve"
+   STRUCT
+      StartPos_UL : Real;
+      StartPos_LL : Real;
+      StartForce_UL : Real;
+      StartForce_LL : Real;
+      MiddlePos_UL : Real;
+      MiddlePos_LL : Real;
+      MiddleForce_UL : Real;
+      MiddleForce_LL : Real;
+      FinalPos_UL : Real;
+      FinalPos_LL : Real;
+      FinalForce_UL : Real;
+      FinalForce_LL : Real;
+      ProgramNum : Int;
+   END_STRUCT;
+END_TYPE
+
+TYPE "UDT_Recipe_ATEQ"
+   STRUCT
+      Pressure_UL : Real;
+      Pressure_LL : Real;
+      Leak_UL : Real;
+      Leak_LL : Real;
+      PosPressureProgNo : Int;
+      NegPressureProgNo : Int;
+   END_STRUCT;
+END_TYPE
+
+TYPE "UDT_Recipe_Fixtures"
+VERSION : 1.0
+   STRUCT
+      A1_Table : Array[0..10] of String[128];
+      A2_Table : Array[0..10] of String[128];
+      A1_RingUnload : String[128];
+      A2_RingUnload : String[128];
+      E1_LoadingNG : String[128];
+      E2_UnloadingNG : String[128];
+      ShaftScan : String[128];
+      B1_Press : String[128];
+      B2_Press : String[128];
+      B1_PressCyl : String[128];
+      B2_PressCyl : String[128];
+      C_Glue : String[128];
+      C_GlueNG : String[128];
+      R1_Gripper : Array[0..6] of String[128];
+      R2_Gripper : Array[0..6] of String[128];
+      R3_Gripper : Array[0..6] of String[128];
+   END_STRUCT;
+END_TYPE
+
+TYPE "UDT_ST10_Recipe"
+   STRUCT
+      Header : Struct
+         RecipeName : String[50];
+         RecipeID : USInt;
+         Version : UInt;
+         LastModified : DTL;
+         PartType : String[28];
+         PartTypeRecordNr : Int;
+      END_STRUCT;
+      
+      cfg : Struct   // Machine specific configuration
+         StationID : UInt;
+         PrevStationID : UInt;
+      END_STRUCT;
+      
+      General : Struct   // Global standard parameters
+         StepTimeout : Time;
+         StepWarning : Time;
+      END_STRUCT;
+      
+      Process : Struct   // Process specific parameters
+         Timers : Struct
+            Delay_Short : Time;
+            Delay_Medium : Time;
+            Delay_Long : Time;
+            Cylinder_ActTime : Time;
+         END_STRUCT;
+         Limits : Struct
+            RetryLimit : Int;
+         END_STRUCT;
+         Press : Struct
+            B1_Program : Int;
+            B2_Program : Int;
+            Curve : "UDT_Recipe_PressCurve";
+         END_STRUCT;
+         ATEQ : "UDT_Recipe_ATEQ";
+         Vision : Struct
+            CGlueShaftIV3_Progs : Array[1..4] of Word;
+            CGlueMagnetIV3_Prog : Word;
+            CGlueProgram : Int;
+         END_STRUCT;
+      END_STRUCT;
+      
+      Production : Struct
+         Fixtures : "UDT_Recipe_Fixtures";
+         FixtureID_Code : Array[1..16] of Byte;
+      END_STRUCT;
+      
+      Motion : Struct
+         IAI_A1 : Array[1..20] of "UDT_Motion_Point_IAI"; 
+         IAI_A2 : Array[1..20] of "UDT_Motion_Point_IAI"; 
+         IAI_A3 : Array[1..20] of "UDT_Motion_Point_IAI"; 
+         
+         ServoV90_A1 : Array[1..20] of "UDT_Motion_Point_V90"; 
+         ServoV90_A2 : Array[1..20] of "UDT_Motion_Point_V90"; 
+         ServoV90_A3 : Array[1..20] of "UDT_Motion_Point_V90"; 
+         ServoV90_A4 : Array[1..20] of "UDT_Motion_Point_V90"; 
+      END_STRUCT;
+      
+      Spare : Array[0..10] of Byte;
+   END_STRUCT;
+END_TYPE

@@ -1,0 +1,237 @@
+FUNCTION_BLOCK "fbV90Ctrl_SCL"
+VAR_INPUT
+    iSysRun : Bool;
+    iReset : Bool;
+    iEstop : Bool;
+    iAuto : Bool;
+    iManual : Bool;
+    iConnect : Bool;
+    iStep : Bool;
+    iInterlock : Bool;
+    "iManJog+" : Bool;
+    "iManJog-" : Bool;
+    iManStart : Bool;
+    iManListStart : Bool;
+    iAutoStart : Bool;
+    iLimitSwitchActive : Bool;
+    iLimitSoftActive : Bool;
+    iRunningTimeout : Time;
+    iHomingTimeout : Time;
+    iAutoPosition : DInt;
+    iAutoVelocity : Int;
+    iManListPosition : DInt;
+    iManListVelocity : Int;
+    iManPosition : DInt;
+    iManVelocity : Int;
+    iMode : Int;
+    iAListNumber : Int;
+    iMListNumber : Int;
+    iHWIDSTW : HW_IO;
+    iHWIDZSW : HW_IO;
+    iHardwareId : HW_IO;
+    iSpecJog : Bool;
+    iHomeSwitch : Bool;
+    iIndexTableON : Bool;
+    Position_sensor_1 : Bool;
+    Position_sensor_2 : Bool;
+    Position_sensor_3 : Bool;
+    Position_sensor_4 : Bool;
+    Type : Bool;
+END_VAR
+VAR_OUTPUT
+    oReady : Bool;
+    oWarning : Bool;
+    oError : Bool;
+    oInterlock : Bool;
+    oServoEnable : Bool;
+    oRunning : Bool;
+    oHoming : Bool;
+    oHomeRef : Bool;
+    oServoPosOK : Bool;
+    oErrorCode : Int;
+    oStatus : Int;
+    oActPosition : DInt;
+    oTargetPos : DInt;
+    oPosOK : Array[1..20] of Bool;
+    oDisable : Bool;
+    oSensorInPos : Bool;
+END_VAR
+VAR_IN_OUT
+    ioManEnale : Bool;
+    ioAutoEnale : Bool;
+    ioHome : Bool;
+    ioHomeWrite : Bool;
+    ioBusy : Bool;
+    ioDone : Bool;
+END_VAR
+VAR
+    sStep : Array[1..4] of Int;
+    sPls : Array[1..16] of Bool;
+    sErrorCode : Int;
+    sPosOK : Bool;
+    sRunning : Bool;
+    sHoming : Bool;
+    sCancel : Bool;
+    "sMan/List" : Bool;
+    sCMMT : "SINA_POS";
+    sPara : "SINA_PARA_S";
+    sRunningTimeout : TON_TIME;
+    sHomingTimeout : TON_TIME;
+    sEnableDelay : TON_TIME;
+    sManDirHis : DInt;
+    sManListHis : Int;
+    sAutoListHis : Int;
+    Position_PV : Int;
+    Conv_Pos_PV : Int;
+    Delay : TON_TIME;
+    Delay_1 : TON_TIME;
+    Delay_2 : TON_TIME;
+    Delay_3 : TON_TIME;
+END_VAR
+VAR_TEMP
+    tNormalON : Bool;
+    tHome : Bool;
+    tCancelTask : Bool;
+    tPauseTask : Bool;
+    tRetVal : Int;
+    "tPosConfig+" : DInt;
+    "tPosConfig-" : DInt;
+END_VAR
+VAR_CONSTANT
+    cOffset : DInt := 0;
+END_VAR
+BEGIN
+    // Initialize normal operation flag
+    tNormalON := TRUE;
+
+    // Configuration of SINA_POS
+    sCMMT.ConfigEPos := tNormalON AND iLimitSoftActive;
+    sCMMT.ConfigEPos := tNormalON AND iLimitSwitchActive;
+    sCMMT.ConfigEPos := tNormalON AND iHomeSwitch;
+
+    // Task control
+    tCancelTask := tNormalON AND iSysRun AND NOT iEstop AND iInterlock;
+    tPauseTask := tNormalON;
+
+    // Home reference logic
+    tHome := NOT tNormalON;
+
+    // Manual/Auto mode handling
+    IF iManual THEN
+        ioManEnale := TRUE;
+        ioAutoEnale := FALSE;
+    ELSIF iAuto THEN
+        ioManEnale := FALSE;
+        ioAutoEnale := TRUE;
+    END_IF;
+
+    // Interlock logic
+    oInterlock := iInterlock AND sCMMT.AxisRef;
+
+    // Servo enable logic
+    oServoEnable := sCMMT.AxisEnabled;
+
+    // Running and homing status
+    oRunning := sRunning;
+    oHoming := sHoming;
+
+    // Home reference status
+    oHomeRef := sCMMT.AxisRef;
+
+    // Position OK logic
+    oServoPosOK := sPosOK AND sCMMT.AxisPosOk;
+
+    // Error handling
+    oError := sCMMT.AxisError OR sCMMT.AxisWarn;
+    oWarning := sCMMT.AxisWarn;
+    oErrorCode := sErrorCode;
+
+    // Actual position
+    oActPosition := sCMMT.ActPosition;
+
+    // Status
+    oStatus := sCMMT.Status;
+
+    // Ready status
+    oReady := sCMMT.AxisReady;
+
+    // Position sensors
+    Position_PV := 0;
+    IF Position_sensor_1 THEN Position_PV := Position_PV + 1; END_IF;
+    IF Position_sensor_2 THEN Position_PV := Position_PV + 2; END_IF;
+    IF Position_sensor_3 THEN Position_PV := Position_PV + 4; END_IF;
+    IF Position_sensor_4 THEN Position_PV := Position_PV + 8; END_IF;
+
+    // Convert position
+    Conv_Pos_PV := Position_PV;
+
+    // Reset pulses
+    FOR #i := 1 TO 16 DO
+        sPls[i] := FALSE;
+    END_FOR;
+
+    // Manual jogging logic
+    IF "iManJog+" THEN
+        // Jog positive
+        sCMMT.Velocity := VEL_MANUAL;
+        sCMMT.Position := sCMMT.ActPosition + 1000; // Example increment
+        sCMMT.Execute := TRUE;
+    ELSIF "iManJog-" THEN
+        // Jog negative
+        sCMMT.Velocity := VEL_MANUAL;
+        sCMMT.Position := sCMMT.ActPosition - 1000; // Example decrement
+        sCMMT.Execute := TRUE;
+    END_IF;
+
+    // Auto positioning
+    IF iAutoStart THEN
+        sCMMT.Position := iAutoPosition;
+        sCMMT.Velocity := iAutoVelocity;
+        sCMMT.Execute := TRUE;
+        sRunning := TRUE;
+    END_IF;
+
+    // Manual positioning
+    IF iManStart THEN
+        sCMMT.Position := iManPosition;
+        sCMMT.Velocity := iManVelocity;
+        sCMMT.Execute := TRUE;
+        sRunning := TRUE;
+    END_IF;
+
+    // Homing
+    IF ioHome THEN
+        sCMMT.Home := TRUE;
+        sHoming := TRUE;
+    END_IF;
+
+    // Update done status
+    ioDone := sCMMT.Done;
+    ioBusy := sCMMT.Busy;
+
+    // Timeout handling
+    sRunningTimeout(IN := sRunning, PT := TIMEOUT_RUNNING);
+    sHomingTimeout(IN := sHoming, PT := TIMEOUT_HOMING);
+
+    IF sRunningTimeout.Q THEN
+        sRunning := FALSE;
+        oError := TRUE;
+        oErrorCode := 1; // Timeout error
+    END_IF;
+
+    IF sHomingTimeout.Q THEN
+        sHoming := FALSE;
+        oError := TRUE;
+        oErrorCode := 2; // Homing timeout
+    END_IF;
+
+    // Reset logic
+    IF iReset THEN
+        sCMMT.ErrorReset := TRUE;
+        oError := FALSE;
+        oWarning := FALSE;
+        sRunning := FALSE;
+        sHoming := FALSE;
+    END_IF;
+
+END_FUNCTION_BLOCK

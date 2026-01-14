@@ -1,0 +1,187 @@
+FUNCTION "Gluing_SCL" : Void
+VAR_INPUT
+    iGluingDeviceReady : Bool;
+    iGluingFault : Bool;
+    iGluingRefillTank : Bool;
+    iGluingTankEmpty : Bool;
+    iStartGluing : Bool;
+    iReset : Bool;
+    iManualMode : Bool;
+    iAutoMode : Bool;
+    iManual_X : Bool;
+    iManual_Y : Bool;
+    iManual_Z : Bool;
+    iManualTest_X : Bool;
+END_VAR
+VAR_OUTPUT
+    oGluingPro_X : Bool;
+    oGluingPro_Y : Bool;
+    oGluingPro_Z : Bool;
+    oGluingReset : Bool;
+    oGluingFault : Bool;
+    oGluingReady : Bool;
+END_VAR
+VAR
+    Step : Int := 0;
+    TimerMotion : TON;
+    TimerDelay : TON;
+    FaultCode : Word;
+    RecoveryCount : Int := 0;
+    GlueOn : Bool := FALSE;
+    InMotion : Bool := FALSE;
+END_VAR
+VAR_TEMP
+    tStartCondition : Bool;
+    tFaultCondition : Bool;
+    tResetCondition : Bool;
+END_VAR
+// Constants are defined in Gluing_Constants.scl
+BEGIN
+    // Input mapping to control structure (simulating GluingControl DB)
+    GluingControl.Input.GluingDeviceReady := iGluingDeviceReady;
+    GluingControl.Input.GluingFault := iGluingFault;
+    GluingControl.Input.GluingRefillTank := iGluingRefillTank;
+    GluingControl.Input.GluingTankEmpty := iGluingTankEmpty;
+
+    // Output mapping
+    oGluingPro_X := GluingControl.Output.GluingPro_X;
+    oGluingPro_Y := GluingControl.Output.GluingPro_Y;
+    oGluingPro_Z := GluingControl.Output.GluingPro_Z;
+    oGluingReset := GluingControl.Output.GluingReset;
+
+    // Reset logic
+    tResetCondition := iReset OR (iGluingFault AND Station_Sys.Cmd.Reset);
+    IF tResetCondition THEN
+        GluingControl.Output.GluingReset := TRUE;
+        Step := 0;
+        GlueOn := FALSE;
+        InMotion := FALSE;
+        oGluingFault := FALSE;
+        RecoveryCount := 0;
+    ELSE
+        GluingControl.Output.GluingReset := FALSE;
+    END_IF;
+
+    // Mode handling
+    IF iAutoMode THEN
+        GluingControl.Control.Manual_X := FALSE;
+        GluingControl.Control.Auto_Start := TRUE;
+    END_IF;
+
+    IF iManualMode THEN
+        GluingControl.Control.Auto_Start := FALSE;
+    END_IF;
+
+    // Manual test mode
+    IF iManualMode AND NOT GluingControl.GlueCalibratonMode AND ServoV90_DeviceCtl.V90Servo THEN
+        IF iManualTest_X THEN
+            GluingControl.Control.ManualTest_X := FALSE;
+        END_IF;
+    END_IF;
+
+    IF iAutoMode THEN
+        GluingControl.Control.ManualTest_X := FALSE;
+    END_IF;
+
+    // Main state machine for gluing process
+    CASE Step OF
+        0: // IDLE
+            oGluingReady := TRUE;
+            IF iStartGluing AND iGluingDeviceReady AND NOT iGluingTankEmpty THEN
+                Step := 10;
+                oGluingReady := FALSE;
+            END_IF;
+
+        10: // HOMING
+            // Assume V90Servo[SERVO_Z] is the Z-axis servo
+            IF V90Servo[SERVO_Z].oHomeRef THEN
+                Step := 20;
+            ELSIF V90Servo[SERVO_Z].oError THEN
+                FaultCode := FAULT_HOMING;
+                Step := 100;
+            END_IF;
+            TimerMotion.IN := TRUE;
+
+        20: // APPROACH POSITION
+            V90Servo[SERVO_Z].iAutoStart := TRUE;
+            V90Servo[SERVO_Z].iAutoPosition := V90Servo[SERVO_Z].Auto.Pos[POS_APPROACH];
+            V90Servo[SERVO_Z].iAutoVelocity := VEL_FAST;
+            IF V90Servo[SERVO_Z].oDone THEN
+                Step := 30;
+                V90Servo[SERVO_Z].iAutoStart := FALSE;
+            ELSIF V90Servo[SERVO_Z].oError THEN
+                FaultCode := FAULT_MOTION;
+                Step := 100;
+            END_IF;
+
+        30: // GLUE DISPENSING START
+            GlueOn := TRUE;
+            V90Servo[SERVO_Z].iAutoStart := TRUE;
+            V90Servo[SERVO_Z].iAutoPosition := V90Servo[SERVO_Z].Auto.Pos[POS_GLUE_START];
+            V90Servo[SERVO_Z].iAutoVelocity := VEL_GLUE;
+            IF V90Servo[SERVO_Z].oDone THEN
+                Step := 40;
+                V90Servo[SERVO_Z].iAutoStart := FALSE;
+            ELSIF V90Servo[SERVO_Z].oError THEN
+                FaultCode := FAULT_MOTION;
+                Step := 100;
+            END_IF;
+
+        40: // GLUE DISPENSING CONTINUE
+            // Continue to end position
+            V90Servo[SERVO_Z].iAutoStart := TRUE;
+            V90Servo[SERVO_Z].iAutoPosition := V90Servo[SERVO_Z].Auto.Pos[POS_GLUE_END];
+            IF V90Servo[SERVO_Z].oDone THEN
+                Step := 50;
+                V90Servo[SERVO_Z].iAutoStart := FALSE;
+            ELSIF V90Servo[SERVO_Z].oError THEN
+                FaultCode := FAULT_MOTION;
+                Step := 100;
+            END_IF;
+
+        50: // CLEAN POSITION
+            GlueOn := FALSE;
+            V90Servo[SERVO_Z].iAutoStart := TRUE;
+            V90Servo[SERVO_Z].iAutoPosition := V90Servo[SERVO_Z].Auto.Pos[POS_CLEAN];
+            V90Servo[SERVO_Z].iAutoVelocity := VEL_FAST;
+            IF V90Servo[SERVO_Z].oDone THEN
+                Step := 0; // Return to idle
+                V90Servo[SERVO_Z].iAutoStart := FALSE;
+            ELSIF V90Servo[SERVO_Z].oError THEN
+                FaultCode := FAULT_MOTION;
+                Step := 100;
+            END_IF;
+
+        100: // FAULT
+            oGluingFault := TRUE;
+            GlueOn := FALSE;
+            InMotion := FALSE;
+            IF iReset AND RecoveryCount < 3 THEN
+                RecoveryCount := RecoveryCount + 1;
+                Step := 10; // Retry from homing
+            END_IF;
+
+    END_CASE;
+
+    // Motion timeout
+    TimerMotion(IN := (Step >= 10 AND Step < 100), PT := TIMEOUT_MOTION);
+    IF TimerMotion.Q THEN
+        FaultCode := FAULT_TIMEOUT;
+        Step := 100;
+    END_IF;
+
+    // Safety interlocks
+    IF iGluingTankEmpty OR NOT iGluingDeviceReady THEN
+        GlueOn := FALSE;
+        IF iAutoMode THEN
+            FaultCode := FAULT_SAFETY;
+            Step := 100;
+        END_IF;
+    END_IF;
+
+    // Update control outputs
+    GluingControl.Output.GluingPro_X := GlueOn; // Assuming X is glue valve
+    GluingControl.Output.GluingPro_Y := InMotion;
+    GluingControl.Output.GluingPro_Z := InMotion;
+
+END_FUNCTION

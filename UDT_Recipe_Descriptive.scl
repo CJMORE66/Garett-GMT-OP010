@@ -1,0 +1,184 @@
+
+// =================================================================================
+// UDT_Recipe_Descriptive.scl
+// Version: 1.0
+//
+// Description:
+// This file defines a new, highly descriptive recipe structure for Station 10.
+// It replaces generic arrays and indices with clearly named members for all
+// motion positions and robot gripper configurations. This makes the recipe
+// self-documenting and easier for teaching and HMI integration.
+// =================================================================================
+
+
+// =================================================================================
+// BASE TYPES for Motion Points
+// =================================================================================
+
+TYPE "UDT_Motion_Point_IAI"
+   STRUCT
+      Pos : DInt;   // Target Position (um/pulse)
+      Vel : Int;    // Target Velocity (mm/s or %)
+   END_STRUCT;
+END_TYPE
+
+TYPE "UDT_Motion_Point_V90"
+   STRUCT
+      Pos : Real;   // Target Position (mm/deg)
+      Vel : Int;    // Target Velocity (mm/s or rpm)
+   END_STRUCT;
+END_TYPE
+
+
+// =================================================================================
+// DESCRIPTIVE UDTs FOR MOTION POSITIONS
+// =================================================================================
+
+// --- Positions for the IAI Gantry Axes ---
+
+TYPE "UDT_Gantry_Axis_Positions"
+   STRUCT
+      Home : "UDT_Motion_Point_IAI";              // Position 1: Home position
+      Safe_Z_Height : "UDT_Motion_Point_IAI";     // Position 2: Safe height for XY movement
+      Standby : "UDT_Motion_Point_IAI";           // Position 3: Standby position, clear of process
+      
+      Pick_From_Pallet_Approach : "UDT_Motion_Point_IAI"; // Position 4
+      Pick_From_Pallet : "UDT_Motion_Point_IAI";          // Position 5
+      Pick_From_Pallet_Retract : "UDT_Motion_Point_IAI";  // Position 6
+
+      Place_At_Press_Approach : "UDT_Motion_Point_IAI"; // Position 7
+      Place_At_Press : "UDT_Motion_Point_IAI";          // Position 8
+      
+      Pick_From_Press : "UDT_Motion_Point_IAI";         // Position 9
+      
+      Place_At_Glue_Approach : "UDT_Motion_Point_IAI";  // Position 10
+      Place_At_Glue : "UDT_Motion_Point_IAI";           // Position 11
+      
+      Pick_From_Glue : "UDT_Motion_Point_IAI";          // Position 12
+      
+      Place_On_Turntable_Approach : "UDT_Motion_Point_IAI"; // Position 13
+      Place_On_Turntable : "UDT_Motion_Point_IAI";          // Position 14
+      
+      Pick_From_Turntable : "UDT_Motion_Point_IAI";     // Position 15
+      
+      Place_At_NG_Chute : "UDT_Motion_Point_IAI";      // Position 16: For rejecting parts
+      
+      Service_Position : "UDT_Motion_Point_IAI";      // Position 17: For maintenance
+      
+      Spare_1 : "UDT_Motion_Point_IAI";               // Position 18
+      Spare_2 : "UDT_Motion_Point_IAI";               // Position 19
+      Spare_3 : "UDT_Motion_Point_IAI";               // Position 20
+   END_STRUCT;
+END_TYPE
+
+
+// --- Positions for the V90 Servo Axes ---
+
+TYPE "UDT_V90_Axis_Positions"
+   STRUCT
+      Home : "UDT_Motion_Point_V90";              // Position 1: Home or zero position
+      Work_Start : "UDT_Motion_Point_V90";        // Position 2: Start of work cycle
+      Work_End : "UDT_Motion_Point_V90";          // Position 3: End of work cycle
+      
+      Clean_Position : "UDT_Motion_Point_V90";    // Position 4: Position for cleaning
+      
+      Intermediate_Pos_1 : "UDT_Motion_Point_V90"; // Position 5
+      Intermediate_Pos_2 : "UDT_Motion_Point_V90"; // Position 6
+      
+      Press_Top_Position : "UDT_Motion_Point_V90";    // Position 7
+      Press_Contact_Position : "UDT_Motion_Point_V90"; // Position 8
+      
+      Spare_1 : "UDT_Motion_Point_V90";           // Position 9
+      Spare_2 : "UDT_Motion_Point_V90";           // Position 10
+   END_STRUCT;
+END_TYPE
+
+
+// =================================================================================
+// DESCRIPTIVE UDTs FOR ROBOT FIXTURE/GRIPPER CODES
+// =================================================================================
+
+TYPE "UDT_Gripper_Fixture_Codes"
+   STRUCT
+      For_Part_Type_A : String[128]; // Fixture code for handling Part Type A
+      For_Part_Type_B : String[128]; // Fixture code for handling Part Type B
+      For_Part_Type_C : String[128]; // Fixture code for handling Part Type C
+      For_NG_Part : String[128];     // Fixture code for handling rejected parts
+      Unused_1 : String[128];
+      Unused_2 : String[128];
+   END_STRUCT;
+END_TYPE
+
+
+// =================================================================================
+// MAIN RECIPE UDT - RESTRUCTURED
+// =================================================================================
+
+TYPE "UDT_ST10_Recipe_V2"
+   STRUCT
+      Header : Struct
+         RecipeName : String[50];
+         RecipeID : USInt;
+         Version : UInt;
+         LastModified : DTL;
+         PartType : String[28];
+         PartTypeRecordNr : Int;
+      END_STRUCT;
+      
+      // Other sections (cfg, General, Process) remain the same as UDT_ST10_Recipe
+      // ...
+      
+      Production : Struct
+         // Existing Fixtures (Tables, etc.)
+         A1_Table : Array[0..10] of String[128];
+         A2_Table : Array[0..10] of String[128];
+         A1_RingUnload : String[128];
+         A2_RingUnload : String[128];
+         E1_LoadingNG : String[128];
+         E2_UnloadingNG : String[128];
+         ShaftScan : String[128];
+         B1_Press : String[128];
+         B2_Press : String[128];
+         B1_PressCyl : String[128];
+         B2_PressCyl : String[128];
+         C_Glue : String[128];
+         C_GlueNG : String[128];
+         
+         // NEW: Descriptive Gripper Fixture Codes
+         Shaft_Handling_Robot : Struct // R1
+            Gripper_A : "UDT_Gripper_Fixture_Codes";
+            Gripper_B : "UDT_Gripper_Fixture_Codes";
+         END_STRUCT;
+         Main_Assembly_Robot : Struct // R2
+            Gripper_A : "UDT_Gripper_Fixture_Codes";
+            Gripper_B : "UDT_Gripper_Fixture_Codes";
+         END_STRUCT;
+         Unloading_Robot : Struct // R3
+            Gripper_A : "UDT_Gripper_Fixture_Codes";
+            Gripper_B : "UDT_Gripper_Fixture_Codes";
+         END_STRUCT;
+         
+         FixtureID_Code : Array[1..16] of Byte;
+      END_STRUCT;
+      
+      Motion : Struct
+         // NEW: Descriptive names for IAI Axes
+         Gantry_X : "UDT_Gantry_Axis_Positions"; // Was IAI_A1
+         Gantry_Y : "UDT_Gantry_Axis_Positions"; // Was IAI_A2
+         Gantry_Z : "UDT_Gantry_Axis_Positions"; // Was IAI_A3
+         
+         // NEW: Descriptive names for V90 Axes
+         Gluing_Dispenser_Axis : "UDT_V90_Axis_Positions";      // Was ServoV90_A1
+         Gluing_Table_Rotation_Axis : "UDT_V90_Axis_Positions"; // Was ServoV90_A2
+         Press_Head_Axis : "UDT_V90_Axis_Positions";            // Was ServoV90_A3
+         Part_Transfer_Axis : "UDT_V90_Axis_Positions";         // Was ServoV90_A4
+      END_STRUCT;
+      
+      Spare : Array[0..10] of Byte;
+   END_STRUCT;
+END_TYPE
+
+// NOTE: For the final implementation, the "UDT_ST10_Recipe" should be replaced
+// with a full definition that includes the other unchanged sections (cfg, General, etc.)
+// and uses these new Motion and Production structures. For brevity here, only the
+// changed parts are fully detailed.
