@@ -1,0 +1,190 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config:ro
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    networks:
+      - iiot-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - iiot-network
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUX_PASSWORD:-iotadmin2024}
+      - DOCKER_INFLUXDB_INIT_ORG=op10
+      - DOCKER_INFLUXDB_INIT_BUCKET=telemetry
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_TOKEN:-op10-super-secret-token}
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - ./influxdb/config.yml:/etc/influxdb2/config.yml:ro
+    networks:
+      - iiot-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=iot_user
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-iotpass2024}
+      - POSTGRES_DB=product_history
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - iiot-network
+
+  opc-ua-collector:
+    build: ./services/opc-ua-collector
+    container_name: opc-ua-collector
+    restart: unless-stopped
+    environment:
+      - PLC_ENDPOINT=${PLC_ENDPOINT:-opc.tcp://192.168.1.100:4840}
+      - PLC_USER=${PLC_USER:-}
+      - PLC_PASSWORD=${PLC_PASSWORD:-}
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USER=${MQTT_USER:-}
+      - MQTT_PASSWORD=${MQTT_PASSWORD:-}
+      - COLLECTION_INTERVAL_MS=100
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - mosquitto
+      - redis
+    volumes:
+      - ./models:/models:ro
+      - ./config:/config:ro
+    networks:
+      - iiot-network
+
+  ml-inference:
+    build: ./services/ml-inference
+    container_name: ml-inference
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MODEL_PATH=/models/anomaly_detector.onnx
+      - RUL_MODEL_PATH=/models/rul_predictor.onnx
+    depends_on:
+      - redis
+      - mosquitto
+    volumes:
+      - ./models:/models:ro
+      - ml_cache:/tmp/inference_cache
+    networks:
+      - iiot-network
+
+  product-tracker:
+    build: ./services/product-tracker
+    container_name: product-tracker
+    restart: unless-stopped
+    environment:
+      - POSTGRES_URL=postgresql://iot_user:iotpass2024@postgres:5432/product_history
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - mosquitto
+      - redis
+    volumes:
+      - ./config:/config:ro
+    networks:
+      - iiot-network
+
+  data-writer:
+    build: ./services/data-writer
+    container_name: data-writer
+    restart: unless-stopped
+    environment:
+      - INFLUX_URL=http://influxdb:8086
+      - INFLUX_ORG=op10
+      - INFLUX_TOKEN=${INFLUX_TOKEN:-op10-super-secret-token}
+      - INFLUX_BUCKET=telemetry
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - influxdb
+      - mosquitto
+      - redis
+    networks:
+      - iiot-network
+
+  grafana:
+    image: grafana/grafana:10
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-iotadmin2024}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - influxdb
+    networks:
+      - iiot-network
+
+  nodered:
+    image: nodered/node-red:3
+    container_name: nodered
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    environment:
+      - TZ=Europe/Prague
+    volumes:
+      - ./nodered:/data
+      - product_data:/data
+    networks:
+      - iiot-network
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
+  redis_data:
+  influxdb_data:
+  grafana_data:
+  postgres_data:
+  product_data:
+  ml_cache:
+
+networks:
+  iiot-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

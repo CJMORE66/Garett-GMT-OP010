@@ -4,130 +4,31 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="DisplayRows" Datatype="Int" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="DisplayRows" Datatype="Int" Remanence="Retain" />
+    <Member Name="MaxPage" Datatype="Int" Remanence="Retain" />
+    <Member Name="Rows" Datatype="Int" Remanence="Retain" />
+    <Member Name="UnEnableGroup" Datatype="Bool" Remanence="Retain" />
+    <Member Name="DisplaySymbol" Datatype="Bool" Remanence="Retain" />
+    <Member Name="DisplaySymbol Time" Datatype="Int" Remanence="Retain" />
+    <Member Name="SymbolText" Datatype="Array[1..4] of Int" Remanence="Retain" />
+    <Member Name="HMICylinderBypass" Datatype="Array[1..50] of Struct" Remanence="Retain">
+      <Member Name="BY" Datatype="Array[1..50] of Int" />
     </Member>
-    <Member Name="MaxPage" Datatype="Int" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="Rows" Datatype="Int" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="UnEnableGroup" Datatype="Bool" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="DisplaySymbol" Datatype="Bool" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="DisplaySymbol Time" Datatype="Int" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="SymbolText" Datatype="Array[1..4] of Int" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="HMICylinderBypass" Datatype="Array[1..50] of Struct" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Member Name="BY" Datatype="Array[1..50] of Int">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-    </Member>
-    <Member Name="HMI_Axis" Datatype="&quot;HMI_Axis&quot;" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="HMI_Axis" Datatype="&quot;HMI_Axis&quot;" Remanence="Retain">
       <Sections>
         <Section Name="None">
           <Member Name="INPUT" Datatype="Struct">
             <Member Name="Axis_ID" Datatype="Int">
               <StartValue>1</StartValue>
             </Member>
-            <Member Name="Speed" Datatype="Int" />
-            <Member Name="SimplyTrigger" Datatype="Bool" />
-            <Member Name="ListTrigger" Datatype="Bool" />
-            <Member Name="ListPosID" Datatype="Int" />
-            <Member Name="SimplyPos" Datatype="Real" />
-            <Member Name="Enable" Datatype="Bool" />
-            <Member Name="Jog+" Datatype="Bool" />
-            <Member Name="Jog-" Datatype="Bool" />
-            <Member Name="Homing" Datatype="Bool" />
-            <Member Name="Stop" Datatype="Bool" />
-          </Member>
-          <Member Name="OUTPUT" Datatype="Struct">
-            <Member Name="Ready" Datatype="Bool" />
-            <Member Name="Alarm" Datatype="Bool" />
-            <Member Name="Warming" Datatype="Bool" />
-            <Member Name="RunEnd" Datatype="Bool" />
-            <Member Name="Interference" Datatype="Bool" />
-            <Member Name="Reference Point" Datatype="Bool" />
-            <Member Name="CurrentPosition" Datatype="Real" />
-            <Member Name="CurrentSpeed" Datatype="Real" />
-            <Member Name="TargetPosition" Datatype="Real" />
-            <Member Name="Enable" Datatype="Bool" />
-            <Member Name="MAX_Axis" Datatype="Int" />
           </Member>
         </Section>
       </Sections>
     </Member>
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Standard</MemoryLayout>
       <Name>HMISystemDB</Name>
       <Namespace />

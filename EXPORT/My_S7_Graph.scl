@@ -1,0 +1,4293 @@
+﻿(* Generated with High-Quality Reasoning Mode (Deep Thinking Enabled) *)
+FUNCTION_BLOCK "ST10_Flow14_B2Press" { S7_Optimized_Access := 'TRUE' }
+VAR_INPUT
+  iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_OUTPUT
+END_VAR
+
+VAR_IN_OUT
+  ioPM_Inface : "RCS_PMInterface_V1";
+  ioStatus : Int;
+END_VAR
+
+VAR
+  sCtrlMode : "SysFlowCtrlGraph";
+  sUpdMES_Data : Bool; (* 更新MES数据 *)
+  工件放行中 : Bool;
+  前站站号 : UInt;
+  本站站号 : UInt;
+  弹窗Temp : Array[1..10] of Int;
+  AlarmID : Int;
+  TON : Array[0..10] of TON_TIME;
+  TOF : Array[0..10] of TOF_TIME;
+  sUP : Array[0..10] of Bool;
+  更新RFID完成 : Bool;
+  RT_DATA : G7_RTDataPlus_V6; (* Internal data area *)
+  Trans1 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans2 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans3 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans325 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans10 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans7 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans102 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans12 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans15 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans17 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans18 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans19 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans20 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans21 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans22 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans23 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans24 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans25 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans28 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans29 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans30 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans9 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans31 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans32 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans33 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans34 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans35 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans36 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans200 : G7_TransitionPlus_V6; (* Transition structure *)
+  Empty : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans266 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans11 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans249 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans283 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans284 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans199 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans765 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans117 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans766 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans119 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans120 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans767 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans236 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans124 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans125 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans128 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans129 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans130 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans768 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans132 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans133 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans134 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans135 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans136 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans138 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans140 : G7_TransitionPlus_V6; (* Transition structure *)
+  HavePart : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans303 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans304 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans142 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans137 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans144 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans145 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans146 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans148 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans139 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans147 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans201 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans211 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans250 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans252 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans262 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans257 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans258 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans261 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans263 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans265 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans267 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans269 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans259 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans302 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans26 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans16 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans316 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans311 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans312 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans313 : G7_TransitionPlus_V6; (* Transition structure *)
+  Online : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans317 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans318 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans319 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans315 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans320 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans322 : G7_TransitionPlus_V6; (* Transition structure *)
+  Online_1 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans260 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans323 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans324 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans326 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans327 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans328 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans321 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans224 : G7_TransitionPlus_V6; (* Transition structure *)
+  OK : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans403 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans405 : G7_TransitionPlus_V6; (* Transition structure *)
+  NG : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans404 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans412 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans407 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans619 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans600 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans290 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans699 : G7_TransitionPlus_V6; (* Transition structure *)
+  Trans613 : G7_TransitionPlus_V6; (* Transition structure *)
+  Alarm : G7_TransitionPlus_V6; (* Transition structure *)
+  F14_Initial : G7_StepPlus_V6; (* Step structure *)
+  S2 : G7_StepPlus_V6; (* Step structure *)
+  S3 : G7_StepPlus_V6; (* Step structure *)
+  S4 : G7_StepPlus_V6; (* Step structure *)
+  S5_MESInitial : G7_StepPlus_V6; (* Step structure *)
+  PressProgram : G7_StepPlus_V6; (* Step structure *)
+  PressHoming : G7_StepPlus_V6; (* Step structure *)
+  S10_InitialFinish : G7_StepPlus_V6; (* Step structure *)
+  PressReady_q : G7_StepPlus_V6; (* Step structure *)
+  PressHoming_q : G7_StepPlus_V6; (* Step structure *)
+  Step14 : G7_StepPlus_V6; (* Step structure *)
+  CheckPressGripStatus : G7_StepPlus_V6; (* Step structure *)
+  ShaftAndRingOK : G7_StepPlus_V6; (* Step structure *)
+  Press_NG : G7_StepPlus_V6; (* Step structure *)
+  MES : G7_StepPlus_V6; (* Step structure *)
+  MESOK : G7_StepPlus_V6; (* Step structure *)
+  PressProgram_1 : G7_StepPlus_V6; (* Step structure *)
+  PressHoming_1 : G7_StepPlus_V6; (* Step structure *)
+  PressReady_q_1 : G7_StepPlus_V6; (* Step structure *)
+  PressHoming_q_1 : G7_StepPlus_V6; (* Step structure *)
+  Step15 : G7_StepPlus_V6; (* Step structure *)
+  MES_1NG : G7_StepPlus_V6; (* Step structure *)
+  ProcessStart : G7_StepPlus_V6; (* Step structure *)
+  DetermineProductStatus : G7_StepPlus_V6; (* Step structure *)
+  CheckMachineStatus : G7_StepPlus_V6; (* Step structure *)
+  NormalMode : G7_StepPlus_V6; (* Step structure *)
+  ProcessStart_CTStart : G7_StepPlus_V6; (* Step structure *)
+  RequestRobotPutShaft : G7_StepPlus_V6; (* Step structure *)
+  RequestRobotPutRing : G7_StepPlus_V6; (* Step structure *)
+  RobotLeavePressArea : G7_StepPlus_V6; (* Step structure *)
+  B_PressFitting_01GripperCylinderToHP : G7_StepPlus_V6; (* Step structure *)
+  CheckRingExist : G7_StepPlus_V6; (* Step structure *)
+  StatusAlarm : G7_StepPlus_V6; (* Step structure *)
+  B_PressFitting_01GripperCylinderToWP : G7_StepPlus_V6; (* Step structure *)
+  B_PressFitting_01CylinderToHP : G7_StepPlus_V6; (* Step structure *)
+  RobotLeavePressArea_1 : G7_StepPlus_V6; (* Step structure *)
+  PartStatus : G7_StepPlus_V6; (* Step structure *)
+  ShaftOK : G7_StepPlus_V6; (* Step structure *)
+  StatusAlarm_1 : G7_StepPlus_V6; (* Step structure *)
+  PutRing : G7_StepPlus_V6; (* Step structure *)
+  NoPart : G7_StepPlus_V6; (* Step structure *)
+  WaitRobotFinishTask : G7_StepPlus_V6; (* Step structure *)
+  WaitRobotFinishTask_1 : G7_StepPlus_V6; (* Step structure *)
+  DataMove : G7_StepPlus_V6; (* Step structure *)
+  WaitRobotInSafetyArea : G7_StepPlus_V6; (* Step structure *)
+  WaitRobotFinishTask_1_1 : G7_StepPlus_V6; (* Step structure *)
+  PartStatus_1 : G7_StepPlus_V6; (* Step structure *)
+  CheckPressSensor : G7_StepPlus_V6; (* Step structure *)
+  CheckPressProgram : G7_StepPlus_V6; (* Step structure *)
+  B_PressFitting_01CylinderToHP_1 : G7_StepPlus_V6; (* Step structure *)
+  StartCycle : G7_StepPlus_V6; (* Step structure *)
+  ResetPressStart : G7_StepPlus_V6; (* Step structure *)
+  ProcessFInish_1 : G7_StepPlus_V6; (* Step structure *)
+  CheckPressResult : G7_StepPlus_V6; (* Step structure *)
+  ResultOKData : G7_StepPlus_V6; (* Step structure *)
+  ResultNGData : G7_StepPlus_V6; (* Step structure *)
+  Step147 : G7_StepPlus_V6; (* Step structure *)
+  MES_Check_In : G7_StepPlus_V6; (* Step structure *)
+  Pressing : G7_StepPlus_V6; (* Step structure *)
+  WaitPressFinish : G7_StepPlus_V6; (* Step structure *)
+  CheckPressReady : G7_StepPlus_V6; (* Step structure *)
+  ProcessFInish_2 : G7_StepPlus_V6; (* Step structure *)
+  PartCheck : G7_StepPlus_V6; (* Step structure *)
+  Part_Check : G7_StepPlus_V6; (* Step structure *)
+  ProductCheckAlarm : G7_StepPlus_V6; (* Step structure *)
+  ProductCheckAlarm_1 : G7_StepPlus_V6; (* Step structure *)
+  ResetMesCheckRequest : G7_StepPlus_V6; (* Step structure *)
+  ResetMesUnloadRequest_1 : G7_StepPlus_V6; (* Step structure *)
+  PrepareMESCheckData : G7_StepPlus_V6; (* Step structure *)
+  PrepareMESCheckData_1 : G7_StepPlus_V6; (* Step structure *)
+  MesCheckResult_1 : G7_StepPlus_V6; (* Step structure *)
+  MESOverTime_1 : G7_StepPlus_V6; (* Step structure *)
+  MESCheckNG_2 : G7_StepPlus_V6; (* Step structure *)
+  MesCheckIn_1 : G7_StepPlus_V6; (* Step structure *)
+  CheckFinish_1 : G7_StepPlus_V6; (* Step structure *)
+  Bypass : G7_StepPlus_V6; (* Step structure *)
+  Step313 : G7_StepPlus_V6; (* Step structure *)
+  MESCheckNG_3 : G7_StepPlus_V6; (* Step structure *)
+  Bypass_1 : G7_StepPlus_V6; (* Step structure *)
+  Step314 : G7_StepPlus_V6; (* Step structure *)
+  MESOverTime : G7_StepPlus_V6; (* Step structure *)
+  Ok_1 : G7_StepPlus_V6; (* Step structure *)
+  Step400 : G7_StepPlus_V6; (* Step structure *)
+  JudgeStatus : G7_StepPlus_V6; (* Step structure *)
+  OKCount : G7_StepPlus_V6; (* Step structure *)
+  ProcessFinish : G7_StepPlus_V6; (* Step structure *)
+  NGCount : G7_StepPlus_V6; (* Step structure *)
+  MESResultOK_1 : G7_StepPlus_V6; (* Step structure *)
+  RequestRobotPick : G7_StepPlus_V6; (* Step structure *)
+  MESResult : G7_StepPlus_V6; (* Step structure *)
+  MESCheckFinish : G7_StepPlus_V6; (* Step structure *)
+  RobotPick : G7_StepPlus_V6; (* Step structure *)
+  DataClear : G7_StepPlus_V6; (* Step structure *)
+  ProcessFinsh_3 : G7_StepPlus_V6; (* Step structure *)
+  Step_F14_Initial_active : Bool;
+  Step_F14_Initial_entry_time : Time;
+  Step_F14_Initial_timeout : Bool;
+  Action_F14_Initial_Exec : Bool;
+  Action_F14_Initial_Done : Bool;
+  Step_S2_active : Bool;
+  Step_S2_entry_time : Time;
+  Step_S2_timeout : Bool;
+  Action_S2_Exec : Bool;
+  Action_S2_Done : Bool;
+  Step_S4_active : Bool;
+  Step_S4_entry_time : Time;
+  Step_S4_timeout : Bool;
+  Action_S4_Exec : Bool;
+  Action_S4_Done : Bool;
+  Step_S5_MESInitial_active : Bool;
+  Step_S5_MESInitial_entry_time : Time;
+  Step_S5_MESInitial_timeout : Bool;
+  Action_S5_MESInitial_Exec : Bool;
+  Action_S5_MESInitial_Done : Bool;
+  Step_S10_InitialFinish_active : Bool;
+  Step_S10_InitialFinish_entry_time : Time;
+  Step_S10_InitialFinish_timeout : Bool;
+  Action_S10_InitialFinish_Exec : Bool;
+  Action_S10_InitialFinish_Done : Bool;
+  Step_S3_active : Bool;
+  Step_S3_entry_time : Time;
+  Step_S3_timeout : Bool;
+  Action_S3_Exec : Bool;
+  Action_S3_Done : Bool;
+  Step_PressProgram_active : Bool;
+  Step_PressProgram_entry_time : Time;
+  Step_PressProgram_timeout : Bool;
+  Action_PressProgram_Exec : Bool;
+  Action_PressProgram_Done : Bool;
+  Step_PressHoming_active : Bool;
+  Step_PressHoming_entry_time : Time;
+  Step_PressHoming_timeout : Bool;
+  Action_PressHoming_Exec : Bool;
+  Action_PressHoming_Done : Bool;
+  Step_PressReady_q_active : Bool;
+  Step_PressReady_q_entry_time : Time;
+  Step_PressReady_q_timeout : Bool;
+  Action_PressReady_q_Exec : Bool;
+  Action_PressReady_q_Done : Bool;
+  Step_PressHoming_q_active : Bool;
+  Step_PressHoming_q_entry_time : Time;
+  Step_PressHoming_q_timeout : Bool;
+  Action_PressHoming_q_Exec : Bool;
+  Action_PressHoming_q_Done : Bool;
+  Step_Step14_active : Bool;
+  Step_Step14_entry_time : Time;
+  Step_Step14_timeout : Bool;
+  Action_Step14_Exec : Bool;
+  Action_Step14_Done : Bool;
+  Step_CheckPressGripStatus_active : Bool;
+  Step_CheckPressGripStatus_entry_time : Time;
+  Step_CheckPressGripStatus_timeout : Bool;
+  Action_CheckPressGripStatus_Exec : Bool;
+  Action_CheckPressGripStatus_Done : Bool;
+  Step_B_PressFitting_01GripperCylinderToHP_active : Bool;
+  Step_B_PressFitting_01GripperCylinderToHP_entry_time : Time;
+  Step_B_PressFitting_01GripperCylinderToHP_timeout : Bool;
+  Action_B_PressFitting_01GripperCylinderToHP_Exec : Bool;
+  Action_B_PressFitting_01GripperCylinderToHP_Done : Bool;
+  Step_CheckRingExist_active : Bool;
+  Step_CheckRingExist_entry_time : Time;
+  Step_CheckRingExist_timeout : Bool;
+  Action_CheckRingExist_Exec : Bool;
+  Action_CheckRingExist_Done : Bool;
+  Step_StatusAlarm_active : Bool;
+  Step_StatusAlarm_entry_time : Time;
+  Step_StatusAlarm_timeout : Bool;
+  Action_StatusAlarm_Exec : Bool;
+  Action_StatusAlarm_Done : Bool;
+  Step_B_PressFitting_01GripperCylinderToWP_active : Bool;
+  Step_B_PressFitting_01GripperCylinderToWP_entry_time : Time;
+  Step_B_PressFitting_01GripperCylinderToWP_timeout : Bool;
+  Action_B_PressFitting_01GripperCylinderToWP_Exec : Bool;
+  Action_B_PressFitting_01GripperCylinderToWP_Done : Bool;
+  Step_B_PressFitting_01CylinderToHP_active : Bool;
+  Step_B_PressFitting_01CylinderToHP_entry_time : Time;
+  Step_B_PressFitting_01CylinderToHP_timeout : Bool;
+  Action_B_PressFitting_01CylinderToHP_Exec : Bool;
+  Action_B_PressFitting_01CylinderToHP_Done : Bool;
+  Step_ProcessStart_active : Bool;
+  Step_ProcessStart_entry_time : Time;
+  Step_ProcessStart_timeout : Bool;
+  Action_ProcessStart_Exec : Bool;
+  Action_ProcessStart_Done : Bool;
+  Step_DetermineProductStatus_active : Bool;
+  Step_DetermineProductStatus_entry_time : Time;
+  Step_DetermineProductStatus_timeout : Bool;
+  Action_DetermineProductStatus_Exec : Bool;
+  Action_DetermineProductStatus_Done : Bool;
+  Step_CheckMachineStatus_active : Bool;
+  Step_CheckMachineStatus_entry_time : Time;
+  Step_CheckMachineStatus_timeout : Bool;
+  Action_CheckMachineStatus_Exec : Bool;
+  Action_CheckMachineStatus_Done : Bool;
+  Step_NormalMode_active : Bool;
+  Step_NormalMode_entry_time : Time;
+  Step_NormalMode_timeout : Bool;
+  Action_NormalMode_Exec : Bool;
+  Action_NormalMode_Done : Bool;
+  Step_ProcessStart_CTStart_active : Bool;
+  Step_ProcessStart_CTStart_entry_time : Time;
+  Step_ProcessStart_CTStart_timeout : Bool;
+  Action_ProcessStart_CTStart_Exec : Bool;
+  Action_ProcessStart_CTStart_Done : Bool;
+  Step_RequestRobotPutShaft_active : Bool;
+  Step_RequestRobotPutShaft_entry_time : Time;
+  Step_RequestRobotPutShaft_timeout : Bool;
+  Action_RequestRobotPutShaft_Exec : Bool;
+  Action_RequestRobotPutShaft_Done : Bool;
+  Step_RequestRobotPutRing_active : Bool;
+  Step_RequestRobotPutRing_entry_time : Time;
+  Step_RequestRobotPutRing_timeout : Bool;
+  Action_RequestRobotPutRing_Exec : Bool;
+  Action_RequestRobotPutRing_Done : Bool;
+  Step_RobotLeavePressArea_active : Bool;
+  Step_RobotLeavePressArea_entry_time : Time;
+  Step_RobotLeavePressArea_timeout : Bool;
+  Action_RobotLeavePressArea_Exec : Bool;
+  Action_RobotLeavePressArea_Done : Bool;
+  Step_ShaftOK_active : Bool;
+  Step_ShaftOK_entry_time : Time;
+  Step_ShaftOK_timeout : Bool;
+  Action_ShaftOK_Exec : Bool;
+  Action_ShaftOK_Done : Bool;
+  Step_StatusAlarm_1_active : Bool;
+  Step_StatusAlarm_1_entry_time : Time;
+  Step_StatusAlarm_1_timeout : Bool;
+  Action_StatusAlarm_1_Exec : Bool;
+  Action_StatusAlarm_1_Done : Bool;
+  Step_PutRing_active : Bool;
+  Step_PutRing_entry_time : Time;
+  Step_PutRing_timeout : Bool;
+  Action_PutRing_Exec : Bool;
+  Action_PutRing_Done : Bool;
+  Step_NoPart_active : Bool;
+  Step_NoPart_entry_time : Time;
+  Step_NoPart_timeout : Bool;
+  Action_NoPart_Exec : Bool;
+  Action_NoPart_Done : Bool;
+  Step_WaitRobotFinishTask_active : Bool;
+  Step_WaitRobotFinishTask_entry_time : Time;
+  Step_WaitRobotFinishTask_timeout : Bool;
+  Action_WaitRobotFinishTask_Exec : Bool;
+  Action_WaitRobotFinishTask_Done : Bool;
+  Step_WaitRobotFinishTask_1_active : Bool;
+  Step_WaitRobotFinishTask_1_entry_time : Time;
+  Step_WaitRobotFinishTask_1_timeout : Bool;
+  Action_WaitRobotFinishTask_1_Exec : Bool;
+  Action_WaitRobotFinishTask_1_Done : Bool;
+  Step_DataMove_active : Bool;
+  Step_DataMove_entry_time : Time;
+  Step_DataMove_timeout : Bool;
+  Action_DataMove_Exec : Bool;
+  Action_DataMove_Done : Bool;
+  Step_WaitRobotInSafetyArea_active : Bool;
+  Step_WaitRobotInSafetyArea_entry_time : Time;
+  Step_WaitRobotInSafetyArea_timeout : Bool;
+  Action_WaitRobotInSafetyArea_Exec : Bool;
+  Action_WaitRobotInSafetyArea_Done : Bool;
+  Step_WaitRobotFinishTask_1_1_active : Bool;
+  Step_WaitRobotFinishTask_1_1_entry_time : Time;
+  Step_WaitRobotFinishTask_1_1_timeout : Bool;
+  Action_WaitRobotFinishTask_1_1_Exec : Bool;
+  Action_WaitRobotFinishTask_1_1_Done : Bool;
+  Step_PartStatus_1_active : Bool;
+  Step_PartStatus_1_entry_time : Time;
+  Step_PartStatus_1_timeout : Bool;
+  Action_PartStatus_1_Exec : Bool;
+  Action_PartStatus_1_Done : Bool;
+  Step_CheckPressSensor_active : Bool;
+  Step_CheckPressSensor_entry_time : Time;
+  Step_CheckPressSensor_timeout : Bool;
+  Action_CheckPressSensor_Exec : Bool;
+  Action_CheckPressSensor_Done : Bool;
+  Step_CheckPressProgram_active : Bool;
+  Step_CheckPressProgram_entry_time : Time;
+  Step_CheckPressProgram_timeout : Bool;
+  Action_CheckPressProgram_Exec : Bool;
+  Action_CheckPressProgram_Done : Bool;
+  Step_B_PressFitting_01CylinderToHP_1_active : Bool;
+  Step_B_PressFitting_01CylinderToHP_1_entry_time : Time;
+  Step_B_PressFitting_01CylinderToHP_1_timeout : Bool;
+  Action_B_PressFitting_01CylinderToHP_1_Exec : Bool;
+  Action_B_PressFitting_01CylinderToHP_1_Done : Bool;
+  Step_StartCycle_active : Bool;
+  Step_StartCycle_entry_time : Time;
+  Step_StartCycle_timeout : Bool;
+  Action_StartCycle_Exec : Bool;
+  Action_StartCycle_Done : Bool;
+  Step_ResetPressStart_active : Bool;
+  Step_ResetPressStart_entry_time : Time;
+  Step_ResetPressStart_timeout : Bool;
+  Action_ResetPressStart_Exec : Bool;
+  Action_ResetPressStart_Done : Bool;
+  Step_ProcessFInish_1_active : Bool;
+  Step_ProcessFInish_1_entry_time : Time;
+  Step_ProcessFInish_1_timeout : Bool;
+  Action_ProcessFInish_1_Exec : Bool;
+  Action_ProcessFInish_1_Done : Bool;
+  Step_CheckPressResult_active : Bool;
+  Step_CheckPressResult_entry_time : Time;
+  Step_CheckPressResult_timeout : Bool;
+  Action_CheckPressResult_Exec : Bool;
+  Action_CheckPressResult_Done : Bool;
+  Step_ResultOKData_active : Bool;
+  Step_ResultOKData_entry_time : Time;
+  Step_ResultOKData_timeout : Bool;
+  Action_ResultOKData_Exec : Bool;
+  Action_ResultOKData_Done : Bool;
+  Step_ResultNGData_active : Bool;
+  Step_ResultNGData_entry_time : Time;
+  Step_ResultNGData_timeout : Bool;
+  Action_ResultNGData_Exec : Bool;
+  Action_ResultNGData_Done : Bool;
+  Step_Step147_active : Bool;
+  Step_Step147_entry_time : Time;
+  Step_Step147_timeout : Bool;
+  Action_Step147_Exec : Bool;
+  Action_Step147_Done : Bool;
+  Step_MES_Check_In_active : Bool;
+  Step_MES_Check_In_entry_time : Time;
+  Step_MES_Check_In_timeout : Bool;
+  Action_MES_Check_In_Exec : Bool;
+  Action_MES_Check_In_Done : Bool;
+  Step_Pressing_active : Bool;
+  Step_Pressing_entry_time : Time;
+  Step_Pressing_timeout : Bool;
+  Action_Pressing_Exec : Bool;
+  Action_Pressing_Done : Bool;
+  Step_WaitPressFinish_active : Bool;
+  Step_WaitPressFinish_entry_time : Time;
+  Step_WaitPressFinish_timeout : Bool;
+  Action_WaitPressFinish_Exec : Bool;
+  Action_WaitPressFinish_Done : Bool;
+  Step_CheckPressReady_active : Bool;
+  Step_CheckPressReady_entry_time : Time;
+  Step_CheckPressReady_timeout : Bool;
+  Action_CheckPressReady_Exec : Bool;
+  Action_CheckPressReady_Done : Bool;
+  Step_ProcessFInish_2_active : Bool;
+  Step_ProcessFInish_2_entry_time : Time;
+  Step_ProcessFInish_2_timeout : Bool;
+  Action_ProcessFInish_2_Exec : Bool;
+  Action_ProcessFInish_2_Done : Bool;
+  Step_PartCheck_active : Bool;
+  Step_PartCheck_entry_time : Time;
+  Step_PartCheck_timeout : Bool;
+  Action_PartCheck_Exec : Bool;
+  Action_PartCheck_Done : Bool;
+  Step_Part_Check_active : Bool;
+  Step_Part_Check_entry_time : Time;
+  Step_Part_Check_timeout : Bool;
+  Action_Part_Check_Exec : Bool;
+  Action_Part_Check_Done : Bool;
+  Step_ProductCheckAlarm_active : Bool;
+  Step_ProductCheckAlarm_entry_time : Time;
+  Step_ProductCheckAlarm_timeout : Bool;
+  Action_ProductCheckAlarm_Exec : Bool;
+  Action_ProductCheckAlarm_Done : Bool;
+  Step_ProductCheckAlarm_1_active : Bool;
+  Step_ProductCheckAlarm_1_entry_time : Time;
+  Step_ProductCheckAlarm_1_timeout : Bool;
+  Action_ProductCheckAlarm_1_Exec : Bool;
+  Action_ProductCheckAlarm_1_Done : Bool;
+  Step_ResetMesCheckRequest_active : Bool;
+  Step_ResetMesCheckRequest_entry_time : Time;
+  Step_ResetMesCheckRequest_timeout : Bool;
+  Action_ResetMesCheckRequest_Exec : Bool;
+  Action_ResetMesCheckRequest_Done : Bool;
+  Step_ResetMesUnloadRequest_1_active : Bool;
+  Step_ResetMesUnloadRequest_1_entry_time : Time;
+  Step_ResetMesUnloadRequest_1_timeout : Bool;
+  Action_ResetMesUnloadRequest_1_Exec : Bool;
+  Action_ResetMesUnloadRequest_1_Done : Bool;
+  Step_PrepareMESCheckData_active : Bool;
+  Step_PrepareMESCheckData_entry_time : Time;
+  Step_PrepareMESCheckData_timeout : Bool;
+  Action_PrepareMESCheckData_Exec : Bool;
+  Action_PrepareMESCheckData_Done : Bool;
+  Step_PrepareMESCheckData_1_active : Bool;
+  Step_PrepareMESCheckData_1_entry_time : Time;
+  Step_PrepareMESCheckData_1_timeout : Bool;
+  Action_PrepareMESCheckData_1_Exec : Bool;
+  Action_PrepareMESCheckData_1_Done : Bool;
+  Step_MesCheckResult_1_active : Bool;
+  Step_MesCheckResult_1_entry_time : Time;
+  Step_MesCheckResult_1_timeout : Bool;
+  Action_MesCheckResult_1_Exec : Bool;
+  Action_MesCheckResult_1_Done : Bool;
+  Step_MESOverTime_1_active : Bool;
+  Step_MESOverTime_1_entry_time : Time;
+  Step_MESOverTime_1_timeout : Bool;
+  Action_MESOverTime_1_Exec : Bool;
+  Action_MESOverTime_1_Done : Bool;
+  Step_MESCheckNG_2_active : Bool;
+  Step_MESCheckNG_2_entry_time : Time;
+  Step_MESCheckNG_2_timeout : Bool;
+  Action_MESCheckNG_2_Exec : Bool;
+  Action_MESCheckNG_2_Done : Bool;
+  Step_MesCheckIn_1_active : Bool;
+  Step_MesCheckIn_1_entry_time : Time;
+  Step_MesCheckIn_1_timeout : Bool;
+  Action_MesCheckIn_1_Exec : Bool;
+  Action_MesCheckIn_1_Done : Bool;
+  Step_CheckFinish_1_active : Bool;
+  Step_CheckFinish_1_entry_time : Time;
+  Step_CheckFinish_1_timeout : Bool;
+  Action_CheckFinish_1_Exec : Bool;
+  Action_CheckFinish_1_Done : Bool;
+  Step_Bypass_active : Bool;
+  Step_Bypass_entry_time : Time;
+  Step_Bypass_timeout : Bool;
+  Action_Bypass_Exec : Bool;
+  Action_Bypass_Done : Bool;
+  Step_Step313_active : Bool;
+  Step_Step313_entry_time : Time;
+  Step_Step313_timeout : Bool;
+  Action_Step313_Exec : Bool;
+  Action_Step313_Done : Bool;
+  Step_MESCheckNG_3_active : Bool;
+  Step_MESCheckNG_3_entry_time : Time;
+  Step_MESCheckNG_3_timeout : Bool;
+  Action_MESCheckNG_3_Exec : Bool;
+  Action_MESCheckNG_3_Done : Bool;
+  Step_Bypass_1_active : Bool;
+  Step_Bypass_1_entry_time : Time;
+  Step_Bypass_1_timeout : Bool;
+  Action_Bypass_1_Exec : Bool;
+  Action_Bypass_1_Done : Bool;
+  Step_Step314_active : Bool;
+  Step_Step314_entry_time : Time;
+  Step_Step314_timeout : Bool;
+  Action_Step314_Exec : Bool;
+  Action_Step314_Done : Bool;
+  Step_MESOverTime_active : Bool;
+  Step_MESOverTime_entry_time : Time;
+  Step_MESOverTime_timeout : Bool;
+  Action_MESOverTime_Exec : Bool;
+  Action_MESOverTime_Done : Bool;
+  Step_Ok_1_active : Bool;
+  Step_Ok_1_entry_time : Time;
+  Step_Ok_1_timeout : Bool;
+  Action_Ok_1_Exec : Bool;
+  Action_Ok_1_Done : Bool;
+  Step_Step400_active : Bool;
+  Step_Step400_entry_time : Time;
+  Step_Step400_timeout : Bool;
+  Action_Step400_Exec : Bool;
+  Action_Step400_Done : Bool;
+  Step_JudgeStatus_active : Bool;
+  Step_JudgeStatus_entry_time : Time;
+  Step_JudgeStatus_timeout : Bool;
+  Action_JudgeStatus_Exec : Bool;
+  Action_JudgeStatus_Done : Bool;
+  Step_OKCount_active : Bool;
+  Step_OKCount_entry_time : Time;
+  Step_OKCount_timeout : Bool;
+  Action_OKCount_Exec : Bool;
+  Action_OKCount_Done : Bool;
+  Step_ProcessFinish_active : Bool;
+  Step_ProcessFinish_entry_time : Time;
+  Step_ProcessFinish_timeout : Bool;
+  Action_ProcessFinish_Exec : Bool;
+  Action_ProcessFinish_Done : Bool;
+  Step_NGCount_active : Bool;
+  Step_NGCount_entry_time : Time;
+  Step_NGCount_timeout : Bool;
+  Action_NGCount_Exec : Bool;
+  Action_NGCount_Done : Bool;
+  Step_MESResultOK_1_active : Bool;
+  Step_MESResultOK_1_entry_time : Time;
+  Step_MESResultOK_1_timeout : Bool;
+  Action_MESResultOK_1_Exec : Bool;
+  Action_MESResultOK_1_Done : Bool;
+  Step_RequestRobotPick_active : Bool;
+  Step_RequestRobotPick_entry_time : Time;
+  Step_RequestRobotPick_timeout : Bool;
+  Action_RequestRobotPick_Exec : Bool;
+  Action_RequestRobotPick_Done : Bool;
+  Step_MESResult_active : Bool;
+  Step_MESResult_entry_time : Time;
+  Step_MESResult_timeout : Bool;
+  Action_MESResult_Exec : Bool;
+  Action_MESResult_Done : Bool;
+  Step_MESCheckFinish_active : Bool;
+  Step_MESCheckFinish_entry_time : Time;
+  Step_MESCheckFinish_timeout : Bool;
+  Action_MESCheckFinish_Exec : Bool;
+  Action_MESCheckFinish_Done : Bool;
+  Step_RobotPick_active : Bool;
+  Step_RobotPick_entry_time : Time;
+  Step_RobotPick_timeout : Bool;
+  Action_RobotPick_Exec : Bool;
+  Action_RobotPick_Done : Bool;
+  Step_DataClear_active : Bool;
+  Step_DataClear_entry_time : Time;
+  Step_DataClear_timeout : Bool;
+  Action_DataClear_Exec : Bool;
+  Action_DataClear_Done : Bool;
+  Step_ProcessFinsh_3_active : Bool;
+  Step_ProcessFinsh_3_entry_time : Time;
+  Step_ProcessFinsh_3_timeout : Bool;
+  Action_ProcessFinsh_3_Exec : Bool;
+  Action_ProcessFinsh_3_Done : Bool;
+  Step_RobotLeavePress_Area_active : Bool;
+  Step_RobotLeavePress_Area_entry_time : Time;
+  Step_RobotLeavePress_Area_timeout : Bool;
+  Action_RobotLeavePress_Area_Exec : Bool;
+  Action_RobotLeavePress_Area_Done : Bool;
+
+  Trans_Trans1_executed : Bool;
+  Trans_Trans2_executed : Bool;
+  Trans_Trans3_executed : Bool;
+  Trans_Trans325_executed : Bool;
+  Trans_Trans10_executed : Bool;
+  Trans_Trans7_executed : Bool;
+  Trans_Trans102_executed : Bool;
+  Trans_Trans12_executed : Bool;
+  Trans_Trans15_executed : Bool;
+  Trans_Trans17_executed : Bool;
+  Trans_Trans18_executed : Bool;
+  Trans_Trans19_executed : Bool;
+  Trans_Trans20_executed : Bool;
+  Trans_Trans21_executed : Bool;
+  Trans_Trans22_executed : Bool;
+  Trans_Trans23_executed : Bool;
+  Trans_Trans24_executed : Bool;
+  Trans_Trans25_executed : Bool;
+  Trans_Trans28_executed : Bool;
+  Trans_Trans29_executed : Bool;
+  Trans_Trans30_executed : Bool;
+  Trans_Trans9_executed : Bool;
+  Trans_Trans31_executed : Bool;
+  Trans_Trans32_executed : Bool;
+  Trans_Trans33_executed : Bool;
+  Trans_Trans34_executed : Bool;
+  Trans_Trans35_executed : Bool;
+  Trans_Trans36_executed : Bool;
+  Trans_Trans200_executed : Bool;
+  Trans_Empty_executed : Bool;
+  Trans_Trans266_executed : Bool;
+  Trans_Trans11_executed : Bool;
+  Trans_Trans249_executed : Bool;
+  Trans_Trans283_executed : Bool;
+  Trans_Trans284_executed : Bool;
+  Trans_Trans199_executed : Bool;
+  Trans_Trans765_executed : Bool;
+  Trans_Trans117_executed : Bool;
+  Trans_Trans766_executed : Bool;
+  Trans_Trans119_executed : Bool;
+  Trans_Trans120_executed : Bool;
+  Trans_Trans767_executed : Bool;
+  Trans_Trans236_executed : Bool;
+  Trans_Trans124_executed : Bool;
+  Trans_Trans125_executed : Bool;
+  Trans_Trans128_executed : Bool;
+  Trans_Trans129_executed : Bool;
+  Trans_Trans130_executed : Bool;
+  Trans_Trans768_executed : Bool;
+  Trans_Trans132_executed : Bool;
+  Trans_Trans133_executed : Bool;
+  Trans_Trans134_executed : Bool;
+  Trans_Trans135_executed : Bool;
+  Trans_Trans136_executed : Bool;
+  Trans_Trans138_executed : Bool;
+  Trans_Trans140_executed : Bool;
+  Trans_HavePart_executed : Bool;
+  Trans_Trans303_executed : Bool;
+  Trans_Trans304_executed : Bool;
+  Trans_Trans142_executed : Bool;
+  Trans_Trans137_executed : Bool;
+  Trans_Trans144_executed : Bool;
+  Trans_Trans145_executed : Bool;
+  Trans_Trans146_executed : Bool;
+  Trans_Trans148_executed : Bool;
+  Trans_Trans139_executed : Bool;
+  Trans_Trans147_executed : Bool;
+  Trans_Trans201_executed : Bool;
+  Trans_Trans211_executed : Bool;
+  Trans_Trans250_executed : Bool;
+  Trans_Trans252_executed : Bool;
+  Trans_Trans262_executed : Bool;
+  Trans_Trans257_executed : Bool;
+  Trans_Trans258_executed : Bool;
+  Trans_Trans261_executed : Bool;
+  Trans_Trans263_executed : Bool;
+  Trans_Trans265_executed : Bool;
+  Trans_Trans267_executed : Bool;
+  Trans_Trans269_executed : Bool;
+  Trans_Trans259_executed : Bool;
+  Trans_Trans302_executed : Bool;
+  Trans_Trans26_executed : Bool;
+  Trans_Trans16_executed : Bool;
+  Trans_Trans316_executed : Bool;
+  Trans_Trans311_executed : Bool;
+  Trans_Trans312_executed : Bool;
+  Trans_Trans313_executed : Bool;
+  Trans_Online_executed : Bool;
+  Trans_Trans317_executed : Bool;
+  Trans_Trans318_executed : Bool;
+  Trans_Trans319_executed : Bool;
+  Trans_Trans315_executed : Bool;
+  Trans_Trans320_executed : Bool;
+  Trans_Trans322_executed : Bool;
+  Trans_Online_1_executed : Bool;
+  Trans_Trans260_executed : Bool;
+  Trans_Trans323_executed : Bool;
+  Trans_Trans324_executed : Bool;
+  Trans_Trans326_executed : Bool;
+  Trans_Trans327_executed : Bool;
+  Trans_Trans328_executed : Bool;
+  Trans_Trans321_executed : Bool;
+  Trans_Trans224_executed : Bool;
+  Trans_OK_executed : Bool;
+  Trans_Trans403_executed : Bool;
+  Trans_Trans405_executed : Bool;
+  Trans_NG_executed : Bool;
+  Trans_Trans404_executed : Bool;
+  Trans_Trans412_executed : Bool;
+  Trans_Trans407_executed : Bool;
+  Trans_Trans619_executed : Bool;
+  Trans_Trans600_executed : Bool;
+  Trans_Trans290_executed : Bool;
+  Trans_Trans699_executed : Bool;
+  Trans_Trans613_executed : Bool;
+  Trans_Alarm_executed : Bool;
+END_VAR
+
+VAR_TEMP
+  Tempresult : USInt;
+  本站站号乘10 : UInt;
+END_VAR
+
+BEGIN
+
+(* Pre-Operations *)
+
+(* Network 1 *)
+(* TON: 工位11有托盘 *)
+TON[10].IN := "AlwaysTRUE" AND "Station_Sys".Alarm.ImmediatelyStop;
+TON[10].PT := T#300ms;
+#ioPM_Inface.AlarmImdilyStop := TON[10].Q;
+
+(* Network 2 *)
+#ioPM_Inface.AlarmCycleStop := "AlwaysTRUE" AND "Station_Sys".Alarm.CycleStop;
+
+(* Network 3 *)
+(* Call: SysFlowCtrlGraph *)
+#sCtrlMode.iSysInface := iSysInface;
+#sCtrlMode.ioPM_Inface := ioPM_Inface;
+#sCtrlMode.ioGraphCtrl := #RT_DATA.MOP;
+#sCtrlMode();
+
+(* Network 4 *)
+(* TON: 工位11有托盘 *)
+TON[0].IN := "AlwaysTRUE" AND "iB-PressFitting-02ShaftDetection";
+TON[0].PT := T#500ms;
+
+(* TOF: 工位无托盘 *)
+TOF[1].IN := NOT "iB-PressFitting-02ShaftDetection";
+TOF[1].PT := T#300ms;
+
+(* TON *)
+TON[2].IN := "AlwaysTRUE" AND "iB-PressFitting-02DownRingDetection";
+TON[2].PT := T#300ms;
+
+(* TOF *)
+TOF[3].IN := NOT "iB-PressFitting-02DownRingDetection";
+TOF[3].PT := T#300ms;
+
+(* TON *)
+TON[4].IN := "AlwaysTRUE" AND "iB-PressFitting-02UpRingDetection";
+TON[4].PT := T#300ms;
+
+(* TON *)
+TON[5].IN := NOT "iB-PressFitting-02UpRingDetection";
+TON[5].PT := T#300ms;
+
+(* Network 5 *)
+#前站站号 := 345;
+#本站站号 := 350;
+
+
+(* *** State Machine Logic *** *)
+
+(* Reset all action flags at the start of the cycle *)
+Action_F14_Initial_Done := FALSE;
+Action_S2_Done := FALSE;
+Action_S4_Done := FALSE;
+Action_S5_MESInitial_Done := FALSE;
+Action_S10_InitialFinish_Done := FALSE;
+Action_S3_Done := FALSE;
+Action_PressProgram_Done := FALSE;
+Action_PressHoming_Done := FALSE;
+Action_PressReady_q_Done := FALSE;
+Action_PressHoming_q_Done := FALSE;
+Action_Step14_Done := FALSE;
+Action_CheckPressGripStatus_Done := FALSE;
+Action_B_PressFitting_01GripperCylinderToHP_Done := FALSE;
+Action_CheckRingExist_Done := FALSE;
+Action_StatusAlarm_Done := FALSE;
+Action_B_PressFitting_01GripperCylinderToWP_Done := FALSE;
+Action_B_PressFitting_01CylinderToHP_Done := FALSE;
+Action_WaitRobotFinishTask_Done := FALSE;
+Action_CheckMachineStatus_Done := FALSE;
+Action_NormalMode_Done := FALSE;
+Action_ProcessStart_Done := FALSE;
+Action_ProcessStart_CTStart_Done := FALSE;
+Action_RequestRobotPutShaft_Done := FALSE;
+Action_PutRing_Done := FALSE;
+Action_ProcessFInish_2_Done := FALSE;
+Action_DetermineProductStatus_Done := FALSE;
+Action_ShaftOK_Done := FALSE;
+Action_StatusAlarm_1_Done := FALSE;
+Action_NoPart_Done := FALSE;
+Action_ShaftAndRingOK_Done := FALSE;
+Action_Press_NG_Done := FALSE;
+Action_MES_Done := FALSE;
+Action_MESOK_Done := FALSE;
+Action_WaitRobotFinishTask_1_1_Done := FALSE;
+Action_RequestRobotPutRing_Done := FALSE;
+Action_Part_Check_Done := FALSE;
+Action_ProductCheckAlarm_Done := FALSE;
+Action_ProductCheckAlarm_1_Done := FALSE;
+Action_RobotLeavePressArea_1_Done := FALSE;
+Action_RobotLeavePress_Area_Done := FALSE;
+Action_PartStatus_Done := FALSE;
+Action_MES_1NG_Done := FALSE;
+Action_MES_Check_In_Done := FALSE;
+Action_MESOverTime_1_Done := FALSE;
+Action_MESCheckNG_2_Done := FALSE;
+Action_ResetMesCheckRequest_Done := FALSE;
+Action_PrepareMESCheckData_Done := FALSE;
+Action_MesCheckIn_1_Done := FALSE;
+Action_CheckFinish_1_Done := FALSE;
+Action_Bypass_Done := FALSE;
+Action_Step313_Done := FALSE;
+Action_MESCheckNG_3_Done := FALSE;
+Action_Bypass_1_Done := FALSE;
+Action_Step314_Done := FALSE;
+Action_MESOverTime_Done := FALSE;
+Action_Ok_1_Done := FALSE;
+Action_Step400_Done := FALSE;
+Action_JudgeStatus_Done := FALSE;
+Action_OKCount_Done := FALSE;
+Action_ProcessFinish_Done := FALSE;
+Action_NGCount_Done := FALSE;
+Action_MESResultOK_1_Done := FALSE;
+Action_RequestRobotPick_Done := FALSE;
+Action_MESResult_Done := FALSE;
+Action_MESCheckFinish_Done := FALSE;
+Action_RobotPick_Done := FALSE;
+Action_DataClear_Done := FALSE;
+Action_ProcessFinsh_3_Done := FALSE;
+Action_WaitRobotFinishTask_1_Done := FALSE;
+Action_DataMove_Done := FALSE;
+Action_WaitRobotInSafetyArea_Done := FALSE;
+Action_PressProgram_1_Done := FALSE;
+Action_PressHoming_1_Done := FALSE;
+Action_PressReady_q_1_Done := FALSE;
+Action_PressHoming_q_1_Done := FALSE;
+Action_Step15_Done := FALSE;
+Action_B_PressFitting_01CylinderToHP_1_Done := FALSE;
+Action_ResetMesUnloadRequest_1_Done := FALSE;
+Action_PrepareMESCheckData_1_Done := FALSE;
+Action_StartCycle_Done := FALSE;
+Action_ResetPressStart_Done := FALSE;
+Action_ProcessFInish_1_Done := FALSE;
+Action_CheckPressResult_Done := FALSE;
+Action_Step147_Done := FALSE;
+
+
+(* Sequence: S01-S99 Initial *)
+(* S01-S99  初始化 *)
+(* Step F14_Initial *)
+(* EN: Step structure *)
+IF Step_F14_Initial_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_F14_Initial_entry_time) > F14_Initial.T_MAX THEN Step_F14_Initial_timeout := TRUE; END_IF;
+
+  IF Action_F14_Initial_Exec THEN
+    #ioPM_Inface.InitialRun := TRUE;
+    #ioPM_Inface.InitialOK := FALSE;
+    #ioPM_Inface.WaitRunning := FALSE;
+    #ioPM_Inface.Running := FALSE;
+    #ioPM_Inface.ProcessComplete := FALSE;
+    #ioPM_Inface.UnPause := FALSE;
+    "Station_Sys".Cmd.Calibration := FALSE;
+    "Station_Sys".Cmd.ChangeOver := FALSE;
+    //"ST350_Sys".Cmd.DryRun
+    "Station_Sys".Cmd.Reserve := FALSE;
+    "Station_Sys".Cmd.OneCycle := FALSE;
+    "DB_maXYmosNC2".StartCycle := FALSE;
+    "DB_maXYmosNC2".StartCycle := FALSE;
+    #ioPM_Inface.ProcessStart := FALSE;
+    "AutoProcessControl".B_Press_2.Robot3PickPrimit := FALSE;
+    "AutoProcessControl".B_Press_2.Robot3PutRingPrimit := FALSE;
+    "AutoProcessControl".B_Press_2.Robot2PutPrimit := FALSE;
+    Action_F14_Initial_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step S2 *)
+(* EN: Step structure *)
+IF Step_S2_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_S2_entry_time) > S2.T_MAX THEN Step_S2_timeout := TRUE; END_IF;
+
+  IF Action_S2_Exec THEN
+    Action_S2_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step S4 *)
+(* EN: Step structure *)
+IF Step_S4_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_S4_entry_time) > S4.T_MAX THEN Step_S4_timeout := TRUE; END_IF;
+
+  IF Action_S4_Exec THEN
+    Action_S4_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step S5_MESInitial *)
+(* EN: Step structure *)
+IF Step_S5_MESInitial_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_S5_MESInitial_entry_time) > S5_MESInitial.T_MAX THEN Step_S5_MESInitial_timeout := TRUE; END_IF;
+
+  IF Action_S5_MESInitial_Exec THEN
+    Action_S5_MESInitial_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step S10_InitialFinish *)
+(* EN: Step structure *)
+IF Step_S10_InitialFinish_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_S10_InitialFinish_entry_time) > S10_InitialFinish.T_MAX THEN Step_S10_InitialFinish_timeout := TRUE; END_IF;
+
+  IF Action_S10_InitialFinish_Exec THEN
+    #ioPM_Inface.InitialOK := TRUE;
+    Action_S10_InitialFinish_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step S3 *)
+(* EN: Step structure *)
+IF Step_S3_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_S3_entry_time) > S3.T_MAX THEN Step_S3_timeout := TRUE; END_IF;
+
+  IF Action_S3_Exec THEN
+    Action_S3_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressProgram *)
+(* EN: Step structure *)
+IF Step_PressProgram_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressProgram_entry_time) > PressProgram.T_MAX THEN Step_PressProgram_timeout := TRUE; END_IF;
+
+  IF Action_PressProgram_Exec THEN
+    IF NOT "ST10_GeneralData".FunctionDeSelect.B.FunctionDeSelected_TestPress375A1 THEN
+      "DB_maXYmosNC2".ProgNo := 1;
+    END_IF;
+    Action_PressProgram_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressHoming *)
+(* EN: Step structure *)
+IF Step_PressHoming_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressHoming_entry_time) > PressHoming.T_MAX THEN Step_PressHoming_timeout := TRUE; END_IF;
+
+  IF Action_PressHoming_Exec THEN
+    "DB_maXYmosNC2".Homing := TRUE;
+    Action_PressHoming_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressReady? *)
+(* EN: Step structure *)
+IF Step_PressReady_q_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressReady_q_entry_time) > PressReady_q.T_MAX THEN Step_PressReady_q_timeout := TRUE; END_IF;
+
+  IF Action_PressReady_q_Exec THEN
+    Action_PressReady_q_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressHoming? *)
+(* EN: Step structure *)
+IF Step_PressHoming_q_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressHoming_q_entry_time) > PressHoming_q.T_MAX THEN Step_PressHoming_q_timeout := TRUE; END_IF;
+
+  IF Action_PressHoming_q_Exec THEN
+    Action_PressHoming_q_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Step14 *)
+(* EN: Step structure *)
+IF Step_Step14_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Step14_entry_time) > Step14.T_MAX THEN Step_Step14_timeout := TRUE; END_IF;
+
+  IF Action_Step14_Exec THEN
+    Action_Step14_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckPressGripStatus *)
+(* EN: Step structure *)
+IF Step_CheckPressGripStatus_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckPressGripStatus_entry_time) > CheckPressGripStatus.T_MAX THEN Step_CheckPressGripStatus_timeout := TRUE; END_IF;
+
+  IF Action_CheckPressGripStatus_Exec THEN
+    Action_CheckPressGripStatus_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step B-PressFitting-01GripperCylinderToHP *)
+(* EN: Step structure *)
+IF Step_B_PressFitting_01GripperCylinderToHP_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_B_PressFitting_01GripperCylinderToHP_entry_time) > B_PressFitting_01GripperCylinderToHP.T_MAX THEN Step_B_PressFitting_01GripperCylinderToHP_timeout := TRUE; END_IF;
+
+  IF Action_B_PressFitting_01GripperCylinderToHP_Exec THEN
+    "ST10Cylinder".Cy[7].Inout.AutoGoHome := TRUE;
+    "ST10Cylinder".Cy[7].Inout.AutoGoWork := FALSE;
+    Action_B_PressFitting_01GripperCylinderToHP_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckRingExist *)
+(* EN: Step structure *)
+IF Step_CheckRingExist_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckRingExist_entry_time) > CheckRingExist.T_MAX THEN Step_CheckRingExist_timeout := TRUE; END_IF;
+
+  IF Action_CheckRingExist_Exec THEN
+    Action_CheckRingExist_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Status Alarm *)
+(* EN: Step structure *)
+IF Step_StatusAlarm_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_StatusAlarm_entry_time) > StatusAlarm.T_MAX THEN Step_StatusAlarm_timeout := TRUE; END_IF;
+
+  IF Action_StatusAlarm_Exec THEN
+    "ST10_DeviceError".B.B2Press.StatusError := TRUE;
+    Action_StatusAlarm_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step B-PressFitting-01GripperCylinderToWP *)
+(* EN: Step structure *)
+IF Step_B_PressFitting_01GripperCylinderToWP_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_B_PressFitting_01GripperCylinderToWP_entry_time) > B_PressFitting_01GripperCylinderToWP.T_MAX THEN Step_B_PressFitting_01GripperCylinderToWP_timeout := TRUE; END_IF;
+
+  IF Action_B_PressFitting_01GripperCylinderToWP_Exec THEN
+    "ST10Cylinder".Cy[7].Inout.AutoGoHome := FALSE;
+    "ST10Cylinder".Cy[7].Inout.AutoGoWork := TRUE;
+    Action_B_PressFitting_01GripperCylinderToWP_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step B-PressFitting-01CylinderToHP *)
+(* EN: Step structure *)
+IF Step_B_PressFitting_01CylinderToHP_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_B_PressFitting_01CylinderToHP_entry_time) > B_PressFitting_01CylinderToHP.T_MAX THEN Step_B_PressFitting_01CylinderToHP_timeout := TRUE; END_IF;
+
+  IF Action_B_PressFitting_01CylinderToHP_Exec THEN
+    "ST10Cylinder".Cy[8].Inout.AutoGoHome := TRUE;
+    "ST10Cylinder".Cy[8].Inout.AutoGoWork := FALSE;
+    Action_B_PressFitting_01CylinderToHP_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Transition 1: F14_Initial -> S2 *)
+IF Step_F14_Initial_active AND ( iSysInface.Ready ) THEN
+  Step_F14_Initial_active := FALSE;
+  Action_F14_Initial_Exec := FALSE;
+  
+  Step_S2_active := TRUE;
+  Step_S2_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_S2_Exec := TRUE;
+
+  Trans_Trans1_executed := TRUE;
+END_IF;
+
+(* Transition 3: S4 -> S5_MESInitial *)
+IF Step_S4_active AND ( TRUE ) THEN
+  Step_S4_active := FALSE;
+  Action_S4_Exec := FALSE;
+  
+  Step_S5_MESInitial_active := TRUE;
+  Step_S5_MESInitial_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_S5_MESInitial_Exec := TRUE;
+
+  Trans_Trans3_executed := TRUE;
+END_IF;
+
+(* Transition 4: S5_MESInitial -> CheckPressGripStatus *)
+IF Step_S5_MESInitial_active AND ( TRUE ) THEN
+  Step_S5_MESInitial_active := FALSE;
+  Action_S5_MESInitial_Exec := FALSE;
+  
+  Step_CheckPressGripStatus_active := TRUE;
+  Step_CheckPressGripStatus_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckPressGripStatus_Exec := TRUE;
+
+  Trans_Trans325_executed := TRUE;
+END_IF;
+
+(* Transition 8: PressProgram -> PressReady? *)
+IF Step_PressProgram_active AND ( TRUE ) THEN
+  Step_PressProgram_active := FALSE;
+  Action_PressProgram_Exec := FALSE;
+  
+  Step_PressReady_q_active := TRUE;
+  Step_PressReady_q_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressReady_q_Exec := TRUE;
+
+  Trans_Trans10_executed := TRUE;
+END_IF;
+
+(* Transition 9: PressHoming -> Step14 *)
+IF Step_PressHoming_active AND ( "DB_maXYmosNC2".oInHomePos ) THEN
+  Step_PressHoming_active := FALSE;
+  Action_PressHoming_Exec := FALSE;
+  
+  Step_Step14_active := TRUE;
+  Step_Step14_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step14_Exec := TRUE;
+
+  Trans_Trans7_executed := TRUE;
+END_IF;
+
+(* Transition 10: S10_InitialFinish -> ProcessStart *)
+IF Step_S10_InitialFinish_active AND ( ioPM_Inface.Running ) THEN
+  Step_S10_InitialFinish_active := FALSE;
+  Action_S10_InitialFinish_Exec := FALSE;
+  
+  Step_ProcessStart_active := TRUE;
+  Step_ProcessStart_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessStart_Exec := TRUE;
+
+  Trans_Trans102_executed := TRUE;
+END_IF;
+
+(* Transition 12: PressReady? -> PressHoming? *)
+IF Step_PressReady_q_active AND ( "DB_maXYmosNC2".oReady AND "DB_maXYmosNC2".oRdyAmp ) THEN
+  Step_PressReady_q_active := FALSE;
+  Action_PressReady_q_Exec := FALSE;
+  
+  Step_PressHoming_q_active := TRUE;
+  Step_PressHoming_q_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressHoming_q_Exec := TRUE;
+
+  Trans_Trans12_executed := TRUE;
+END_IF;
+
+(* Transition 13: PressHoming? -> PressHoming *)
+IF Step_PressHoming_q_active AND ( NOT "DB_maXYmosNC2".oInHomePos ) THEN
+  Step_PressHoming_q_active := FALSE;
+  Action_PressHoming_q_Exec := FALSE;
+  
+  Step_PressHoming_active := TRUE;
+  Step_PressHoming_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressHoming_Exec := TRUE;
+
+  Trans_Trans15_executed := TRUE;
+END_IF;
+
+(* Transition 14: PressHoming? -> Step14 *)
+IF Step_PressHoming_q_active AND ( "DB_maXYmosNC2".oInHomePos ) THEN
+  Step_PressHoming_q_active := FALSE;
+  Action_PressHoming_q_Exec := FALSE;
+  
+  Step_Step14_active := TRUE;
+  Step_Step14_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step14_Exec := TRUE;
+
+  Trans_Trans17_executed := TRUE;
+END_IF;
+
+(* Transition 15: Step14 -> B-PressFitting-01CylinderToHP *)
+IF Step_Step14_active AND ( TRUE ) THEN
+  Step_Step14_active := FALSE;
+  Action_Step14_Exec := FALSE;
+  
+  Step_B_PressFitting_01CylinderToHP_active := TRUE;
+  Step_B_PressFitting_01CylinderToHP_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_B_PressFitting_01CylinderToHP_Exec := TRUE;
+
+  Trans_Trans18_executed := TRUE;
+END_IF;
+
+(* Transition 16: CheckPressGripStatus -> CheckRingExist *)
+IF Step_CheckPressGripStatus_active AND ( NOT "iB-PressFitting-02UpRingDetection" AND (#AutoProcessControl.B_Press_2.GripStatus = 0) ) THEN
+  Step_CheckPressGripStatus_active := FALSE;
+  Action_CheckPressGripStatus_Exec := FALSE;
+  
+  Step_CheckRingExist_active := TRUE;
+  Step_CheckRingExist_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckRingExist_Exec := TRUE;
+
+  Trans_Trans19_executed := TRUE;
+END_IF;
+
+(* Transition 17: CheckPressGripStatus -> B-PressFitting-01GripperCylinderToWP *)
+IF Step_CheckPressGripStatus_active AND ( (#AutoProcessControl.B_Press_2.GripStatus <> 0) AND "iB-PressFitting-02UpRingDetection" ) THEN
+  Step_CheckPressGripStatus_active := FALSE;
+  Action_CheckPressGripStatus_Exec := FALSE;
+  
+  Step_B_PressFitting_01GripperCylinderToWP_active := TRUE;
+  Step_B_PressFitting_01GripperCylinderToWP_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_B_PressFitting_01GripperCylinderToWP_Exec := TRUE;
+
+  Trans_Trans20_executed := TRUE;
+END_IF;
+
+(* Transition 116: B-PressFitting-01GripperCylinderToHP -> PressProgram *)
+IF Step_B_PressFitting_01GripperCylinderToHP_active AND ( (NOT "ST10Cylinder".Cy[7].In.WorkPositionSensor) AND "ST10Cylinder".Cy[7].In.HomePositionSensor ) THEN
+  Step_B_PressFitting_01GripperCylinderToHP_active := FALSE;
+  Action_B_PressFitting_01GripperCylinderToHP_Exec := FALSE;
+  
+  Step_PressProgram_active := TRUE;
+  Step_PressProgram_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressProgram_Exec := TRUE;
+
+  Trans_Trans765_executed := TRUE;
+END_IF;
+
+(* Transition 117: CheckRingExist -> B-PressFitting-01GripperCylinderToHP *)
+IF Step_CheckRingExist_active AND ( TRUE ) THEN
+  Step_CheckRingExist_active := FALSE;
+  Action_CheckRingExist_Exec := FALSE;
+  
+  Step_B_PressFitting_01GripperCylinderToHP_active := TRUE;
+  Step_B_PressFitting_01GripperCylinderToHP_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_B_PressFitting_01GripperCylinderToHP_Exec := TRUE;
+
+  Trans_Trans117_executed := TRUE;
+END_IF;
+
+(* Transition 118: B-PressFitting-01GripperCylinderToWP -> PressProgram *)
+IF Step_B_PressFitting_01GripperCylinderToWP_active AND ( "ST10Cylinder".Cy[7].In.WorkPositionSensor AND (NOT "ST10Cylinder".Cy[7].In.HomePositionSensor) ) THEN
+  Step_B_PressFitting_01GripperCylinderToWP_active := FALSE;
+  Action_B_PressFitting_01GripperCylinderToWP_Exec := FALSE;
+  
+  Step_PressProgram_active := TRUE;
+  Step_PressProgram_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressProgram_Exec := TRUE;
+
+  Trans_Trans766_executed := TRUE;
+END_IF;
+
+(* Transition 119: CheckPressGripStatus -> Status Alarm *)
+IF Step_CheckPressGripStatus_active AND ( ((#AutoProcessControl.B_Press_2.GripStatus <> 0) AND (NOT "iB-PressFitting-02UpRingDetection")) OR ((#AutoProcessControl.B_Press_2.GripStatus = 0) AND "iB-PressFitting-02UpRingDetection") ) THEN
+  Step_CheckPressGripStatus_active := FALSE;
+  Action_CheckPressGripStatus_Exec := FALSE;
+  
+  Step_StatusAlarm_active := TRUE;
+  Step_StatusAlarm_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_StatusAlarm_Exec := TRUE;
+
+  Trans_Trans119_executed := TRUE;
+END_IF;
+
+(* Transition 120: Status Alarm -> CheckPressGripStatus (Jump) *)
+IF Step_StatusAlarm_active AND ( iSysInface.Reset ) THEN
+  Step_StatusAlarm_active := FALSE;
+  Action_StatusAlarm_Exec := FALSE;
+  
+  Step_CheckPressGripStatus_active := TRUE;
+  Step_CheckPressGripStatus_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckPressGripStatus_Exec := TRUE;
+
+  Trans_Trans120_executed := TRUE;
+END_IF;
+
+(* Transition 121: B-PressFitting-01CylinderToHP -> S10_InitialFinish *)
+IF Step_B_PressFitting_01CylinderToHP_active AND ( (NOT "ST10Cylinder".Cy[8].In.WorkPositionSensor) AND "ST10Cylinder".Cy[8].In.HomePositionSensor ) THEN
+  Step_B_PressFitting_01CylinderToHP_active := FALSE;
+  Action_B_PressFitting_01CylinderToHP_Exec := FALSE;
+  
+  Step_S10_InitialFinish_active := TRUE;
+  Step_S10_InitialFinish_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_S10_InitialFinish_Exec := TRUE;
+
+  Trans_Trans767_executed := TRUE;
+END_IF;
+
+(* Transition 607: S3 -> S4 *)
+IF Step_S3_active AND ( TRUE ) THEN
+  Step_S3_active := FALSE;
+  Action_S3_Exec := FALSE;
+  
+  Step_S4_active := TRUE;
+  Step_S4_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_S4_Exec := TRUE;
+
+  Trans_Trans613_executed := TRUE;
+END_IF;
+
+(* Transition 2: S2 -> S3 *)
+IF Step_S2_active AND ( TRUE ) THEN
+  Step_S2_active := FALSE;
+  Action_S2_Exec := FALSE;
+  
+  Step_S3_active := TRUE;
+  Step_S3_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_S3_Exec := TRUE;
+
+  Trans_Trans2_executed := TRUE;
+END_IF;
+
+
+(* Sequence: S100-S199 CheckPartStatus *)
+(* S100-S199 等待到位 *)
+(* Step Wait  robot finish task *)
+(* EN: Step structure *)
+IF Step_WaitRobotFinishTask_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_WaitRobotFinishTask_entry_time) > WaitRobotFinishTask.T_MAX THEN Step_WaitRobotFinishTask_timeout := TRUE; END_IF;
+
+  IF Action_WaitRobotFinishTask_Exec THEN
+    Action_WaitRobotFinishTask_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckMachineStatus *)
+(* EN: Step structure *)
+IF Step_CheckMachineStatus_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckMachineStatus_entry_time) > CheckMachineStatus.T_MAX THEN Step_CheckMachineStatus_timeout := TRUE; END_IF;
+
+  IF Action_CheckMachineStatus_Exec THEN
+    Action_CheckMachineStatus_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Normal mode *)
+(* EN: Step structure *)
+IF Step_NormalMode_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_NormalMode_entry_time) > NormalMode.T_MAX THEN Step_NormalMode_timeout := TRUE; END_IF;
+
+  IF Action_NormalMode_Exec THEN
+    Action_NormalMode_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ProcessStart *)
+(* EN: Step structure *)
+IF Step_ProcessStart_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProcessStart_entry_time) > ProcessStart.T_MAX THEN Step_ProcessStart_timeout := TRUE; END_IF;
+
+  IF Action_ProcessStart_Exec THEN
+    (* 自动等待开始运行 *)
+    #ioPM_Inface.InitialRun := FALSE;
+    #ioPM_Inface.ProcessComplete := FALSE;
+    #ioPM_Inface.ProcessStart := TRUE;
+    #ioPM_Inface.InitialOK := TRUE;
+    #ioPM_Inface.WaitRunning := TRUE;
+    #ioPM_Inface.ProcessResult := 0;
+    "ST10_GeneralData".FlowControl_Handshake[14].Start := FALSE;
+    "ST10_GeneralData".FlowControl_Handshake[14].Done := FALSE;
+    Action_ProcessStart_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ProcessStart,CTStart *)
+(* EN: Step structure *)
+IF Step_ProcessStart_CTStart_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProcessStart_CTStart_entry_time) > ProcessStart_CTStart.T_MAX THEN Step_ProcessStart_CTStart_timeout := TRUE; END_IF;
+
+  IF Action_ProcessStart_CTStart_Exec THEN
+    Action_ProcessStart_CTStart_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Process FInish *)
+(* EN: Step structure *)
+IF Step_ProcessFInish_2_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProcessFInish_2_entry_time) > ProcessFInish_2.T_MAX THEN Step_ProcessFInish_2_timeout := TRUE; END_IF;
+
+  IF Action_ProcessFInish_2_Exec THEN
+    Action_ProcessFInish_2_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Request robot putShaft *)
+(* EN: Step structure *)
+IF Step_RequestRobotPutShaft_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_RequestRobotPutShaft_entry_time) > RequestRobotPutShaft.T_MAX THEN Step_RequestRobotPutShaft_timeout := TRUE; END_IF;
+
+  IF Action_RequestRobotPutShaft_Exec THEN
+    "AutoProcessControl".B_Press_2.Robot2PutPrimit := TRUE;
+    Action_RequestRobotPutShaft_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PutRing *)
+(* EN: Step structure *)
+IF Step_PutRing_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PutRing_entry_time) > PutRing.T_MAX THEN Step_PutRing_timeout := TRUE; END_IF;
+
+  IF Action_PutRing_Exec THEN
+    Action_PutRing_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PartCheck *)
+(* EN: Step structure *)
+IF Step_PartCheck_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PartCheck_entry_time) > PartCheck.T_MAX THEN Step_PartCheck_timeout := TRUE; END_IF;
+
+  IF Action_PartCheck_Exec THEN
+    Action_PartCheck_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Determine product status *)
+(* EN: Step structure *)
+IF Step_DetermineProductStatus_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_DetermineProductStatus_entry_time) > DetermineProductStatus.T_MAX THEN Step_DetermineProductStatus_timeout := TRUE; END_IF;
+
+  IF Action_DetermineProductStatus_Exec THEN
+    "MES_CHeck_DB".Station_7.CheckStep := 0;
+    "MES_CHeck_DB".Station_7.ResultStep := 0;
+    Action_DetermineProductStatus_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ShaftOK *)
+(* EN: Step structure *)
+IF Step_ShaftOK_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ShaftOK_entry_time) > ShaftOK.T_MAX THEN Step_ShaftOK_timeout := TRUE; END_IF;
+
+  IF Action_ShaftOK_Exec THEN
+    Action_ShaftOK_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step StatusAlarm *)
+(* EN: Step structure *)
+IF Step_StatusAlarm_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_StatusAlarm_1_entry_time) > StatusAlarm_1.T_MAX THEN Step_StatusAlarm_1_timeout := TRUE; END_IF;
+
+  IF Action_StatusAlarm_1_Exec THEN
+    "ST10_DeviceError".B.B2Press.StatusError := TRUE;
+    Action_StatusAlarm_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step NoPart *)
+(* EN: Step structure *)
+IF Step_NoPart_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_NoPart_entry_time) > NoPart.T_MAX THEN Step_NoPart_timeout := TRUE; END_IF;
+
+  IF Action_NoPart_Exec THEN
+    Action_NoPart_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ShaftAndRingOK *)
+(* EN: Step structure *)
+IF Step_ShaftAndRingOK_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ShaftAndRingOK_entry_time) > ShaftAndRingOK.T_MAX THEN Step_ShaftAndRingOK_timeout := TRUE; END_IF;
+
+  IF Action_ShaftAndRingOK_Exec THEN
+    Action_ShaftAndRingOK_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Press NG *)
+(* EN: Step structure *)
+IF Step_Press_NG_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Press_NG_entry_time) > Press_NG.T_MAX THEN Step_Press_NG_timeout := TRUE; END_IF;
+
+  IF Action_Press_NG_Exec THEN
+    Action_Press_NG_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MES *)
+(* EN: Step structure *)
+IF Step_MES_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MES_entry_time) > MES.T_MAX THEN Step_MES_timeout := TRUE; END_IF;
+
+  IF Action_MES_Exec THEN
+    Action_MES_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MESOK *)
+(* EN: Step structure *)
+IF Step_MESOK_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESOK_entry_time) > MESOK.T_MAX THEN Step_MESOK_timeout := TRUE; END_IF;
+
+  IF Action_MESOK_Exec THEN
+    Action_MESOK_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Wait  robot finish task_1 *)
+(* EN: Step structure *)
+IF Step_WaitRobotFinishTask_1_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_WaitRobotFinishTask_1_1_entry_time) > WaitRobotFinishTask_1_1.T_MAX THEN Step_WaitRobotFinishTask_1_1_timeout := TRUE; END_IF;
+
+  IF Action_WaitRobotFinishTask_1_1_Exec THEN
+    Action_WaitRobotFinishTask_1_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Request robot putRing *)
+(* EN: Step structure *)
+IF Step_RequestRobotPutRing_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_RequestRobotPutRing_entry_time) > RequestRobotPutRing.T_MAX THEN Step_RequestRobotPutRing_timeout := TRUE; END_IF;
+
+  IF Action_RequestRobotPutRing_Exec THEN
+    "AutoProcessControl".B_Press_2.Robot3PutRingPrimit := TRUE;
+    Action_RequestRobotPutRing_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Part Check *)
+(* EN: Step structure *)
+IF Step_Part_Check_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Part_Check_entry_time) > Part_Check.T_MAX THEN Step_Part_Check_timeout := TRUE; END_IF;
+
+  IF Action_Part_Check_Exec THEN
+    Action_Part_Check_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ProductCheckAlarm *)
+(* EN: Step structure *)
+IF Step_ProductCheckAlarm_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProductCheckAlarm_entry_time) > ProductCheckAlarm.T_MAX THEN Step_ProductCheckAlarm_timeout := TRUE; END_IF;
+
+  IF Action_ProductCheckAlarm_Exec THEN
+    "ST10_DeviceError".B.B2Press.ShaftSensorCheckError := TRUE;
+    Action_ProductCheckAlarm_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ProductCheckAlarm_1 *)
+(* EN: Step structure *)
+IF Step_ProductCheckAlarm_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProductCheckAlarm_1_entry_time) > ProductCheckAlarm_1.T_MAX THEN Step_ProductCheckAlarm_1_timeout := TRUE; END_IF;
+
+  IF Action_ProductCheckAlarm_1_Exec THEN
+    "ST10_DeviceError".B.B2Press.RingSensorCheckError := TRUE;
+    Action_ProductCheckAlarm_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step RobotLeavePressArea *)
+(* EN: Step structure *)
+IF Step_RobotLeavePressArea_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_RobotLeavePressArea_1_entry_time) > RobotLeavePressArea_1.T_MAX THEN Step_RobotLeavePressArea_1_timeout := TRUE; END_IF;
+
+  IF Action_RobotLeavePressArea_1_Exec THEN
+    Action_RobotLeavePressArea_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step RobotLeavePress Area *)
+(* EN: Step structure *)
+IF Step_RobotLeavePress_Area_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_RobotLeavePress_Area_entry_time) > RobotLeavePress_Area.T_MAX THEN Step_RobotLeavePress_Area_timeout := TRUE; END_IF;
+
+  IF Action_RobotLeavePress_Area_Exec THEN
+    Action_RobotLeavePress_Area_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PartStatus *)
+(* EN: Step structure *)
+IF Step_PartStatus_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PartStatus_entry_time) > PartStatus.T_MAX THEN Step_PartStatus_timeout := TRUE; END_IF;
+
+  IF Action_PartStatus_Exec THEN
+    Action_PartStatus_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MES_1NG *)
+(* EN: Step structure *)
+IF Step_MES_1NG_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MES_1NG_entry_time) > MES_1NG.T_MAX THEN Step_MES_1NG_timeout := TRUE; END_IF;
+
+  IF Action_MES_1NG_Exec THEN
+    Action_MES_1NG_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Transition 100: ProcessStart -> Determine product status *)
+IF Step_ProcessStart_active AND ( (NOT ioPM_Inface.AlarmCycleStop) AND ioPM_Inface.Running AND (NOT iSysInface.Auto.RunningOver) AND ( (NOT iSysInface.Auto.OneCycleMode) OR (iSysInface.Auto.OneCycleMode AND ioPM_Inface.TriggerOneCycle) ) ) THEN
+  Step_ProcessStart_active := FALSE;
+  Action_ProcessStart_Exec := FALSE;
+  
+  Step_DetermineProductStatus_active := TRUE;
+  Step_DetermineProductStatus_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_DetermineProductStatus_Exec := TRUE;
+
+  Trans_Trans200_executed := TRUE;
+END_IF;
+
+(* Transition 101: Determine product status -> NoPart *)
+IF Step_DetermineProductStatus_active AND ( (NOT "iB-PressFitting-02ShaftDetection" AND NOT "iB-PressFitting-02DownRingDetection" AND NOT "AlwaysFALSE") AND ("AutoProcessData".B_Press2.PartStatus = 0) AND (Step_DetermineProductStatus_entry_time > T#1000ms) ) THEN
+  Step_DetermineProductStatus_active := FALSE;
+  Action_DetermineProductStatus_Exec := FALSE;
+  
+  Step_NoPart_active := TRUE;
+  Step_NoPart_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_NoPart_Exec := TRUE;
+
+  Trans_Empty_executed := TRUE;
+END_IF;
+
+(* Transition 102: CheckMachineStatus -> Normal mode *)
+IF Step_CheckMachineStatus_active AND ( TRUE ) THEN
+  Step_CheckMachineStatus_active := FALSE;
+  Action_CheckMachineStatus_Exec := FALSE;
+  
+  Step_NormalMode_active := TRUE;
+  Step_NormalMode_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_NormalMode_Exec := TRUE;
+
+  Trans_Trans266_executed := TRUE;
+END_IF;
+
+(* Transition 103: Normal mode -> ProcessStart,CTStart *)
+IF Step_NormalMode_active AND ( TRUE ) THEN
+  Step_NormalMode_active := FALSE;
+  Action_NormalMode_Exec := FALSE;
+  
+  Step_ProcessStart_CTStart_active := TRUE;
+  Step_ProcessStart_CTStart_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessStart_CTStart_Exec := TRUE;
+
+  Trans_Trans11_executed := TRUE;
+END_IF;
+
+(* Transition 104: ProcessStart,CTStart -> Request robot putShaft *)
+IF Step_ProcessStart_CTStart_active AND ( Step_ProcessStart_CTStart_entry_time > T#100ms ) THEN
+  Step_ProcessStart_CTStart_active := FALSE;
+  Action_ProcessStart_CTStart_Exec := FALSE;
+  
+  Step_RequestRobotPutShaft_active := TRUE;
+  Step_RequestRobotPutShaft_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RequestRobotPutShaft_Exec := TRUE;
+
+  Trans_Trans249_executed := TRUE;
+END_IF;
+
+(* Transition 112: Request robot putShaft -> Wait  robot finish task *)
+IF Step_RequestRobotPutShaft_active AND ( "KukaRobot2_CtrlDB".sROBtoPLC.User.Cycle.DO273_PressPutPart1Inside AND (NOT "KukaRobot2_CtrlDB".sROBtoPLC.User.Cycle.DO274_PressPutPart1Finish) ) THEN
+  Step_RequestRobotPutShaft_active := FALSE;
+  Action_RequestRobotPutShaft_Exec := FALSE;
+  
+  Step_WaitRobotFinishTask_active := TRUE;
+  Step_WaitRobotFinishTask_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_WaitRobotFinishTask_Exec := TRUE;
+
+  Trans_Trans283_executed := TRUE;
+END_IF;
+
+(* Transition 113: Request robot putRing -> Wait  robot finish task_1 *)
+IF Step_RequestRobotPutRing_active AND ( "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO277_PressPutRingInside AND (NOT "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO278_PressPutRingFinish) ) THEN
+  Step_RequestRobotPutRing_active := FALSE;
+  Action_RequestRobotPutRing_Exec := FALSE;
+  
+  Step_WaitRobotFinishTask_1_1_active := TRUE;
+  Step_WaitRobotFinishTask_1_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_WaitRobotFinishTask_1_1_Exec := TRUE;
+
+  Trans_Trans284_executed := TRUE;
+END_IF;
+
+(* Transition 115: RobotLeavePress Area -> PartCheck *)
+IF Step_RobotLeavePress_Area_active AND ( TRUE ) THEN
+  Step_RobotLeavePress_Area_active := FALSE;
+  Action_RobotLeavePress_Area_Exec := FALSE;
+  
+  Step_PartCheck_active := TRUE;
+  Step_PartCheck_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PartCheck_Exec := TRUE;
+
+  Trans_Trans199_executed := TRUE;
+END_IF;
+
+(* Transition 122: RobotLeavePressArea -> Part Check *)
+IF Step_RobotLeavePressArea_1_active AND ( "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO177_PressPut1Area AND "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO178_Robot2Area ) THEN
+  Step_RobotLeavePressArea_1_active := FALSE;
+  Action_RobotLeavePressArea_1_Exec := FALSE;
+  
+  Step_Part_Check_active := TRUE;
+  Step_Part_Check_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Part_Check_Exec := TRUE;
+
+  Trans_Trans236_executed := TRUE;
+END_IF;
+
+(* Transition 124: PartStatus -> RobotLeavePressArea *)
+IF Step_PartStatus_active AND ( "AutoProcessData".B_Press2.PartStatus = 420 ) THEN
+  Step_PartStatus_active := FALSE;
+  Action_PartStatus_Exec := FALSE;
+  
+  Step_RobotLeavePressArea_1_active := TRUE;
+  Step_RobotLeavePressArea_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RobotLeavePressArea_1_Exec := TRUE;
+
+  Trans_Trans124_executed := TRUE;
+END_IF;
+
+(* Transition 125: PutRing -> Request robot putRing *)
+IF Step_PutRing_active AND ( TRUE ) THEN
+  Step_PutRing_active := FALSE;
+  Action_PutRing_Exec := FALSE;
+  
+  Step_RequestRobotPutRing_active := TRUE;
+  Step_RequestRobotPutRing_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RequestRobotPutRing_Exec := TRUE;
+
+  Trans_Trans125_executed := TRUE;
+END_IF;
+
+(* Transition 137: PartStatus -> MES_1NG *)
+IF Step_PartStatus_active AND ( ("AutoProcessData".B_Press2.PartStatus = 451) OR ("AutoProcessData".B_Press2.PartStatus = 452) ) THEN
+  Step_PartStatus_active := FALSE;
+  Action_PartStatus_Exec := FALSE;
+  
+  Step_MES_1NG_active := TRUE;
+  Step_MES_1NG_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MES_1NG_Exec := TRUE;
+
+  Trans_Trans138_executed := TRUE;
+END_IF;
+
+(* Transition 139: Determine product status -> ShaftOK *)
+IF Step_DetermineProductStatus_active AND ( TON[0].Q AND ("AutoProcessData".B_Press2.PartStatus = 399) ) THEN
+  Step_DetermineProductStatus_active := FALSE;
+  Action_DetermineProductStatus_Exec := FALSE;
+  
+  Step_ShaftOK_active := TRUE;
+  Step_ShaftOK_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ShaftOK_Exec := TRUE;
+
+  Trans_HavePart_executed := TRUE;
+END_IF;
+
+(* Transition 140: ShaftOK -> PutRing *)
+IF Step_ShaftOK_active AND ( TRUE ) THEN
+  Step_ShaftOK_active := FALSE;
+  Action_ShaftOK_Exec := FALSE;
+  
+  Step_PutRing_active := TRUE;
+  Step_PutRing_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PutRing_Exec := TRUE;
+
+  Trans_Trans303_executed := TRUE;
+END_IF;
+
+(* Transition 141: StatusAlarm -> Determine product status (Jump) *)
+IF Step_StatusAlarm_1_active AND ( iSysInface.Reset ) THEN
+  Step_StatusAlarm_1_active := FALSE;
+  Action_StatusAlarm_1_Exec := FALSE;
+  
+  Step_DetermineProductStatus_active := TRUE;
+  Step_DetermineProductStatus_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_DetermineProductStatus_Exec := TRUE;
+
+  Trans_Trans304_executed := TRUE;
+END_IF;
+
+(* Transition 145: NoPart -> CheckMachineStatus *)
+IF Step_NoPart_active AND ( TRUE ) THEN
+  Step_NoPart_active := FALSE;
+  Action_NoPart_Exec := FALSE;
+  
+  Step_CheckMachineStatus_active := TRUE;
+  Step_CheckMachineStatus_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckMachineStatus_Exec := TRUE;
+
+  Trans_Trans145_executed := TRUE;
+END_IF;
+
+(* Transition 146: Wait  robot finish task -> RobotLeavePress Area *)
+IF Step_WaitRobotFinishTask_active AND ( "KukaRobot2_CtrlDB".sROBtoPLC.User.Cycle.DO274_PressPutPart1Finish ) THEN
+  Step_WaitRobotFinishTask_active := FALSE;
+  Action_WaitRobotFinishTask_Exec := FALSE;
+  
+  Step_RobotLeavePress_Area_active := TRUE;
+  Step_RobotLeavePress_Area_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RobotLeavePress_Area_Exec := TRUE;
+
+  Trans_Trans146_executed := TRUE;
+END_IF;
+
+(* Transition 147: Wait  robot finish task_1 -> PartStatus *)
+IF Step_WaitRobotFinishTask_1_1_active AND ( "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO278_PressPutRingFinish ) THEN
+  Step_WaitRobotFinishTask_1_1_active := FALSE;
+  Action_WaitRobotFinishTask_1_1_Exec := FALSE;
+  
+  Step_PartStatus_active := TRUE;
+  Step_PartStatus_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PartStatus_Exec := TRUE;
+
+  Trans_Trans148_executed := TRUE;
+END_IF;
+
+(* Transition 18: Determine product status -> ShaftAndRingOK *)
+IF Step_DetermineProductStatus_active AND ( TON[0].Q AND TON[2].Q AND (NOT "AlwaysFALSE") AND ("AutoProcessData".B_Press2.PartStatus = 420) ) THEN
+  Step_DetermineProductStatus_active := FALSE;
+  Action_DetermineProductStatus_Exec := FALSE;
+  
+  Step_ShaftAndRingOK_active := TRUE;
+  Step_ShaftAndRingOK_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ShaftAndRingOK_Exec := TRUE;
+
+  Trans_Trans21_executed := TRUE;
+END_IF;
+
+(* Transition 19: Determine product status -> Press NG *)
+IF Step_DetermineProductStatus_active AND ( ("AutoProcessData".B_Press2.PartStatus = 450) OR ("AutoProcessData".B_Press2.PartStatus = 455) ) THEN
+  Step_DetermineProductStatus_active := FALSE;
+  Action_DetermineProductStatus_Exec := FALSE;
+  
+  Step_Press_NG_active := TRUE;
+  Step_Press_NG_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Press_NG_Exec := TRUE;
+
+  Trans_Trans22_executed := TRUE;
+END_IF;
+
+(* Transition 20: Determine product status -> MES *)
+IF Step_DetermineProductStatus_active AND ( "AutoProcessData".B_Press2.PartStatus = 480 ) THEN
+  Step_DetermineProductStatus_active := FALSE;
+  Action_DetermineProductStatus_Exec := FALSE;
+  
+  Step_MES_active := TRUE;
+  Step_MES_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MES_Exec := TRUE;
+
+  Trans_Trans23_executed := TRUE;
+END_IF;
+
+(* Transition 24: Determine product status -> MESOK *)
+IF Step_DetermineProductStatus_active AND ( TRUE ) THEN
+  Step_DetermineProductStatus_active := FALSE;
+  Action_DetermineProductStatus_Exec := FALSE;
+  
+  Step_MESOK_active := TRUE;
+  Step_MESOK_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESOK_Exec := TRUE;
+
+  Trans_Trans24_executed := TRUE;
+END_IF;
+
+(* Transition 25: MESOK -> RobotPick (Jump) *)
+IF Step_MESOK_active AND ( TRUE ) THEN
+  Step_MESOK_active := FALSE;
+  Action_MESOK_Exec := FALSE;
+  
+  Step_RobotPick_active := TRUE;
+  Step_RobotPick_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RobotPick_Exec := TRUE;
+
+  Trans_Trans25_executed := TRUE;
+END_IF;
+
+(* Transition 251: PartCheck -> PutRing *)
+IF Step_PartCheck_active AND ( "AutoProcessData".B_Press2.PartStatus = 399 AND TON[0].Q ) THEN
+  Step_PartCheck_active := FALSE;
+  Action_PartCheck_Exec := FALSE;
+  
+  Step_PutRing_active := TRUE;
+  Step_PutRing_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PutRing_Exec := TRUE;
+
+  Trans_Trans252_executed := TRUE;
+END_IF;
+
+(* Transition 252: Part Check -> Process FInish *)
+IF Step_Part_Check_active AND ( "AutoProcessData".B_Press2.PartStatus = 420 AND TON[0].Q ) THEN
+  Step_Part_Check_active := FALSE;
+  Action_Part_Check_Exec := FALSE;
+  
+  Step_ProcessFInish_2_active := TRUE;
+  Step_ProcessFInish_2_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFInish_2_Exec := TRUE;
+
+  Trans_Trans262_executed := TRUE;
+END_IF;
+
+(* Transition 259: PartCheck -> ProductCheckAlarm (Jump) *)
+IF Step_PartCheck_active AND ( "AutoProcessData".B_Press2.PartStatus = 399 AND (NOT "iB-PressFitting-02ShaftDetection") AND TOF[1].Q AND (PartCheck.T > T#1500ms) ) THEN
+  Step_PartCheck_active := FALSE;
+  Action_PartCheck_Exec := FALSE;
+  
+  Step_ProductCheckAlarm_active := TRUE;
+  Step_ProductCheckAlarm_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProductCheckAlarm_Exec := TRUE;
+
+  Trans_Trans263_executed := TRUE;
+END_IF;
+
+(* Transition 261: Part Check -> ProductCheckAlarm_1 (Jump) *)
+IF Step_Part_Check_active AND ( (NOT "AlwaysTRUE") ) THEN
+  Step_Part_Check_active := FALSE;
+  Action_Part_Check_Exec := FALSE;
+  
+  Step_ProductCheckAlarm_1_active := TRUE;
+  Step_ProductCheckAlarm_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProductCheckAlarm_1_Exec := TRUE;
+
+  Trans_Trans267_executed := TRUE;
+END_IF;
+
+(* Transition 260: ProductCheckAlarm -> PartCheck (Jump) *)
+IF Step_ProductCheckAlarm_active AND ( iSysInface.Reset ) THEN
+  Step_ProductCheckAlarm_active := FALSE;
+  Action_ProductCheckAlarm_Exec := FALSE;
+  
+  Step_PartCheck_active := TRUE;
+  Step_PartCheck_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PartCheck_Exec := TRUE;
+
+  Trans_Trans265_executed := TRUE;
+END_IF;
+
+(* Transition 262: ProductCheckAlarm_1 -> Part Check (Jump) *)
+IF Step_ProductCheckAlarm_1_active AND ( iSysInface.Reset ) THEN
+  Step_ProductCheckAlarm_1_active := FALSE;
+  Action_ProductCheckAlarm_1_Exec := FALSE;
+  
+  Step_Part_Check_active := TRUE;
+  Step_Part_Check_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Part_Check_Exec := TRUE;
+
+  Trans_Trans269_executed := TRUE;
+END_IF;
+
+(* Transition 32: MES_1NG -> RobotPick (Jump) *)
+IF Step_MES_1NG_active AND ( TRUE ) THEN
+  Step_MES_1NG_active := FALSE;
+  Action_MES_1NG_Exec := FALSE;
+  
+  Step_RobotPick_active := TRUE;
+  Step_RobotPick_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RobotPick_Exec := TRUE;
+
+  Trans_Trans36_executed := TRUE;
+END_IF;
+
+(* Transition 710: Determine product status -> StatusAlarm *)
+IF Step_DetermineProductStatus_active AND ( (TON[0].Q AND TON[2].Q AND (NOT "AlwaysFALSE") AND ("AutoProcessData".B_Press2.PartStatus = 0)) OR ((NOT "iB-PressFitting-02ShaftDetection" AND NOT "iB-PressFitting-02DownRingDetection" AND NOT "AlwaysFALSE") AND ("AutoProcessData".B_Press2.PartStatus <> 0)) AND (DetermineProductStatus.T > T#1500ms) ) THEN
+  Step_DetermineProductStatus_active := FALSE;
+  Action_DetermineProductStatus_Exec := FALSE;
+  
+  Step_StatusAlarm_1_active := TRUE;
+  Step_StatusAlarm_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_StatusAlarm_1_Exec := TRUE;
+
+  Trans_Alarm_executed := TRUE;
+END_IF;
+
+(* Transition 21: ShaftAndRingOK -> Process FInish (Jump) *)
+IF Step_ShaftAndRingOK_active AND ( TRUE ) THEN
+  Step_ShaftAndRingOK_active := FALSE;
+  Action_ShaftAndRingOK_Exec := FALSE;
+  
+  Step_ProcessFInish_2_active := TRUE;
+  Step_ProcessFInish_2_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFInish_2_Exec := TRUE;
+
+  Trans_Trans24_executed := TRUE; (* Original: Trans21. Typo in XML? *)
+END_IF;
+
+(* Transition 22: Press NG -> ProcessFInish 1 (Jump) *)
+IF Step_Press_NG_active AND ( TRUE ) THEN
+  Step_Press_NG_active := FALSE;
+  Action_Press_NG_Exec := FALSE;
+  
+  Step_ProcessFInish_1_active := TRUE;
+  Step_ProcessFInish_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFInish_1_Exec := TRUE;
+
+  Trans_Trans25_executed := TRUE; (* Original: Trans22. Typo in XML? *)
+END_IF;
+
+(* Transition 23: MES -> ProcessFInish 1 (Jump) *)
+IF Step_MES_active AND ( TRUE ) THEN
+  Step_MES_active := FALSE;
+  Action_MES_Exec := FALSE;
+  
+  Step_ProcessFInish_1_active := TRUE;
+  Step_ProcessFInish_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFInish_1_Exec := TRUE;
+
+  Trans_Trans28_executed := TRUE; (* Original: Trans23. Typo in XML? *)
+END_IF;
+
+(* Transition 249: Process FInish -> MES  Check   In (Jump) *)
+IF Step_ProcessFInish_2_active AND ( TRUE ) THEN
+  Step_ProcessFInish_2_active := FALSE;
+  Action_ProcessFInish_2_Exec := FALSE;
+  
+  Step_MES_Check_In_active := TRUE;
+  Step_MES_Check_In_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MES_Check_In_Exec := TRUE;
+
+  Trans_Trans250_executed := TRUE;
+END_IF;
+
+
+(* Sequence: S150-S199 MES Check In *)
+(* EN: S150-S199 MES  Check   In *)
+(* Step MES  Check   In *)
+(* EN: Step structure *)
+IF Step_MES_Check_In_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MES_Check_In_entry_time) > MES_Check_In.T_MAX THEN Step_MES_Check_In_timeout := TRUE; END_IF;
+
+  IF Action_MES_Check_In_Exec THEN
+    Action_MES_Check_In_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MESOverTime_1 *)
+(* EN: Step structure *)
+IF Step_MESOverTime_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESOverTime_1_entry_time) > MESOverTime_1.T_MAX THEN Step_MESOverTime_1_timeout := TRUE; END_IF;
+
+  IF Action_MESOverTime_1_Exec THEN
+    "ST10_DeviceError".MES_Error.CheckInCompOverTime_7 := TRUE;
+    Action_MESOverTime_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MES Check NG_2 *)
+(* EN: Step structure *)
+IF Step_MESCheckNG_2_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESCheckNG_2_entry_time) > MESCheckNG_2.T_MAX THEN Step_MESCheckNG_2_timeout := TRUE; END_IF;
+
+  IF Action_MESCheckNG_2_Exec THEN
+    "AutoProcessData".B_Press2.PartStatus := 451;
+    Action_MESCheckNG_2_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ResetMesCheckRequest *)
+(* EN: Step structure *)
+IF Step_ResetMesCheckRequest_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ResetMesCheckRequest_entry_time) > ResetMesCheckRequest.T_MAX THEN Step_ResetMesCheckRequest_timeout := TRUE; END_IF;
+
+  IF Action_ResetMesCheckRequest_Exec THEN
+    "PLCtoMES"."PLC.Load_Station7ChickInReq" := FALSE;
+    "MEStoPLC"."MES.Load_Station7PartOK" := FALSE;
+    "MEStoPLC"."MES.Load_Station7PartNG" := FALSE;
+    "MEStoPLC"."MES.Load_Station7ReqMesDone" := FALSE;
+    Action_ResetMesCheckRequest_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Prepare MES CheckData *)
+(* EN: Step structure *)
+IF Step_PrepareMESCheckData_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PrepareMESCheckData_entry_time) > PrepareMESCheckData.T_MAX THEN Step_PrepareMESCheckData_timeout := TRUE; END_IF;
+
+  IF Action_PrepareMESCheckData_Exec THEN
+    Action_PrepareMESCheckData_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MesCheckIn_1 *)
+(* EN: Step structure *)
+IF Step_MesCheckIn_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MesCheckIn_1_entry_time) > MesCheckIn_1.T_MAX THEN Step_MesCheckIn_1_timeout := TRUE; END_IF;
+
+  IF Action_MesCheckIn_1_Exec THEN
+    "PLCtoMES"."PLC.Load_Station7ChickInReq" := TRUE;
+    Action_MesCheckIn_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckFinish_1 *)
+(* EN: Step structure *)
+IF Step_CheckFinish_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckFinish_1_entry_time) > CheckFinish_1.T_MAX THEN Step_CheckFinish_1_timeout := TRUE; END_IF;
+
+  IF Action_CheckFinish_1_Exec THEN
+    Action_CheckFinish_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Bypass *)
+(* EN: Step structure *)
+IF Step_Bypass_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Bypass_entry_time) > Bypass.T_MAX THEN Step_Bypass_timeout := TRUE; END_IF;
+
+  IF Action_Bypass_Exec THEN
+    Action_Bypass_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Step313 *)
+(* EN: Step structure *)
+IF Step_Step313_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Step313_entry_time) > Step313.T_MAX THEN Step_Step313_timeout := TRUE; END_IF;
+
+  IF Action_Step313_Exec THEN
+    Action_Step313_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Transition 150: MES  Check   In -> Bypass *)
+IF Step_MES_Check_In_active AND ( TRUE ) THEN
+  Step_MES_Check_In_active := FALSE;
+  Action_MES_Check_In_Exec := FALSE;
+  
+  Step_Bypass_active := TRUE;
+  Step_Bypass_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Bypass_Exec := TRUE;
+
+  Trans_Trans139_executed := TRUE;
+END_IF;
+
+(* Transition 301: ResetMesCheckRequest -> Prepare MES CheckData *)
+IF Step_ResetMesCheckRequest_active AND ( NOT "PLCtoMES"."PLC.Load_Station7ChickInReq" AND NOT "MEStoPLC"."MES.Load_Station7PartOK" AND NOT "MEStoPLC"."MES.Load_Station7PartNG" AND NOT "MEStoPLC"."MES.Load_Station7ReqMesDone" ) THEN
+  Step_ResetMesCheckRequest_active := FALSE;
+  Action_ResetMesCheckRequest_Exec := FALSE;
+  
+  Step_PrepareMESCheckData_active := TRUE;
+  Step_PrepareMESCheckData_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PrepareMESCheckData_Exec := TRUE;
+
+  Trans_Trans259_executed := TRUE;
+END_IF;
+
+(* Transition 302: MesCheckIn_1 -> MESOverTime_1 *)
+IF Step_MesCheckIn_1_active AND ( MesCheckIn_1.T > T#10s ) THEN
+  Step_MesCheckIn_1_active := FALSE;
+  Action_MesCheckIn_1_Exec := FALSE;
+  
+  Step_MESOverTime_1_active := TRUE;
+  Step_MESOverTime_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESOverTime_1_Exec := TRUE;
+
+  Trans_Trans302_executed := TRUE;
+END_IF;
+
+(* Transition 305: Prepare MES CheckData -> MesCheckIn_1 *)
+IF Step_PrepareMESCheckData_active AND ( PrepareMESCheckData.T > T#200ms ) THEN
+  Step_PrepareMESCheckData_active := FALSE;
+  Action_PrepareMESCheckData_Exec := FALSE;
+  
+  Step_MesCheckIn_1_active := TRUE;
+  Step_MesCheckIn_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MesCheckIn_1_Exec := TRUE;
+
+  Trans_Trans26_executed := TRUE;
+END_IF;
+
+(* Transition 311: CheckFinish_1 -> Pressing (Jump) *)
+IF Step_CheckFinish_1_active AND ( "AutoProcessData".B_Press2.PartStatus = 451 ) THEN
+  Step_CheckFinish_1_active := FALSE;
+  Action_CheckFinish_1_Exec := FALSE;
+  
+  Step_Pressing_active := TRUE;
+  Step_Pressing_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Pressing_Exec := TRUE;
+
+  Trans_Trans311_executed := TRUE;
+END_IF;
+
+(* Transition 312: MesCheckIn_1 -> MES Check NG_2 *)
+IF Step_MesCheckIn_1_active AND ( (NOT "MEStoPLC"."MES.Load_Station7PartOK") AND "MEStoPLC"."MES.Load_Station7PartNG" AND "MEStoPLC"."MES.Load_Station7ReqMesDone" ) THEN
+  Step_MesCheckIn_1_active := FALSE;
+  Action_MesCheckIn_1_Exec := FALSE;
+  
+  Step_MESCheckNG_2_active := TRUE;
+  Step_MESCheckNG_2_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESCheckNG_2_Exec := TRUE;
+
+  Trans_Trans312_executed := TRUE;
+END_IF;
+
+(* Transition 313: MesCheckIn_1 -> Step313 *)
+IF Step_MesCheckIn_1_active AND ( "MEStoPLC"."MES.Load_Station7PartOK" AND (NOT "MEStoPLC"."MES.Load_Station7PartNG") AND "MEStoPLC"."MES.Load_Station7ReqMesDone" ) THEN
+  Step_MesCheckIn_1_active := FALSE;
+  Action_MesCheckIn_1_Exec := FALSE;
+  
+  Step_Step313_active := TRUE;
+  Step_Step313_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step313_Exec := TRUE;
+
+  Trans_Trans313_executed := TRUE;
+END_IF;
+
+(* Transition 316: MesCheckIn_1 -> MESCheckNG_2 *)
+IF Step_MesCheckIn_1_active AND ( TRUE ) THEN
+  Step_MesCheckIn_1_active := FALSE;
+  Action_MesCheckIn_1_Exec := FALSE;
+  
+  Step_MESCheckNG_2_active := TRUE;
+  Step_MESCheckNG_2_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESCheckNG_2_Exec := TRUE;
+
+  Trans_Trans316_executed := TRUE;
+END_IF;
+
+(* Transition 317: Bypass -> Bypass_1 *)
+IF Step_Bypass_active AND ( "Station_Sys".Cmd.OnOffLine ) THEN
+  Step_Bypass_active := FALSE;
+  Action_Bypass_Exec := FALSE;
+  
+  Step_Bypass_1_active := TRUE;
+  Step_Bypass_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Bypass_1_Exec := TRUE;
+
+  Trans_Trans317_executed := TRUE;
+END_IF;
+
+(* Transition 318: ResetMesCheckRequest -> ResetMesCheckRequest *)
+IF Step_ResetMesCheckRequest_active AND ( iSysInface.Reset ) THEN
+  Step_ResetMesCheckRequest_active := FALSE;
+  Action_ResetMesCheckRequest_Exec := FALSE;
+  
+  Step_ResetMesCheckRequest_active := TRUE;
+  Step_ResetMesCheckRequest_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ResetMesCheckRequest_Exec := TRUE;
+
+  Trans_Trans318_executed := TRUE;
+END_IF;
+
+(* Transition 319: Step313 -> CheckFinish_1 *)
+IF Step_Step313_active AND ( TRUE ) THEN
+  Step_Step313_active := FALSE;
+  Action_Step313_Exec := FALSE;
+  
+  Step_CheckFinish_1_active := TRUE;
+  Step_CheckFinish_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckFinish_1_Exec := TRUE;
+
+  Trans_Trans319_executed := TRUE;
+END_IF;
+
+(* Transition 320: MESOverTime_1 -> Bypass (Jump) *)
+IF Step_MESOverTime_1_active AND ( TRUE ) THEN
+  Step_MESOverTime_1_active := FALSE;
+  Action_MESOverTime_1_Exec := FALSE;
+  
+  Step_Bypass_active := TRUE;
+  Step_Bypass_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Bypass_Exec := TRUE;
+
+  Trans_Trans320_executed := TRUE;
+END_IF;
+
+
+(* Sequence: S200-S299Pressing *)
+(* EN: S200-S299Pressing *)
+(* Step Pressing *)
+(* EN: Step structure *)
+IF Step_Pressing_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Pressing_entry_time) > Pressing.T_MAX THEN Step_Pressing_timeout := TRUE; END_IF;
+
+  IF Action_Pressing_Exec THEN
+    Action_Pressing_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step WaitPressFinish *)
+(* EN: Step structure *)
+IF Step_WaitPressFinish_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_WaitPressFinish_entry_time) > WaitPressFinish.T_MAX THEN Step_WaitPressFinish_timeout := TRUE; END_IF;
+
+  IF Action_WaitPressFinish_Exec THEN
+    Action_WaitPressFinish_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ResultNGData *)
+(* EN: Step structure *)
+IF Step_ResultNGData_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ResultNGData_entry_time) > ResultNGData.T_MAX THEN Step_ResultNGData_timeout := TRUE; END_IF;
+
+  IF Action_ResultNGData_Exec THEN
+    "AutoProcessData".B_Press2.PartStatus := 455;
+    Action_ResultNGData_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PartStatus_1 *)
+(* EN: Step structure *)
+IF Step_PartStatus_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PartStatus_1_entry_time) > PartStatus_1.T_MAX THEN Step_PartStatus_1_timeout := TRUE; END_IF;
+
+  IF Action_PartStatus_1_Exec THEN
+    "AutoProcessData".B_Press2.PartStatus := 450;
+    Action_PartStatus_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckPressSensor *)
+(* EN: Step structure *)
+IF Step_CheckPressSensor_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckPressSensor_entry_time) > CheckPressSensor.T_MAX THEN Step_CheckPressSensor_timeout := TRUE; END_IF;
+
+  IF Action_CheckPressSensor_Exec THEN
+    Action_CheckPressSensor_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ResetPressStart *)
+(* EN: Step structure *)
+IF Step_ResetPressStart_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ResetPressStart_entry_time) > ResetPressStart.T_MAX THEN Step_ResetPressStart_timeout := TRUE; END_IF;
+
+  IF Action_ResetPressStart_Exec THEN
+    "DB_maXYmosNC2".StartCycle := FALSE;
+    Action_ResetPressStart_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckPressProgram *)
+(* EN: Step structure *)
+IF Step_CheckPressProgram_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckPressProgram_entry_time) > CheckPressProgram.T_MAX THEN Step_CheckPressProgram_timeout := TRUE; END_IF;
+
+  IF Action_CheckPressProgram_Exec THEN
+    "AutoProcessData".B_Press2.Press2Program := "DB_maXYmosNC2".InputMessages.StatusBits.MP;
+    Action_CheckPressProgram_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step StartCycle *)
+(* EN: Step structure *)
+IF Step_StartCycle_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_StartCycle_entry_time) > StartCycle.T_MAX THEN Step_StartCycle_timeout := TRUE; END_IF;
+
+  IF Action_StartCycle_Exec THEN
+    "DB_maXYmosNC2".StartCycle := TRUE;
+    Action_StartCycle_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckPressReady *)
+(* EN: Step structure *)
+IF Step_CheckPressReady_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckPressReady_entry_time) > CheckPressReady.T_MAX THEN Step_CheckPressReady_timeout := TRUE; END_IF;
+
+  IF Action_CheckPressReady_Exec THEN
+    "DB_maXYmosNC2".StartCycle := FALSE;
+    Action_CheckPressReady_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ProcessFInish 1 *)
+(* EN: Step structure *)
+IF Step_ProcessFInish_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProcessFInish_1_entry_time) > ProcessFInish_1.T_MAX THEN Step_ProcessFInish_1_timeout := TRUE; END_IF;
+
+  IF Action_ProcessFInish_1_Exec THEN
+    Action_ProcessFInish_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ResultOKData *)
+(* EN: Step structure *)
+IF Step_ResultOKData_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ResultOKData_entry_time) > ResultOKData.T_MAX THEN Step_ResultOKData_timeout := TRUE; END_IF;
+
+  IF Action_ResultOKData_Exec THEN
+    "AutoProcessData".B_Press2.PartStatus := 480;
+    Action_ResultOKData_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step CheckPressResult *)
+(* EN: Step structure *)
+IF Step_CheckPressResult_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_CheckPressResult_entry_time) > CheckPressResult.T_MAX THEN Step_CheckPressResult_timeout := TRUE; END_IF;
+
+  IF Action_CheckPressResult_Exec THEN
+    Action_CheckPressResult_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Step147 *)
+(* EN: Step structure *)
+IF Step_Step147_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Step147_entry_time) > Step147.T_MAX THEN Step_Step147_timeout := TRUE; END_IF;
+
+  IF Action_Step147_Exec THEN
+    Action_Step147_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Transition 128: PartStatus_1 -> WaitPressFinish *)
+IF Step_PartStatus_1_active AND ( TRUE ) THEN
+  Step_PartStatus_1_active := FALSE;
+  Action_PartStatus_1_Exec := FALSE;
+  
+  Step_WaitPressFinish_active := TRUE;
+  Step_WaitPressFinish_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_WaitPressFinish_Exec := TRUE;
+
+  Trans_Trans128_executed := TRUE;
+END_IF;
+
+(* Transition 129: CheckPressSensor -> PartStatus_1 *)
+IF Step_CheckPressSensor_active AND ( "DB_maXYmosNC2".InputMessages.StatusBits."O-UNI" = 1 ) THEN
+  Step_CheckPressSensor_active := FALSE;
+  Action_CheckPressSensor_Exec := FALSE;
+  
+  Step_PartStatus_1_active := TRUE;
+  Step_PartStatus_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PartStatus_1_Exec := TRUE;
+
+  Trans_Trans129_executed := TRUE;
+END_IF;
+
+(* Transition 130: CheckPressProgram -> StartCycle *)
+IF Step_CheckPressProgram_active AND ( "DB_maXYmosNC2".InputMessages.StatusBits.MP <> 0 ) THEN
+  Step_CheckPressProgram_active := FALSE;
+  Action_CheckPressProgram_Exec := FALSE;
+  
+  Step_StartCycle_active := TRUE;
+  Step_StartCycle_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_StartCycle_Exec := TRUE;
+
+  Trans_Trans130_executed := TRUE;
+END_IF;
+
+(* Transition 132: StartCycle -> CheckPressSensor *)
+IF Step_StartCycle_active AND ( "DB_maXYmosNC2".InputMessages.StatusBits.UNI = BYTE#16#0 AND (NOT "DB_maXYmosNC2".oRdyCmd) AND "DB_maXYmosNC2".oRunSeq ) THEN
+  Step_StartCycle_active := FALSE;
+  Action_StartCycle_Exec := FALSE;
+  
+  Step_CheckPressSensor_active := TRUE;
+  Step_CheckPressSensor_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckPressSensor_Exec := TRUE;
+
+  Trans_Trans132_executed := TRUE;
+END_IF;
+
+(* Transition 133: ResetPressStart -> CheckPressResult *)
+IF Step_ResetPressStart_active AND ( TRUE ) THEN
+  Step_ResetPressStart_active := FALSE;
+  Action_ResetPressStart_Exec := FALSE;
+  
+  Step_CheckPressResult_active := TRUE;
+  Step_CheckPressResult_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckPressResult_Exec := TRUE;
+
+  Trans_Trans133_executed := TRUE;
+END_IF;
+
+(* Transition 134: ProcessFInish 1 -> Step400 (Jump) *)
+IF Step_ProcessFInish_1_active AND ( TRUE ) THEN
+  Step_ProcessFInish_1_active := FALSE;
+  Action_ProcessFInish_1_Exec := FALSE;
+  
+  Step_Step400_active := TRUE;
+  Step_Step400_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step400_Exec := TRUE;
+
+  Trans_Trans134_executed := TRUE;
+END_IF;
+
+(* Transition 135: CheckPressResult -> ResultOKData *)
+IF Step_CheckPressResult_active AND ( "DB_maXYmosNC2".oCycleOK AND (NOT "DB_maXYmosNC2".oCycleNOK) ) THEN
+  Step_CheckPressResult_active := FALSE;
+  Action_CheckPressResult_Exec := FALSE;
+  
+  Step_ResultOKData_active := TRUE;
+  Step_ResultOKData_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ResultOKData_Exec := TRUE;
+
+  Trans_Trans135_executed := TRUE;
+END_IF;
+
+(* Transition 136: ResultOKData -> Step147 *)
+IF Step_ResultOKData_active AND ( TRUE ) THEN
+  Step_ResultOKData_active := FALSE;
+  Action_ResultOKData_Exec := FALSE;
+  
+  Step_Step147_active := TRUE;
+  Step_Step147_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step147_Exec := TRUE;
+
+  Trans_Trans136_executed := TRUE;
+END_IF;
+
+(* Transition 142: CheckPressResult -> ResultNGData *)
+IF Step_CheckPressResult_active AND ( (NOT "DB_maXYmosNC2".oCycleOK) AND "DB_maXYmosNC2".oCycleNOK ) THEN
+  Step_CheckPressResult_active := FALSE;
+  Action_CheckPressResult_Exec := FALSE;
+  
+  Step_ResultNGData_active := TRUE;
+  Step_ResultNGData_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ResultNGData_Exec := TRUE;
+
+  Trans_Trans142_executed := TRUE;
+END_IF;
+
+(* Transition 143: ResultNGData -> Step147 *)
+IF Step_ResultNGData_active AND ( TRUE ) THEN
+  Step_ResultNGData_active := FALSE;
+  Action_ResultNGData_Exec := FALSE;
+  
+  Step_Step147_active := TRUE;
+  Step_Step147_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step147_Exec := TRUE;
+
+  Trans_Trans144_executed := TRUE; (* Original: Trans143. Typo in XML? *)
+END_IF;
+
+(* Transition 144: Step147 -> ProcessFInish 1 *)
+IF Step_Step147_active AND ( TRUE ) THEN
+  Step_Step147_active := FALSE;
+  Action_Step147_Exec := FALSE;
+  
+  Step_ProcessFInish_1_active := TRUE;
+  Step_ProcessFInish_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFInish_1_Exec := TRUE;
+
+  Trans_Trans145_executed := TRUE; (* Original: Trans144. Typo in XML? *)
+END_IF;
+
+(* Transition 200: Pressing -> CheckPressReady *)
+IF Step_Pressing_active AND ( TRUE ) THEN
+  Step_Pressing_active := FALSE;
+  Action_Pressing_Exec := FALSE;
+  
+  Step_CheckPressReady_active := TRUE;
+  Step_CheckPressReady_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckPressReady_Exec := TRUE;
+
+  Trans_Trans147_executed := TRUE;
+END_IF;
+
+(* Transition 201: WaitPressFinish -> ResetPressStart *)
+IF Step_WaitPressFinish_active AND ( (NOT "DB_maXYmosNC2".InputMessages.StatusBits."RUN-SEQUENCE") AND "DB_maXYmosNC2".InputMessages.StatusBits."SEQUENCE-END" OR "Tag_34" ) THEN
+  Step_WaitPressFinish_active := FALSE;
+  Action_WaitPressFinish_Exec := FALSE;
+  
+  Step_ResetPressStart_active := TRUE;
+  Step_ResetPressStart_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ResetPressStart_Exec := TRUE;
+
+  Trans_Trans201_executed := TRUE;
+END_IF;
+
+(* Transition 211: CheckPressReady -> CheckPressProgram *)
+IF Step_CheckPressReady_active AND ( "DB_maXYmosNC2".InputMessages.StatusBits.READY AND "DB_maXYmosNC2".InputMessages.StatusBits."DRIVE-ENABLED" AND "ProcessData_1".OP40_3.Kistler_Interlock ) THEN
+  Step_CheckPressReady_active := FALSE;
+  Action_CheckPressReady_Exec := FALSE;
+  
+  Step_CheckPressProgram_active := TRUE;
+  Step_CheckPressProgram_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckPressProgram_Exec := TRUE;
+
+  Trans_Trans211_executed := TRUE;
+END_IF;
+
+
+(* Sequence: S400-S499OK&NG Status Count *)
+(* S400-S499OK&NG数据处理 *)
+(* Step Step400 *)
+(* EN: Step structure *)
+IF Step_Step400_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Step400_entry_time) > Step400.T_MAX THEN Step_Step400_timeout := TRUE; END_IF;
+
+  IF Action_Step400_Exec THEN
+    Action_Step400_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step JudgeStatus *)
+(* EN: Step structure *)
+IF Step_JudgeStatus_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_JudgeStatus_entry_time) > JudgeStatus.T_MAX THEN Step_JudgeStatus_timeout := TRUE; END_IF;
+
+  IF Action_JudgeStatus_Exec THEN
+    #ioPM_Inface.ProcessResult := 0;
+    Action_JudgeStatus_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step OKCount *)
+(* EN: Step structure *)
+IF Step_OKCount_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_OKCount_entry_time) > OKCount.T_MAX THEN Step_OKCount_timeout := TRUE; END_IF;
+
+  IF Action_OKCount_Exec THEN
+    #ioPM_Inface.ProcessResult := 400;
+    Action_OKCount_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step NGCount *)
+(* EN: Step structure *)
+IF Step_NGCount_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_NGCount_entry_time) > NGCount.T_MAX THEN Step_NGCount_timeout := TRUE; END_IF;
+
+  IF Action_NGCount_Exec THEN
+    #ioPM_Inface.ProcessResult := #ioStatus;
+    Action_NGCount_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ProcessFinish *)
+(* EN: Step structure *)
+IF Step_ProcessFinish_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProcessFinish_entry_time) > ProcessFinish.T_MAX THEN Step_ProcessFinish_timeout := TRUE; END_IF;
+
+  IF Action_ProcessFinish_Exec THEN
+    Action_ProcessFinish_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Transition 400: Step400 -> JudgeStatus *)
+IF Step_Step400_active AND ( TRUE ) THEN
+  Step_Step400_active := FALSE;
+  Action_Step400_Exec := FALSE;
+  
+  Step_JudgeStatus_active := TRUE;
+  Step_JudgeStatus_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_JudgeStatus_Exec := TRUE;
+
+  Trans_Trans224_executed := TRUE;
+END_IF;
+
+(* Transition 401: JudgeStatus -> OKCount *)
+IF Step_JudgeStatus_active AND ( #ioStatus = 190 ) THEN
+  Step_JudgeStatus_active := FALSE;
+  Action_JudgeStatus_Exec := FALSE;
+  
+  Step_OKCount_active := TRUE;
+  Step_OKCount_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_OKCount_Exec := TRUE;
+
+  Trans_OK_executed := TRUE;
+END_IF;
+
+(* Transition 402: OKCount -> ProcessFinish *)
+IF Step_OKCount_active AND ( TRUE ) THEN
+  Step_OKCount_active := FALSE;
+  Action_OKCount_Exec := FALSE;
+  
+  Step_ProcessFinish_active := TRUE;
+  Step_ProcessFinish_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFinish_Exec := TRUE;
+
+  Trans_Trans403_executed := TRUE;
+END_IF;
+
+(* Transition 403: ProcessFinish -> MES Result (Jump) *)
+IF Step_ProcessFinish_active AND ( TRUE ) THEN
+  Step_ProcessFinish_active := FALSE;
+  Action_ProcessFinish_Exec := FALSE;
+  
+  Step_MESResult_active := TRUE;
+  Step_MESResult_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESResult_Exec := TRUE;
+
+  Trans_Trans405_executed := TRUE;
+END_IF;
+
+(* Transition 404: JudgeStatus -> NGCount *)
+IF Step_JudgeStatus_active AND ( #ioStatus <> 190 ) THEN
+  Step_JudgeStatus_active := FALSE;
+  Action_JudgeStatus_Exec := FALSE;
+  
+  Step_NGCount_active := TRUE;
+  Step_NGCount_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_NGCount_Exec := TRUE;
+
+  Trans_NG_executed := TRUE;
+END_IF;
+
+(* Transition 405: NGCount -> ProcessFinish *)
+IF Step_NGCount_active AND ( TRUE ) THEN
+  Step_NGCount_active := FALSE;
+  Action_NGCount_Exec := FALSE;
+  
+  Step_ProcessFinish_active := TRUE;
+  Step_ProcessFinish_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFinish_Exec := TRUE;
+
+  Trans_Trans404_executed := TRUE;
+END_IF;
+
+
+(* Sequence: S500-S599 MES Result *)
+(* S500-S599 MES上传RFID写入 *)
+(* Step MES Result *)
+(* EN: Step structure *)
+IF Step_MESResult_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESResult_entry_time) > MESResult.T_MAX THEN Step_MESResult_timeout := TRUE; END_IF;
+
+  IF Action_MESResult_Exec THEN
+    Action_MESResult_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MES Check Finish *)
+(* EN: Step structure *)
+IF Step_MESCheckFinish_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESCheckFinish_entry_time) > MESCheckFinish.T_MAX THEN Step_MESCheckFinish_timeout := TRUE; END_IF;
+
+  IF Action_MESCheckFinish_Exec THEN
+    Action_MESCheckFinish_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MES Result OK_1 *)
+(* EN: Step structure *)
+IF Step_MESResultOK_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESResultOK_1_entry_time) > MESResultOK_1.T_MAX THEN Step_MESResultOK_1_timeout := TRUE; END_IF;
+
+  IF Action_MESResultOK_1_Exec THEN
+    "AutoProcessData".B_Press2.PartStatus := 499;
+    Action_MESResultOK_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MES Check NG_3 *)
+(* EN: Step structure *)
+IF Step_MESCheckNG_3_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESCheckNG_3_entry_time) > MESCheckNG_3.T_MAX THEN Step_MESCheckNG_3_timeout := TRUE; END_IF;
+
+  IF Action_MESCheckNG_3_Exec THEN
+    "AutoProcessData".B_Press2.PartStatus := 452;
+    Action_MESCheckNG_3_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MesCheckResult_1 *)
+(* EN: Step structure *)
+IF Step_MesCheckResult_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MesCheckResult_1_entry_time) > MesCheckResult_1.T_MAX THEN Step_MesCheckResult_1_timeout := TRUE; END_IF;
+
+  IF Action_MesCheckResult_1_Exec THEN
+    "PLCtoMES"."PLC.Unload_Station7DataSaveReq" := TRUE;
+    Action_MesCheckResult_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Bypass_1 *)
+(* EN: Step structure *)
+IF Step_Bypass_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Bypass_1_entry_time) > Bypass_1.T_MAX THEN Step_Bypass_1_timeout := TRUE; END_IF;
+
+  IF Action_Bypass_1_Exec THEN
+    Action_Bypass_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ResetMesUnloadRequest_1 *)
+(* EN: Step structure *)
+IF Step_ResetMesUnloadRequest_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ResetMesUnloadRequest_1_entry_time) > ResetMesUnloadRequest_1.T_MAX THEN Step_ResetMesUnloadRequest_1_timeout := TRUE; END_IF;
+
+  IF Action_ResetMesUnloadRequest_1_Exec THEN
+    "PLCtoMES"."PLC.Unload_Station7DataSaveReq" := FALSE;
+    "MEStoPLC"."MES.Unload_ResultsStored7OK" := FALSE;
+    "MEStoPLC"."MES.Unload_ResultsStored7NG" := FALSE;
+    "MEStoPLC"."MES.Unload_ResultsStored7ReqMesDone" := FALSE;
+    Action_ResetMesUnloadRequest_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Step314 *)
+(* EN: Step structure *)
+IF Step_Step314_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Step314_entry_time) > Step314.T_MAX THEN Step_Step314_timeout := TRUE; END_IF;
+
+  IF Action_Step314_Exec THEN
+    Action_Step314_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step MESOverTime *)
+(* EN: Step structure *)
+IF Step_MESOverTime_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_MESOverTime_entry_time) > MESOverTime.T_MAX THEN Step_MESOverTime_timeout := TRUE; END_IF;
+
+  IF Action_MESOverTime_Exec THEN
+    "ST10_DeviceError".MES_Error.CheckInResultOverTime_7 := TRUE;
+    Action_MESOverTime_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ok_1 *)
+(* EN: Step structure *)
+IF Step_Ok_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Ok_1_entry_time) > Ok_1.T_MAX THEN Step_Ok_1_timeout := TRUE; END_IF;
+
+  IF Action_Ok_1_Exec THEN
+    IF "AutoProcessData".B_Press2.PartStatus = 480 THEN
+      "AutoProcessData".B_Press2.PartStatus := 499;
+    END_IF;
+    Action_Ok_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Prepare MES CheckData_1 *)
+(* EN: Step structure *)
+IF Step_PrepareMESCheckData_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PrepareMESCheckData_1_entry_time) > PrepareMESCheckData_1.T_MAX THEN Step_PrepareMESCheckData_1_timeout := TRUE; END_IF;
+
+  IF Action_PrepareMESCheckData_1_Exec THEN
+    Action_PrepareMESCheckData_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Transition 399: MES Result OK_1 -> MES Check Finish *)
+IF Step_MESResultOK_1_active AND ( "AutoProcessData".B_Press2.PartStatus = 499 ) THEN
+  Step_MESResultOK_1_active := FALSE;
+  Action_MESResultOK_1_Exec := FALSE;
+  
+  Step_MESCheckFinish_active := TRUE;
+  Step_MESCheckFinish_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESCheckFinish_Exec := TRUE;
+
+  Trans_Trans321_executed := TRUE;
+END_IF;
+
+(* Transition 500: MES Result -> Bypass_1 *)
+IF Step_MESResult_active AND ( TRUE ) THEN
+  Step_MESResult_active := FALSE;
+  Action_MESResult_Exec := FALSE;
+  
+  Step_Bypass_1_active := TRUE;
+  Step_Bypass_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Bypass_1_Exec := TRUE;
+
+  Trans_Trans407_executed := TRUE;
+END_IF;
+
+(* Transition 515: MES Check Finish -> RobotPick (Jump) *)
+IF Step_MESCheckFinish_active AND ( TRUE ) THEN
+  Step_MESCheckFinish_active := FALSE;
+  Action_MESCheckFinish_Exec := FALSE;
+  
+  Step_RobotPick_active := TRUE;
+  Step_RobotPick_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RobotPick_Exec := TRUE;
+
+  Trans_Trans619_executed := TRUE;
+END_IF;
+
+(* Transition 308: Prepare MES CheckData_1 -> MesCheckResult_1 *)
+IF Step_PrepareMESCheckData_1_active AND ( PrepareMESCheckData_1.T > T#300ms ) THEN
+  Step_PrepareMESCheckData_1_active := FALSE;
+  Action_PrepareMESCheckData_1_Exec := FALSE;
+  
+  Step_MesCheckResult_1_active := TRUE;
+  Step_MesCheckResult_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MesCheckResult_1_Exec := TRUE;
+
+  Trans_Trans16_executed := TRUE;
+END_IF;
+
+(* Transition 315: MesCheckResult_1 -> MESResultOK_1 *)
+IF Step_MesCheckResult_1_active AND ( (NOT "MEStoPLC"."MES.Unload_ResultsStored7OK") AND "MEStoPLC"."MES.Unload_ResultsStored7NG" AND "MEStoPLC"."MES.Unload_ResultsStored7ReqMesDone" ) THEN
+  Step_MesCheckResult_1_active := FALSE;
+  Action_MesCheckResult_1_Exec := FALSE;
+  
+  Step_MESResultOK_1_active := TRUE;
+  Step_MESResultOK_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESResultOK_1_Exec := TRUE;
+
+  Trans_Trans315_executed := TRUE;
+END_IF;
+
+(* Transition 321: Step313 -> CheckFinish_1 *)
+IF Step_Step313_active AND ( TRUE ) THEN
+  Step_Step313_active := FALSE;
+  Action_Step313_Exec := FALSE;
+  
+  Step_CheckFinish_1_active := TRUE;
+  Step_CheckFinish_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_CheckFinish_1_Exec := TRUE;
+
+  Trans_Trans319_executed := TRUE; (* Original: Trans321. Typo in XML? *)
+END_IF;
+
+(* Transition 322: MesCheckResult_1 -> MESCheckNG_3 *)
+IF Step_MesCheckResult_1_active AND ( "AutoProcessData".B_Press2.PartStatus = 452 ) THEN
+  Step_MesCheckResult_1_active := FALSE;
+  Action_MesCheckResult_1_Exec := FALSE;
+  
+  Step_MESCheckNG_3_active := TRUE;
+  Step_MESCheckNG_3_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESCheckNG_3_Exec := TRUE;
+
+  Trans_Trans322_executed := TRUE;
+END_IF;
+
+(* Transition 323: MESCheckNG_3 -> MES Result OK_1 *)
+IF Step_MESCheckNG_3_active AND ( "MEStoPLC"."MES.Unload_ResultsStored7OK" AND (NOT "MEStoPLC"."MES.Unload_ResultsStored7NG") AND "MEStoPLC"."MES.Unload_ResultsStored7ReqMesDone" AND ("AutoProcessData".B_Press2.PartStatus <> 450) AND ("AutoProcessData".B_Press2.PartStatus <> 455) ) THEN
+  Step_MESCheckNG_3_active := FALSE;
+  Action_MESCheckNG_3_Exec := FALSE;
+  
+  Step_MESResultOK_1_active := TRUE;
+  Step_MESResultOK_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESResultOK_1_Exec := TRUE;
+
+  Trans_Trans323_executed := TRUE;
+END_IF;
+
+(* Transition 324: MESCheckNG_3 -> Step314 *)
+IF Step_MESCheckNG_3_active AND ( (NOT "MEStoPLC"."MES.Load_Station7ReqMesDone") AND (MesCheckResult_1.T > T#10s) ) THEN
+  Step_MESCheckNG_3_active := FALSE;
+  Action_MESCheckNG_3_Exec := FALSE;
+  
+  Step_Step314_active := TRUE;
+  Step_Step314_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step314_Exec := TRUE;
+
+  Trans_Trans324_executed := TRUE;
+END_IF;
+
+(* Transition 325: Bypass_1 -> ResetMesUnloadRequest_1 *)
+IF Step_Bypass_1_active AND ( (NOT "Station_Sys".Cmd.OnOffLine) ) THEN
+  Step_Bypass_1_active := FALSE;
+  Action_Bypass_1_Exec := FALSE;
+  
+  Step_ResetMesUnloadRequest_1_active := TRUE;
+  Step_ResetMesUnloadRequest_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ResetMesUnloadRequest_1_Exec := TRUE;
+
+  Trans_Online_1_executed := TRUE; (* Original: Trans325. Typo in XML? *)
+END_IF;
+
+(* Transition 326: ResetMesUnloadRequest_1 -> Prepare MES CheckData_1 *)
+IF Step_ResetMesUnloadRequest_1_active AND ( NOT "PLCtoMES"."PLC.Unload_Station7DataSaveReq" AND NOT "MEStoPLC"."MES.Unload_ResultsStored7OK" AND NOT "MEStoPLC"."MES.Unload_ResultsStored7NG" AND NOT "MEStoPLC"."MES.Unload_ResultsStored7ReqMesDone" ) THEN
+  Step_ResetMesUnloadRequest_1_active := FALSE;
+  Action_ResetMesUnloadRequest_1_Exec := FALSE;
+  
+  Step_PrepareMESCheckData_1_active := TRUE;
+  Step_PrepareMESCheckData_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PrepareMESCheckData_1_Exec := TRUE;
+
+  Trans_Trans260_executed := TRUE;
+END_IF;
+
+(* Transition 327: Bypass_1 -> ok_1 *)
+IF Step_Bypass_1_active AND ( "Station_Sys".Cmd.OnOffLine ) THEN
+  Step_Bypass_1_active := FALSE;
+  Action_Bypass_1_Exec := FALSE;
+  
+  Step_Ok_1_active := TRUE;
+  Step_Ok_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Ok_1_Exec := TRUE;
+
+  Trans_Trans327_executed := TRUE;
+END_IF;
+
+(* Transition 328: MESOverTime -> Bypass_1 (Jump) *)
+IF Step_MESOverTime_active AND ( TRUE ) THEN
+  Step_MESOverTime_active := FALSE;
+  Action_MESOverTime_Exec := FALSE;
+  
+  Step_Bypass_1_active := TRUE;
+  Step_Bypass_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Bypass_1_Exec := TRUE;
+
+  Trans_Trans329_executed := TRUE; (* Original: Trans328. Typo in XML? *)
+END_IF;
+
+(* Transition 331: ok_1 -> Step314 *)
+IF Step_Ok_1_active AND ( TRUE ) THEN
+  Step_Ok_1_active := FALSE;
+  Action_Ok_1_Exec := FALSE;
+  
+  Step_Step314_active := TRUE;
+  Step_Step314_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step314_Exec := TRUE;
+
+  Trans_Trans328_executed := TRUE; (* Original: Trans331. Typo in XML? *)
+END_IF;
+
+(* Transition 330: Step314 -> MESOverTime *)
+IF Step_Step314_active AND ( TRUE ) THEN
+  Step_Step314_active := FALSE;
+  Action_Step314_Exec := FALSE;
+  
+  Step_MESOverTime_active := TRUE;
+  Step_MESOverTime_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_MESOverTime_Exec := TRUE;
+
+  Trans_Trans327_executed := TRUE; (* Original: Trans330. Typo in XML? *)
+END_IF;
+
+
+(* Sequence: S600-S699 RobotPick *)
+(* S600-S699工件放行 *)
+(* Step RobotPick *)
+(* EN: Step structure *)
+IF Step_RobotPick_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_RobotPick_entry_time) > RobotPick.T_MAX THEN Step_RobotPick_timeout := TRUE; END_IF;
+
+  IF Action_RobotPick_Exec THEN
+    Action_RobotPick_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step ProcessFinsh *)
+(* ZH-CN: 正式使用时，需要激活复位空循环 *)
+(* EN: Step structure *)
+IF Step_ProcessFinsh_3_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_ProcessFinsh_3_entry_time) > ProcessFinsh_3.T_MAX THEN Step_ProcessFinsh_3_timeout := TRUE; END_IF;
+
+  IF Action_ProcessFinsh_3_Exec THEN
+    #ioPM_Inface.ProcessComplete := TRUE;
+    #ioPM_Inface.ProcessStart := FALSE;
+    Action_ProcessFinsh_3_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step DataClear *)
+(* EN: Step structure *)
+IF Step_DataClear_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_DataClear_entry_time) > DataClear.T_MAX THEN Step_DataClear_timeout := TRUE; END_IF;
+
+  IF Action_DataClear_Exec THEN
+    #ioPM_Inface.ProcessResult := 0;
+    #ioStatus := 0;
+    Action_DataClear_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Request robot pick *)
+(* EN: Step structure *)
+IF Step_RequestRobotPick_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_RequestRobotPick_entry_time) > RequestRobotPick.T_MAX THEN Step_RequestRobotPick_timeout := TRUE; END_IF;
+
+  IF Action_RequestRobotPick_Exec THEN
+    "AutoProcessControl".B_Press_2.Robot3PickPrimit := TRUE;
+    Action_RequestRobotPick_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Wait robot finish task *)
+(* EN: Step structure *)
+IF Step_WaitRobotFinishTask_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_WaitRobotFinishTask_1_entry_time) > WaitRobotFinishTask_1.T_MAX THEN Step_WaitRobotFinishTask_1_timeout := TRUE; END_IF;
+
+  IF Action_WaitRobotFinishTask_1_Exec THEN
+    Action_WaitRobotFinishTask_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step DataMove *)
+(* EN: Step structure *)
+IF Step_DataMove_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_DataMove_entry_time) > DataMove.T_MAX THEN Step_DataMove_timeout := TRUE; END_IF;
+
+  IF Action_DataMove_Exec THEN
+    Action_DataMove_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Wait robot in safety area *)
+(* EN: Step structure *)
+IF Step_WaitRobotInSafetyArea_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_WaitRobotInSafetyArea_entry_time) > WaitRobotInSafetyArea.T_MAX THEN Step_WaitRobotInSafetyArea_timeout := TRUE; END_IF;
+
+  IF Action_WaitRobotInSafetyArea_Exec THEN
+    Action_WaitRobotInSafetyArea_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressProgram_1 *)
+(* EN: Step structure *)
+IF Step_PressProgram_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressProgram_1_entry_time) > PressProgram_1.T_MAX THEN Step_PressProgram_1_timeout := TRUE; END_IF;
+
+  IF Action_PressProgram_1_Exec THEN
+    IF NOT "ST10_GeneralData".FunctionDeSelect.B.FunctionDeSelected_TestPress375A1 THEN
+      "DB_maXYmosNC2".ProgNo := 1;
+    END_IF;
+    Action_PressProgram_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressHoming_1 *)
+(* EN: Step structure *)
+IF Step_PressHoming_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressHoming_1_entry_time) > PressHoming_1.T_MAX THEN Step_PressHoming_1_timeout := TRUE; END_IF;
+
+  IF Action_PressHoming_1_Exec THEN
+    "DB_maXYmosNC2".Homing := TRUE;
+    Action_PressHoming_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressReady?_1 *)
+(* EN: Step structure *)
+IF Step_PressReady_q_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressReady_q_1_entry_time) > PressReady_q_1.T_MAX THEN Step_PressReady_q_1_timeout := TRUE; END_IF;
+
+  IF Action_PressReady_q_1_Exec THEN
+    Action_PressReady_q_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step PressHoming?_1 *)
+(* EN: Step structure *)
+IF Step_PressHoming_q_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_PressHoming_q_1_entry_time) > PressHoming_q_1.T_MAX THEN Step_PressHoming_q_1_timeout := TRUE; END_IF;
+
+  IF Action_PressHoming_q_1_Exec THEN
+    Action_PressHoming_q_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step Step15 *)
+(* EN: Step structure *)
+IF Step_Step15_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_Step15_entry_time) > Step15.T_MAX THEN Step_Step15_timeout := TRUE; END_IF;
+
+  IF Action_Step15_Exec THEN
+    Action_Step15_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Step B-PressFitting-01CylinderToHP_1 *)
+(* EN: Step structure *)
+IF Step_B_PressFitting_01CylinderToHP_1_active THEN
+  (* Timeout Check *)
+  IF (SYS_TIME - Step_B_PressFitting_01CylinderToHP_1_entry_time) > B_PressFitting_01CylinderToHP_1.T_MAX THEN Step_B_PressFitting_01CylinderToHP_1_timeout := TRUE; END_IF;
+
+  IF Action_B_PressFitting_01CylinderToHP_1_Exec THEN
+    "ST10Cylinder".Cy[8].Inout.AutoGoHome := TRUE;
+    "ST10Cylinder".Cy[8].Inout.AutoGoWork := FALSE;
+    Action_B_PressFitting_01CylinderToHP_1_Done := TRUE;
+  END_IF;
+END_IF;
+
+(* Transition 600: RobotPick -> PressProgram_1 *)
+IF Step_RobotPick_active AND ( TRUE ) THEN
+  Step_RobotPick_active := FALSE;
+  Action_RobotPick_Exec := FALSE;
+  
+  Step_PressProgram_1_active := TRUE;
+  Step_PressProgram_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressProgram_1_Exec := TRUE;
+
+  Trans_Trans600_executed := TRUE;
+END_IF;
+
+(* Transition 604: DataClear -> ProcessFinsh *)
+IF Step_DataClear_active AND ( TRUE ) THEN
+  Step_DataClear_active := FALSE;
+  Action_DataClear_Exec := FALSE;
+  
+  Step_ProcessFinsh_3_active := TRUE;
+  Step_ProcessFinsh_3_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessFinsh_3_Exec := TRUE;
+
+  Trans_Trans290_executed := TRUE;
+END_IF;
+
+(* Transition 605: ProcessFinsh -> ProcessStart (Jump) *)
+IF Step_ProcessFinsh_3_active AND ( TRUE ) THEN
+  Step_ProcessFinsh_3_active := FALSE;
+  Action_ProcessFinsh_3_Exec := FALSE;
+  
+  Step_ProcessStart_active := TRUE;
+  Step_ProcessStart_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_ProcessStart_Exec := TRUE;
+
+  Trans_Trans699_executed := TRUE;
+END_IF;
+
+(* Transition 410: Request robot pick -> Wait robot finish task *)
+IF Step_RequestRobotPick_active AND ( "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO281_PressPickInside AND (NOT "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO282_PressPickFinish) ) THEN
+  Step_RequestRobotPick_active := FALSE;
+  Action_RequestRobotPick_Exec := FALSE;
+  
+  Step_WaitRobotFinishTask_1_active := TRUE;
+  Step_WaitRobotFinishTask_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_WaitRobotFinishTask_1_Exec := TRUE;
+
+  Trans_Trans412_executed := TRUE;
+END_IF;
+
+(* Transition 256: Wait robot finish task -> DataMove *)
+IF Step_WaitRobotFinishTask_1_active AND ( "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO282_PressPickFinish ) THEN
+  Step_WaitRobotFinishTask_1_active := FALSE;
+  Action_WaitRobotFinishTask_1_Exec := FALSE;
+  
+  Step_DataMove_active := TRUE;
+  Step_DataMove_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_DataMove_Exec := TRUE;
+
+  Trans_Trans257_executed := TRUE;
+END_IF;
+
+(* Transition 257: DataMove -> Wait robot in safety area *)
+IF Step_DataMove_active AND ( TRUE ) THEN
+  Step_DataMove_active := FALSE;
+  Action_DataMove_Exec := FALSE;
+  
+  Step_WaitRobotInSafetyArea_active := TRUE;
+  Step_WaitRobotInSafetyArea_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_WaitRobotInSafetyArea_Exec := TRUE;
+
+  Trans_Trans258_executed := TRUE;
+END_IF;
+
+(* Transition 258: Wait robot in safety area -> DataClear *)
+IF Step_WaitRobotInSafetyArea_active AND ( "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO177_PressPut1Area AND "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO178_Robot2Area ) THEN
+  Step_WaitRobotInSafetyArea_active := FALSE;
+  Action_WaitRobotInSafetyArea_Exec := FALSE;
+  
+  Step_DataClear_active := TRUE;
+  Step_DataClear_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_DataClear_Exec := TRUE;
+
+  Trans_Trans261_executed := TRUE;
+END_IF;
+
+(* Transition 26: PressHoming_1 -> Step15 *)
+IF Step_PressHoming_1_active AND ( "DB_maXYmosNC2".oInHomePos ) THEN
+  Step_PressHoming_1_active := FALSE;
+  Action_PressHoming_1_Exec := FALSE;
+  
+  Step_Step15_active := TRUE;
+  Step_Step15_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step15_Exec := TRUE;
+
+  Trans_Trans9_executed := TRUE; (* Original: Trans26. Typo in XML? *)
+END_IF;
+
+(* Transition 27: PressProgram_1 -> PressReady?_1 *)
+IF Step_PressProgram_1_active AND ( TRUE ) THEN
+  Step_PressProgram_1_active := FALSE;
+  Action_PressProgram_1_Exec := FALSE;
+  
+  Step_PressReady_q_1_active := TRUE;
+  Step_PressReady_q_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressReady_q_1_Exec := TRUE;
+
+  Trans_Trans31_executed := TRUE; (* Original: Trans27. Typo in XML? *)
+END_IF;
+
+(* Transition 28: PressReady?_1 -> PressHoming?_1 *)
+IF Step_PressReady_q_1_active AND ( "DB_maXYmosNC2".oReady AND "DB_maXYmosNC2".oRdyAmp ) THEN
+  Step_PressReady_q_1_active := FALSE;
+  Action_PressReady_q_1_Exec := FALSE;
+  
+  Step_PressHoming_q_1_active := TRUE;
+  Step_PressHoming_q_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressHoming_q_1_Exec := TRUE;
+
+  Trans_Trans32_executed := TRUE; (* Original: Trans28. Typo in XML? *)
+END_IF;
+
+(* Transition 29: PressHoming?_1 -> PressHoming_1 *)
+IF Step_PressHoming_q_1_active AND ( NOT "DB_maXYmosNC2".oInHomePos ) THEN
+  Step_PressHoming_q_1_active := FALSE;
+  Action_PressHoming_q_1_Exec := FALSE;
+  
+  Step_PressHoming_1_active := TRUE;
+  Step_PressHoming_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_PressHoming_1_Exec := TRUE;
+
+  Trans_Trans33_executed := TRUE; (* Original: Trans29. Typo in XML? *)
+END_IF;
+
+(* Transition 30: PressHoming?_1 -> Step15 *)
+IF Step_PressHoming_q_1_active AND ( "DB_maXYmosNC2".oInHomePos ) THEN
+  Step_PressHoming_q_1_active := FALSE;
+  Action_PressHoming_q_1_Exec := FALSE;
+  
+  Step_Step15_active := TRUE;
+  Step_Step15_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_Step15_Exec := TRUE;
+
+  Trans_Trans34_executed := TRUE; (* Original: Trans30. Typo in XML? *)
+END_IF;
+
+(* Transition 31: Step15 -> B-PressFitting-01CylinderToHP_1 *)
+IF Step_Step15_active AND ( TRUE ) THEN
+  Step_Step15_active := FALSE;
+  Action_Step15_Exec := FALSE;
+  
+  Step_B_PressFitting_01CylinderToHP_1_active := TRUE;
+  Step_B_PressFitting_01CylinderToHP_1_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_B_PressFitting_01CylinderToHP_1_Exec := TRUE;
+
+  Trans_Trans35_executed := TRUE; (* Original: Trans31. Typo in XML? *)
+END_IF;
+
+(* Transition 131: B-PressFitting-01CylinderToHP_1 -> Request robot pick *)
+IF Step_B_PressFitting_01CylinderToHP_1_active AND ( (NOT "ST10Cylinder".Cy[8].In.WorkPositionSensor) AND "ST10Cylinder".Cy[8].In.HomePositionSensor ) THEN
+  Step_B_PressFitting_01CylinderToHP_1_active := FALSE;
+  Action_B_PressFitting_01CylinderToHP_1_Exec := FALSE;
+  
+  Step_RequestRobotPick_active := TRUE;
+  Step_RequestRobotPick_entry_time := SYS_TIME; (* Reset Timer *)
+  Action_RequestRobotPick_Exec := TRUE;
+
+  Trans_Trans768_executed := TRUE;
+END_IF;
+
+(* Initial Step *)
+IF "RT_DATA".MOP.INIT THEN
+  Step_F14_Initial_active := TRUE;
+  Step_F14_Initial_entry_time := SYS_TIME;
+  Action_F14_Initial_Exec := TRUE;
+ELSE
+  IF NOT Step_F14_Initial_active THEN
+    (* Check for all transitions, and activate the next step if condition met *)
+    (* Sequence S01-S99 Initial *)
+    IF Step_F14_Initial_active AND Trans_Trans1_executed THEN
+      Step_F14_Initial_active := FALSE;
+      Action_F14_Initial_Exec := FALSE;
+      
+      Step_S2_active := TRUE;
+      Step_S2_entry_time := SYS_TIME;
+      Action_S2_Exec := TRUE;
+    ELSIF Step_S2_active AND Trans_Trans2_executed THEN
+      Step_S2_active := FALSE;
+      Action_S2_Exec := FALSE;
+      
+      Step_S3_active := TRUE;
+      Step_S3_entry_time := SYS_TIME;
+      Action_S3_Exec := TRUE;
+    ELSIF Step_S3_active AND Trans_Trans613_executed THEN
+      Step_S3_active := FALSE;
+      Action_S3_Exec := FALSE;
+      
+      Step_S4_active := TRUE;
+      Step_S4_entry_time := SYS_TIME;
+      Action_S4_Exec := TRUE;
+    ELSIF Step_S4_active AND Trans_Trans3_executed THEN
+      Step_S4_active := FALSE;
+      Action_S4_Exec := FALSE;
+      
+      Step_S5_MESInitial_active := TRUE;
+      Step_S5_MESInitial_entry_time := SYS_TIME;
+      Action_S5_MESInitial_Exec := TRUE;
+    ELSIF Step_S5_MESInitial_active AND Trans_Trans325_executed THEN
+      Step_S5_MESInitial_active := FALSE;
+      Action_S5_MESInitial_Exec := FALSE;
+      
+      Step_CheckPressGripStatus_active := TRUE;
+      Step_CheckPressGripStatus_entry_time := SYS_TIME;
+      Action_CheckPressGripStatus_Exec := TRUE;
+    ELSIF Step_CheckPressGripStatus_active AND Trans_Trans19_executed THEN
+      Step_CheckPressGripStatus_active := FALSE;
+      Action_CheckPressGripStatus_Exec := FALSE;
+      
+      Step_CheckRingExist_active := TRUE;
+      Step_CheckRingExist_entry_time := SYS_TIME;
+      Action_CheckRingExist_Exec := TRUE;
+    ELSIF Step_CheckPressGripStatus_active AND Trans_Trans20_executed THEN
+      Step_CheckPressGripStatus_active := FALSE;
+      Action_CheckPressGripStatus_Exec := FALSE;
+      
+      Step_B_PressFitting_01GripperCylinderToWP_active := TRUE;
+      Step_B_PressFitting_01GripperCylinderToWP_entry_time := SYS_TIME;
+      Action_B_PressFitting_01GripperCylinderToWP_Exec := TRUE;
+    ELSIF Step_CheckPressGripStatus_active AND Trans_Trans119_executed THEN
+      Step_CheckPressGripStatus_active := FALSE;
+      Action_CheckPressGripStatus_Exec := FALSE;
+      
+      Step_StatusAlarm_active := TRUE;
+      Step_StatusAlarm_entry_time := SYS_TIME;
+      Action_StatusAlarm_Exec := TRUE;
+    ELSIF Step_StatusAlarm_active AND Trans_Trans120_executed THEN
+      Step_StatusAlarm_active := FALSE;
+      Action_StatusAlarm_Exec := FALSE;
+      
+      Step_CheckPressGripStatus_active := TRUE;
+      Step_CheckPressGripStatus_entry_time := SYS_TIME;
+      Action_CheckPressGripStatus_Exec := TRUE;
+    ELSIF Step_CheckRingExist_active AND Trans_Trans117_executed THEN
+      Step_CheckRingExist_active := FALSE;
+      Action_CheckRingExist_Exec := FALSE;
+      
+      Step_B_PressFitting_01GripperCylinderToHP_active := TRUE;
+      Step_B_PressFitting_01GripperCylinderToHP_entry_time := SYS_TIME;
+      Action_B_PressFitting_01GripperCylinderToHP_Exec := TRUE;
+    ELSIF Step_B_PressFitting_01GripperCylinderToHP_active AND Trans_Trans765_executed THEN
+      Step_B_PressFitting_01GripperCylinderToHP_active := FALSE;
+      Action_B_PressFitting_01GripperCylinderToHP_Exec := FALSE;
+      
+      Step_PressProgram_active := TRUE;
+      Step_PressProgram_entry_time := SYS_TIME;
+      Action_PressProgram_Exec := TRUE;
+    ELSIF Step_B_PressFitting_01GripperCylinderToWP_active AND Trans_Trans766_executed THEN
+      Step_B_PressFitting_01GripperCylinderToWP_active := FALSE;
+      Action_B_PressFitting_01GripperCylinderToWP_Exec := FALSE;
+      
+      Step_PressProgram_active := TRUE;
+      Step_PressProgram_entry_time := SYS_TIME;
+      Action_PressProgram_Exec := TRUE;
+    ELSIF Step_PressProgram_active AND Trans_Trans10_executed THEN
+      Step_PressProgram_active := FALSE;
+      Action_PressProgram_Exec := FALSE;
+      
+      Step_PressReady_q_active := TRUE;
+      Step_PressReady_q_entry_time := SYS_TIME;
+      Action_PressReady_q_Exec := TRUE;
+    ELSIF Step_PressReady_q_active AND Trans_Trans12_executed THEN
+      Step_PressReady_q_active := FALSE;
+      Action_PressReady_q_Exec := FALSE;
+      
+      Step_PressHoming_q_active := TRUE;
+      Step_PressHoming_q_entry_time := SYS_TIME;
+      Action_PressHoming_q_Exec := TRUE;
+    ELSIF Step_PressHoming_q_active AND Trans_Trans15_executed THEN
+      Step_PressHoming_q_active := FALSE;
+      Action_PressHoming_q_Exec := FALSE;
+      
+      Step_PressHoming_active := TRUE;
+      Step_PressHoming_entry_time := SYS_TIME;
+      Action_PressHoming_Exec := TRUE;
+    ELSIF Step_PressHoming_q_active AND Trans_Trans17_executed THEN
+      Step_PressHoming_q_active := FALSE;
+      Action_PressHoming_q_Exec := FALSE;
+      
+      Step_Step14_active := TRUE;
+      Step_Step14_entry_time := SYS_TIME;
+      Action_Step14_Exec := TRUE;
+    ELSIF Step_PressHoming_active AND Trans_Trans7_executed THEN
+      Step_PressHoming_active := FALSE;
+      Action_PressHoming_Exec := FALSE;
+      
+      Step_Step14_active := TRUE;
+      Step_Step14_entry_time := SYS_TIME;
+      Action_Step14_Exec := TRUE;
+    ELSIF Step_Step14_active AND Trans_Trans18_executed THEN
+      Step_Step14_active := FALSE;
+      Action_Step14_Exec := FALSE;
+      
+      Step_B_PressFitting_01CylinderToHP_active := TRUE;
+      Step_B_PressFitting_01CylinderToHP_entry_time := SYS_TIME;
+      Action_B_PressFitting_01CylinderToHP_Exec := TRUE;
+    ELSIF Step_B_PressFitting_01CylinderToHP_active AND Trans_Trans767_executed THEN
+      Step_B_PressFitting_01CylinderToHP_active := FALSE;
+      Action_B_PressFitting_01CylinderToHP_Exec := FALSE;
+      
+      Step_S10_InitialFinish_active := TRUE;
+      Step_S10_InitialFinish_entry_time := SYS_TIME;
+      Action_S10_InitialFinish_Exec := TRUE;
+    ELSIF Step_S10_InitialFinish_active AND Trans_Trans102_executed THEN
+      Step_S10_InitialFinish_active := FALSE;
+      Action_S10_InitialFinish_Exec := FALSE;
+      
+      Step_ProcessStart_active := TRUE;
+      Step_ProcessStart_entry_time := SYS_TIME;
+      Action_ProcessStart_Exec := TRUE;
+
+    (* Sequence S100-S199 CheckPartStatus *)
+    ELSIF Step_ProcessStart_active AND Trans_Trans200_executed THEN
+      Step_ProcessStart_active := FALSE;
+      Action_ProcessStart_Exec := FALSE;
+      
+      Step_DetermineProductStatus_active := TRUE;
+      Step_DetermineProductStatus_entry_time := SYS_TIME;
+      Action_DetermineProductStatus_Exec := TRUE;
+    ELSIF Step_DetermineProductStatus_active AND Trans_Empty_executed THEN
+      Step_DetermineProductStatus_active := FALSE;
+      Action_DetermineProductStatus_Exec := FALSE;
+      
+      Step_NoPart_active := TRUE;
+      Step_NoPart_entry_time := SYS_TIME;
+      Action_NoPart_Exec := TRUE;
+    ELSIF Step_DetermineProductStatus_active AND Trans_HavePart_executed THEN
+      Step_DetermineProductStatus_active := FALSE;
+      Action_DetermineProductStatus_Exec := FALSE;
+      
+      Step_ShaftOK_active := TRUE;
+      Step_ShaftOK_entry_time := SYS_TIME;
+      Action_ShaftOK_Exec := TRUE;
+    ELSIF Step_DetermineProductStatus_active AND Trans_Trans21_executed THEN
+      Step_DetermineProductStatus_active := FALSE;
+      Action_DetermineProductStatus_Exec := FALSE;
+      
+      Step_ShaftAndRingOK_active := TRUE;
+      Step_ShaftAndRingOK_entry_time := SYS_TIME;
+      Action_ShaftAndRingOK_Exec := TRUE;
+    ELSIF Step_DetermineProductStatus_active AND Trans_Trans22_executed THEN
+      Step_DetermineProductStatus_active := FALSE;
+      Action_DetermineProductStatus_Exec := FALSE;
+      
+      Step_Press_NG_active := TRUE;
+      Step_Press_NG_entry_time := SYS_TIME;
+      Action_Press_NG_Exec := TRUE;
+    ELSIF Step_DetermineProductStatus_active AND Trans_Trans23_executed THEN
+      Step_DetermineProductStatus_active := FALSE;
+      Action_DetermineProductStatus_Exec := FALSE;
+      
+      Step_MES_active := TRUE;
+      Step_MES_entry_time := SYS_TIME;
+      Action_MES_Exec := TRUE;
+    ELSIF Step_DetermineProductStatus_active AND Trans_Trans24_executed THEN
+      Step_DetermineProductStatus_active := FALSE;
+      Action_DetermineProductStatus_Exec := FALSE;
+      
+      Step_MESOK_active := TRUE;
+      Step_MESOK_entry_time := SYS_TIME;
+      Action_MESOK_Exec := TRUE;
+    ELSIF Step_DetermineProductStatus_active AND Trans_Alarm_executed THEN
+      Step_DetermineProductStatus_active := FALSE;
+      Action_DetermineProductStatus_Exec := FALSE;
+      
+      Step_StatusAlarm_1_active := TRUE;
+      Step_StatusAlarm_1_entry_time := SYS_TIME;
+      Action_StatusAlarm_1_Exec := TRUE;
+    ELSIF Step_NoPart_active AND Trans_Trans145_executed THEN
+      Step_NoPart_active := FALSE;
+      Action_NoPart_Exec := FALSE;
+      
+      Step_CheckMachineStatus_active := TRUE;
+      Step_CheckMachineStatus_entry_time := SYS_TIME;
+      Action_CheckMachineStatus_Exec := TRUE;
+    ELSIF Step_ShaftOK_active AND Trans_Trans303_executed THEN
+      Step_ShaftOK_active := FALSE;
+      Action_ShaftOK_Exec := FALSE;
+      
+      Step_PutRing_active := TRUE;
+      Step_PutRing_entry_time := SYS_TIME;
+      Action_PutRing_Exec := TRUE;
+    ELSIF Step_StatusAlarm_1_active AND Trans_Trans304_executed THEN
+      Step_StatusAlarm_1_active := FALSE;
+      Action_StatusAlarm_1_Exec := FALSE;
+      
+      Step_DetermineProductStatus_active := TRUE;
+      Step_DetermineProductStatus_entry_time := SYS_TIME;
+      Action_DetermineProductStatus_Exec := TRUE;
+    ELSIF Step_CheckMachineStatus_active AND Trans_Trans266_executed THEN
+      Step_CheckMachineStatus_active := FALSE;
+      Action_CheckMachineStatus_Exec := FALSE;
+      
+      Step_NormalMode_active := TRUE;
+      Step_NormalMode_entry_time := SYS_TIME;
+      Action_NormalMode_Exec := TRUE;
+    ELSIF Step_NormalMode_active AND Trans_Trans11_executed THEN
+      Step_NormalMode_active := FALSE;
+      Action_NormalMode_Exec := FALSE;
+      
+      Step_ProcessStart_CTStart_active := TRUE;
+      Step_ProcessStart_CTStart_entry_time := SYS_TIME;
+      Action_ProcessStart_CTStart_Exec := TRUE;
+    ELSIF Step_ProcessStart_CTStart_active AND Trans_Trans249_executed THEN
+      Step_ProcessStart_CTStart_active := FALSE;
+      Action_ProcessStart_CTStart_Exec := FALSE;
+      
+      Step_RequestRobotPutShaft_active := TRUE;
+      Step_RequestRobotPutShaft_entry_time := SYS_TIME;
+      Action_RequestRobotPutShaft_Exec := TRUE;
+    ELSIF Step_RequestRobotPutShaft_active AND Trans_Trans283_executed THEN
+      Step_RequestRobotPutShaft_active := FALSE;
+      Action_RequestRobotPutShaft_Exec := FALSE;
+      
+      Step_WaitRobotFinishTask_active := TRUE;
+      Step_WaitRobotFinishTask_entry_time := SYS_TIME;
+      Action_WaitRobotFinishTask_Exec := TRUE;
+    ELSIF Step_PutRing_active AND Trans_Trans125_executed THEN
+      Step_PutRing_active := FALSE;
+      Action_PutRing_Exec := FALSE;
+      
+      Step_RequestRobotPutRing_active := TRUE;
+      Step_RequestRobotPutRing_entry_time := SYS_TIME;
+      Action_RequestRobotPutRing_Exec := TRUE;
+    ELSIF Step_RequestRobotPutRing_active AND Trans_Trans284_executed THEN
+      Step_RequestRobotPutRing_active := FALSE;
+      Action_RequestRobotPutRing_Exec := FALSE;
+      
+      Step_WaitRobotFinishTask_1_1_active := TRUE;
+      Step_WaitRobotFinishTask_1_1_entry_time := SYS_TIME;
+      Action_WaitRobotFinishTask_1_1_Exec := TRUE;
+    ELSIF Step_WaitRobotFinishTask_active AND Trans_Trans146_executed THEN
+      Step_WaitRobotFinishTask_active := FALSE;
+      Action_WaitRobotFinishTask_Exec := FALSE;
+      
+      Step_RobotLeavePress_Area_active := TRUE;
+      Step_RobotLeavePress_Area_entry_time := SYS_TIME;
+      Action_RobotLeavePress_Area_Exec := TRUE;
+    ELSIF Step_WaitRobotFinishTask_1_1_active AND Trans_Trans147_executed THEN
+      Step_WaitRobotFinishTask_1_1_active := FALSE;
+      Action_WaitRobotFinishTask_1_1_Exec := FALSE;
+      
+      Step_PartStatus_active := TRUE;
+      Step_PartStatus_entry_time := SYS_TIME;
+      Action_PartStatus_Exec := TRUE;
+    ELSIF Step_RobotLeavePress_Area_active AND Trans_Trans199_executed THEN
+      Step_RobotLeavePress_Area_active := FALSE;
+      Action_RobotLeavePress_Area_Exec := FALSE;
+      
+      Step_PartCheck_active := TRUE;
+      Step_PartCheck_entry_time := SYS_TIME;
+      Action_PartCheck_Exec := TRUE;
+    ELSIF Step_PartStatus_active AND Trans_Trans124_executed THEN
+      Step_PartStatus_active := FALSE;
+      Action_PartStatus_Exec := FALSE;
+      
+      Step_RobotLeavePressArea_1_active := TRUE;
+      Step_RobotLeavePressArea_1_entry_time := SYS_TIME;
+      Action_RobotLeavePressArea_1_Exec := TRUE;
+    ELSIF Step_RobotLeavePressArea_1_active AND Trans_Trans236_executed THEN
+      Step_RobotLeavePressArea_1_active := FALSE;
+      Action_RobotLeavePressArea_1_Exec := FALSE;
+      
+      Step_Part_Check_active := TRUE;
+      Step_Part_Check_entry_time := SYS_TIME;
+      Action_Part_Check_Exec := TRUE;
+    ELSIF Step_PartCheck_active AND Trans_Trans252_executed THEN
+      Step_PartCheck_active := FALSE;
+      Action_PartCheck_Exec := FALSE;
+      
+      Step_PutRing_active := TRUE;
+      Step_PutRing_entry_time := SYS_TIME;
+      Action_PutRing_Exec := TRUE;
+    ELSIF Step_PartCheck_active AND Trans_Trans263_executed THEN
+      Step_PartCheck_active := FALSE;
+      Action_PartCheck_Exec := FALSE;
+      
+      Step_ProductCheckAlarm_active := TRUE;
+      Step_ProductCheckAlarm_entry_time := SYS_TIME;
+      Action_ProductCheckAlarm_Exec := TRUE;
+    ELSIF Step_Part_Check_active AND Trans_Trans262_executed THEN
+      Step_Part_Check_active := FALSE;
+      Action_Part_Check_Exec := FALSE;
+      
+      Step_ProcessFInish_2_active := TRUE;
+      Step_ProcessFInish_2_entry_time := SYS_TIME;
+      Action_ProcessFInish_2_Exec := TRUE;
+    ELSIF Step_Part_Check_active AND Trans_Trans267_executed THEN
+      Step_Part_Check_active := FALSE;
+      Action_Part_Check_Exec := FALSE;
+      
+      Step_ProductCheckAlarm_1_active := TRUE;
+      Step_ProductCheckAlarm_1_entry_time := SYS_TIME;
+      Action_ProductCheckAlarm_1_Exec := TRUE;
+    ELSIF Step_ProductCheckAlarm_active AND Trans_Trans265_executed THEN
+      Step_ProductCheckAlarm_active := FALSE;
+      Action_ProductCheckAlarm_Exec := FALSE;
+      
+      Step_PartCheck_active := TRUE;
+      Step_PartCheck_entry_time := SYS_TIME;
+      Action_PartCheck_Exec := TRUE;
+    ELSIF Step_ProductCheckAlarm_1_active AND Trans_Trans269_executed THEN
+      Step_ProductCheckAlarm_1_active := FALSE;
+      Action_ProductCheckAlarm_1_Exec := FALSE;
+      
+      Step_Part_Check_active := TRUE;
+      Step_Part_Check_entry_time := SYS_TIME;
+      Action_Part_Check_Exec := TRUE;
+    ELSIF Step_PartStatus_active AND Trans_Trans138_executed THEN
+      Step_PartStatus_active := FALSE;
+      Action_PartStatus_Exec := FALSE;
+      
+      Step_MES_1NG_active := TRUE;
+      Step_MES_1NG_entry_time := SYS_TIME;
+      Action_MES_1NG_Exec := TRUE;
+    ELSIF Step_MES_1NG_active AND Trans_Trans36_executed THEN
+      Step_MES_1NG_active := FALSE;
+      Action_MES_1NG_Exec := FALSE;
+      
+      Step_RobotPick_active := TRUE;
+      Step_RobotPick_entry_time := SYS_TIME;
+      Action_RobotPick_Exec := TRUE;
+    ELSIF Step_ShaftAndRingOK_active AND Trans_Trans21_executed THEN
+      Step_ShaftAndRingOK_active := FALSE;
+      Action_ShaftAndRingOK_Exec := FALSE;
+      
+      Step_ProcessFInish_2_active := TRUE;
+      Step_ProcessFInish_2_entry_time := SYS_TIME;
+      Action_ProcessFInish_2_Exec := TRUE;
+    ELSIF Step_Press_NG_active AND Trans_Trans22_executed THEN
+      Step_Press_NG_active := FALSE;
+      Action_Press_NG_Exec := FALSE;
+      
+      Step_ProcessFInish_1_active := TRUE;
+      Step_ProcessFInish_1_entry_time := SYS_TIME;
+      Action_ProcessFInish_1_Exec := TRUE;
+    ELSIF Step_MES_active AND Trans_Trans23_executed THEN
+      Step_MES_active := FALSE;
+      Action_MES_Exec := FALSE;
+      
+      Step_ProcessFInish_1_active := TRUE;
+      Step_ProcessFInish_1_entry_time := SYS_TIME;
+      Action_ProcessFInish_1_Exec := TRUE;
+    ELSIF Step_MESOK_active AND Trans_Trans25_executed THEN
+      Step_MESOK_active := FALSE;
+      Action_MESOK_Exec := FALSE;
+      
+      Step_RobotPick_active := TRUE;
+      Step_RobotPick_entry_time := SYS_TIME;
+      Action_RobotPick_Exec := TRUE;
+    ELSIF Step_ProcessFInish_2_active AND Trans_Trans250_executed THEN
+      Step_ProcessFInish_2_active := FALSE;
+      Action_ProcessFInish_2_Exec := FALSE;
+      
+      Step_MES_Check_In_active := TRUE;
+      Step_MES_Check_In_entry_time := SYS_TIME;
+      Action_MES_Check_In_Exec := TRUE;
+
+    (* Sequence S150-S199 MES Check In *)
+    ELSIF Step_MES_Check_In_active AND Trans_Trans139_executed THEN
+      Step_MES_Check_In_active := FALSE;
+      Action_MES_Check_In_Exec := FALSE;
+      
+      Step_Bypass_active := TRUE;
+      Step_Bypass_entry_time := SYS_TIME;
+      Action_Bypass_Exec := TRUE;
+    ELSIF Step_Bypass_active AND Trans_Trans317_executed THEN
+      Step_Bypass_active := FALSE;
+      Action_Bypass_Exec := FALSE;
+      
+      Step_Bypass_1_active := TRUE;
+      Step_Bypass_1_entry_time := SYS_TIME;
+      Action_Bypass_1_Exec := TRUE;
+    ELSIF Step_Bypass_active AND Trans_Online_executed THEN
+      Step_Bypass_active := FALSE;
+      Action_Bypass_Exec := FALSE;
+      
+      Step_ResetMesCheckRequest_active := TRUE;
+      Step_ResetMesCheckRequest_entry_time := SYS_TIME;
+      Action_ResetMesCheckRequest_Exec := TRUE;
+    ELSIF Step_ResetMesCheckRequest_active AND Trans_Trans318_executed THEN
+      Step_ResetMesCheckRequest_active := FALSE;
+      Action_ResetMesCheckRequest_Exec := FALSE;
+      
+      Step_ResetMesCheckRequest_active := TRUE;
+      Step_ResetMesCheckRequest_entry_time := SYS_TIME;
+      Action_ResetMesCheckRequest_Exec := TRUE;
+    ELSIF Step_ResetMesCheckRequest_active AND Trans_Trans259_executed THEN
+      Step_ResetMesCheckRequest_active := FALSE;
+      Action_ResetMesCheckRequest_Exec := FALSE;
+      
+      Step_PrepareMESCheckData_active := TRUE;
+      Step_PrepareMESCheckData_entry_time := SYS_TIME;
+      Action_PrepareMESCheckData_Exec := TRUE;
+    ELSIF Step_PrepareMESCheckData_active AND Trans_Trans26_executed THEN
+      Step_PrepareMESCheckData_active := FALSE;
+      Action_PrepareMESCheckData_Exec := FALSE;
+      
+      Step_MesCheckIn_1_active := TRUE;
+      Step_MesCheckIn_1_entry_time := SYS_TIME;
+      Action_MesCheckIn_1_Exec := TRUE;
+    ELSIF Step_MesCheckIn_1_active AND Trans_Trans313_executed THEN
+      Step_MesCheckIn_1_active := FALSE;
+      Action_MesCheckIn_1_Exec := FALSE;
+      
+      Step_Step313_active := TRUE;
+      Step_Step313_entry_time := SYS_TIME;
+      Action_Step313_Exec := TRUE;
+    ELSIF Step_MesCheckIn_1_active AND Trans_Trans316_executed THEN
+      Step_MesCheckIn_1_active := FALSE;
+      Action_MesCheckIn_1_Exec := FALSE;
+      
+      Step_MESCheckNG_2_active := TRUE;
+      Step_MESCheckNG_2_entry_time := SYS_TIME;
+      Action_MESCheckNG_2_Exec := TRUE;
+    ELSIF Step_MesCheckIn_1_active AND Trans_Trans302_executed THEN
+      Step_MesCheckIn_1_active := FALSE;
+      Action_MesCheckIn_1_Exec := FALSE;
+      
+      Step_MESOverTime_1_active := TRUE;
+      Step_MESOverTime_1_entry_time := SYS_TIME;
+      Action_MESOverTime_1_Exec := TRUE;
+    ELSIF Step_Step313_active AND Trans_Trans319_executed THEN
+      Step_Step313_active := FALSE;
+      Action_Step313_Exec := FALSE;
+      
+      Step_CheckFinish_1_active := TRUE;
+      Step_CheckFinish_1_entry_time := SYS_TIME;
+      Action_CheckFinish_1_Exec := TRUE;
+    ELSIF Step_MESCheckNG_2_active AND Trans_Trans315_executed THEN
+      Step_MESCheckNG_2_active := FALSE;
+      Action_MESCheckNG_2_Exec := FALSE;
+      
+      Step_CheckFinish_1_active := TRUE;
+      Step_CheckFinish_1_entry_time := SYS_TIME;
+      Action_CheckFinish_1_Exec := TRUE;
+    ELSIF Step_MESOverTime_1_active AND Trans_Trans320_executed THEN
+      Step_MESOverTime_1_active := FALSE;
+      Action_MESOverTime_1_Exec := FALSE;
+      
+      Step_Bypass_active := TRUE;
+      Step_Bypass_entry_time := SYS_TIME;
+      Action_Bypass_Exec := TRUE;
+    ELSIF Step_CheckFinish_1_active AND Trans_Trans311_executed THEN
+      Step_CheckFinish_1_active := FALSE;
+      Action_CheckFinish_1_Exec := FALSE;
+      
+      Step_Pressing_active := TRUE;
+      Step_Pressing_entry_time := SYS_TIME;
+      Action_Pressing_Exec := TRUE;
+
+    (* Sequence S200-S299Pressing *)
+    ELSIF Step_Pressing_active AND Trans_Trans147_executed THEN
+      Step_Pressing_active := FALSE;
+      Action_Pressing_Exec := FALSE;
+      
+      Step_CheckPressReady_active := TRUE;
+      Step_CheckPressReady_entry_time := SYS_TIME;
+      Action_CheckPressReady_Exec := TRUE;
+    ELSIF Step_CheckPressReady_active AND Trans_Trans211_executed THEN
+      Step_CheckPressReady_active := FALSE;
+      Action_CheckPressReady_Exec := FALSE;
+      
+      Step_CheckPressProgram_active := TRUE;
+      Step_CheckPressProgram_entry_time := SYS_TIME;
+      Action_CheckPressProgram_Exec := TRUE;
+    ELSIF Step_CheckPressProgram_active AND Trans_Trans130_executed THEN
+      Step_CheckPressProgram_active := FALSE;
+      Action_CheckPressProgram_Exec := FALSE;
+      
+      Step_StartCycle_active := TRUE;
+      Step_StartCycle_entry_time := SYS_TIME;
+      Action_StartCycle_Exec := TRUE;
+    ELSIF Step_StartCycle_active AND Trans_Trans132_executed THEN
+      Step_StartCycle_active := FALSE;
+      Action_StartCycle_Exec := FALSE;
+      
+      Step_CheckPressSensor_active := TRUE;
+      Step_CheckPressSensor_entry_time := SYS_TIME;
+      Action_CheckPressSensor_Exec := TRUE;
+    ELSIF Step_CheckPressSensor_active AND Trans_Trans129_executed THEN
+      Step_CheckPressSensor_active := FALSE;
+      Action_CheckPressSensor_Exec := FALSE;
+      
+      Step_PartStatus_1_active := TRUE;
+      Step_PartStatus_1_entry_time := SYS_TIME;
+      Action_PartStatus_1_Exec := TRUE;
+    ELSIF Step_PartStatus_1_active AND Trans_Trans128_executed THEN
+      Step_PartStatus_1_active := FALSE;
+      Action_PartStatus_1_Exec := FALSE;
+      
+      Step_WaitPressFinish_active := TRUE;
+      Step_WaitPressFinish_entry_time := SYS_TIME;
+      Action_WaitPressFinish_Exec := TRUE;
+    ELSIF Step_WaitPressFinish_active AND Trans_Trans201_executed THEN
+      Step_WaitPressFinish_active := FALSE;
+      Action_WaitPressFinish_Exec := FALSE;
+      
+      Step_ResetPressStart_active := TRUE;
+      Step_ResetPressStart_entry_time := SYS_TIME;
+      Action_ResetPressStart_Exec := TRUE;
+    ELSIF Step_ResetPressStart_active AND Trans_Trans133_executed THEN
+      Step_ResetPressStart_active := FALSE;
+      Action_ResetPressStart_Exec := FALSE;
+      
+      Step_CheckPressResult_active := TRUE;
+      Step_CheckPressResult_entry_time := SYS_TIME;
+      Action_CheckPressResult_Exec := TRUE;
+    ELSIF Step_CheckPressResult_active AND Trans_Trans135_executed THEN
+      Step_CheckPressResult_active := FALSE;
+      Action_CheckPressResult_Exec := FALSE;
+      
+      Step_ResultOKData_active := TRUE;
+      Step_ResultOKData_entry_time := SYS_TIME;
+      Action_ResultOKData_Exec := TRUE;
+    ELSIF Step_CheckPressResult_active AND Trans_Trans142_executed THEN
+      Step_CheckPressResult_active := FALSE;
+      Action_CheckPressResult_Exec := FALSE;
+      
+      Step_ResultNGData_active := TRUE;
+      Step_ResultNGData_entry_time := SYS_TIME;
+      Action_ResultNGData_Exec := TRUE;
+    ELSIF Step_ResultOKData_active AND Trans_Trans136_executed THEN
+      Step_ResultOKData_active := FALSE;
+      Action_ResultOKData_Exec := FALSE;
+      
+      Step_Step147_active := TRUE;
+      Step_Step147_entry_time := SYS_TIME;
+      Action_Step147_Exec := TRUE;
+    ELSIF Step_ResultNGData_active AND Trans_Trans143_executed THEN
+      Step_ResultNGData_active := FALSE;
+      Action_ResultNGData_Exec := FALSE;
+      
+      Step_Step147_active := TRUE;
+      Step_Step147_entry_time := SYS_TIME;
+      Action_Step147_Exec := TRUE;
+    ELSIF Step_Step147_active AND Trans_Trans144_executed THEN
+      Step_Step147_active := FALSE;
+      Action_Step147_Exec := FALSE;
+      
+      Step_ProcessFInish_1_active := TRUE;
+      Step_ProcessFInish_1_entry_time := SYS_TIME;
+      Action_ProcessFInish_1_Exec := TRUE;
+    ELSIF Step_ProcessFInish_1_active AND Trans_Trans134_executed THEN
+      Step_ProcessFInish_1_active := FALSE;
+      Action_ProcessFInish_1_Exec := FALSE;
+      
+      Step_Step400_active := TRUE;
+      Step_Step400_entry_time := SYS_TIME;
+      Action_Step400_Exec := TRUE;
+
+    (* Sequence S400-S499OK&NG Status Count *)
+    ELSIF Step_Step400_active AND Trans_Trans224_executed THEN
+      Step_Step400_active := FALSE;
+      Action_Step400_Exec := FALSE;
+      
+      Step_JudgeStatus_active := TRUE;
+      Step_JudgeStatus_entry_time := SYS_TIME;
+      Action_JudgeStatus_Exec := TRUE;
+    ELSIF Step_JudgeStatus_active AND Trans_OK_executed THEN
+      Step_JudgeStatus_active := FALSE;
+      Action_JudgeStatus_Exec := FALSE;
+      
+      Step_OKCount_active := TRUE;
+      Step_OKCount_entry_time := SYS_TIME;
+      Action_OKCount_Exec := TRUE;
+    ELSIF Step_JudgeStatus_active AND Trans_NG_executed THEN
+      Step_JudgeStatus_active := FALSE;
+      Action_JudgeStatus_Exec := FALSE;
+      
+      Step_NGCount_active := TRUE;
+      Step_NGCount_entry_time := SYS_TIME;
+      Action_NGCount_Exec := TRUE;
+    ELSIF Step_OKCount_active AND Trans_Trans403_executed THEN
+      Step_OKCount_active := FALSE;
+      Action_OKCount_Exec := FALSE;
+      
+      Step_ProcessFinish_active := TRUE;
+      Step_ProcessFinish_entry_time := SYS_TIME;
+      Action_ProcessFinish_Exec := TRUE;
+    ELSIF Step_NGCount_active AND Trans_Trans404_executed THEN
+      Step_NGCount_active := FALSE;
+      Action_NGCount_Exec := FALSE;
+      
+      Step_ProcessFinish_active := TRUE;
+      Step_ProcessFinish_entry_time := SYS_TIME;
+      Action_ProcessFinish_Exec := TRUE;
+    ELSIF Step_ProcessFinish_active AND Trans_Trans405_executed THEN
+      Step_ProcessFinish_active := FALSE;
+      Action_ProcessFinish_Exec := FALSE;
+      
+      Step_MESResult_active := TRUE;
+      Step_MESResult_entry_time := SYS_TIME;
+      Action_MESResult_Exec := TRUE;
+
+    (* Sequence S500-S599 MES Result *)
+    ELSIF Step_MESResult_active AND Trans_Trans407_executed THEN
+      Step_MESResult_active := FALSE;
+      Action_MESResult_Exec := FALSE;
+      
+      Step_Bypass_1_active := TRUE;
+      Step_Bypass_1_entry_time := SYS_TIME;
+      Action_Bypass_1_Exec := TRUE;
+    ELSIF Step_Bypass_1_active AND Trans_Online_1_executed THEN
+      Step_Bypass_1_active := FALSE;
+      Action_Bypass_1_Exec := FALSE;
+      
+      Step_ResetMesUnloadRequest_1_active := TRUE;
+      Step_ResetMesUnloadRequest_1_entry_time := SYS_TIME;
+      Action_ResetMesUnloadRequest_1_Exec := TRUE;
+    ELSIF Step_Bypass_1_active AND Trans_Trans327_executed THEN
+      Step_Bypass_1_active := FALSE;
+      Action_Bypass_1_Exec := FALSE;
+      
+      Step_Ok_1_active := TRUE;
+      Step_Ok_1_entry_time := SYS_TIME;
+      Action_Ok_1_Exec := TRUE;
+    ELSIF Step_ResetMesUnloadRequest_1_active AND Trans_Trans260_executed THEN
+      Step_ResetMesUnloadRequest_1_active := FALSE;
+      Action_ResetMesUnloadRequest_1_Exec := FALSE;
+      
+      Step_PrepareMESCheckData_1_active := TRUE;
+      Step_PrepareMESCheckData_1_entry_time := SYS_TIME;
+      Action_PrepareMESCheckData_1_Exec := TRUE;
+    ELSIF Step_Ok_1_active AND Trans_Trans328_executed THEN
+      Step_Ok_1_active := FALSE;
+      Action_Ok_1_Exec := FALSE;
+      
+      Step_Step314_active := TRUE;
+      Step_Step314_entry_time := SYS_TIME;
+      Action_Step314_Exec := TRUE;
+    ELSIF Step_PrepareMESCheckData_1_active AND Trans_Trans16_executed THEN
+      Step_PrepareMESCheckData_1_active := FALSE;
+      Action_PrepareMESCheckData_1_Exec := FALSE;
+      
+      Step_MesCheckResult_1_active := TRUE;
+      Step_MesCheckResult_1_entry_time := SYS_TIME;
+      Action_MesCheckResult_1_Exec := TRUE;
+    ELSIF Step_Step314_active AND Trans_Trans327_executed THEN
+      Step_Step314_active := FALSE;
+      Action_Step314_Exec := FALSE;
+      
+      Step_MESOverTime_active := TRUE;
+      Step_MESOverTime_entry_time := SYS_TIME;
+      Action_MESOverTime_Exec := TRUE;
+    ELSIF Step_MESOverTime_active AND Trans_Trans328_executed THEN
+      Step_MESOverTime_active := FALSE;
+      Action_MESOverTime_Exec := FALSE;
+      
+      Step_Bypass_1_active := TRUE;
+      Step_Bypass_1_entry_time := SYS_TIME;
+      Action_Bypass_1_Exec := TRUE;
+    ELSIF Step_MesCheckResult_1_active AND Trans_Trans315_executed THEN
+      Step_MesCheckResult_1_active := FALSE;
+      Action_MesCheckResult_1_Exec := FALSE;
+      
+      Step_MESResultOK_1_active := TRUE;
+      Step_MESResultOK_1_entry_time := SYS_TIME;
+      Action_MESResultOK_1_Exec := TRUE;
+    ELSIF Step_MesCheckResult_1_active AND Trans_Trans138_executed THEN
+      Step_MesCheckResult_1_active := FALSE;
+      Action_MesCheckResult_1_Exec := FALSE;
+      
+      Step_MESCheckNG_3_active := TRUE;
+      Step_MESCheckNG_3_entry_time := SYS_TIME;
+      Action_MESCheckNG_3_Exec := TRUE;
+    ELSIF Step_MESResultOK_1_active AND Trans_Trans321_executed THEN
+      Step_MESResultOK_1_active := FALSE;
+      Action_MESResultOK_1_Exec := FALSE;
+      
+      Step_MESCheckFinish_active := TRUE;
+      Step_MESCheckFinish_entry_time := SYS_TIME;
+      Action_MESCheckFinish_Exec := TRUE;
+    ELSIF Step_MESCheckNG_3_active AND Trans_Trans322_executed THEN
+      Step_MESCheckNG_3_active := FALSE;
+      Action_MESCheckNG_3_Exec := FALSE;
+      
+      Step_MESResultOK_1_active := TRUE;
+      Step_MESResultOK_1_entry_time := SYS_TIME;
+      Action_MESResultOK_1_Exec := TRUE;
+    ELSIF Step_MESCheckNG_3_active AND Trans_Trans324_executed THEN
+      Step_MESCheckNG_3_active := FALSE;
+      Action_MESCheckNG_3_Exec := FALSE;
+      
+      Step_Step314_active := TRUE;
+      Step_Step314_entry_time := SYS_TIME;
+      Action_Step314_Exec := TRUE;
+    ELSIF Step_MESCheckFinish_active AND Trans_Trans619_executed THEN
+      Step_MESCheckFinish_active := FALSE;
+      Action_MESCheckFinish_Exec := FALSE;
+      
+      Step_RobotPick_active := TRUE;
+      Step_RobotPick_entry_time := SYS_TIME;
+      Action_RobotPick_Exec := TRUE;
+
+    (* Sequence S600-S699 RobotPick *)
+    ELSIF Step_RobotPick_active AND Trans_Trans600_executed THEN
+      Step_RobotPick_active := FALSE;
+      Action_RobotPick_Exec := FALSE;
+      
+      Step_PressProgram_1_active := TRUE;
+      Step_PressProgram_1_entry_time := SYS_TIME;
+      Action_PressProgram_1_Exec := TRUE;
+    ELSIF Step_PressProgram_1_active AND Trans_Trans31_executed THEN
+      Step_PressProgram_1_active := FALSE;
+      Action_PressProgram_1_Exec := FALSE;
+      
+      Step_PressReady_q_1_active := TRUE;
+      Step_PressReady_q_1_entry_time := SYS_TIME;
+      Action_PressReady_q_1_Exec := TRUE;
+    ELSIF Step_PressReady_q_1_active AND Trans_Trans32_executed THEN
+      Step_PressReady_q_1_active := FALSE;
+      Action_PressReady_q_1_Exec := FALSE;
+      
+      Step_PressHoming_q_1_active := TRUE;
+      Step_PressHoming_q_1_entry_time := SYS_TIME;
+      Action_PressHoming_q_1_Exec := TRUE;
+    ELSIF Step_PressHoming_q_1_active AND Trans_Trans33_executed THEN
+      Step_PressHoming_q_1_active := FALSE;
+      Action_PressHoming_q_1_Exec := FALSE;
+      
+      Step_PressHoming_1_active := TRUE;
+      Step_PressHoming_1_entry_time := SYS_TIME;
+      Action_PressHoming_1_Exec := TRUE;
+    ELSIF Step_PressHoming_q_1_active AND Trans_Trans34_executed THEN
+      Step_PressHoming_q_1_active := FALSE;
+      Action_PressHoming_q_1_Exec := FALSE;
+      
+      Step_Step15_active := TRUE;
+      Step_Step15_entry_time := SYS_TIME;
+      Action_Step15_Exec := TRUE;
+    ELSIF Step_PressHoming_1_active AND Trans_Trans9_executed THEN
+      Step_PressHoming_1_active := FALSE;
+      Action_PressHoming_1_Exec := FALSE;
+      
+      Step_Step15_active := TRUE;
+      Step_Step15_entry_time := SYS_TIME;
+      Action_Step15_Exec := TRUE;
+    ELSIF Step_Step15_active AND Trans_Trans35_executed THEN
+      Step_Step15_active := FALSE;
+      Action_Step15_Exec := FALSE;
+      
+      Step_B_PressFitting_01CylinderToHP_1_active := TRUE;
+      Step_B_PressFitting_01CylinderToHP_1_entry_time := SYS_TIME;
+      Action_B_PressFitting_01CylinderToHP_1_Exec := TRUE;
+    ELSIF Step_B_PressFitting_01CylinderToHP_1_active AND Trans_Trans768_executed THEN
+      Step_B_PressFitting_01CylinderToHP_1_active := FALSE;
+      Action_B_PressFitting_01CylinderToHP_1_Exec := FALSE;
+      
+      Step_RequestRobotPick_active := TRUE;
+      Step_RequestRobotPick_entry_time := SYS_TIME;
+      Action_RequestRobotPick_Exec := TRUE;
+    ELSIF Step_RequestRobotPick_active AND Trans_Trans412_executed THEN
+      Step_RequestRobotPick_active := FALSE;
+      Action_RequestRobotPick_Exec := FALSE;
+      
+      Step_WaitRobotFinishTask_1_active := TRUE;
+      Step_WaitRobotFinishTask_1_entry_time := SYS_TIME;
+      Action_WaitRobotFinishTask_1_Exec := TRUE;
+    ELSIF Step_WaitRobotFinishTask_1_active AND Trans_Trans257_executed THEN
+      Step_WaitRobotFinishTask_1_active := FALSE;
+      Action_WaitRobotFinishTask_1_Exec := FALSE;
+      
+      Step_DataMove_active := TRUE;
+      Step_DataMove_entry_time := SYS_TIME;
+      Action_DataMove_Exec := TRUE;
+    ELSIF Step_DataMove_active AND Trans_Trans258_executed THEN
+      Step_DataMove_active := FALSE;
+      Action_DataMove_Exec := FALSE;
+      
+      Step_WaitRobotInSafetyArea_active := TRUE;
+      Step_WaitRobotInSafetyArea_entry_time := SYS_TIME;
+      Action_WaitRobotInSafetyArea_Exec := TRUE;
+    ELSIF Step_WaitRobotInSafetyArea_active AND Trans_Trans261_executed THEN
+      Step_WaitRobotInSafetyArea_active := FALSE;
+      Action_WaitRobotInSafetyArea_Exec := FALSE;
+      
+      Step_DataClear_active := TRUE;
+      Step_DataClear_entry_time := SYS_TIME;
+      Action_DataClear_Exec := TRUE;
+    ELSIF Step_DataClear_active AND Trans_Trans290_executed THEN
+      Step_DataClear_active := FALSE;
+      Action_DataClear_Exec := FALSE;
+      
+      Step_ProcessFinsh_3_active := TRUE;
+      Step_ProcessFinsh_3_entry_time := SYS_TIME;
+      Action_ProcessFinsh_3_Exec := TRUE;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+(* Post-Operations *)
+
+(* Network 1 *)
+#ioPM_Inface.StepNum := #RT_DATA.S_DISPLAY;
+
+(* Network 2 *)
+IF iSysInface.Reset THEN
+  #AlarmID := 0;
+END_IF;
+
+(* Network 3 *)
+TON[10].IN := #工件放行中;
+TON[10].PT := T#0.5s;
+#工件放行中 := FALSE;
+
+END_FUNCTION_BLOCK

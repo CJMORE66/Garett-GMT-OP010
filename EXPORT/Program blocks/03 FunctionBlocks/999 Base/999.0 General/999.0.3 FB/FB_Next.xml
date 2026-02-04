@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <HeaderAuthor>Sachs</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="I_bEnable" Datatype="Bool" />
+    <Member Name="I_bSeqMode" Datatype="Bool" />
+    <Member Name="I_tTimeValue" Datatype="Time" />
+  </Section>
+  <Section Name="Output">
+    <Member Name="O_bStart" Datatype="Bool" />
+  </Section>
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="ton_Delay" Datatype="TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="bStartdelay" Datatype="Bool" />
+  </Section>
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+</Sections></Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>FB_Next</Name>
+      <Namespace />
+      <Number>42</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <NewLine Num="2" UId="21" />
+  <LineComment UId="22">
+    <Text UId="23">***********************************************************************************************</Text>
+  </LineComment>
+  <NewLine UId="24" />
+  <LineComment UId="25">
+    <Text UId="26">下一步跳转模块/next step</Text>
+  </LineComment>
+  <NewLine UId="27" />
+  <LineComment UId="28">
+    <Text UId="29">***********************************************************************************************</Text>
+  </LineComment>
+  <NewLine UId="30" />
+  <LineComment UId="31">
+    <Text UId="32">延时条件</Text>
+  </LineComment>
+  <NewLine UId="33" />
+  <Token Text="IF" UId="34" />
+  <Blank UId="35" />
+  <Access Scope="LocalVariable" UId="36">
+    <Symbol UId="37">
+      <Component Name="I_bEnable" UId="38" />
+    </Symbol>
+  </Access>
+  <Blank UId="39" />
+  <Token Text="AND" UId="40" />
+  <Blank UId="41" />
+  <Access Scope="LocalVariable" UId="42">
+    <Symbol UId="43">
+      <Component Name="I_bSeqMode" UId="44" />
+    </Symbol>
+  </Access>
+  <Blank UId="45" />
+  <Token Text="AND" UId="46" />
+  <Blank UId="47" />
+  <Token Text="(" UId="48" />
+  <Access Scope="LocalVariable" UId="49">
+    <Symbol UId="50">
+      <Component Name="ton_Delay" UId="51" />
+      <Token Text="." UId="52" />
+      <Component Name="Q" UId="53" />
+    </Symbol>
+  </Access>
+  <Blank UId="54" />
+  <Token Text="=" UId="55" />
+  <Blank UId="56" />
+  <Access Scope="LiteralConstant" UId="57">
+    <Constant UId="58">
+      <ConstantValue UId="60">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="61" />
+  <Token Text="OR" UId="62" />
+  <Blank UId="63" />
+  <Access Scope="LocalVariable" UId="64">
+    <Symbol UId="65">
+      <Component Name="I_tTimeValue" UId="66" />
+    </Symbol>
+  </Access>
+  <Blank UId="67" />
+  <Token Text="=" UId="68" />
+  <Blank UId="69" />
+  <Access Scope="TypedConstant" UId="70">
+    <Constant UId="71">
+      <ConstantValue UId="72">t#0s</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=")" UId="73" />
+  <Blank UId="74" />
+  <Token Text="THEN" UId="75" />
+  <NewLine UId="76" />
+  <Blank Num="4" UId="77" />
+  <Access Scope="LocalVariable" UId="78">
+    <Symbol UId="79">
+      <Component Name="bStartdelay" UId="80" />
+    </Symbol>
+  </Access>
+  <Blank UId="81" />
+  <Token Text=":=" UId="82" />
+  <Blank UId="83" />
+  <Access Scope="LiteralConstant" UId="84">
+    <Constant UId="85">
+      <ConstantValue UId="87">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="88" />
+  <Blank Num="4" UId="89" />
+  <NewLine UId="90" />
+  <Token Text="END_IF" UId="91" />
+  <Token Text=";" UId="92" />
+  <NewLine Num="2" UId="93" />
+  <Access Scope="LocalVariable" UId="94">
+    <Symbol UId="95">
+      <Component Name="ton_Delay" UId="96" />
+    </Symbol>
+  </Access>
+  <Access Scope="Call" UId="97">
+    <Instruction UId="98">
+      <Token Text="(" UId="99" />
+      <Parameter Name="IN" UId="100">
+        <Blank UId="101" />
+        <Token Text=":=" UId="102" />
+        <Blank UId="103" />
+        <Access Scope="LocalVariable" UId="104">
+          <Symbol UId="105">
+            <Component Name="bStartdelay" UId="106" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="107" />
+      <NewLine UId="108" />
+      <Blank Num="11" UId="109" />
+      <Parameter Name="PT" UId="110">
+        <Blank UId="111" />
+        <Token Text=":=" UId="112" />
+        <Blank UId="113" />
+        <Access Scope="LocalVariable" UId="114">
+          <Symbol UId="115">
+            <Component Name="I_tTimeValue" UId="116" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="117" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="118" />
+  <NewLine Num="2" UId="119" />
+  <Access Scope="LocalVariable" UId="120">
+    <Symbol UId="121">
+      <Component Name="O_bStart" UId="122" />
+    </Symbol>
+  </Access>
+  <Blank UId="123" />
+  <Token Text=":=" UId="124" />
+  <Blank UId="125" />
+  <Access Scope="LocalVariable" UId="126">
+    <Symbol UId="127">
+      <Component Name="ton_Delay" UId="128" />
+      <Token Text="." UId="129" />
+      <Component Name="Q" UId="130" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="131" />
+  <NewLine Num="2" UId="132" />
+  <Token Text="IF" UId="133" />
+  <Blank UId="134" />
+  <Access Scope="LocalVariable" UId="135">
+    <Symbol UId="136">
+      <Component Name="ton_Delay" UId="137" />
+      <Token Text="." UId="138" />
+      <Component Name="Q" UId="139" />
+    </Symbol>
+  </Access>
+  <Blank UId="140" />
+  <Token Text="OR" UId="141" />
+  <Blank UId="142" />
+  <Token Text="NOT" UId="143" />
+  <Blank UId="144" />
+  <Access Scope="LocalVariable" UId="145">
+    <Symbol UId="146">
+      <Component Name="I_bEnable" UId="147" />
+    </Symbol>
+  </Access>
+  <Blank UId="148" />
+  <Token Text="THEN" UId="149" />
+  <NewLine UId="150" />
+  <Blank Num="4" UId="151" />
+  <Access Scope="LocalVariable" UId="152">
+    <Symbol UId="153">
+      <Component Name="bStartdelay" UId="154" />
+    </Symbol>
+  </Access>
+  <Blank UId="155" />
+  <Token Text=":=" UId="156" />
+  <Blank UId="157" />
+  <Access Scope="LiteralConstant" UId="158">
+    <Constant UId="159">
+      <ConstantValue UId="161">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="162" />
+  <Blank UId="163" />
+  <NewLine UId="164" />
+  <Token Text="END_IF" UId="165" />
+  <Token Text=";" UId="166" />
+  <NewLine Num="2" UId="167" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

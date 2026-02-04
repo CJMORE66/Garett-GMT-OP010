@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>true</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>块_1</Name>
+      <Namespace />
+      <Number>1</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource />
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="Call" UId="21">
+    <CallInfo UId="22" BlockType="FB" Name="CheckPositioningOrder">
+      <Instance Scope="GlobalVariable" UId="23">
+        <Component Name="CheckPositioningOrder_IDB" UId="24">
+          <BooleanAttribute Name="HasQuotes" UId="25">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="26" />
+      <Parameter Name="V90Servo[3]" UId="27">
+        <Token Text=":=" UId="28" />
+        <Access Scope="GlobalVariable" UId="29">
+          <Symbol UId="30">
+            <Component Name="ServoV90_DeviceCtl" UId="31">
+              <BooleanAttribute Name="HasQuotes" UId="32">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="33" />
+            <Component Name="V90Servo" UId="34">
+              <Token Text="[" UId="35" />
+              <Access Scope="LiteralConstant" UId="36">
+                <Constant UId="37">
+                  <ConstantValue UId="39">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="40" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="41" />
+      <NewLine Num="1" UId="42" />
+      <Blank Num="28" UId="43" />
+      <Parameter Name="HaveAxisStart" UId="44">
+        <Token Text="=&gt;" UId="45" />
+        <Access Scope="GlobalVariable" UId="46">
+          <Symbol UId="47">
+            <Component Name="DATA" UId="48">
+              <BooleanAttribute Name="HasQuotes" UId="49">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="50" />
+            <Component Name="HaveAxisStart" UId="51" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="52" />
+      <NewLine Num="1" UId="53" />
+      <Blank Num="28" UId="54" />
+      <Parameter Name="AxisStartNumber" UId="55">
+        <Token Text="=&gt;" UId="56" />
+        <Access Scope="GlobalVariable" UId="57">
+          <Symbol UId="58">
+            <Component Name="DATA" UId="59">
+              <BooleanAttribute Name="HasQuotes" UId="60">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="61" />
+            <Component Name="AxisStartNumber" UId="62" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="63" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="64" />
+  <NewLine Num="2" UId="65" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="66">
+    <Text UId="67">When the 382A1 card is stuck at step 130, change the process step to 100 and locate it again.</Text>
+  </LineComment>
+  <NewLine Num="1" UId="68" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="69">
+    <Text UId="70">当382A1卡在 130步时,修改流程步去100再次定位</Text>
+  </LineComment>
+  <NewLine Num="1" UId="71" />
+  <Token Text="IF" UId="72" />
+  <Blank Num="4" UId="73" />
+  <Access Scope="GlobalVariable" UId="74">
+    <Symbol UId="75">
+      <Component Name="DATA" UId="76">
+        <BooleanAttribute Name="HasQuotes" UId="77">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="78" />
+      <Component Name="Forced modification" UId="79" />
+    </Symbol>
+  </Access>
+  <Blank Num="4" UId="80" />
+  <Token Text="AND" UId="81" />
+  <NewLine Num="1" UId="82" />
+  <Blank Num="4" UId="83" />
+  <Access Scope="GlobalVariable" UId="84">
+    <Symbol UId="85">
+      <Component Name="DATA" UId="86">
+        <BooleanAttribute Name="HasQuotes" UId="87">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="88" />
+      <Component Name="HaveAxisStart" UId="89" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="90" />
+  <Token Text="AND" UId="91" />
+  <Blank Num="1" UId="92" />
+  <Access Scope="GlobalVariable" UId="93">
+    <Symbol UId="94">
+      <Component Name="DATA" UId="95">
+        <BooleanAttribute Name="HasQuotes" UId="96">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="97" />
+      <Component Name="AxisStartNumber" UId="98" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="99" />
+  <Token Text="&lt;&gt;" UId="100" />
+  <Blank Num="1" UId="101" />
+  <Access Scope="LiteralConstant" UId="102">
+    <Constant UId="103">
+      <ConstantValue UId="105">32767</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="106" />
+  <Token Text="AND" UId="107" />
+  <NewLine Num="1" UId="108" />
+  <Blank Num="4" UId="109" />
+  <Access Scope="GlobalVariable" UId="110">
+    <Symbol UId="111">
+      <Component Name="V90Servo_DB" UId="112">
+        <BooleanAttribute Name="HasQuotes" UId="113">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="114" />
+      <Component Name="Servo_382A1" UId="115" />
+      <Token Text="." UId="116" />
+      <Component Name="sStep" UId="117">
+        <Token Text="[" UId="118" />
+        <Access Scope="LiteralConstant" UId="119">
+          <Constant UId="120">
+            <ConstantValue UId="122">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="123" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="124" />
+  <Token Text="=" UId="125" />
+  <Blank Num="1" UId="126" />
+  <Access Scope="LiteralConstant" UId="127">
+    <Constant UId="128">
+      <ConstantValue UId="130">130</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text="AND" UId="131" />
+  <NewLine Num="1" UId="132" />
+  <Blank Num="4" UId="133" />
+  <Access Scope="GlobalVariable" UId="134">
+    <Symbol UId="135">
+      <Component Name="V90Servo_DB" UId="136">
+        <BooleanAttribute Name="HasQuotes" UId="137">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="138" />
+      <Component Name="Servo_382A1" UId="139" />
+      <Token Text="." UId="140" />
+      <Component Name="sErrorCode" UId="141" />
+    </Symbol>
+  </Access>
+  <Token Text="=" UId="142" />
+  <Access Scope="LiteralConstant" UId="143">
+    <Constant UId="144">
+      <ConstantValue UId="146">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="2" UId="147" />
+  <Token Text="AND" UId="148" />
+  <NewLine Num="1" UId="149" />
+  <Blank Num="3" UId="150" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="151">
+    <Text UId="152"> "ServoV90_A3".Auto.Pos["ServoV90_A3".Auto.Index].Pos&lt;&gt; "ServoV90_A3".Out.oActPosition</Text>
+  </LineComment>
+  <NewLine Num="1" UId="153" />
+  <Blank Num="4" UId="154" />
+  <Access Scope="GlobalVariable" UId="155">
+    <Symbol UId="156">
+      <Component Name="ServoV90_A3" UId="157">
+        <BooleanAttribute Name="HasQuotes" UId="158">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="159" />
+      <Component Name="Auto" UId="160" />
+      <Token Text="." UId="161" />
+      <Component Name="Pos" UId="162">
+        <Token Text="[" UId="163" />
+        <Access Scope="LiteralConstant" UId="164">
+          <Constant UId="165">
+            <ConstantValue UId="167">6</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="168" />
+      </Component>
+      <Token Text="." UId="169" />
+      <Component Name="Pos" UId="170" />
+    </Symbol>
+  </Access>
+  <Token Text="&lt;&gt;" UId="171" />
+  <Blank Num="1" UId="172" />
+  <Access Scope="GlobalVariable" UId="173">
+    <Symbol UId="174">
+      <Component Name="ServoV90_A3" UId="175">
+        <BooleanAttribute Name="HasQuotes" UId="176">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="177" />
+      <Component Name="Out" UId="178" />
+      <Token Text="." UId="179" />
+      <Component Name="oActPosition" UId="180" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="181" />
+  <Token Text="THEN" UId="182" />
+  <NewLine Num="1" UId="183" />
+  <Blank Num="4" UId="184" />
+  <Access Scope="GlobalVariable" UId="185">
+    <Symbol UId="186">
+      <Component Name="V90Servo_DB" UId="187">
+        <BooleanAttribute Name="HasQuotes" UId="188">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="189" />
+      <Component Name="Servo_382A1" UId="190" />
+      <Token Text="." UId="191" />
+      <Component Name="sStep" UId="192">
+        <Token Text="[" UId="193" />
+        <Access Scope="LiteralConstant" UId="194">
+          <Constant UId="195">
+            <ConstantValue UId="197">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="198" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="199" />
+  <Token Text=":=" UId="200" />
+  <Blank Num="1" UId="201" />
+  <Access Scope="LiteralConstant" UId="202">
+    <Constant UId="203">
+      <ConstantValue UId="205">100</ConstantValue>
+    </Constant>
+  </Access>
+  <NewLine Num="1" UId="206" />
+  <Blank Num="4" UId="207" />
+  <Token Text=";" UId="208" />
+  <NewLine Num="1" UId="209" />
+  <Token Text="END_IF" UId="210" />
+  <Token Text=";" UId="211" />
+  <NewLine Num="4" UId="212" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="13" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="17" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="18" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="19" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="1A" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

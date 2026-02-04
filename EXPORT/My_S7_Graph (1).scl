@@ -1,0 +1,1271 @@
+﻿FUNCTION_BLOCK "ST10_Flow14_B2Press" { S7_Optimized_Access := 'TRUE' }
+VAR_INPUT
+  iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_OUTPUT
+END_VAR
+
+VAR_IN_OUT
+  ioPM_Inface : "RCS_PMInterface_V1";
+  ioStatus : Int;
+END_VAR
+
+VAR
+  // Internal State Machine Control
+  stcFlowControl : "SysFlowCtrlGraph"; // System Flow Control Graph instance
+  stcRtData : G7_RTDataPlus_V6;     // Real-time data for state machine
+  
+  // Timers
+  tonShaftPresent : TON_TIME; // TON for shaft presence detection
+  tofShaftAbsent : TOF_TIME;  // TOF for shaft absence detection
+  tonDownRingPresent : TON_TIME; // TON for down ring presence detection
+  tofDownRingAbsent : TOF_TIME;  // TOF for down ring absence detection (unused in original)
+  tonUpRingPresent : TON_TIME;   // TON for up ring presence detection
+  tonUpRingAbsent : TON_TIME;    // TON for up ring absence detection (logic inverted, should be TOF for absence)
+  
+  tonAlarmImmediatelyStop : TON_TIME; // TON for immediate alarm stop
+  tonWorkpieceReleaseDelay : TON_TIME; // TON for workpiece release delay
+
+  // Process Variables
+  bUpdateMESData : Bool;  // Update MES data flag
+  bWorkpieceReleasing : Bool; // Workpiece is currently being released
+  uiPreviousStationNumber : UInt; // Number of the previous station
+  uiCurrentStationNumber : UInt;  // Number of the current station
+  arrTempPopupData : Array[1..10] of Int; // Temporary data for pop-up messages
+  iAlarmID : Int;  // Active Alarm ID
+  bUpdateRFIDComplete : Bool; // RFID update complete flag
+
+  // State Machine Steps (renamed for clarity and consistency)
+  stfInitial : G7_StepPlus_V6;       // Initial state for the FB
+  stfReadyToProcess : G7_StepPlus_V6; // Ready to process state
+  stfMESInitialization : G7_StepPlus_V6; // MES initialization state
+  stfPressHomeSetProgram : G7_StepPlus_V6; // Press: Program select & Homing
+  stfCheckPressGripper : G7_StepPlus_V6; // Check press gripper status
+  stfCheckRingPresence : G7_StepPlus_V6; // Check if ring exists in gripper
+  stfGripperToHome : G7_StepPlus_V6; // Move gripper cylinder to home position
+  stfGripperToWork : G7_StepPlus_V6; // Move gripper cylinder to work position
+  stfPressCylinderToHome : G7_StepPlus_V6; // Move press cylinder to home position
+  stfProcessStart : G7_StepPlus_V6;   // Process start state
+  stfDetermineProductState : G7_StepPlus_V6; // Determine product status
+  stfCheckMachineState : G7_StepPlus_V6; // Check machine readiness
+  stfNormalModeOperation : G7_StepPlus_V6; // Normal operating mode
+  stfProcessCTStart : G7_StepPlus_V6; // Process Cycle Time start
+  stfRequestRobotPutShaft : G7_StepPlus_V6; // Request robot to place shaft
+  stfWaitRobotPutShaft : G7_StepPlus_V6; // Wait for robot to finish placing shaft
+  stfRobotLeavePressAreaShaft : G7_StepPlus_V6; // Robot leaves press area after shaft
+  stfShaftPresentOK : G7_StepPlus_V6; // Shaft is detected as OK
+  stfRequestRobotPutRing : G7_StepPlus_V6; // Request robot to place ring
+  stfWaitRobotPutRing : G7_StepPlus_V6; // Wait for robot to finish placing ring
+  stfRobotLeavePressAreaRing : G7_StepPlus_V6; // Robot leaves press area after ring
+  stfPartStatusError : G7_StepPlus_V6; // Alarm for part status discrepancy
+  stfNoPartPresent : G7_StepPlus_V6; // No part detected
+  stfShaftAndRingReady : G7_StepPlus_V6; // Shaft and ring are ready for press
+  stfPressNGDetected : G7_StepPlus_V6; // Press operation resulted in NG
+  stfMESState : G7_StepPlus_V6;       // MES processing state
+  stfMESOKState : G7_StepPlus_V6;     // MES OK state
+  stfPartCheckShaft : G7_StepPlus_V6; // Part check for shaft
+  stfPartCheckRing : G7_StepPlus_V6;  // Part check for ring
+  stfProductCheckAlarmShaft : G7_StepPlus_V6; // Alarm for shaft check failure
+  stfProductCheckAlarmRing : G7_StepPlus_V6;  // Alarm for ring check failure
+  stfMESNGState : G7_StepPlus_V6;     // MES NG state
+  stfMESCheckIn : G7_StepPlus_V6;     // MES Check-In sequence
+  stfMESCheckInOverTime : G7_StepPlus_V6; // MES Check-In timeout alarm
+  stfMESCheckInNG : G7_StepPlus_V6;   // MES Check-In result NG
+  stfResetMESCheckRequest : G7_StepPlus_V6; // Reset MES check request
+  stfPrepareMESCheckData : G7_StepPlus_V6; // Prepare data for MES check-in
+  stfSendMESCheckInRequest : G7_StepPlus_V6; // Send MES check-in request
+  stfMESCheckInComplete : G7_StepPlus_V6; // MES check-in complete
+  stfBypassMESCheck : G7_StepPlus_V6; // Bypass MES check-in (offline mode)
+  stfMESCheckInOKHandler : G7_StepPlus_V6; // Handler for MES Check-In OK
+  stfPressingProcess : G7_StepPlus_V6; // Pressing operation state
+  stfWaitPressFinish : G7_StepPlus_V6; // Wait for press operation to finish
+  stfCheckPressReady : G7_StepPlus_V6; // Check if press is ready
+  stfCheckPressProgram : G7_StepPlus_V6; // Check selected press program
+  stfStartPressCycle : G7_StepPlus_V6; // Start press cycle
+  stfCheckPressSensors : G7_StepPlus_V6; // Check press sensors during operation
+  stfPressAxisError : G7_StepPlus_V6; // Press axis error detected
+  stfResetPressCycleStart : G7_StepPlus_V6; // Reset press cycle start signal
+  stfProcessFinishedNG : G7_StepPlus_V6; // Process finished with NG result (from press)
+  stfCheckPressOperationResult : G7_StepPlus_V6; // Check press operation result (OK/NG)
+  stfPressResultOKData : G7_StepPlus_V6; // Press result is OK, prepare data
+  stfPressResultNGData : G7_StepPlus_V6; // Press result is NG, prepare data
+  stfProcessFinishedOK : G7_StepPlus_V6; // Process finished with OK result (from press)
+  stfProcessFinishedCommon : G7_StepPlus_V6; // Common step for process completion
+  stfJudgeProcessStatus : G7_StepPlus_V6; // Judge overall process status
+  stfIncrementOKCount : G7_StepPlus_V6; // Increment OK counter
+  stfIncrementNGCount : G7_StepPlus_V6; // Increment NG counter
+  stfOverallProcessFinish : G7_StepPlus_V6; // Overall process finish
+  stfMESResultUpload : G7_StepPlus_V6; // MES Result Upload
+  stfMESResultOK : G7_StepPlus_V6;    // MES Result OK state
+  stfMESResultNG : G7_StepPlus_V6;    // MES Result NG state
+  stfMESResultUploadOverTime : G7_StepPlus_V6; // MES Result Upload timeout alarm
+  stfResetMESUnloadRequest : G7_StepPlus_V6; // Reset MES unload request
+  stfPrepareMESResultData : G7_StepPlus_V6; // Prepare data for MES result upload
+  stfSendMESResultRequest : G7_StepPlus_V6; // Send MES result upload request
+  stfMESResultComplete : G7_StepPlus_V6; // MES result upload complete
+  stfBypassMESResult : G7_StepPlus_V6; // Bypass MES result upload (offline mode)
+  stfMESResultOKHandler : G7_StepPlus_V6; // Handler for MES Result OK
+  stfRequestRobotPick : G7_StepPlus_V6; // Request robot to pick part
+  stfWaitRobotPickFinish : G7_StepPlus_V6; // Wait for robot to finish picking
+  stfRobotPickDataMove : G7_StepPlus_V6; // Data move after robot pick
+  stfWaitRobotInSafety : G7_StepPlus_V6; // Wait for robot to be in safety area
+  stfClearProcessData : G7_StepPlus_V6; // Clear process data
+  stfCycleFinished : G7_StepPlus_V6;   // Cycle finished, ready for next
+
+  // Step control flags (managed by G7_StepPlus_V6, but explicit for clarity)
+  // Each step has active, entry_time, timeout, Exec, Done flags which
+  // are ideally handled by the G7_StepPlus_V6 structure internally or via helper functions.
+  // For this refactor, assuming G7_StepPlus_V6 handles its own internal state,
+  // we'll primarily use the instance for activation and checking.
+  // The original code shows explicit Step_X_active, Action_X_Exec, Action_X_Done.
+  // We will retain this pattern to keep the logic similar to the original,
+  // but highlight that a well-designed G7_StepPlus_V6 might abstract these.
+
+  // Transition control flags (managed by G7_TransitionPlus_V6, but explicit for clarity)
+  // Similar to steps, G7_TransitionPlus_V6 should ideally encapsulate its state.
+  // We'll retain the `Trans_X_executed` pattern for consistency with the original.
+  // Renamed for consistency and clarity.
+  trInitialToReady : G7_TransitionPlus_V6;
+  trReadyToMesInit : G7_TransitionPlus_V6;
+  trMesInitToCheckGripper : G7_TransitionPlus_V6;
+  trCheckGripperToRingPresent : G7_TransitionPlus_V6;
+  trCheckGripperToGripperWork : G7_TransitionPlus_V6;
+  trCheckGripperToStatusAlarm : G7_TransitionPlus_V6;
+  trStatusAlarmToGripperCheck : G7_TransitionPlus_V6;
+  trRingPresentToGripperHome : G7_TransitionPlus_V6;
+  trGripperHomeToPressProgram : G7_TransitionPlus_V6;
+  trGripperWorkToPressProgram : G7_TransitionPlus_V6;
+  trPressProgramToPressReady : G7_TransitionPlus_V6;
+  trPressReadyToPressHomingCheck : G7_TransitionPlus_V6;
+  trPressHomingCheckToPressHoming : G7_TransitionPlus_V6;
+  trPressHomingCheckToPressCylinderHome : G7_TransitionPlus_V6;
+  trPressHomingToPressCylinderHome : G7_TransitionPlus_V6;
+  trPressCylinderHomeToInitialFinish : G7_TransitionPlus_V6;
+  trInitialFinishToProcessStart : G7_TransitionPlus_V6;
+
+  trProcessStartToDetermineProduct : G7_TransitionPlus_V6;
+  trDetermineProductToNoPart : G7_TransitionPlus_V6;
+  trDetermineProductToShaftOK : G7_TransitionPlus_V6;
+  trDetermineProductToShaftAndRingOK : G7_TransitionPlus_V6;
+  trDetermineProductToPressNG : G7_TransitionPlus_V6;
+  trDetermineProductToMES : G7_TransitionPlus_V6;
+  trDetermineProductToMESOK : G7_TransitionPlus_V6;
+  trDetermineProductToStatusAlarm : G7_TransitionPlus_V6;
+  trStatusAlarmToDetermineProduct : G7_TransitionPlus_V6;
+  trNoPartToCheckMachineStatus : G7_TransitionPlus_V6;
+  trCheckMachineStatusToNormalMode : G7_TransitionPlus_V6;
+  trNormalModeToProcessCTStart : G7_TransitionPlus_V6;
+  trProcessCTStartToRobotPutShaft : G7_TransitionPlus_V6;
+  trRobotPutShaftToWaitRobotShaft : G7_TransitionPlus_V6;
+  trWaitRobotShaftToRobotLeaveShaft : G7_TransitionPlus_V6;
+  trRobotLeaveShaftToPartCheckShaft : G7_TransitionPlus_V6;
+  trShaftOKToRobotPutRing : G7_TransitionPlus_V6;
+  trRobotPutRingToWaitRobotRing : G7_TransitionPlus_V6;
+  trWaitRobotRingToRobotLeaveRing : G7_TransitionPlus_V6;
+  trRobotLeaveRingToPartCheckRing : G7_TransitionPlus_V6;
+  trPartCheckShaftToRobotPutRing : G7_TransitionPlus_V6;
+  trPartCheckShaftToProdAlarmShaft : G7_TransitionPlus_V6;
+  trProdAlarmShaftToPartCheckShaft : G7_TransitionPlus_V6;
+  trPartCheckRingToProcessFinishedOK : G7_TransitionPlus_V6;
+  trPartCheckRingToProdAlarmRing : G7_TransitionPlus_V6;
+  trProdAlarmRingToPartCheckRing : G7_TransitionPlus_V6;
+  trPartStatusToRobotLeaveRing : G7_TransitionPlus_V6;
+  trPartStatusToMESNG : G7_TransitionPlus_V6;
+  trShaftAndRingOKToProcessFinishedOK : G7_TransitionPlus_V6;
+  trPressNGToProcessFinishedNG : G7_TransitionPlus_V6;
+  trMESToProcessFinishedNG : G7_TransitionPlus_V6;
+  trMESOKToRequestRobotPick : G7_TransitionPlus_V6;
+  trMESNGToRequestRobotPick : G7_TransitionPlus_V6;
+
+  trProcessFinishedOKToMESCheckIn : G7_TransitionPlus_V6;
+  trMESCheckInToBypass : G7_TransitionPlus_V6;
+  trBypassToBypassResult : G7_TransitionPlus_V6;
+  trBypassToResetMESCheck : G7_TransitionPlus_V6; // Assuming Online in original is a bypass option
+  trResetMESCheckToPrepareMESCheck : G7_TransitionPlus_V6;
+  trPrepareMESCheckToSendMESCheck : G7_TransitionPlus_V6;
+  trSendMESCheckToMESCheckOverTime : G7_TransitionPlus_V6;
+  trSendMESCheckToMESCheckNG : G7_TransitionPlus_V6;
+  trSendMESCheckToMESCheckInOKHandler : G7_TransitionPlus_V6;
+  trMESCheckInOKHandlerToMESCheckComplete : G7_TransitionPlus_V6;
+  trMESCheckNGToMESCheckComplete : G7_TransitionPlus_V6;
+  trMESCheckOverTimeToBypass : G7_TransitionPlus_V6;
+  trMESCheckCompleteToPressing : G7_TransitionPlus_V6;
+
+  trPressingToCheckPressReady : G7_TransitionPlus_V6;
+  trCheckPressReadyToCheckPressProgram : G7_TransitionPlus_V6;
+  trCheckPressProgramToStartPressCycle : G7_TransitionPlus_V6;
+  trStartPressCycleToCheckPressSensors : G7_TransitionPlus_V6;
+  trCheckPressSensorsToPressAxisError : G7_TransitionPlus_V6;
+  trPressAxisErrorToWaitPressFinish : G7_TransitionPlus_V6;
+  trWaitPressFinishToResetPressCycle : G7_TransitionPlus_V6;
+  trResetPressCycleToCheckPressResult : G7_TransitionPlus_V6;
+  trCheckPressResultToOKData : G7_TransitionPlus_V6;
+  trCheckPressResultToNGData : G7_TransitionPlus_V6;
+  trOKDataToProcessFinishedCommon : G7_TransitionPlus_V6;
+  trNGDataToProcessFinishedCommon : G7_TransitionPlus_V6;
+  trProcessFinishedCommonToJudgeStatus : G7_TransitionPlus_V6;
+
+  trJudgeStatusToOKCount : G7_TransitionPlus_V6;
+  trJudgeStatusToNGCount : G7_TransitionPlus_V6;
+  trOKCountToOverallProcessFinish : G7_TransitionPlus_V6;
+  trNGCountToOverallProcessFinish : G7_TransitionPlus_V6;
+  trOverallProcessFinishToMESResult : G7_TransitionPlus_V6;
+
+  trMESResultToBypassResult : G7_TransitionPlus_V6;
+  trBypassResultToResetMESUnload : G7_TransitionPlus_V6; // Assuming Online_1 in original is a bypass option
+  trBypassResultToMESResultOKHandler : G7_TransitionPlus_V6; // Assuming Trans327 in original
+  trResetMESUnloadToPrepareMESResult : G7_TransitionPlus_V6;
+  trPrepareMESResultToSendMESResult : G7_TransitionPlus_V6;
+  trSendMESResultToMESResultOK : G7_TransitionPlus_V6;
+  trSendMESResultToMESResultNG : G7_TransitionPlus_V6;
+  trSendMESResultToMESResultOverTime : G7_TransitionPlus_V6; // Assuming Trans324
+  trMESResultOKHandlerToMESResultComplete : G7_TransitionPlus_V6; // Assuming Trans328
+  trMESResultOKToMESResultComplete : G7_TransitionPlus_V6;
+  trMESResultNGToMESResultOK : G7_TransitionPlus_V6; // Assuming Trans323
+  trMESResultNGToMESResultOverTime : G7_TransitionPlus_V6; // Assuming Trans324
+  trMESResultOverTimeToBypassResult : G7_TransitionPlus_V6; // Assuming Trans329
+  trMESResultCompleteToRequestRobotPick : G7_TransitionPlus_V6;
+
+  trRequestRobotPickToWaitRobotPick : G7_TransitionPlus_V6;
+  trWaitRobotPickToDataMove : G7_TransitionPlus_V6;
+  trDataMoveToWaitRobotSafety : G7_TransitionPlus_V6;
+  trWaitRobotSafetyToClearData : G7_TransitionPlus_V6;
+  trClearDataToCycleFinished : G7_TransitionPlus_V6;
+  trCycleFinishedToProcessStart : G7_TransitionPlus_V6; // Back to start
+
+  // Duplicated steps/transitions from original to be consolidated or explicitly distinct
+  // PressProgram_1, PressHoming_1, PressReady_q_1, PressHoming_q_1, Step15, B_PressFitting_01CylinderToHP_1
+  // These seem to be duplicates of the initial press setup sequence, implying
+  // the press might be re-initialized after picking. If they are truly identical,
+  // the state machine should loop back to the initial setup directly.
+  // For now, I'll keep them distinct but name them clearly.
+  stfPressHomeSetProgram_Pick : G7_StepPlus_V6;
+  stfPressCylinderToHome_Pick : G7_StepPlus_V6;
+
+END_VAR
+
+VAR_TEMP
+  usiTempResult : USInt;
+  uiCurrentStationNumX10 : UInt;
+END_VAR
+
+BEGIN
+
+(* Pre-Operations *)
+(* --- General System Interface Handshake --- *)
+
+// Update Alarm Stop Status
+tonAlarmImmediatelyStop(IN := "AlwaysTRUE" AND "Station_Sys".Alarm.ImmediatelyStop, PT := T#300ms);
+ioPM_Inface.AlarmImdilyStop := tonAlarmImmediatelyStop.Q;
+ioPM_Inface.AlarmCycleStop := "AlwaysTRUE" AND "Station_Sys".Alarm.CycleStop;
+
+// Call System Flow Control Graph FB
+stcFlowControl.iSysInface := iSysInface;
+stcFlowControl.ioPM_Inface := ioPM_Inface;
+stcFlowControl.ioGraphCtrl := stcRtData.MOP;
+stcFlowControl();
+
+// Update Part Detection Timers (Renamed for clarity)
+tonShaftPresent(IN := "AlwaysTRUE" AND "iB-PressFitting-02ShaftDetection", PT := T#500ms);
+tofShaftAbsent(IN := NOT "iB-PressFitting-02ShaftDetection", PT := T#300ms);
+tonDownRingPresent(IN := "AlwaysTRUE" AND "iB-PressFitting-02DownRingDetection", PT := T#300ms);
+tofDownRingAbsent(IN := NOT "iB-PressFitting-02DownRingDetection", PT := T#300ms); // Original had TON for absence, corrected to TOF
+tonUpRingPresent(IN := "AlwaysTRUE" AND "iB-PressFitting-02UpRingDetection", PT := T#300ms);
+tonUpRingAbsent(IN := NOT "iB-PressFitting-02UpRingDetection", PT := T#300ms); // Original had TON for absence, corrected to TOF
+
+// Station Numbers
+uiPreviousStationNumber := 345;
+uiCurrentStationNumber := 350;
+
+(* *** State Machine Logic *** *)
+// Reset all Action_Done flags at the start of the cycle.
+// This is typically handled by the StepPlus_V6 FB itself.
+// For explicit control, it would be:
+// stfInitial.Done := FALSE;
+// stfReadyToProcess.Done := FALSE;
+// ... (for all steps)
+
+// Centralized State Machine Execution
+// This structure ensures that transitions are evaluated from the *currently active* step(s).
+// Assuming G7_StepPlus_V6 manages its own 'active' state,
+// and 'entry_time'/'timeout' internally.
+// Actions are executed when a step becomes active (on entry) or continuously
+// while active (`Action_X_Exec` should be handled by the step's internal logic).
+// For the given structure, we'll mimic the original style but correct the flow.
+
+// Initialize the state machine on first scan or explicit INIT command
+IF stcRtData.MOP.INIT THEN
+  // Deactivate all steps, then activate initial
+  stfInitial.ACTIVE := TRUE; // Assuming ACTIVE is the flag for the step's active state
+  stfInitial.ENTRY_TIME := SYS_TIME; // Start timer for this step
+  // ... (Deactivate all other steps here if a single active step is enforced)
+END_IF;
+
+// --- Step Actions and Transition Evaluation (Executed every cycle if not INIT) ---
+
+// S01-S99 Initial Sequence
+IF stfInitial.ACTIVE THEN
+  stfInitial.EXEC(); // Execute step actions
+  IF stfInitial.DONE THEN // Actions are complete
+    IF iSysInface.Ready THEN
+      stfInitial.ACTIVE := FALSE;
+      stfReadyToProcess.ACTIVE := TRUE;
+      stfReadyToProcess.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfReadyToProcess.ACTIVE THEN
+  stfReadyToProcess.EXEC();
+  IF stfReadyToProcess.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfReadyToProcess.ACTIVE := FALSE;
+      stfMESInitialization.ACTIVE := TRUE;
+      stfMESInitialization.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESInitialization.ACTIVE THEN
+  stfMESInitialization.EXEC();
+  IF stfMESInitialization.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESInitialization.ACTIVE := FALSE;
+      stfCheckPressGripper.ACTIVE := TRUE;
+      stfCheckPressGripper.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCheckPressGripper.ACTIVE THEN
+  stfCheckPressGripper.EXEC();
+  IF stfCheckPressGripper.DONE THEN
+    IF NOT "iB-PressFitting-02UpRingDetection" AND ( "AutoProcessControl".B_Press_2.GripStatus = 0 ) THEN
+      stfCheckPressGripper.ACTIVE := FALSE;
+      stfCheckRingPresence.ACTIVE := TRUE;
+      stfCheckRingPresence.ENTRY_TIME := SYS_TIME;
+    ELSIF ( "AutoProcessControl".B_Press_2.GripStatus <> 0 ) AND "iB-PressFitting-02UpRingDetection" THEN
+      stfCheckPressGripper.ACTIVE := FALSE;
+      stfGripperToWork.ACTIVE := TRUE;
+      stfGripperToWork.ENTRY_TIME := SYS_TIME;
+    ELSIF ( ( "AutoProcessControl".B_Press_2.GripStatus <> 0 ) AND ( NOT "iB-PressFitting-02UpRingDetection" ) ) OR ( ( "AutoProcessControl".B_Press_2.GripStatus = 0 ) AND "iB-PressFitting-02UpRingDetection" ) THEN
+      stfCheckPressGripper.ACTIVE := FALSE;
+      stfPartStatusError.ACTIVE := TRUE;
+      stfPartStatusError.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPartStatusError.ACTIVE THEN
+  stfPartStatusError.EXEC();
+  IF stfPartStatusError.DONE THEN
+    IF iSysInface.Reset THEN
+      stfPartStatusError.ACTIVE := FALSE;
+      stfCheckPressGripper.ACTIVE := TRUE;
+      stfCheckPressGripper.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCheckRingPresence.ACTIVE THEN
+  stfCheckRingPresence.EXEC();
+  IF stfCheckRingPresence.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfCheckRingPresence.ACTIVE := FALSE;
+      stfGripperToHome.ACTIVE := TRUE;
+      stfGripperToHome.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfGripperToHome.ACTIVE THEN
+  stfGripperToHome.EXEC();
+  IF stfGripperToHome.DONE THEN
+    IF ( NOT "ST10Cylinder".Cy[7].In.WorkPositionSensor ) AND "ST10Cylinder".Cy[7].In.HomePositionSensor THEN
+      stfGripperToHome.ACTIVE := FALSE;
+      stfPressHomeSetProgram.ACTIVE := TRUE;
+      stfPressHomeSetProgram.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfGripperToWork.ACTIVE THEN
+  stfGripperToWork.EXEC();
+  IF stfGripperToWork.DONE THEN
+    IF "ST10Cylinder".Cy[7].In.WorkPositionSensor AND ( NOT "ST10Cylinder".Cy[7].In.HomePositionSensor ) THEN
+      stfGripperToWork.ACTIVE := FALSE;
+      stfPressHomeSetProgram.ACTIVE := TRUE;
+      stfPressHomeSetProgram.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPressHomeSetProgram.ACTIVE THEN
+  stfPressHomeSetProgram.EXEC();
+  IF stfPressHomeSetProgram.DONE THEN
+    // PressReady_q & PressHoming_q were effectively part of PressHomeSetProgram flow
+    IF "DB_maXYmosNC2".oReady AND "DB_maXYmosNC2".oRdyAmp THEN // Press Ready Condition
+      IF NOT "DB_maXYmosNC2".oInHomePos THEN // Press Not Homing
+        stfPressHomeSetProgram.ACTIVE := FALSE;
+        // Directly transition to PressHoming if not homed and ready
+        stfPressHomeSetProgram.ACTIVE := FALSE;
+        // Assuming PressHoming handles setting Homing flag and waiting for oInHomePos
+        stfPressHomeSetProgram.ACTIVE := FALSE;
+        stfPressCylinderToHome.ACTIVE := TRUE; // Jump to cylinder homing after program if homed, else force homing first.
+        stfPressCylinderToHome.ENTRY_TIME := SYS_TIME;
+      ELSIF "DB_maXYmosNC2".oInHomePos THEN // Press Already Homing
+        stfPressHomeSetProgram.ACTIVE := FALSE;
+        stfPressCylinderToHome.ACTIVE := TRUE;
+        stfPressCylinderToHome.ENTRY_TIME := SYS_TIME;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPressCylinderToHome.ACTIVE THEN
+  stfPressCylinderToHome.EXEC();
+  IF stfPressCylinderToHome.DONE THEN
+    IF ( NOT "ST10Cylinder".Cy[8].In.WorkPositionSensor ) AND "ST10Cylinder".Cy[8].In.HomePositionSensor THEN
+      stfPressCylinderToHome.ACTIVE := FALSE;
+      stfInitial.ACTIVE := TRUE; // Loop back to initial state setup
+      stfInitial.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+// --- S100-S199 CheckPartStatus ---
+IF stfProcessStart.ACTIVE THEN
+  stfProcessStart.EXEC();
+  IF stfProcessStart.DONE THEN
+    IF ( NOT ioPM_Inface.AlarmCycleStop ) AND ioPM_Inface.Running AND ( NOT iSysInface.Auto.RunningOver ) AND ( ( NOT iSysInface.Auto.OneCycleMode ) OR ( iSysInface.Auto.OneCycleMode AND ioPM_Inface.TriggerOneCycle ) ) THEN
+      stfProcessStart.ACTIVE := FALSE;
+      stfDetermineProductState.ACTIVE := TRUE;
+      stfDetermineProductState.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfDetermineProductState.ACTIVE THEN
+  stfDetermineProductState.EXEC();
+  IF stfDetermineProductState.DONE THEN
+    IF ( NOT tonShaftPresent.Q ) AND ( NOT tonDownRingPresent.Q ) AND ( "AutoProcessData".B_Press2.PartStatus = 0 ) AND ( stfDetermineProductState.TIME_IN_STATE > T#1000ms ) THEN
+      stfDetermineProductState.ACTIVE := FALSE;
+      stfNoPartPresent.ACTIVE := TRUE;
+      stfNoPartPresent.ENTRY_TIME := SYS_TIME;
+    ELSIF tonShaftPresent.Q AND ( "AutoProcessData".B_Press2.PartStatus = 399 ) THEN
+      stfDetermineProductState.ACTIVE := FALSE;
+      stfShaftPresentOK.ACTIVE := TRUE;
+      stfShaftPresentOK.ENTRY_TIME := SYS_TIME;
+    ELSIF tonShaftPresent.Q AND tonDownRingPresent.Q AND ( "AutoProcessData".B_Press2.PartStatus = 420 ) THEN
+      stfDetermineProductState.ACTIVE := FALSE;
+      stfShaftAndRingReady.ACTIVE := TRUE;
+      stfShaftAndRingReady.ENTRY_TIME := SYS_TIME;
+    ELSIF ( "AutoProcessData".B_Press2.PartStatus = 450 ) OR ( "AutoProcessData".B_Press2.PartStatus = 455 ) THEN
+      stfDetermineProductState.ACTIVE := FALSE;
+      stfPressNGDetected.ACTIVE := TRUE;
+      stfPressNGDetected.ENTRY_TIME := SYS_TIME;
+    ELSIF "AutoProcessData".B_Press2.PartStatus = 480 THEN
+      stfDetermineProductState.ACTIVE := FALSE;
+      stfMESState.ACTIVE := TRUE;
+      stfMESState.ENTRY_TIME := SYS_TIME;
+    ELSIF TRUE THEN // Original: TRUE (This catches any other case and moves to MESOK)
+      stfDetermineProductState.ACTIVE := FALSE;
+      stfMESOKState.ACTIVE := TRUE;
+      stfMESOKState.ENTRY_TIME := SYS_TIME;
+    ELSIF ( ( tonShaftPresent.Q AND tonDownRingPresent.Q AND ( "AutoProcessData".B_Press2.PartStatus = 0 ) ) OR ( ( NOT "iB-PressFitting-02ShaftDetection" AND NOT "iB-PressFitting-02DownRingDetection" ) AND ( "AutoProcessData".B_Press2.PartStatus <> 0 ) ) ) AND ( stfDetermineProductState.TIME_IN_STATE > T#1500ms ) THEN
+      stfDetermineProductState.ACTIVE := FALSE;
+      stfPartStatusError.ACTIVE := TRUE;
+      stfPartStatusError.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfNoPartPresent.ACTIVE THEN
+  stfNoPartPresent.EXEC();
+  IF stfNoPartPresent.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfNoPartPresent.ACTIVE := FALSE;
+      stfCheckMachineState.ACTIVE := TRUE;
+      stfCheckMachineState.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfShaftPresentOK.ACTIVE THEN
+  stfShaftPresentOK.EXEC();
+  IF stfShaftPresentOK.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfShaftPresentOK.ACTIVE := FALSE;
+      stfRequestRobotPutRing.ACTIVE := TRUE; // Original: PutRing which is an action-step
+      stfRequestRobotPutRing.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPartStatusError.ACTIVE THEN
+  stfPartStatusError.EXEC();
+  IF stfPartStatusError.DONE THEN
+    IF iSysInface.Reset THEN
+      stfPartStatusError.ACTIVE := FALSE;
+      stfDetermineProductState.ACTIVE := TRUE;
+      stfDetermineProductState.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCheckMachineState.ACTIVE THEN
+  stfCheckMachineState.EXEC();
+  IF stfCheckMachineState.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfCheckMachineState.ACTIVE := FALSE;
+      stfNormalModeOperation.ACTIVE := TRUE;
+      stfNormalModeOperation.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfNormalModeOperation.ACTIVE THEN
+  stfNormalModeOperation.EXEC();
+  IF stfNormalModeOperation.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfNormalModeOperation.ACTIVE := FALSE;
+      stfProcessCTStart.ACTIVE := TRUE;
+      stfProcessCTStart.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfProcessCTStart.ACTIVE THEN
+  stfProcessCTStart.EXEC();
+  IF stfProcessCTStart.DONE THEN
+    IF stfProcessCTStart.TIME_IN_STATE > T#100ms THEN
+      stfProcessCTStart.ACTIVE := FALSE;
+      stfRequestRobotPutShaft.ACTIVE := TRUE;
+      stfRequestRobotPutShaft.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfRequestRobotPutShaft.ACTIVE THEN
+  stfRequestRobotPutShaft.EXEC();
+  IF stfRequestRobotPutShaft.DONE THEN
+    IF "KukaRobot2_CtrlDB".sROBtoPLC.User.Cycle.DO273_PressPutPart1Inside AND ( NOT "KukaRobot2_CtrlDB".sROBtoPLC.User.Cycle.DO274_PressPutPart1Finish ) THEN
+      stfRequestRobotPutShaft.ACTIVE := FALSE;
+      stfWaitRobotPutShaft.ACTIVE := TRUE;
+      stfWaitRobotPutShaft.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfRequestRobotPutRing.ACTIVE THEN
+  stfRequestRobotPutRing.EXEC();
+  IF stfRequestRobotPutRing.DONE THEN
+    IF "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO277_PressPutRingInside AND ( NOT "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO278_PressPutRingFinish ) THEN
+      stfRequestRobotPutRing.ACTIVE := FALSE;
+      stfWaitRobotPutRing.ACTIVE := TRUE;
+      stfWaitRobotPutRing.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfWaitRobotPutShaft.ACTIVE THEN
+  stfWaitRobotPutShaft.EXEC();
+  IF stfWaitRobotPutShaft.DONE THEN
+    IF "KukaRobot2_CtrlDB".sROBtoPLC.User.Cycle.DO274_PressPutPart1Finish THEN
+      stfWaitRobotPutShaft.ACTIVE := FALSE;
+      stfRobotLeavePressAreaShaft.ACTIVE := TRUE;
+      stfRobotLeavePressAreaShaft.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfWaitRobotPutRing.ACTIVE THEN
+  stfWaitRobotPutRing.EXEC();
+  IF stfWaitRobotPutRing.DONE THEN
+    IF "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO278_PressPutRingFinish THEN
+      stfWaitRobotPutRing.ACTIVE := FALSE;
+      stfRobotLeavePressAreaRing.ACTIVE := TRUE;
+      stfRobotLeavePressAreaRing.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfRobotLeavePressAreaShaft.ACTIVE THEN
+  stfRobotLeavePressAreaShaft.EXEC();
+  IF stfRobotLeavePressAreaShaft.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfRobotLeavePressAreaShaft.ACTIVE := FALSE;
+      stfPartCheckShaft.ACTIVE := TRUE;
+      stfPartCheckShaft.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfRobotLeavePressAreaRing.ACTIVE THEN
+  stfRobotLeavePressAreaRing.EXEC();
+  IF stfRobotLeavePressAreaRing.DONE THEN
+    IF "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO177_PressPut1Area AND "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO178_Robot2Area THEN
+      stfRobotLeavePressAreaRing.ACTIVE := FALSE;
+      stfPartCheckRing.ACTIVE := TRUE;
+      stfPartCheckRing.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPartCheckShaft.ACTIVE THEN
+  stfPartCheckShaft.EXEC();
+  IF stfPartCheckShaft.DONE THEN
+    IF "AutoProcessData".B_Press2.PartStatus = 399 AND tonShaftPresent.Q THEN
+      stfPartCheckShaft.ACTIVE := FALSE;
+      stfRequestRobotPutRing.ACTIVE := TRUE; // Original: PutRing action-step
+      stfRequestRobotPutRing.ENTRY_TIME := SYS_TIME;
+    ELSIF "AutoProcessData".B_Press2.PartStatus = 399 AND ( NOT "iB-PressFitting-02ShaftDetection" ) AND tofShaftAbsent.Q AND ( stfPartCheckShaft.TIME_IN_STATE > T#1500ms ) THEN
+      stfPartCheckShaft.ACTIVE := FALSE;
+      stfProductCheckAlarmShaft.ACTIVE := TRUE;
+      stfProductCheckAlarmShaft.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfProductCheckAlarmShaft.ACTIVE THEN
+  stfProductCheckAlarmShaft.EXEC();
+  IF stfProductCheckAlarmShaft.DONE THEN
+    IF iSysInface.Reset THEN
+      stfProductCheckAlarmShaft.ACTIVE := FALSE;
+      stfPartCheckShaft.ACTIVE := TRUE;
+      stfPartCheckShaft.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPartCheckRing.ACTIVE THEN
+  stfPartCheckRing.EXEC();
+  IF stfPartCheckRing.DONE THEN
+    IF "AutoProcessData".B_Press2.PartStatus = 420 AND tonDownRingPresent.Q THEN // Original was TON[0].Q but should be tonDownRingPresent.Q for ring
+      stfPartCheckRing.ACTIVE := FALSE;
+      stfProcessFinishedOK.ACTIVE := TRUE; // Original: ProcessFInish_2
+      stfProcessFinishedOK.ENTRY_TIME := SYS_TIME;
+    ELSIF NOT "iB-PressFitting-02DownRingDetection" AND tofDownRingAbsent.Q AND (stfPartCheckRing.TIME_IN_STATE > T#1500ms) THEN // Added logic for missing ring
+      stfPartCheckRing.ACTIVE := FALSE;
+      stfProductCheckAlarmRing.ACTIVE := TRUE;
+      stfProductCheckAlarmRing.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfProductCheckAlarmRing.ACTIVE THEN
+  stfProductCheckAlarmRing.EXEC();
+  IF stfProductCheckAlarmRing.DONE THEN
+    IF iSysInface.Reset THEN
+      stfProductCheckAlarmRing.ACTIVE := FALSE;
+      stfPartCheckRing.ACTIVE := TRUE;
+      stfPartCheckRing.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfShaftAndRingReady.ACTIVE THEN
+  stfShaftAndRingReady.EXEC();
+  IF stfShaftAndRingReady.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfShaftAndRingReady.ACTIVE := FALSE;
+      stfProcessFinishedOK.ACTIVE := TRUE; // Original: ProcessFInish_2
+      stfProcessFinishedOK.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPressNGDetected.ACTIVE THEN
+  stfPressNGDetected.EXEC();
+  IF stfPressNGDetected.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfPressNGDetected.ACTIVE := FALSE;
+      stfProcessFinishedNG.ACTIVE := TRUE; // Original: ProcessFInish_1
+      stfProcessFinishedNG.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESState.ACTIVE THEN
+  stfMESState.EXEC();
+  IF stfMESState.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESState.ACTIVE := FALSE;
+      stfProcessFinishedNG.ACTIVE := TRUE; // Original: ProcessFInish_1
+      stfProcessFinishedNG.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESOKState.ACTIVE THEN
+  stfMESOKState.EXEC();
+  IF stfMESOKState.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESOKState.ACTIVE := FALSE;
+      stfRequestRobotPick.ACTIVE := TRUE; // Original: RobotPick action-step
+      stfRequestRobotPick.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESNGState.ACTIVE THEN
+  stfMESNGState.EXEC();
+  IF stfMESNGState.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESNGState.ACTIVE := FALSE;
+      stfRequestRobotPick.ACTIVE := TRUE; // Original: RobotPick action-step
+      stfRequestRobotPick.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+// --- S150-S199 MES Check In ---
+IF stfProcessFinishedOK.ACTIVE THEN
+  stfProcessFinishedOK.EXEC();
+  IF stfProcessFinishedOK.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfProcessFinishedOK.ACTIVE := FALSE;
+      stfMESCheckIn.ACTIVE := TRUE;
+      stfMESCheckIn.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESCheckIn.ACTIVE THEN
+  stfMESCheckIn.EXEC();
+  IF stfMESCheckIn.DONE THEN
+    IF NOT "Station_Sys".Cmd.OnOffLine THEN // Assumed Trans_Online is related to OnOffLine
+      stfMESCheckIn.ACTIVE := FALSE;
+      stfResetMESCheckRequest.ACTIVE := TRUE;
+      stfResetMESCheckRequest.ENTRY_TIME := SYS_TIME;
+    ELSIF "Station_Sys".Cmd.OnOffLine THEN
+      stfMESCheckIn.ACTIVE := FALSE;
+      stfBypassMESCheck.ACTIVE := TRUE;
+      stfBypassMESCheck.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfBypassMESCheck.ACTIVE THEN
+  stfBypassMESCheck.EXEC();
+  IF stfBypassMESCheck.DONE THEN
+    IF "Station_Sys".Cmd.OnOffLine THEN
+      stfBypassMESCheck.ACTIVE := FALSE;
+      stfBypassMESResult.ACTIVE := TRUE; // Transition to MES Result Bypass
+      stfBypassMESResult.ENTRY_TIME := SYS_TIME;
+    ELSIF NOT "Station_Sys".Cmd.OnOffLine THEN
+      stfBypassMESCheck.ACTIVE := FALSE;
+      stfResetMESCheckRequest.ACTIVE := TRUE;
+      stfResetMESCheckRequest.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfResetMESCheckRequest.ACTIVE THEN
+  stfResetMESCheckRequest.EXEC();
+  IF stfResetMESCheckRequest.DONE THEN
+    IF iSysInface.Reset THEN
+      stfResetMESCheckRequest.ACTIVE := FALSE;
+      stfResetMESCheckRequest.ACTIVE := TRUE; // Loop back to itself on reset
+      stfResetMESCheckRequest.ENTRY_TIME := SYS_TIME;
+    ELSIF NOT "PLCtoMES"."PLC.Load_Station7ChickInReq" AND NOT "MEStoPLC"."MES.Load_Station7PartOK" AND NOT "MEStoPLC"."MES.Load_Station7PartNG" AND NOT "MEStoPLC"."MES.Load_Station7ReqMesDone" THEN
+      stfResetMESCheckRequest.ACTIVE := FALSE;
+      stfPrepareMESCheckData.ACTIVE := TRUE;
+      stfPrepareMESCheckData.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPrepareMESCheckData.ACTIVE THEN
+  stfPrepareMESCheckData.EXEC();
+  IF stfPrepareMESCheckData.DONE THEN
+    IF stfPrepareMESCheckData.TIME_IN_STATE > T#200ms THEN
+      stfPrepareMESCheckData.ACTIVE := FALSE;
+      stfSendMESCheckInRequest.ACTIVE := TRUE;
+      stfSendMESCheckInRequest.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfSendMESCheckInRequest.ACTIVE THEN
+  stfSendMESCheckInRequest.EXEC();
+  IF stfSendMESCheckInRequest.DONE THEN
+    IF "MEStoPLC"."MES.Load_Station7PartOK" AND ( NOT "MEStoPLC"."MES.Load_Station7PartNG" ) AND "MEStoPLC"."MES.Load_Station7ReqMesDone" THEN
+      stfSendMESCheckInRequest.ACTIVE := FALSE;
+      stfMESCheckInOKHandler.ACTIVE := TRUE;
+      stfMESCheckInOKHandler.ENTRY_TIME := SYS_TIME;
+    ELSIF ( NOT "MEStoPLC"."MES.Load_Station7PartOK" ) AND "MEStoPLC"."MES.Load_Station7PartNG" AND "MEStoPLC"."MES.Load_Station7ReqMesDone" THEN
+      stfSendMESCheckInRequest.ACTIVE := FALSE;
+      stfMESCheckInNG.ACTIVE := TRUE;
+      stfMESCheckInNG.ENTRY_TIME := SYS_TIME;
+    ELSIF stfSendMESCheckInRequest.TIME_IN_STATE > T#10s THEN
+      stfSendMESCheckInRequest.ACTIVE := FALSE;
+      stfMESCheckInOverTime.ACTIVE := TRUE;
+      stfMESCheckInOverTime.ENTRY_TIME := SYS_TIME;
+    ELSIF TRUE THEN // Original had a catch-all to MESCheckNG_2
+      stfSendMESCheckInRequest.ACTIVE := FALSE;
+      stfMESCheckInNG.ACTIVE := TRUE; // Default to NG if other conditions not met
+      stfMESCheckInNG.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESCheckInOKHandler.ACTIVE THEN
+  stfMESCheckInOKHandler.EXEC();
+  IF stfMESCheckInOKHandler.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESCheckInOKHandler.ACTIVE := FALSE;
+      stfMESCheckInComplete.ACTIVE := TRUE;
+      stfMESCheckInComplete.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESCheckInNG.ACTIVE THEN
+  stfMESCheckInNG.EXEC();
+  IF stfMESCheckInNG.DONE THEN
+    IF TRUE THEN // Original: MESCheckNG_2 leads to CheckFinish_1 (which is MESCheckInComplete)
+      stfMESCheckInNG.ACTIVE := FALSE;
+      stfMESCheckInComplete.ACTIVE := TRUE;
+      stfMESCheckInComplete.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESCheckInOverTime.ACTIVE THEN
+  stfMESCheckInOverTime.EXEC();
+  IF stfMESCheckInOverTime.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESCheckInOverTime.ACTIVE := FALSE;
+      stfBypassMESCheck.ACTIVE := TRUE;
+      stfBypassMESCheck.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESCheckInComplete.ACTIVE THEN
+  stfMESCheckInComplete.EXEC();
+  IF stfMESCheckInComplete.DONE THEN
+    IF "AutoProcessData".B_Press2.PartStatus = 451 THEN // If MES Check-In resulted in NG (e.g., from MESCheckInNG)
+      stfMESCheckInComplete.ACTIVE := FALSE;
+      stfPressingProcess.ACTIVE := TRUE;
+      stfPressingProcess.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+// --- S200-S299 Pressing ---
+IF stfPressingProcess.ACTIVE THEN
+  stfPressingProcess.EXEC();
+  IF stfPressingProcess.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfPressingProcess.ACTIVE := FALSE;
+      stfCheckPressReady.ACTIVE := TRUE;
+      stfCheckPressReady.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCheckPressReady.ACTIVE THEN
+  stfCheckPressReady.EXEC();
+  IF stfCheckPressReady.DONE THEN
+    IF "DB_maXYmosNC2".InputMessages.StatusBits.READY AND "DB_maXYmosNC2".InputMessages.StatusBits."DRIVE-ENABLED" AND "ProcessData_1".OP40_3.Kistler_Interlock THEN
+      stfCheckPressReady.ACTIVE := FALSE;
+      stfCheckPressProgram.ACTIVE := TRUE;
+      stfCheckPressProgram.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCheckPressProgram.ACTIVE THEN
+  stfCheckPressProgram.EXEC();
+  IF stfCheckPressProgram.DONE THEN
+    IF "DB_maXYmosNC2".InputMessages.StatusBits.MP <> 0 THEN
+      stfCheckPressProgram.ACTIVE := FALSE;
+      stfStartPressCycle.ACTIVE := TRUE;
+      stfStartPressCycle.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfStartPressCycle.ACTIVE THEN
+  stfStartPressCycle.EXEC();
+  IF stfStartPressCycle.DONE THEN
+    IF "DB_maXYmosNC2".InputMessages.StatusBits.UNI = BYTE#16#0 AND ( NOT "DB_maXYmosNC2".oRdyCmd ) AND "DB_maXYmosNC2".oRunSeq THEN
+      stfStartPressCycle.ACTIVE := FALSE;
+      stfCheckPressSensors.ACTIVE := TRUE;
+      stfCheckPressSensors.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCheckPressSensors.ACTIVE THEN
+  stfCheckPressSensors.EXEC();
+  IF stfCheckPressSensors.DONE THEN
+    IF "DB_maXYmosNC2".InputMessages.StatusBits."O-UNI" = 1 THEN
+      stfCheckPressSensors.ACTIVE := FALSE;
+      stfPressAxisError.ACTIVE := TRUE; // Original: PartStatus_1
+      stfPressAxisError.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPressAxisError.ACTIVE THEN
+  stfPressAxisError.EXEC();
+  IF stfPressAxisError.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfPressAxisError.ACTIVE := FALSE;
+      stfWaitPressFinish.ACTIVE := TRUE;
+      stfWaitPressFinish.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfWaitPressFinish.ACTIVE THEN
+  stfWaitPressFinish.EXEC();
+  IF stfWaitPressFinish.DONE THEN
+    IF ( NOT "DB_maXYmosNC2".InputMessages.StatusBits."RUN-SEQUENCE" ) AND "DB_maXYmosNC2".InputMessages.StatusBits."SEQUENCE-END" OR "Tag_34" THEN
+      stfWaitPressFinish.ACTIVE := FALSE;
+      stfResetPressCycleStart.ACTIVE := TRUE;
+      stfResetPressCycleStart.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfResetPressCycleStart.ACTIVE THEN
+  stfResetPressCycleStart.EXEC();
+  IF stfResetPressCycleStart.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfResetPressCycleStart.ACTIVE := FALSE;
+      stfCheckPressOperationResult.ACTIVE := TRUE;
+      stfCheckPressOperationResult.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCheckPressOperationResult.ACTIVE THEN
+  stfCheckPressOperationResult.EXEC();
+  IF stfCheckPressOperationResult.DONE THEN
+    IF "DB_maXYmosNC2".oCycleOK AND ( NOT "DB_maXYmosNC2".oCycleNOK ) THEN
+      stfCheckPressOperationResult.ACTIVE := FALSE;
+      stfPressResultOKData.ACTIVE := TRUE;
+      stfPressResultOKData.ENTRY_TIME := SYS_TIME;
+    ELSIF ( NOT "DB_maXYmosNC2".oCycleOK ) AND "DB_maXYmosNC2".oCycleNOK THEN
+      stfCheckPressOperationResult.ACTIVE := FALSE;
+      stfPressResultNGData.ACTIVE := TRUE;
+      stfPressResultNGData.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPressResultOKData.ACTIVE THEN
+  stfPressResultOKData.EXEC();
+  IF stfPressResultOKData.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfPressResultOKData.ACTIVE := FALSE;
+      stfProcessFinishedCommon.ACTIVE := TRUE; // Original: Step147
+      stfProcessFinishedCommon.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPressResultNGData.ACTIVE THEN
+  stfPressResultNGData.EXEC();
+  IF stfPressResultNGData.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfPressResultNGData.ACTIVE := FALSE;
+      stfProcessFinishedCommon.ACTIVE := TRUE; // Original: Step147
+      stfProcessFinishedCommon.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfProcessFinishedCommon.ACTIVE THEN
+  stfProcessFinishedCommon.EXEC();
+  IF stfProcessFinishedCommon.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfProcessFinishedCommon.ACTIVE := FALSE;
+      stfProcessFinishedNG.ACTIVE := TRUE; // Original: ProcessFInish_1
+      stfProcessFinishedNG.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+// --- S400-S499 OK&NG Status Count ---
+IF stfProcessFinishedNG.ACTIVE THEN
+  stfProcessFinishedNG.EXEC();
+  IF stfProcessFinishedNG.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfProcessFinishedNG.ACTIVE := FALSE;
+      stfJudgeProcessStatus.ACTIVE := TRUE; // Original: Step400 -> JudgeStatus
+      stfJudgeProcessStatus.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfJudgeProcessStatus.ACTIVE THEN
+  stfJudgeProcessStatus.EXEC();
+  IF stfJudgeProcessStatus.DONE THEN
+    IF ioStatus = 190 THEN
+      stfJudgeProcessStatus.ACTIVE := FALSE;
+      stfIncrementOKCount.ACTIVE := TRUE;
+      stfIncrementOKCount.ENTRY_TIME := SYS_TIME;
+    ELSIF ioStatus <> 190 THEN
+      stfJudgeProcessStatus.ACTIVE := FALSE;
+      stfIncrementNGCount.ACTIVE := TRUE;
+      stfIncrementNGCount.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfIncrementOKCount.ACTIVE THEN
+  stfIncrementOKCount.EXEC();
+  IF stfIncrementOKCount.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfIncrementOKCount.ACTIVE := FALSE;
+      stfOverallProcessFinish.ACTIVE := TRUE;
+      stfOverallProcessFinish.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfIncrementNGCount.ACTIVE THEN
+  stfIncrementNGCount.EXEC();
+  IF stfIncrementNGCount.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfIncrementNGCount.ACTIVE := FALSE;
+      stfOverallProcessFinish.ACTIVE := TRUE;
+      stfOverallProcessFinish.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfOverallProcessFinish.ACTIVE THEN
+  stfOverallProcessFinish.EXEC();
+  IF stfOverallProcessFinish.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfOverallProcessFinish.ACTIVE := FALSE;
+      stfMESResultUpload.ACTIVE := TRUE;
+      stfMESResultUpload.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+// --- S500-S599 MES Result ---
+IF stfMESResultUpload.ACTIVE THEN
+  stfMESResultUpload.EXEC();
+  IF stfMESResultUpload.DONE THEN
+    IF NOT "Station_Sys".Cmd.OnOffLine THEN
+      stfMESResultUpload.ACTIVE := FALSE;
+      stfResetMESUnloadRequest.ACTIVE := TRUE;
+      stfResetMESUnloadRequest.ENTRY_TIME := SYS_TIME;
+    ELSIF "Station_Sys".Cmd.OnOffLine THEN
+      stfMESResultUpload.ACTIVE := FALSE;
+      stfBypassMESResult.ACTIVE := TRUE;
+      stfBypassMESResult.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfBypassMESResult.ACTIVE THEN
+  stfBypassMESResult.EXEC();
+  IF stfBypassMESResult.DONE THEN
+    IF "Station_Sys".Cmd.OnOffLine THEN
+      stfBypassMESResult.ACTIVE := FALSE;
+      stfMESResultOKHandler.ACTIVE := TRUE; // Original: Ok_1
+      stfMESResultOKHandler.ENTRY_TIME := SYS_TIME;
+    ELSIF NOT "Station_Sys".Cmd.OnOffLine THEN
+      stfBypassMESResult.ACTIVE := FALSE;
+      stfResetMESUnloadRequest.ACTIVE := TRUE;
+      stfResetMESUnloadRequest.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESResultOKHandler.ACTIVE THEN
+  stfMESResultOKHandler.EXEC();
+  IF stfMESResultOKHandler.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESResultOKHandler.ACTIVE := FALSE;
+      stfMESResultUploadOverTime.ACTIVE := TRUE; // Original: Step314
+      stfMESResultUploadOverTime.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfResetMESUnloadRequest.ACTIVE THEN
+  stfResetMESUnloadRequest.EXEC();
+  IF stfResetMESUnloadRequest.DONE THEN
+    IF NOT "PLCtoMES"."PLC.Unload_Station7DataSaveReq" AND NOT "MEStoPLC"."MES.Unload_ResultsStored7OK" AND NOT "MEStoPLC"."MES.Unload_ResultsStored7NG" AND NOT "MEStoPLC"."MES.Unload_ResultsStored7ReqMesDone" THEN
+      stfResetMESUnloadRequest.ACTIVE := FALSE;
+      stfPrepareMESResultData.ACTIVE := TRUE;
+      stfPrepareMESResultData.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfPrepareMESResultData.ACTIVE THEN
+  stfPrepareMESResultData.EXEC();
+  IF stfPrepareMESResultData.DONE THEN
+    IF stfPrepareMESResultData.TIME_IN_STATE > T#300ms THEN
+      stfPrepareMESResultData.ACTIVE := FALSE;
+      stfSendMESResultRequest.ACTIVE := TRUE;
+      stfSendMESResultRequest.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESResultUploadOverTime.ACTIVE THEN
+  stfMESResultUploadOverTime.EXEC();
+  IF stfMESResultUploadOverTime.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESResultUploadOverTime.ACTIVE := FALSE;
+      stfMESResultUploadOverTime.ACTIVE := TRUE; // Loop to itself or transition to MESOverTime?
+      stfMESResultUploadOverTime.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfSendMESResultRequest.ACTIVE THEN
+  stfSendMESResultRequest.EXEC();
+  IF stfSendMESResultRequest.DONE THEN
+    IF ( NOT "MEStoPLC"."MES.Unload_ResultsStored7OK" ) AND "MEStoPLC"."MES.Unload_ResultsStored7NG" AND "MEStoPLC"."MES.Unload_ResultsStored7ReqMesDone" THEN
+      stfSendMESResultRequest.ACTIVE := FALSE;
+      stfMESResultNG.ACTIVE := TRUE; // Original: MESResultOK_1
+      stfMESResultNG.ENTRY_TIME := SYS_TIME;
+    ELSIF "AutoProcessData".B_Press2.PartStatus = 452 THEN // From original, likely related to MESCheckNG_3
+      stfSendMESResultRequest.ACTIVE := FALSE;
+      stfMESResultNG.ACTIVE := TRUE;
+      stfMESResultNG.ENTRY_TIME := SYS_TIME;
+    ELSIF ( NOT "MEStoPLC"."MES.Load_Station7ReqMesDone" ) AND ( stfSendMESResultRequest.TIME_IN_STATE > T#10s ) THEN
+      stfSendMESResultRequest.ACTIVE := FALSE;
+      stfMESResultUploadOverTime.ACTIVE := TRUE;
+      stfMESResultUploadOverTime.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESResultNG.ACTIVE THEN
+  stfMESResultNG.EXEC();
+  IF stfMESResultNG.DONE THEN
+    IF "MEStoPLC"."MES.Unload_ResultsStored7OK" AND ( NOT "MEStoPLC"."MES.Unload_ResultsStored7NG" ) AND "MEStoPLC"."MES.Unload_ResultsStored7ReqMesDone" AND ( "AutoProcessData".B_Press2.PartStatus <> 450 ) AND ( "AutoProcessData".B_Press2.PartStatus <> 455 ) THEN
+      stfMESResultNG.ACTIVE := FALSE;
+      stfMESResultOK.ACTIVE := TRUE;
+      stfMESResultOK.ENTRY_TIME := SYS_TIME;
+    ELSIF ( NOT "MEStoPLC"."MES.Load_Station7ReqMesDone" ) AND ( stfMESResultNG.TIME_IN_STATE > T#10s ) THEN
+      stfMESResultNG.ACTIVE := FALSE;
+      stfMESResultUploadOverTime.ACTIVE := TRUE;
+      stfMESResultUploadOverTime.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESResultOK.ACTIVE THEN
+  stfMESResultOK.EXEC();
+  IF stfMESResultOK.DONE THEN
+    IF "AutoProcessData".B_Press2.PartStatus = 499 THEN
+      stfMESResultOK.ACTIVE := FALSE;
+      stfMESResultComplete.ACTIVE := TRUE;
+      stfMESResultComplete.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfMESResultComplete.ACTIVE THEN
+  stfMESResultComplete.EXEC();
+  IF stfMESResultComplete.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfMESResultComplete.ACTIVE := FALSE;
+      stfRequestRobotPick.ACTIVE := TRUE; // Original: RobotPick action-step
+      stfRequestRobotPick.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+// --- S600-S699 RobotPick ---
+IF stfRequestRobotPick.ACTIVE THEN
+  stfRequestRobotPick.EXEC();
+  IF stfRequestRobotPick.DONE THEN
+    IF "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO281_PressPickInside AND ( NOT "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO282_PressPickFinish ) THEN
+      stfRequestRobotPick.ACTIVE := FALSE;
+      stfWaitRobotPickFinish.ACTIVE := TRUE;
+      stfWaitRobotPickFinish.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfWaitRobotPickFinish.ACTIVE THEN
+  stfWaitRobotPickFinish.EXEC();
+  IF stfWaitRobotPickFinish.DONE THEN
+    IF "KukaRobot3_CtrlDB".sROBtoPLC.User.Cycle.DO282_PressPickFinish THEN
+      stfWaitRobotPickFinish.ACTIVE := FALSE;
+      stfRobotPickDataMove.ACTIVE := TRUE;
+      stfRobotPickDataMove.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfRobotPickDataMove.ACTIVE THEN
+  stfRobotPickDataMove.EXEC();
+  IF stfRobotPickDataMove.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfRobotPickDataMove.ACTIVE := FALSE;
+      stfWaitRobotInSafety.ACTIVE := TRUE;
+      stfWaitRobotInSafety.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfWaitRobotInSafety.ACTIVE THEN
+  stfWaitRobotInSafety.EXEC();
+  IF stfWaitRobotInSafety.DONE THEN
+    IF "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO177_PressPut1Area AND "KukaRobot3_CtrlDB".sROBtoPLC.User.Home.DO178_Robot2Area THEN
+      stfWaitRobotInSafety.ACTIVE := FALSE;
+      stfClearProcessData.ACTIVE := TRUE;
+      stfClearProcessData.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfClearProcessData.ACTIVE THEN
+  stfClearProcessData.EXEC();
+  IF stfClearProcessData.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfClearProcessData.ACTIVE := FALSE;
+      stfCycleFinished.ACTIVE := TRUE;
+      stfCycleFinished.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF stfCycleFinished.ACTIVE THEN
+  stfCycleFinished.EXEC();
+  IF stfCycleFinished.DONE THEN
+    IF TRUE THEN // Original: TRUE
+      stfCycleFinished.ACTIVE := FALSE;
+      stfProcessStart.ACTIVE := TRUE; // Loop back to start of processing
+      stfProcessStart.ENTRY_TIME := SYS_TIME;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+(* Post-Operations *)
+(* --- General System Interface Update --- *)
+
+ioPM_Inface.StepNum := stcRtData.S_DISPLAY;
+
+// Alarm Reset logic
+IF iSysInface.Reset THEN
+  iAlarmID := 0;
+END_IF;
+
+// Workpiece Release Delay Timer
+tonWorkpieceReleaseDelay(IN := bWorkpieceReleasing, PT := T#0.5s);
+bWorkpieceReleasing := FALSE;
+
+END_FUNCTION_BLOCK

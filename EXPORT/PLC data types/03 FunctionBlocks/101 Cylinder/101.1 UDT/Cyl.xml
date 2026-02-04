@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="In" Datatype="Struct">
+      <Member Name="Error" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Outer error force output off</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="GoWorkInterlock" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">1=permit motion</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="GoHomeInterlock" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">1=permit motion</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="WorkPositionSensor" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">PLC DI</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="HomePositionSensor" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">PLC DI</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="ValveType" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">0 : needn`t holding(2way&amp;3way middle sealing) / 1: need holding(3way middle leaking)</MultiLanguageText>
+        </Comment>
+        <StartValue>true</StartValue>
+      </Member>
+      <Member Name="ManualOutputType" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">0 : Output not hold / 1: Output hold (in Manual mode)</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="FaultTime" Datatype="Int">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Value*100mS</MultiLanguageText>
+        </Comment>
+        <StartValue>50</StartValue>
+      </Member>
+      <Member Name="OnPositionTime" Datatype="Int">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Value*100mS</MultiLanguageText>
+        </Comment>
+        <StartValue>10</StartValue>
+      </Member>
+    </Member>
+    <Member Name="Inout" Datatype="Struct">
+      <Member Name="ManualGoWork" Datatype="Bool" />
+      <Member Name="ManualGoHome" Datatype="Bool" />
+      <Member Name="AutoGoWork" Datatype="Bool" />
+      <Member Name="AutoGoHome" Datatype="Bool" />
+      <Member Name="ResetOut" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">泄气</MultiLanguageText>
+        </Comment>
+      </Member>
+    </Member>
+    <Member Name="S" Datatype="Struct">
+      <Member Name="GoWorkTime" Datatype="Int" />
+      <Member Name="GoHomeTime" Datatype="Int" />
+      <Member Name="WorkFaultTime" Datatype="Int" />
+      <Member Name="HomeFaultTime" Datatype="Int" />
+      <Member Name="BothSensorOnTime" Datatype="Int" />
+      <Member Name="Pulse100mSP" Datatype="Bool" />
+      <Member Name="AutoGoWorkP" Datatype="Bool" />
+      <Member Name="AutoGoHomeP" Datatype="Bool" />
+      <Member Name="GoWork100mSP" Datatype="Bool" />
+      <Member Name="GoHome100mSP" Datatype="Bool" />
+      <Member Name="BothSensorOn100mSP" Datatype="Bool" />
+      <Member Name="Alarm" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">报警汇总</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="spare1" Datatype="Bool">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+      </Member>
+      <Member Name="spare2" Datatype="Byte">
+        <AttributeList>
+          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
+        </AttributeList>
+      </Member>
+    </Member>
+    <Member Name="Out" Datatype="Struct">
+      <Member Name="GoWorkPosition" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">PLC DQ</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="GoHomePosition" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">PLC DQ</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="GoWPButtonActive" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">For HMI button,indicate can operate go work button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="GoHPButtonActive" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">For HMI button,indicate can operate go home button</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="GoWorkFault" Datatype="Bool" />
+      <Member Name="GoHomeFault" Datatype="Bool" />
+      <Member Name="SensorPositionFault" Datatype="Bool" />
+      <Member Name="CyNO" Datatype="Byte" />
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>Cyl</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

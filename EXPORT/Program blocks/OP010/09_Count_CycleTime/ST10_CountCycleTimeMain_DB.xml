@@ -4,1639 +4,173 @@
   <SW.Blocks.InstanceDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <InstanceOfName>ST10_CountCycleTimeMain</InstanceOfName>
       <InstanceOfType>FB</InstanceOfType>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Input">
-    <Member Name="iAlwaysOn" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="iRun" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="iManualMode" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="iAutoMode" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="iAutoRunning" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-      </AttributeList>
-    </Member>
+    <Member Name="iAlwaysOn" Datatype="Bool" />
+    <Member Name="iRun" Datatype="Bool" />
+    <Member Name="iManualMode" Datatype="Bool" />
+    <Member Name="iAutoMode" Datatype="Bool" />
+    <Member Name="iAutoRunning" Datatype="Bool" />
   </Section>
   <Section Name="Output" />
   <Section Name="InOut" />
   <Section Name="Static">
-    <Member Name="MianCountCycleTime" Datatype="&quot;Count_CycleTime&quot;" Accessibility="Public">
+    <Member Name="MianCountCycleTime" Datatype="&quot;Count_CycleTime&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iRun" Datatype="Bool" />
-          <Member Name="iManualMode" Datatype="Bool" />
-          <Member Name="iAutoMode" Datatype="Bool" />
-          <Member Name="iAutoRunning" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM1CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM1CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM2CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM2CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM3CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM3CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM4CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM4CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM5CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM5CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM6CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM6CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM7CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM7CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM8CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM8CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM9CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM9CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM10CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM10CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM11CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM11CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM12CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM12CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM13CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM13CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM14CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM14CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM15CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM15CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM16CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM16CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM17CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM17CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM18CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM18CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM19CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM19CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM20CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM20CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM21CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM21CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM22CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM22CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM23CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM23CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM24CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM24CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM25CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM25CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM26CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM26CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM27CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM27CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM28CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM28CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM29CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM29CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="PM30CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;" Accessibility="Public">
+    <Member Name="PM30CountCycleTime" Datatype="&quot;Count_CycleTime_V3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iAlwaysOn" Datatype="Bool" />
-          <Member Name="iProcessStart" Datatype="Bool" />
-          <Member Name="iProcessComplete" Datatype="Bool" />
-          <Member Name="iProcessResult" Datatype="DInt" />
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioCount" Datatype="&quot;RCS_SysCount_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioTotalCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioMachineCycleTime" Datatype="&quot;RCS_SysCycleTime_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sFlow" Datatype="Struct">
-            <Member Name="pls" Datatype="Array[0..15] of Bool" />
-            <Member Name="sDTStart" Datatype="Date_And_Time" />
-            <Member Name="sDTRes" Datatype="Date_And_Time" />
-            <Member Name="sDTOld" Datatype="Date_And_Time" />
-            <Member Name="sDTRuntime" Datatype="Date_And_Time" />
-            <Member Name="sDTRunning" Datatype="Date_And_Time" />
-            <Member Name="sDTCurrent" Datatype="Date_And_Time" />
-            <Member Name="Run_Minute" Datatype="Int" />
-            <Member Name="Run_Hour" Datatype="Int" />
-            <Member Name="Run_Day" Datatype="Int" />
-            <Member Name="AutoRun_Minute" Datatype="Int" />
-            <Member Name="AutoRun_Hour" Datatype="Int" />
-            <Member Name="AutoRun_Day" Datatype="Int" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
   </Section>
 </Sections></Interface>

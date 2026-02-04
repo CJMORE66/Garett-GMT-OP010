@@ -4,28 +4,10 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="AxisRun" Datatype="Struct" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="AxisRun" Datatype="Struct" Remanence="Retain">
       <Member Name="Axis" Datatype="Array[1..15] of &quot;ServoType_UDT&quot;">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
         <Sections>
           <Section Name="None">
             <Member Name="Pos1" Datatype="Struct">
@@ -172,12 +154,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位1</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位1 → Nakládací pozice 1</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">初始位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">初始位 → Počáteční poloha</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -187,22 +169,22 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位1</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴初始位 → Počáteční poloha osy Z</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴初始位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴初始位 → Počáteční poloha osy Z</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴初始位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴初始位 → Počáteční poloha osy X</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="7">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Y轴初始位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Y轴初始位 → Počáteční poloha osy Y</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -350,12 +332,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位2</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位2 → Nakládací pozice 2</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">扫码位置2</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">扫码位置2 → Skenovací pozice 2</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -365,22 +347,22 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位2</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位1 → Pozice lepení osy Z 1</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴点胶位1</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位1 → Pozice lepení osy Z 1</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴点胶等待位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴点胶等待位 → Čekací pozice lepení osy X</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="7">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Y轴点胶位1</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Y轴点胶位1 → Pozice lepení osy Y 1</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -528,12 +510,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位3</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位3 → Nakládací pozice 3</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">扫码位置3</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">扫码位置3 → Skenovací pozice 3</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -543,22 +525,22 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位3</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位2 → Pozice lepení osy Z 2</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴点胶位2</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位2 → Pozice lepení osy Z 2</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴点胶位1</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴点胶位1 → Pozice lepení osy X 1</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="7">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Y轴点胶位2</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Y轴点胶位2 → Pozice lepení osy Y 2</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -706,12 +688,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位4</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位4 → Nakládací pozice 4</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">扫码位置4</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">扫码位置4 → Skenovací pozice 4</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -721,22 +703,22 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位4</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位3 → Pozice lepení osy Z 3</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴点胶位3</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位3 → Pozice lepení osy Z 3</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴点胶位2</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴点胶位2 → Pozice lepení osy X 2</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="7">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Y轴点胶位3</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Y轴点胶位3 → Pozice lepení osy Y 3</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -884,12 +866,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位5</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位5 → Nakládací pozice 5</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">扫码位置5</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">扫码位置5 → Skenovací pozice 5</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -899,22 +881,22 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位5</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位4 → Pozice lepení osy Z 4</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴点胶位4</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位4 → Pozice lepení osy Z 4</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴点胶位3</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴点胶位3 → Pozice lepení osy X 3</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="7">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Y轴点胶位4</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Y轴点胶位4 → Pozice lepení osy Y 4</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -933,7 +915,7 @@
                   <StartValue>228.458</StartValue>
                 </Subelement>
                 <Subelement Path="5">
-                  <StartValue>127.0</StartValue>
+                  <StartValue>126.55</StartValue>
                 </Subelement>
                 <Subelement Path="6">
                   <StartValue>84.69</StartValue>
@@ -1062,12 +1044,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位6</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位6 → Nakládací pozice 6</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">扫码位置6</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">扫码位置6 → Skenovací pozice 6</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -1077,22 +1059,22 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位6</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位5 → Pozice lepení osy Z 5</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴点胶位5</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴点胶位5 → Pozice lepení osy Z 5</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴点胶位4</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴点胶位4 → Pozice lepení osy X 4</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="7">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Y轴点胶位5</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Y轴点胶位5 → Pozice lepení osy Y 5</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -1117,7 +1099,7 @@
                   <StartValue>85.0</StartValue>
                 </Subelement>
                 <Subelement Path="7">
-                  <StartValue>60.52</StartValue>
+                  <StartValue>61.98</StartValue>
                 </Subelement>
                 <Subelement Path="8">
                   <StartValue>0.0</StartValue>
@@ -1240,12 +1222,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位7</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位7 → Nakládací pozice 7</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">扫码位置7</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">扫码位置7 → Skenovací pozice 7</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -1255,22 +1237,22 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位7</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴相机检测位 → Kamerová kontrolní pozice osy Z</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴相机检测位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴相机检测位 → Kamerová kontrolní pozice osy Z</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴点胶位5</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴点胶位5 → Pozice lepení osy X 5</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="7">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Y轴相机检测位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Y轴相机检测位 → Kamerová kontrolní pozice osy Y</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -1292,7 +1274,7 @@
                   <StartValue>0.0</StartValue>
                 </Subelement>
                 <Subelement Path="6">
-                  <StartValue>88.53</StartValue>
+                  <StartValue>90.17</StartValue>
                 </Subelement>
                 <Subelement Path="7">
                   <StartValue>80.0</StartValue>
@@ -1418,12 +1400,12 @@
               </Member>
               <Subelement Path="1">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位8</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">上料位8 → Nakládací pozice 8</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="2">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">扫码位置8</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">扫码位置8 → Skenovací pozice 8</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="3">
@@ -1433,17 +1415,17 @@
               </Subelement>
               <Subelement Path="4">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">上料位8</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴原点位 → Referenční (Home) poloha osy Z</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴原点位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴原点位 → Referenční (Home) poloha osy Z</MultiLanguageText>
                 </Comment>
               </Subelement>
               <Subelement Path="6">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">X轴相机检测位</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">X轴相机检测位 → Kamerová kontrolní pozice osy X</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -1594,9 +1576,14 @@
                   <MultiLanguageText Lang="en-GB">IV camera position 4</MultiLanguageText>
                 </Comment>
               </Subelement>
+              <Subelement Path="4">
+                <Comment>
+                  <MultiLanguageText Lang="en-GB">Z轴Up点胶位5 → Horní (Up) pozice lepení osy Z 5</MultiLanguageText>
+                </Comment>
+              </Subelement>
               <Subelement Path="5">
                 <Comment>
-                  <MultiLanguageText Lang="en-GB">Z轴Up点胶位5</MultiLanguageText>
+                  <MultiLanguageText Lang="en-GB">Z轴Up点胶位5 → Horní (Up) pozice lepení osy Z 5</MultiLanguageText>
                 </Comment>
               </Subelement>
             </Member>
@@ -4607,20 +4594,8 @@
         </Sections>
       </Member>
     </Member>
-    <Member Name="AxisNuw" Datatype="Struct" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="AxisNuw" Datatype="Struct" Remanence="Retain">
       <Member Name="Axis" Datatype="Array[1..15] of &quot;ServoType_UDT&quot;">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
         <Sections>
           <Section Name="None">
             <Member Name="Pos1" Datatype="Struct">
@@ -8917,20 +8892,8 @@
         </Sections>
       </Member>
     </Member>
-    <Member Name="AxisDisplay" Datatype="Struct" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="AxisDisplay" Datatype="Struct" Remanence="Retain">
       <Member Name="Axis" Datatype="Array[1..15] of &quot;ServoType_UDT&quot;">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
         <Sections>
           <Section Name="None">
             <Member Name="Pos1" Datatype="Struct">
@@ -13227,20 +13190,8 @@
         </Sections>
       </Member>
     </Member>
-    <Member Name="AxisSave" Datatype="Struct" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="AxisSave" Datatype="Struct" Remanence="Retain">
       <Member Name="Axis" Datatype="Array[1..15] of &quot;ServoType_UDT&quot;">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
         <Sections>
           <Section Name="None">
             <Member Name="Pos1" Datatype="Struct">
@@ -17537,20 +17488,8 @@
         </Sections>
       </Member>
     </Member>
-    <Member Name="AxisStore" Datatype="Array[1..15] of Struct" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="AxisStore" Datatype="Array[1..15] of Struct" Remanence="Retain">
       <Member Name="Axis" Datatype="Array[1..15] of &quot;ServoType_UDT&quot;">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
         <Sections>
           <Section Name="None">
             <Member Name="Pos1" Datatype="Struct">
@@ -78549,16 +78488,13 @@
     </Member>
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
       <IsRetainMemResEnabled>true</IsRetainMemResEnabled>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Optimized</MemoryLayout>
       <MemoryReserve>10000</MemoryReserve>
       <Name>Parameter</Name>
       <Namespace />
       <Number>170</Number>
       <ProgrammingLanguage>DB</ProgrammingLanguage>
-      <RetainMemoryReserve>0</RetainMemoryReserve>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">

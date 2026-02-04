@@ -1,0 +1,356 @@
+FUNCTION_BLOCK FB_V90_ManualControl
+{ S7_Optimized_Access := 'TRUE' }
+(*
+    V90 Manual Control with Jog and Positioning
+    ============================================
+    - Jog forward/backward with set velocity
+    - Move to position with set velocity
+    - Deceleration ramp control
+*)
+
+VAR_INPUT
+    // Enable
+    Enable        : Bool;          // FB enable
+    
+    // Jog control
+    JogForward    : Bool;          // Jog + direction
+    JogBackward   : Bool;          // Jog - direction
+    JogVelocity   : Int;           // Jog speed
+    
+    // Position control
+    GoToPosition  : Bool;          // Start positioning
+    TargetPos     : DInt;          // Target position
+    MoveVelocity  : Int;           // Positioning speed
+    
+    // Deceleration
+    DecelTime     : Time;          // Deceleration ramp time
+    
+    // Servo status
+    ServoReady    : Bool;          // Servo ready
+    ServoError    : Bool;          // Servo error
+    ActPosition   : DInt;          // Actual position feedback
+END_VAR
+
+VAR_OUTPUT
+    // To servo
+    Out_Mode      : Int;           // 1=relative, 2=absolute
+    Out_Position  : DInt;          // Position command
+    Out_Velocity  : Int;           // Velocity command
+    Out_JogPlus   : Bool;          // Jog + output
+    Out_JogMinus  : Bool;          // Jog - output
+    Out_Start     : Bool;          // Start positioning
+    
+    // Status
+    Busy          : Bool;          // FB busy
+    Done          : Bool;          // Positioning done
+    Error         : Bool;          // Error
+    StateOut      : Int;           // Current state
+END_VAR
+
+VAR
+    State         : Int;           // 0=IDLE, 10=JOG_FWD, 20=JOG_BWD, 30=POS_START, 40=POS_MOVE, 50=DECEL, 60=DONE
+    LastJogFwd    : Bool;
+    LastJogBwd    : Bool;
+    JogFwdEdge    : Bool;
+    JogBwdEdge    : Bool;
+    StartEdge     : Bool;
+    LastStart     : Bool;
+    DecelTimer    : TON;
+    PosReached    : Bool;
+    StartPos      : DInt;
+END_VAR
+
+BEGIN
+    // Edge detection
+    JogFwdEdge := JogForward AND NOT LastJogFwd;
+    JogBwdEdge := JogBackward AND NOT LastJogBwd;
+    StartEdge := GoToPosition AND NOT LastStart;
+    LastJogFwd := JogForward;
+    LastJogBwd := JogBackward;
+    LastStart := GoToPosition;
+    
+    // Error handling
+    IF ServoError OR NOT Enable THEN
+        State := 0;
+        Error := ServoError;
+    END_IF;
+    
+    // State machine
+    CASE State OF
+        0: // IDLE
+            Busy := FALSE;
+            Done := FALSE;
+            Out_Mode := 0;
+            Out_Position := 0;
+            Out_Velocity := 0;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := FALSE;
+            Out_Start := FALSE;
+            DecelTimer(IN := FALSE);
+            
+            IF Enable AND ServoReady THEN
+                IF JogForward AND NOT JogBackward THEN
+                    State := 10; // JOG_FWD
+                ELSIF JogBackward AND NOT JogForward THEN
+                    State := 20; // JOG_BWD
+                ELSIF StartEdge THEN
+                    State := 30; // POS_START
+                END_IF;
+            END_IF;
+            
+        10: // JOG FORWARD
+            Busy := TRUE;
+            Out_Mode := 1; // Relative
+            Out_Velocity := JogVelocity;
+            Out_JogPlus := TRUE;
+            Out_JogMinus := FALSE;
+            Out_Start := FALSE;
+            
+            IF NOT JogForward OR JogBackward THEN
+                State := 50; // DECEL
+            END_IF;
+            
+        20: // JOG BACKWARD
+            Busy := TRUE;
+            Out_Mode := 1; // Relative
+            Out_Velocity := JogVelocity;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := TRUE;
+            Out_Start := FALSE;
+            
+            IF NOT JogBackward OR JogForward THEN
+                State := 50; // DECEL
+            END_IF;
+            
+        30: // POSITION START
+            Busy := TRUE;
+            StartPos := ActPosition;
+            Out_Mode := 1; // Relative
+            Out_Position := TargetPos - ActPosition; // Calculate relative distance
+            Out_Velocity := MoveVelocity;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := FALSE;
+            Out_Start := TRUE; // Pulse start
+            State := 40;
+            
+        40: // POSITION MOVE
+            Busy := TRUE;
+            Out_Start := FALSE; // Reset pulse
+            
+            // Check if position reached (with small tolerance)
+            PosReached := (ABS(ActPosition - TargetPos) < 10);
+            
+            IF PosReached THEN
+                State := 50; // DECEL
+            ELSIF NOT GoToPosition THEN
+                // Abort - go to decel
+                State := 50;
+            END_IF;
+            
+        50: // DECELERATION
+            Busy := TRUE;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := FALSE;
+            Out_Start := FALSE;
+            Out_Velocity := 0;
+            
+            // Wait for deceleration ramp
+            DecelTimer(IN := TRUE, PT := DecelTime);
+            
+            IF DecelTimer.Q THEN
+                DecelTimer(IN := FALSE);
+                State := 60; // DONE
+            END_IF;
+            
+        60: // DONE
+            Busy := FALSE;
+            Done := TRUE;
+            IF NOT GoToPosition AND NOT JogForward AND NOT JogBackward THEN
+                Done := FALSE;
+                State := 0; // Back to IDLE
+            END_IF;
+            
+        ELSE
+            State := 0;
+    END_CASE;
+    
+    StateOut := State;
+END_FUNCTION_BLOCK
+{ S7_Optimized_Access := 'TRUE' }
+(*
+    V90 Manual Control with Jog and Positioning
+    ============================================
+    - Jog forward/backward with set velocity
+    - Move to position with set velocity
+    - Deceleration ramp control
+*)
+
+VAR_INPUT
+    // Enable
+    Enable        : Bool;          // FB enable
+    
+    // Jog control
+    JogForward    : Bool;          // Jog + direction
+    JogBackward   : Bool;          // Jog - direction
+    JogVelocity   : Int;           // Jog speed
+    
+    // Position control
+    GoToPosition  : Bool;          // Start positioning
+    TargetPos     : DInt;          // Target position
+    MoveVelocity  : Int;           // Positioning speed
+    
+    // Deceleration
+    DecelTime     : Time;          // Deceleration ramp time
+    
+    // Servo status
+    ServoReady    : Bool;          // Servo ready
+    ServoError    : Bool;          // Servo error
+    ActPosition   : DInt;          // Actual position feedback
+END_VAR
+
+VAR_OUTPUT
+    // To servo
+    Out_Mode      : Int;           // 1=relative, 2=absolute
+    Out_Position  : DInt;          // Position command
+    Out_Velocity  : Int;           // Velocity command
+    Out_JogPlus   : Bool;          // Jog + output
+    Out_JogMinus  : Bool;          // Jog - output
+    Out_Start     : Bool;          // Start positioning
+    
+    // Status
+    Busy          : Bool;          // FB busy
+    Done          : Bool;          // Positioning done
+    Error         : Bool;          // Error
+    StateOut      : Int;           // Current state
+END_VAR
+
+VAR
+    State         : Int;           // 0=IDLE, 10=JOG_FWD, 20=JOG_BWD, 30=POS_START, 40=POS_MOVE, 50=DECEL, 60=DONE
+    LastJogFwd    : Bool;
+    LastJogBwd    : Bool;
+    JogFwdEdge    : Bool;
+    JogBwdEdge    : Bool;
+    StartEdge     : Bool;
+    LastStart     : Bool;
+    DecelTimer    : TON;
+    PosReached    : Bool;
+    StartPos      : DInt;
+END_VAR
+
+BEGIN
+    // Edge detection
+    JogFwdEdge := JogForward AND NOT LastJogFwd;
+    JogBwdEdge := JogBackward AND NOT LastJogBwd;
+    StartEdge := GoToPosition AND NOT LastStart;
+    LastJogFwd := JogForward;
+    LastJogBwd := JogBackward;
+    LastStart := GoToPosition;
+    
+    // Error handling
+    IF ServoError OR NOT Enable THEN
+        State := 0;
+        Error := ServoError;
+    END_IF;
+    
+    // State machine
+    CASE State OF
+        0: // IDLE
+            Busy := FALSE;
+            Done := FALSE;
+            Out_Mode := 0;
+            Out_Position := 0;
+            Out_Velocity := 0;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := FALSE;
+            Out_Start := FALSE;
+            DecelTimer(IN := FALSE);
+            
+            IF Enable AND ServoReady THEN
+                IF JogForward AND NOT JogBackward THEN
+                    State := 10; // JOG_FWD
+                ELSIF JogBackward AND NOT JogForward THEN
+                    State := 20; // JOG_BWD
+                ELSIF StartEdge THEN
+                    State := 30; // POS_START
+                END_IF;
+            END_IF;
+            
+        10: // JOG FORWARD
+            Busy := TRUE;
+            Out_Mode := 1; // Relative
+            Out_Velocity := JogVelocity;
+            Out_JogPlus := TRUE;
+            Out_JogMinus := FALSE;
+            Out_Start := FALSE;
+            
+            IF NOT JogForward OR JogBackward THEN
+                State := 50; // DECEL
+            END_IF;
+            
+        20: // JOG BACKWARD
+            Busy := TRUE;
+            Out_Mode := 1; // Relative
+            Out_Velocity := JogVelocity;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := TRUE;
+            Out_Start := FALSE;
+            
+            IF NOT JogBackward OR JogForward THEN
+                State := 50; // DECEL
+            END_IF;
+            
+        30: // POSITION START
+            Busy := TRUE;
+            StartPos := ActPosition;
+            Out_Mode := 1; // Relative
+            Out_Position := TargetPos - ActPosition; // Calculate relative distance
+            Out_Velocity := MoveVelocity;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := FALSE;
+            Out_Start := TRUE; // Pulse start
+            State := 40;
+            
+        40: // POSITION MOVE
+            Busy := TRUE;
+            Out_Start := FALSE; // Reset pulse
+            
+            // Check if position reached (with small tolerance)
+            PosReached := (ABS(ActPosition - TargetPos) < 10);
+            
+            IF PosReached THEN
+                State := 50; // DECEL
+            ELSIF NOT GoToPosition THEN
+                // Abort - go to decel
+                State := 50;
+            END_IF;
+            
+        50: // DECELERATION
+            Busy := TRUE;
+            Out_JogPlus := FALSE;
+            Out_JogMinus := FALSE;
+            Out_Start := FALSE;
+            Out_Velocity := 0;
+            
+            // Wait for deceleration ramp
+            DecelTimer(IN := TRUE, PT := DecelTime);
+            
+            IF DecelTimer.Q THEN
+                DecelTimer(IN := FALSE);
+                State := 60; // DONE
+            END_IF;
+            
+        60: // DONE
+            Busy := FALSE;
+            Done := TRUE;
+            IF NOT GoToPosition AND NOT JogForward AND NOT JogBackward THEN
+                Done := FALSE;
+                State := 0; // Back to IDLE
+            END_IF;
+            
+        ELSE
+            State := 0;
+    END_CASE;
+    
+    StateOut := State;
+END_FUNCTION_BLOCK
+

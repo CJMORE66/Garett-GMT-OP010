@@ -1,0 +1,2123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Temp">
+    <Member Name="i" Datatype="Int" />
+  </Section>
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" />
+  </Section>
+</Sections></Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>FC_Write_Actual_Recipe_To_Devices</Name>
+      <Namespace />
+      <Number>5</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>=============================================================================
+ AUTHOR      : Gemini
+ FAMILY      : Recipe
+ NAME        : LoadToDev
+ DESCRIPTION : Writes ACTUAL_CHOOSEN_TYPE parameters to Device DBs and Logic Buffers
+               Exact reverse operation of FC_Save_Values_Final
+=============================================================================</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Blank Num="2" UId="21" />
+  <NewLine UId="22" />
+  <Blank Num="2" UId="23" />
+  <NewLine UId="24" />
+  <Blank Num="2" UId="25" />
+  <LineComment UId="26">
+    <Text UId="27">=============================================================================</Text>
+  </LineComment>
+  <NewLine UId="28" />
+  <Blank Num="2" UId="29" />
+  <LineComment UId="30">
+    <Text UId="31"> use recipe trigger</Text>
+  </LineComment>
+  <NewLine UId="32" />
+  <Blank Num="2" UId="33" />
+  <LineComment UId="34">
+    <Text UId="35">=============================================================================</Text>
+  </LineComment>
+  <NewLine Num="3" UId="36" />
+  <Token Text="IF" UId="37" />
+  <Blank UId="38" />
+  <Access Scope="GlobalVariable" UId="39">
+    <Symbol UId="40">
+      <Component Name="DB_PARAMETERS_TEACH" UId="41">
+        <BooleanAttribute Name="HasQuotes" UId="42">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="43" />
+      <Component Name="HMI_PAGE_CONTROL" UId="44" />
+      <Token Text="." UId="45" />
+      <Component Name="Use_recipe_trigger" UId="46" />
+    </Symbol>
+  </Access>
+  <Blank UId="47" />
+  <Token Text="AND" UId="48" />
+  <Blank UId="49" />
+  <Access Scope="GlobalVariable" UId="50">
+    <Symbol UId="51">
+      <Component Name="DB_PARAMETERS_TEACH" UId="52">
+        <BooleanAttribute Name="HasQuotes" UId="53">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="54" />
+      <Component Name="HMI_PAGE_CONTROL" UId="55" />
+      <Token Text="." UId="56" />
+      <Component Name="Use_recipe_Nbr" UId="57" />
+    </Symbol>
+  </Access>
+  <Blank UId="58" />
+  <Token Text="&lt;&gt;" UId="59" />
+  <Blank UId="60" />
+  <Access Scope="LiteralConstant" UId="61">
+    <Constant UId="62">
+      <ConstantValue UId="64">0</ConstantValue>
+    </Constant>
+  </Access>
+  <NewLine UId="65" />
+  <Token Text="THEN" UId="66" />
+  <NewLine UId="67" />
+  <Blank Num="2" UId="68" />
+  <NewLine UId="69" />
+  <Blank Num="2" UId="70" />
+  <NewLine UId="71" />
+  <Blank Num="2" UId="72" />
+  <NewLine UId="73" />
+  <Blank Num="2" UId="74" />
+  <Access Scope="GlobalVariable" UId="75">
+    <Symbol UId="76">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="77">
+        <BooleanAttribute Name="HasQuotes" UId="78">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="79" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="80" />
+    </Symbol>
+  </Access>
+  <Blank UId="81" />
+  <Token Text=":=" UId="82" />
+  <Blank UId="83" />
+  <Access Scope="GlobalVariable" UId="84">
+    <Symbol UId="85">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="86">
+        <BooleanAttribute Name="HasQuotes" UId="87">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="88" />
+      <Component Name="PRODUCT_TYPE" UId="89">
+        <Token Text="[" UId="90" />
+        <Access Scope="GlobalVariable" UId="91">
+          <Symbol UId="92">
+            <Component Name="DB_PARAMETERS_TEACH" UId="93">
+              <BooleanAttribute Name="HasQuotes" UId="94">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="95" />
+            <Component Name="HMI_PAGE_CONTROL" UId="96" />
+            <Token Text="." UId="97" />
+            <Component Name="Use_recipe_Nbr" UId="98" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="99" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="100" />
+  <NewLine UId="101" />
+  <Blank Num="2" UId="102" />
+  <LineComment UId="103">
+    <Text UId="104">=============================================================================</Text>
+  </LineComment>
+  <NewLine UId="105" />
+  <Blank Num="2" UId="106" />
+  <LineComment UId="107">
+    <Text UId="108"> 1. MOTION - IAI AXES (Write to IAI_Ax.Auto.Pos[...])</Text>
+  </LineComment>
+  <NewLine UId="109" />
+  <Blank Num="2" UId="110" />
+  <LineComment UId="111">
+    <Text UId="112">=============================================================================</Text>
+  </LineComment>
+  <NewLine UId="113" />
+  <Blank Num="2" UId="114" />
+  <Token Text="FOR" UId="115" />
+  <Blank UId="116" />
+  <Access Scope="LocalVariable" UId="117">
+    <Symbol UId="118">
+      <Component Name="i" UId="119" />
+    </Symbol>
+  </Access>
+  <Blank UId="120" />
+  <Token Text=":=" UId="121" />
+  <Blank UId="122" />
+  <Access Scope="LiteralConstant" UId="123">
+    <Constant UId="124">
+      <ConstantValue UId="126">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="127" />
+  <Token Text="TO" UId="128" />
+  <Blank UId="129" />
+  <Access Scope="LiteralConstant" UId="130">
+    <Constant UId="131">
+      <ConstantValue UId="133">20</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="134" />
+  <Token Text="DO" UId="135" />
+  <NewLine UId="136" />
+  <Blank Num="4" UId="137" />
+  <LineComment UId="138">
+    <Text UId="139"> IAI_A1 (Gluing Nozzle Z)</Text>
+  </LineComment>
+  <NewLine UId="140" />
+  <Blank Num="4" UId="141" />
+  <Access Scope="GlobalVariable" UId="142">
+    <Symbol UId="143">
+      <Component Name="IAI_A1" UId="144">
+        <BooleanAttribute Name="HasQuotes" UId="145">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="146" />
+      <Component Name="Auto" UId="147" />
+      <Token Text="." UId="148" />
+      <Component Name="Pos" UId="149">
+        <Token Text="[" UId="150" />
+        <Access Scope="LocalVariable" UId="151">
+          <Symbol UId="152">
+            <Component Name="i" UId="153" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="154" />
+      </Component>
+      <Token Text="." UId="155" />
+      <Component Name="Pos" UId="156" />
+    </Symbol>
+  </Access>
+  <Blank UId="157" />
+  <Token Text=":=" UId="158" />
+  <NewLine UId="159" />
+  <Blank Num="4" UId="160" />
+  <Access Scope="GlobalVariable" UId="161">
+    <Symbol UId="162">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="163">
+        <BooleanAttribute Name="HasQuotes" UId="164">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="165" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="166" />
+      <Token Text="." UId="167" />
+      <Component Name="Motion" UId="168" />
+      <Token Text="." UId="169" />
+      <Component Name="Gluing_Nozzle_Z" UId="170" />
+      <Token Text="." UId="171" />
+      <Component Name="Position" UId="172">
+        <Token Text="[" UId="173" />
+        <Access Scope="LocalVariable" UId="174">
+          <Symbol UId="175">
+            <Component Name="i" UId="176" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="177" />
+      </Component>
+      <Token Text="." UId="178" />
+      <Component Name="Pos" UId="179" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="180" />
+  <NewLine UId="181" />
+  <Blank Num="4" UId="182" />
+  <Access Scope="GlobalVariable" UId="183">
+    <Symbol UId="184">
+      <Component Name="IAI_A1" UId="185">
+        <BooleanAttribute Name="HasQuotes" UId="186">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="187" />
+      <Component Name="Auto" UId="188" />
+      <Token Text="." UId="189" />
+      <Component Name="Pos" UId="190">
+        <Token Text="[" UId="191" />
+        <Access Scope="LocalVariable" UId="192">
+          <Symbol UId="193">
+            <Component Name="i" UId="194" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="195" />
+      </Component>
+      <Token Text="." UId="196" />
+      <Component Name="Vel" UId="197" />
+    </Symbol>
+  </Access>
+  <Blank UId="198" />
+  <Token Text=":=" UId="199" />
+  <NewLine UId="200" />
+  <Blank Num="4" UId="201" />
+  <Access Scope="GlobalVariable" UId="202">
+    <Symbol UId="203">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="204">
+        <BooleanAttribute Name="HasQuotes" UId="205">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="206" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="207" />
+      <Token Text="." UId="208" />
+      <Component Name="Motion" UId="209" />
+      <Token Text="." UId="210" />
+      <Component Name="Gluing_Nozzle_Z" UId="211" />
+      <Token Text="." UId="212" />
+      <Component Name="Position" UId="213">
+        <Token Text="[" UId="214" />
+        <Access Scope="LocalVariable" UId="215">
+          <Symbol UId="216">
+            <Component Name="i" UId="217" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="218" />
+      </Component>
+      <Token Text="." UId="219" />
+      <Component Name="Vel" UId="220" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="221" />
+  <NewLine UId="222" />
+  <Blank Num="4" UId="223" />
+  <NewLine UId="224" />
+  <Blank Num="4" UId="225" />
+  <LineComment UId="226">
+    <Text UId="227"> IAI_A2 (Gluing Nozzle X)</Text>
+  </LineComment>
+  <NewLine UId="228" />
+  <Blank Num="4" UId="229" />
+  <Access Scope="GlobalVariable" UId="230">
+    <Symbol UId="231">
+      <Component Name="IAI_A2" UId="232">
+        <BooleanAttribute Name="HasQuotes" UId="233">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="234" />
+      <Component Name="Auto" UId="235" />
+      <Token Text="." UId="236" />
+      <Component Name="Pos" UId="237">
+        <Token Text="[" UId="238" />
+        <Access Scope="LocalVariable" UId="239">
+          <Symbol UId="240">
+            <Component Name="i" UId="241" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="242" />
+      </Component>
+      <Token Text="." UId="243" />
+      <Component Name="Pos" UId="244" />
+    </Symbol>
+  </Access>
+  <Blank UId="245" />
+  <Token Text=":=" UId="246" />
+  <NewLine UId="247" />
+  <Blank Num="4" UId="248" />
+  <Access Scope="GlobalVariable" UId="249">
+    <Symbol UId="250">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="251">
+        <BooleanAttribute Name="HasQuotes" UId="252">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="253" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="254" />
+      <Token Text="." UId="255" />
+      <Component Name="Motion" UId="256" />
+      <Token Text="." UId="257" />
+      <Component Name="Gluing_Nozzle_X" UId="258" />
+      <Token Text="." UId="259" />
+      <Component Name="Position" UId="260">
+        <Token Text="[" UId="261" />
+        <Access Scope="LocalVariable" UId="262">
+          <Symbol UId="263">
+            <Component Name="i" UId="264" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="265" />
+      </Component>
+      <Token Text="." UId="266" />
+      <Component Name="Pos" UId="267" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="268" />
+  <NewLine UId="269" />
+  <Blank Num="4" UId="270" />
+  <Access Scope="GlobalVariable" UId="271">
+    <Symbol UId="272">
+      <Component Name="IAI_A2" UId="273">
+        <BooleanAttribute Name="HasQuotes" UId="274">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="275" />
+      <Component Name="Auto" UId="276" />
+      <Token Text="." UId="277" />
+      <Component Name="Pos" UId="278">
+        <Token Text="[" UId="279" />
+        <Access Scope="LocalVariable" UId="280">
+          <Symbol UId="281">
+            <Component Name="i" UId="282" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="283" />
+      </Component>
+      <Token Text="." UId="284" />
+      <Component Name="Vel" UId="285" />
+    </Symbol>
+  </Access>
+  <Blank UId="286" />
+  <Token Text=":=" UId="287" />
+  <NewLine UId="288" />
+  <Blank Num="4" UId="289" />
+  <Access Scope="GlobalVariable" UId="290">
+    <Symbol UId="291">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="292">
+        <BooleanAttribute Name="HasQuotes" UId="293">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="294" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="295" />
+      <Token Text="." UId="296" />
+      <Component Name="Motion" UId="297" />
+      <Token Text="." UId="298" />
+      <Component Name="Gluing_Nozzle_X" UId="299" />
+      <Token Text="." UId="300" />
+      <Component Name="Position" UId="301">
+        <Token Text="[" UId="302" />
+        <Access Scope="LocalVariable" UId="303">
+          <Symbol UId="304">
+            <Component Name="i" UId="305" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="306" />
+      </Component>
+      <Token Text="." UId="307" />
+      <Component Name="Vel" UId="308" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="309" />
+  <NewLine UId="310" />
+  <Blank Num="4" UId="311" />
+  <NewLine UId="312" />
+  <Blank Num="4" UId="313" />
+  <LineComment UId="314">
+    <Text UId="315"> IAI_A3 (Gluing Nozzle Y)</Text>
+  </LineComment>
+  <NewLine UId="316" />
+  <Blank Num="4" UId="317" />
+  <Access Scope="GlobalVariable" UId="318">
+    <Symbol UId="319">
+      <Component Name="IAI_A3" UId="320">
+        <BooleanAttribute Name="HasQuotes" UId="321">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="322" />
+      <Component Name="Auto" UId="323" />
+      <Token Text="." UId="324" />
+      <Component Name="Pos" UId="325">
+        <Token Text="[" UId="326" />
+        <Access Scope="LocalVariable" UId="327">
+          <Symbol UId="328">
+            <Component Name="i" UId="329" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="330" />
+      </Component>
+      <Token Text="." UId="331" />
+      <Component Name="Pos" UId="332" />
+    </Symbol>
+  </Access>
+  <Blank UId="333" />
+  <Token Text=":=" UId="334" />
+  <NewLine UId="335" />
+  <Blank Num="4" UId="336" />
+  <Access Scope="GlobalVariable" UId="337">
+    <Symbol UId="338">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="339">
+        <BooleanAttribute Name="HasQuotes" UId="340">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="341" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="342" />
+      <Token Text="." UId="343" />
+      <Component Name="Motion" UId="344" />
+      <Token Text="." UId="345" />
+      <Component Name="Gluing_Nozzle_Y" UId="346" />
+      <Token Text="." UId="347" />
+      <Component Name="Position" UId="348">
+        <Token Text="[" UId="349" />
+        <Access Scope="LocalVariable" UId="350">
+          <Symbol UId="351">
+            <Component Name="i" UId="352" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="353" />
+      </Component>
+      <Token Text="." UId="354" />
+      <Component Name="Pos" UId="355" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="356" />
+  <NewLine UId="357" />
+  <Blank Num="4" UId="358" />
+  <Access Scope="GlobalVariable" UId="359">
+    <Symbol UId="360">
+      <Component Name="IAI_A3" UId="361">
+        <BooleanAttribute Name="HasQuotes" UId="362">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="363" />
+      <Component Name="Auto" UId="364" />
+      <Token Text="." UId="365" />
+      <Component Name="Pos" UId="366">
+        <Token Text="[" UId="367" />
+        <Access Scope="LocalVariable" UId="368">
+          <Symbol UId="369">
+            <Component Name="i" UId="370" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="371" />
+      </Component>
+      <Token Text="." UId="372" />
+      <Component Name="Vel" UId="373" />
+    </Symbol>
+  </Access>
+  <Blank UId="374" />
+  <Token Text=":=" UId="375" />
+  <NewLine UId="376" />
+  <Blank Num="4" UId="377" />
+  <Access Scope="GlobalVariable" UId="378">
+    <Symbol UId="379">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="380">
+        <BooleanAttribute Name="HasQuotes" UId="381">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="382" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="383" />
+      <Token Text="." UId="384" />
+      <Component Name="Motion" UId="385" />
+      <Token Text="." UId="386" />
+      <Component Name="Gluing_Nozzle_Y" UId="387" />
+      <Token Text="." UId="388" />
+      <Component Name="Position" UId="389">
+        <Token Text="[" UId="390" />
+        <Access Scope="LocalVariable" UId="391">
+          <Symbol UId="392">
+            <Component Name="i" UId="393" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="394" />
+      </Component>
+      <Token Text="." UId="395" />
+      <Component Name="Vel" UId="396" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="397" />
+  <NewLine UId="398" />
+  <Blank Num="2" UId="399" />
+  <Token Text="END_FOR" UId="400" />
+  <Token Text=";" UId="401" />
+  <NewLine UId="402" />
+  <Blank Num="2" UId="403" />
+  <NewLine UId="404" />
+  <Blank Num="2" UId="405" />
+  <LineComment UId="406">
+    <Text UId="407">=============================================================================</Text>
+  </LineComment>
+  <NewLine UId="408" />
+  <Blank Num="2" UId="409" />
+  <LineComment UId="410">
+    <Text UId="411"> 2. MOTION - V90 AXES (Write to ServoV90_Ax.Auto.Pos[...])</Text>
+  </LineComment>
+  <NewLine UId="412" />
+  <Blank Num="2" UId="413" />
+  <LineComment UId="414">
+    <Text UId="415">=============================================================================</Text>
+  </LineComment>
+  <NewLine UId="416" />
+  <Blank Num="2" UId="417" />
+  <Token Text="FOR" UId="418" />
+  <Blank UId="419" />
+  <Access Scope="LocalVariable" UId="420">
+    <Symbol UId="421">
+      <Component Name="i" UId="422" />
+    </Symbol>
+  </Access>
+  <Blank UId="423" />
+  <Token Text=":=" UId="424" />
+  <Blank UId="425" />
+  <Access Scope="LiteralConstant" UId="426">
+    <Constant UId="427">
+      <ConstantValue UId="429">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="430" />
+  <Token Text="TO" UId="431" />
+  <Blank UId="432" />
+  <Access Scope="LiteralConstant" UId="433">
+    <Constant UId="434">
+      <ConstantValue UId="436">20</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="437" />
+  <Token Text="DO" UId="438" />
+  <NewLine UId="439" />
+  <Blank Num="4" UId="440" />
+  <LineComment UId="441">
+    <Text UId="442"> ServoV90_A1 (Ring Turntable Axis 1)</Text>
+  </LineComment>
+  <NewLine UId="443" />
+  <Blank Num="4" UId="444" />
+  <Access Scope="GlobalVariable" UId="445">
+    <Symbol UId="446">
+      <Component Name="ServoV90_A1" UId="447">
+        <BooleanAttribute Name="HasQuotes" UId="448">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="449" />
+      <Component Name="Auto" UId="450" />
+      <Token Text="." UId="451" />
+      <Component Name="Pos" UId="452">
+        <Token Text="[" UId="453" />
+        <Access Scope="LocalVariable" UId="454">
+          <Symbol UId="455">
+            <Component Name="i" UId="456" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="457" />
+      </Component>
+      <Token Text="." UId="458" />
+      <Component Name="Pos" UId="459" />
+    </Symbol>
+  </Access>
+  <Blank UId="460" />
+  <Token Text=":=" UId="461" />
+  <NewLine UId="462" />
+  <Blank Num="4" UId="463" />
+  <Access Scope="GlobalVariable" UId="464">
+    <Symbol UId="465">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="466">
+        <BooleanAttribute Name="HasQuotes" UId="467">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="468" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="469" />
+      <Token Text="." UId="470" />
+      <Component Name="Motion" UId="471" />
+      <Token Text="." UId="472" />
+      <Component Name="Ring_Turntable_Axis_1" UId="473" />
+      <Token Text="." UId="474" />
+      <Component Name="Position" UId="475">
+        <Token Text="[" UId="476" />
+        <Access Scope="LocalVariable" UId="477">
+          <Symbol UId="478">
+            <Component Name="i" UId="479" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="480" />
+      </Component>
+      <Token Text="." UId="481" />
+      <Component Name="Pos" UId="482" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="483" />
+  <NewLine UId="484" />
+  <Blank Num="4" UId="485" />
+  <Access Scope="GlobalVariable" UId="486">
+    <Symbol UId="487">
+      <Component Name="ServoV90_A1" UId="488">
+        <BooleanAttribute Name="HasQuotes" UId="489">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="490" />
+      <Component Name="Auto" UId="491" />
+      <Token Text="." UId="492" />
+      <Component Name="Pos" UId="493">
+        <Token Text="[" UId="494" />
+        <Access Scope="LocalVariable" UId="495">
+          <Symbol UId="496">
+            <Component Name="i" UId="497" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="498" />
+      </Component>
+      <Token Text="." UId="499" />
+      <Component Name="Vel" UId="500" />
+    </Symbol>
+  </Access>
+  <Blank UId="501" />
+  <Token Text=":=" UId="502" />
+  <NewLine UId="503" />
+  <Blank Num="4" UId="504" />
+  <Access Scope="GlobalVariable" UId="505">
+    <Symbol UId="506">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="507">
+        <BooleanAttribute Name="HasQuotes" UId="508">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="509" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="510" />
+      <Token Text="." UId="511" />
+      <Component Name="Motion" UId="512" />
+      <Token Text="." UId="513" />
+      <Component Name="Ring_Turntable_Axis_1" UId="514" />
+      <Token Text="." UId="515" />
+      <Component Name="Position" UId="516">
+        <Token Text="[" UId="517" />
+        <Access Scope="LocalVariable" UId="518">
+          <Symbol UId="519">
+            <Component Name="i" UId="520" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="521" />
+      </Component>
+      <Token Text="." UId="522" />
+      <Component Name="Vel" UId="523" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="524" />
+  <NewLine UId="525" />
+  <Blank Num="4" UId="526" />
+  <NewLine UId="527" />
+  <Blank Num="4" UId="528" />
+  <LineComment UId="529">
+    <Text UId="530"> ServoV90_A2 (Shaft Scan Turntable)</Text>
+  </LineComment>
+  <NewLine UId="531" />
+  <Blank Num="4" UId="532" />
+  <Access Scope="GlobalVariable" UId="533">
+    <Symbol UId="534">
+      <Component Name="ServoV90_A2" UId="535">
+        <BooleanAttribute Name="HasQuotes" UId="536">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="537" />
+      <Component Name="Auto" UId="538" />
+      <Token Text="." UId="539" />
+      <Component Name="Pos" UId="540">
+        <Token Text="[" UId="541" />
+        <Access Scope="LocalVariable" UId="542">
+          <Symbol UId="543">
+            <Component Name="i" UId="544" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="545" />
+      </Component>
+      <Token Text="." UId="546" />
+      <Component Name="Pos" UId="547" />
+    </Symbol>
+  </Access>
+  <Blank UId="548" />
+  <Token Text=":=" UId="549" />
+  <NewLine UId="550" />
+  <Blank Num="4" UId="551" />
+  <Access Scope="GlobalVariable" UId="552">
+    <Symbol UId="553">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="554">
+        <BooleanAttribute Name="HasQuotes" UId="555">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="556" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="557" />
+      <Token Text="." UId="558" />
+      <Component Name="Motion" UId="559" />
+      <Token Text="." UId="560" />
+      <Component Name="Shaft_Scan_Turntable_Axis" UId="561" />
+      <Token Text="." UId="562" />
+      <Component Name="Position" UId="563">
+        <Token Text="[" UId="564" />
+        <Access Scope="LocalVariable" UId="565">
+          <Symbol UId="566">
+            <Component Name="i" UId="567" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="568" />
+      </Component>
+      <Token Text="." UId="569" />
+      <Component Name="Pos" UId="570" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="571" />
+  <NewLine UId="572" />
+  <Blank Num="4" UId="573" />
+  <Access Scope="GlobalVariable" UId="574">
+    <Symbol UId="575">
+      <Component Name="ServoV90_A2" UId="576">
+        <BooleanAttribute Name="HasQuotes" UId="577">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="578" />
+      <Component Name="Auto" UId="579" />
+      <Token Text="." UId="580" />
+      <Component Name="Pos" UId="581">
+        <Token Text="[" UId="582" />
+        <Access Scope="LocalVariable" UId="583">
+          <Symbol UId="584">
+            <Component Name="i" UId="585" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="586" />
+      </Component>
+      <Token Text="." UId="587" />
+      <Component Name="Vel" UId="588" />
+    </Symbol>
+  </Access>
+  <Blank UId="589" />
+  <Token Text=":=" UId="590" />
+  <NewLine UId="591" />
+  <Blank Num="4" UId="592" />
+  <Access Scope="GlobalVariable" UId="593">
+    <Symbol UId="594">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="595">
+        <BooleanAttribute Name="HasQuotes" UId="596">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="597" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="598" />
+      <Token Text="." UId="599" />
+      <Component Name="Motion" UId="600" />
+      <Token Text="." UId="601" />
+      <Component Name="Shaft_Scan_Turntable_Axis" UId="602" />
+      <Token Text="." UId="603" />
+      <Component Name="Position" UId="604">
+        <Token Text="[" UId="605" />
+        <Access Scope="LocalVariable" UId="606">
+          <Symbol UId="607">
+            <Component Name="i" UId="608" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="609" />
+      </Component>
+      <Token Text="." UId="610" />
+      <Component Name="Vel" UId="611" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="612" />
+  <NewLine UId="613" />
+  <Blank Num="4" UId="614" />
+  <NewLine UId="615" />
+  <Blank Num="4" UId="616" />
+  <LineComment UId="617">
+    <Text UId="618"> ServoV90_A3 (Gluing Rotary Jig)</Text>
+  </LineComment>
+  <NewLine UId="619" />
+  <Blank Num="4" UId="620" />
+  <Access Scope="GlobalVariable" UId="621">
+    <Symbol UId="622">
+      <Component Name="ServoV90_A3" UId="623">
+        <BooleanAttribute Name="HasQuotes" UId="624">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="625" />
+      <Component Name="Auto" UId="626" />
+      <Token Text="." UId="627" />
+      <Component Name="Pos" UId="628">
+        <Token Text="[" UId="629" />
+        <Access Scope="LocalVariable" UId="630">
+          <Symbol UId="631">
+            <Component Name="i" UId="632" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="633" />
+      </Component>
+      <Token Text="." UId="634" />
+      <Component Name="Pos" UId="635" />
+    </Symbol>
+  </Access>
+  <Blank UId="636" />
+  <Token Text=":=" UId="637" />
+  <NewLine UId="638" />
+  <Blank Num="4" UId="639" />
+  <Access Scope="GlobalVariable" UId="640">
+    <Symbol UId="641">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="642">
+        <BooleanAttribute Name="HasQuotes" UId="643">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="644" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="645" />
+      <Token Text="." UId="646" />
+      <Component Name="Motion" UId="647" />
+      <Token Text="." UId="648" />
+      <Component Name="Gluing_Rotary_Jig_Axis" UId="649" />
+      <Token Text="." UId="650" />
+      <Component Name="Position" UId="651">
+        <Token Text="[" UId="652" />
+        <Access Scope="LocalVariable" UId="653">
+          <Symbol UId="654">
+            <Component Name="i" UId="655" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="656" />
+      </Component>
+      <Token Text="." UId="657" />
+      <Component Name="Pos" UId="658" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="659" />
+  <NewLine UId="660" />
+  <Blank Num="4" UId="661" />
+  <Access Scope="GlobalVariable" UId="662">
+    <Symbol UId="663">
+      <Component Name="ServoV90_A3" UId="664">
+        <BooleanAttribute Name="HasQuotes" UId="665">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="666" />
+      <Component Name="Auto" UId="667" />
+      <Token Text="." UId="668" />
+      <Component Name="Pos" UId="669">
+        <Token Text="[" UId="670" />
+        <Access Scope="LocalVariable" UId="671">
+          <Symbol UId="672">
+            <Component Name="i" UId="673" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="674" />
+      </Component>
+      <Token Text="." UId="675" />
+      <Component Name="Vel" UId="676" />
+    </Symbol>
+  </Access>
+  <Blank UId="677" />
+  <Token Text=":=" UId="678" />
+  <NewLine UId="679" />
+  <Blank Num="4" UId="680" />
+  <Access Scope="GlobalVariable" UId="681">
+    <Symbol UId="682">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="683">
+        <BooleanAttribute Name="HasQuotes" UId="684">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="685" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="686" />
+      <Token Text="." UId="687" />
+      <Component Name="Motion" UId="688" />
+      <Token Text="." UId="689" />
+      <Component Name="Gluing_Rotary_Jig_Axis" UId="690" />
+      <Token Text="." UId="691" />
+      <Component Name="Position" UId="692">
+        <Token Text="[" UId="693" />
+        <Access Scope="LocalVariable" UId="694">
+          <Symbol UId="695">
+            <Component Name="i" UId="696" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="697" />
+      </Component>
+      <Token Text="." UId="698" />
+      <Component Name="Vel" UId="699" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="700" />
+  <NewLine UId="701" />
+  <Blank Num="4" UId="702" />
+  <NewLine UId="703" />
+  <Blank Num="4" UId="704" />
+  <LineComment UId="705">
+    <Text UId="706"> ServoV90_A4 (Ring Turntable 2)</Text>
+  </LineComment>
+  <NewLine UId="707" />
+  <Blank Num="4" UId="708" />
+  <Access Scope="GlobalVariable" UId="709">
+    <Symbol UId="710">
+      <Component Name="ServoV90_A4" UId="711">
+        <BooleanAttribute Name="HasQuotes" UId="712">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="713" />
+      <Component Name="Auto" UId="714" />
+      <Token Text="." UId="715" />
+      <Component Name="Pos" UId="716">
+        <Token Text="[" UId="717" />
+        <Access Scope="LocalVariable" UId="718">
+          <Symbol UId="719">
+            <Component Name="i" UId="720" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="721" />
+      </Component>
+      <Token Text="." UId="722" />
+      <Component Name="Pos" UId="723" />
+    </Symbol>
+  </Access>
+  <Blank UId="724" />
+  <Token Text=":=" UId="725" />
+  <NewLine UId="726" />
+  <Blank Num="4" UId="727" />
+  <Access Scope="GlobalVariable" UId="728">
+    <Symbol UId="729">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="730">
+        <BooleanAttribute Name="HasQuotes" UId="731">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="732" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="733" />
+      <Token Text="." UId="734" />
+      <Component Name="Motion" UId="735" />
+      <Token Text="." UId="736" />
+      <Component Name="Ring_Turntable_Axis_2" UId="737" />
+      <Token Text="." UId="738" />
+      <Component Name="Position" UId="739">
+        <Token Text="[" UId="740" />
+        <Access Scope="LocalVariable" UId="741">
+          <Symbol UId="742">
+            <Component Name="i" UId="743" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="744" />
+      </Component>
+      <Token Text="." UId="745" />
+      <Component Name="Pos" UId="746" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="747" />
+  <NewLine UId="748" />
+  <Blank Num="4" UId="749" />
+  <Access Scope="GlobalVariable" UId="750">
+    <Symbol UId="751">
+      <Component Name="ServoV90_A4" UId="752">
+        <BooleanAttribute Name="HasQuotes" UId="753">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="754" />
+      <Component Name="Auto" UId="755" />
+      <Token Text="." UId="756" />
+      <Component Name="Pos" UId="757">
+        <Token Text="[" UId="758" />
+        <Access Scope="LocalVariable" UId="759">
+          <Symbol UId="760">
+            <Component Name="i" UId="761" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="762" />
+      </Component>
+      <Token Text="." UId="763" />
+      <Component Name="Vel" UId="764" />
+    </Symbol>
+  </Access>
+  <Blank UId="765" />
+  <Token Text=":=" UId="766" />
+  <NewLine UId="767" />
+  <Blank Num="4" UId="768" />
+  <Access Scope="GlobalVariable" UId="769">
+    <Symbol UId="770">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="771">
+        <BooleanAttribute Name="HasQuotes" UId="772">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="773" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="774" />
+      <Token Text="." UId="775" />
+      <Component Name="Motion" UId="776" />
+      <Token Text="." UId="777" />
+      <Component Name="Ring_Turntable_Axis_2" UId="778" />
+      <Token Text="." UId="779" />
+      <Component Name="Position" UId="780">
+        <Token Text="[" UId="781" />
+        <Access Scope="LocalVariable" UId="782">
+          <Symbol UId="783">
+            <Component Name="i" UId="784" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="785" />
+      </Component>
+      <Token Text="." UId="786" />
+      <Component Name="Vel" UId="787" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="788" />
+  <NewLine UId="789" />
+  <Blank Num="2" UId="790" />
+  <Token Text="END_FOR" UId="791" />
+  <Token Text=";" UId="792" />
+  <NewLine UId="793" />
+  <Blank Num="2" UId="794" />
+  <NewLine UId="795" />
+  <Blank Num="2" UId="796" />
+  <LineComment UId="797">
+    <Text UId="798">=============================================================================</Text>
+  </LineComment>
+  <NewLine UId="799" />
+  <Blank Num="2" UId="800" />
+  <LineComment UId="801">
+    <Text UId="802"> 3. PARAMETER ELEMENTS (Write to ST10_RecipeDB - Logic Buffer)</Text>
+  </LineComment>
+  <NewLine UId="803" />
+  <Blank Num="2" UId="804" />
+  <LineComment UId="805">
+    <Text UId="806">=============================================================================</Text>
+  </LineComment>
+  <NewLine UId="807" />
+  <Blank Num="2" UId="808" />
+  <NewLine UId="809" />
+  <Blank Num="2" UId="810" />
+  <LineComment UId="811">
+    <Text UId="812"> --- Press Programs ---</Text>
+  </LineComment>
+  <NewLine UId="813" />
+  <Blank Num="2" UId="814" />
+  <Access Scope="GlobalVariable" UId="815">
+    <Symbol UId="816">
+      <Component Name="ST10_RecipeDB" UId="817">
+        <BooleanAttribute Name="HasQuotes" UId="818">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="819" />
+      <Component Name="ParameterElement" UId="820" />
+      <Token Text="." UId="821" />
+      <Component Name="B1PressProgram" UId="822" />
+    </Symbol>
+  </Access>
+  <Blank UId="823" />
+  <Token Text=":=" UId="824" />
+  <Blank UId="825" />
+  <Access Scope="GlobalVariable" UId="826">
+    <Symbol UId="827">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="828">
+        <BooleanAttribute Name="HasQuotes" UId="829">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="830" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="831" />
+      <Token Text="." UId="832" />
+      <Component Name="Process" UId="833" />
+      <Token Text="." UId="834" />
+      <Component Name="Press" UId="835" />
+      <Token Text="." UId="836" />
+      <Component Name="B1_Program" UId="837" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="838" />
+  <NewLine UId="839" />
+  <Blank Num="2" UId="840" />
+  <Access Scope="GlobalVariable" UId="841">
+    <Symbol UId="842">
+      <Component Name="ST10_RecipeDB" UId="843">
+        <BooleanAttribute Name="HasQuotes" UId="844">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="845" />
+      <Component Name="ParameterElement" UId="846" />
+      <Token Text="." UId="847" />
+      <Component Name="B2PressProgram" UId="848" />
+    </Symbol>
+  </Access>
+  <Blank UId="849" />
+  <Token Text=":=" UId="850" />
+  <Blank UId="851" />
+  <Access Scope="GlobalVariable" UId="852">
+    <Symbol UId="853">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="854">
+        <BooleanAttribute Name="HasQuotes" UId="855">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="856" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="857" />
+      <Token Text="." UId="858" />
+      <Component Name="Process" UId="859" />
+      <Token Text="." UId="860" />
+      <Component Name="Press" UId="861" />
+      <Token Text="." UId="862" />
+      <Component Name="B2_Program" UId="863" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="864" />
+  <NewLine UId="865" />
+  <Blank Num="2" UId="866" />
+  <NewLine UId="867" />
+  <Blank Num="2" UId="868" />
+  <LineComment UId="869">
+    <Text UId="870"> --- Vision Programs (IV3) ---</Text>
+  </LineComment>
+  <NewLine UId="871" />
+  <Blank Num="2" UId="872" />
+  <Access Scope="GlobalVariable" UId="873">
+    <Symbol UId="874">
+      <Component Name="ST10_RecipeDB" UId="875">
+        <BooleanAttribute Name="HasQuotes" UId="876">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="877" />
+      <Component Name="ParameterElement" UId="878" />
+      <Token Text="." UId="879" />
+      <Component Name="CGlueShaftIV3Program_1" UId="880" />
+    </Symbol>
+  </Access>
+  <Blank UId="881" />
+  <Token Text=":=" UId="882" />
+  <Blank UId="883" />
+  <Access Scope="GlobalVariable" UId="884">
+    <Symbol UId="885">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="886">
+        <BooleanAttribute Name="HasQuotes" UId="887">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="888" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="889" />
+      <Token Text="." UId="890" />
+      <Component Name="Process" UId="891" />
+      <Token Text="." UId="892" />
+      <Component Name="Vision" UId="893" />
+      <Token Text="." UId="894" />
+      <Component Name="CGlueShaftIV3_Progs" UId="895">
+        <Token Text="[" UId="896" />
+        <Access Scope="LiteralConstant" UId="897">
+          <Constant UId="898">
+            <ConstantValue UId="900">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="901" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="902" />
+  <NewLine UId="903" />
+  <Blank Num="2" UId="904" />
+  <Access Scope="GlobalVariable" UId="905">
+    <Symbol UId="906">
+      <Component Name="ST10_RecipeDB" UId="907">
+        <BooleanAttribute Name="HasQuotes" UId="908">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="909" />
+      <Component Name="ParameterElement" UId="910" />
+      <Token Text="." UId="911" />
+      <Component Name="CGlueShaftIV3Program_2" UId="912" />
+    </Symbol>
+  </Access>
+  <Blank UId="913" />
+  <Token Text=":=" UId="914" />
+  <Blank UId="915" />
+  <Access Scope="GlobalVariable" UId="916">
+    <Symbol UId="917">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="918">
+        <BooleanAttribute Name="HasQuotes" UId="919">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="920" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="921" />
+      <Token Text="." UId="922" />
+      <Component Name="Process" UId="923" />
+      <Token Text="." UId="924" />
+      <Component Name="Vision" UId="925" />
+      <Token Text="." UId="926" />
+      <Component Name="CGlueShaftIV3_Progs" UId="927">
+        <Token Text="[" UId="928" />
+        <Access Scope="LiteralConstant" UId="929">
+          <Constant UId="930">
+            <ConstantValue UId="932">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="933" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="934" />
+  <NewLine UId="935" />
+  <Blank Num="2" UId="936" />
+  <Access Scope="GlobalVariable" UId="937">
+    <Symbol UId="938">
+      <Component Name="ST10_RecipeDB" UId="939">
+        <BooleanAttribute Name="HasQuotes" UId="940">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="941" />
+      <Component Name="ParameterElement" UId="942" />
+      <Token Text="." UId="943" />
+      <Component Name="CGlueShaftIV3Program_3" UId="944" />
+    </Symbol>
+  </Access>
+  <Blank UId="945" />
+  <Token Text=":=" UId="946" />
+  <Blank UId="947" />
+  <Access Scope="GlobalVariable" UId="948">
+    <Symbol UId="949">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="950">
+        <BooleanAttribute Name="HasQuotes" UId="951">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="952" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="953" />
+      <Token Text="." UId="954" />
+      <Component Name="Process" UId="955" />
+      <Token Text="." UId="956" />
+      <Component Name="Vision" UId="957" />
+      <Token Text="." UId="958" />
+      <Component Name="CGlueShaftIV3_Progs" UId="959">
+        <Token Text="[" UId="960" />
+        <Access Scope="LiteralConstant" UId="961">
+          <Constant UId="962">
+            <ConstantValue UId="964">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="965" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="966" />
+  <NewLine UId="967" />
+  <Blank Num="2" UId="968" />
+  <Access Scope="GlobalVariable" UId="969">
+    <Symbol UId="970">
+      <Component Name="ST10_RecipeDB" UId="971">
+        <BooleanAttribute Name="HasQuotes" UId="972">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="973" />
+      <Component Name="ParameterElement" UId="974" />
+      <Token Text="." UId="975" />
+      <Component Name="CGlueShaftIV3Program_4" UId="976" />
+    </Symbol>
+  </Access>
+  <Blank UId="977" />
+  <Token Text=":=" UId="978" />
+  <Blank UId="979" />
+  <Access Scope="GlobalVariable" UId="980">
+    <Symbol UId="981">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="982">
+        <BooleanAttribute Name="HasQuotes" UId="983">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="984" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="985" />
+      <Token Text="." UId="986" />
+      <Component Name="Process" UId="987" />
+      <Token Text="." UId="988" />
+      <Component Name="Vision" UId="989" />
+      <Token Text="." UId="990" />
+      <Component Name="CGlueShaftIV3_Progs" UId="991">
+        <Token Text="[" UId="992" />
+        <Access Scope="LiteralConstant" UId="993">
+          <Constant UId="994">
+            <ConstantValue UId="996">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="997" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="998" />
+  <NewLine UId="999" />
+  <Blank Num="2" UId="1000" />
+  <NewLine UId="1001" />
+  <Blank Num="2" UId="1002" />
+  <Access Scope="GlobalVariable" UId="1003">
+    <Symbol UId="1004">
+      <Component Name="ST10_RecipeDB" UId="1005">
+        <BooleanAttribute Name="HasQuotes" UId="1006">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1007" />
+      <Component Name="ParameterElement" UId="1008" />
+      <Token Text="." UId="1009" />
+      <Component Name="CGlueMagnetIV3Program" UId="1010" />
+    </Symbol>
+  </Access>
+  <Blank UId="1011" />
+  <Token Text=":=" UId="1012" />
+  <Blank UId="1013" />
+  <Access Scope="GlobalVariable" UId="1014">
+    <Symbol UId="1015">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1016">
+        <BooleanAttribute Name="HasQuotes" UId="1017">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1018" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1019" />
+      <Token Text="." UId="1020" />
+      <Component Name="Process" UId="1021" />
+      <Token Text="." UId="1022" />
+      <Component Name="Vision" UId="1023" />
+      <Token Text="." UId="1024" />
+      <Component Name="CGlueMagnetIV3_Prog" UId="1025" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1026" />
+  <NewLine UId="1027" />
+  <Blank Num="2" UId="1028" />
+  <Access Scope="GlobalVariable" UId="1029">
+    <Symbol UId="1030">
+      <Component Name="ST10_RecipeDB" UId="1031">
+        <BooleanAttribute Name="HasQuotes" UId="1032">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1033" />
+      <Component Name="ParameterElement" UId="1034" />
+      <Token Text="." UId="1035" />
+      <Component Name="CGlueProgram" UId="1036" />
+    </Symbol>
+  </Access>
+  <Blank UId="1037" />
+  <Token Text=":=" UId="1038" />
+  <Blank UId="1039" />
+  <Access Scope="GlobalVariable" UId="1040">
+    <Symbol UId="1041">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1042">
+        <BooleanAttribute Name="HasQuotes" UId="1043">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1044" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1045" />
+      <Token Text="." UId="1046" />
+      <Component Name="Process" UId="1047" />
+      <Token Text="." UId="1048" />
+      <Component Name="Vision" UId="1049" />
+      <Token Text="." UId="1050" />
+      <Component Name="CGlueProgram" UId="1051" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1052" />
+  <NewLine UId="1053" />
+  <Blank Num="2" UId="1054" />
+  <NewLine UId="1055" />
+  <Blank Num="2" UId="1056" />
+  <LineComment UId="1057">
+    <Text UId="1058"> --- Tooling Codes (Robot 1) ---</Text>
+  </LineComment>
+  <NewLine UId="1059" />
+  <Blank Num="2" UId="1060" />
+  <Access Scope="GlobalVariable" UId="1061">
+    <Symbol UId="1062">
+      <Component Name="ST10_RecipeDB" UId="1063">
+        <BooleanAttribute Name="HasQuotes" UId="1064">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1065" />
+      <Component Name="ParameterElement" UId="1066" />
+      <Token Text="." UId="1067" />
+      <Component Name="R1GripperFixtureCode" UId="1068">
+        <Token Text="[" UId="1069" />
+        <Access Scope="LiteralConstant" UId="1070">
+          <Constant UId="1071">
+            <ConstantValue UId="1073">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1074" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1075" />
+  <Token Text=":=" UId="1076" />
+  <Blank UId="1077" />
+  <Access Scope="GlobalVariable" UId="1078">
+    <Symbol UId="1079">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1080">
+        <BooleanAttribute Name="HasQuotes" UId="1081">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1082" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1083" />
+      <Token Text="." UId="1084" />
+      <Component Name="Tooling Code" UId="1085" />
+      <Token Text="." UId="1086" />
+      <Component Name="ROB1_Shaft_Handling_Robot" UId="1087" />
+      <Token Text="." UId="1088" />
+      <Component Name="Gripper" UId="1089" />
+      <Token Text="." UId="1090" />
+      <Component Name="JAW TOOLING LEFT" UId="1091" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1092" />
+  <NewLine UId="1093" />
+  <Blank Num="2" UId="1094" />
+  <Access Scope="GlobalVariable" UId="1095">
+    <Symbol UId="1096">
+      <Component Name="ST10_RecipeDB" UId="1097">
+        <BooleanAttribute Name="HasQuotes" UId="1098">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1099" />
+      <Component Name="ParameterElement" UId="1100" />
+      <Token Text="." UId="1101" />
+      <Component Name="R1GripperFixtureCode" UId="1102">
+        <Token Text="[" UId="1103" />
+        <Access Scope="LiteralConstant" UId="1104">
+          <Constant UId="1105">
+            <ConstantValue UId="1107">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1108" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1109" />
+  <Token Text=":=" UId="1110" />
+  <Blank UId="1111" />
+  <Access Scope="GlobalVariable" UId="1112">
+    <Symbol UId="1113">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1114">
+        <BooleanAttribute Name="HasQuotes" UId="1115">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1116" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1117" />
+      <Token Text="." UId="1118" />
+      <Component Name="Tooling Code" UId="1119" />
+      <Token Text="." UId="1120" />
+      <Component Name="ROB1_Shaft_Handling_Robot" UId="1121" />
+      <Token Text="." UId="1122" />
+      <Component Name="Gripper" UId="1123" />
+      <Token Text="." UId="1124" />
+      <Component Name="JAW TOOLING RIGHT" UId="1125" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1126" />
+  <NewLine UId="1127" />
+  <Blank Num="2" UId="1128" />
+  <Access Scope="GlobalVariable" UId="1129">
+    <Symbol UId="1130">
+      <Component Name="ST10_RecipeDB" UId="1131">
+        <BooleanAttribute Name="HasQuotes" UId="1132">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1133" />
+      <Component Name="ParameterElement" UId="1134" />
+      <Token Text="." UId="1135" />
+      <Component Name="R1GripperFixtureCode" UId="1136">
+        <Token Text="[" UId="1137" />
+        <Access Scope="LiteralConstant" UId="1138">
+          <Constant UId="1139">
+            <ConstantValue UId="1141">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1142" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1143" />
+  <Token Text=":=" UId="1144" />
+  <Blank UId="1145" />
+  <Access Scope="GlobalVariable" UId="1146">
+    <Symbol UId="1147">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1148">
+        <BooleanAttribute Name="HasQuotes" UId="1149">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1150" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1151" />
+      <Token Text="." UId="1152" />
+      <Component Name="Tooling Code" UId="1153" />
+      <Token Text="." UId="1154" />
+      <Component Name="ROB1_Shaft_Handling_Robot" UId="1155" />
+      <Token Text="." UId="1156" />
+      <Component Name="Gripper" UId="1157" />
+      <Token Text="." UId="1158" />
+      <Component Name="SHAFT CLAMPING LEFT" UId="1159" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1160" />
+  <NewLine UId="1161" />
+  <Blank Num="2" UId="1162" />
+  <Access Scope="GlobalVariable" UId="1163">
+    <Symbol UId="1164">
+      <Component Name="ST10_RecipeDB" UId="1165">
+        <BooleanAttribute Name="HasQuotes" UId="1166">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1167" />
+      <Component Name="ParameterElement" UId="1168" />
+      <Token Text="." UId="1169" />
+      <Component Name="R1GripperFixtureCode" UId="1170">
+        <Token Text="[" UId="1171" />
+        <Access Scope="LiteralConstant" UId="1172">
+          <Constant UId="1173">
+            <ConstantValue UId="1175">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1176" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1177" />
+  <Token Text=":=" UId="1178" />
+  <Blank UId="1179" />
+  <Access Scope="GlobalVariable" UId="1180">
+    <Symbol UId="1181">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1182">
+        <BooleanAttribute Name="HasQuotes" UId="1183">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1184" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1185" />
+      <Token Text="." UId="1186" />
+      <Component Name="Tooling Code" UId="1187" />
+      <Token Text="." UId="1188" />
+      <Component Name="ROB1_Shaft_Handling_Robot" UId="1189" />
+      <Token Text="." UId="1190" />
+      <Component Name="Gripper" UId="1191" />
+      <Token Text="." UId="1192" />
+      <Component Name="SHAFT CLAMPING RIGHT" UId="1193" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1194" />
+  <NewLine UId="1195" />
+  <Blank Num="2" UId="1196" />
+  <NewLine UId="1197" />
+  <Blank Num="2" UId="1198" />
+  <LineComment UId="1199">
+    <Text UId="1200"> --- Tooling Codes (Robot 2) ---</Text>
+  </LineComment>
+  <NewLine UId="1201" />
+  <Blank Num="2" UId="1202" />
+  <Access Scope="GlobalVariable" UId="1203">
+    <Symbol UId="1204">
+      <Component Name="ST10_RecipeDB" UId="1205">
+        <BooleanAttribute Name="HasQuotes" UId="1206">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1207" />
+      <Component Name="ParameterElement" UId="1208" />
+      <Token Text="." UId="1209" />
+      <Component Name="R2GripperFixtureCode" UId="1210">
+        <Token Text="[" UId="1211" />
+        <Access Scope="LiteralConstant" UId="1212">
+          <Constant UId="1213">
+            <ConstantValue UId="1215">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1216" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1217" />
+  <Token Text=":=" UId="1218" />
+  <Blank UId="1219" />
+  <Access Scope="GlobalVariable" UId="1220">
+    <Symbol UId="1221">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1222">
+        <BooleanAttribute Name="HasQuotes" UId="1223">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1224" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1225" />
+      <Token Text="." UId="1226" />
+      <Component Name="Tooling Code" UId="1227" />
+      <Token Text="." UId="1228" />
+      <Component Name="ROB2_Main_Assembly_Robot" UId="1229" />
+      <Token Text="." UId="1230" />
+      <Component Name="Gripper" UId="1231" />
+      <Token Text="." UId="1232" />
+      <Component Name="JAW TOOLING LEFT" UId="1233" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1234" />
+  <NewLine UId="1235" />
+  <Blank Num="2" UId="1236" />
+  <Access Scope="GlobalVariable" UId="1237">
+    <Symbol UId="1238">
+      <Component Name="ST10_RecipeDB" UId="1239">
+        <BooleanAttribute Name="HasQuotes" UId="1240">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1241" />
+      <Component Name="ParameterElement" UId="1242" />
+      <Token Text="." UId="1243" />
+      <Component Name="R2GripperFixtureCode" UId="1244">
+        <Token Text="[" UId="1245" />
+        <Access Scope="LiteralConstant" UId="1246">
+          <Constant UId="1247">
+            <ConstantValue UId="1249">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1250" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1251" />
+  <Token Text=":=" UId="1252" />
+  <Blank UId="1253" />
+  <Access Scope="GlobalVariable" UId="1254">
+    <Symbol UId="1255">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1256">
+        <BooleanAttribute Name="HasQuotes" UId="1257">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1258" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1259" />
+      <Token Text="." UId="1260" />
+      <Component Name="Tooling Code" UId="1261" />
+      <Token Text="." UId="1262" />
+      <Component Name="ROB2_Main_Assembly_Robot" UId="1263" />
+      <Token Text="." UId="1264" />
+      <Component Name="Gripper" UId="1265" />
+      <Token Text="." UId="1266" />
+      <Component Name="JAW TOOLING RIGHT" UId="1267" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1268" />
+  <NewLine UId="1269" />
+  <Blank Num="2" UId="1270" />
+  <Access Scope="GlobalVariable" UId="1271">
+    <Symbol UId="1272">
+      <Component Name="ST10_RecipeDB" UId="1273">
+        <BooleanAttribute Name="HasQuotes" UId="1274">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1275" />
+      <Component Name="ParameterElement" UId="1276" />
+      <Token Text="." UId="1277" />
+      <Component Name="R2GripperFixtureCode" UId="1278">
+        <Token Text="[" UId="1279" />
+        <Access Scope="LiteralConstant" UId="1280">
+          <Constant UId="1281">
+            <ConstantValue UId="1283">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1284" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1285" />
+  <Token Text=":=" UId="1286" />
+  <Blank UId="1287" />
+  <Access Scope="GlobalVariable" UId="1288">
+    <Symbol UId="1289">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1290">
+        <BooleanAttribute Name="HasQuotes" UId="1291">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1292" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1293" />
+      <Token Text="." UId="1294" />
+      <Component Name="Tooling Code" UId="1295" />
+      <Token Text="." UId="1296" />
+      <Component Name="ROB2_Main_Assembly_Robot" UId="1297" />
+      <Token Text="." UId="1298" />
+      <Component Name="Gripper" UId="1299" />
+      <Token Text="." UId="1300" />
+      <Component Name="SHAFT CLAMPING LEFT" UId="1301" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1302" />
+  <NewLine UId="1303" />
+  <Blank Num="2" UId="1304" />
+  <Access Scope="GlobalVariable" UId="1305">
+    <Symbol UId="1306">
+      <Component Name="ST10_RecipeDB" UId="1307">
+        <BooleanAttribute Name="HasQuotes" UId="1308">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1309" />
+      <Component Name="ParameterElement" UId="1310" />
+      <Token Text="." UId="1311" />
+      <Component Name="R2GripperFixtureCode" UId="1312">
+        <Token Text="[" UId="1313" />
+        <Access Scope="LiteralConstant" UId="1314">
+          <Constant UId="1315">
+            <ConstantValue UId="1317">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1318" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1319" />
+  <Token Text=":=" UId="1320" />
+  <Blank UId="1321" />
+  <Access Scope="GlobalVariable" UId="1322">
+    <Symbol UId="1323">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1324">
+        <BooleanAttribute Name="HasQuotes" UId="1325">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1326" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1327" />
+      <Token Text="." UId="1328" />
+      <Component Name="Tooling Code" UId="1329" />
+      <Token Text="." UId="1330" />
+      <Component Name="ROB2_Main_Assembly_Robot" UId="1331" />
+      <Token Text="." UId="1332" />
+      <Component Name="Gripper" UId="1333" />
+      <Token Text="." UId="1334" />
+      <Component Name="SHAFT CLAMPING RIGHT" UId="1335" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1336" />
+  <NewLine UId="1337" />
+  <Blank Num="2" UId="1338" />
+  <NewLine UId="1339" />
+  <Blank Num="2" UId="1340" />
+  <LineComment UId="1341">
+    <Text UId="1342"> --- Tooling Codes (Robot 3) ---</Text>
+  </LineComment>
+  <NewLine UId="1343" />
+  <Blank Num="2" UId="1344" />
+  <Access Scope="GlobalVariable" UId="1345">
+    <Symbol UId="1346">
+      <Component Name="ST10_RecipeDB" UId="1347">
+        <BooleanAttribute Name="HasQuotes" UId="1348">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1349" />
+      <Component Name="ParameterElement" UId="1350" />
+      <Token Text="." UId="1351" />
+      <Component Name="R3GripperFixtureCode" UId="1352">
+        <Token Text="[" UId="1353" />
+        <Access Scope="LiteralConstant" UId="1354">
+          <Constant UId="1355">
+            <ConstantValue UId="1357">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1358" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1359" />
+  <Token Text=":=" UId="1360" />
+  <Blank UId="1361" />
+  <Access Scope="GlobalVariable" UId="1362">
+    <Symbol UId="1363">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1364">
+        <BooleanAttribute Name="HasQuotes" UId="1365">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1366" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1367" />
+      <Token Text="." UId="1368" />
+      <Component Name="Tooling Code" UId="1369" />
+      <Token Text="." UId="1370" />
+      <Component Name="ROB3_Unloading_Robot" UId="1371" />
+      <Token Text="." UId="1372" />
+      <Component Name="Gripper" UId="1373" />
+      <Token Text="." UId="1374" />
+      <Component Name="JAW TOOLING LEFT" UId="1375" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1376" />
+  <NewLine UId="1377" />
+  <Blank Num="2" UId="1378" />
+  <Access Scope="GlobalVariable" UId="1379">
+    <Symbol UId="1380">
+      <Component Name="ST10_RecipeDB" UId="1381">
+        <BooleanAttribute Name="HasQuotes" UId="1382">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1383" />
+      <Component Name="ParameterElement" UId="1384" />
+      <Token Text="." UId="1385" />
+      <Component Name="R3GripperFixtureCode" UId="1386">
+        <Token Text="[" UId="1387" />
+        <Access Scope="LiteralConstant" UId="1388">
+          <Constant UId="1389">
+            <ConstantValue UId="1391">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1392" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1393" />
+  <Token Text=":=" UId="1394" />
+  <Blank UId="1395" />
+  <Access Scope="GlobalVariable" UId="1396">
+    <Symbol UId="1397">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1398">
+        <BooleanAttribute Name="HasQuotes" UId="1399">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1400" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1401" />
+      <Token Text="." UId="1402" />
+      <Component Name="Tooling Code" UId="1403" />
+      <Token Text="." UId="1404" />
+      <Component Name="ROB3_Unloading_Robot" UId="1405" />
+      <Token Text="." UId="1406" />
+      <Component Name="Gripper" UId="1407" />
+      <Token Text="." UId="1408" />
+      <Component Name="JAW TOOLING RIGHT" UId="1409" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1410" />
+  <NewLine UId="1411" />
+  <Blank Num="2" UId="1412" />
+  <Access Scope="GlobalVariable" UId="1413">
+    <Symbol UId="1414">
+      <Component Name="ST10_RecipeDB" UId="1415">
+        <BooleanAttribute Name="HasQuotes" UId="1416">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1417" />
+      <Component Name="ParameterElement" UId="1418" />
+      <Token Text="." UId="1419" />
+      <Component Name="R3GripperFixtureCode" UId="1420">
+        <Token Text="[" UId="1421" />
+        <Access Scope="LiteralConstant" UId="1422">
+          <Constant UId="1423">
+            <ConstantValue UId="1425">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1426" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1427" />
+  <Token Text=":=" UId="1428" />
+  <Blank UId="1429" />
+  <Access Scope="GlobalVariable" UId="1430">
+    <Symbol UId="1431">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1432">
+        <BooleanAttribute Name="HasQuotes" UId="1433">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1434" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1435" />
+      <Token Text="." UId="1436" />
+      <Component Name="Tooling Code" UId="1437" />
+      <Token Text="." UId="1438" />
+      <Component Name="ROB3_Unloading_Robot" UId="1439" />
+      <Token Text="." UId="1440" />
+      <Component Name="Gripper" UId="1441" />
+      <Token Text="." UId="1442" />
+      <Component Name="SHAFT CLAMPING LEFT" UId="1443" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1444" />
+  <NewLine UId="1445" />
+  <Blank Num="2" UId="1446" />
+  <Access Scope="GlobalVariable" UId="1447">
+    <Symbol UId="1448">
+      <Component Name="ST10_RecipeDB" UId="1449">
+        <BooleanAttribute Name="HasQuotes" UId="1450">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1451" />
+      <Component Name="ParameterElement" UId="1452" />
+      <Token Text="." UId="1453" />
+      <Component Name="R3GripperFixtureCode" UId="1454">
+        <Token Text="[" UId="1455" />
+        <Access Scope="LiteralConstant" UId="1456">
+          <Constant UId="1457">
+            <ConstantValue UId="1459">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="1460" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1461" />
+  <Token Text=":=" UId="1462" />
+  <Blank UId="1463" />
+  <Access Scope="GlobalVariable" UId="1464">
+    <Symbol UId="1465">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1466">
+        <BooleanAttribute Name="HasQuotes" UId="1467">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1468" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1469" />
+      <Token Text="." UId="1470" />
+      <Component Name="Tooling Code" UId="1471" />
+      <Token Text="." UId="1472" />
+      <Component Name="ROB3_Unloading_Robot" UId="1473" />
+      <Token Text="." UId="1474" />
+      <Component Name="Gripper" UId="1475" />
+      <Token Text="." UId="1476" />
+      <Component Name="SHAFT CLAMPING RIGHT" UId="1477" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1478" />
+  <NewLine UId="1479" />
+  <Blank Num="2" UId="1480" />
+  <NewLine UId="1481" />
+  <Blank Num="2" UId="1482" />
+  <LineComment UId="1483">
+    <Text UId="1484"> --- Table Fixture Codes (A1 &amp; A2) ---</Text>
+  </LineComment>
+  <NewLine UId="1485" />
+  <Blank Num="2" UId="1486" />
+  <LineComment UId="1487">
+    <Text UId="1488"> Using LOOP because Save function saves array elements individually or implicitly, but Load needs to fill the buffer</Text>
+  </LineComment>
+  <NewLine UId="1489" />
+  <Blank Num="2" UId="1490" />
+  <Token Text="FOR" UId="1491" />
+  <Blank UId="1492" />
+  <Access Scope="LocalVariable" UId="1493">
+    <Symbol UId="1494">
+      <Component Name="i" UId="1495" />
+    </Symbol>
+  </Access>
+  <Blank UId="1496" />
+  <Token Text=":=" UId="1497" />
+  <Blank UId="1498" />
+  <Access Scope="LiteralConstant" UId="1499">
+    <Constant UId="1500">
+      <ConstantValue UId="1502">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="1503" />
+  <Token Text="TO" UId="1504" />
+  <Blank UId="1505" />
+  <Access Scope="LiteralConstant" UId="1506">
+    <Constant UId="1507">
+      <ConstantValue UId="1509">8</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="1510" />
+  <Token Text="DO" UId="1511" />
+  <NewLine UId="1512" />
+  <Blank Num="4" UId="1513" />
+  <Access Scope="GlobalVariable" UId="1514">
+    <Symbol UId="1515">
+      <Component Name="ST10_RecipeDB" UId="1516">
+        <BooleanAttribute Name="HasQuotes" UId="1517">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1518" />
+      <Component Name="ParameterElement" UId="1519" />
+      <Token Text="." UId="1520" />
+      <Component Name="A1_TableFixtureCode" UId="1521">
+        <Token Text="[" UId="1522" />
+        <Access Scope="LocalVariable" UId="1523">
+          <Symbol UId="1524">
+            <Component Name="i" UId="1525" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="1526" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1527" />
+  <Token Text=":=" UId="1528" />
+  <Blank UId="1529" />
+  <Access Scope="GlobalVariable" UId="1530">
+    <Symbol UId="1531">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1532">
+        <BooleanAttribute Name="HasQuotes" UId="1533">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1534" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1535" />
+      <Token Text="." UId="1536" />
+      <Component Name="Tooling Code" UId="1537" />
+      <Token Text="." UId="1538" />
+      <Component Name="A1_Table" UId="1539">
+        <Token Text="[" UId="1540" />
+        <Access Scope="LocalVariable" UId="1541">
+          <Symbol UId="1542">
+            <Component Name="i" UId="1543" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="1544" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1545" />
+  <NewLine UId="1546" />
+  <Blank Num="4" UId="1547" />
+  <Access Scope="GlobalVariable" UId="1548">
+    <Symbol UId="1549">
+      <Component Name="ST10_RecipeDB" UId="1550">
+        <BooleanAttribute Name="HasQuotes" UId="1551">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1552" />
+      <Component Name="ParameterElement" UId="1553" />
+      <Token Text="." UId="1554" />
+      <Component Name="A2_TableFixtureCode" UId="1555">
+        <Token Text="[" UId="1556" />
+        <Access Scope="LocalVariable" UId="1557">
+          <Symbol UId="1558">
+            <Component Name="i" UId="1559" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="1560" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1561" />
+  <Token Text=":=" UId="1562" />
+  <Blank UId="1563" />
+  <Access Scope="GlobalVariable" UId="1564">
+    <Symbol UId="1565">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="1566">
+        <BooleanAttribute Name="HasQuotes" UId="1567">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1568" />
+      <Component Name="ACTUAL_CHOOSEN_TYPE" UId="1569" />
+      <Token Text="." UId="1570" />
+      <Component Name="Tooling Code" UId="1571" />
+      <Token Text="." UId="1572" />
+      <Component Name="A2_Table" UId="1573">
+        <Token Text="[" UId="1574" />
+        <Access Scope="LocalVariable" UId="1575">
+          <Symbol UId="1576">
+            <Component Name="i" UId="1577" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="1578" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1579" />
+  <NewLine UId="1580" />
+  <Blank Num="2" UId="1581" />
+  <Token Text="END_FOR" UId="1582" />
+  <Token Text=";" UId="1583" />
+  <NewLine UId="1584" />
+  <Blank Num="2" UId="1585" />
+  <NewLine UId="1586" />
+  <Blank Num="2" UId="1587" />
+  <Access Scope="GlobalVariable" UId="1588">
+    <Symbol UId="1589">
+      <Component Name="DB_PARAMETERS_TEACH" UId="1590">
+        <BooleanAttribute Name="HasQuotes" UId="1591">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1592" />
+      <Component Name="HMI_PAGE_CONTROL" UId="1593" />
+      <Token Text="." UId="1594" />
+      <Component Name="Use_recipe_trigger" UId="1595" />
+    </Symbol>
+  </Access>
+  <Blank UId="1596" />
+  <Token Text=":=" UId="1597" />
+  <Blank UId="1598" />
+  <Access Scope="LiteralConstant" UId="1599">
+    <Constant UId="1600">
+      <ConstantValue UId="1602">false</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1603" />
+  <NewLine UId="1604" />
+  <Blank Num="2" UId="1605" />
+  <NewLine UId="1606" />
+  <Token Text="END_IF" UId="1607" />
+  <Token Text=";" UId="1608" />
+  <NewLine Num="2" UId="1609" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

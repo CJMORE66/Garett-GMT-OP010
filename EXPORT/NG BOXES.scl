@@ -1,0 +1,265 @@
+﻿FUNCTION_BLOCK "FB_NG_Box_Control"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+VAR_INPUT
+  Button : Bool;                // Fyzické tlačítko
+  MagnetSensor : Bool;          // Senzor zavření (Magnet)
+  LockedFB : Bool;              // Zpětná vazba Zamčeno
+  UnlockedFB : Bool;            // Zpětná vazba Odemčeno
+  AtSafePoint : Bool;           // Signál ze sekvence: "Stojím v Kroku 111"
+  Sensors : Array[1..15] OF Bool; // 15 senzorů pozic
+END_VAR
+
+VAR_OUTPUT
+  PauseReq : Bool;              // Požadavek na zastavení sekvence v Kroku 111
+  UnlockCmd : Bool;             // Odemknout zámek
+  LockCmd : Bool;               // Zamknout zámek
+  CylinderOpen : Bool;          // Válec Otevřít (Home)
+  CylinderClose : Bool;         // Válec Zavřít (Work)
+  ButtonLight : Bool;           // Kontrolka v tlačítku
+  Ready_1 : Bool;               // Status pro robota: Řada 1 (1-5) má místo
+  Ready_2 : Bool;               // Status pro robota: Řada 2 (6-10) má místo
+  Ready_3 : Bool;               // Status pro robota: Řada 3 (11-15) má místo
+  OpenFlag : Bool;              // Status pro robota: Dveře otevřeny
+END_VAR
+
+VAR
+  State : Int := 99;            // STARTUJEME V INITU (99)     
+  BlinkTimer{InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+  BlinkBit : Bool;
+  i : Int;
+  buttontriggered{InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+  c : Int;
+END_VAR
+
+
+BEGIN
+	    // 1. KONTROLA POZIC (Ready_1..3) - TRUE = aspoň jedna pozice v řadě je VOLNÁ
+	    #Ready_1 := FALSE;
+	    FOR #i := 1 TO 5 DO
+	      IF NOT #Sensors[#i] THEN
+	        #Ready_1 := TRUE;
+	      END_IF;
+	    END_FOR;
+	    #Ready_2 := FALSE;
+	    FOR #i := 6 TO 10 DO
+	      IF NOT #Sensors[#i] THEN
+	        #Ready_2 := TRUE;
+	      END_IF;
+	    END_FOR;
+	    #Ready_3 := FALSE;
+	    FOR #i := 11 TO 15 DO
+	      IF NOT #Sensors[#i] THEN
+	        #Ready_3 := TRUE;
+	      END_IF;
+	    END_FOR;
+	    
+	    // 2. BLIKÁNÍ
+	
+	   
+	    #BlinkBit := "ClockMemory0.4s";
+	   
+	
+	    #buttontriggered(CLK := #Button);
+	    // 3. LOGIKA DVEŘÍ
+	    CASE #State OF
+	         99: // INITIALIZATION - Rozhodnutí po startu PLC                                                   
+	           IF #MagnetSensor AND #LockedFB THEN 
+	             
+	             #State := 0;  // Vše OK, zamčeno -> IDLE                                                       
+	           ELSIF #MagnetSensor AND NOT #LockedFB THEN 
+	             
+	             #State := 40; // Zavřeno, ale nezamčeno -> Čekej na potvrzení                                  
+	           ELSE
+	             #State := 30; // Dveře jsou fyzicky otevřený -> Skoč do OPEN                                                 END_IF;
+	           END_IF;
+	      0:  // IDLE - Vše OK, sekvence běží
+	        #PauseReq := FALSE;
+	        #UnlockCmd := FALSE;
+	        #LockCmd := TRUE;
+	        #CylinderOpen := FALSE;
+	        #CylinderClose := TRUE;
+	        #ButtonLight := true;
+	        #OpenFlag := FALSE;
+	        IF #buttontriggered.Q THEN
+	          #State := 10;
+	        END_IF;
+	        
+	      10: // REQUEST - Zmáčknuto, čekáme až sekvence dojede do Kroku 111
+	        #PauseReq := TRUE;
+	        #ButtonLight := #BlinkBit;
+	        IF #AtSafePoint THEN
+	          #State := 20;
+	        END_IF;
+	        
+	      20: // SAFE - Sekvence stojí v 111, pouštíme zámek a válec
+	        #PauseReq := TRUE;
+	        #UnlockCmd := TRUE;
+	        #LockCmd := FALSE;
+	        #ButtonLight := #BlinkBit;
+	        IF #UnlockedFB THEN
+	          #CylinderOpen := TRUE;
+	          #CylinderClose := FALSE;
+	          #State := 30;
+	        END_IF;
+	        
+	      30: // OPEN - Otevřeno, obsluha čistí box
+	        #PauseReq := TRUE;
+	        #ButtonLight := FALSE;
+	        #OpenFlag := TRUE;
+	        #UnlockCmd := TRUE; // Pořád držíme zámek odemčenej
+	        #LockCmd := FALSE;
+	        #CylinderClose := FALSE;
+	       
+	        #CylinderOpen := TRUE;
+	        IF #MagnetSensor THEN
+	          #State := 40;
+	        END_IF;
+	        
+	      40: // CONFIRM - Zavřeno, čekáme na potvrzení tlačítkem
+	        #PauseReq := TRUE;
+	        #ButtonLight := #BlinkBit;
+	        #OpenFlag := TRUE;
+	        #UnlockCmd := TRUE; // Pořád držíme zámek odemčenej
+	        #LockCmd := FALSE;
+	        #CylinderClose := FALSE;
+	        #CylinderOpen := TRUE;
+	  
+	        IF NOT #MagnetSensor THEN
+	          #State := 30;
+	        ELSIF #buttontriggered.Q THEN
+	          #State := 50;
+	        END_IF;
+	        
+	      50: // LOCKING - Zamykáme a vracíme válec
+	        #PauseReq := TRUE;
+	        #CylinderOpen := FALSE;
+	        #CylinderClose := TRUE;
+	        #UnlockCmd := false;
+	        #LockCmd := true;
+	        IF #LockedFB THEN
+	          #PauseReq := FALSE; // Tady uvolníme Krok 111 a sekvence může do 333
+	          #State := 0;
+	        END_IF;
+	    END_CASE;
+	    
+	    
+	    IF "Station_Sys".Cmd.TestLamp THEN
+	      #ButtonLight := true;
+	    END_IF;
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK "NG_BOXES"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+VAR_INPUT
+  // Tady jsou ty tvoje nový vstupy ze sekvence
+  in_Permission_to_Open : Bool;    // Signál: Sekvence robotů stojí v Kroku 111
+END_VAR
+
+VAR_OUTPUT
+  // Tady jsou výstupy pro sekvenci (brzda)
+  out_Request_to_open : Bool;    // Podmínka pro stop před Krokem 333
+END_VAR
+
+VAR
+  // Instance těch dvou boxů (používají ten FB_NG_Box_Control, co jsem ti napsal)
+  Box_Loading : "FB_NG_Box_Control";
+  Box_Unloading : "FB_NG_Box_Control";
+  TempSensors : Array[1..15] OF Bool;
+END_VAR
+
+VAR_TEMP
+
+END_VAR
+
+VAR CONSTANT
+
+END_VAR
+
+
+BEGIN
+	      // ==========================================================================
+	      // BOX 1: LOADING (Vstupní strana)
+	      // ==========================================================================
+	      #TempSensors[1] := "iE1-UnloadingShaftPressNG_1";
+	      #TempSensors[2] := "iE1-UnloadingShaftPressNG_2";
+	      #TempSensors[3] := "iE1-UnloadingShaftPressNG_3";
+	      #TempSensors[4] := "iE1-UnloadingShaftPressNG_4";
+	      #TempSensors[5] := "iE1-UnloadingShaftPressNG_5";
+	      #TempSensors[6] := "iE1-UnloadingShaftScanNG_1";
+	      #TempSensors[7] := "iE1-UnloadingShaftScanNG_2";
+	      #TempSensors[8] := "iE1-UnloadingShaftScanNG_3";
+	      #TempSensors[9] := "iE1-UnloadingShaftScanNG_4";
+	      #TempSensors[10] := "iE1-UnloadingShaftScanNG_5";
+	      #TempSensors[11] := "iE1-UnloadingRingScanNG_1";
+	      #TempSensors[12] := "iE1-UnloadingRingScanNG_2";
+	      #TempSensors[13] := "iE1-UnloadingRingScanNG_3";
+	      #TempSensors[14] := "iE1-UnloadingRingScanNG_4";
+	      #TempSensors[15] := "iE1-UnloadingRingScanNG_5";
+	      
+	      #Box_Loading(
+	                   Button := "iNG_Button1",
+	                   MagnetSensor := "iE-NG-01Detection",
+	                   LockedFB := NOT "iE-NG-01 Safety Gate_UnLock",
+	                   UnlockedFB := "iE-NG-01 Safety Gate_UnLock",
+	                   AtSafePoint := #in_Permission_to_Open ,
+	                   Sensors := #TempSensors,
+	                   UnlockCmd => "ST10_NGGate1_DB"."sSafetyGate UnlockRequest",
+	                   LockCmd => "ST10_NGGate1_DB"."sSafetyGate LockRequest",
+	                   CylinderOpen =>  "oE-NG-01NGLocationCylinderToHP",
+	                   CylinderClose => "oE-NG-01NGLocationCylinderToWP" ,
+	                   ButtonLight => "oNG_Button1"
+	      );
+	      
+	      // Zpětná vazba pro zbytek stroje (zachování kompatibility)
+	      "AutoProcessControl".NG_1.Robot1PutPrimit_1 := #Box_Loading.Ready_1;
+	      "AutoProcessControl".NG_1.Robot1PutPrimit_2 := #Box_Loading.Ready_2;
+	      "AutoProcessControl".NG_1.Robot1PutPrimit_3 := #Box_Loading.Ready_3;
+	      "PalletNGData".LoadingNGPallet.OpenFlag := #Box_Loading.OpenFlag;
+	
+	      
+	      
+	      // ==========================================================================
+	      // BOX 2: UNLOADING (Výstupní strana)
+	      // ==========================================================================
+	      #TempSensors[1] := "iE2-UnloadingPressNG_1";
+	      #TempSensors[2] := "iE2-UnloadingPressNG_2";
+	      #TempSensors[3] := "iE2-UnloadingPressNG_3";
+	      #TempSensors[4] := "iE2-UnloadingPressNG_4";
+	      #TempSensors[5] := "iE2-UnloadingPressNG_5";
+	      #TempSensors[6] := "iE2-UnloadingMagentScanNG_1";
+	      #TempSensors[7] := "iE2-UnloadingMagentScanNG_2";
+	      #TempSensors[8] := "iE2-UnloadingMagentScanNG_3";
+	      #TempSensors[9] := "iE2-UnloadingMagentScanNG_4";
+	      #TempSensors[10] := "iE2-UnloadingMagentScanNG_5";
+	      #TempSensors[11] := "iE2-UnloadingRingScanNG_1";
+	      #TempSensors[12] := "iE2-UnloadingRingScanNG_2";
+	      #TempSensors[13] := "iE2-UnloadingRingScanNG_3";
+	      #TempSensors[14] := "iE2-UnloadingRingScanNG_4";
+	      #TempSensors[15] := "iE2-UnloadingRingScanNG_5";
+	      
+	      #Box_Unloading(
+	                     Button := "iNG_Button2",
+	                     MagnetSensor := "iE-NG-02Detection",
+	                     LockedFB := NOT "iE-NG-02 Safety Gate_UnLock",
+	                     UnlockedFB := "iE-NG-02 Safety Gate_UnLock",
+	                     AtSafePoint := #in_Permission_to_Open,
+	                     Sensors := #TempSensors,
+	                     UnlockCmd => "ST10_NGGate2_DB"."sSafetyGate UnlockRequest",
+	                     LockCmd => "ST10_NGGate2_DB"."sSafetyGate LockRequest",
+	                     CylinderOpen =>  "oE-NG-02NGLocationCylinderToHP",
+	                     CylinderClose => "oE-NG-02NGLocationCylinderToWP" ,
+	                     ButtonLight => "oNG_Button2"
+	      );
+	      
+	      "AutoProcessControl".NG_2.Robot3PutPrimit_1 := #Box_Unloading.Ready_1;
+	      "AutoProcessControl".NG_2.Robot3PutPrimit_2 := #Box_Unloading.Ready_2;
+	      "AutoProcessControl".NG_2.Robot3PutPrimit_3:= #Box_Unloading.Ready_3;
+	      "PalletNGData".UnLoadingNGPallet.OpenFlag := #Box_Unloading.OpenFlag;
+	      
+	      
+	      // reqest for pause sequence
+	      #out_Request_to_open := #Box_Loading.PauseReq OR #Box_Unloading.PauseReq;
+END_FUNCTION_BLOCK
+

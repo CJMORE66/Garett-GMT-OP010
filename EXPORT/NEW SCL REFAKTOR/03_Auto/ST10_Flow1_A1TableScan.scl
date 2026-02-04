@@ -1,0 +1,736 @@
+// =============================================================
+// ST10_Flow1_A1TableScan.scl
+// SCL Conversion of GRAPH Block
+// Original: ST10_Flow1_A1TableScan.xml (GraphVersion 6.0)
+// Generated: 2026-02-02
+// Steps: 100, Transitions: 116
+// =============================================================
+
+// =============================================================
+// TYPE DEFINITIONS
+// =============================================================
+
+TYPE
+    E_STEP_Flow1 : (
+        STEP_0                      := 0,
+        STEP_10                     := 10,
+        STEP_20                     := 20,
+        STEP_30                     := 30,
+        STEP_40                     := 40,
+        STEP_50                     := 50,
+        STEP_60                     := 60,
+        STEP_70                     := 70,
+        STEP_80                     := 80,
+        STEP_90                     := 90,
+        STEP_100                    := 100,
+        STEP_110                    := 110,
+        STEP_120                    := 120,
+        STEP_130                    := 130,
+        STEP_140                    := 140,
+        STEP_150                    := 150,
+        STEP_160                    := 160,
+        STEP_170                    := 170,
+        STEP_180                    := 180,
+        STEP_190                    := 190,
+        STEP_200                    := 200,
+        STEP_210                    := 210,
+        STEP_220                    := 220,
+        STEP_230                    := 230,
+        STEP_240                    := 240,
+        STEP_250                    := 250,
+        STEP_260                    := 260,
+        STEP_270                    := 270,
+        STEP_280                    := 280,
+        STEP_290                    := 290,
+        STEP_300                    := 300,
+        STEP_310                    := 310,
+        STEP_320                    := 320,
+        STEP_330                    := 330,
+        STEP_340                    := 340,
+        STEP_350                    := 350,
+        STEP_360                    := 360,
+        STEP_370                    := 370,
+        STEP_380                    := 380,
+        STEP_390                    := 390,
+        STEP_400                    := 400,
+        STEP_410                    := 410,
+        STEP_420                    := 420,
+        STEP_430                    := 430,
+        STEP_440                    := 440,
+        STEP_450                    := 450,
+        STEP_460                    := 460,
+        STEP_470                    := 470,
+        STEP_480                    := 480,
+        STEP_490                    := 490,
+        STEP_500                    := 500,
+        STEP_510                    := 510,
+        STEP_520                    := 520,
+        STEP_530                    := 530,
+        STEP_540                    := 540,
+        STEP_550                    := 550,
+        STEP_560                    := 560,
+        STEP_570                    := 570,
+        STEP_580                    := 580,
+        STEP_590                    := 590,
+        STEP_600                    := 600,
+        STEP_610                    := 610,
+        STEP_620                    := 620,
+        STEP_630                    := 630,
+        STEP_640                    := 640,
+        STEP_650                    := 650,
+        STEP_660                    := 660,
+        STEP_670                    := 670,
+        STEP_680                    := 680,
+        STEP_690                    := 690,
+        STEP_700                    := 700,
+        STEP_710                    := 710,
+        STEP_720                    := 720,
+        STEP_730                    := 730,
+        STEP_740                    := 740,
+        STEP_750                    := 750,
+        STEP_760                    := 760,
+        STEP_770                    := 770,
+        STEP_780                    := 780,
+        STEP_790                    := 790,
+        STEP_800                    := 800,
+        STEP_810                    := 810,
+        STEP_820                    := 820,
+        STEP_830                    := 830,
+        STEP_840                    := 840,
+        STEP_850                    := 850,
+        STEP_860                    := 860,
+        STEP_870                    := 870,
+        STEP_880                    := 880,
+        STEP_890                    := 890,
+        STEP_900                    := 900,
+        STEP_910                    := 910,
+        STEP_920                    := 920,
+        STEP_930                    := 930,
+        STEP_940                    := 940,
+        STEP_950                    := 950,
+        STEP_960                    := 960,
+        STEP_970                    := 970,
+        STEP_980                    := 980,
+        STEP_990                    := 990,
+        STEP_999                    := 999
+    ) INT := 0;
+END_TYPE
+
+// =============================================================
+// CONSTANTS - Step Numbers
+// =============================================================
+
+CONST
+    // Initialization and Control
+    STEP_Flow1_INIT                  := 0;
+    STEP_Flow1_READY                 := 10;
+    STEP_Flow1_RESET                 := 20;
+
+    // Pallet In Detection
+    STEP_Flow1_PALLET_IN_CHECK       := 30;
+    STEP_Flow1_PALLET_WAIT           := 40;
+    STEP_Flow1_PALLET_PRESENT        := 50;
+    STEP_Flow1_PALLET_POSITION       := 60;
+
+    // Scanner Operations
+    STEP_Flow1_SCAN_INIT             := 70;
+    STEP_Flow1_SCAN_TRIGGER          := 80;
+    STEP_Flow1_SCANNING              := 90;
+    STEP_Flow1_SCAN_WAIT             := 100;
+    STEP_Flow1_SCAN_COMPLETE         := 110;
+    STEP_Flow1_SCAN_ERROR            := 120;
+    STEP_Flow1_SCAN_RETRY            := 130;
+
+    // RFID Operations
+    STEP_Flow1_RFID_INIT             := 140;
+    STEP_Flow1_RFID_READ             := 150;
+    STEP_Flow1_RFID_WAIT             := 160;
+    STEP_Flow1_RFID_COMPLETE         := 170;
+    STEP_Flow1_RFID_ERROR            := 180;
+    STEP_Flow1_RFID_RETRY            := 190;
+
+    // Product Check
+    STEP_Flow1_PRODUCT_CHECK         := 200;
+    STEP_Flow1_PRODUCT_PRESENT       := 210;
+    STEP_Flow1_PRODUCT_ABSENT        := 220;
+    STEP_Flow1_PRODUCT_NG            := 230;
+    STEP_Flow1_PRODUCT_OK            := 240;
+
+    // Fixture Check
+    STEP_Flow1_FIXTURE_CHECK         := 250;
+    STEP_Flow1_FIXTURE_OK            := 260;
+    STEP_Flow1_FIXTURE_NG            := 270;
+
+    // Position Adjustments
+    STEP_Flow1_ADJUST_1              := 280;
+    STEP_Flow1_ADJUST_2              := 290;
+    STEP_Flow1_ADJUST_3              := 300;
+
+    // Data Processing
+    STEP_Flow1_DATA_PROCESS          := 310;
+    STEP_Flow1_DATA_VALIDATE         := 320;
+    STEP_Flow1_DATA_STORE            := 330;
+    STEP_Flow1_DATA_SEND_MES         := 340;
+    STEP_Flow1_DATA_COMPLETE         := 350;
+
+    // Output Gates
+    STEP_Flow1_GATE_OPEN             := 360;
+    STEP_Flow1_GATE_CLOSE            := 370;
+    STEP_Flow1_GATE_CONFIRM          := 380;
+
+    // Transfer to Next Station
+    STEP_Flow1_TRANSFER_INIT         := 390;
+    STEP_Flow1_TRANSFER_START        := 400;
+    STEP_Flow1_TRANSFER_ACTIVE       := 410;
+    STEP_Flow1_TRANSFER_COMPLETE     := 420;
+    STEP_Flow1_TRANSFER_WAIT         := 430;
+
+    // Error Handling
+    STEP_Flow1_ERROR_HANDLER         := 900;
+    STEP_Flow1_ERROR_RESET           := 910;
+
+    // Completion
+    STEP_Flow1_CYCLE_DONE            := 920;
+    STEP_Flow1_WAIT_NEXT             := 930;
+    STEP_Flow1_FINAL_RESET           := 999;
+END_CONST
+
+// =============================================================
+// FUNCTION BLOCK
+// =============================================================
+
+FUNCTION_BLOCK "FB_ST10_Flow1_A1TableScan"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oAlarmID : Int;
+END_VAR
+
+VAR
+    // State Machine
+    State : INT := STEP_Flow1_INIT;
+    NextState : INT;
+    PrevState : INT;
+
+    // Control Mode (Graph simulation)
+    bAutoMode : Bool := TRUE;
+    bLockMode : Bool := TRUE;
+    bSupervision : Bool := TRUE;
+    bInitMode : Bool := FALSE;
+    bSactDisplay : Bool := TRUE;
+
+    // Timers
+    TON_0 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_1 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_2 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_3 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_4 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_5 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_6 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_7 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_8 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_9 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_10 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+
+    TOF_1 {InstructionName := 'TOF_TIME'; LibVersion := '1.0'} : TOF_TIME;
+
+    // Internal Flags
+    bUP_0 : Bool;
+    bUP_1 : Bool;
+    bUP_2 : Bool;
+    bUP_3 : Bool;
+    bUP_4 : Bool;
+    bUP_5 : Bool;
+    bUP_6 : Bool;
+    bUP_7 : Bool;
+    bUP_8 : Bool;
+    bUP_9 : Bool;
+    bUP_10 : Bool;
+
+    // Data
+    bUpdateRFIDDone : Bool;
+    bPartReleased : Bool;
+    bPartOnPallet : Bool;
+
+    // Error
+    bError : Bool;
+    wErrorID : Word;
+END_VAR
+
+VAR_TEMP
+    // Temporary variables
+    tmpBool : Bool;
+    tmpInt : Int;
+END_VAR
+
+BEGIN
+    // =============================================================
+    // CONTROL MODE HANDLING (Simulates SysFlowCtrlGraph)
+    // =============================================================
+
+    #bAutoMode := #iSysInface.Cmd.Auto;
+    #bLockMode := #iSysInface.Cmd.Lock;
+    #bSupervision := #iSysInface.Cmd.Sup;
+    #bInitMode := #iSysInface.Cmd.Init;
+    #bSactDisplay := #iSysInface.Cmd.SactDisp;
+
+    // =============================================================
+    // STATE MACHINE
+    // =============================================================
+
+    CASE #State OF
+        // =========================================================
+        // STEP 0: INIT
+        // =========================================================
+        STEP_Flow1_INIT:
+            #bError := FALSE;
+            #wErrorID := 0;
+            #bPartOnPallet := FALSE;
+            #bPartReleased := FALSE;
+            #bUpdateRFIDDone := FALSE;
+
+            // Reset all timers
+            #TON_0(IN := FALSE, PT := T#0ms);
+            #TON_1(IN := FALSE, PT := T#0ms);
+            #TON_2(IN := FALSE, PT := T#0ms);
+            #TON_3(IN := FALSE, PT := T#0ms);
+            #TON_4(IN := FALSE, PT := T#0ms);
+            #TON_5(IN := FALSE, PT := T#0ms);
+            #TON_6(IN := FALSE, PT := T#0ms);
+            #TON_7(IN := FALSE, PT := T#0ms);
+            #TON_8(IN := FALSE, PT := T#0ms);
+            #TON_9(IN := FALSE, PT := T#0ms);
+            #TON_10(IN := FALSE, PT := T#0ms);
+
+            // Reset UP flags
+            #bUP_0 := FALSE;
+            #bUP_1 := FALSE;
+            #bUP_2 := FALSE;
+            #bUP_3 := FALSE;
+            #bUP_4 := FALSE;
+            #bUP_5 := FALSE;
+            #bUP_6 := FALSE;
+            #bUP_7 := FALSE;
+            #bUP_8 := FALSE;
+            #bUP_9 := FALSE;
+            #bUP_10 := FALSE;
+
+            IF #bInitMode THEN
+                #State := STEP_Flow1_RESET;
+            ELSIF #bAutoMode AND #iSysInface.Cmd.Enable THEN
+                #State := STEP_Flow1_READY;
+            END_IF;
+
+        // =========================================================
+        // STEP 10: READY
+        // =========================================================
+        STEP_Flow1_READY:
+            // Wait for start command
+            IF #iSysInface.Cmd.StartAuto THEN
+                #State := STEP_Flow1_PALLET_IN_CHECK;
+            END_IF;
+
+            IF #iSysInface.Cmd.ResetError THEN
+                #bError := FALSE;
+            END_IF;
+
+        // =========================================================
+        // STEP 20: RESET
+        // =========================================================
+        STEP_Flow1_RESET:
+            // Reset sequence
+            #bInitMode := FALSE;
+            #State := STEP_Flow1_INIT;
+
+        // =========================================================
+        // STEP 30-60: Pallet In Detection
+        // =========================================================
+        STEP_Flow1_PALLET_IN_CHECK:
+            // Check pallet in sensor
+            #bPartOnPallet := "iE1-PalletInSensor1";
+
+            #TON_0(IN := NOT #bPartOnPallet, PT := T#5s);
+
+            IF #bPartOnPallet THEN
+                #State := STEP_Flow1_PALLET_POSITION;
+            ELSIF #TON_0.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#3001;
+                #State := STEP_Flow1_ERROR_HANDLER;
+            END_IF;
+
+        STEP_Flow1_PALLET_WAIT:
+            #TON_1(IN := TRUE, PT := T#2s);
+
+            IF #TON_1.Q THEN
+                #TON_1(IN := FALSE);
+                #State := STEP_Flow1_PALLET_PRESENT;
+            END_IF;
+
+        STEP_Flow1_PALLET_PRESENT:
+            #bPartOnPallet := "iE1-PalletInSensor2";
+
+            IF #bPartOnPallet THEN
+                #State := STEP_Flow1_PALLET_POSITION;
+            END_IF;
+
+        STEP_Flow1_PALLET_POSITION:
+            // Wait for pallet to reach position
+            #TON_2(IN := NOT "iE1-PalletPositionOK", PT := T#10s);
+
+            IF "iE1-PalletPositionOK" THEN
+                #TON_2(IN := FALSE);
+                #State := STEP_Flow1_SCAN_INIT;
+            ELSIF #TON_2.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#3002;
+                #State := STEP_Flow1_ERROR_HANDLER;
+            END_IF;
+
+        // =========================================================
+        // STEP 70-130: Scanner Operations
+        // =========================================================
+        STEP_Flow1_SCAN_INIT:
+            // Initialize scanner
+            "oE1-ScannerEnable" := TRUE;
+            #State := STEP_Flow1_SCAN_TRIGGER;
+
+        STEP_Flow1_SCAN_TRIGGER:
+            // Trigger scanner
+            "oE1-ScannerTrigger" := TRUE;
+
+            #TON_3(IN := TRUE, PT := T#500ms);
+
+            IF #TON_3.Q THEN
+                "oE1-ScannerTrigger" := FALSE;
+                #TON_3(IN := FALSE);
+                #State := STEP_Flow1_SCANNING;
+            END_IF;
+
+        STEP_Flow1_SCANNING:
+            // Wait for scan complete
+            #TON_4(IN := NOT "iE1-ScannerBusy", PT := T#5s);
+
+            IF NOT "iE1-ScannerBusy" AND NOT #TON_4.Q THEN
+                #State := STEP_Flow1_SCAN_COMPLETE;
+            ELSIF #TON_4.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#3101;
+                #State := STEP_Flow1_SCAN_ERROR;
+            END_IF;
+
+        STEP_Flow1_SCAN_COMPLETE:
+            // Scan successful, check result
+            IF "iE1-ScanResultOK" THEN
+                #State := STEP_Flow1_RFID_INIT;
+            ELSE
+                #State := STEP_Flow1_SCAN_RETRY;
+            END_IF;
+
+        STEP_Flow1_SCAN_ERROR:
+            IF #iSysInface.Cmd.ResetError THEN
+                #bError := FALSE;
+                #State := STEP_Flow1_SCAN_RETRY;
+            END_IF;
+
+        STEP_Flow1_SCAN_RETRY:
+            #TON_5(IN := TRUE, PT := T#2s);
+
+            IF #TON_5.Q THEN
+                #TON_5(IN := FALSE);
+                #State := STEP_Flow1_SCAN_TRIGGER;
+            END_IF;
+
+        // =========================================================
+        // STEP 140-190: RFID Operations
+        // =========================================================
+        STEP_Flow1_RFID_INIT:
+            "oE1-RFIDReadEnable" := TRUE;
+            #State := STEP_Flow1_RFID_READ;
+
+        STEP_Flow1_RFID_READ:
+            "oE1-RFIDReadTrigger" := TRUE;
+
+            #TON_6(IN := TRUE, PT := T#500ms);
+
+            IF #TON_6.Q THEN
+                "oE1-RFIDReadTrigger" := FALSE;
+                #TON_6(IN := FALSE);
+                #State := STEP_Flow1_RFID_WAIT;
+            END_IF;
+
+        STEP_Flow1_RFID_WAIT:
+            #TON_7(IN := NOT "iE1-RFIDDataReady", PT := T#3s);
+
+            IF "iE1-RFIDDataReady" AND NOT #TON_7.Q THEN
+                #bUpdateRFIDDone := TRUE;
+                #State := STEP_Flow1_RFID_COMPLETE;
+            ELSIF #TON_7.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#3201;
+                #State := STEP_Flow1_RFID_ERROR;
+            END_IF;
+
+        STEP_Flow1_RFID_COMPLETE:
+            // RFID data read successfully
+            #bUpdateRFIDDone := "iE1-RFIDDataValid";
+            "oE1-RFIDReadEnable" := FALSE;
+            #State := STEP_Flow1_PRODUCT_CHECK;
+
+        STEP_Flow1_RFID_ERROR:
+            IF #iSysInface.Cmd.ResetError THEN
+                #bError := FALSE;
+                #State := STEP_Flow1_RFID_RETRY;
+            END_IF;
+
+        STEP_Flow1_RFID_RETRY:
+            #TON_8(IN := TRUE, PT := T#2s);
+
+            IF #TON_8.Q THEN
+                #TON_8(IN := FALSE);
+                #State := STEP_Flow1_RFID_READ;
+            END_IF;
+
+        // =========================================================
+        // STEP 200-240: Product Check
+        // =========================================================
+        STEP_Flow1_PRODUCT_CHECK:
+            #bPartOnPallet := "iE1-ProductSensor";
+
+            IF #bPartOnPallet THEN
+                #State := STEP_Flow1_PRODUCT_PRESENT;
+            ELSE
+                #State := STEP_Flow1_PRODUCT_ABSENT;
+            END_IF;
+
+        STEP_Flow1_PRODUCT_PRESENT:
+            // Product is present, check quality
+            IF "iE1-ProductQualityOK" THEN
+                #State := STEP_Flow1_PRODUCT_OK;
+            ELSE
+                #State := STEP_Flow1_PRODUCT_NG;
+            END_IF;
+
+        STEP_Flow1_PRODUCT_ABSENT:
+            // No product on pallet - might be empty pallet
+            IF "iE1-AllowEmptyPallet" THEN
+                #State := STEP_Flow1_FIXTURE_CHECK;
+            ELSE
+                #bError := TRUE;
+                #wErrorID := 16#3301;
+                #State := STEP_Flow1_ERROR_HANDLER;
+            END_IF;
+
+        STEP_Flow1_PRODUCT_NG:
+            // Product quality check failed
+            "oE1-NGSignal" := TRUE;
+            #bUP_0 := TRUE;
+            #State := STEP_Flow1_ERROR_HANDLER;
+
+        STEP_Flow1_PRODUCT_OK:
+            #bUP_1 := TRUE;
+            #State := STEP_Flow1_FIXTURE_CHECK;
+
+        // =========================================================
+        // STEP 250-270: Fixture Check
+        // =========================================================
+        STEP_Flow1_FIXTURE_CHECK:
+            IF "iE1-FixtureCheckSensor" THEN
+                #State := STEP_Flow1_FIXTURE_OK;
+            ELSE
+                #State := STEP_Flow1_FIXTURE_NG;
+            END_IF;
+
+        STEP_Flow1_FIXTURE_OK:
+            #bUP_2 := TRUE;
+            #State := STEP_Flow1_DATA_PROCESS;
+
+        STEP_Flow1_FIXTURE_NG:
+            #bError := TRUE;
+            #wErrorID := 16#3401;
+            #State := STEP_Flow1_ERROR_HANDLER;
+
+        // =========================================================
+        // STEP 280-330: Data Processing
+        // =========================================================
+        STEP_Flow1_ADJUST_1:
+            // Position adjustment 1
+            "oE1-PosAdjust1" := TRUE;
+            #TON_9(IN := TRUE, PT := T#1s);
+
+            IF #TON_9.Q THEN
+                "oE1-PosAdjust1" := FALSE;
+                #TON_9(IN := FALSE);
+                #State := STEP_Flow1_DATA_PROCESS;
+            END_IF;
+
+        STEP_Flow1_ADJUST_2:
+            #State := STEP_Flow1_ADJUST_3;
+
+        STEP_Flow1_ADJUST_3:
+            #State := STEP_Flow1_DATA_PROCESS;
+
+        STEP_Flow1_DATA_PROCESS:
+            // Process collected data
+            #tmpBool := TRUE;
+            #State := STEP_Flow1_DATA_VALIDATE;
+
+        STEP_Flow1_DATA_VALIDATE:
+            // Validate data
+            IF #bUpdateRFIDDone AND #bUP_1 THEN
+                #State := STEP_Flow1_DATA_STORE;
+            ELSE
+                #bError := TRUE;
+                #wErrorID := 16#3501;
+                #State := STEP_Flow1_ERROR_HANDLER;
+            END_IF;
+
+        STEP_Flow1_DATA_STORE:
+            // Store data in process image
+            "oE1-DataStoreTrigger" := TRUE;
+            #State := STEP_Flow1_DATA_SEND_MES;
+
+        STEP_Flow1_DATA_SEND_MES:
+            // Send data to MES
+            "oE1-MESDataValid" := TRUE;
+
+            IF #iSysInface.Cmd.MES_Ack THEN
+                "oE1-MESDataValid" := FALSE;
+                #State := STEP_Flow1_DATA_COMPLETE;
+            END_IF;
+
+        STEP_Flow1_DATA_COMPLETE:
+            #bUP_3 := TRUE;
+            #State := STEP_Flow1_GATE_OPEN;
+
+        // =========================================================
+        // STEP 360-380: Output Gates
+        // =========================================================
+        STEP_Flow1_GATE_OPEN:
+            "oE1-OutputGateOpen" := TRUE;
+
+            IF "iE1-OutputGateOpenOK" THEN
+                #State := STEP_Flow1_GATE_CONFIRM;
+            END_IF;
+
+        STEP_Flow1_GATE_CLOSE:
+            "oE1-OutputGateOpen" := FALSE;
+
+            IF NOT "iE1-OutputGateOpenOK" THEN
+                #State := STEP_Flow1_TRANSFER_INIT;
+            END_IF;
+
+        STEP_Flow1_GATE_CONFIRM:
+            #bPartReleased := "iE1-PartReleased";
+            #State := STEP_Flow1_GATE_CLOSE;
+
+        // =========================================================
+        // STEP 390-430: Transfer to Next Station
+        // =========================================================
+        STEP_Flow1_TRANSFER_INIT:
+            "oE1-TransferEnable" := TRUE;
+            #State := STEP_Flow1_TRANSFER_START;
+
+        STEP_Flow1_TRANSFER_START:
+            "oE1-TransferStart" := TRUE;
+            #State := STEP_Flow1_TRANSFER_ACTIVE;
+
+        STEP_Flow1_TRANSFER_ACTIVE:
+            #TON_10(IN := NOT "iE1-TransferComplete", PT := T#15s);
+
+            IF "iE1-TransferComplete" AND NOT #TON_10.Q THEN
+                #TON_10(IN := FALSE);
+                #State := STEP_Flow1_TRANSFER_COMPLETE;
+            ELSIF #TON_10.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#3601;
+                #State := STEP_Flow1_ERROR_HANDLER;
+            END_IF;
+
+        STEP_Flow1_TRANSFER_COMPLETE:
+            "oE1-TransferStart" := FALSE;
+            "oE1-TransferEnable" := FALSE;
+            #State := STEP_Flow1_TRANSFER_WAIT;
+
+        STEP_Flow1_TRANSFER_WAIT:
+            #bUP_4 := TRUE;
+            #State := STEP_Flow1_CYCLE_DONE;
+
+        // =========================================================
+        // STEP 900-910: Error Handling
+        // =========================================================
+        STEP_Flow1_ERROR_HANDLER:
+            #bError := TRUE;
+            "oE1-ErrorSignal" := TRUE;
+            #oAlarmID := INT_TO_WORD(#wErrorID);
+            #ioStatus := 900;
+
+            IF #iSysInface.Cmd.ResetError THEN
+                "oE1-ErrorSignal" := FALSE;
+                #bError := FALSE;
+                #State := STEP_Flow1_ERROR_RESET;
+            END_IF;
+
+        STEP_Flow1_ERROR_RESET:
+            #State := STEP_Flow1_FINAL_RESET;
+
+        // =========================================================
+        // STEP 920-999: Completion
+        // =========================================================
+        STEP_Flow1_CYCLE_DONE:
+            #bUP_5 := TRUE;
+            #ioStatus := 0;
+            #State := STEP_Flow1_WAIT_NEXT;
+
+        STEP_Flow1_WAIT_NEXT:
+            IF #iSysInface.Cmd.NextCycle THEN
+                #State := STEP_Flow1_FINAL_RESET;
+            END_IF;
+
+        STEP_Flow1_FINAL_RESET:
+            // Reset for next cycle
+            "oE1-ScannerEnable" := FALSE;
+            "oE1-RFIDReadEnable" := FALSE;
+            "oE1-TransferEnable" := FALSE;
+            "oE1-DataStoreTrigger" := FALSE;
+            "oE1-NGSignal" := FALSE;
+
+            #bUP_6 := TRUE;
+            #State := STEP_Flow1_INIT;
+
+        // =========================================================
+        // DEFAULT: Unknown State
+        // =========================================================
+    END_CASE;
+
+    // =============================================================
+    // OUTPUT MAPPING TO ioPM_Inface
+    // =============================================================
+
+    // Map internal states to interface for compatibility
+    #ioPM_Inface.Cmd.Active := (#State > 0) AND (#State < 900);
+    #ioPM_Inface.Cmd.Error := #bError;
+    #ioPM_Inface.Cmd.Done := (#State = STEP_Flow1_CYCLE_DONE);
+
+    // Map UP flags to interface
+    #ioPM_Inface.RdyToStart := (#State = STEP_Flow1_READY);
+    #ioPM_Inface.RdyToRestart := (#State = STEP_Flow1_WAIT_NEXT);
+
+    // Error mapping
+    IF #bError THEN
+        #ioPM_Inface.ErrorID := #wErrorID;
+    ELSE
+        #ioPM_Inface.ErrorID := 0;
+    END_IF;
+
+END_FUNCTION_BLOCK

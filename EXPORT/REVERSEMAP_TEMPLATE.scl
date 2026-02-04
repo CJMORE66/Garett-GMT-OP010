@@ -1,0 +1,104 @@
+FUNCTION_BLOCK FB_OP010_Sequencer
+{ S7_Optimized_Access := 'TRUE' }
+VAR_INPUT
+    iEStopOK           : BOOL;
+    iInterlockOK       : BOOL;
+    iGateClosedOK      : BOOL;
+    iServoNotMoving    : BOOL;
+    iRobotSafePosOK    : BOOL;
+    iModeAuto          : BOOL;
+    iModeStep          : BOOL;
+
+    CmdNext            : BOOL;  // edge-detected outside or implement edge inside
+    CmdPrev            : BOOL;
+    CmdGoto            : BOOL;
+    GotoStep           : INT;
+END_VAR
+
+VAR_IN_OUT
+    // Station / device contexts (map from legacy or new UDTs)
+    // Station : UDT_StationCtx;
+END_VAR
+
+VAR
+    Step               : INT := 0;
+    TargetStep         : INT := 0;
+    SafeBaselineActive : BOOL := TRUE;
+
+    ReverseMap         : ARRAY[0..999] OF INT; // initialize in init routine
+    History            : ARRAY[0..31] OF INT;
+    HistIdx            : INT;
+
+    _cmdNext_r         : R_TRIG;
+    _cmdPrev_r         : R_TRIG;
+    _cmdGoto_r         : R_TRIG;
+END_VAR
+
+BEGIN
+    _cmdNext_r(CLK := CmdNext);
+    _cmdPrev_r(CLK := CmdPrev);
+    _cmdGoto_r(CLK := CmdGoto);
+
+    // Global hard safety
+    IF NOT iEStopOK THEN
+        Step := 900; // Fault
+    END_IF;
+
+    // Step requests (only in Step mode)
+    IF iModeStep THEN
+        IF _cmdNext_r.Q THEN
+            TargetStep := Step + 1;
+        ELSIF _cmdPrev_r.Q THEN
+            TargetStep := ReverseMap[Step];
+        ELSIF _cmdGoto_r.Q THEN
+            TargetStep := GotoStep;
+        END_IF;
+    END_IF;
+
+    // SafeBaseline gate for Prev/Goto
+    IF iModeStep AND (TargetStep <> Step) THEN
+        // If moving backward or jumping, require SafeBaseline first
+        IF (TargetStep < Step) OR (_cmdGoto_r.Q) THEN
+            SafeBaselineActive := TRUE;
+        END_IF;
+    END_IF;
+
+    // SafeBaseline logic (Step 0)
+    IF SafeBaselineActive THEN
+        Step := 0;
+
+        // TODO: request all devices to safe state (stop motions, retract, etc.)
+
+        IF iInterlockOK AND iGateClosedOK AND iServoNotMoving AND iRobotSafePosOK THEN
+            SafeBaselineActive := FALSE;
+            Step := TargetStep;
+        END_IF;
+
+        RETURN;
+    END_IF;
+
+    // Main sequence
+    CASE Step OF
+        0:
+            // Should not remain here unless SafeBaselineActive
+        10:
+            // TODO: A1_TableLoad&Scan bucket entry
+        60:
+            // TODO: B_Press bucket entry
+        100:
+            // TODO: C_Glue bucket entry
+        130:
+            // TODO: A2_TableLoad&Scan bucket entry
+        160:
+            // TODO: F_Robot bucket entry
+        190:
+            // TODO: Unload/Lift bucket entry
+
+        900:
+            // Fault state: force safe, wait for reset etc.
+        ELSE
+            // Unknown step -> safe baseline
+            SafeBaselineActive := TRUE;
+    END_CASE;
+
+END_FUNCTION_BLOCK

@@ -1,0 +1,265 @@
+================================================================================
+KROK 1: KOMPLETNÍ SYNTAX SCAN - VÝSLEDKY
+================================================================================
+
+Analýza: 52 XML souborů z TIA Portal V18 GRAPH export
+Celkem unikátních tagů: 99
+Celkem výskytů: ~500,000+
+
+================================================================================
+KROK 2: STRUKTURÁLNÍ KATEGORIZACE
+================================================================================
+
+A) EXECUTION MODEL (Runtime relevant - má vliv na chování sekvence)
+------------------------------------------------------------------------------
+Tag                    | Runtime | Popis
+-----------------------|---------|------------------------------------------
+Step                   | ANO     | Stav v sekvenci (má Number, Name)
+Transition             | ANO     | Přechod mezi stavy (má Number, Name)
+Action                 | ANO     | Akce prováděná ve stavu (má Qualifier)
+Action Qualifier (N/S/R)| ANO    | N=NOPulse, S=Set, R=Reset
+Interlock              | ANO     | Podmínka pro vstup do stavu (LAD/STL)
+Supervision            | ANO     | Dozor stavu (LAD/STL)
+TransitionRef          | ANO     | Odkaz na transition
+StepRef                | ANO     | Odkaz na step
+Token                  | ANO     | Token v akci/transition (programový kód)
+PermanentOperation     | ANO     | Trvalá operace (Pre/Post)
+PreOperations          | ANO     | Operace před hlavní smyčkou
+PostOperations         | ANO     | Operace po hlavní smyčce
+Sequence               | ANO     | Definice sekvence
+Steps                  | ANO     | Kolekce kroků
+Transitions            | ANO     | Kolekce přechodů
+Connections            | ANO     | Kolekce propojení
+
+B) STRUCTURE / WRAPPER (Definuje strukturu bloku)
+------------------------------------------------------------------------------
+Tag                    | Runtime | Popis
+-----------------------|---------|------------------------------------------
+Block                  | NE      | Kořenový element
+Document               | NE      | Dokument wrapper
+Interface              | NE      | Rozhraní FB
+Section                | NE      | Sekce rozhraní (Input/Output/InOut/Static)
+Sections               | NE      | Kolekce sekcí
+AttributeList          | NE      | Seznam atributů
+Engineering            | NE      | Verze inženýringu
+SW                     | NE      | Software kontext
+NetworkSource          | NE      | Zdroj sítě (LAD/STL/Graph)
+Graph                  | NE      | GRAPH kontejner
+GraphVersion           | NE      | Verze GRAPH
+Instance               | NE      | Instance DB info
+InstanceOfName         | NE      | Jméno rodičovského bloku
+InstanceOfType         | NE      | Typ rodičovského bloku
+
+C) UI / GEOMETRY (IGNOROVAT - pouze pro TIA editor)
+------------------------------------------------------------------------------
+Tag                    | Runtime | Ignorovat | Důvod
+-----------------------|---------|-----------|------------------------------------------
+Wire                   | NE      | ANO       | Vizuální propojení v editoru
+Wires                  | NE      | ANO       | Kolekce wire
+Parts                  | NE      | ANO       | Grafické prvky
+FlgNet                 | NE      | ANO       | LAD síť (vizualizace)
+Powerrail              | NE      | ANO       | Napájecí lišta
+IdentCon               | NE      | ANO       | Identita propojení
+NameCon                | NE      | ANO       | Jméno propojení
+OpenCon                | NE      | ANO       | Otevřené propojení
+Connection             | NE      | ANO       | Propojení
+NodeFrom               | NE      | ANO       | Zdrojový uzel
+NodeTo                 | NE      | ANO       | Cílový uzel
+LinkType               | NE      | ANO       | Typ propojení
+Branch                 | NE      | ANO       | Větev
+BranchRef              | NE      | ANO       | Odkaz na větev
+Branches               | NE      | ANO       | Kolekce větví
+Position               | NE      | ANO       | Pozice v editoru
+View                   | NE      | ANO       | Pohled
+Zoom                   | NE      | ANO       | Zoom level
+EndConnection          | NE      | ANO       | Koncové propojení
+
+D) METADATA (Informace o datech)
+------------------------------------------------------------------------------
+Tag                    | Runtime | Popis
+-----------------------|---------|------------------------------------------
+Member                 | NE      | Člen proměnné v rozhraní
+Symbol                 | NE      | Symbol (odkaz na proměnnou)
+Component              | NE      | Komponent symbolu
+Constant               | NE      | Konstanta
+ConstantValue          | NE      | Hodnota konstanty
+ConstantType           | NE      | Typ konstanty
+StartValue             | NE      | Počáteční hodnota
+TemplateValue          | NE      | Hodnota šablony
+Access                 | NE      | Přístup k proměnné (Scope, UId)
+BooleanAttribute       | NE      | Boolean atribut
+Negated                | NE      | Negovaný kontakt
+Comment                | NE      | Komentář
+MultiLanguageText      | NE      | Vícejazyčný text
+MultilingualTextItem   | NE      | Položka vícejazyčného textu
+Culture                | NE      | Jazyková kultura
+Title                  | NE      | Název
+Text                   | NE      | Textový obsah
+NewLine                | NE      | Nový řádek
+Blank                  | NE      | Prázdný znak
+LineComment            | NE      | Komentář řádku
+ObjectList             | NE      | Seznam objektů
+Subelement             | NE      | Subelement
+Namespace              | NE      | XML namespace
+ProgrammingLanguage    | NE      | Programovací jazyk
+SetENOAutomatically    | NE      | Nastavení ENO
+MemoryLayout           | NE      | Rozložení paměti
+MemoryReserve          | NE      | Rezervace paměti
+AutomaticTyped         | NE      | Automatický typ
+StructuredText         | NE      | Strukturovaný text (ST)
+Alarm*                 | NE      | Alarmy a kategorie (nepoužito v GRAPH)
+Parameter              | NE      | Parametr
+Call                   | NE      | Volání
+CallInfo               | NE      | Info o volání
+InitialValuesAcquisition| NE     | Počáteční hodnoty
+
+================================================================================
+KROK 3: ID & VAZBY (Nejdůležitější)
+================================================================================
+
+KLÍČOVÉ ATRIBUTY PRO VAZBY:
+- Step.Number        → ID stavu (např. 1, 4, 5, 10...)
+- Transition.Number  → ID přechodu (např. 1, 2, 3, 10, 102...)
+- TransitionRef      → Odkaz na transition z transition条件
+- StepRef            → Odkaz na step z branch
+
+PŘÍKLAD VAZEB Z XML:
+
+1) Step 1 (F2_Initial) → Transition 1 (iSysInface.Ready) → Step 4
+2) Step 4 (S4)         → Transition 2 (TRUE) → Step 5
+3) Step 5 (S5)         → Transition 3 (TRUE) → Step 6
+4) Step 6 (S6)         → Transition 4 (TRUE) → Step 7
+5) Step 7 (S7)         → Transition 325 (TRUE) → Step 8
+6) Step 8 (S8)         → Transition 102 (ioPM_Inface.Running) → Step 9
+7) Step 9 (S9)         → Transition 10 (Robot Home) → Step 10
+8) Step 16 (Servo returns) → Transition 117 → Step 17
+9) Step 17 (ServoPosCount) → Transition 118 → Step 18
+...
+
+================================================================================
+KROK 4: GRAPH REKONSTRUKCE (ST10_Flow2_A1TableUnloading)
+================================================================================
+
+STARTOVNÍ KROK:
+  Step 1 (F2_Initial) - nemá incoming transition
+
+KONCOVÉ KROKY:
+  Závisí na sekvenci - typicky kroky s ProcessComplete
+
+STRUKTURA SEKVENCE:
+
+  [1:F2_Initial] ──Trans1(iSysInface.Ready)──> [4:S4]
+        │
+        └───Trans2(TRUE)────────────────────> [5:S5]
+               └─Trans3(TRUE)────────────────────> [6:S6]
+                      └─Trans4(TRUE)────────────────────> [7:S7]
+                             └─Trans325(TRUE)────────────────────> [8:S8]
+                                    └─Trans102(ioPM_Inface.Running)──> [9:S9]
+                                           └─Trans10(Robot Home)──────> [10:S10]
+                                                  ...
+                                                  └─> [112:Request_robot_pick]
+                                                         └─> ProcessComplete
+
+PARALERNÍ VĚTVE:
+  - Z Step 9 vede transition 10 na Step 10
+  - Z Step 16 vede interlock na ServoV90_A1.Out.oReady
+  - Z Step 21 (TableLackMaterial) signalizuje chybu
+
+================================================================================
+KROK 5: MAPOVÁNÍ NA SCL (1:1)
+================================================================================
+
+PŘÍKLAD: Kompletní SCL ekvivalent kroku 17
+
+TYPE
+    E_STEP_Flow2 : (
+        STEP_Flow2_F2_Initial    := 1,
+        STEP_Flow2_S4            := 4,
+        STEP_Flow2_S5            := 5,
+        ...
+        STEP_Flow2_S17           := 17,  // ServoPosCount
+        ...
+    ) INT := 1;
+END_TYPE
+
+FUNCTION_BLOCK "FB_ST10_Flow2_A1TableUnloading"
+VAR
+    State : INT := STEP_Flow2_F2_Initial;
+END_VAR
+
+BEGIN
+    CASE #State OF
+        // =========================================================
+        // STEP 17: ServoPosCount
+        // SOURCE: XML Step Number="17", Actions with Event="S1"
+        // =========================================================
+        STEP_Flow2_S17:
+            // Action Qualifier=N (Event=S1 - executed once on entry)
+            // SOURCE: XML Action Token="ServoV90_DeviceCtl.V90Servo[1].nPositionListNo := ... + 1"
+            "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo :=
+                "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo + 1;
+
+            // Action Qualifier=N (Event=S1)
+            // SOURCE: XML Action Token="AutoProcessControl.A_Table_1Loading.ServoRunCount := ... + 1"
+            "AutoProcessControl".A_Table_1Loading.ServoRunCount :=
+                "AutoProcessControl".A_Table_1Loading.ServoRunCount + 1;
+
+            // Transition 118 evaluates in next cycle
+            // IF transition_condition THEN #State := STEP_Flow2_S18; END_IF;
+
+    END_CASE;
+END_FUNCTION_BLOCK;
+
+================================================================================
+KROK 6: TRACEABILITA (Zpětná dohledatelnost)
+================================================================================
+
+PRINCIP:
+  Každý SCL blok obsahuje komentář:
+  // SOURCE: XML Tag=<Step|Transition|Action>, Number="XXX", Name="XXX"
+
+PŘÍKLADY:
+
+  // SOURCE: XML Tag=<Step>, Number="17", Name="ServoPosCount"
+  // SOURCE: XML Tag=<Transition>, Number="118", Name="Trans118"
+  // SOURCE: XML Tag=<Action>, Qualifier="N", Event="S1"
+
+MAPOVÁNÍ:
+  XML ID → SCL řádek
+  17 → STEP_Flow2_S17
+  118 → Transition condition
+
+================================================================================
+SHRNUTÍ: IGNOROVANÉ ELEMENTY (UI-only)
+================================================================================
+
+Následující tagy byly identifikovány jako UI/editor-specific a jsou IGNOROVány
+pro runtime SCL implementaci:
+
+1. Wire, Wires - vizuální propojení
+2. Parts, FlgNet - grafické prvky sítě
+3. Powerrail - napájecí lišta
+4. Position, View, Zoom - layout
+5. Branch, BranchRef - větve v editoru
+6. Connection, NodeFrom, NodeTo, LinkType - propojení
+7. IdentCon, NameCon, OpenCon - konektory
+
+JEDINÁ PRAVDA PRO RUNTIME JE:
+- Step.Number + Step.Actions
+- Transition.Number + Transition.Condition (Token text)
+- Step.Interlock (Token text)
+- Step.Supervision (Token text)
+
+================================================================================
+DALŠÍ POSTUP
+================================================================================
+
+Pro plnou 1:1 konverzi všech flow bloků je třeba:
+
+1. Projít každý XML soubor
+2. Extrahovat všechny Step elementy s jejich Actions
+3. Extrahovat všechny Transition elementy s jejich Token texty
+4. Rekonstruovat graf vazeb
+5. Generovat SCL s CASE stavovým strojem
+6. Zachovat všechny komentáře pro traceabilitu
+

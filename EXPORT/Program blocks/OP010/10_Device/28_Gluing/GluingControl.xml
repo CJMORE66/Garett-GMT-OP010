@@ -4,226 +4,42 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="Input" Datatype="Struct" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Member Name="GluingDeviceReady" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="GluingFault" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="GluingRefillTank" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="GluingTankEmpty" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
+    <Member Name="Input" Datatype="Struct">
+      <Member Name="GluingDeviceReady" Datatype="Bool" />
+      <Member Name="GluingFault" Datatype="Bool" />
+      <Member Name="GluingRefillTank" Datatype="Bool" />
+      <Member Name="GluingTankEmpty" Datatype="Bool" />
     </Member>
-    <Member Name="Output" Datatype="Struct" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Member Name="GluingPro_X" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="GluingPro_Y" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="GluingPro_Z" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="GluingReset" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
+    <Member Name="Output" Datatype="Struct">
+      <Member Name="GluingPro_X" Datatype="Bool" />
+      <Member Name="GluingPro_Y" Datatype="Bool" />
+      <Member Name="GluingPro_Z" Datatype="Bool" />
+      <Member Name="GluingReset" Datatype="Bool" />
     </Member>
-    <Member Name="Control" Datatype="Struct" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Member Name="Manual_X" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="Manual_Y" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="Manual_Z" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="Manual_Control" Datatype="Int">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="Auto_Start" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="Auto_Y" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="Auto_Z" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="Auto_Control" Datatype="Int">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="ManualTest_X" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="ManualTestStartGlue" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
+    <Member Name="Control" Datatype="Struct">
+      <Member Name="Manual_X" Datatype="Bool" />
+      <Member Name="Manual_Y" Datatype="Bool" />
+      <Member Name="Manual_Z" Datatype="Bool" />
+      <Member Name="Manual_Control" Datatype="Int" />
+      <Member Name="Auto_Start" Datatype="Bool" />
+      <Member Name="Auto_Y" Datatype="Bool" />
+      <Member Name="Auto_Z" Datatype="Bool" />
+      <Member Name="Auto_Control" Datatype="Int" />
+      <Member Name="ManualTest_X" Datatype="Bool" />
+      <Member Name="ManualTestStartGlue" Datatype="Bool" />
     </Member>
-    <Member Name="GlueCalibratonMode" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="GlueCalibratonMode" Datatype="Bool" />
+    <Member Name="TON" Datatype="Array[1..10] of IEC_LTIMER" Version="1.0" />
+    <Member Name="P" Datatype="Array[1..10] of Bool">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="TON" Datatype="Array[1..10] of IEC_LTIMER" Version="1.0" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="PT" Datatype="LTime" />
-          <Member Name="ET" Datatype="LTime" />
-          <Member Name="IN" Datatype="Bool" />
-          <Member Name="Q" Datatype="Bool" />
-        </Section>
-      </Sections>
-    </Member>
-    <Member Name="P" Datatype="Array[1..10] of Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
     </Member>
-    <Member Name="GlueInitiaStart" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
+    <Member Name="GlueInitiaStart" Datatype="Bool" />
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Standard</MemoryLayout>
       <Name>GluingControl</Name>
       <Namespace />

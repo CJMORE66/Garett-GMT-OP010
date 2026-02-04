@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <InstanceOfName>FB_MES_Monitoring</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="Enable" Datatype="Bool" />
+    <Member Name="Reset" Datatype="Bool" />
+    <Member Name="HeartbeatTimeout_MES" Datatype="Time" />
+    <Member Name="HeartbeatTimeout_PLC" Datatype="Time" />
+    <Member Name="CheckInTimeout" Datatype="Time" />
+    <Member Name="CheckOutTimeout" Datatype="Time" />
+    <Member Name="StoveCheckInTimeout" Datatype="Time" />
+  </Section>
+  <Section Name="Output" />
+  <Section Name="InOut">
+    <Member Name="Diag" Datatype="&quot;UDT_MES_Monitoring&quot;" />
+  </Section>
+  <Section Name="Static">
+    <Member Name="_hbMesValue" Datatype="Bool" />
+    <Member Name="_hbPlcValue" Datatype="Bool" />
+    <Member Name="_errCode" Datatype="Array[1..8] of DInt" />
+    <Member Name="_errText" Datatype="Array[1..8] of String[128]" />
+    <Member Name="_actErrIdx" Datatype="Array[1..8] of Int" />
+    <Member Name="_actErrCnt" Datatype="Int" />
+    <Member Name="_actErrPos" Datatype="Int" />
+    <Member Name="_errRotateEnable" Datatype="Bool" />
+    <Member Name="_tErrRotate" Datatype="TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="_hbMesLast" Datatype="Bool" />
+    <Member Name="_hbPlcLast" Datatype="Bool" />
+    <Member Name="_tHbMes" Datatype="TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="_tHbPlc" Datatype="TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="_tCi" Datatype="Array[1..8] of TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="_tCo" Datatype="Array[1..8] of TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="_tStove" Datatype="TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="_ciDonePrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coDonePrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_ciOkPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_ciNgPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coOkPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coNgPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_ciTimeoutLatched" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coTimeoutLatched" Datatype="Array[1..8] of Bool" />
+    <Member Name="_spDonePrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_spOkPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_spNgPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_lrDonePrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_lrOkPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_lrNgPrev" Datatype="Array[1..8] of Bool" />
+    <Member Name="_stoveOkPrev" Datatype="Bool" />
+    <Member Name="_stoveTimeoutLatched" Datatype="Bool" />
+    <Member Name="_i" Datatype="Int" />
+    <Member Name="_ciReq" Datatype="Array[1..8] of Bool" />
+    <Member Name="_ciOk" Datatype="Array[1..8] of Bool" />
+    <Member Name="_ciNg" Datatype="Array[1..8] of Bool" />
+    <Member Name="_ciDone" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coReq" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coOk" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coNg" Datatype="Array[1..8] of Bool" />
+    <Member Name="_coDone" Datatype="Array[1..8] of Bool" />
+    <Member Name="_spOk" Datatype="Array[1..8] of Bool" />
+    <Member Name="_spNg" Datatype="Array[1..8] of Bool" />
+    <Member Name="_spDone" Datatype="Array[1..8] of Bool" />
+    <Member Name="_lrOk" Datatype="Array[1..8] of Bool" />
+    <Member Name="_lrNg" Datatype="Array[1..8] of Bool" />
+    <Member Name="_lrDone" Datatype="Array[1..8] of Bool" />
+    <Member Name="_stoveReq" Datatype="Bool" />
+    <Member Name="_stoveOk" Datatype="Bool" />
+  </Section>
+</Sections></Interface>
+      <Name>FB_MES_Monitoring_iDB</Name>
+      <Namespace />
+      <Number>10</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

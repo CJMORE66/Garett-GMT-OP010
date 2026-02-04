@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="StationName" Datatype="String">
+      <StartValue>'Station X'</StartValue>
+    </Member>
+    <Member Name="CheckIn" Datatype="Struct">
+      <Member Name="Req" Datatype="Bool" />
+      <Member Name="OK" Datatype="Bool" />
+      <Member Name="NG" Datatype="Bool" />
+      <Member Name="Done" Datatype="Bool" />
+      <Member Name="InProgress" Datatype="Bool" />
+      <Member Name="Timeout" Datatype="Bool" />
+      <Member Name="Elapsed" Datatype="Time" />
+      <Member Name="BothOkNg" Datatype="Bool" />
+      <Member Name="UnexpectedDone" Datatype="Bool" />
+      <Member Name="CountOK" Datatype="UDInt" />
+      <Member Name="CountNG" Datatype="UDInt" />
+      <Member Name="CountDone" Datatype="UDInt" />
+      <Member Name="CountTimeout" Datatype="UDInt" />
+      <Member Name="DATA" Datatype="Struct">
+        <Member Name="PLC_PartTypeID" Datatype="Int" />
+        <Member Name="PLC_StationRecipeNo" Datatype="Int" />
+        <Member Name="PLC_StationDMXCode" Datatype="String[128]" />
+        <Member Name="PLC_StationStatus" Datatype="Int" />
+        <Member Name="MES_ErrorCode" Datatype="Int" />
+        <Member Name="MES_StatusBits" Datatype="DInt" />
+        <Member Name="MES_Cycle_ID" Datatype="DInt" />
+        <Member Name="MES_Unit_ParttypeID" Datatype="Int" />
+      </Member>
+    </Member>
+    <Member Name="CheckOut" Datatype="Struct">
+      <Member Name="Req" Datatype="Bool" />
+      <Member Name="StoredOK" Datatype="Bool" />
+      <Member Name="StoredNG" Datatype="Bool" />
+      <Member Name="Done" Datatype="Bool" />
+      <Member Name="InProgress" Datatype="Bool" />
+      <Member Name="Timeout" Datatype="Bool" />
+      <Member Name="Elapsed" Datatype="Time" />
+      <Member Name="BothOkNg" Datatype="Bool" />
+      <Member Name="UnexpectedDone" Datatype="Bool" />
+      <Member Name="CountOK" Datatype="UDInt" />
+      <Member Name="CountNG" Datatype="UDInt" />
+      <Member Name="CountDone" Datatype="UDInt" />
+      <Member Name="CountTimeout" Datatype="UDInt" />
+      <Member Name="DATA" Datatype="Struct">
+        <Member Name="PLC_PartTypeID" Datatype="Int" />
+        <Member Name="PLC_StationDMXCode" Datatype="String[50]" />
+        <Member Name="PLC_StationRecipeNo" Datatype="Int" />
+        <Member Name="PLC_PartStatus" Datatype="Int" />
+        <Member Name="PLC_SubPartSN1" Datatype="String[50]" />
+        <Member Name="PLC_TransferTime" Datatype="String[50]" />
+        <Member Name="PLC_Power" Datatype="Real" />
+        <Member Name="PLC_Displacement" Datatype="Real" />
+        <Member Name="PLC_Program" Datatype="Int" />
+        <Member Name="PLC_NGCode" Datatype="Int" />
+        <Member Name="MES_ErrorCode" Datatype="Int" />
+        <Member Name="MES_ErrorMsg" Datatype="String[60]" />
+      </Member>
+    </Member>
+    <Member Name="SubPart" Datatype="Struct">
+      <Member Name="OK" Datatype="Bool" />
+      <Member Name="NG" Datatype="Bool" />
+      <Member Name="Done" Datatype="Bool" />
+      <Member Name="BothOkNg" Datatype="Bool" />
+      <Member Name="CountOK" Datatype="UDInt" />
+      <Member Name="CountNG" Datatype="UDInt" />
+      <Member Name="CountDone" Datatype="UDInt" />
+    </Member>
+    <Member Name="LoadResultsStored" Datatype="Struct">
+      <Member Name="OK" Datatype="Bool" />
+      <Member Name="NG" Datatype="Bool" />
+      <Member Name="Done" Datatype="Bool" />
+      <Member Name="BothOkNg" Datatype="Bool" />
+      <Member Name="CountOK" Datatype="UDInt" />
+      <Member Name="CountNG" Datatype="UDInt" />
+      <Member Name="CountDone" Datatype="UDInt" />
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>UDT_MES_Monitoring_station</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

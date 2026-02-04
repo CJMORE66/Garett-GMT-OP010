@@ -4,29 +4,24 @@
   <SW.Blocks.FC ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
-  <Section Name="Input" />
+  <Section Name="Input">
+    <Member Name="iSysMode" Datatype="&quot;RCS_SysComInterface_V1&quot;" />
+  </Section>
   <Section Name="Output" />
   <Section Name="InOut" />
   <Section Name="Temp" />
   <Section Name="Constant" />
   <Section Name="Return">
-    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+    <Member Name="Ret_Val" Datatype="Void" />
   </Section>
 </Sections></Interface>
-      <IsIECCheckEnabled>false</IsIECCheckEnabled>
       <MemoryLayout>Optimized</MemoryLayout>
       <Name>Pallet_NG</Name>
       <Namespace />
       <Number>2900</Number>
       <ProgrammingLanguage>LAD</ProgrammingLanguage>
       <SetENOAutomatically>false</SetENOAutomatically>
-      <UDABlockProperties />
-      <UDAEnableTagReadback>false</UDAEnableTagReadback>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">
@@ -53,24 +48,117 @@
       </MultilingualText>
       <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
         <AttributeList>
-          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
-  <Parts>
-    <Call UId="21">
-      <CallInfo Name="NG" BlockType="FB">
-        <Instance Scope="GlobalVariable" UId="22">
-          <Component Name="NG_DB" />
-        </Instance>
-      </CallInfo>
-    </Call>
-  </Parts>
-  <Wires>
-    <Wire UId="23">
-      <Powerrail />
-      <NameCon UId="21" Name="en" />
-    </Wire>
-  </Wires>
-</FlgNet></NetworkSource>
-          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <Access Scope="Call" UId="21">
+    <CallInfo UId="22" BlockType="FB" Name="NG_BOXES">
+      <Instance Scope="GlobalVariable" UId="23">
+        <Component Name="NG_BOXES_DB" UId="24">
+          <BooleanAttribute Name="HasQuotes" UId="25">true</BooleanAttribute>
+        </Component>
+      </Instance>
+      <Token Text="(" UId="26" />
+      <NewLine UId="27" />
+      <Blank Num="14" UId="28" />
+      <Parameter Name="in_Permission_to_Open" UId="29">
+        <Blank UId="30" />
+        <Token Text=":=" UId="31" />
+        <NewLine UId="32" />
+        <Blank Num="14" UId="33" />
+        <LineComment UId="34">
+          <Text UId="35"> in manual mode always</Text>
+        </LineComment>
+        <NewLine UId="36" />
+        <Blank Num="14" UId="37" />
+        <Access Scope="LocalVariable" UId="38">
+          <Symbol UId="39">
+            <Component Name="iSysMode" UId="40" />
+            <Token Text="." UId="41" />
+            <Component Name="ManualMode" UId="42" />
+          </Symbol>
+        </Access>
+        <Blank UId="43" />
+        <Token Text="OR" UId="44" />
+        <NewLine UId="45" />
+        <Blank Num="14" UId="46" />
+        <LineComment UId="47">
+          <Text UId="48"> </Text>
+        </LineComment>
+        <NewLine UId="49" />
+        <Blank Num="14" UId="50" />
+        <Token Text="(" UId="51" />
+        <NewLine UId="52" />
+        <Blank Num="14" UId="53" />
+        <LineComment UId="54">
+          <Text UId="55"> all 3 robots are in safe step and have no job / no task running</Text>
+        </LineComment>
+        <NewLine UId="56" />
+        <Blank Num="14" UId="57" />
+        <Access Scope="GlobalVariable" UId="58">
+          <Symbol UId="59">
+            <Component Name="ST10_Flow5_FRobot_1_iDB" UId="60">
+              <BooleanAttribute Name="HasQuotes" UId="61">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="62" />
+            <Component Name="Open NG BOX REQUESTED?" UId="63" />
+            <Token Text="." UId="64" />
+            <Component Name="X" UId="65" />
+          </Symbol>
+        </Access>
+        <Blank UId="66" />
+        <Token Text="AND" UId="67" />
+        <NewLine UId="68" />
+        <Blank Num="14" UId="69" />
+        <Access Scope="GlobalVariable" UId="70">
+          <Symbol UId="71">
+            <Component Name="ST10_Flow8_FRobot_2_iDB" UId="72">
+              <BooleanAttribute Name="HasQuotes" UId="73">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="74" />
+            <Component Name="Open NG BOX REQUESTED?" UId="75" />
+            <Token Text="." UId="76" />
+            <Component Name="X" UId="77" />
+          </Symbol>
+        </Access>
+        <Blank UId="78" />
+        <Token Text="AND" UId="79" />
+        <NewLine UId="80" />
+        <Blank Num="14" UId="81" />
+        <Access Scope="GlobalVariable" UId="82">
+          <Symbol UId="83">
+            <Component Name="ST10_Flow15_FRobot_3_iDB" UId="84">
+              <BooleanAttribute Name="HasQuotes" UId="85">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="86" />
+            <Component Name="Open NG BOX REQUESTED?" UId="87" />
+            <Token Text="." UId="88" />
+            <Component Name="X" UId="89" />
+          </Symbol>
+        </Access>
+        <NewLine UId="90" />
+        <Blank Num="14" UId="91" />
+        <Token Text=")" UId="92" />
+        <Blank UId="93" />
+        <Token Text="OR" UId="94" />
+        <Blank UId="95" />
+        <Access Scope="GlobalVariable" UId="96">
+          <Symbol UId="97">
+            <Component Name="Robot_DB" UId="98">
+              <BooleanAttribute Name="HasQuotes" UId="99">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="100" />
+            <Component Name="NG_box_open_flag_during_auto" UId="101" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <NewLine UId="102" />
+      <Blank Num="14" UId="103" />
+      <Token Text=")" UId="105" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="106" />
+  <NewLine UId="107" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6" CompositionName="Comment">
@@ -106,7 +194,7 @@
               <MultilingualTextItem ID="C" CompositionName="Items">
                 <AttributeList>
                   <Culture>en-GB</Culture>
-                  <Text />
+                  <Text>NG BOXES MAIN FUNCTION BLOCK</Text>
                 </AttributeList>
               </MultilingualTextItem>
               <MultilingualTextItem ID="D" CompositionName="Items">
@@ -119,73 +207,21 @@
           </MultilingualText>
         </ObjectList>
       </SW.Blocks.CompileUnit>
-      <SW.Blocks.CompileUnit ID="E" CompositionName="CompileUnits">
-        <AttributeList>
-          <NetworkSource />
-          <ProgrammingLanguage>LAD</ProgrammingLanguage>
-        </AttributeList>
+      <MultilingualText ID="E" CompositionName="Title">
         <ObjectList>
-          <MultilingualText ID="F" CompositionName="Comment">
-            <ObjectList>
-              <MultilingualTextItem ID="10" CompositionName="Items">
-                <AttributeList>
-                  <Culture>zh-CN</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-              <MultilingualTextItem ID="11" CompositionName="Items">
-                <AttributeList>
-                  <Culture>en-GB</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-              <MultilingualTextItem ID="12" CompositionName="Items">
-                <AttributeList>
-                  <Culture>sk-SK</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-            </ObjectList>
-          </MultilingualText>
-          <MultilingualText ID="13" CompositionName="Title">
-            <ObjectList>
-              <MultilingualTextItem ID="14" CompositionName="Items">
-                <AttributeList>
-                  <Culture>zh-CN</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-              <MultilingualTextItem ID="15" CompositionName="Items">
-                <AttributeList>
-                  <Culture>en-GB</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-              <MultilingualTextItem ID="16" CompositionName="Items">
-                <AttributeList>
-                  <Culture>sk-SK</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-            </ObjectList>
-          </MultilingualText>
-        </ObjectList>
-      </SW.Blocks.CompileUnit>
-      <MultilingualText ID="17" CompositionName="Title">
-        <ObjectList>
-          <MultilingualTextItem ID="18" CompositionName="Items">
+          <MultilingualTextItem ID="F" CompositionName="Items">
             <AttributeList>
               <Culture>zh-CN</Culture>
               <Text />
             </AttributeList>
           </MultilingualTextItem>
-          <MultilingualTextItem ID="19" CompositionName="Items">
+          <MultilingualTextItem ID="10" CompositionName="Items">
             <AttributeList>
               <Culture>en-GB</Culture>
               <Text />
             </AttributeList>
           </MultilingualTextItem>
-          <MultilingualTextItem ID="1A" CompositionName="Items">
+          <MultilingualTextItem ID="11" CompositionName="Items">
             <AttributeList>
               <Culture>sk-SK</Culture>
               <Text />

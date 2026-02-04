@@ -7,10 +7,6 @@
       <AutoNumber>false</AutoNumber>
       <ExtensionBlockName />
       <GraphVersion>6.0</GraphVersion>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <InitialValuesAcquisition>false</InitialValuesAcquisition>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Base">
@@ -18,230 +14,51 @@
       <Section Name="Input" />
       <Section Name="Output" />
       <Section Name="InOut" />
-      <Section Name="Static">
-        <Member Name="OFF_SQ_BASE" Datatype="Bool" />
-      </Section>
+      <Section Name="Static" />
     </Sections>
   </Section>
   <Section Name="Input">
-    <Member Name="iSysInface" Datatype="&quot;RCS_SysComInterface_V1&quot;" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-      </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="CPUFristCycle" Datatype="Bool" />
-          <Member Name="SysRun" Datatype="Bool" />
-          <Member Name="Reset" Datatype="Bool" />
-          <Member Name="EstopOK" Datatype="Bool" />
-          <Member Name="SafetyDoorOK" Datatype="Bool" />
-          <Member Name="LightCurtainOK" Datatype="Bool" />
-          <Member Name="SetInitial" Datatype="Bool" />
-          <Member Name="InitialRun" Datatype="Bool" />
-          <Member Name="Ready" Datatype="Bool" />
-          <Member Name="ManualMode" Datatype="Bool" />
-          <Member Name="Auto" Datatype="&quot;RCS_SysAuto_V1&quot;">
-            <Sections>
-              <Section Name="None">
-                <Member Name="Mode" Datatype="Bool" />
-                <Member Name="Running" Datatype="Bool" />
-                <Member Name="RunningPause" Datatype="Bool" />
-                <Member Name="RunningOver" Datatype="Bool" />
-                <Member Name="StepMode" Datatype="Bool" />
-                <Member Name="OneCycleMode" Datatype="Bool" />
-                <Member Name="StartAuto" Datatype="Bool" />
-                <Member Name="AllRun" Datatype="Bool" />
-                <Member Name="Status" Datatype="Int" />
-              </Section>
-            </Sections>
-          </Member>
-        </Section>
-      </Sections>
-    </Member>
+    <Member Name="iSysInface" Datatype="&quot;RCS_SysComInterface_V1&quot;" />
   </Section>
   <Section Name="Output" />
   <Section Name="InOut">
-    <Member Name="ioPM_Inface" Datatype="&quot;RCS_PMInterface_V1&quot;" Accessibility="Public">
-      <Sections>
-        <Section Name="None">
-          <Member Name="Enable" Datatype="Bool" />
-          <Member Name="SetInitial" Datatype="Bool" />
-          <Member Name="InitialRun" Datatype="Bool" />
-          <Member Name="InitialOK" Datatype="Bool" />
-          <Member Name="AtHome" Datatype="Bool" />
-          <Member Name="SetNextStep" Datatype="Bool" />
-          <Member Name="GoNextStep" Datatype="Bool" />
-          <Member Name="TriggerOneCycle" Datatype="Bool" />
-          <Member Name="WaitRunning" Datatype="Bool" />
-          <Member Name="Running" Datatype="Bool" />
-          <Member Name="UnPause" Datatype="Bool" />
-          <Member Name="ProcessStart" Datatype="Bool" />
-          <Member Name="ProcessComplete" Datatype="Bool" />
-          <Member Name="Alarm" Datatype="Bool" />
-          <Member Name="AlarmImdilyStop" Datatype="Bool" />
-          <Member Name="AlarmCycleStop" Datatype="Bool" />
-          <Member Name="ProcessStatus" Datatype="DInt" />
-          <Member Name="ProcessResult" Datatype="DInt" />
-          <Member Name="OperatorPrompt" Datatype="UInt" />
-          <Member Name="Num" Datatype="Int" />
-          <Member Name="StepNum" Datatype="Int" />
-          <Member Name="SpareByte" Datatype="Array[0..3] of Byte" />
-        </Section>
-      </Sections>
-    </Member>
-    <Member Name="ioStatus" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-      </AttributeList>
-    </Member>
+    <Member Name="ioPM_Inface" Datatype="&quot;RCS_PMInterface_V1&quot;" />
+    <Member Name="ioStatus" Datatype="Int" />
   </Section>
   <Section Name="Static">
-    <Member Name="sCtrlMode" Datatype="&quot;SysFlowCtrlGraph&quot;" Accessibility="Public">
+    <Member Name="sCtrlMode" Datatype="&quot;SysFlowCtrlGraph&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="iSysInface" Datatype="&quot;RCS_SysComInterface_V1&quot;">
-            <Sections>
-              <Section Name="None">
-                <Member Name="CPUFristCycle" Datatype="Bool" />
-                <Member Name="SysRun" Datatype="Bool" />
-                <Member Name="Reset" Datatype="Bool" />
-                <Member Name="EstopOK" Datatype="Bool" />
-                <Member Name="SafetyDoorOK" Datatype="Bool" />
-                <Member Name="LightCurtainOK" Datatype="Bool" />
-                <Member Name="SetInitial" Datatype="Bool" />
-                <Member Name="InitialRun" Datatype="Bool" />
-                <Member Name="Ready" Datatype="Bool" />
-                <Member Name="ManualMode" Datatype="Bool" />
-                <Member Name="Auto" Datatype="&quot;RCS_SysAuto_V1&quot;">
-                  <Sections>
-                    <Section Name="None">
-                      <Member Name="Mode" Datatype="Bool" />
-                      <Member Name="Running" Datatype="Bool" />
-                      <Member Name="RunningPause" Datatype="Bool" />
-                      <Member Name="RunningOver" Datatype="Bool" />
-                      <Member Name="StepMode" Datatype="Bool" />
-                      <Member Name="OneCycleMode" Datatype="Bool" />
-                      <Member Name="StartAuto" Datatype="Bool" />
-                      <Member Name="AllRun" Datatype="Bool" />
-                      <Member Name="Status" Datatype="Int" />
-                    </Section>
-                  </Sections>
-                </Member>
-              </Section>
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Output" />
-        <Section Name="InOut">
-          <Member Name="ioPM_Inface" Datatype="&quot;RCS_PMInterface_V1&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="ioGraphCtrl" Datatype="G7_MOPPlus_V6" Version="1.0">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-        </Section>
-        <Section Name="Static">
-          <Member Name="sHis" Datatype="Array[0..7] of Bool" />
-          <Member Name="sSetInitialDelay" Datatype="TON_TIME" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="PT" Datatype="Time" />
-                <Member Name="ET" Datatype="Time" />
-                <Member Name="IN" Datatype="Bool" />
-                <Member Name="Q" Datatype="Bool" />
-              </Section>
-            </Sections>
-          </Member>
-          <Member Name="S_NEXT_Delay" Datatype="Array[0..1] of TON_TIME" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="PT" Datatype="Time" />
-                <Member Name="ET" Datatype="Time" />
-                <Member Name="IN" Datatype="Bool" />
-                <Member Name="Q" Datatype="Bool" />
-              </Section>
-            </Sections>
-          </Member>
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="sUpdMES_Data" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="sUpdMES_Data" Datatype="Bool">
       <Comment>
         <MultiLanguageText Lang="zh-CN">更新MES数据</MultiLanguageText>
       </Comment>
     </Member>
-    <Member Name="工件放行中" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="前站站号" Datatype="UInt" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="工件放行中" Datatype="Bool" />
+    <Member Name="前站站号" Datatype="UInt">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalWritable" SystemDefined="true">false</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
       </AttributeList>
     </Member>
-    <Member Name="本站站号" Datatype="UInt" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="本站站号" Datatype="UInt">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalWritable" SystemDefined="true">false</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
       </AttributeList>
     </Member>
-    <Member Name="弹窗Temp" Datatype="Array[1..10] of Int" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="弹窗Temp" Datatype="Array[1..10] of Int" />
+    <Member Name="AlarmID" Datatype="Int" />
+    <Member Name="TON" Datatype="Array[0..10] of TON_TIME" Version="1.0">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="AlarmID" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="TON" Datatype="Array[0..10] of TON_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
       <Sections>
         <Section Name="None">
-          <Member Name="PT" Datatype="Time" />
-          <Member Name="ET" Datatype="Time" />
-          <Member Name="IN" Datatype="Bool" />
           <Member Name="Q" Datatype="Bool">
             <Subelement Path="0">
               <Comment Informative="true">
@@ -309,20 +126,12 @@
         </Comment>
       </Subelement>
     </Member>
-    <Member Name="TOF" Datatype="Array[0..10] of TOF_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="TOF" Datatype="Array[0..10] of TOF_TIME" Version="1.0">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
       <Sections>
-        <Section Name="None">
-          <Member Name="PT" Datatype="Time" />
-          <Member Name="ET" Datatype="Time" />
-          <Member Name="IN" Datatype="Bool" />
-          <Member Name="Q" Datatype="Bool" />
-        </Section>
+        <Section Name="None" />
       </Sections>
       <Subelement Path="1">
         <Comment>
@@ -330,23 +139,13 @@
         </Comment>
       </Subelement>
     </Member>
-    <Member Name="sUP" Datatype="Array[0..10] of Bool" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="sUP" Datatype="Array[0..10] of Bool">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
     </Member>
-    <Member Name="更新RFID完成" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-    </Member>
-    <Member Name="RT_DATA" Datatype="G7_RTDataPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="更新RFID完成" Datatype="Bool" />
+    <Member Name="RT_DATA" Datatype="G7_RTDataPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -362,52 +161,11 @@
           <Member Name="VERSION" Datatype="String[10]">
             <StartValue Informative="true">'V6.0'</StartValue>
           </Member>
-          <Member Name="S_DISPLAY" Datatype="Int" />
-          <Member Name="S_SEL_OLD" Datatype="Int" />
           <Member Name="S_DISPIDX" Datatype="USInt">
             <StartValue Informative="true">255</StartValue>
           </Member>
           <Member Name="T_DISPIDX" Datatype="USInt">
             <StartValue Informative="true">255</StartValue>
-          </Member>
-          <Member Name="MOP_EDGE" Datatype="G7_MOPPlus_V6" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="AUTO" Datatype="Bool" />
-                <Member Name="MAN" Datatype="Bool" />
-                <Member Name="TAP" Datatype="Bool" />
-                <Member Name="TOP" Datatype="Bool" />
-                <Member Name="ACK_S" Datatype="Bool" />
-                <Member Name="REG_S" Datatype="Bool" />
-                <Member Name="T_PREV" Datatype="Bool" />
-                <Member Name="T_NEXT" Datatype="Bool" />
-                <Member Name="LOCK" Datatype="Bool" />
-                <Member Name="SUP" Datatype="Bool" />
-                <Member Name="ACKREQ" Datatype="Bool" />
-                <Member Name="SSKIP" Datatype="Bool" />
-                <Member Name="OFF" Datatype="Bool" />
-                <Member Name="INIT" Datatype="Bool" />
-                <Member Name="HALT" Datatype="Bool" />
-                <Member Name="TMS_HALT" Datatype="Bool" />
-                <Member Name="OPS_ZERO" Datatype="Bool" />
-                <Member Name="SACT_DISP" Datatype="Bool" />
-                <Member Name="SEF_DISP" Datatype="Bool" />
-                <Member Name="SALL_DISP" Datatype="Bool" />
-                <Member Name="S_PREV" Datatype="Bool" />
-                <Member Name="S_NEXT" Datatype="Bool" />
-                <Member Name="S_SELOK" Datatype="Bool" />
-                <Member Name="S_ON" Datatype="Bool" />
-                <Member Name="S_OFF" Datatype="Bool" />
-                <Member Name="T_PUSH" Datatype="Bool" />
-                <Member Name="REG" Datatype="Bool" />
-                <Member Name="ACK" Datatype="Bool" />
-                <Member Name="IL_PERM" Datatype="Bool" />
-                <Member Name="T_PERM" Datatype="Bool" />
-                <Member Name="ILP_MAN" Datatype="Bool" />
-                <Member Name="LMODE" Datatype="Bool" />
-                <Member Name="RESET_CRIT" Datatype="Bool" />
-              </Section>
-            </Sections>
           </Member>
           <Member Name="MOP" Datatype="G7_MOPPlus_V6" Version="1.0">
             <Sections>
@@ -415,68 +173,27 @@
                 <Member Name="AUTO" Datatype="Bool">
                   <StartValue Informative="true">true</StartValue>
                 </Member>
-                <Member Name="MAN" Datatype="Bool" />
-                <Member Name="TAP" Datatype="Bool" />
-                <Member Name="TOP" Datatype="Bool" />
-                <Member Name="ACK_S" Datatype="Bool" />
-                <Member Name="REG_S" Datatype="Bool" />
-                <Member Name="T_PREV" Datatype="Bool" />
-                <Member Name="T_NEXT" Datatype="Bool" />
                 <Member Name="LOCK" Datatype="Bool">
                   <StartValue Informative="true">true</StartValue>
                 </Member>
                 <Member Name="SUP" Datatype="Bool">
                   <StartValue Informative="true">true</StartValue>
                 </Member>
-                <Member Name="ACKREQ" Datatype="Bool" />
-                <Member Name="SSKIP" Datatype="Bool" />
-                <Member Name="OFF" Datatype="Bool" />
                 <Member Name="INIT" Datatype="Bool">
                   <StartValue Informative="true">true</StartValue>
                 </Member>
-                <Member Name="HALT" Datatype="Bool" />
-                <Member Name="TMS_HALT" Datatype="Bool" />
-                <Member Name="OPS_ZERO" Datatype="Bool" />
                 <Member Name="SACT_DISP" Datatype="Bool">
                   <StartValue Informative="true">true</StartValue>
                 </Member>
-                <Member Name="SEF_DISP" Datatype="Bool" />
-                <Member Name="SALL_DISP" Datatype="Bool" />
-                <Member Name="S_PREV" Datatype="Bool" />
-                <Member Name="S_NEXT" Datatype="Bool" />
-                <Member Name="S_SELOK" Datatype="Bool" />
-                <Member Name="S_ON" Datatype="Bool" />
-                <Member Name="S_OFF" Datatype="Bool" />
-                <Member Name="T_PUSH" Datatype="Bool" />
-                <Member Name="REG" Datatype="Bool" />
-                <Member Name="ACK" Datatype="Bool" />
-                <Member Name="IL_PERM" Datatype="Bool" />
-                <Member Name="T_PERM" Datatype="Bool" />
-                <Member Name="ILP_MAN" Datatype="Bool" />
-                <Member Name="LMODE" Datatype="Bool" />
-                <Member Name="RESET_CRIT" Datatype="Bool" />
               </Section>
             </Sections>
           </Member>
-          <Member Name="TIME_DELTA" Datatype="Time" />
           <Member Name="SQ_FLAGS" Datatype="G7_SQFlagsPlus_V6" Version="1.0">
             <Sections>
               <Section Name="None">
-                <Member Name="ERR_FLT" Datatype="Bool" />
-                <Member Name="ERROR" Datatype="Bool" />
-                <Member Name="FAULT" Datatype="Bool" />
-                <Member Name="RT_FAIL" Datatype="Bool" />
-                <Member Name="NO_SNO" Datatype="Bool" />
-                <Member Name="NF_OFL" Datatype="Bool" />
-                <Member Name="SA_OFL" Datatype="Bool" />
-                <Member Name="TV_OFL" Datatype="Bool" />
-                <Member Name="NO_SWI" Datatype="Bool" />
-                <Member Name="CYC_OP" Datatype="Bool" />
                 <Member Name="AS_MSG" Datatype="Bool">
                   <StartValue Informative="true">true</StartValue>
                 </Member>
-                <Member Name="SQ_BUSY" Datatype="Bool" />
-                <Member Name="SA_BUSY" Datatype="Bool" />
               </Section>
             </Sections>
           </Member>
@@ -495,7 +212,6 @@
           <Member Name="LOCK_CNT" Datatype="USInt">
             <StartValue Informative="true">1</StartValue>
           </Member>
-          <Member Name="SUP_CNT" Datatype="USInt" />
           <Member Name="T_CNT" Datatype="USInt">
             <StartValue Informative="true">49</StartValue>
           </Member>
@@ -511,11 +227,9 @@
           <Member Name="AS_MSG" Datatype="Byte">
             <StartValue Informative="true">16#65</StartValue>
           </Member>
-          <Member Name="EXEC_BITS" Datatype="Array[0..249] of Bool" />
           <Member Name="OFFSETS" Datatype="G7_OffsetsPlus_V6" Version="1.0">
             <Sections>
               <Section Name="None">
-                <Member Name="SINI_OFFSET" Datatype="UInt" />
                 <Member Name="LSTT_OFFSET" Datatype="UInt">
                   <StartValue Informative="true">3</StartValue>
                 </Member>
@@ -585,42 +299,28 @@
               </Section>
             </Sections>
           </Member>
-          <Member Name="THRESHOLD_SUP" Datatype="USInt" />
-          <Member Name="THRESHOLD_WARN" Datatype="USInt" />
           <Member Name="GC_FLAGS" Datatype="G7_GCFlagsPlus_V6" Version="1.0">
             <Sections>
               <Section Name="None">
                 <Member Name="COND_ED" Datatype="USInt">
                   <StartValue Informative="true">16#E3</StartValue>
                 </Member>
-                <Member Name="SSKIP_ON" Datatype="Bool" />
-                <Member Name="ACK_REQ" Datatype="Bool" />
-                <Member Name="ILP_MAN" Datatype="Bool" />
-                <Member Name="SWM_LOCKED" Datatype="Bool" />
-                <Member Name="SET_ENO" Datatype="Bool" />
                 <Member Name="IL_CAT" Datatype="USInt">
                   <StartValue Informative="true">1</StartValue>
                 </Member>
-                <Member Name="IL_SUBCAT_1" Datatype="USInt" />
-                <Member Name="IL_SUBCAT_2" Datatype="USInt" />
                 <Member Name="REACT_CAT" Datatype="USInt">
                   <StartValue Informative="true">1</StartValue>
                 </Member>
-                <Member Name="REACT_SUBCAT_1" Datatype="USInt" />
-                <Member Name="REACT_SUBCAT_2" Datatype="USInt" />
                 <Member Name="WARN_CAT" Datatype="USInt">
                   <StartValue Informative="true">2</StartValue>
                 </Member>
-                <Member Name="WARN_SUBCAT_1" Datatype="USInt" />
-                <Member Name="WARN_SUBCAT_2" Datatype="USInt" />
-                <Member Name="CRIT_ON" Datatype="Bool" />
               </Section>
             </Sections>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans1" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans1" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -633,19 +333,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">1</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans2" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans2" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -658,19 +352,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">2</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans3" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans3" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -683,19 +371,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">3</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans325" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans325" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -708,19 +390,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">4</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans10" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans10" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -733,19 +409,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">8</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans102" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans102" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -758,19 +428,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">10</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans22" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans22" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -784,19 +448,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">21</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans23" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans23" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -810,19 +468,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">22</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans24" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans24" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -836,19 +488,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">23</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans25" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans25" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -862,19 +508,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">24</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans27" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans27" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -888,19 +528,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">26</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans28" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans28" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -914,19 +548,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">27</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans29" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans29" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -940,19 +568,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">28</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans30" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans30" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -966,19 +588,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">29</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans31" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans31" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -992,19 +608,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">30</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans32" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans32" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1018,19 +628,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">31</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans33" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans33" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1044,19 +648,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">32</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans34" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans34" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1070,19 +668,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">33</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans37" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans37" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1096,19 +688,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">34</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans35" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans35" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1122,19 +708,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">35</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans36" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans36" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1148,19 +728,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">36</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans38" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans38" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1174,19 +748,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">37</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans200" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans200" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1199,19 +767,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">100</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans765" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans765" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1225,19 +787,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">116</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans117" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans117" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1251,19 +807,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">117</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans766" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans766" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1277,19 +827,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">118</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans119" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans119" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1303,19 +847,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">119</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans772" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans772" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1329,19 +867,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">134</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans773" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans773" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1355,19 +887,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">135</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans136" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans136" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1381,19 +907,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">136</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans774" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans774" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1407,19 +927,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">137</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans775" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans775" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1433,19 +947,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">138</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans139" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans139" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1459,19 +967,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">139</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans140" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans140" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1485,19 +987,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">140</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans776" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans776" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1511,19 +1007,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">141</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans142" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans142" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1537,19 +1027,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">142</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans143" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans143" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1563,19 +1047,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">143</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans144" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans144" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1589,19 +1067,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">144</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans145" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans145" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1615,19 +1087,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">145</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans146" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans146" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1641,19 +1107,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">146</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans147" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans147" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1667,19 +1127,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">147</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans148" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans148" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1693,19 +1147,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">148</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans778" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans778" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1719,19 +1167,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">149</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans137" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans137" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1745,19 +1187,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">150</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans141" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans141" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1771,19 +1207,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">151</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans149" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans149" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1797,19 +1227,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">152</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans153" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans153" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1823,19 +1247,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">153</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans250" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans250" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1849,19 +1267,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">249</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="Trans613" Datatype="G7_TransitionPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Trans613" Datatype="G7_TransitionPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1875,19 +1287,13 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="TV" Datatype="Bool" />
-          <Member Name="TT" Datatype="Bool" />
-          <Member Name="TS" Datatype="Bool" />
           <Member Name="TNO" Datatype="Int">
             <StartValue Informative="true">607</StartValue>
           </Member>
-          <Member Name="CRIT" Datatype="DWord" />
-          <Member Name="CRIT_OLD" Datatype="DWord" />
-          <Member Name="CRIT_FLT" Datatype="DWord" />
         </Section>
       </Sections>
     </Member>
-    <Member Name="F24_Initial" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="F24_Initial" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1900,44 +1306,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">1</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="S2" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="S2" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -1950,44 +1334,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">2</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="S3" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="S3" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2001,44 +1363,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">3</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="S4" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="S4" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2051,44 +1391,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">4</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="S5_MESInitial" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="S5_MESInitial" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2101,44 +1419,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">5</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="WaitRobotInitialFinish" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="WaitRobotInitialFinish" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2151,44 +1447,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">8</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="S10_InitialFinish" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="S10_InitialFinish" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2201,44 +1475,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">10</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="StatusError" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="StatusError" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2252,44 +1504,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">20</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="CheckStopPalletExist" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="CheckStopPalletExist" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2303,44 +1533,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">21</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="TimeDelay" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="TimeDelay" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2354,44 +1562,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">22</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Motor CWStart" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Motor CWStart" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2405,44 +1591,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">23</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="MotorCWStart" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="MotorCWStart" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2456,44 +1620,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">24</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="MotorCCWStart_1" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="MotorCCWStart_1" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2507,44 +1649,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">25</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="MotorCWStart_2" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="MotorCWStart_2" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2558,44 +1678,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">26</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="MotorCCWStart_2" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="MotorCCWStart_2" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2609,44 +1707,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">27</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="ProcessStart" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="ProcessStart" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2659,44 +1735,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">100</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransCylinderToHP" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransCylinderToHP" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2710,44 +1764,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">116</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="CheckUnloadingTransCylinderPos" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="CheckUnloadingTransCylinderPos" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2761,44 +1793,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">117</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransPalletLocationCylinderHP_2" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransPalletLocationCylinderHP_2" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2812,44 +1822,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">118</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransCylindertoWP2" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransCylindertoWP2" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2863,44 +1851,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">129</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransPalletLocationCylinder ToWP" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransPalletLocationCylinder ToWP" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2914,44 +1880,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">130</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Time   Delay" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Time   Delay" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -2965,44 +1909,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">131</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="MotorStop" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="MotorStop" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3016,44 +1938,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">132</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="CheckPalletExist" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="CheckPalletExist" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3067,44 +1967,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">133</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="RequestRobotPickPallet" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="RequestRobotPickPallet" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3118,44 +1996,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">134</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="WaitingPalletUnloading" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="WaitingPalletUnloading" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3169,44 +2025,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">135</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="PalletRequest" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="PalletRequest" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3220,44 +2054,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">136</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="RobotCountClear0" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="RobotCountClear0" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3271,44 +2083,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">137</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransPalletLocationCylinderTo HP" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransPalletLocationCylinderTo HP" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3322,44 +2112,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">138</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransCylindertoWP_3" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransCylindertoWP_3" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3373,44 +2141,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">139</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="MotorCCWRun" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="MotorCCWRun" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3424,44 +2170,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">140</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Motor Stop" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Motor Stop" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3475,44 +2199,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">141</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransCylindertoHP_4" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransCylindertoHP_4" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3526,44 +2228,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">142</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="WaitRobotTaskFinish" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="WaitRobotTaskFinish" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3577,44 +2257,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">143</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Time  Delay" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Time  Delay" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3628,44 +2286,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">144</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="CheckPalletStatus" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="CheckPalletStatus" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3679,44 +2315,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">145</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Time  Delay_1" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Time  Delay_1" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3730,44 +2344,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">146</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Time  Delay_2" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Time  Delay_2" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3781,44 +2373,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">147</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="WaitingPalletUnloading_1" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="WaitingPalletUnloading_1" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3832,44 +2402,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">148</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Motor Stop_1" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Motor Stop_1" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3883,44 +2431,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">149</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="L-UnloadingTransPalletLocationCylinderTo HP_1" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="L-UnloadingTransPalletLocationCylinderTo HP_1" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3934,44 +2460,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">150</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="JudgmentEmptyPallet" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="JudgmentEmptyPallet" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -3985,44 +2489,22 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">151</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
         </Section>
       </Sections>
     </Member>
-    <Member Name="Process Finish" Datatype="G7_StepPlus_V6" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Process Finish" Datatype="G7_StepPlus_V6" Version="1.0">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -4036,37 +2518,15 @@
       </Comment>
       <Sections>
         <Section Name="None">
-          <Member Name="S1" Datatype="Bool" />
-          <Member Name="L1" Datatype="Bool" />
-          <Member Name="V1" Datatype="Bool" />
-          <Member Name="R1" Datatype="Bool" />
-          <Member Name="A1" Datatype="Bool" />
-          <Member Name="S0" Datatype="Bool" />
-          <Member Name="L0" Datatype="Bool" />
-          <Member Name="V0" Datatype="Bool" />
-          <Member Name="X" Datatype="Bool" />
-          <Member Name="LA" Datatype="Bool" />
-          <Member Name="VA" Datatype="Bool" />
-          <Member Name="RA" Datatype="Bool" />
-          <Member Name="AA" Datatype="Bool" />
-          <Member Name="SS" Datatype="Bool" />
-          <Member Name="LS" Datatype="Bool" />
-          <Member Name="VS" Datatype="Bool" />
           <Member Name="SNO" Datatype="Int">
             <StartValue Informative="true">237</StartValue>
           </Member>
-          <Member Name="T" Datatype="Time" />
-          <Member Name="U" Datatype="Time" />
           <Member Name="T_MAX" Datatype="Time">
             <StartValue Informative="true">T#10S</StartValue>
           </Member>
           <Member Name="T_WARN" Datatype="Time">
             <StartValue Informative="true">T#7S</StartValue>
           </Member>
-          <Member Name="CRIT_LOC" Datatype="DWord" />
-          <Member Name="CRIT_LOC_ERR" Datatype="DWord" />
-          <Member Name="SM" Datatype="Bool" />
-          <Member Name="H_IL_ERR" Datatype="Byte" />
           <Member Name="H_SV_FLT" Datatype="Byte">
             <StartValue Informative="true">16#04</StartValue>
           </Member>
@@ -4080,19 +2540,11 @@
   </Section>
   <Section Name="Constant" />
 </Sections></Interface>
-      <IsIECCheckEnabled>false</IsIECCheckEnabled>
-      <LanguageInNetworks>LAD</LanguageInNetworks>
-      <LockOperatingMode>false</LockOperatingMode>
       <Name>ST10_Flow24_LUnloadingTrans</Name>
       <Namespace />
       <Number>1094</Number>
-      <PermanentILProcessingInMANMode>false</PermanentILProcessingInMANMode>
       <ProgrammingLanguage>GRAPH</ProgrammingLanguage>
       <SetENOAutomatically>false</SetENOAutomatically>
-      <SkipSteps>false</SkipSteps>
-      <UDABlockProperties />
-      <UDAEnableTagReadback>false</UDAEnableTagReadback>
-      <WithAlarmHandling>true</WithAlarmHandling>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">
@@ -4265,6 +2717,7 @@
               <Instance Scope="LocalVariable" UId="27">
                 <Component Name="sCtrlMode" />
               </Instance>
+              <Parameter Name="INIT" Section="Input" Type="Bool" />
               <Parameter Name="iSysInface" Section="Input" Type="&quot;RCS_SysComInterface_V1&quot;" />
               <Parameter Name="ioPM_Inface" Section="InOut" Type="&quot;RCS_PMInterface_V1&quot;" />
               <Parameter Name="ioGraphCtrl" Section="InOut" Type="G7_MOPPlus_V6" />
@@ -4272,29 +2725,33 @@
           </Call>
         </Parts>
         <Wires>
-          <Wire UId="28">
+          <Wire UId="29">
             <Powerrail />
             <NameCon UId="25" Name="in" />
           </Wire>
-          <Wire UId="29">
+          <Wire UId="30">
             <IdentCon UId="21" />
             <NameCon UId="25" Name="operand" />
           </Wire>
-          <Wire UId="30">
+          <Wire UId="31">
             <NameCon UId="25" Name="out" />
             <NameCon UId="26" Name="en" />
           </Wire>
-          <Wire UId="31">
+          <Wire UId="32">
             <IdentCon UId="22" />
             <NameCon UId="26" Name="iSysInface" />
           </Wire>
-          <Wire UId="32">
+          <Wire UId="33">
             <IdentCon UId="23" />
             <NameCon UId="26" Name="ioPM_Inface" />
           </Wire>
-          <Wire UId="33">
+          <Wire UId="34">
             <IdentCon UId="24" />
             <NameCon UId="26" Name="ioGraphCtrl" />
+          </Wire>
+          <Wire UId="35">
+            <OpenCon UId="28" />
+            <NameCon UId="26" Name="INIT" />
           </Wire>
         </Wires>
       </FlgNet>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="HandshakeAndGeneralErrorStatus" Datatype="Struct">
+      <Member Name="Error" Datatype="Bool" />
+      <Member Name="ResultDataAvailable" Datatype="Bool" />
+      <Member Name="ResultDataStrobe" Datatype="Bool" />
+      <Member Name="ReservedBit3" Datatype="Bool" />
+      <Member Name="ReservedBit4" Datatype="Bool" />
+      <Member Name="ReservedBit5" Datatype="Bool" />
+      <Member Name="BufferOverflowError" Datatype="Bool" />
+      <Member Name="GeneralError" Datatype="Bool" />
+    </Member>
+    <Member Name="BusyStatus" Datatype="Struct">
+      <Member Name="Busy" Datatype="Bool" />
+      <Member Name="TrggerBusy" Datatype="Bool" />
+      <Member Name="LockBusy" Datatype="Bool" />
+      <Member Name="ModeBusy" Datatype="Bool" />
+      <Member Name="ErrorBusy" Datatype="Bool" />
+      <Member Name="FileBusy" Datatype="Bool" />
+      <Member Name="ReservedBit6" Datatype="Bool" />
+      <Member Name="ReservedBit7" Datatype="Bool" />
+    </Member>
+    <Member Name="CompletionStatus" Datatype="Struct">
+      <Member Name="ReadComplete" Datatype="Bool" />
+      <Member Name="PresetComplete" Datatype="Bool" />
+      <Member Name="RegisterPresetComplete" Datatype="Bool" />
+      <Member Name="TuneComplete" Datatype="Bool" />
+      <Member Name="BloadComplete" Datatype="Bool" />
+      <Member Name="ReservedBit5" Datatype="Bool" />
+      <Member Name="ReservedBit6" Datatype="Bool" />
+      <Member Name="ExtRequestComplete" Datatype="Bool" />
+    </Member>
+    <Member Name="ErrorStatus" Datatype="Struct">
+      <Member Name="ReadFailure" Datatype="Bool" />
+      <Member Name="PresetFailure" Datatype="Bool" />
+      <Member Name="RegisterPresetDataFailure" Datatype="Bool" />
+      <Member Name="TuneFailure" Datatype="Bool" />
+      <Member Name="BloadFailure" Datatype="Bool" />
+      <Member Name="ReservedBit5" Datatype="Bool" />
+      <Member Name="ReservedBit6" Datatype="Bool" />
+      <Member Name="ExtRequestFailure" Datatype="Bool" />
+    </Member>
+    <Member Name="TerminalStatus" Datatype="Struct">
+      <Member Name="IN1" Datatype="Bool" />
+      <Member Name="IN2" Datatype="Bool" />
+      <Member Name="ReservedBit2" Datatype="Bool" />
+      <Member Name="ReservedBit3" Datatype="Bool" />
+      <Member Name="OUT1" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Default read OK</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="OUT2" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Default read ERROR</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="OUT3" Datatype="Bool" />
+      <Member Name="ReservedBit7" Datatype="Bool" />
+    </Member>
+    <Member Name="UnstableReadStatus" Datatype="Struct">
+      <Member Name="Unstable" Datatype="Bool" />
+      <Member Name="MatchingLevelUnstable" Datatype="Bool" />
+      <Member Name="ISO_IEC15415Unstable" Datatype="Bool" />
+      <Member Name="AIMDPM_Unstable" Datatype="Bool" />
+      <Member Name="SAEAS9132Unstable" Datatype="Bool" />
+      <Member Name="ReservedBit5" Datatype="Bool" />
+      <Member Name="ReservedBit6" Datatype="Bool" />
+      <Member Name="ReservedBit7" Datatype="Bool" />
+    </Member>
+    <Member Name="MatchingLevelAndTotalEvaluationGradeStatus" Datatype="Struct">
+      <Member Name="MatchingLevel" Datatype="UInt" />
+      <Member Name="ISO_IEC15415Grade" Datatype="UInt" />
+      <Member Name="AIMDPM _Grade" Datatype="UInt" />
+      <Member Name="ReservedInt4" Datatype="UInt" />
+    </Member>
+    <Member Name="OperationResultStatus" Datatype="Struct">
+      <Member Name="ReadResultCode" Datatype="UInt" />
+      <Member Name="PresetResultCode" Datatype="UInt" />
+      <Member Name="RegisterPresetDataResultCode" Datatype="UInt" />
+      <Member Name="TuneResultCode" Datatype="UInt" />
+      <Member Name="BloadResultCode" Datatype="UInt" />
+      <Member Name="ReservedInt5" Datatype="UInt" />
+      <Member Name="ReservedInt6" Datatype="UInt" />
+      <Member Name="ExtReqResultCode" Datatype="UInt" />
+      <Member Name="GeneralErrorCode" Datatype="UInt" />
+      <Member Name="SlaveID" Datatype="UInt" />
+    </Member>
+    <Member Name="ReadData" Datatype="Struct">
+      <Member Name="ResultDataReadyCount" Datatype="UInt" />
+      <Member Name="ResultDataUpdateCount" Datatype="UInt" />
+      <Member Name="TriggerInputCountForMaster" Datatype="UInt" />
+      <Member Name="ResultDataSize" Datatype="UInt" />
+      <Member Name="ResultData" Datatype="Array[1..128] of Char" />
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>RCS_KeyenceSR1000_Input</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

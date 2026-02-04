@@ -1,0 +1,19 @@
+api-version: 2
+bind-address: :8086
+
+storage-path: /var/lib/influxdb2/engine
+wal-path: /var/lib/influxdb2/wal
+tsm-use-mmaps: true
+
+http-bind-address: :8086
+http-read-timeout: 30s
+http-write-timeout: 30s
+
+logging-level: info
+log-level: info
+
+[bolt]
+path: /var/lib/influxdb2/influxd.bolt
+
+[engine]
+tsm-use-mmaps: true

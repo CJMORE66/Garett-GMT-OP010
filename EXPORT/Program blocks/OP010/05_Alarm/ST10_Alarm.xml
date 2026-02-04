@@ -4,10 +4,6 @@
   <SW.Blocks.FC ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Input" />
   <Section Name="Output" />
@@ -27,18 +23,15 @@
   </Section>
   <Section Name="Constant" />
   <Section Name="Return">
-    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+    <Member Name="Ret_Val" Datatype="Void" />
   </Section>
 </Sections></Interface>
-      <IsIECCheckEnabled>false</IsIECCheckEnabled>
       <MemoryLayout>Standard</MemoryLayout>
       <Name>ST10_Alarm</Name>
       <Namespace />
       <Number>1005</Number>
       <ProgrammingLanguage>LAD</ProgrammingLanguage>
       <SetENOAutomatically>false</SetENOAutomatically>
-      <UDABlockProperties />
-      <UDAEnableTagReadback>false</UDAEnableTagReadback>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">
@@ -4473,46 +4466,46 @@
       <SW.Blocks.CompileUnit ID="5F" CompositionName="CompileUnits">
         <AttributeList>
           <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
-  <NewLine Num="1" UId="21" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="22">
+  <NewLine UId="21" />
+  <LineComment UId="22">
     <Text UId="23"> IF "ST70_Sys".Status.EnableAlarm THEN</Text>
   </LineComment>
-  <NewLine Num="1" UId="24" />
+  <NewLine UId="24" />
   <Blank Num="4" UId="25" />
-  <NewLine Num="1" UId="26" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="27">
+  <NewLine UId="26" />
+  <LineComment UId="27">
     <Text UId="28">     //循环数量为工装检测的数量</Text>
   </LineComment>
-  <NewLine Num="1" UId="29" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="30">
+  <NewLine UId="29" />
+  <LineComment UId="30">
     <Text UId="31">     #FixtureNumber := 10;</Text>
   </LineComment>
-  <NewLine Num="1" UId="32" />
+  <NewLine UId="32" />
   <Blank Num="4" UId="33" />
-  <NewLine Num="1" UId="34" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="35">
+  <NewLine UId="34" />
+  <LineComment UId="35">
     <Text UId="36">     FOR #i := 1 TO #FixtureNumber DO</Text>
   </LineComment>
-  <NewLine Num="1" UId="37" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="38">
+  <NewLine UId="37" />
+  <LineComment UId="38">
     <Text UId="39">         "ST70_GlobalError".Fixture[#i].TypeError := NOT "ST70_GeneralData".FixtureIDCheck[#i].FixtureCheckResult;</Text>
   </LineComment>
-  <NewLine Num="1" UId="40" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="41">
+  <NewLine UId="40" />
+  <LineComment UId="41">
     <Text UId="42">     END_FOR;</Text>
   </LineComment>
-  <NewLine Num="1" UId="43" />
+  <NewLine UId="43" />
   <Blank Num="4" UId="44" />
-  <NewLine Num="1" UId="45" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="46">
+  <NewLine UId="45" />
+  <LineComment UId="46">
     <Text UId="47">     "ST70_GlobalError".Fixture[1].TypeError := NOT "ST70_GeneralData".FixtureIDCheck[11].FixtureCheckResult;</Text>
   </LineComment>
-  <NewLine Num="1" UId="48" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="49">
+  <NewLine UId="48" />
+  <LineComment UId="49">
     <Text UId="50">     "ST70_GlobalError".Fixture[2].TypeError := NOT "ST70_GeneralData".FixtureIDCheck[12].FixtureCheckResult;</Text>
   </LineComment>
-  <NewLine Num="1" UId="51" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="52">
+  <NewLine UId="51" />
+  <LineComment UId="52">
     <Text UId="53"> END_IF;</Text>
   </LineComment>
 </StructuredText></NetworkSource>

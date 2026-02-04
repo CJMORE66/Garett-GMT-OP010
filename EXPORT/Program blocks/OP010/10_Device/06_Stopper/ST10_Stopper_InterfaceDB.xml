@@ -4,68 +4,20 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="aDev" Datatype="Array[1..5] of &quot;ST_Stopper&quot;" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="aDev" Datatype="Array[1..5] of &quot;ST_Stopper&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="ReleasePB" Datatype="Bool" />
-          <Member Name="NoClear" Datatype="Bool" />
-          <Member Name="Sensor" Datatype="Bool" />
-          <Member Name="AutoTrg" Datatype="Bool" />
-          <Member Name="Done" Datatype="Bool" />
-          <Member Name="ReleaseFault" Datatype="Bool" />
-          <Member Name="ReachFault" Datatype="Bool" />
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="Command" Datatype="Array[1..5] of &quot;UDT_Stopper_FB&quot;" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Command" Datatype="Array[1..5] of &quot;UDT_Stopper_FB&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="In" Datatype="Struct">
-            <Member Name="iSensor" Datatype="Bool" />
-            <Member Name="iNextSensor" Datatype="Bool" />
-            <Member Name="iNextValve" Datatype="Bool" />
-            <Member Name="iPresentDwell" Datatype="Time" />
-            <Member Name="iNextEmptyDwell" Datatype="Time" />
-            <Member Name="iReleaseClear" Datatype="Bool" />
-            <Member Name="iReleaseDwell" Datatype="Time" />
-            <Member Name="iReleaseFaultTimer" Datatype="Time" />
-            <Member Name="iReachFaultTimer" Datatype="Time" />
-          </Member>
-          <Member Name="Out" Datatype="Struct">
-            <Member Name="oValve" Datatype="Bool" />
-            <Member Name="oReleaseCompleted" Datatype="Bool" />
-            <Member Name="oReleaseFault" Datatype="Bool" />
-            <Member Name="oReachFault" Datatype="Bool" />
-            <Member Name="oNotClear" Datatype="Bool" />
-          </Member>
-        </Section>
-      </Sections>
     </Member>
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Optimized</MemoryLayout>
       <MemoryReserve>100</MemoryReserve>
       <Name>ST10_Stopper_InterfaceDB</Name>

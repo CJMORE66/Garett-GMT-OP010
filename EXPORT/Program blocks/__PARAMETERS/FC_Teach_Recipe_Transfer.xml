@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut">
+    <Member Name="recipeIndex" Datatype="USInt" />
+  </Section>
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" />
+  </Section>
+</Sections></Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>FC_Teach_Recipe_Transfer</Name>
+      <Namespace />
+      <Number>4</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <NewLine UId="21" />
+  <LineComment UId="22">
+    <Text UId="23"> Clamp recipe index to array bounds [1..10].</Text>
+  </LineComment>
+  <NewLine UId="24" />
+  <LineComment UId="25">
+    <Text UId="26"> </Text>
+  </LineComment>
+  <NewLine UId="27" />
+  <Token Text="IF" UId="28" />
+  <Blank UId="29" />
+  <Access Scope="LocalVariable" UId="30">
+    <Symbol UId="31">
+      <Component Name="recipeIndex" UId="32" />
+    </Symbol>
+  </Access>
+  <Token Text="&lt;" UId="33" />
+  <Blank UId="34" />
+  <Access Scope="LiteralConstant" UId="35">
+    <Constant UId="36">
+      <ConstantValue UId="38">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="39" />
+  <Token Text="THEN" UId="40" />
+  <NewLine UId="41" />
+  <Blank Num="2" UId="42" />
+  <Access Scope="LocalVariable" UId="43">
+    <Symbol UId="44">
+      <Component Name="recipeIndex" UId="45" />
+    </Symbol>
+  </Access>
+  <Blank UId="46" />
+  <Token Text=":=" UId="47" />
+  <Blank UId="48" />
+  <Access Scope="LiteralConstant" UId="49">
+    <Constant UId="50">
+      <ConstantValue UId="52">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="53" />
+  <NewLine UId="54" />
+  <Token Text="ELSIF" UId="55" />
+  <Blank UId="56" />
+  <Access Scope="LocalVariable" UId="57">
+    <Symbol UId="58">
+      <Component Name="recipeIndex" UId="59" />
+    </Symbol>
+  </Access>
+  <Token Text="&gt;" UId="60" />
+  <Blank UId="61" />
+  <Access Scope="LiteralConstant" UId="62">
+    <Constant UId="63">
+      <ConstantValue UId="65">10</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="66" />
+  <Token Text="THEN" UId="67" />
+  <NewLine UId="68" />
+  <Blank Num="2" UId="69" />
+  <Access Scope="LocalVariable" UId="70">
+    <Symbol UId="71">
+      <Component Name="recipeIndex" UId="72" />
+    </Symbol>
+  </Access>
+  <Blank UId="73" />
+  <Token Text=":=" UId="74" />
+  <Blank UId="75" />
+  <Access Scope="LiteralConstant" UId="76">
+    <Constant UId="77">
+      <ConstantValue UId="79">10</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="80" />
+  <NewLine UId="81" />
+  <Token Text="END_IF" UId="82" />
+  <Token Text=";" UId="83" />
+  <NewLine Num="2" UId="84" />
+  <LineComment UId="85">
+    <Text UId="86"> Block read/save if teach mode is not active.</Text>
+  </LineComment>
+  <NewLine UId="87" />
+  <Token Text="IF" UId="88" />
+  <Blank UId="89" />
+  <Token Text="NOT" UId="90" />
+  <Blank UId="91" />
+  <Access Scope="GlobalVariable" UId="92">
+    <Symbol UId="93">
+      <Component Name="DB_PARAMETERS_TEACH" UId="94">
+        <BooleanAttribute Name="HasQuotes" UId="95">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="96" />
+      <Component Name="HMI_PAGE_CONTROL" UId="97" />
+      <Token Text="." UId="98" />
+      <Component Name="TEACH_MODE_ACTIVE" UId="99" />
+    </Symbol>
+  </Access>
+  <Blank UId="100" />
+  <Token Text="THEN" UId="101" />
+  <NewLine UId="102" />
+  <Blank Num="2" UId="103" />
+  <Access Scope="GlobalVariable" UId="104">
+    <Symbol UId="105">
+      <Component Name="DB_PARAMETERS_TEACH" UId="106">
+        <BooleanAttribute Name="HasQuotes" UId="107">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="108" />
+      <Component Name="HMI_PAGE_CONTROL" UId="109" />
+      <Token Text="." UId="110" />
+      <Component Name="READ_CHOOSED_RECIPE" UId="111" />
+    </Symbol>
+  </Access>
+  <Blank UId="112" />
+  <Token Text=":=" UId="113" />
+  <Blank UId="114" />
+  <Access Scope="LiteralConstant" UId="115">
+    <Constant UId="116">
+      <ConstantValue UId="118">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="119" />
+  <NewLine UId="120" />
+  <Blank Num="2" UId="121" />
+  <Access Scope="GlobalVariable" UId="122">
+    <Symbol UId="123">
+      <Component Name="DB_PARAMETERS_TEACH" UId="124">
+        <BooleanAttribute Name="HasQuotes" UId="125">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="126" />
+      <Component Name="HMI_PAGE_CONTROL" UId="127" />
+      <Token Text="." UId="128" />
+      <Component Name="SAVE_CHANGES_IN_RECIPE" UId="129" />
+    </Symbol>
+  </Access>
+  <Blank UId="130" />
+  <Token Text=":=" UId="131" />
+  <Blank UId="132" />
+  <Access Scope="LiteralConstant" UId="133">
+    <Constant UId="134">
+      <ConstantValue UId="136">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="137" />
+  <NewLine UId="138" />
+  <Blank Num="2" UId="139" />
+  <Token Text="RETURN" UId="140" />
+  <Token Text=";" UId="141" />
+  <NewLine UId="142" />
+  <Token Text="END_IF" UId="143" />
+  <Token Text=";" UId="144" />
+  <NewLine Num="2" UId="145" />
+  <LineComment UId="146">
+    <Text UId="147"> Read selected recipe into teach screen values.</Text>
+  </LineComment>
+  <NewLine UId="148" />
+  <Token Text="IF" UId="149" />
+  <Blank UId="150" />
+  <Access Scope="GlobalVariable" UId="151">
+    <Symbol UId="152">
+      <Component Name="DB_PARAMETERS_TEACH" UId="153">
+        <BooleanAttribute Name="HasQuotes" UId="154">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="155" />
+      <Component Name="HMI_PAGE_CONTROL" UId="156" />
+      <Token Text="." UId="157" />
+      <Component Name="READ_CHOOSED_RECIPE" UId="158" />
+    </Symbol>
+  </Access>
+  <Blank UId="159" />
+  <Token Text="THEN" UId="160" />
+  <NewLine UId="161" />
+  <Blank Num="2" UId="162" />
+  <Access Scope="GlobalVariable" UId="163">
+    <Symbol UId="164">
+      <Component Name="DB_PARAMETERS_TEACH" UId="165">
+        <BooleanAttribute Name="HasQuotes" UId="166">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="167" />
+      <Component Name="TEACH SCREEN VALUES" UId="168" />
+    </Symbol>
+  </Access>
+  <Blank UId="169" />
+  <Token Text=":=" UId="170" />
+  <NewLine UId="171" />
+  <Blank Num="2" UId="172" />
+  <Access Scope="GlobalVariable" UId="173">
+    <Symbol UId="174">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="175">
+        <BooleanAttribute Name="HasQuotes" UId="176">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="177" />
+      <Component Name="PRODUCT_TYPE" UId="178">
+        <Token Text="[" UId="179" />
+        <Access Scope="LocalVariable" UId="180">
+          <Symbol UId="181">
+            <Component Name="recipeIndex" UId="182" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="183" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="184" />
+  <NewLine UId="185" />
+  <Blank UId="186" />
+  <LineComment UId="187">
+    <Text UId="188"> "DB_ALL_PROCESS_PARAMETERS".ACTUAL_CHOOSEN_TYPE :=</Text>
+  </LineComment>
+  <NewLine UId="189" />
+  <LineComment UId="190">
+    <Text UId="191">  "DB_ALL_PROCESS_PARAMETERS".PRODUCT_TYPE[#recipeIndex];</Text>
+  </LineComment>
+  <NewLine UId="192" />
+  <Blank Num="2" UId="193" />
+  <Access Scope="GlobalVariable" UId="194">
+    <Symbol UId="195">
+      <Component Name="DB_PARAMETERS_TEACH" UId="196">
+        <BooleanAttribute Name="HasQuotes" UId="197">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="198" />
+      <Component Name="HMI_PAGE_CONTROL" UId="199" />
+      <Token Text="." UId="200" />
+      <Component Name="READ_CHOOSED_RECIPE" UId="201" />
+    </Symbol>
+  </Access>
+  <Blank UId="202" />
+  <Token Text=":=" UId="203" />
+  <Blank UId="204" />
+  <Access Scope="LiteralConstant" UId="205">
+    <Constant UId="206">
+      <ConstantValue UId="208">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="209" />
+  <NewLine UId="210" />
+  <Token Text="END_IF" UId="211" />
+  <Token Text=";" UId="212" />
+  <NewLine Num="2" UId="213" />
+  <LineComment UId="214">
+    <Text UId="215"> Save teach screen values back into selected recipe.</Text>
+  </LineComment>
+  <NewLine UId="216" />
+  <Blank UId="217" />
+  <Token Text="IF" UId="218" />
+  <Blank UId="219" />
+  <Access Scope="GlobalVariable" UId="220">
+    <Symbol UId="221">
+      <Component Name="DB_PARAMETERS_TEACH" UId="222">
+        <BooleanAttribute Name="HasQuotes" UId="223">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="224" />
+      <Component Name="HMI_PAGE_CONTROL" UId="225" />
+      <Token Text="." UId="226" />
+      <Component Name="SAVE_CHANGES_IN_RECIPE" UId="227" />
+    </Symbol>
+  </Access>
+  <Blank UId="228" />
+  <Token Text="THEN" UId="229" />
+  <NewLine UId="230" />
+  <Blank Num="2" UId="231" />
+  <Access Scope="GlobalVariable" UId="232">
+    <Symbol UId="233">
+      <Component Name="DB_ALL_PROCESS_PARAMETERS" UId="234">
+        <BooleanAttribute Name="HasQuotes" UId="235">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="236" />
+      <Component Name="PRODUCT_TYPE" UId="237">
+        <Token Text="[" UId="238" />
+        <Access Scope="LocalVariable" UId="239">
+          <Symbol UId="240">
+            <Component Name="recipeIndex" UId="241" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="242" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="243" />
+  <Token Text=":=" UId="244" />
+  <NewLine UId="245" />
+  <Blank Num="2" UId="246" />
+  <Access Scope="GlobalVariable" UId="247">
+    <Symbol UId="248">
+      <Component Name="DB_PARAMETERS_TEACH" UId="249">
+        <BooleanAttribute Name="HasQuotes" UId="250">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="251" />
+      <Component Name="TEACH SCREEN VALUES" UId="252" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="253" />
+  <NewLine UId="254" />
+  <Blank UId="255" />
+  <LineComment UId="256">
+    <Text UId="257"> "DB_ALL_PROCESS_PARAMETERS".ACTUAL_CHOOSEN_TYPE :=</Text>
+  </LineComment>
+  <NewLine UId="258" />
+  <LineComment UId="259">
+    <Text UId="260">  "DB_PARAMETERS_TEACH"."TEACH SCREEN VALUES";</Text>
+  </LineComment>
+  <NewLine UId="261" />
+  <Blank Num="2" UId="262" />
+  <Access Scope="GlobalVariable" UId="263">
+    <Symbol UId="264">
+      <Component Name="DB_PARAMETERS_TEACH" UId="265">
+        <BooleanAttribute Name="HasQuotes" UId="266">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="267" />
+      <Component Name="HMI_PAGE_CONTROL" UId="268" />
+      <Token Text="." UId="269" />
+      <Component Name="SAVE_CHANGES_IN_RECIPE" UId="270" />
+    </Symbol>
+  </Access>
+  <Blank UId="271" />
+  <Token Text=":=" UId="272" />
+  <Blank UId="273" />
+  <Access Scope="LiteralConstant" UId="274">
+    <Constant UId="275">
+      <ConstantValue UId="277">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="278" />
+  <NewLine UId="279" />
+  <Token Text="END_IF" UId="280" />
+  <Token Text=";" UId="281" />
+  <NewLine UId="282" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

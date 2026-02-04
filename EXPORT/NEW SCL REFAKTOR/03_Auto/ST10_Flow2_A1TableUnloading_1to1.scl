@@ -1,0 +1,863 @@
+﻿//=============================================================================
+// ST10_Flow2_A1TableUnloading.scl
+// 1:1 CONVERSION FROM TIA PORTAL V18 GRAPH XML
+// Generated: 2026-02-02
+//=============================================================================
+
+TYPE
+    E_STEP_ST10_Flow2_A1TableUnloading : (
+        STEP_ST10_Flow2_A1TableUnloading_CheckA_Loading_01HorizontalCylindePos := 117,
+        STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist_1 := 109,
+        STEP_ST10_Flow2_A1TableUnloading_TimDelay_1 := 124,
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP_1 := 125,
+        STEP_ST10_Flow2_A1TableUnloading_Request_robot_pick := 112,
+        STEP_ST10_Flow2_A1TableUnloading_ClearFinish_WaitStart := 132,
+        STEP_ST10_Flow2_A1TableUnloading_S3 := 3,
+        STEP_ST10_Flow2_A1TableUnloading_No_cartridge := 127,
+        STEP_ST10_Flow2_A1TableUnloading_S4 := 4,
+        STEP_ST10_Flow2_A1TableUnloading_SensorNoPart := 113,
+        STEP_ST10_Flow2_A1TableUnloading_Clearing_mode_ := 129,
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP := 119,
+        STEP_ST10_Flow2_A1TableUnloading_PartMissingAlarm := 110,
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP_1 := 118,
+        STEP_ST10_Flow2_A1TableUnloading_S2 := 2,
+        STEP_ST10_Flow2_A1TableUnloading_ResetPartMissingAlarm := 31,
+        STEP_ST10_Flow2_A1TableUnloading_No_Ring := 128,
+        STEP_ST10_Flow2_A1TableUnloading_ServoReady_ := 6,
+        STEP_ST10_Flow2_A1TableUnloading_Servo_returns_to1st_Pos := 16,
+        STEP_ST10_Flow2_A1TableUnloading_WaitServoInPosition := 105,
+        STEP_ST10_Flow2_A1TableUnloading_Detect_Ring_exist := 107,
+        STEP_ST10_Flow2_A1TableUnloading_CountClear := 114,
+        STEP_ST10_Flow2_A1TableUnloading_WaitRobotInitialFinish := 8,
+        STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverFinish := 101,
+        STEP_ST10_Flow2_A1TableUnloading_CountClear_1 := 115,
+        STEP_ST10_Flow2_A1TableUnloading_ServoNeedMove := 126,
+        STEP_ST10_Flow2_A1TableUnloading_Step111 := 111,
+        STEP_ST10_Flow2_A1TableUnloading_ServoPosCount := 17,
+        STEP_ST10_Flow2_A1TableUnloading_WaitEmptyFinish := 134,
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToWP_1 := 121,
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP_2 := 120,
+        STEP_ST10_Flow2_A1TableUnloading_CountCompare := 20,
+        STEP_ST10_Flow2_A1TableUnloading_Wait__robot_finish_task := 130,
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP := 116,
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP3 := 122,
+        STEP_ST10_Flow2_A1TableUnloading_S10_InitialFinish := 10,
+        STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverOK := 133,
+        STEP_ST10_Flow2_A1TableUnloading_TableLackMaterial := 21,
+        STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist := 108,
+        STEP_ST10_Flow2_A1TableUnloading_Detect_cartridge_exist := 106,
+        STEP_ST10_Flow2_A1TableUnloading_Process_Finish := 237,
+        STEP_ST10_Flow2_A1TableUnloading_F2_Initial := 1,
+        STEP_ST10_Flow2_A1TableUnloading_ServoPosCountClear := 19,
+        STEP_ST10_Flow2_A1TableUnloading_ServoPosCountJudge := 18,
+        STEP_ST10_Flow2_A1TableUnloading_S5_MESInitial := 5,
+        STEP_ST10_Flow2_A1TableUnloading_TimDelay := 123,
+        STEP_ST10_Flow2_A1TableUnloading_ProcessStart := 100,
+        STEP_ST10_Flow2_A1TableUnloading_WaitClearFinish := 131,
+        STEP_ST10_Flow2_A1TableUnloading_WaitFixtureScanFinish := 30,
+    ) INT := 1;
+END_TYPE
+
+CONST
+    STEP_ST10_Flow2_A1TableUnloading_CheckA_Loading_01HorizontalCylindePos := 117;
+    STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist_1 := 109;
+    STEP_ST10_Flow2_A1TableUnloading_TimDelay_1 := 124;
+    STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP_1 := 125;
+    STEP_ST10_Flow2_A1TableUnloading_Request_robot_pick := 112;
+    STEP_ST10_Flow2_A1TableUnloading_ClearFinish_WaitStart := 132;
+    STEP_ST10_Flow2_A1TableUnloading_S3 := 3;
+    STEP_ST10_Flow2_A1TableUnloading_No_cartridge := 127;
+    STEP_ST10_Flow2_A1TableUnloading_S4 := 4;
+    STEP_ST10_Flow2_A1TableUnloading_SensorNoPart := 113;
+    STEP_ST10_Flow2_A1TableUnloading_Clearing_mode_ := 129;
+    STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP := 119;
+    STEP_ST10_Flow2_A1TableUnloading_PartMissingAlarm := 110;
+    STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP_1 := 118;
+    STEP_ST10_Flow2_A1TableUnloading_S2 := 2;
+    STEP_ST10_Flow2_A1TableUnloading_ResetPartMissingAlarm := 31;
+    STEP_ST10_Flow2_A1TableUnloading_No_Ring := 128;
+    STEP_ST10_Flow2_A1TableUnloading_ServoReady_ := 6;
+    STEP_ST10_Flow2_A1TableUnloading_Servo_returns_to1st_Pos := 16;
+    STEP_ST10_Flow2_A1TableUnloading_WaitServoInPosition := 105;
+    STEP_ST10_Flow2_A1TableUnloading_Detect_Ring_exist := 107;
+    STEP_ST10_Flow2_A1TableUnloading_CountClear := 114;
+    STEP_ST10_Flow2_A1TableUnloading_WaitRobotInitialFinish := 8;
+    STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverFinish := 101;
+    STEP_ST10_Flow2_A1TableUnloading_CountClear_1 := 115;
+    STEP_ST10_Flow2_A1TableUnloading_ServoNeedMove := 126;
+    STEP_ST10_Flow2_A1TableUnloading_Step111 := 111;
+    STEP_ST10_Flow2_A1TableUnloading_ServoPosCount := 17;
+    STEP_ST10_Flow2_A1TableUnloading_WaitEmptyFinish := 134;
+    STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToWP_1 := 121;
+    STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP_2 := 120;
+    STEP_ST10_Flow2_A1TableUnloading_CountCompare := 20;
+    STEP_ST10_Flow2_A1TableUnloading_Wait__robot_finish_task := 130;
+    STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP := 116;
+    STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP3 := 122;
+    STEP_ST10_Flow2_A1TableUnloading_S10_InitialFinish := 10;
+    STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverOK := 133;
+    STEP_ST10_Flow2_A1TableUnloading_TableLackMaterial := 21;
+    STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist := 108;
+    STEP_ST10_Flow2_A1TableUnloading_Detect_cartridge_exist := 106;
+    STEP_ST10_Flow2_A1TableUnloading_Process_Finish := 237;
+    STEP_ST10_Flow2_A1TableUnloading_F2_Initial := 1;
+    STEP_ST10_Flow2_A1TableUnloading_ServoPosCountClear := 19;
+    STEP_ST10_Flow2_A1TableUnloading_ServoPosCountJudge := 18;
+    STEP_ST10_Flow2_A1TableUnloading_S5_MESInitial := 5;
+    STEP_ST10_Flow2_A1TableUnloading_TimDelay := 123;
+    STEP_ST10_Flow2_A1TableUnloading_ProcessStart := 100;
+    STEP_ST10_Flow2_A1TableUnloading_WaitClearFinish := 131;
+    STEP_ST10_Flow2_A1TableUnloading_WaitFixtureScanFinish := 30;
+END_CONST
+
+FUNCTION_BLOCK "ST10_Flow2_A1TableUnloading_1to1"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oAlarmID : Int;
+END_VAR
+
+VAR
+    State : INT := 1;
+    act_InitialRun : Bool;
+    act_InitialOK : Bool;
+    act_WaitRunning : Bool;
+    act_Running : Bool;
+    act_ProcessComplete : Bool;
+    act_ProcessStart : Bool;
+    act_UnPause : Bool;
+    bError : Bool;
+    wErrorID : Word;
+END_VAR
+
+BEGIN
+    //======================================================================
+    // STATE MACHINE - Inline Transition Conditions
+    //======================================================================
+
+    CASE #State OF
+
+        // ===========================================
+        // STEP 117: CheckA-Loading-01HorizontalCylindePos
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_CheckA_Loading_01HorizontalCylindePos:
+            // No actions in XML
+
+            // Transition to next step: 109
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 109: Detect UnloadingRing exist_1
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist_1:
+            // No actions in XML
+
+            // Transition to next step: 124
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_TimDelay_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 124: TimDelay_1
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_TimDelay_1:
+            // No actions in XML
+
+            // Transition to next step: 125
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 125: A-Loading-01HorizontalCylinderToHP_1
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP_1:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[1].Inout.AutoGoHome
+            "ST10Cylinder".Cy[1].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[1].Inout.AutoGoWork
+            "ST10Cylinder".Cy[1].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 112
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Request_robot_pick;
+            END_IF;
+
+        // ===========================================
+        // STEP 112: Request robot pick
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Request_robot_pick:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".A_Table_1Loading.Robot1PickPrimit
+            "AutoProcessControl".A_Table_1Loading.Robot1PickPrimit;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+
+            // Transition to next step: 132
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ClearFinish_WaitStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 132: ClearFinish_WaitStart
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ClearFinish_WaitStart:
+            // No actions in XML
+
+            // Transition to next step: 3
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_S3;
+            END_IF;
+
+        // ===========================================
+        // STEP 3: S3
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_S3:
+            // No actions in XML
+
+            // Transition to next step: 127
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_No_cartridge;
+            END_IF;
+
+        // ===========================================
+        // STEP 127: No cartridge
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_No_cartridge:
+            // No actions in XML
+
+            // Transition to next step: 4
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_S4;
+            END_IF;
+
+        // ===========================================
+        // STEP 4: S4
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_S4:
+            // No actions in XML
+
+            // Transition to next step: 113
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_SensorNoPart;
+            END_IF;
+
+        // ===========================================
+        // STEP 113: SensorNoPart
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_SensorNoPart:
+            // No actions in XML
+
+            // Transition to next step: 129
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Clearing_mode_;
+            END_IF;
+
+        // ===========================================
+        // STEP 129: Clearing mode?
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Clearing_mode_:
+            // No actions in XML
+
+            // Transition to next step: 119
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP;
+            END_IF;
+
+        // ===========================================
+        // STEP 119: A-Loading-01HorizontalCylinderToHP
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToHP:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[1].Inout.AutoGoHome
+            "ST10Cylinder".Cy[1].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[1].Inout.AutoGoWork
+            "ST10Cylinder".Cy[1].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 110
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_PartMissingAlarm;
+            END_IF;
+
+        // ===========================================
+        // STEP 110: PartMissingAlarm
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_PartMissingAlarm:
+            // No actions in XML
+
+            // Transition to next step: 118
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 118: A-Loading-01UpDownTakeCylinderToWP_1
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP_1:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoHome
+            "ST10Cylinder".Cy[2].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoWork
+            "ST10Cylinder".Cy[2].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 2
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_S2;
+            END_IF;
+
+        // ===========================================
+        // STEP 2: S2
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_S2:
+            // No actions in XML
+
+            // Transition to next step: 31
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ResetPartMissingAlarm;
+            END_IF;
+
+        // ===========================================
+        // STEP 31: ResetPartMissingAlarm
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ResetPartMissingAlarm:
+            // No actions in XML
+
+            // Transition to next step: 128
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_No_Ring;
+            END_IF;
+
+        // ===========================================
+        // STEP 128: No Ring
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_No_Ring:
+            // No actions in XML
+
+            // Transition to next step: 6
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ServoReady_;
+            END_IF;
+
+        // ===========================================
+        // STEP 6: ServoReady?
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ServoReady_:
+            // No actions in XML
+
+            // Transition to next step: 16
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Servo_returns_to1st_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 16: Servo returns to1st Pos
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Servo_returns_to1st_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[1].Point["ServoV90_DeviceCtl".V90Servo[1].nPositionListNo].Start
+            "ServoV90_DeviceCtl".V90Servo[1].Point["ServoV90_DeviceCtl".V90Servo[1].nPositionListNo].Start;
+
+            // Transition to next step: 105
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_WaitServoInPosition;
+            END_IF;
+
+        // ===========================================
+        // STEP 105: WaitServoInPosition
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_WaitServoInPosition:
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := TRUE;
+
+            // Transition to next step: 107
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Detect_Ring_exist;
+            END_IF;
+
+        // ===========================================
+        // STEP 107: Detect Ring exist
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Detect_Ring_exist:
+            // No actions in XML
+
+            // Transition to next step: 114
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_CountClear;
+            END_IF;
+
+        // ===========================================
+        // STEP 114: CountClear
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_CountClear:
+            // No actions in XML
+
+            // Transition to next step: 8
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_WaitRobotInitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 8: WaitRobotInitialFinish
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_WaitRobotInitialFinish:
+            // No actions in XML
+
+            // Transition to next step: 101
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 101: WaitChangeOverFinish
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverFinish:
+            // No actions in XML
+
+            // Transition to next step: 115
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_CountClear_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 115: CountClear_1
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_CountClear_1:
+            // Action Qualifier=N, Event="S1"
+            // Token: "AutoProcessControl".A_Table_1Loading.ServoRunCount := 1
+            "AutoProcessControl".A_Table_1Loading.ServoRunCount := 1;
+
+            // Transition to next step: 126
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ServoNeedMove;
+            END_IF;
+
+        // ===========================================
+        // STEP 126: ServoNeedMove
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ServoNeedMove:
+            // No actions in XML
+
+            // Transition to next step: 111
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Step111;
+            END_IF;
+
+        // ===========================================
+        // STEP 111: Step111
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Step111:
+            // Action Qualifier=N, Event="S1"
+            // Token: "AutoProcessControl".A_Table_1Loading.ServoRunCount := 0
+            "AutoProcessControl".A_Table_1Loading.ServoRunCount := 0;
+
+            // Transition to next step: 17
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ServoPosCount;
+            END_IF;
+
+        // ===========================================
+        // STEP 17: ServoPosCount
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ServoPosCount:
+            // Action Qualifier=N, Event="S1"
+            // Token: "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo := "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo + 1
+            "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo := "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo + 1;
+            // Action Qualifier=N, Event="S1"
+            // Token: "AutoProcessControl".A_Table_1Loading.ServoRunCount := "AutoProcessControl".A_Table_1Loading.ServoRunCount + 1
+            "AutoProcessControl".A_Table_1Loading.ServoRunCount := "AutoProcessControl".A_Table_1Loading.ServoRunCount + 1;
+
+            // Transition to next step: 134
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_WaitEmptyFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 134: WaitEmptyFinish
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_WaitEmptyFinish:
+            // No actions in XML
+
+            // Transition to next step: 121
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToWP_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 121: A-Loading-01HorizontalCylinderToWP_1
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01HorizontalCylinderToWP_1:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[1].Inout.AutoGoHome
+            "ST10Cylinder".Cy[1].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[1].Inout.AutoGoWork
+            "ST10Cylinder".Cy[1].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 120
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 120: A-Loading-01UpDownTakeCylinderToHP_2
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP_2:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoHome
+            "ST10Cylinder".Cy[2].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoWork
+            "ST10Cylinder".Cy[2].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 20
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_CountCompare;
+            END_IF;
+
+        // ===========================================
+        // STEP 20: CountCompare
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_CountCompare:
+            // No actions in XML
+
+            // Transition to next step: 130
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Wait__robot_finish_task;
+            END_IF;
+
+        // ===========================================
+        // STEP 130: Wait  robot finish task
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Wait__robot_finish_task:
+            // No actions in XML
+
+            // Transition to next step: 116
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP;
+            END_IF;
+
+        // ===========================================
+        // STEP 116: A-Loading-01UpDownTakeCylinderToWP
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToWP:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoHome
+            "ST10Cylinder".Cy[2].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoWork
+            "ST10Cylinder".Cy[2].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 122
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP3;
+            END_IF;
+
+        // ===========================================
+        // STEP 122: A-Loading-01UpDownTakeCylinderToHP3
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_A_Loading_01UpDownTakeCylinderToHP3:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoHome
+            "ST10Cylinder".Cy[2].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[2].Inout.AutoGoWork
+            "ST10Cylinder".Cy[2].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 10
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_S10_InitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 10: S10_InitialFinish
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_S10_InitialFinish:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+
+            // Transition to next step: 133
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverOK;
+            END_IF;
+
+        // ===========================================
+        // STEP 133: WaitChangeOverOK
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_WaitChangeOverOK:
+            // No actions in XML
+
+            // Transition to next step: 21
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_TableLackMaterial;
+            END_IF;
+
+        // ===========================================
+        // STEP 21: TableLackMaterial
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_TableLackMaterial:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A1TableUnloading.LackMaterial
+            "ST10_DeviceError".A.A1TableUnloading.LackMaterial := TRUE;
+
+            // Transition to next step: 108
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist;
+            END_IF;
+
+        // ===========================================
+        // STEP 108: Detect UnloadingRing exist
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Detect_UnloadingRing_exist:
+            // No actions in XML
+
+            // Transition to next step: 106
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Detect_cartridge_exist;
+            END_IF;
+
+        // ===========================================
+        // STEP 106: Detect cartridge exist
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Detect_cartridge_exist:
+            // No actions in XML
+
+            // Transition to next step: 237
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_Process_Finish;
+            END_IF;
+
+        // ===========================================
+        // STEP 237: Process Finish
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_Process_Finish:
+            // No actions in XML
+
+            // Transition to next step: 1
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_F2_Initial;
+            END_IF;
+
+        // ===========================================
+        // STEP 1: F2_Initial
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_F2_Initial:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.Running
+            #ioPM_Inface.Running := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.UnPause
+            #ioPM_Inface.UnPause := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Calibration
+            "Station_Sys".Cmd.Calibration := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.ChangeOver
+            "Station_Sys".Cmd.ChangeOver := FALSE;
+            // Action Qualifier=N
+            // Token: //"ST350_Sys".Cmd.DryRun
+            //"ST350_Sys".Cmd.DryRun;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Reserve
+            "Station_Sys".Cmd.Reserve := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.OneCycle
+            "Station_Sys".Cmd.OneCycle := FALSE;
+            // Action Qualifier=N, Event="S1"
+            // Token: "AutoProcessControl".A_Table_1Loading.ServoRunCount := 0
+            "AutoProcessControl".A_Table_1Loading.ServoRunCount := 0;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".A_Table_1Scan.Robot1PickPrimit
+            "AutoProcessControl".A_Table_1Scan.Robot1PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".A_Table_1Loading.Robot1PickPrimit
+            "AutoProcessControl".A_Table_1Loading.Robot1PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".A_Table_2Scan.Robot3PickPrimit
+            "AutoProcessControl".A_Table_2Scan.Robot3PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".A_Table_2Loading.Robot3PickPrimit
+            "AutoProcessControl".A_Table_2Loading.Robot3PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".A_ScanRotary.Robot1PickPrimit
+            "AutoProcessControl".A_ScanRotary.Robot1PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".A_ScanRotary.Robot1PutPrimit
+            "AutoProcessControl".A_ScanRotary.Robot1PutPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".H_ShafeLine.Robot1PickPrimit
+            "AutoProcessControl".H_ShafeLine.Robot1PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".J_MagnetLine.Robot2PickPrimit
+            "AutoProcessControl".J_MagnetLine.Robot2PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".K_ShafeLine.Robot2PickPrimit
+            "AutoProcessControl".K_ShafeLine.Robot2PickPrimit := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".L_ShafeLine.Robot3PutPrimit
+            "AutoProcessControl".L_ShafeLine.Robot3PutPrimit := FALSE;
+
+            // Transition to next step: 19
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ServoPosCountClear;
+            END_IF;
+
+        // ===========================================
+        // STEP 19: ServoPosCountClear
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ServoPosCountClear:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo := 1
+            "ServoV90_DeviceCtl".V90Servo[1].nPositionListNo := 1;
+
+            // Transition to next step: 18
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ServoPosCountJudge;
+            END_IF;
+
+        // ===========================================
+        // STEP 18: ServoPosCountJudge
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ServoPosCountJudge:
+            // No actions in XML
+
+            // Transition to next step: 5
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_S5_MESInitial;
+            END_IF;
+
+        // ===========================================
+        // STEP 5: S5_MESInitial
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_S5_MESInitial:
+            // No actions in XML
+
+            // Transition to next step: 123
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_TimDelay;
+            END_IF;
+
+        // ===========================================
+        // STEP 123: TimDelay
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_TimDelay:
+            // No actions in XML
+
+            // Transition to next step: 100
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_ProcessStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 100: ProcessStart
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_ProcessStart:
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := TRUE;
+            // Action Qualifier=N, Event="S1"
+            // Token: #ioPM_Inface.ProcessResult := 0
+            #ioPM_Inface.ProcessResult := 0;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[2].Start
+            "ST10_GeneralData".FlowControl_Handshake[2].Start := FALSE;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[2].Done
+            "ST10_GeneralData".FlowControl_Handshake[2].Done := FALSE;
+
+            // Transition to next step: 131
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_WaitClearFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 131: WaitClearFinish
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_WaitClearFinish:
+            // No actions in XML
+
+            // Transition to next step: 30
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow2_A1TableUnloading_WaitFixtureScanFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 30: WaitFixtureScanFinish
+        // ===========================================
+        STEP_ST10_Flow2_A1TableUnloading_WaitFixtureScanFinish:
+            // No actions in XML
+
+    END_CASE;
+
+    // UPDATE ioPM_Inface
+    #ioPM_Inface.InitialRun := #act_InitialRun;
+    #ioPM_Inface.InitialOK := #act_InitialOK;
+    #ioPM_Inface.WaitRunning := #act_WaitRunning;
+    #ioPM_Inface.Running := #act_Running;
+    #ioPM_Inface.ProcessComplete := #act_ProcessComplete;
+    #ioPM_Inface.ProcessStart := #act_ProcessStart;
+    #ioPM_Inface.UnPause := #act_UnPause;
+
+    // ERROR HANDLING
+    IF #bError THEN
+        #ioStatus := 900;
+        #oAlarmID := INT_TO_WORD(#wErrorID);
+    ELSE
+        #ioStatus := 0;
+        #oAlarmID := 0;
+    END_IF;
+END_FUNCTION_BLOCK
+
+//=============================================================================
+// END OF FILE
+//=============================================================================

@@ -4,45 +4,15 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="Ton" Datatype="Array[0..50] of TON_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="Ton" Datatype="Array[0..50] of TON_TIME" Version="1.0" />
+    <Member Name="P" Datatype="Array[0..50] of Bool">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="PT" Datatype="Time" />
-          <Member Name="ET" Datatype="Time" />
-          <Member Name="IN" Datatype="Bool" />
-          <Member Name="Q" Datatype="Bool" />
-        </Section>
-      </Sections>
-    </Member>
-    <Member Name="P" Datatype="Array[0..50] of Bool" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
     </Member>
-    <Member Name="Time" Datatype="Array[0..50] of Time" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
+    <Member Name="Time" Datatype="Array[0..50] of Time">
       <Subelement Path="0">
         <StartValue>T#60s</StartValue>
       </Subelement>
@@ -199,8 +169,6 @@
     </Member>
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Standard</MemoryLayout>
       <Name>MotorData</Name>
       <Namespace />

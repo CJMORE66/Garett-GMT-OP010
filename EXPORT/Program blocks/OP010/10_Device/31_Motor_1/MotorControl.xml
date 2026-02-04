@@ -4,49 +4,11 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="Dev" Datatype="Array[1..20] of &quot;Motor_Control&quot;" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="Manual" Datatype="Struct">
-            <Member Name="Start" Datatype="Bool" />
-            <Member Name="CCWStart" Datatype="Bool" />
-            <Member Name="SpeedChange" Datatype="Bool" />
-          </Member>
-          <Member Name="Auto" Datatype="Struct">
-            <Member Name="Start" Datatype="Bool" />
-            <Member Name="CCWStart" Datatype="Bool" />
-            <Member Name="SpeedChange" Datatype="Bool" />
-          </Member>
-          <Member Name="OutControl" Datatype="Struct">
-            <Member Name="o_Start" Datatype="Bool" />
-            <Member Name="o_CCWStart" Datatype="Bool" />
-            <Member Name="o_SpeedChanged" Datatype="Bool" />
-            <Member Name="o_Ready" Datatype="Bool" />
-            <Member Name="o_Alarm" Datatype="Bool" />
-          </Member>
-          <Member Name="Error" Datatype="Array[0..15] of Bool" />
-        </Section>
-      </Sections>
-    </Member>
+    <Member Name="Dev" Datatype="Array[1..20] of &quot;Motor_Control&quot;" />
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Optimized</MemoryLayout>
       <MemoryReserve>100</MemoryReserve>
       <Name>MotorControl</Name>

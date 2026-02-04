@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="LatchAndErrorClearControl" Datatype="Struct">
+      <Member Name="ReservedBit0" Datatype="Bool" />
+      <Member Name="ResultDataLatch" Datatype="Bool" />
+      <Member Name="ReservedBit2" Datatype="Bool" />
+      <Member Name="ReservedBit3" Datatype="Bool" />
+      <Member Name="ReservedBit4" Datatype="Bool" />
+      <Member Name="ReservedBit5" Datatype="Bool" />
+      <Member Name="ReservedBit6" Datatype="Bool" />
+      <Member Name="ErrorClear" Datatype="Bool" />
+    </Member>
+    <Member Name="OperationInstructionControl" Datatype="Struct">
+      <Member Name="ReadRequest" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Reading start request</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="PresetRequest" Datatype="Bool">
+        <Comment>
+          <MultiLanguageText Lang="zh-CN">Preset reading start</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="RegisterPresetDataRequest" Datatype="Bool" />
+      <Member Name="TuneRequest" Datatype="Bool" />
+      <Member Name="BloadRequest" Datatype="Bool" />
+      <Member Name="ReservedBit5" Datatype="Bool" />
+      <Member Name="ReservedBit6" Datatype="Bool" />
+      <Member Name="ReservedBit7" Datatype="Bool" />
+    </Member>
+    <Member Name="CompletionClearControl" Datatype="Struct">
+      <Member Name="ReadCompleteClear" Datatype="Bool" />
+      <Member Name="PresetCompleteClear" Datatype="Bool" />
+      <Member Name="RegisterPresetDataCompleteClear" Datatype="Bool" />
+      <Member Name="TuneCompleteClear" Datatype="Bool" />
+      <Member Name="BloadCompleteClear" Datatype="Bool" />
+      <Member Name="ReservedBit5" Datatype="Bool" />
+      <Member Name="ReservedBit6" Datatype="Bool" />
+      <Member Name="EXTRequestCompleteClear" Datatype="Bool" />
+    </Member>
+    <Member Name="ParameterBankNumber" Datatype="Struct">
+      <Member Name="BankNo_BloadFileNo" Datatype="UInt" />
+    </Member>
+    <Member Name="UserData" Datatype="Struct">
+      <Member Name="UserDataSize" Datatype="UInt" />
+      <Member Name="UserData" Datatype="Array[1..128] of Char" />
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>RCS_KeyenceSR1000_Output</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

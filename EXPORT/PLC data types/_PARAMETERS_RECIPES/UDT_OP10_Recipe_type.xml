@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Header" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Information about recipe</MultiLanguageText>
+      </Comment>
+      <Member Name="RecipeName" Datatype="String[50]">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> name of product</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="RecipeID" Datatype="USInt">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> number of product for sig exch. and other processes</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Version" Datatype="UInt">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> version of update that structure</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="LastModified" Datatype="DTL" Version="1.0">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> time of last modifiacation</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="PartType" Datatype="String[28]">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> second name for product - additional one</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="PartTypeRecordNr" Datatype="Int">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> PartType Record number same like recipi id for future sig exchanges etc</MultiLanguageText>
+        </Comment>
+      </Member>
+    </Member>
+    <Member Name="Process" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Important process parameters how should machine act</MultiLanguageText>
+      </Comment>
+      <Member Name="Timers" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> Definition of times for processess</MultiLanguageText>
+        </Comment>
+        <Member Name="Delay_glue_init_start" Datatype="Time">
+          <StartValue>T#2S</StartValue>
+        </Member>
+        <Member Name="Delay_Medium" Datatype="Time" />
+        <Member Name="Delay_Long" Datatype="Time" />
+        <Member Name="Cylinder_ActTime" Datatype="Time" />
+      </Member>
+      <Member Name="Limits" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> limitations of the values</MultiLanguageText>
+        </Comment>
+        <Member Name="RetryLimit" Datatype="Int" />
+      </Member>
+      <Member Name="Press" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> parameters for the kistler press devices</MultiLanguageText>
+        </Comment>
+        <Member Name="B1_Program" Datatype="Int" />
+        <Member Name="B2_Program" Datatype="Int" />
+        <Member Name="Curve" Datatype="&quot;UDT_Recipe_PressCurve&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+      <Member Name="Vision" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> camera system programs numbers</MultiLanguageText>
+        </Comment>
+        <Member Name="CGlueShaftIV3_Progs" Datatype="Array[1..4] of Word" />
+        <Member Name="CGlueMagnetIV3_Prog" Datatype="Word" />
+        <Member Name="CGlueProgram" Datatype="Int" />
+      </Member>
+    </Member>
+    <Member Name="Tooling Code" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> QR CODES OF THE TOOLING FOR THE RECIPE</MultiLanguageText>
+      </Comment>
+      <Member Name="A1_Table" Datatype="Array[1..8] of String[128]" />
+      <Member Name="A2_Table" Datatype="Array[1..8] of String[128]">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  ... other fixture codes Descriptive Gripper Fixture Codes</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="ROB1_Shaft_Handling_Robot" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  R1</MultiLanguageText>
+        </Comment>
+        <Member Name="Gripper" Datatype="&quot;UDT_Gripper_Fixture_Codes&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+      <Member Name="ROB2_Main_Assembly_Robot" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  R2</MultiLanguageText>
+        </Comment>
+        <Member Name="Gripper" Datatype="&quot;UDT_Gripper_Fixture_Codes&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+      <Member Name="ROB3_Unloading_Robot" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  R3</MultiLanguageText>
+        </Comment>
+        <Member Name="Gripper" Datatype="&quot;UDT_Gripper_Fixture_Codes&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+      <Member Name="A1_Fixtures" Datatype="Struct">
+        <Member Name="A1RingUnloadingFixtureCode" Datatype="String[128]" />
+        <Member Name="E1LoadingNGFixtureCode" Datatype="String[128]" />
+        <Member Name="ShaftScanFixtureCode" Datatype="String[128]" />
+        <Member Name="B1PressFixtureCode" Datatype="String[128]" />
+        <Member Name="CGlueFixtureCode" Datatype="String[128]" />
+        <Member Name="B1PressCylFixtureCode" Datatype="String[128]" />
+      </Member>
+      <Member Name="A2_Fixtures" Datatype="Struct">
+        <Member Name="A2RingUnloadingFixtureCode" Datatype="String[128]" />
+        <Member Name="E2UnloadingNGFixtureCode" Datatype="String[128]" />
+        <Member Name="B2PressFixtureCode" Datatype="String[128]" />
+        <Member Name="CGlueNGFixtureCode" Datatype="String[128]" />
+        <Member Name="B2PressCylFixtureCode" Datatype="String[128]" />
+      </Member>
+    </Member>
+    <Member Name="Motion" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> ALL SERVO DRIVES PARAMETERS</MultiLanguageText>
+      </Comment>
+      <Member Name="Gluing_Nozzle_Z" Datatype="&quot;UDT_IAI_Axis_Positions&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: IAI_A1</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Gluing_Nozzle_X" Datatype="&quot;UDT_IAI_Axis_Positions&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: IAI_A2</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Gluing_Nozzle_Y" Datatype="&quot;UDT_IAI_Axis_Positions&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: IAI_A3 CORRECTED V90 Axis Functions (from user)</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Ring_Turntable_Axis_1" Datatype="&quot;UDT_V90_Axis_Positions&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A1</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Shaft_Scan_Turntable_Axis" Datatype="&quot;UDT_V90_Axis_Positions&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A2</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Gluing_Rotary_Jig_Axis" Datatype="&quot;UDT_V90_Axis_Positions&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A3</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Ring_Turntable_Axis_2" Datatype="&quot;UDT_V90_Axis_Positions&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A4</MultiLanguageText>
+        </Comment>
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>UDT_OP10_Recipe_type</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

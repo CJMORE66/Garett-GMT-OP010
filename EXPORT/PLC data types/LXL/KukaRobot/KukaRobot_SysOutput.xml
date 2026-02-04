@@ -6,425 +6,50 @@
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="None">
     <Member Name="SO" Datatype="Struct">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Comment>
-        <MultiLanguageText Lang="zh-CN">Robot ---&gt; PLC</MultiLanguageText>
-      </Comment>
-      <Member Name="RC_RDY1" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Controller ready\控制器就绪</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="ALARM_STOP" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Alarm stop active, Emergency stop circuit close\紧急关断环路关闭</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="USER_SAF" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">User Safety switch closed, Operator safety  closed\操作人员防护装置关闭</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="PERI_RDY" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Drives ready\驱动装置处于待机运行状态</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="ROB_CAL" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Robot calibrated\机器人已校准</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="I_O_ACTCONF" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Interface active\接口激活</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="STOPMESS" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Stop Message, Collective fault \集合故障=停止信息</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="ALARM_STOP_INTERN" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Internal emergency stop\内部紧急关断</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="PGNO_FBIT_REFL" Datatype="Byte">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">First bit for program mirroring\程序镜像</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="PRO_ACT" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Program active\程序激活</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="PGNO_REQ" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Program no. request\程序编号请求</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="APPL_RUN" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Application running\应用程序正在运行</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="PRO_MOVE" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Program motion active\程序移动激活</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="IN_HOME" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">In home position\位于起始位置</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="IN_HOME1" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Home position 1\第1个起始位置</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="IN_HOME2" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Home position 2\第2个起始位置</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="IN_HOME3" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Home position 3\第3个起始位置</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="IN_HOME4" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Home position 4\第4个起始位置</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="IN_HOME5" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Home position 5\第5个起始位置</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="ON_PATH" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Robot on path\机器人在轨迹上</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="NEAR_POSRET" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Robot near path\机器人在轨迹附近</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="ROB_STOPPED" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Robot stopped\机器人不在运行</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="T1" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Test1 mode\测试1模式</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="T2" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Test2 mode\测试2模式</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="AUT" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Automatic mode\自动模式</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="EXT" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Comment>
-          <MultiLanguageText Lang="zh-CN">Automatic external mode\外部自动模式</MultiLanguageText>
-        </Comment>
-      </Member>
-      <Member Name="do_34" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_35" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_36" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_37" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_38" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_39" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_40" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_41" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_42" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_43" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_44" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_45" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_46" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_47" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="do_48" Datatype="Bool">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
+      <Member Name="RC_RDY1" Datatype="Bool" />
+      <Member Name="ALARM_STOP" Datatype="Bool" />
+      <Member Name="USER_SAF" Datatype="Bool" />
+      <Member Name="PERI_RDY" Datatype="Bool" />
+      <Member Name="ROB_CAL" Datatype="Bool" />
+      <Member Name="I_O_ACTCONF" Datatype="Bool" />
+      <Member Name="STOPMESS" Datatype="Bool" />
+      <Member Name="ALARM_STOP_INTERN" Datatype="Bool" />
+      <Member Name="PGNO_FBIT_REFL" Datatype="Byte" />
+      <Member Name="PRO_ACT" Datatype="Bool" />
+      <Member Name="PGNO_REQ" Datatype="Bool" />
+      <Member Name="APPL_RUN" Datatype="Bool" />
+      <Member Name="PRO_MOVE" Datatype="Bool" />
+      <Member Name="IN_HOME" Datatype="Bool" />
+      <Member Name="IN_HOME1" Datatype="Bool" />
+      <Member Name="IN_HOME2" Datatype="Bool" />
+      <Member Name="IN_HOME3" Datatype="Bool" />
+      <Member Name="IN_HOME4" Datatype="Bool" />
+      <Member Name="IN_HOME5" Datatype="Bool" />
+      <Member Name="ON_PATH" Datatype="Bool" />
+      <Member Name="NEAR_POSRET" Datatype="Bool" />
+      <Member Name="ROB_STOPPED" Datatype="Bool" />
+      <Member Name="T1" Datatype="Bool" />
+      <Member Name="T2" Datatype="Bool" />
+      <Member Name="AUT" Datatype="Bool" />
+      <Member Name="EXT" Datatype="Bool" />
+      <Member Name="do_34" Datatype="Bool" />
+      <Member Name="do_35" Datatype="Bool" />
+      <Member Name="do_36" Datatype="Bool" />
+      <Member Name="do_37" Datatype="Bool" />
+      <Member Name="do_38" Datatype="Bool" />
+      <Member Name="do_39" Datatype="Bool" />
+      <Member Name="do_40" Datatype="Bool" />
+      <Member Name="do_41" Datatype="Bool" />
+      <Member Name="do_42" Datatype="Bool" />
+      <Member Name="do_43" Datatype="Bool" />
+      <Member Name="do_44" Datatype="Bool" />
+      <Member Name="do_45" Datatype="Bool" />
+      <Member Name="do_46" Datatype="Bool" />
+      <Member Name="do_47" Datatype="Bool" />
+      <Member Name="do_48" Datatype="Bool" />
     </Member>
   </Section>
 </Sections></Interface>
-      <IsFailsafeCompliant>false</IsFailsafeCompliant>
       <Name>KukaRobot_SysOutput</Name>
       <Namespace />
     </AttributeList>

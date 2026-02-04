@@ -4,15 +4,11 @@
   <SW.Blocks.FB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Input" />
   <Section Name="Output" />
   <Section Name="InOut">
-    <Member Name="idx" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="idx" Datatype="Int">
       <AttributeList>
         <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute>
         <BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute>
@@ -22,55 +18,10 @@
   </Section>
   <Section Name="Static" />
   <Section Name="Temp">
-    <Member Name="DefaultData" Datatype="&quot;ProcessData&quot;">
-      <Sections>
-        <Section Name="None">
-          <Member Name="PartStatus" Datatype="Int" />
-          <Member Name="PartSNGCode" Datatype="Int" />
-          <Member Name="PartRemoveFlag" Datatype="Bool" />
-          <Member Name="Spare1" Datatype="Bool" />
-          <Member Name="Spare2" Datatype="Bool" />
-          <Member Name="Spare3" Datatype="Bool" />
-          <Member Name="Spare4" Datatype="Bool" />
-          <Member Name="Spare5" Datatype="Bool" />
-          <Member Name="Spare6" Datatype="Bool" />
-          <Member Name="Spare7" Datatype="Bool" />
-          <Member Name="Spare8" Datatype="Bool" />
-          <Member Name="Spare9" Datatype="Bool" />
-          <Member Name="Spare10" Datatype="Bool" />
-          <Member Name="Spare11" Datatype="Bool" />
-          <Member Name="Spare12" Datatype="Bool" />
-          <Member Name="Spare13" Datatype="Bool" />
-          <Member Name="Spare14" Datatype="Bool" />
-          <Member Name="Spare15" Datatype="Bool" />
-          <Member Name="ShaftCode" Datatype="String[128]" />
-          <Member Name="RingCode_1" Datatype="String[128]" />
-          <Member Name="Code_1" Datatype="String[128]" />
-          <Member Name="RingCode_2" Datatype="String[128]" />
-          <Member Name="TableCode_1" Datatype="String[128]" />
-          <Member Name="TableCode_2" Datatype="String[128]" />
-          <Member Name="Press1Program" Datatype="Int" />
-          <Member Name="Press1FinalPosition" Datatype="Real" />
-          <Member Name="Press1FinalForce" Datatype="Real" />
-          <Member Name="Press2Program" Datatype="Int" />
-          <Member Name="Press2FinalPosition" Datatype="Real" />
-          <Member Name="Press2FinalForce" Datatype="Real" />
-          <Member Name="IV3_ShaftCheckResult" Datatype="Int" />
-          <Member Name="IV3_ShaftScore_1" Datatype="Int" />
-          <Member Name="IV3_ShaftScore_2" Datatype="Int" />
-          <Member Name="IV3_ShaftScore_3" Datatype="Int" />
-          <Member Name="IV3_ShaftScore_4" Datatype="Int" />
-          <Member Name="IV3_MagnetCheckResult" Datatype="Int" />
-          <Member Name="IV3_MagnetScore" Datatype="Int" />
-          <Member Name="Spare_3" Datatype="Array[0..89] of Int" />
-        </Section>
-      </Sections>
-    </Member>
+    <Member Name="DefaultData" Datatype="&quot;ProcessDatad&quot;" />
   </Section>
   <Section Name="Constant" />
 </Sections></Interface>
-      <IsIECCheckEnabled>false</IsIECCheckEnabled>
-      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
       <MemoryLayout>Optimized</MemoryLayout>
       <MemoryReserve>100</MemoryReserve>
       <Name>AutoProcessDataPopUp</Name>
@@ -78,8 +29,6 @@
       <Number>1666</Number>
       <ProgrammingLanguage>SCL</ProgrammingLanguage>
       <SetENOAutomatically>false</SetENOAutomatically>
-      <UDABlockProperties />
-      <UDAEnableTagReadback>false</UDAEnableTagReadback>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">
@@ -108,279 +57,279 @@
         <AttributeList>
           <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
   <Token Text="REGION" UId="21" />
-  <Blank Num="1" UId="22" />
+  <Blank UId="22" />
   <Text UId="23">read me</Text>
-  <NewLine Num="1" UId="24" />
+  <NewLine UId="24" />
   <Blank Num="2" UId="25" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="26">
+  <LineComment UId="26">
     <Text UId="27"> ============================================================================</Text>
   </LineComment>
-  <NewLine Num="1" UId="28" />
+  <NewLine UId="28" />
   <Blank Num="2" UId="29" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="30">
+  <LineComment UId="30">
     <Text UId="31"> PROGRAM START COMMENT</Text>
   </LineComment>
-  <NewLine Num="1" UId="32" />
+  <NewLine UId="32" />
   <Blank Num="2" UId="33" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="34">
+  <LineComment UId="34">
     <Text UId="35"> ============================================================================</Text>
   </LineComment>
-  <NewLine Num="1" UId="36" />
+  <NewLine UId="36" />
   <Blank Num="2" UId="37" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="38">
+  <LineComment UId="38">
     <Text UId="39"> EN:</Text>
   </LineComment>
-  <NewLine Num="1" UId="40" />
+  <NewLine UId="40" />
   <Blank Num="2" UId="41" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="42">
+  <LineComment UId="42">
     <Text UId="43"> FC_AutoProcessPopup handles popup visualization and editing of AutoProcess</Text>
   </LineComment>
-  <NewLine Num="1" UId="44" />
+  <NewLine UId="44" />
   <Blank Num="2" UId="45" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="46">
+  <LineComment UId="46">
     <Text UId="47"> data based on index from HMI.</Text>
   </LineComment>
-  <NewLine Num="1" UId="48" />
+  <NewLine UId="48" />
   <Blank Num="2" UId="49" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="50">
+  <LineComment UId="50">
     <Text UId="51"> The function provides:</Text>
   </LineComment>
-  <NewLine Num="1" UId="52" />
+  <NewLine UId="52" />
   <Blank Num="2" UId="53" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="54">
+  <LineComment UId="54">
     <Text UId="55">  - automatic data loading from AutoProcessData according to selected index,</Text>
   </LineComment>
-  <NewLine Num="1" UId="56" />
+  <NewLine UId="56" />
   <Blank Num="2" UId="57" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="58">
+  <LineComment UId="58">
     <Text UId="59">  - two-step confirmation for safe data overwrite (compare first, write second),</Text>
   </LineComment>
-  <NewLine Num="1" UId="60" />
+  <NewLine UId="60" />
   <Blank Num="2" UId="61" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="62">
+  <LineComment UId="62">
     <Text UId="63">  - automatic reset of edit mode when index is changed,</Text>
   </LineComment>
-  <NewLine Num="1" UId="64" />
+  <NewLine UId="64" />
   <Blank Num="2" UId="65" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="66">
+  <LineComment UId="66">
     <Text UId="67">  - delete functionality for selected record,</Text>
   </LineComment>
-  <NewLine Num="1" UId="68" />
+  <NewLine UId="68" />
   <Blank Num="2" UId="69" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="70">
+  <LineComment UId="70">
     <Text UId="71">  - status bits for HMI to visualize pending changes and confirmation dialogs,</Text>
   </LineComment>
-  <NewLine Num="1" UId="72" />
+  <NewLine UId="72" />
   <Blank Num="2" UId="73" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="74">
+  <LineComment UId="74">
     <Text UId="75">  - index range control (1..16).</Text>
   </LineComment>
-  <NewLine Num="1" UId="76" />
+  <NewLine UId="76" />
   <Blank Num="2" UId="77" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="78">
+  <LineComment UId="78">
     <Text UId="79" />
   </LineComment>
-  <NewLine Num="1" UId="80" />
+  <NewLine UId="80" />
   <Blank Num="2" UId="81" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="82">
+  <LineComment UId="82">
     <Text UId="83"> Data flow:</Text>
   </LineComment>
-  <NewLine Num="1" UId="84" />
+  <NewLine UId="84" />
   <Blank Num="2" UId="85" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="86">
+  <LineComment UId="86">
     <Text UId="87"> AutoProcessData  -&gt; ActualSHowingData  (display mode)</Text>
   </LineComment>
-  <NewLine Num="1" UId="88" />
+  <NewLine UId="88" />
   <Blank Num="2" UId="89" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="90">
+  <LineComment UId="90">
     <Text UId="91"> ActualSHowingData -&gt; AutoProcessData  (after double confirmation)</Text>
   </LineComment>
-  <NewLine Num="1" UId="92" />
+  <NewLine UId="92" />
   <Blank Num="2" UId="93" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="94">
+  <LineComment UId="94">
     <Text UId="95" />
   </LineComment>
-  <NewLine Num="1" UId="96" />
+  <NewLine UId="96" />
   <Blank Num="2" UId="97" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="98">
+  <LineComment UId="98">
     <Text UId="99"> Usage:</Text>
   </LineComment>
-  <NewLine Num="1" UId="100" />
+  <NewLine UId="100" />
   <Blank Num="2" UId="101" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="102">
+  <LineComment UId="102">
     <Text UId="103"> Call cyclically </Text>
   </LineComment>
-  <NewLine Num="1" UId="104" />
+  <NewLine UId="104" />
   <Blank Num="2" UId="105" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="106">
+  <LineComment UId="106">
     <Text UId="107"> RMS index is taken from AutoProcess_HMI.IndexProcess.</Text>
   </LineComment>
-  <NewLine Num="1" UId="108" />
+  <NewLine UId="108" />
   <Blank Num="2" UId="109" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="110">
+  <LineComment UId="110">
     <Text UId="111" />
   </LineComment>
-  <NewLine Num="1" UId="112" />
+  <NewLine UId="112" />
   <Blank Num="2" UId="113" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="114">
+  <LineComment UId="114">
     <Text UId="115"> ----------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="116" />
+  <NewLine UId="116" />
   <Blank Num="2" UId="117" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="118">
+  <LineComment UId="118">
     <Text UId="119"> CZ:</Text>
   </LineComment>
-  <NewLine Num="1" UId="120" />
+  <NewLine UId="120" />
   <Blank Num="2" UId="121" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="122">
+  <LineComment UId="122">
     <Text UId="123"> FC_AutoProcessPopup obsluhuje zobrazení a editaci dat AutoProcess podle</Text>
   </LineComment>
-  <NewLine Num="1" UId="124" />
+  <NewLine UId="124" />
   <Blank Num="2" UId="125" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="126">
+  <LineComment UId="126">
     <Text UId="127"> indexu z HMI.</Text>
   </LineComment>
-  <NewLine Num="1" UId="128" />
+  <NewLine UId="128" />
   <Blank Num="2" UId="129" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="130">
+  <LineComment UId="130">
     <Text UId="131"> Funkce zajišťuje:</Text>
   </LineComment>
-  <NewLine Num="1" UId="132" />
+  <NewLine UId="132" />
   <Blank Num="2" UId="133" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="134">
+  <LineComment UId="134">
     <Text UId="135">  - automatické načítání dat z AutoProcessData podle zvoleného indexu,</Text>
   </LineComment>
-  <NewLine Num="1" UId="136" />
+  <NewLine UId="136" />
   <Blank Num="2" UId="137" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="138">
+  <LineComment UId="138">
     <Text UId="139">  - dvoukrokové potvrzení zápisu (nejprve porovnání, poté zápis),</Text>
   </LineComment>
-  <NewLine Num="1" UId="140" />
+  <NewLine UId="140" />
   <Blank Num="2" UId="141" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="142">
+  <LineComment UId="142">
     <Text UId="143">  - automatické zrušení editace při změně indexu,</Text>
   </LineComment>
-  <NewLine Num="1" UId="144" />
+  <NewLine UId="144" />
   <Blank Num="2" UId="145" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="146">
+  <LineComment UId="146">
     <Text UId="147">  - mazání záznamu podle indexu,</Text>
   </LineComment>
-  <NewLine Num="1" UId="148" />
+  <NewLine UId="148" />
   <Blank Num="2" UId="149" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="150">
+  <LineComment UId="150">
     <Text UId="151">  - stavové bity pro HMI (čekající změna, potvrzovací dialog),</Text>
   </LineComment>
-  <NewLine Num="1" UId="152" />
+  <NewLine UId="152" />
   <Blank Num="2" UId="153" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="154">
+  <LineComment UId="154">
     <Text UId="155">  - kontrolu rozsahu indexu (1..16).</Text>
   </LineComment>
-  <NewLine Num="1" UId="156" />
+  <NewLine UId="156" />
   <Blank Num="2" UId="157" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="158">
+  <LineComment UId="158">
     <Text UId="159" />
   </LineComment>
-  <NewLine Num="1" UId="160" />
+  <NewLine UId="160" />
   <Blank Num="2" UId="161" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="162">
+  <LineComment UId="162">
     <Text UId="163"> Tok dat:</Text>
   </LineComment>
-  <NewLine Num="1" UId="164" />
+  <NewLine UId="164" />
   <Blank Num="2" UId="165" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="166">
+  <LineComment UId="166">
     <Text UId="167"> AutoProcessData  -&gt; ActualSHowingData  (zobrazení)</Text>
   </LineComment>
-  <NewLine Num="1" UId="168" />
+  <NewLine UId="168" />
   <Blank Num="2" UId="169" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="170">
+  <LineComment UId="170">
     <Text UId="171"> ActualSHowingData -&gt; AutoProcessData  (po potvrzení)</Text>
   </LineComment>
-  <NewLine Num="1" UId="172" />
+  <NewLine UId="172" />
   <Blank Num="2" UId="173" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="174">
+  <LineComment UId="174">
     <Text UId="175" />
   </LineComment>
-  <NewLine Num="1" UId="176" />
+  <NewLine UId="176" />
   <Blank Num="2" UId="177" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="178">
+  <LineComment UId="178">
     <Text UId="179"> Použití:</Text>
   </LineComment>
-  <NewLine Num="1" UId="180" />
+  <NewLine UId="180" />
   <Blank Num="2" UId="181" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="182">
+  <LineComment UId="182">
     <Text UId="183"> Volat cyklicky </Text>
   </LineComment>
-  <NewLine Num="1" UId="184" />
+  <NewLine UId="184" />
   <Blank Num="2" UId="185" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="186">
+  <LineComment UId="186">
     <Text UId="187"> Index je čten z AutoProcess_HMI.IndexProcess.</Text>
   </LineComment>
-  <NewLine Num="1" UId="188" />
+  <NewLine UId="188" />
   <Blank Num="2" UId="189" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="190">
+  <LineComment UId="190">
     <Text UId="191"> ============================================================================</Text>
   </LineComment>
-  <NewLine Num="1" UId="192" />
+  <NewLine UId="192" />
   <Blank Num="2" UId="193" />
-  <NewLine Num="1" UId="194" />
+  <NewLine UId="194" />
   <Blank Num="2" UId="195" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="196">
+  <LineComment UId="196">
     <Text UId="197"> Statement section REGION</Text>
   </LineComment>
-  <NewLine Num="1" UId="198" />
+  <NewLine UId="198" />
   <Blank Num="2" UId="199" />
-  <NewLine Num="1" UId="200" />
+  <NewLine UId="200" />
   <Token Text="END_REGION" UId="201" />
   <NewLine Num="3" UId="202" />
   <Token Text="REGION" UId="203" />
-  <Blank Num="1" UId="204" />
+  <Blank UId="204" />
   <Text UId="205">IndexRangeCheck</Text>
-  <NewLine Num="1" UId="206" />
+  <NewLine UId="206" />
   <Blank Num="2" UId="207" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="208">
+  <LineComment UId="208">
     <Text UId="209"> EN: Clamp index to range 1..16</Text>
   </LineComment>
-  <NewLine Num="1" UId="210" />
+  <NewLine UId="210" />
   <Blank Num="2" UId="211" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="212">
+  <LineComment UId="212">
     <Text UId="213"> CZ: Oříznutí indexu do rozsahu 1..16</Text>
   </LineComment>
-  <NewLine Num="1" UId="214" />
+  <NewLine UId="214" />
   <Blank Num="2" UId="215" />
   <Token Text="IF" UId="216" />
-  <Blank Num="1" UId="217" />
+  <Blank UId="217" />
   <Access Scope="LocalVariable" UId="218">
     <Symbol UId="219">
       <Component Name="idx" UId="220" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="221" />
+  <Blank UId="221" />
   <Token Text="&lt;" UId="222" />
-  <Blank Num="1" UId="223" />
+  <Blank UId="223" />
   <Access Scope="LiteralConstant" UId="224">
     <Constant UId="225">
       <ConstantValue UId="227">1</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="228" />
+  <Blank UId="228" />
   <Token Text="THEN" UId="229" />
-  <NewLine Num="1" UId="230" />
+  <NewLine UId="230" />
   <Blank Num="4" UId="231" />
   <Access Scope="LocalVariable" UId="232">
     <Symbol UId="233">
       <Component Name="idx" UId="234" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="235" />
+  <Blank UId="235" />
   <Token Text=":=" UId="236" />
-  <Blank Num="1" UId="237" />
+  <Blank UId="237" />
   <Access Scope="LiteralConstant" UId="238">
     <Constant UId="239">
       <ConstantValue UId="241">1</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="242" />
-  <NewLine Num="1" UId="243" />
+  <NewLine UId="243" />
   <Blank Num="4" UId="244" />
   <Access Scope="GlobalVariable" UId="245">
     <Symbol UId="246">
@@ -391,51 +340,51 @@
       <Component Name="IndexProcess" UId="250" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="251" />
+  <Blank UId="251" />
   <Token Text=":=" UId="252" />
-  <Blank Num="1" UId="253" />
+  <Blank UId="253" />
   <Access Scope="LocalVariable" UId="254">
     <Symbol UId="255">
       <Component Name="idx" UId="256" />
     </Symbol>
   </Access>
   <Token Text=";" UId="257" />
-  <NewLine Num="1" UId="258" />
+  <NewLine UId="258" />
   <Blank Num="2" UId="259" />
   <Token Text="ELSIF" UId="260" />
-  <Blank Num="1" UId="261" />
+  <Blank UId="261" />
   <Access Scope="LocalVariable" UId="262">
     <Symbol UId="263">
       <Component Name="idx" UId="264" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="265" />
+  <Blank UId="265" />
   <Token Text="&gt;" UId="266" />
-  <Blank Num="1" UId="267" />
+  <Blank UId="267" />
   <Access Scope="LiteralConstant" UId="268">
     <Constant UId="269">
       <ConstantValue UId="271">16</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="272" />
+  <Blank UId="272" />
   <Token Text="THEN" UId="273" />
-  <NewLine Num="1" UId="274" />
+  <NewLine UId="274" />
   <Blank Num="4" UId="275" />
   <Access Scope="LocalVariable" UId="276">
     <Symbol UId="277">
       <Component Name="idx" UId="278" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="279" />
+  <Blank UId="279" />
   <Token Text=":=" UId="280" />
-  <Blank Num="1" UId="281" />
+  <Blank UId="281" />
   <Access Scope="LiteralConstant" UId="282">
     <Constant UId="283">
       <ConstantValue UId="285">16</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="286" />
-  <NewLine Num="1" UId="287" />
+  <NewLine UId="287" />
   <Blank Num="4" UId="288" />
   <Access Scope="GlobalVariable" UId="289">
     <Symbol UId="290">
@@ -446,57 +395,57 @@
       <Component Name="IndexProcess" UId="294" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="295" />
+  <Blank UId="295" />
   <Token Text=":=" UId="296" />
-  <Blank Num="1" UId="297" />
+  <Blank UId="297" />
   <Access Scope="LocalVariable" UId="298">
     <Symbol UId="299">
       <Component Name="idx" UId="300" />
     </Symbol>
   </Access>
   <Token Text=";" UId="301" />
-  <NewLine Num="1" UId="302" />
+  <NewLine UId="302" />
   <Blank Num="4" UId="303" />
-  <NewLine Num="1" UId="304" />
+  <NewLine UId="304" />
   <Blank Num="2" UId="305" />
   <Token Text="END_IF" UId="306" />
   <Token Text=";" UId="307" />
-  <NewLine Num="1" UId="308" />
+  <NewLine UId="308" />
   <Token Text="END_REGION" UId="309" />
   <NewLine Num="3" UId="310" />
   <Token Text="REGION" UId="311" />
-  <Blank Num="1" UId="312" />
+  <Blank UId="312" />
   <Text UId="313">IndexHandling</Text>
-  <NewLine Num="1" UId="314" />
+  <NewLine UId="314" />
   <Blank Num="2" UId="315" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="316">
+  <LineComment UId="316">
     <Text UId="317"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="318" />
+  <NewLine UId="318" />
   <Blank Num="2" UId="319" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="320">
+  <LineComment UId="320">
     <Text UId="321"> EN: Detect index change and reset edit session</Text>
   </LineComment>
-  <NewLine Num="1" UId="322" />
+  <NewLine UId="322" />
   <Blank Num="2" UId="323" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="324">
+  <LineComment UId="324">
     <Text UId="325"> CZ: Detekce změny indexu a zrušení editace</Text>
   </LineComment>
-  <NewLine Num="1" UId="326" />
+  <NewLine UId="326" />
   <Blank Num="2" UId="327" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="328">
+  <LineComment UId="328">
     <Text UId="329"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="330" />
+  <NewLine UId="330" />
   <Blank Num="2" UId="331" />
   <Access Scope="LocalVariable" UId="332">
     <Symbol UId="333">
       <Component Name="idx" UId="334" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="335" />
+  <Blank UId="335" />
   <Token Text=":=" UId="336" />
-  <Blank Num="1" UId="337" />
+  <Blank UId="337" />
   <Access Scope="GlobalVariable" UId="338">
     <Symbol UId="339">
       <Component Name="AutoProcess_HMI" UId="340">
@@ -507,20 +456,20 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="344" />
-  <NewLine Num="1" UId="345" />
+  <NewLine UId="345" />
   <Blank Num="2" UId="346" />
-  <NewLine Num="1" UId="347" />
+  <NewLine UId="347" />
   <Blank Num="2" UId="348" />
   <Token Text="IF" UId="349" />
-  <Blank Num="1" UId="350" />
+  <Blank UId="350" />
   <Access Scope="LocalVariable" UId="351">
     <Symbol UId="352">
       <Component Name="idx" UId="353" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="354" />
+  <Blank UId="354" />
   <Token Text="&lt;&gt;" UId="355" />
-  <Blank Num="1" UId="356" />
+  <Blank UId="356" />
   <Access Scope="GlobalVariable" UId="357">
     <Symbol UId="358">
       <Component Name="AutoProcess_HMI" UId="359">
@@ -532,9 +481,9 @@
       <Component Name="LastIndex" UId="364" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="365" />
+  <Blank UId="365" />
   <Token Text="THEN" UId="366" />
-  <NewLine Num="1" UId="367" />
+  <NewLine UId="367" />
   <Blank Num="4" UId="368" />
   <Access Scope="GlobalVariable" UId="369">
     <Symbol UId="370">
@@ -547,16 +496,16 @@
       <Component Name="UpdateData_switch" UId="376" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="377" />
+  <Blank UId="377" />
   <Token Text=":=" UId="378" />
-  <Blank Num="1" UId="379" />
+  <Blank UId="379" />
   <Access Scope="LiteralConstant" UId="380">
     <Constant UId="381">
       <ConstantValue UId="383">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="384" />
-  <NewLine Num="1" UId="385" />
+  <NewLine UId="385" />
   <Blank Num="4" UId="386" />
   <Access Scope="GlobalVariable" UId="387">
     <Symbol UId="388">
@@ -569,16 +518,16 @@
       <Component Name="UpdateData_Confirm" UId="394" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="395" />
+  <Blank UId="395" />
   <Token Text=":=" UId="396" />
-  <Blank Num="1" UId="397" />
+  <Blank UId="397" />
   <Access Scope="LiteralConstant" UId="398">
     <Constant UId="399">
       <ConstantValue UId="401">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="402" />
-  <NewLine Num="1" UId="403" />
+  <NewLine UId="403" />
   <Blank Num="4" UId="404" />
   <Access Scope="GlobalVariable" UId="405">
     <Symbol UId="406">
@@ -591,16 +540,16 @@
       <Component Name="FinalConfirm_Write" UId="412" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="413" />
+  <Blank UId="413" />
   <Token Text=":=" UId="414" />
-  <Blank Num="1" UId="415" />
+  <Blank UId="415" />
   <Access Scope="LiteralConstant" UId="416">
     <Constant UId="417">
       <ConstantValue UId="419">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="420" />
-  <NewLine Num="1" UId="421" />
+  <NewLine UId="421" />
   <Blank Num="4" UId="422" />
   <Access Scope="GlobalVariable" UId="423">
     <Symbol UId="424">
@@ -613,16 +562,16 @@
       <Component Name="ConfirmDialogActive" UId="430" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="431" />
+  <Blank UId="431" />
   <Token Text=":=" UId="432" />
-  <Blank Num="1" UId="433" />
+  <Blank UId="433" />
   <Access Scope="LiteralConstant" UId="434">
     <Constant UId="435">
       <ConstantValue UId="437">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="438" />
-  <NewLine Num="1" UId="439" />
+  <NewLine UId="439" />
   <Blank Num="4" UId="440" />
   <Access Scope="GlobalVariable" UId="441">
     <Symbol UId="442">
@@ -635,16 +584,16 @@
       <Component Name="ChangePending" UId="448" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="449" />
+  <Blank UId="449" />
   <Token Text=":=" UId="450" />
-  <Blank Num="1" UId="451" />
+  <Blank UId="451" />
   <Access Scope="LiteralConstant" UId="452">
     <Constant UId="453">
       <ConstantValue UId="455">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="456" />
-  <NewLine Num="1" UId="457" />
+  <NewLine UId="457" />
   <Blank Num="4" UId="458" />
   <Access Scope="GlobalVariable" UId="459">
     <Symbol UId="460">
@@ -657,16 +606,16 @@
       <Component Name="DeleteData" UId="466" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="467" />
+  <Blank UId="467" />
   <Token Text=":=" UId="468" />
-  <Blank Num="1" UId="469" />
+  <Blank UId="469" />
   <Access Scope="LiteralConstant" UId="470">
     <Constant UId="471">
       <ConstantValue UId="473">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="474" />
-  <NewLine Num="1" UId="475" />
+  <NewLine UId="475" />
   <Blank Num="4" UId="476" />
   <Access Scope="GlobalVariable" UId="477">
     <Symbol UId="478">
@@ -679,51 +628,51 @@
       <Component Name="LastIndex" UId="484" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="485" />
+  <Blank UId="485" />
   <Token Text=":=" UId="486" />
-  <Blank Num="1" UId="487" />
+  <Blank UId="487" />
   <Access Scope="LocalVariable" UId="488">
     <Symbol UId="489">
       <Component Name="idx" UId="490" />
     </Symbol>
   </Access>
   <Token Text=";" UId="491" />
-  <NewLine Num="1" UId="492" />
+  <NewLine UId="492" />
   <Blank Num="2" UId="493" />
   <Token Text="END_IF" UId="494" />
   <Token Text=";" UId="495" />
-  <NewLine Num="1" UId="496" />
+  <NewLine UId="496" />
   <Token Text="END_REGION" UId="497" />
   <NewLine Num="4" UId="498" />
   <Token Text="REGION" UId="499" />
-  <Blank Num="1" UId="500" />
+  <Blank UId="500" />
   <Text UId="501">ShowData</Text>
-  <NewLine Num="1" UId="502" />
+  <NewLine UId="502" />
   <Blank Num="2" UId="503" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="504">
+  <LineComment UId="504">
     <Text UId="505"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="506" />
+  <NewLine UId="506" />
   <Blank Num="2" UId="507" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="508">
+  <LineComment UId="508">
     <Text UId="509"> EN: Copy data to HMI if edit mode is inactive</Text>
   </LineComment>
-  <NewLine Num="1" UId="510" />
+  <NewLine UId="510" />
   <Blank Num="2" UId="511" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="512">
+  <LineComment UId="512">
     <Text UId="513"> CZ: Zobrazování dat – pokud není editace, kopíruj data z DB</Text>
   </LineComment>
-  <NewLine Num="1" UId="514" />
+  <NewLine UId="514" />
   <Blank Num="2" UId="515" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="516">
+  <LineComment UId="516">
     <Text UId="517"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="518" />
+  <NewLine UId="518" />
   <Blank Num="2" UId="519" />
   <Token Text="IF" UId="520" />
-  <Blank Num="1" UId="521" />
+  <Blank UId="521" />
   <Token Text="NOT" UId="522" />
-  <Blank Num="1" UId="523" />
+  <Blank UId="523" />
   <Access Scope="GlobalVariable" UId="524">
     <Symbol UId="525">
       <Component Name="AutoProcess_HMI" UId="526">
@@ -735,20 +684,20 @@
       <Component Name="UpdateData_switch" UId="531" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="532" />
+  <Blank UId="532" />
   <Token Text="THEN" UId="533" />
-  <NewLine Num="1" UId="534" />
+  <NewLine UId="534" />
   <Blank Num="4" UId="535" />
   <Token Text="CASE" UId="536" />
-  <Blank Num="1" UId="537" />
+  <Blank UId="537" />
   <Access Scope="LocalVariable" UId="538">
     <Symbol UId="539">
       <Component Name="idx" UId="540" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="541" />
+  <Blank UId="541" />
   <Token Text="OF" UId="542" />
-  <NewLine Num="1" UId="543" />
+  <NewLine UId="543" />
   <Blank Num="6" UId="544" />
   <Access Scope="LiteralConstant" UId="545">
     <Constant UId="546">
@@ -756,7 +705,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="549" />
-  <NewLine Num="1" UId="550" />
+  <NewLine UId="550" />
   <Blank Num="8" UId="551" />
   <Access Scope="GlobalVariable" UId="552">
     <Symbol UId="553">
@@ -767,9 +716,9 @@
       <Component Name="ActualSHowingData" UId="557" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="558" />
+  <Blank UId="558" />
   <Token Text=":=" UId="559" />
-  <Blank Num="1" UId="560" />
+  <Blank UId="560" />
   <Access Scope="GlobalVariable" UId="561">
     <Symbol UId="562">
       <Component Name="AutoProcessData" UId="563">
@@ -780,7 +729,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="567" />
-  <NewLine Num="1" UId="568" />
+  <NewLine UId="568" />
   <Blank Num="6" UId="569" />
   <Access Scope="LiteralConstant" UId="570">
     <Constant UId="571">
@@ -788,7 +737,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="574" />
-  <NewLine Num="1" UId="575" />
+  <NewLine UId="575" />
   <Blank Num="8" UId="576" />
   <Access Scope="GlobalVariable" UId="577">
     <Symbol UId="578">
@@ -799,9 +748,9 @@
       <Component Name="ActualSHowingData" UId="582" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="583" />
+  <Blank UId="583" />
   <Token Text=":=" UId="584" />
-  <Blank Num="1" UId="585" />
+  <Blank UId="585" />
   <Access Scope="GlobalVariable" UId="586">
     <Symbol UId="587">
       <Component Name="AutoProcessData" UId="588">
@@ -812,7 +761,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="592" />
-  <NewLine Num="1" UId="593" />
+  <NewLine UId="593" />
   <Blank Num="6" UId="594" />
   <Access Scope="LiteralConstant" UId="595">
     <Constant UId="596">
@@ -820,7 +769,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="599" />
-  <NewLine Num="1" UId="600" />
+  <NewLine UId="600" />
   <Blank Num="8" UId="601" />
   <Access Scope="GlobalVariable" UId="602">
     <Symbol UId="603">
@@ -831,9 +780,9 @@
       <Component Name="ActualSHowingData" UId="607" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="608" />
+  <Blank UId="608" />
   <Token Text=":=" UId="609" />
-  <Blank Num="1" UId="610" />
+  <Blank UId="610" />
   <Access Scope="GlobalVariable" UId="611">
     <Symbol UId="612">
       <Component Name="AutoProcessData" UId="613">
@@ -844,7 +793,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="617" />
-  <NewLine Num="1" UId="618" />
+  <NewLine UId="618" />
   <Blank Num="6" UId="619" />
   <Access Scope="LiteralConstant" UId="620">
     <Constant UId="621">
@@ -852,7 +801,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="624" />
-  <NewLine Num="1" UId="625" />
+  <NewLine UId="625" />
   <Blank Num="8" UId="626" />
   <Access Scope="GlobalVariable" UId="627">
     <Symbol UId="628">
@@ -863,9 +812,9 @@
       <Component Name="ActualSHowingData" UId="632" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="633" />
+  <Blank UId="633" />
   <Token Text=":=" UId="634" />
-  <Blank Num="1" UId="635" />
+  <Blank UId="635" />
   <Access Scope="GlobalVariable" UId="636">
     <Symbol UId="637">
       <Component Name="AutoProcessData" UId="638">
@@ -876,7 +825,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="642" />
-  <NewLine Num="1" UId="643" />
+  <NewLine UId="643" />
   <Blank Num="6" UId="644" />
   <Access Scope="LiteralConstant" UId="645">
     <Constant UId="646">
@@ -884,7 +833,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="649" />
-  <NewLine Num="1" UId="650" />
+  <NewLine UId="650" />
   <Blank Num="8" UId="651" />
   <Access Scope="GlobalVariable" UId="652">
     <Symbol UId="653">
@@ -895,9 +844,9 @@
       <Component Name="ActualSHowingData" UId="657" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="658" />
+  <Blank UId="658" />
   <Token Text=":=" UId="659" />
-  <Blank Num="1" UId="660" />
+  <Blank UId="660" />
   <Access Scope="GlobalVariable" UId="661">
     <Symbol UId="662">
       <Component Name="AutoProcessData" UId="663">
@@ -908,7 +857,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="667" />
-  <NewLine Num="1" UId="668" />
+  <NewLine UId="668" />
   <Blank Num="6" UId="669" />
   <Access Scope="LiteralConstant" UId="670">
     <Constant UId="671">
@@ -916,7 +865,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="674" />
-  <NewLine Num="1" UId="675" />
+  <NewLine UId="675" />
   <Blank Num="8" UId="676" />
   <Access Scope="GlobalVariable" UId="677">
     <Symbol UId="678">
@@ -927,9 +876,9 @@
       <Component Name="ActualSHowingData" UId="682" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="683" />
+  <Blank UId="683" />
   <Token Text=":=" UId="684" />
-  <Blank Num="1" UId="685" />
+  <Blank UId="685" />
   <Access Scope="GlobalVariable" UId="686">
     <Symbol UId="687">
       <Component Name="AutoProcessData" UId="688">
@@ -940,7 +889,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="692" />
-  <NewLine Num="1" UId="693" />
+  <NewLine UId="693" />
   <Blank Num="6" UId="694" />
   <Access Scope="LiteralConstant" UId="695">
     <Constant UId="696">
@@ -948,7 +897,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="699" />
-  <NewLine Num="1" UId="700" />
+  <NewLine UId="700" />
   <Blank Num="8" UId="701" />
   <Access Scope="GlobalVariable" UId="702">
     <Symbol UId="703">
@@ -959,9 +908,9 @@
       <Component Name="ActualSHowingData" UId="707" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="708" />
+  <Blank UId="708" />
   <Token Text=":=" UId="709" />
-  <Blank Num="1" UId="710" />
+  <Blank UId="710" />
   <Access Scope="GlobalVariable" UId="711">
     <Symbol UId="712">
       <Component Name="AutoProcessData" UId="713">
@@ -972,7 +921,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="717" />
-  <NewLine Num="1" UId="718" />
+  <NewLine UId="718" />
   <Blank Num="6" UId="719" />
   <Access Scope="LiteralConstant" UId="720">
     <Constant UId="721">
@@ -980,7 +929,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="724" />
-  <NewLine Num="1" UId="725" />
+  <NewLine UId="725" />
   <Blank Num="8" UId="726" />
   <Access Scope="GlobalVariable" UId="727">
     <Symbol UId="728">
@@ -991,9 +940,9 @@
       <Component Name="ActualSHowingData" UId="732" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="733" />
+  <Blank UId="733" />
   <Token Text=":=" UId="734" />
-  <Blank Num="1" UId="735" />
+  <Blank UId="735" />
   <Access Scope="GlobalVariable" UId="736">
     <Symbol UId="737">
       <Component Name="AutoProcessData" UId="738">
@@ -1004,7 +953,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="742" />
-  <NewLine Num="1" UId="743" />
+  <NewLine UId="743" />
   <Blank Num="6" UId="744" />
   <Access Scope="LiteralConstant" UId="745">
     <Constant UId="746">
@@ -1012,7 +961,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="749" />
-  <NewLine Num="1" UId="750" />
+  <NewLine UId="750" />
   <Blank Num="8" UId="751" />
   <Access Scope="GlobalVariable" UId="752">
     <Symbol UId="753">
@@ -1023,9 +972,9 @@
       <Component Name="ActualSHowingData" UId="757" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="758" />
+  <Blank UId="758" />
   <Token Text=":=" UId="759" />
-  <Blank Num="1" UId="760" />
+  <Blank UId="760" />
   <Access Scope="GlobalVariable" UId="761">
     <Symbol UId="762">
       <Component Name="AutoProcessData" UId="763">
@@ -1036,7 +985,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="767" />
-  <NewLine Num="1" UId="768" />
+  <NewLine UId="768" />
   <Blank Num="6" UId="769" />
   <Access Scope="LiteralConstant" UId="770">
     <Constant UId="771">
@@ -1044,7 +993,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="774" />
-  <NewLine Num="1" UId="775" />
+  <NewLine UId="775" />
   <Blank Num="8" UId="776" />
   <Access Scope="GlobalVariable" UId="777">
     <Symbol UId="778">
@@ -1055,9 +1004,9 @@
       <Component Name="ActualSHowingData" UId="782" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="783" />
+  <Blank UId="783" />
   <Token Text=":=" UId="784" />
-  <Blank Num="1" UId="785" />
+  <Blank UId="785" />
   <Access Scope="GlobalVariable" UId="786">
     <Symbol UId="787">
       <Component Name="AutoProcessData" UId="788">
@@ -1068,7 +1017,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="792" />
-  <NewLine Num="1" UId="793" />
+  <NewLine UId="793" />
   <Blank Num="6" UId="794" />
   <Access Scope="LiteralConstant" UId="795">
     <Constant UId="796">
@@ -1076,7 +1025,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="799" />
-  <NewLine Num="1" UId="800" />
+  <NewLine UId="800" />
   <Blank Num="8" UId="801" />
   <Access Scope="GlobalVariable" UId="802">
     <Symbol UId="803">
@@ -1087,9 +1036,9 @@
       <Component Name="ActualSHowingData" UId="807" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="808" />
+  <Blank UId="808" />
   <Token Text=":=" UId="809" />
-  <Blank Num="1" UId="810" />
+  <Blank UId="810" />
   <Access Scope="GlobalVariable" UId="811">
     <Symbol UId="812">
       <Component Name="AutoProcessData" UId="813">
@@ -1100,7 +1049,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="817" />
-  <NewLine Num="1" UId="818" />
+  <NewLine UId="818" />
   <Blank Num="6" UId="819" />
   <Access Scope="LiteralConstant" UId="820">
     <Constant UId="821">
@@ -1108,7 +1057,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="824" />
-  <NewLine Num="1" UId="825" />
+  <NewLine UId="825" />
   <Blank Num="8" UId="826" />
   <Access Scope="GlobalVariable" UId="827">
     <Symbol UId="828">
@@ -1119,9 +1068,9 @@
       <Component Name="ActualSHowingData" UId="832" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="833" />
+  <Blank UId="833" />
   <Token Text=":=" UId="834" />
-  <Blank Num="1" UId="835" />
+  <Blank UId="835" />
   <Access Scope="GlobalVariable" UId="836">
     <Symbol UId="837">
       <Component Name="AutoProcessData" UId="838">
@@ -1132,7 +1081,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="842" />
-  <NewLine Num="1" UId="843" />
+  <NewLine UId="843" />
   <Blank Num="6" UId="844" />
   <Access Scope="LiteralConstant" UId="845">
     <Constant UId="846">
@@ -1140,7 +1089,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="849" />
-  <NewLine Num="1" UId="850" />
+  <NewLine UId="850" />
   <Blank Num="8" UId="851" />
   <Access Scope="GlobalVariable" UId="852">
     <Symbol UId="853">
@@ -1151,9 +1100,9 @@
       <Component Name="ActualSHowingData" UId="857" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="858" />
+  <Blank UId="858" />
   <Token Text=":=" UId="859" />
-  <Blank Num="1" UId="860" />
+  <Blank UId="860" />
   <Access Scope="GlobalVariable" UId="861">
     <Symbol UId="862">
       <Component Name="AutoProcessData" UId="863">
@@ -1164,7 +1113,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="867" />
-  <NewLine Num="1" UId="868" />
+  <NewLine UId="868" />
   <Blank Num="6" UId="869" />
   <Access Scope="LiteralConstant" UId="870">
     <Constant UId="871">
@@ -1172,7 +1121,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="874" />
-  <NewLine Num="1" UId="875" />
+  <NewLine UId="875" />
   <Blank Num="8" UId="876" />
   <Access Scope="GlobalVariable" UId="877">
     <Symbol UId="878">
@@ -1183,9 +1132,9 @@
       <Component Name="ActualSHowingData" UId="882" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="883" />
+  <Blank UId="883" />
   <Token Text=":=" UId="884" />
-  <Blank Num="1" UId="885" />
+  <Blank UId="885" />
   <Access Scope="GlobalVariable" UId="886">
     <Symbol UId="887">
       <Component Name="AutoProcessData" UId="888">
@@ -1196,7 +1145,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="892" />
-  <NewLine Num="1" UId="893" />
+  <NewLine UId="893" />
   <Blank Num="6" UId="894" />
   <Access Scope="LiteralConstant" UId="895">
     <Constant UId="896">
@@ -1204,7 +1153,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="899" />
-  <NewLine Num="1" UId="900" />
+  <NewLine UId="900" />
   <Blank Num="8" UId="901" />
   <Access Scope="GlobalVariable" UId="902">
     <Symbol UId="903">
@@ -1215,9 +1164,9 @@
       <Component Name="ActualSHowingData" UId="907" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="908" />
+  <Blank UId="908" />
   <Token Text=":=" UId="909" />
-  <Blank Num="1" UId="910" />
+  <Blank UId="910" />
   <Access Scope="GlobalVariable" UId="911">
     <Symbol UId="912">
       <Component Name="AutoProcessData" UId="913">
@@ -1228,7 +1177,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="917" />
-  <NewLine Num="1" UId="918" />
+  <NewLine UId="918" />
   <Blank Num="6" UId="919" />
   <Access Scope="LiteralConstant" UId="920">
     <Constant UId="921">
@@ -1236,7 +1185,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="924" />
-  <NewLine Num="1" UId="925" />
+  <NewLine UId="925" />
   <Blank Num="8" UId="926" />
   <Access Scope="GlobalVariable" UId="927">
     <Symbol UId="928">
@@ -1247,9 +1196,9 @@
       <Component Name="ActualSHowingData" UId="932" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="933" />
+  <Blank UId="933" />
   <Token Text=":=" UId="934" />
-  <Blank Num="1" UId="935" />
+  <Blank UId="935" />
   <Access Scope="GlobalVariable" UId="936">
     <Symbol UId="937">
       <Component Name="AutoProcessData" UId="938">
@@ -1260,55 +1209,55 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="942" />
-  <NewLine Num="1" UId="943" />
+  <NewLine UId="943" />
   <Blank Num="6" UId="944" />
   <Token Text="ELSE" UId="945" />
-  <NewLine Num="1" UId="946" />
+  <NewLine UId="946" />
   <Blank Num="8" UId="947" />
   <Token Text=";" UId="948" />
-  <NewLine Num="1" UId="949" />
+  <NewLine UId="949" />
   <Blank Num="8" UId="950" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="951">
+  <LineComment UId="951">
     <Text UId="952"> EN: invalid index / CZ: neplatný index</Text>
   </LineComment>
-  <NewLine Num="1" UId="953" />
+  <NewLine UId="953" />
   <Blank Num="4" UId="954" />
   <Token Text="END_CASE" UId="955" />
   <Token Text=";" UId="956" />
-  <NewLine Num="1" UId="957" />
+  <NewLine UId="957" />
   <Blank Num="2" UId="958" />
   <Token Text="END_IF" UId="959" />
   <Token Text=";" UId="960" />
-  <NewLine Num="1" UId="961" />
+  <NewLine UId="961" />
   <Token Text="END_REGION" UId="962" />
   <NewLine Num="4" UId="963" />
   <Token Text="REGION" UId="964" />
-  <Blank Num="1" UId="965" />
+  <Blank UId="965" />
   <Text UId="966">FirstConfirm</Text>
-  <NewLine Num="1" UId="967" />
+  <NewLine UId="967" />
   <Blank Num="2" UId="968" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="969">
+  <LineComment UId="969">
     <Text UId="970"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="971" />
+  <NewLine UId="971" />
   <Blank Num="2" UId="972" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="973">
+  <LineComment UId="973">
     <Text UId="974"> EN: First confirmation → enable compare dialog</Text>
   </LineComment>
-  <NewLine Num="1" UId="975" />
+  <NewLine UId="975" />
   <Blank Num="2" UId="976" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="977">
+  <LineComment UId="977">
     <Text UId="978"> CZ: První potvrzení → aktivace porovnávacího dialogu</Text>
   </LineComment>
-  <NewLine Num="1" UId="979" />
+  <NewLine UId="979" />
   <Blank Num="2" UId="980" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="981">
+  <LineComment UId="981">
     <Text UId="982"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="983" />
+  <NewLine UId="983" />
   <Blank Num="2" UId="984" />
   <Token Text="IF" UId="985" />
-  <Blank Num="1" UId="986" />
+  <Blank UId="986" />
   <Access Scope="GlobalVariable" UId="987">
     <Symbol UId="988">
       <Component Name="AutoProcess_HMI" UId="989">
@@ -1320,10 +1269,10 @@
       <Component Name="UpdateData_switch" UId="994" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="995" />
+  <NewLine UId="995" />
   <Blank Num="4" UId="996" />
   <Token Text="AND" UId="997" />
-  <Blank Num="1" UId="998" />
+  <Blank UId="998" />
   <Access Scope="GlobalVariable" UId="999">
     <Symbol UId="1000">
       <Component Name="AutoProcess_HMI" UId="1001">
@@ -1335,12 +1284,12 @@
       <Component Name="UpdateData_Confirm" UId="1006" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="1007" />
+  <NewLine UId="1007" />
   <Blank Num="4" UId="1008" />
   <Token Text="AND" UId="1009" />
-  <Blank Num="1" UId="1010" />
+  <Blank UId="1010" />
   <Token Text="NOT" UId="1011" />
-  <Blank Num="1" UId="1012" />
+  <Blank UId="1012" />
   <Access Scope="GlobalVariable" UId="1013">
     <Symbol UId="1014">
       <Component Name="AutoProcess_HMI" UId="1015">
@@ -1352,11 +1301,11 @@
       <Component Name="ConfirmDialogActive" UId="1020" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1021" />
+  <Blank UId="1021" />
   <Token Text="THEN" UId="1022" />
-  <NewLine Num="1" UId="1023" />
+  <NewLine UId="1023" />
   <Blank Num="4" UId="1024" />
-  <NewLine Num="1" UId="1025" />
+  <NewLine UId="1025" />
   <Blank Num="4" UId="1026" />
   <Access Scope="GlobalVariable" UId="1027">
     <Symbol UId="1028">
@@ -1369,16 +1318,16 @@
       <Component Name="ConfirmDialogActive" UId="1034" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1035" />
+  <Blank UId="1035" />
   <Token Text=":=" UId="1036" />
-  <Blank Num="1" UId="1037" />
+  <Blank UId="1037" />
   <Access Scope="LiteralConstant" UId="1038">
     <Constant UId="1039">
       <ConstantValue UId="1041">TRUE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="1042" />
-  <NewLine Num="1" UId="1043" />
+  <NewLine UId="1043" />
   <Blank Num="4" UId="1044" />
   <Access Scope="GlobalVariable" UId="1045">
     <Symbol UId="1046">
@@ -1391,18 +1340,18 @@
       <Component Name="ChangePending" UId="1052" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1053" />
+  <Blank UId="1053" />
   <Token Text=":=" UId="1054" />
-  <Blank Num="1" UId="1055" />
+  <Blank UId="1055" />
   <Access Scope="LiteralConstant" UId="1056">
     <Constant UId="1057">
       <ConstantValue UId="1059">TRUE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="1060" />
-  <NewLine Num="1" UId="1061" />
+  <NewLine UId="1061" />
   <Blank Num="4" UId="1062" />
-  <NewLine Num="1" UId="1063" />
+  <NewLine UId="1063" />
   <Blank Num="4" UId="1064" />
   <Access Scope="GlobalVariable" UId="1065">
     <Symbol UId="1066">
@@ -1415,49 +1364,49 @@
       <Component Name="UpdateData_Confirm" UId="1072" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1073" />
+  <Blank UId="1073" />
   <Token Text=":=" UId="1074" />
-  <Blank Num="1" UId="1075" />
+  <Blank UId="1075" />
   <Access Scope="LiteralConstant" UId="1076">
     <Constant UId="1077">
       <ConstantValue UId="1079">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="1080" />
-  <NewLine Num="1" UId="1081" />
+  <NewLine UId="1081" />
   <Blank Num="2" UId="1082" />
   <Token Text="END_IF" UId="1083" />
   <Token Text=";" UId="1084" />
-  <NewLine Num="1" UId="1085" />
+  <NewLine UId="1085" />
   <Token Text="END_REGION" UId="1086" />
   <NewLine Num="4" UId="1087" />
   <Token Text="REGION" UId="1088" />
-  <Blank Num="1" UId="1089" />
+  <Blank UId="1089" />
   <Text UId="1090">FinalWrite</Text>
-  <NewLine Num="1" UId="1091" />
+  <NewLine UId="1091" />
   <Blank Num="2" UId="1092" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1093">
+  <LineComment UId="1093">
     <Text UId="1094"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="1095" />
+  <NewLine UId="1095" />
   <Blank Num="2" UId="1096" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1097">
+  <LineComment UId="1097">
     <Text UId="1098"> EN: Final confirmation → write to data DB</Text>
   </LineComment>
-  <NewLine Num="1" UId="1099" />
+  <NewLine UId="1099" />
   <Blank Num="2" UId="1100" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1101">
+  <LineComment UId="1101">
     <Text UId="1102"> CZ: Finální potvrzení → zápis do DB</Text>
   </LineComment>
-  <NewLine Num="1" UId="1103" />
+  <NewLine UId="1103" />
   <Blank Num="2" UId="1104" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1105">
+  <LineComment UId="1105">
     <Text UId="1106"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="1107" />
+  <NewLine UId="1107" />
   <Blank Num="2" UId="1108" />
   <Token Text="IF" UId="1109" />
-  <Blank Num="1" UId="1110" />
+  <Blank UId="1110" />
   <Access Scope="GlobalVariable" UId="1111">
     <Symbol UId="1112">
       <Component Name="AutoProcess_HMI" UId="1113">
@@ -1469,10 +1418,10 @@
       <Component Name="ConfirmDialogActive" UId="1118" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="1119" />
+  <NewLine UId="1119" />
   <Blank Num="4" UId="1120" />
   <Token Text="AND" UId="1121" />
-  <Blank Num="1" UId="1122" />
+  <Blank UId="1122" />
   <Access Scope="GlobalVariable" UId="1123">
     <Symbol UId="1124">
       <Component Name="AutoProcess_HMI" UId="1125">
@@ -1484,22 +1433,22 @@
       <Component Name="FinalConfirm_Write" UId="1130" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1131" />
+  <Blank UId="1131" />
   <Token Text="THEN" UId="1132" />
-  <NewLine Num="1" UId="1133" />
+  <NewLine UId="1133" />
   <Blank Num="4" UId="1134" />
-  <NewLine Num="1" UId="1135" />
+  <NewLine UId="1135" />
   <Blank Num="4" UId="1136" />
   <Token Text="CASE" UId="1137" />
-  <Blank Num="1" UId="1138" />
+  <Blank UId="1138" />
   <Access Scope="LocalVariable" UId="1139">
     <Symbol UId="1140">
       <Component Name="idx" UId="1141" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1142" />
+  <Blank UId="1142" />
   <Token Text="OF" UId="1143" />
-  <NewLine Num="1" UId="1144" />
+  <NewLine UId="1144" />
   <Blank Num="6" UId="1145" />
   <Access Scope="LiteralConstant" UId="1146">
     <Constant UId="1147">
@@ -1507,7 +1456,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1150" />
-  <NewLine Num="1" UId="1151" />
+  <NewLine UId="1151" />
   <Blank Num="8" UId="1152" />
   <Access Scope="GlobalVariable" UId="1153">
     <Symbol UId="1154">
@@ -1518,9 +1467,9 @@
       <Component Name="A_ScanRotate" UId="1158" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1159" />
+  <Blank UId="1159" />
   <Token Text=":=" UId="1160" />
-  <Blank Num="1" UId="1161" />
+  <Blank UId="1161" />
   <Access Scope="GlobalVariable" UId="1162">
     <Symbol UId="1163">
       <Component Name="AutoProcess_HMI" UId="1164">
@@ -1531,7 +1480,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1168" />
-  <NewLine Num="1" UId="1169" />
+  <NewLine UId="1169" />
   <Blank Num="6" UId="1170" />
   <Access Scope="LiteralConstant" UId="1171">
     <Constant UId="1172">
@@ -1539,7 +1488,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1175" />
-  <NewLine Num="1" UId="1176" />
+  <NewLine UId="1176" />
   <Blank Num="8" UId="1177" />
   <Access Scope="GlobalVariable" UId="1178">
     <Symbol UId="1179">
@@ -1550,9 +1499,9 @@
       <Component Name="F_Robot1Grip1" UId="1183" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1184" />
+  <Blank UId="1184" />
   <Token Text=":=" UId="1185" />
-  <Blank Num="1" UId="1186" />
+  <Blank UId="1186" />
   <Access Scope="GlobalVariable" UId="1187">
     <Symbol UId="1188">
       <Component Name="AutoProcess_HMI" UId="1189">
@@ -1563,7 +1512,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1193" />
-  <NewLine Num="1" UId="1194" />
+  <NewLine UId="1194" />
   <Blank Num="6" UId="1195" />
   <Access Scope="LiteralConstant" UId="1196">
     <Constant UId="1197">
@@ -1571,7 +1520,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1200" />
-  <NewLine Num="1" UId="1201" />
+  <NewLine UId="1201" />
   <Blank Num="8" UId="1202" />
   <Access Scope="GlobalVariable" UId="1203">
     <Symbol UId="1204">
@@ -1582,9 +1531,9 @@
       <Component Name="F_Robot1Grip2" UId="1208" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1209" />
+  <Blank UId="1209" />
   <Token Text=":=" UId="1210" />
-  <Blank Num="1" UId="1211" />
+  <Blank UId="1211" />
   <Access Scope="GlobalVariable" UId="1212">
     <Symbol UId="1213">
       <Component Name="AutoProcess_HMI" UId="1214">
@@ -1595,7 +1544,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1218" />
-  <NewLine Num="1" UId="1219" />
+  <NewLine UId="1219" />
   <Blank Num="6" UId="1220" />
   <Access Scope="LiteralConstant" UId="1221">
     <Constant UId="1222">
@@ -1603,7 +1552,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1225" />
-  <NewLine Num="1" UId="1226" />
+  <NewLine UId="1226" />
   <Blank Num="8" UId="1227" />
   <Access Scope="GlobalVariable" UId="1228">
     <Symbol UId="1229">
@@ -1614,9 +1563,9 @@
       <Component Name="B_Press1" UId="1233" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1234" />
+  <Blank UId="1234" />
   <Token Text=":=" UId="1235" />
-  <Blank Num="1" UId="1236" />
+  <Blank UId="1236" />
   <Access Scope="GlobalVariable" UId="1237">
     <Symbol UId="1238">
       <Component Name="AutoProcess_HMI" UId="1239">
@@ -1627,7 +1576,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1243" />
-  <NewLine Num="1" UId="1244" />
+  <NewLine UId="1244" />
   <Blank Num="6" UId="1245" />
   <Access Scope="LiteralConstant" UId="1246">
     <Constant UId="1247">
@@ -1635,7 +1584,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1250" />
-  <NewLine Num="1" UId="1251" />
+  <NewLine UId="1251" />
   <Blank Num="8" UId="1252" />
   <Access Scope="GlobalVariable" UId="1253">
     <Symbol UId="1254">
@@ -1646,9 +1595,9 @@
       <Component Name="C_Glue" UId="1258" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1259" />
+  <Blank UId="1259" />
   <Token Text=":=" UId="1260" />
-  <Blank Num="1" UId="1261" />
+  <Blank UId="1261" />
   <Access Scope="GlobalVariable" UId="1262">
     <Symbol UId="1263">
       <Component Name="AutoProcess_HMI" UId="1264">
@@ -1659,7 +1608,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1268" />
-  <NewLine Num="1" UId="1269" />
+  <NewLine UId="1269" />
   <Blank Num="6" UId="1270" />
   <Access Scope="LiteralConstant" UId="1271">
     <Constant UId="1272">
@@ -1667,7 +1616,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1275" />
-  <NewLine Num="1" UId="1276" />
+  <NewLine UId="1276" />
   <Blank Num="8" UId="1277" />
   <Access Scope="GlobalVariable" UId="1278">
     <Symbol UId="1279">
@@ -1678,9 +1627,9 @@
       <Component Name="F_Robot2Grip1" UId="1283" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1284" />
+  <Blank UId="1284" />
   <Token Text=":=" UId="1285" />
-  <Blank Num="1" UId="1286" />
+  <Blank UId="1286" />
   <Access Scope="GlobalVariable" UId="1287">
     <Symbol UId="1288">
       <Component Name="AutoProcess_HMI" UId="1289">
@@ -1691,7 +1640,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1293" />
-  <NewLine Num="1" UId="1294" />
+  <NewLine UId="1294" />
   <Blank Num="6" UId="1295" />
   <Access Scope="LiteralConstant" UId="1296">
     <Constant UId="1297">
@@ -1699,7 +1648,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1300" />
-  <NewLine Num="1" UId="1301" />
+  <NewLine UId="1301" />
   <Blank Num="8" UId="1302" />
   <Access Scope="GlobalVariable" UId="1303">
     <Symbol UId="1304">
@@ -1710,9 +1659,9 @@
       <Component Name="F_Robot2Grip2" UId="1308" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1309" />
+  <Blank UId="1309" />
   <Token Text=":=" UId="1310" />
-  <Blank Num="1" UId="1311" />
+  <Blank UId="1311" />
   <Access Scope="GlobalVariable" UId="1312">
     <Symbol UId="1313">
       <Component Name="AutoProcess_HMI" UId="1314">
@@ -1723,7 +1672,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1318" />
-  <NewLine Num="1" UId="1319" />
+  <NewLine UId="1319" />
   <Blank Num="6" UId="1320" />
   <Access Scope="LiteralConstant" UId="1321">
     <Constant UId="1322">
@@ -1731,7 +1680,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1325" />
-  <NewLine Num="1" UId="1326" />
+  <NewLine UId="1326" />
   <Blank Num="8" UId="1327" />
   <Access Scope="GlobalVariable" UId="1328">
     <Symbol UId="1329">
@@ -1742,9 +1691,9 @@
       <Component Name="C_GlueNGBuffer" UId="1333" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1334" />
+  <Blank UId="1334" />
   <Token Text=":=" UId="1335" />
-  <Blank Num="1" UId="1336" />
+  <Blank UId="1336" />
   <Access Scope="GlobalVariable" UId="1337">
     <Symbol UId="1338">
       <Component Name="AutoProcess_HMI" UId="1339">
@@ -1755,7 +1704,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1343" />
-  <NewLine Num="1" UId="1344" />
+  <NewLine UId="1344" />
   <Blank Num="6" UId="1345" />
   <Access Scope="LiteralConstant" UId="1346">
     <Constant UId="1347">
@@ -1763,7 +1712,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1350" />
-  <NewLine Num="1" UId="1351" />
+  <NewLine UId="1351" />
   <Blank Num="8" UId="1352" />
   <Access Scope="GlobalVariable" UId="1353">
     <Symbol UId="1354">
@@ -1774,9 +1723,9 @@
       <Component Name="C_MagnScanNGBuffer" UId="1358" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1359" />
+  <Blank UId="1359" />
   <Token Text=":=" UId="1360" />
-  <Blank Num="1" UId="1361" />
+  <Blank UId="1361" />
   <Access Scope="GlobalVariable" UId="1362">
     <Symbol UId="1363">
       <Component Name="AutoProcess_HMI" UId="1364">
@@ -1787,7 +1736,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1368" />
-  <NewLine Num="1" UId="1369" />
+  <NewLine UId="1369" />
   <Blank Num="6" UId="1370" />
   <Access Scope="LiteralConstant" UId="1371">
     <Constant UId="1372">
@@ -1795,7 +1744,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1375" />
-  <NewLine Num="1" UId="1376" />
+  <NewLine UId="1376" />
   <Blank Num="8" UId="1377" />
   <Access Scope="GlobalVariable" UId="1378">
     <Symbol UId="1379">
@@ -1806,9 +1755,9 @@
       <Component Name="B_Press2" UId="1383" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1384" />
+  <Blank UId="1384" />
   <Token Text=":=" UId="1385" />
-  <Blank Num="1" UId="1386" />
+  <Blank UId="1386" />
   <Access Scope="GlobalVariable" UId="1387">
     <Symbol UId="1388">
       <Component Name="AutoProcess_HMI" UId="1389">
@@ -1819,7 +1768,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1393" />
-  <NewLine Num="1" UId="1394" />
+  <NewLine UId="1394" />
   <Blank Num="6" UId="1395" />
   <Access Scope="LiteralConstant" UId="1396">
     <Constant UId="1397">
@@ -1827,7 +1776,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1400" />
-  <NewLine Num="1" UId="1401" />
+  <NewLine UId="1401" />
   <Blank Num="8" UId="1402" />
   <Access Scope="GlobalVariable" UId="1403">
     <Symbol UId="1404">
@@ -1838,9 +1787,9 @@
       <Component Name="F_Robot3Grip1" UId="1408" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1409" />
+  <Blank UId="1409" />
   <Token Text=":=" UId="1410" />
-  <Blank Num="1" UId="1411" />
+  <Blank UId="1411" />
   <Access Scope="GlobalVariable" UId="1412">
     <Symbol UId="1413">
       <Component Name="AutoProcess_HMI" UId="1414">
@@ -1851,7 +1800,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1418" />
-  <NewLine Num="1" UId="1419" />
+  <NewLine UId="1419" />
   <Blank Num="6" UId="1420" />
   <Access Scope="LiteralConstant" UId="1421">
     <Constant UId="1422">
@@ -1859,7 +1808,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1425" />
-  <NewLine Num="1" UId="1426" />
+  <NewLine UId="1426" />
   <Blank Num="8" UId="1427" />
   <Access Scope="GlobalVariable" UId="1428">
     <Symbol UId="1429">
@@ -1870,9 +1819,9 @@
       <Component Name="F_Robot3Grip2" UId="1433" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1434" />
+  <Blank UId="1434" />
   <Token Text=":=" UId="1435" />
-  <Blank Num="1" UId="1436" />
+  <Blank UId="1436" />
   <Access Scope="GlobalVariable" UId="1437">
     <Symbol UId="1438">
       <Component Name="AutoProcess_HMI" UId="1439">
@@ -1883,7 +1832,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1443" />
-  <NewLine Num="1" UId="1444" />
+  <NewLine UId="1444" />
   <Blank Num="6" UId="1445" />
   <Access Scope="LiteralConstant" UId="1446">
     <Constant UId="1447">
@@ -1891,7 +1840,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1450" />
-  <NewLine Num="1" UId="1451" />
+  <NewLine UId="1451" />
   <Blank Num="8" UId="1452" />
   <Access Scope="GlobalVariable" UId="1453">
     <Symbol UId="1454">
@@ -1902,9 +1851,9 @@
       <Component Name="H_ShafeLine" UId="1458" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1459" />
+  <Blank UId="1459" />
   <Token Text=":=" UId="1460" />
-  <Blank Num="1" UId="1461" />
+  <Blank UId="1461" />
   <Access Scope="GlobalVariable" UId="1462">
     <Symbol UId="1463">
       <Component Name="AutoProcess_HMI" UId="1464">
@@ -1915,7 +1864,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1468" />
-  <NewLine Num="1" UId="1469" />
+  <NewLine UId="1469" />
   <Blank Num="6" UId="1470" />
   <Access Scope="LiteralConstant" UId="1471">
     <Constant UId="1472">
@@ -1923,7 +1872,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1475" />
-  <NewLine Num="1" UId="1476" />
+  <NewLine UId="1476" />
   <Blank Num="8" UId="1477" />
   <Access Scope="GlobalVariable" UId="1478">
     <Symbol UId="1479">
@@ -1934,9 +1883,9 @@
       <Component Name="J_MagnetBelt" UId="1483" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1484" />
+  <Blank UId="1484" />
   <Token Text=":=" UId="1485" />
-  <Blank Num="1" UId="1486" />
+  <Blank UId="1486" />
   <Access Scope="GlobalVariable" UId="1487">
     <Symbol UId="1488">
       <Component Name="AutoProcess_HMI" UId="1489">
@@ -1947,7 +1896,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1493" />
-  <NewLine Num="1" UId="1494" />
+  <NewLine UId="1494" />
   <Blank Num="6" UId="1495" />
   <Access Scope="LiteralConstant" UId="1496">
     <Constant UId="1497">
@@ -1955,7 +1904,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1500" />
-  <NewLine Num="1" UId="1501" />
+  <NewLine UId="1501" />
   <Blank Num="8" UId="1502" />
   <Access Scope="GlobalVariable" UId="1503">
     <Symbol UId="1504">
@@ -1966,9 +1915,9 @@
       <Component Name="K_ReserveBelt" UId="1508" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1509" />
+  <Blank UId="1509" />
   <Token Text=":=" UId="1510" />
-  <Blank Num="1" UId="1511" />
+  <Blank UId="1511" />
   <Access Scope="GlobalVariable" UId="1512">
     <Symbol UId="1513">
       <Component Name="AutoProcess_HMI" UId="1514">
@@ -1979,7 +1928,7 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1518" />
-  <NewLine Num="1" UId="1519" />
+  <NewLine UId="1519" />
   <Blank Num="6" UId="1520" />
   <Access Scope="LiteralConstant" UId="1521">
     <Constant UId="1522">
@@ -1987,7 +1936,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1525" />
-  <NewLine Num="1" UId="1526" />
+  <NewLine UId="1526" />
   <Blank Num="8" UId="1527" />
   <Access Scope="GlobalVariable" UId="1528">
     <Symbol UId="1529">
@@ -1998,9 +1947,9 @@
       <Component Name="L_UnloadBelt" UId="1533" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1534" />
+  <Blank UId="1534" />
   <Token Text=":=" UId="1535" />
-  <Blank Num="1" UId="1536" />
+  <Blank UId="1536" />
   <Access Scope="GlobalVariable" UId="1537">
     <Symbol UId="1538">
       <Component Name="AutoProcess_HMI" UId="1539">
@@ -2011,24 +1960,24 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="1543" />
-  <NewLine Num="1" UId="1544" />
+  <NewLine UId="1544" />
   <Blank Num="6" UId="1545" />
   <Token Text="ELSE" UId="1546" />
-  <NewLine Num="1" UId="1547" />
+  <NewLine UId="1547" />
   <Blank Num="8" UId="1548" />
   <Token Text=";" UId="1549" />
-  <NewLine Num="1" UId="1550" />
+  <NewLine UId="1550" />
   <Blank Num="4" UId="1551" />
   <Token Text="END_CASE" UId="1552" />
   <Token Text=";" UId="1553" />
-  <NewLine Num="1" UId="1554" />
+  <NewLine UId="1554" />
   <Blank Num="4" UId="1555" />
-  <NewLine Num="1" UId="1556" />
+  <NewLine UId="1556" />
   <Blank Num="4" UId="1557" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1558">
+  <LineComment UId="1558">
     <Text UId="1559"> reset flags after write</Text>
   </LineComment>
-  <NewLine Num="1" UId="1560" />
+  <NewLine UId="1560" />
   <Blank Num="4" UId="1561" />
   <Access Scope="GlobalVariable" UId="1562">
     <Symbol UId="1563">
@@ -2041,16 +1990,16 @@
       <Component Name="ConfirmDialogActive" UId="1569" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1570" />
+  <Blank UId="1570" />
   <Token Text=":=" UId="1571" />
-  <Blank Num="1" UId="1572" />
+  <Blank UId="1572" />
   <Access Scope="LiteralConstant" UId="1573">
     <Constant UId="1574">
       <ConstantValue UId="1576">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="1577" />
-  <NewLine Num="1" UId="1578" />
+  <NewLine UId="1578" />
   <Blank Num="4" UId="1579" />
   <Access Scope="GlobalVariable" UId="1580">
     <Symbol UId="1581">
@@ -2063,16 +2012,16 @@
       <Component Name="ChangePending" UId="1587" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1588" />
+  <Blank UId="1588" />
   <Token Text=":=" UId="1589" />
-  <Blank Num="1" UId="1590" />
+  <Blank UId="1590" />
   <Access Scope="LiteralConstant" UId="1591">
     <Constant UId="1592">
       <ConstantValue UId="1594">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="1595" />
-  <NewLine Num="1" UId="1596" />
+  <NewLine UId="1596" />
   <Blank Num="4" UId="1597" />
   <Access Scope="GlobalVariable" UId="1598">
     <Symbol UId="1599">
@@ -2085,16 +2034,16 @@
       <Component Name="FinalConfirm_Write" UId="1605" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1606" />
+  <Blank UId="1606" />
   <Token Text=":=" UId="1607" />
-  <Blank Num="1" UId="1608" />
+  <Blank UId="1608" />
   <Access Scope="LiteralConstant" UId="1609">
     <Constant UId="1610">
       <ConstantValue UId="1612">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="1613" />
-  <NewLine Num="1" UId="1614" />
+  <NewLine UId="1614" />
   <Blank Num="4" UId="1615" />
   <Access Scope="GlobalVariable" UId="1616">
     <Symbol UId="1617">
@@ -2107,49 +2056,49 @@
       <Component Name="UpdateData_switch" UId="1623" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1624" />
+  <Blank UId="1624" />
   <Token Text=":=" UId="1625" />
-  <Blank Num="1" UId="1626" />
+  <Blank UId="1626" />
   <Access Scope="LiteralConstant" UId="1627">
     <Constant UId="1628">
       <ConstantValue UId="1630">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="1631" />
-  <NewLine Num="1" UId="1632" />
+  <NewLine UId="1632" />
   <Blank Num="2" UId="1633" />
   <Token Text="END_IF" UId="1634" />
   <Token Text=";" UId="1635" />
-  <NewLine Num="1" UId="1636" />
+  <NewLine UId="1636" />
   <Token Text="END_REGION" UId="1637" />
   <NewLine Num="4" UId="1638" />
   <Token Text="REGION" UId="1639" />
-  <Blank Num="1" UId="1640" />
+  <Blank UId="1640" />
   <Text UId="1641">DeleteData</Text>
-  <NewLine Num="1" UId="1642" />
+  <NewLine UId="1642" />
   <Blank Num="2" UId="1643" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1644">
+  <LineComment UId="1644">
     <Text UId="1645"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="1646" />
+  <NewLine UId="1646" />
   <Blank Num="2" UId="1647" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1648">
+  <LineComment UId="1648">
     <Text UId="1649"> EN: Delete selected Record (reset to default struct)</Text>
   </LineComment>
-  <NewLine Num="1" UId="1650" />
+  <NewLine UId="1650" />
   <Blank Num="2" UId="1651" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1652">
+  <LineComment UId="1652">
     <Text UId="1653"> CZ: Smazání záznamu – vynulování struktury</Text>
   </LineComment>
-  <NewLine Num="1" UId="1654" />
+  <NewLine UId="1654" />
   <Blank Num="2" UId="1655" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="1656">
+  <LineComment UId="1656">
     <Text UId="1657"> ---------------------------------------------------------------------------</Text>
   </LineComment>
-  <NewLine Num="1" UId="1658" />
+  <NewLine UId="1658" />
   <Blank Num="2" UId="1659" />
   <Token Text="IF" UId="1660" />
-  <Blank Num="1" UId="1661" />
+  <Blank UId="1661" />
   <Access Scope="GlobalVariable" UId="1662">
     <Symbol UId="1663">
       <Component Name="AutoProcess_HMI" UId="1664">
@@ -2161,9 +2110,9 @@
       <Component Name="DeleteData" UId="1669" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1670" />
+  <Blank UId="1670" />
   <Token Text="AND" UId="1671" />
-  <NewLine Num="1" UId="1672" />
+  <NewLine UId="1672" />
   <Blank Num="4" UId="1673" />
   <Access Scope="GlobalVariable" UId="1674">
     <Symbol UId="1675">
@@ -2176,23 +2125,23 @@
       <Component Name="FinalConfirm_Write" UId="1681" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="1682" />
+  <NewLine UId="1682" />
   <Blank Num="4" UId="1683" />
   <Token Text="THEN" UId="1684" />
-  <NewLine Num="1" UId="1685" />
+  <NewLine UId="1685" />
   <Blank Num="4" UId="1686" />
-  <NewLine Num="1" UId="1687" />
+  <NewLine UId="1687" />
   <Blank Num="4" UId="1688" />
   <Token Text="CASE" UId="1689" />
-  <Blank Num="1" UId="1690" />
+  <Blank UId="1690" />
   <Access Scope="LocalVariable" UId="1691">
     <Symbol UId="1692">
       <Component Name="idx" UId="1693" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1694" />
+  <Blank UId="1694" />
   <Token Text="OF" UId="1695" />
-  <NewLine Num="1" UId="1696" />
+  <NewLine UId="1696" />
   <Blank Num="6" UId="1697" />
   <Access Scope="LiteralConstant" UId="1698">
     <Constant UId="1699">
@@ -2200,7 +2149,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1702" />
-  <NewLine Num="1" UId="1703" />
+  <NewLine UId="1703" />
   <Blank Num="8" UId="1704" />
   <Access Scope="GlobalVariable" UId="1705">
     <Symbol UId="1706">
@@ -2211,16 +2160,16 @@
       <Component Name="A_ScanRotate" UId="1710" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1711" />
+  <Blank UId="1711" />
   <Token Text=":=" UId="1712" />
-  <Blank Num="1" UId="1713" />
+  <Blank UId="1713" />
   <Access Scope="LocalVariable" UId="1714">
     <Symbol UId="1715">
       <Component Name="DefaultData" UId="1716" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1717" />
-  <NewLine Num="1" UId="1718" />
+  <NewLine UId="1718" />
   <Blank Num="6" UId="1719" />
   <Access Scope="LiteralConstant" UId="1720">
     <Constant UId="1721">
@@ -2228,7 +2177,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1724" />
-  <NewLine Num="1" UId="1725" />
+  <NewLine UId="1725" />
   <Blank Num="8" UId="1726" />
   <Access Scope="GlobalVariable" UId="1727">
     <Symbol UId="1728">
@@ -2239,16 +2188,16 @@
       <Component Name="F_Robot1Grip1" UId="1732" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1733" />
+  <Blank UId="1733" />
   <Token Text=":=" UId="1734" />
-  <Blank Num="1" UId="1735" />
+  <Blank UId="1735" />
   <Access Scope="LocalVariable" UId="1736">
     <Symbol UId="1737">
       <Component Name="DefaultData" UId="1738" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1739" />
-  <NewLine Num="1" UId="1740" />
+  <NewLine UId="1740" />
   <Blank Num="6" UId="1741" />
   <Access Scope="LiteralConstant" UId="1742">
     <Constant UId="1743">
@@ -2256,7 +2205,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1746" />
-  <NewLine Num="1" UId="1747" />
+  <NewLine UId="1747" />
   <Blank Num="8" UId="1748" />
   <Access Scope="GlobalVariable" UId="1749">
     <Symbol UId="1750">
@@ -2267,16 +2216,16 @@
       <Component Name="F_Robot1Grip2" UId="1754" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1755" />
+  <Blank UId="1755" />
   <Token Text=":=" UId="1756" />
-  <Blank Num="1" UId="1757" />
+  <Blank UId="1757" />
   <Access Scope="LocalVariable" UId="1758">
     <Symbol UId="1759">
       <Component Name="DefaultData" UId="1760" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1761" />
-  <NewLine Num="1" UId="1762" />
+  <NewLine UId="1762" />
   <Blank Num="6" UId="1763" />
   <Access Scope="LiteralConstant" UId="1764">
     <Constant UId="1765">
@@ -2284,7 +2233,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1768" />
-  <NewLine Num="1" UId="1769" />
+  <NewLine UId="1769" />
   <Blank Num="8" UId="1770" />
   <Access Scope="GlobalVariable" UId="1771">
     <Symbol UId="1772">
@@ -2295,16 +2244,16 @@
       <Component Name="B_Press1" UId="1776" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1777" />
+  <Blank UId="1777" />
   <Token Text=":=" UId="1778" />
-  <Blank Num="1" UId="1779" />
+  <Blank UId="1779" />
   <Access Scope="LocalVariable" UId="1780">
     <Symbol UId="1781">
       <Component Name="DefaultData" UId="1782" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1783" />
-  <NewLine Num="1" UId="1784" />
+  <NewLine UId="1784" />
   <Blank Num="6" UId="1785" />
   <Access Scope="LiteralConstant" UId="1786">
     <Constant UId="1787">
@@ -2312,7 +2261,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1790" />
-  <NewLine Num="1" UId="1791" />
+  <NewLine UId="1791" />
   <Blank Num="8" UId="1792" />
   <Access Scope="GlobalVariable" UId="1793">
     <Symbol UId="1794">
@@ -2323,16 +2272,16 @@
       <Component Name="C_Glue" UId="1798" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1799" />
+  <Blank UId="1799" />
   <Token Text=":=" UId="1800" />
-  <Blank Num="1" UId="1801" />
+  <Blank UId="1801" />
   <Access Scope="LocalVariable" UId="1802">
     <Symbol UId="1803">
       <Component Name="DefaultData" UId="1804" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1805" />
-  <NewLine Num="1" UId="1806" />
+  <NewLine UId="1806" />
   <Blank Num="6" UId="1807" />
   <Access Scope="LiteralConstant" UId="1808">
     <Constant UId="1809">
@@ -2340,7 +2289,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1812" />
-  <NewLine Num="1" UId="1813" />
+  <NewLine UId="1813" />
   <Blank Num="8" UId="1814" />
   <Access Scope="GlobalVariable" UId="1815">
     <Symbol UId="1816">
@@ -2351,16 +2300,16 @@
       <Component Name="F_Robot2Grip1" UId="1820" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1821" />
+  <Blank UId="1821" />
   <Token Text=":=" UId="1822" />
-  <Blank Num="1" UId="1823" />
+  <Blank UId="1823" />
   <Access Scope="LocalVariable" UId="1824">
     <Symbol UId="1825">
       <Component Name="DefaultData" UId="1826" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1827" />
-  <NewLine Num="1" UId="1828" />
+  <NewLine UId="1828" />
   <Blank Num="6" UId="1829" />
   <Access Scope="LiteralConstant" UId="1830">
     <Constant UId="1831">
@@ -2368,7 +2317,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1834" />
-  <NewLine Num="1" UId="1835" />
+  <NewLine UId="1835" />
   <Blank Num="8" UId="1836" />
   <Access Scope="GlobalVariable" UId="1837">
     <Symbol UId="1838">
@@ -2379,16 +2328,16 @@
       <Component Name="F_Robot2Grip2" UId="1842" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1843" />
+  <Blank UId="1843" />
   <Token Text=":=" UId="1844" />
-  <Blank Num="1" UId="1845" />
+  <Blank UId="1845" />
   <Access Scope="LocalVariable" UId="1846">
     <Symbol UId="1847">
       <Component Name="DefaultData" UId="1848" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1849" />
-  <NewLine Num="1" UId="1850" />
+  <NewLine UId="1850" />
   <Blank Num="6" UId="1851" />
   <Access Scope="LiteralConstant" UId="1852">
     <Constant UId="1853">
@@ -2396,7 +2345,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1856" />
-  <NewLine Num="1" UId="1857" />
+  <NewLine UId="1857" />
   <Blank Num="8" UId="1858" />
   <Access Scope="GlobalVariable" UId="1859">
     <Symbol UId="1860">
@@ -2407,16 +2356,16 @@
       <Component Name="C_GlueNGBuffer" UId="1864" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1865" />
+  <Blank UId="1865" />
   <Token Text=":=" UId="1866" />
-  <Blank Num="1" UId="1867" />
+  <Blank UId="1867" />
   <Access Scope="LocalVariable" UId="1868">
     <Symbol UId="1869">
       <Component Name="DefaultData" UId="1870" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1871" />
-  <NewLine Num="1" UId="1872" />
+  <NewLine UId="1872" />
   <Blank Num="6" UId="1873" />
   <Access Scope="LiteralConstant" UId="1874">
     <Constant UId="1875">
@@ -2424,7 +2373,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1878" />
-  <NewLine Num="1" UId="1879" />
+  <NewLine UId="1879" />
   <Blank Num="8" UId="1880" />
   <Access Scope="GlobalVariable" UId="1881">
     <Symbol UId="1882">
@@ -2435,16 +2384,16 @@
       <Component Name="C_MagnScanNGBuffer" UId="1886" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1887" />
+  <Blank UId="1887" />
   <Token Text=":=" UId="1888" />
-  <Blank Num="1" UId="1889" />
+  <Blank UId="1889" />
   <Access Scope="LocalVariable" UId="1890">
     <Symbol UId="1891">
       <Component Name="DefaultData" UId="1892" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1893" />
-  <NewLine Num="1" UId="1894" />
+  <NewLine UId="1894" />
   <Blank Num="6" UId="1895" />
   <Access Scope="LiteralConstant" UId="1896">
     <Constant UId="1897">
@@ -2452,7 +2401,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1900" />
-  <NewLine Num="1" UId="1901" />
+  <NewLine UId="1901" />
   <Blank Num="8" UId="1902" />
   <Access Scope="GlobalVariable" UId="1903">
     <Symbol UId="1904">
@@ -2463,16 +2412,16 @@
       <Component Name="B_Press2" UId="1908" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1909" />
+  <Blank UId="1909" />
   <Token Text=":=" UId="1910" />
-  <Blank Num="1" UId="1911" />
+  <Blank UId="1911" />
   <Access Scope="LocalVariable" UId="1912">
     <Symbol UId="1913">
       <Component Name="DefaultData" UId="1914" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1915" />
-  <NewLine Num="1" UId="1916" />
+  <NewLine UId="1916" />
   <Blank Num="6" UId="1917" />
   <Access Scope="LiteralConstant" UId="1918">
     <Constant UId="1919">
@@ -2480,7 +2429,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1922" />
-  <NewLine Num="1" UId="1923" />
+  <NewLine UId="1923" />
   <Blank Num="8" UId="1924" />
   <Access Scope="GlobalVariable" UId="1925">
     <Symbol UId="1926">
@@ -2491,16 +2440,16 @@
       <Component Name="F_Robot3Grip1" UId="1930" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1931" />
+  <Blank UId="1931" />
   <Token Text=":=" UId="1932" />
-  <Blank Num="1" UId="1933" />
+  <Blank UId="1933" />
   <Access Scope="LocalVariable" UId="1934">
     <Symbol UId="1935">
       <Component Name="DefaultData" UId="1936" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1937" />
-  <NewLine Num="1" UId="1938" />
+  <NewLine UId="1938" />
   <Blank Num="6" UId="1939" />
   <Access Scope="LiteralConstant" UId="1940">
     <Constant UId="1941">
@@ -2508,7 +2457,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1944" />
-  <NewLine Num="1" UId="1945" />
+  <NewLine UId="1945" />
   <Blank Num="8" UId="1946" />
   <Access Scope="GlobalVariable" UId="1947">
     <Symbol UId="1948">
@@ -2519,16 +2468,16 @@
       <Component Name="F_Robot3Grip2" UId="1952" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1953" />
+  <Blank UId="1953" />
   <Token Text=":=" UId="1954" />
-  <Blank Num="1" UId="1955" />
+  <Blank UId="1955" />
   <Access Scope="LocalVariable" UId="1956">
     <Symbol UId="1957">
       <Component Name="DefaultData" UId="1958" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1959" />
-  <NewLine Num="1" UId="1960" />
+  <NewLine UId="1960" />
   <Blank Num="6" UId="1961" />
   <Access Scope="LiteralConstant" UId="1962">
     <Constant UId="1963">
@@ -2536,7 +2485,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1966" />
-  <NewLine Num="1" UId="1967" />
+  <NewLine UId="1967" />
   <Blank Num="8" UId="1968" />
   <Access Scope="GlobalVariable" UId="1969">
     <Symbol UId="1970">
@@ -2547,16 +2496,16 @@
       <Component Name="H_ShafeLine" UId="1974" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1975" />
+  <Blank UId="1975" />
   <Token Text=":=" UId="1976" />
-  <Blank Num="1" UId="1977" />
+  <Blank UId="1977" />
   <Access Scope="LocalVariable" UId="1978">
     <Symbol UId="1979">
       <Component Name="DefaultData" UId="1980" />
     </Symbol>
   </Access>
   <Token Text=";" UId="1981" />
-  <NewLine Num="1" UId="1982" />
+  <NewLine UId="1982" />
   <Blank Num="6" UId="1983" />
   <Access Scope="LiteralConstant" UId="1984">
     <Constant UId="1985">
@@ -2564,7 +2513,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="1988" />
-  <NewLine Num="1" UId="1989" />
+  <NewLine UId="1989" />
   <Blank Num="8" UId="1990" />
   <Access Scope="GlobalVariable" UId="1991">
     <Symbol UId="1992">
@@ -2575,16 +2524,16 @@
       <Component Name="J_MagnetBelt" UId="1996" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="1997" />
+  <Blank UId="1997" />
   <Token Text=":=" UId="1998" />
-  <Blank Num="1" UId="1999" />
+  <Blank UId="1999" />
   <Access Scope="LocalVariable" UId="2000">
     <Symbol UId="2001">
       <Component Name="DefaultData" UId="2002" />
     </Symbol>
   </Access>
   <Token Text=";" UId="2003" />
-  <NewLine Num="1" UId="2004" />
+  <NewLine UId="2004" />
   <Blank Num="6" UId="2005" />
   <Access Scope="LiteralConstant" UId="2006">
     <Constant UId="2007">
@@ -2592,7 +2541,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="2010" />
-  <NewLine Num="1" UId="2011" />
+  <NewLine UId="2011" />
   <Blank Num="8" UId="2012" />
   <Access Scope="GlobalVariable" UId="2013">
     <Symbol UId="2014">
@@ -2603,16 +2552,16 @@
       <Component Name="K_ReserveBelt" UId="2018" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2019" />
+  <Blank UId="2019" />
   <Token Text=":=" UId="2020" />
-  <Blank Num="1" UId="2021" />
+  <Blank UId="2021" />
   <Access Scope="LocalVariable" UId="2022">
     <Symbol UId="2023">
       <Component Name="DefaultData" UId="2024" />
     </Symbol>
   </Access>
   <Token Text=";" UId="2025" />
-  <NewLine Num="1" UId="2026" />
+  <NewLine UId="2026" />
   <Blank Num="6" UId="2027" />
   <Access Scope="LiteralConstant" UId="2028">
     <Constant UId="2029">
@@ -2620,7 +2569,7 @@
     </Constant>
   </Access>
   <Token Text=":" UId="2032" />
-  <NewLine Num="1" UId="2033" />
+  <NewLine UId="2033" />
   <Blank Num="8" UId="2034" />
   <Access Scope="GlobalVariable" UId="2035">
     <Symbol UId="2036">
@@ -2631,33 +2580,33 @@
       <Component Name="L_UnloadBelt" UId="2040" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2041" />
+  <Blank UId="2041" />
   <Token Text=":=" UId="2042" />
-  <Blank Num="1" UId="2043" />
+  <Blank UId="2043" />
   <Access Scope="LocalVariable" UId="2044">
     <Symbol UId="2045">
       <Component Name="DefaultData" UId="2046" />
     </Symbol>
   </Access>
   <Token Text=";" UId="2047" />
-  <NewLine Num="1" UId="2048" />
+  <NewLine UId="2048" />
   <Blank Num="6" UId="2049" />
   <Token Text="ELSE" UId="2050" />
-  <NewLine Num="1" UId="2051" />
+  <NewLine UId="2051" />
   <Blank Num="8" UId="2052" />
   <Token Text=";" UId="2053" />
-  <NewLine Num="1" UId="2054" />
+  <NewLine UId="2054" />
   <Blank Num="4" UId="2055" />
   <Token Text="END_CASE" UId="2056" />
   <Token Text=";" UId="2057" />
-  <NewLine Num="1" UId="2058" />
+  <NewLine UId="2058" />
   <Blank Num="4" UId="2059" />
-  <NewLine Num="1" UId="2060" />
+  <NewLine UId="2060" />
   <Blank Num="4" UId="2061" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2062">
+  <LineComment UId="2062">
     <Text UId="2063"> reset delete + editing states</Text>
   </LineComment>
-  <NewLine Num="1" UId="2064" />
+  <NewLine UId="2064" />
   <Blank Num="4" UId="2065" />
   <Access Scope="GlobalVariable" UId="2066">
     <Symbol UId="2067">
@@ -2670,16 +2619,16 @@
       <Component Name="DeleteData" UId="2073" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2074" />
+  <Blank UId="2074" />
   <Token Text=":=" UId="2075" />
-  <Blank Num="1" UId="2076" />
+  <Blank UId="2076" />
   <Access Scope="LiteralConstant" UId="2077">
     <Constant UId="2078">
       <ConstantValue UId="2080">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2081" />
-  <NewLine Num="1" UId="2082" />
+  <NewLine UId="2082" />
   <Blank Num="4" UId="2083" />
   <Access Scope="GlobalVariable" UId="2084">
     <Symbol UId="2085">
@@ -2692,16 +2641,16 @@
       <Component Name="UpdateData_switch" UId="2091" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2092" />
+  <Blank UId="2092" />
   <Token Text=":=" UId="2093" />
-  <Blank Num="1" UId="2094" />
+  <Blank UId="2094" />
   <Access Scope="LiteralConstant" UId="2095">
     <Constant UId="2096">
       <ConstantValue UId="2098">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2099" />
-  <NewLine Num="1" UId="2100" />
+  <NewLine UId="2100" />
   <Blank Num="4" UId="2101" />
   <Access Scope="GlobalVariable" UId="2102">
     <Symbol UId="2103">
@@ -2714,16 +2663,16 @@
       <Component Name="UpdateData_Confirm" UId="2109" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2110" />
+  <Blank UId="2110" />
   <Token Text=":=" UId="2111" />
-  <Blank Num="1" UId="2112" />
+  <Blank UId="2112" />
   <Access Scope="LiteralConstant" UId="2113">
     <Constant UId="2114">
       <ConstantValue UId="2116">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2117" />
-  <NewLine Num="1" UId="2118" />
+  <NewLine UId="2118" />
   <Blank Num="4" UId="2119" />
   <Access Scope="GlobalVariable" UId="2120">
     <Symbol UId="2121">
@@ -2736,16 +2685,16 @@
       <Component Name="FinalConfirm_Write" UId="2127" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2128" />
+  <Blank UId="2128" />
   <Token Text=":=" UId="2129" />
-  <Blank Num="1" UId="2130" />
+  <Blank UId="2130" />
   <Access Scope="LiteralConstant" UId="2131">
     <Constant UId="2132">
       <ConstantValue UId="2134">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2135" />
-  <NewLine Num="1" UId="2136" />
+  <NewLine UId="2136" />
   <Blank Num="4" UId="2137" />
   <Access Scope="GlobalVariable" UId="2138">
     <Symbol UId="2139">
@@ -2758,16 +2707,16 @@
       <Component Name="ConfirmDialogActive" UId="2145" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2146" />
+  <Blank UId="2146" />
   <Token Text=":=" UId="2147" />
-  <Blank Num="1" UId="2148" />
+  <Blank UId="2148" />
   <Access Scope="LiteralConstant" UId="2149">
     <Constant UId="2150">
       <ConstantValue UId="2152">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2153" />
-  <NewLine Num="1" UId="2154" />
+  <NewLine UId="2154" />
   <Blank Num="4" UId="2155" />
   <Access Scope="GlobalVariable" UId="2156">
     <Symbol UId="2157">
@@ -2780,43 +2729,43 @@
       <Component Name="ChangePending" UId="2163" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2164" />
+  <Blank UId="2164" />
   <Token Text=":=" UId="2165" />
-  <Blank Num="1" UId="2166" />
+  <Blank UId="2166" />
   <Access Scope="LiteralConstant" UId="2167">
     <Constant UId="2168">
       <ConstantValue UId="2170">FALSE</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2171" />
-  <NewLine Num="1" UId="2172" />
+  <NewLine UId="2172" />
   <Blank Num="2" UId="2173" />
   <Token Text="END_IF" UId="2174" />
   <Token Text=";" UId="2175" />
-  <NewLine Num="1" UId="2176" />
+  <NewLine UId="2176" />
   <Token Text="END_REGION" UId="2177" />
   <NewLine Num="2" UId="2178" />
   <Token Text="REGION" UId="2179" />
-  <Blank Num="1" UId="2180" />
+  <Blank UId="2180" />
   <Text UId="2181">StationProductIcons</Text>
-  <NewLine Num="1" UId="2182" />
+  <NewLine UId="2182" />
   <Blank Num="2" UId="2183" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2184">
+  <LineComment UId="2184">
     <Text UId="2185"> EN: Set icon bits if station contains product (PartStatus &lt;&gt; 0)</Text>
   </LineComment>
-  <NewLine Num="1" UId="2186" />
+  <NewLine UId="2186" />
   <Blank Num="2" UId="2187" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2188">
+  <LineComment UId="2188">
     <Text UId="2189"> CZ: Nastavení bitů ikony – stanice má kus, pokud PartStatus &lt;&gt; 0</Text>
   </LineComment>
-  <NewLine Num="1" UId="2190" />
+  <NewLine UId="2190" />
   <Blank Num="2" UId="2191" />
-  <NewLine Num="1" UId="2192" />
+  <NewLine UId="2192" />
   <Blank Num="2" UId="2193" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2194">
+  <LineComment UId="2194">
     <Text UId="2195"> 1 – A_ScanRotate</Text>
   </LineComment>
-  <NewLine Num="1" UId="2196" />
+  <NewLine UId="2196" />
   <Blank Num="2" UId="2197" />
   <Access Scope="GlobalVariable" UId="2198">
     <Symbol UId="2199">
@@ -2835,9 +2784,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2210" />
+  <Blank UId="2210" />
   <Token Text=":=" UId="2211" />
-  <NewLine Num="1" UId="2212" />
+  <NewLine UId="2212" />
   <Blank Num="2" UId="2213" />
   <Access Scope="GlobalVariable" UId="2214">
     <Symbol UId="2215">
@@ -2850,23 +2799,23 @@
       <Component Name="PartStatus" UId="2221" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2222" />
+  <Blank UId="2222" />
   <Token Text="&lt;&gt;" UId="2223" />
-  <Blank Num="1" UId="2224" />
+  <Blank UId="2224" />
   <Access Scope="LiteralConstant" UId="2225">
     <Constant UId="2226">
       <ConstantValue UId="2228">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2229" />
-  <NewLine Num="1" UId="2230" />
+  <NewLine UId="2230" />
   <Blank Num="2" UId="2231" />
-  <NewLine Num="1" UId="2232" />
+  <NewLine UId="2232" />
   <Blank Num="2" UId="2233" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2234">
+  <LineComment UId="2234">
     <Text UId="2235"> 2 – F_Robot1Grip1</Text>
   </LineComment>
-  <NewLine Num="1" UId="2236" />
+  <NewLine UId="2236" />
   <Blank Num="2" UId="2237" />
   <Access Scope="GlobalVariable" UId="2238">
     <Symbol UId="2239">
@@ -2885,9 +2834,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2250" />
+  <Blank UId="2250" />
   <Token Text=":=" UId="2251" />
-  <NewLine Num="1" UId="2252" />
+  <NewLine UId="2252" />
   <Blank Num="2" UId="2253" />
   <Access Scope="GlobalVariable" UId="2254">
     <Symbol UId="2255">
@@ -2900,23 +2849,23 @@
       <Component Name="PartStatus" UId="2261" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2262" />
+  <Blank UId="2262" />
   <Token Text="&lt;&gt;" UId="2263" />
-  <Blank Num="1" UId="2264" />
+  <Blank UId="2264" />
   <Access Scope="LiteralConstant" UId="2265">
     <Constant UId="2266">
       <ConstantValue UId="2268">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2269" />
-  <NewLine Num="1" UId="2270" />
+  <NewLine UId="2270" />
   <Blank Num="2" UId="2271" />
-  <NewLine Num="1" UId="2272" />
+  <NewLine UId="2272" />
   <Blank Num="2" UId="2273" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2274">
+  <LineComment UId="2274">
     <Text UId="2275"> 3 – F_Robot1Grip2</Text>
   </LineComment>
-  <NewLine Num="1" UId="2276" />
+  <NewLine UId="2276" />
   <Blank Num="2" UId="2277" />
   <Access Scope="GlobalVariable" UId="2278">
     <Symbol UId="2279">
@@ -2935,9 +2884,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2290" />
+  <Blank UId="2290" />
   <Token Text=":=" UId="2291" />
-  <NewLine Num="1" UId="2292" />
+  <NewLine UId="2292" />
   <Blank Num="2" UId="2293" />
   <Access Scope="GlobalVariable" UId="2294">
     <Symbol UId="2295">
@@ -2950,23 +2899,23 @@
       <Component Name="PartStatus" UId="2301" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2302" />
+  <Blank UId="2302" />
   <Token Text="&lt;&gt;" UId="2303" />
-  <Blank Num="1" UId="2304" />
+  <Blank UId="2304" />
   <Access Scope="LiteralConstant" UId="2305">
     <Constant UId="2306">
       <ConstantValue UId="2308">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2309" />
-  <NewLine Num="1" UId="2310" />
+  <NewLine UId="2310" />
   <Blank Num="2" UId="2311" />
-  <NewLine Num="1" UId="2312" />
+  <NewLine UId="2312" />
   <Blank Num="2" UId="2313" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2314">
+  <LineComment UId="2314">
     <Text UId="2315"> 4 – B_Press1</Text>
   </LineComment>
-  <NewLine Num="1" UId="2316" />
+  <NewLine UId="2316" />
   <Blank Num="2" UId="2317" />
   <Access Scope="GlobalVariable" UId="2318">
     <Symbol UId="2319">
@@ -2985,9 +2934,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2330" />
+  <Blank UId="2330" />
   <Token Text=":=" UId="2331" />
-  <NewLine Num="1" UId="2332" />
+  <NewLine UId="2332" />
   <Blank Num="2" UId="2333" />
   <Access Scope="GlobalVariable" UId="2334">
     <Symbol UId="2335">
@@ -3000,23 +2949,23 @@
       <Component Name="PartStatus" UId="2341" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2342" />
+  <Blank UId="2342" />
   <Token Text="&lt;&gt;" UId="2343" />
-  <Blank Num="1" UId="2344" />
+  <Blank UId="2344" />
   <Access Scope="LiteralConstant" UId="2345">
     <Constant UId="2346">
       <ConstantValue UId="2348">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2349" />
-  <NewLine Num="1" UId="2350" />
+  <NewLine UId="2350" />
   <Blank Num="2" UId="2351" />
-  <NewLine Num="1" UId="2352" />
+  <NewLine UId="2352" />
   <Blank Num="2" UId="2353" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2354">
+  <LineComment UId="2354">
     <Text UId="2355"> 5 – C_Glue</Text>
   </LineComment>
-  <NewLine Num="1" UId="2356" />
+  <NewLine UId="2356" />
   <Blank Num="2" UId="2357" />
   <Access Scope="GlobalVariable" UId="2358">
     <Symbol UId="2359">
@@ -3035,9 +2984,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2370" />
+  <Blank UId="2370" />
   <Token Text=":=" UId="2371" />
-  <NewLine Num="1" UId="2372" />
+  <NewLine UId="2372" />
   <Blank Num="2" UId="2373" />
   <Access Scope="GlobalVariable" UId="2374">
     <Symbol UId="2375">
@@ -3050,23 +2999,23 @@
       <Component Name="PartStatus" UId="2381" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2382" />
+  <Blank UId="2382" />
   <Token Text="&lt;&gt;" UId="2383" />
-  <Blank Num="1" UId="2384" />
+  <Blank UId="2384" />
   <Access Scope="LiteralConstant" UId="2385">
     <Constant UId="2386">
       <ConstantValue UId="2388">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2389" />
-  <NewLine Num="1" UId="2390" />
+  <NewLine UId="2390" />
   <Blank Num="2" UId="2391" />
-  <NewLine Num="1" UId="2392" />
+  <NewLine UId="2392" />
   <Blank Num="2" UId="2393" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2394">
+  <LineComment UId="2394">
     <Text UId="2395"> 6 – F_Robot2Grip1</Text>
   </LineComment>
-  <NewLine Num="1" UId="2396" />
+  <NewLine UId="2396" />
   <Blank Num="2" UId="2397" />
   <Access Scope="GlobalVariable" UId="2398">
     <Symbol UId="2399">
@@ -3085,9 +3034,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2410" />
+  <Blank UId="2410" />
   <Token Text=":=" UId="2411" />
-  <NewLine Num="1" UId="2412" />
+  <NewLine UId="2412" />
   <Blank Num="2" UId="2413" />
   <Access Scope="GlobalVariable" UId="2414">
     <Symbol UId="2415">
@@ -3100,23 +3049,23 @@
       <Component Name="PartStatus" UId="2421" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2422" />
+  <Blank UId="2422" />
   <Token Text="&lt;&gt;" UId="2423" />
-  <Blank Num="1" UId="2424" />
+  <Blank UId="2424" />
   <Access Scope="LiteralConstant" UId="2425">
     <Constant UId="2426">
       <ConstantValue UId="2428">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2429" />
-  <NewLine Num="1" UId="2430" />
+  <NewLine UId="2430" />
   <Blank Num="2" UId="2431" />
-  <NewLine Num="1" UId="2432" />
+  <NewLine UId="2432" />
   <Blank Num="2" UId="2433" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2434">
+  <LineComment UId="2434">
     <Text UId="2435"> 7 – F_Robot2Grip2</Text>
   </LineComment>
-  <NewLine Num="1" UId="2436" />
+  <NewLine UId="2436" />
   <Blank Num="2" UId="2437" />
   <Access Scope="GlobalVariable" UId="2438">
     <Symbol UId="2439">
@@ -3135,9 +3084,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2450" />
+  <Blank UId="2450" />
   <Token Text=":=" UId="2451" />
-  <NewLine Num="1" UId="2452" />
+  <NewLine UId="2452" />
   <Blank Num="2" UId="2453" />
   <Access Scope="GlobalVariable" UId="2454">
     <Symbol UId="2455">
@@ -3150,23 +3099,23 @@
       <Component Name="PartStatus" UId="2461" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2462" />
+  <Blank UId="2462" />
   <Token Text="&lt;&gt;" UId="2463" />
-  <Blank Num="1" UId="2464" />
+  <Blank UId="2464" />
   <Access Scope="LiteralConstant" UId="2465">
     <Constant UId="2466">
       <ConstantValue UId="2468">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2469" />
-  <NewLine Num="1" UId="2470" />
+  <NewLine UId="2470" />
   <Blank Num="2" UId="2471" />
-  <NewLine Num="1" UId="2472" />
+  <NewLine UId="2472" />
   <Blank Num="2" UId="2473" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2474">
+  <LineComment UId="2474">
     <Text UId="2475"> 8 – C_GlueNGBuffer</Text>
   </LineComment>
-  <NewLine Num="1" UId="2476" />
+  <NewLine UId="2476" />
   <Blank Num="2" UId="2477" />
   <Access Scope="GlobalVariable" UId="2478">
     <Symbol UId="2479">
@@ -3185,9 +3134,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2490" />
+  <Blank UId="2490" />
   <Token Text=":=" UId="2491" />
-  <NewLine Num="1" UId="2492" />
+  <NewLine UId="2492" />
   <Blank Num="2" UId="2493" />
   <Access Scope="GlobalVariable" UId="2494">
     <Symbol UId="2495">
@@ -3200,23 +3149,23 @@
       <Component Name="PartStatus" UId="2501" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2502" />
+  <Blank UId="2502" />
   <Token Text="&lt;&gt;" UId="2503" />
-  <Blank Num="1" UId="2504" />
+  <Blank UId="2504" />
   <Access Scope="LiteralConstant" UId="2505">
     <Constant UId="2506">
       <ConstantValue UId="2508">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2509" />
-  <NewLine Num="1" UId="2510" />
+  <NewLine UId="2510" />
   <Blank Num="2" UId="2511" />
-  <NewLine Num="1" UId="2512" />
+  <NewLine UId="2512" />
   <Blank Num="2" UId="2513" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2514">
+  <LineComment UId="2514">
     <Text UId="2515"> 9 – C_MagnScanNGBuffer</Text>
   </LineComment>
-  <NewLine Num="1" UId="2516" />
+  <NewLine UId="2516" />
   <Blank Num="2" UId="2517" />
   <Access Scope="GlobalVariable" UId="2518">
     <Symbol UId="2519">
@@ -3235,9 +3184,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2530" />
+  <Blank UId="2530" />
   <Token Text=":=" UId="2531" />
-  <NewLine Num="1" UId="2532" />
+  <NewLine UId="2532" />
   <Blank Num="2" UId="2533" />
   <Access Scope="GlobalVariable" UId="2534">
     <Symbol UId="2535">
@@ -3250,23 +3199,23 @@
       <Component Name="PartStatus" UId="2541" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2542" />
+  <Blank UId="2542" />
   <Token Text="&lt;&gt;" UId="2543" />
-  <Blank Num="1" UId="2544" />
+  <Blank UId="2544" />
   <Access Scope="LiteralConstant" UId="2545">
     <Constant UId="2546">
       <ConstantValue UId="2548">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2549" />
-  <NewLine Num="1" UId="2550" />
+  <NewLine UId="2550" />
   <Blank Num="2" UId="2551" />
-  <NewLine Num="1" UId="2552" />
+  <NewLine UId="2552" />
   <Blank Num="2" UId="2553" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2554">
+  <LineComment UId="2554">
     <Text UId="2555"> 10 – B_Press2</Text>
   </LineComment>
-  <NewLine Num="1" UId="2556" />
+  <NewLine UId="2556" />
   <Blank Num="2" UId="2557" />
   <Access Scope="GlobalVariable" UId="2558">
     <Symbol UId="2559">
@@ -3285,9 +3234,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2570" />
+  <Blank UId="2570" />
   <Token Text=":=" UId="2571" />
-  <NewLine Num="1" UId="2572" />
+  <NewLine UId="2572" />
   <Blank Num="2" UId="2573" />
   <Access Scope="GlobalVariable" UId="2574">
     <Symbol UId="2575">
@@ -3300,23 +3249,23 @@
       <Component Name="PartStatus" UId="2581" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2582" />
+  <Blank UId="2582" />
   <Token Text="&lt;&gt;" UId="2583" />
-  <Blank Num="1" UId="2584" />
+  <Blank UId="2584" />
   <Access Scope="LiteralConstant" UId="2585">
     <Constant UId="2586">
       <ConstantValue UId="2588">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2589" />
-  <NewLine Num="1" UId="2590" />
+  <NewLine UId="2590" />
   <Blank Num="2" UId="2591" />
-  <NewLine Num="1" UId="2592" />
+  <NewLine UId="2592" />
   <Blank Num="2" UId="2593" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2594">
+  <LineComment UId="2594">
     <Text UId="2595"> 11 – F_Robot3Grip1</Text>
   </LineComment>
-  <NewLine Num="1" UId="2596" />
+  <NewLine UId="2596" />
   <Blank Num="2" UId="2597" />
   <Access Scope="GlobalVariable" UId="2598">
     <Symbol UId="2599">
@@ -3335,9 +3284,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2610" />
+  <Blank UId="2610" />
   <Token Text=":=" UId="2611" />
-  <NewLine Num="1" UId="2612" />
+  <NewLine UId="2612" />
   <Blank Num="2" UId="2613" />
   <Access Scope="GlobalVariable" UId="2614">
     <Symbol UId="2615">
@@ -3350,23 +3299,23 @@
       <Component Name="PartStatus" UId="2621" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2622" />
+  <Blank UId="2622" />
   <Token Text="&lt;&gt;" UId="2623" />
-  <Blank Num="1" UId="2624" />
+  <Blank UId="2624" />
   <Access Scope="LiteralConstant" UId="2625">
     <Constant UId="2626">
       <ConstantValue UId="2628">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2629" />
-  <NewLine Num="1" UId="2630" />
+  <NewLine UId="2630" />
   <Blank Num="2" UId="2631" />
-  <NewLine Num="1" UId="2632" />
+  <NewLine UId="2632" />
   <Blank Num="2" UId="2633" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2634">
+  <LineComment UId="2634">
     <Text UId="2635"> 12 – F_Robot3Grip2</Text>
   </LineComment>
-  <NewLine Num="1" UId="2636" />
+  <NewLine UId="2636" />
   <Blank Num="2" UId="2637" />
   <Access Scope="GlobalVariable" UId="2638">
     <Symbol UId="2639">
@@ -3385,9 +3334,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2650" />
+  <Blank UId="2650" />
   <Token Text=":=" UId="2651" />
-  <NewLine Num="1" UId="2652" />
+  <NewLine UId="2652" />
   <Blank Num="2" UId="2653" />
   <Access Scope="GlobalVariable" UId="2654">
     <Symbol UId="2655">
@@ -3400,23 +3349,23 @@
       <Component Name="PartStatus" UId="2661" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2662" />
+  <Blank UId="2662" />
   <Token Text="&lt;&gt;" UId="2663" />
-  <Blank Num="1" UId="2664" />
+  <Blank UId="2664" />
   <Access Scope="LiteralConstant" UId="2665">
     <Constant UId="2666">
       <ConstantValue UId="2668">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2669" />
-  <NewLine Num="1" UId="2670" />
+  <NewLine UId="2670" />
   <Blank Num="2" UId="2671" />
-  <NewLine Num="1" UId="2672" />
+  <NewLine UId="2672" />
   <Blank Num="2" UId="2673" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2674">
+  <LineComment UId="2674">
     <Text UId="2675"> 13 – H_ShafeLine</Text>
   </LineComment>
-  <NewLine Num="1" UId="2676" />
+  <NewLine UId="2676" />
   <Blank Num="2" UId="2677" />
   <Access Scope="GlobalVariable" UId="2678">
     <Symbol UId="2679">
@@ -3435,9 +3384,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2690" />
+  <Blank UId="2690" />
   <Token Text=":=" UId="2691" />
-  <NewLine Num="1" UId="2692" />
+  <NewLine UId="2692" />
   <Blank Num="2" UId="2693" />
   <Access Scope="GlobalVariable" UId="2694">
     <Symbol UId="2695">
@@ -3450,23 +3399,23 @@
       <Component Name="PartStatus" UId="2701" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2702" />
+  <Blank UId="2702" />
   <Token Text="&lt;&gt;" UId="2703" />
-  <Blank Num="1" UId="2704" />
+  <Blank UId="2704" />
   <Access Scope="LiteralConstant" UId="2705">
     <Constant UId="2706">
       <ConstantValue UId="2708">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2709" />
-  <NewLine Num="1" UId="2710" />
+  <NewLine UId="2710" />
   <Blank Num="2" UId="2711" />
-  <NewLine Num="1" UId="2712" />
+  <NewLine UId="2712" />
   <Blank Num="2" UId="2713" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2714">
+  <LineComment UId="2714">
     <Text UId="2715"> 14 – J_ShafeLine</Text>
   </LineComment>
-  <NewLine Num="1" UId="2716" />
+  <NewLine UId="2716" />
   <Blank Num="2" UId="2717" />
   <Access Scope="GlobalVariable" UId="2718">
     <Symbol UId="2719">
@@ -3485,9 +3434,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2730" />
+  <Blank UId="2730" />
   <Token Text=":=" UId="2731" />
-  <NewLine Num="1" UId="2732" />
+  <NewLine UId="2732" />
   <Blank Num="2" UId="2733" />
   <Access Scope="GlobalVariable" UId="2734">
     <Symbol UId="2735">
@@ -3500,23 +3449,23 @@
       <Component Name="PartStatus" UId="2741" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2742" />
+  <Blank UId="2742" />
   <Token Text="&lt;&gt;" UId="2743" />
-  <Blank Num="1" UId="2744" />
+  <Blank UId="2744" />
   <Access Scope="LiteralConstant" UId="2745">
     <Constant UId="2746">
       <ConstantValue UId="2748">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2749" />
-  <NewLine Num="1" UId="2750" />
+  <NewLine UId="2750" />
   <Blank Num="2" UId="2751" />
-  <NewLine Num="1" UId="2752" />
+  <NewLine UId="2752" />
   <Blank Num="2" UId="2753" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2754">
+  <LineComment UId="2754">
     <Text UId="2755"> 15 – K_ShafeLine</Text>
   </LineComment>
-  <NewLine Num="1" UId="2756" />
+  <NewLine UId="2756" />
   <Blank Num="2" UId="2757" />
   <Access Scope="GlobalVariable" UId="2758">
     <Symbol UId="2759">
@@ -3535,9 +3484,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2770" />
+  <Blank UId="2770" />
   <Token Text=":=" UId="2771" />
-  <NewLine Num="1" UId="2772" />
+  <NewLine UId="2772" />
   <Blank Num="2" UId="2773" />
   <Access Scope="GlobalVariable" UId="2774">
     <Symbol UId="2775">
@@ -3550,23 +3499,23 @@
       <Component Name="PartStatus" UId="2781" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2782" />
+  <Blank UId="2782" />
   <Token Text="&lt;&gt;" UId="2783" />
-  <Blank Num="1" UId="2784" />
+  <Blank UId="2784" />
   <Access Scope="LiteralConstant" UId="2785">
     <Constant UId="2786">
       <ConstantValue UId="2788">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2789" />
-  <NewLine Num="1" UId="2790" />
+  <NewLine UId="2790" />
   <Blank Num="2" UId="2791" />
-  <NewLine Num="1" UId="2792" />
+  <NewLine UId="2792" />
   <Blank Num="2" UId="2793" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="2794">
+  <LineComment UId="2794">
     <Text UId="2795"> 16 – L_ShafeLine</Text>
   </LineComment>
-  <NewLine Num="1" UId="2796" />
+  <NewLine UId="2796" />
   <Blank Num="2" UId="2797" />
   <Access Scope="GlobalVariable" UId="2798">
     <Symbol UId="2799">
@@ -3585,9 +3534,9 @@
       </Component>
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2810" />
+  <Blank UId="2810" />
   <Token Text=":=" UId="2811" />
-  <NewLine Num="1" UId="2812" />
+  <NewLine UId="2812" />
   <Blank Num="2" UId="2813" />
   <Access Scope="GlobalVariable" UId="2814">
     <Symbol UId="2815">
@@ -3600,18 +3549,18 @@
       <Component Name="PartStatus" UId="2821" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="2822" />
+  <Blank UId="2822" />
   <Token Text="&lt;&gt;" UId="2823" />
-  <Blank Num="1" UId="2824" />
+  <Blank UId="2824" />
   <Access Scope="LiteralConstant" UId="2825">
     <Constant UId="2826">
       <ConstantValue UId="2828">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="2829" />
-  <NewLine Num="1" UId="2830" />
+  <NewLine UId="2830" />
   <Blank Num="2" UId="2831" />
-  <NewLine Num="1" UId="2832" />
+  <NewLine UId="2832" />
   <Token Text="END_REGION" UId="2833" />
   <NewLine Num="2" UId="2834" />
 </StructuredText></NetworkSource>

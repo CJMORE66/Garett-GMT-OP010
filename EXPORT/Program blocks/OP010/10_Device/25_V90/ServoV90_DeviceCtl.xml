@@ -4,52 +4,13 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="V90Servo" Datatype="Array[1..4] of Struct" Remanence="Retain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Member Name="i" Datatype="Int">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="nError" Datatype="Int">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
-      <Member Name="nWarning" Datatype="Int">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-      </Member>
+    <Member Name="V90Servo" Datatype="Array[1..4] of Struct" Remanence="Retain">
+      <Member Name="i" Datatype="Int" />
+      <Member Name="nError" Datatype="Int" />
+      <Member Name="nWarning" Datatype="Int" />
       <Member Name="nPositionListNo" Datatype="Int">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
         <Subelement Path="1">
           <StartValue>1</StartValue>
         </Subelement>
@@ -64,12 +25,6 @@
         </Subelement>
       </Member>
       <Member Name="Pos" Datatype="&quot;PosList&quot;">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
         <Sections>
           <Section Name="None">
             <Member Name="List" Datatype="Array[0..39] of Struct">
@@ -221,28 +176,8 @@
         </Sections>
       </Member>
       <Member Name="Point" Datatype="Array[0..39] of Struct">
-        <AttributeList>
-          <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-          <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-        </AttributeList>
-        <Member Name="Start" Datatype="Bool">
-          <AttributeList>
-            <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-            <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-            <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-            <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-          </AttributeList>
-        </Member>
-        <Member Name="Achieve" Datatype="Bool">
-          <AttributeList>
-            <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-            <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-            <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-            <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-          </AttributeList>
-        </Member>
+        <Member Name="Start" Datatype="Bool" />
+        <Member Name="Achieve" Datatype="Bool" />
         <Subelement Path="1,1">
           <Comment>
             <MultiLanguageText Lang="zh-CN">初始位</MultiLanguageText>
@@ -358,8 +293,6 @@
     </Member>
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Standard</MemoryLayout>
       <Name>ServoV90_DeviceCtl</Name>
       <Namespace />

@@ -1,0 +1,2325 @@
+﻿//=============================================================================
+// ST10_Flow27_KReserveLoad_Unload.scl
+// 1:1 CONVERSION FROM TIA PORTAL V18 GRAPH XML
+// Generated: 2026-02-02
+//=============================================================================
+
+TYPE
+    E_STEP_ST10_Flow27_KReserveLoad_Unload : (
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_1 := 118,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Step182 := 182,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_2 := 135,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_8 := 161,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_7 := 171,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_9 := 72,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_10 := 79,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_1 := 154,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Step143 := 143,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay := 25,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_11 := 175,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_1 := 38,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_5 := 137,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_9 := 164,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_1 := 237,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_5 := 56,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_8 := 71,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_6 := 141,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitAllStoperReset := 181,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart_1 := 24,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_11 := 160,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_2 := 122,
+        STEP_ST10_Flow27_KReserveLoad_Unload_F27_Initial := 1,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_1 := 119,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_1 := 142,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_6 := 57,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_9 := 165,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_7 := 64,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_1 := 129,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos := 37,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_6 := 242,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive := 123,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_7 := 179,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_4 := 51,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_4 := 50,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_2 := 41,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_6 := 167,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_14 := 61,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_5 := 151,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_3 := 140,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_8 := 176,
+        STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_2 := 202,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_5 := 55,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_5 := 136,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_2 := 44,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_4 := 131,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_13 := 63,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_9 := 245,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_8 := 159,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_7 := 148,
+        STEP_ST10_Flow27_KReserveLoad_Unload_S10_InitialFinish := 10,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay_1 := 26,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_3 := 127,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease := 36,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_5 := 138,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_11 := 174,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_1 := 128,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_4 := 30,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_10 := 246,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StopProcess := 27,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_6 := 166,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_8 := 244,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_5 := 54,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_1 := 40,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_7 := 67,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_8 := 69,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Step153 := 153,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_11 := 247,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_8 := 70,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_9 := 74,
+        STEP_ST10_Flow27_KReserveLoad_Unload_S4 := 4,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_8 := 180,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_2 := 120,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_3 := 46,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_2 := 134,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_3 := 125,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MiddleNoPallet_ := 81,
+        STEP_ST10_Flow27_KReserveLoad_Unload_S3 := 3,
+        STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_1 := 201,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_8 := 68,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_8 := 177,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart := 23,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset := 116,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_4 := 49,
+        STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_3 := 203,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_3 := 239,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_2 := 43,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_9 := 163,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_6 := 58,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_3 := 156,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_9 := 75,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_4 := 146,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_4 := 52,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_12 := 62,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_5 := 53,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachineMode := 200,
+        STEP_ST10_Flow27_KReserveLoad_Unload_ProcessStart := 100,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_3 := 47,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_6 := 59,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_2 := 121,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_9 := 184,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_1 := 117,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist := 31,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorStop := 132,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_1 := 39,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_6 := 144,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_3 := 45,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMaterialDoorLock := 33,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_10 := 78,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_9 := 183,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_10 := 170,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_10 := 169,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_3 := 126,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun := 34,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_2 := 28,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_2 := 238,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_6 := 178,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_7 := 172,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady := 35,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_5 := 152,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_6 := 60,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_7 := 149,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_9 := 73,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_10 := 77,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_7 := 243,
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun_1 := 80,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_10 := 76,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_5 := 158,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_7 := 150,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_2 := 155,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_4 := 157,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_7 := 66,
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_1 := 32,
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_3 := 29,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_4 := 133,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_10 := 168,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_6 := 145,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_4 := 147,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_11 := 173,
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_8 := 162,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_2 := 42,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_3 := 48,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_7 := 65,
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_4 := 130,
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay := 124,
+        STEP_ST10_Flow27_KReserveLoad_Unload_S2 := 2,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_5 := 241,
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_3 := 139,
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_4 := 240,
+    ) INT := 1;
+END_TYPE
+
+CONST
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_1 := 118;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Step182 := 182;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_2 := 135;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_8 := 161;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_7 := 171;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_9 := 72;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_10 := 79;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_1 := 154;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Step143 := 143;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay := 25;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_11 := 175;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_1 := 38;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_5 := 137;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_9 := 164;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_1 := 237;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_5 := 56;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_8 := 71;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_6 := 141;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitAllStoperReset := 181;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart_1 := 24;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_11 := 160;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_2 := 122;
+    STEP_ST10_Flow27_KReserveLoad_Unload_F27_Initial := 1;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_1 := 119;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_1 := 142;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_6 := 57;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_9 := 165;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_7 := 64;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_1 := 129;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos := 37;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_6 := 242;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive := 123;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_7 := 179;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_4 := 51;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_4 := 50;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_2 := 41;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_6 := 167;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_14 := 61;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_5 := 151;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_3 := 140;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_8 := 176;
+    STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_2 := 202;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_5 := 55;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_5 := 136;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_2 := 44;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_4 := 131;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_13 := 63;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_9 := 245;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_8 := 159;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_7 := 148;
+    STEP_ST10_Flow27_KReserveLoad_Unload_S10_InitialFinish := 10;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay_1 := 26;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_3 := 127;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease := 36;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_5 := 138;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_11 := 174;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_1 := 128;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_4 := 30;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_10 := 246;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StopProcess := 27;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_6 := 166;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_8 := 244;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_5 := 54;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_1 := 40;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_7 := 67;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_8 := 69;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Step153 := 153;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_11 := 247;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_8 := 70;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_9 := 74;
+    STEP_ST10_Flow27_KReserveLoad_Unload_S4 := 4;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_8 := 180;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_2 := 120;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_3 := 46;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_2 := 134;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_3 := 125;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MiddleNoPallet_ := 81;
+    STEP_ST10_Flow27_KReserveLoad_Unload_S3 := 3;
+    STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_1 := 201;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_8 := 68;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_8 := 177;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart := 23;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset := 116;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_4 := 49;
+    STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_3 := 203;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_3 := 239;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_2 := 43;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_9 := 163;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_6 := 58;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_3 := 156;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_9 := 75;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_4 := 146;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_4 := 52;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_12 := 62;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_5 := 53;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachineMode := 200;
+    STEP_ST10_Flow27_KReserveLoad_Unload_ProcessStart := 100;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_3 := 47;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_6 := 59;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_2 := 121;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_9 := 184;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_1 := 117;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist := 31;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MotorStop := 132;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_1 := 39;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_6 := 144;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_3 := 45;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMaterialDoorLock := 33;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_10 := 78;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_9 := 183;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_10 := 170;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_10 := 169;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_3 := 126;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun := 34;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_2 := 28;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_2 := 238;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_6 := 178;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_7 := 172;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady := 35;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_5 := 152;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_6 := 60;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_7 := 149;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_9 := 73;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_10 := 77;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_7 := 243;
+    STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun_1 := 80;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_10 := 76;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_5 := 158;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_7 := 150;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_2 := 155;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_4 := 157;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_7 := 66;
+    STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_1 := 32;
+    STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_3 := 29;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_4 := 133;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_10 := 168;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_6 := 145;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_4 := 147;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_11 := 173;
+    STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_8 := 162;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_2 := 42;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_3 := 48;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_7 := 65;
+    STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_4 := 130;
+    STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay := 124;
+    STEP_ST10_Flow27_KReserveLoad_Unload_S2 := 2;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_5 := 241;
+    STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_3 := 139;
+    STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_4 := 240;
+END_CONST
+
+FUNCTION_BLOCK "ST10_Flow27_KReserveLoad_Unload_1to1"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oAlarmID : Int;
+END_VAR
+
+VAR
+    State : INT := 1;
+    act_InitialRun : Bool;
+    act_InitialOK : Bool;
+    act_WaitRunning : Bool;
+    act_Running : Bool;
+    act_ProcessComplete : Bool;
+    act_ProcessStart : Bool;
+    act_UnPause : Bool;
+    bError : Bool;
+    wErrorID : Word;
+END_VAR
+
+BEGIN
+    //======================================================================
+    // STATE MACHINE - Inline Transition Conditions
+    //======================================================================
+
+    CASE #State OF
+
+        // ===========================================
+        // STEP 118: StoperRelease_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_1:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoHome
+            "ST10Cylinder".Cy[43].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoWork
+            "ST10Cylinder".Cy[43].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 182
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Step182;
+            END_IF;
+
+        // ===========================================
+        // STEP 182: Step182
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Step182:
+            // No actions in XML
+
+            // Transition to next step: 135
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 135: TimeDelay_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_2:
+            // No actions in XML
+
+            // Transition to next step: 161
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 161: StoperReset_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_8:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoHome
+            "ST10Cylinder".Cy[43].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoWork
+            "ST10Cylinder".Cy[43].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 171
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 171: WaitPalletArive_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_7:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.LoadStopRequestPallet_4
+            "AutoProcessControl".Global.K.LoadStopRequestPallet_4;
+
+            // Transition to next step: 72
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 72: CheckPalletExist_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_9:
+            // No actions in XML
+
+            // Transition to next step: 79
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 79: WaitPalletArrveNextPos_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_10:
+            // No actions in XML
+
+            // Transition to next step: 154
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 154: CheckMachine Mode_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_1:
+            // No actions in XML
+
+            // Transition to next step: 143
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Step143;
+            END_IF;
+
+        // ===========================================
+        // STEP 143: Step143
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Step143:
+            // No actions in XML
+
+            // Transition to next step: 25
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay;
+            END_IF;
+
+        // ===========================================
+        // STEP 25: MotorRunDelay
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay:
+            // No actions in XML
+
+            // Transition to next step: 175
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_11;
+            END_IF;
+
+        // ===========================================
+        // STEP 175: StoperRelease_11
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_11:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoHome
+            "ST10Cylinder".Cy[46].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoWork
+            "ST10Cylinder".Cy[46].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 38
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 38: WaitLineMotorReady_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_1:
+            // No actions in XML
+
+            // Transition to next step: 137
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 137: StoperReset_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_5:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[47].Inout.AutoGoHome
+            "ST10Cylinder".Cy[47].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[47].Inout.AutoGoWork
+            "ST10Cylinder".Cy[47].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 164
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 164: StoperReset_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_9:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoHome
+            "ST10Cylinder".Cy[44].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoWork
+            "ST10Cylinder".Cy[44].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 237
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 237: Process Finish_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_1:
+            // No actions in XML
+
+            // Transition to next step: 56
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 56: WaitPalletArrveNextPos_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_5:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 71
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 71: WaitPalletArrveNextPos_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_8:
+            // No actions in XML
+
+            // Transition to next step: 141
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 141: AriveTimeDelay_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_6:
+            // No actions in XML
+
+            // Transition to next step: 181
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitAllStoperReset;
+            END_IF;
+
+        // ===========================================
+        // STEP 181: WaitAllStoperReset
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitAllStoperReset:
+            // No actions in XML
+
+            // Transition to next step: 24
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 24: MotorCWStart_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart_1:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := FALSE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := TRUE;
+
+            // Transition to next step: 160
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_11;
+            END_IF;
+
+        // ===========================================
+        // STEP 160: LoadStop_11
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_11:
+            // No actions in XML
+
+            // Transition to next step: 122
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 122: StoperRelease_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_2:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoHome
+            "ST10Cylinder".Cy[44].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoWork
+            "ST10Cylinder".Cy[44].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 1
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_F27_Initial;
+            END_IF;
+
+        // ===========================================
+        // STEP 1: F27_Initial
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_F27_Initial:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.Running
+            #ioPM_Inface.Running := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.UnPause
+            #ioPM_Inface.UnPause := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Calibration
+            "Station_Sys".Cmd.Calibration := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.ChangeOver
+            "Station_Sys".Cmd.ChangeOver := FALSE;
+            // Action Qualifier=N
+            // Token: //"ST350_Sys".Cmd.DryRun
+            //"ST350_Sys".Cmd.DryRun;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Reserve
+            "Station_Sys".Cmd.Reserve := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.OneCycle
+            "Station_Sys".Cmd.OneCycle := FALSE;
+
+            // Transition to next step: 119
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 119: AriveTimeDelay_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_1:
+            // No actions in XML
+
+            // Transition to next step: 142
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 142: LoadingStop_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_1:
+            // No actions in XML
+
+            // Transition to next step: 57
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 57: CheckPalletExist_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_6:
+            // No actions in XML
+
+            // Transition to next step: 165
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 165: StoperRelease_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_9:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoHome
+            "ST10Cylinder".Cy[44].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoWork
+            "ST10Cylinder".Cy[44].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 64
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 64: CheckPalletExist_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_7:
+            // No actions in XML
+
+            // Transition to next step: 129
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 129: TimeDelay_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_1:
+            // No actions in XML
+
+            // Transition to next step: 37
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos;
+            END_IF;
+
+        // ===========================================
+        // STEP 37: WaitPalletArrveNextPos
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 242
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 242: Process Finish_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_6:
+            // No actions in XML
+
+            // Transition to next step: 123
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive;
+            END_IF;
+
+        // ===========================================
+        // STEP 123: WaitPalletArive
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.LoadStopRequestPallet_1
+            "AutoProcessControl".Global.K.LoadStopRequestPallet_1;
+
+            // Transition to next step: 179
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 179: CheckMachine Mode_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_7:
+            // No actions in XML
+
+            // Transition to next step: 51
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 51: WaitPalletRequestRelease_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_4:
+            // No actions in XML
+
+            // Transition to next step: 50
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 50: WaitLineMotorReady_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_4:
+            // No actions in XML
+
+            // Transition to next step: 41
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 41: CheckPalletExist_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_2:
+            // No actions in XML
+
+            // Transition to next step: 167
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 167: TimeDelay_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_6:
+            // No actions in XML
+
+            // Transition to next step: 61
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_14;
+            END_IF;
+
+        // ===========================================
+        // STEP 61: LoadStop_14
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_14:
+            // No actions in XML
+
+            // Transition to next step: 151
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 151: WaitPalletArive_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_5:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.EmptyStopRequestPallet_3
+            "AutoProcessControl".Global.K.EmptyStopRequestPallet_3;
+
+            // Transition to next step: 140
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 140: TimeDelay_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_3:
+            // No actions in XML
+
+            // Transition to next step: 176
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 176: WaitPalletArive_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_8:
+            // No actions in XML
+
+            // Transition to next step: 202
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 202: UnloadStoper_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_2:
+            // No actions in XML
+
+            // Transition to next step: 55
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 55: WaitPalletRequestRelease_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_5:
+            // No actions in XML
+
+            // Transition to next step: 136
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 136: AriveTimeDelay_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_5:
+            // No actions in XML
+
+            // Transition to next step: 44
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 44: WaitPalletArrveNextPos_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_2:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 131
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 131: StoperReset_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_4:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoHome
+            "ST10Cylinder".Cy[46].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoWork
+            "ST10Cylinder".Cy[46].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 63
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_13;
+            END_IF;
+
+        // ===========================================
+        // STEP 63: LoadStop_13
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_13:
+            // No actions in XML
+
+            // Transition to next step: 245
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 245: Process Finish_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_9:
+            // No actions in XML
+
+            // Transition to next step: 159
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 159: AriveTimeDelay_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_8:
+            // No actions in XML
+
+            // Transition to next step: 148
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 148: AriveTimeDelay_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_7:
+            // No actions in XML
+
+            // Transition to next step: 10
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_S10_InitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 10: S10_InitialFinish
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_S10_InitialFinish:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+
+            // Transition to next step: 26
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 26: MotorRunDelay_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRunDelay_1:
+            // No actions in XML
+
+            // Transition to next step: 127
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 127: StoperRelease_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_3:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoHome
+            "ST10Cylinder".Cy[45].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoWork
+            "ST10Cylinder".Cy[45].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 36
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease;
+            END_IF;
+
+        // ===========================================
+        // STEP 36: WaitPalletRequestRelease
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease:
+            // No actions in XML
+
+            // Transition to next step: 138
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 138: StoperRelease_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_5:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[47].Inout.AutoGoHome
+            "ST10Cylinder".Cy[47].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[47].Inout.AutoGoWork
+            "ST10Cylinder".Cy[47].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 174
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_11;
+            END_IF;
+
+        // ===========================================
+        // STEP 174: StoperReset_11
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_11:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoHome
+            "ST10Cylinder".Cy[46].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoWork
+            "ST10Cylinder".Cy[46].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 128
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 128: WaitPalletArive_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_1:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.LoadStopRequestPallet_2
+            "AutoProcessControl".Global.K.LoadStopRequestPallet_2;
+
+            // Transition to next step: 30
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 30: LoadingStop_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_4:
+            // No actions in XML
+
+            // Transition to next step: 246
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 246: Process Finish_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_10:
+            // No actions in XML
+
+            // Transition to next step: 27
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StopProcess;
+            END_IF;
+
+        // ===========================================
+        // STEP 27: StopProcess
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StopProcess:
+            // No actions in XML
+
+            // Transition to next step: 166
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 166: WaitPalletArive_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_6:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.LoadStopRequestPallet_3
+            "AutoProcessControl".Global.K.LoadStopRequestPallet_3;
+
+            // Transition to next step: 244
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 244: Process Finish_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_8:
+            // No actions in XML
+
+            // Transition to next step: 54
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 54: WaitLineMotorReady_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_5:
+            // No actions in XML
+
+            // Transition to next step: 40
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 40: WaitPalletArrveNextPos_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_1:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 67
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 67: WaitPalletArrveNextPos_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_7:
+            // No actions in XML
+
+            // Transition to next step: 69
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 69: WaitLineMotorReady_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_8:
+            // No actions in XML
+
+            // Transition to next step: 153
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Step153;
+            END_IF;
+
+        // ===========================================
+        // STEP 153: Step153
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Step153:
+            // No actions in XML
+
+            // Transition to next step: 247
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_11;
+            END_IF;
+
+        // ===========================================
+        // STEP 247: Process Finish_11
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_11:
+            // No actions in XML
+
+            // Transition to next step: 70
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 70: WaitPalletRequestRelease_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_8:
+            // No actions in XML
+
+            // Transition to next step: 74
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 74: WaitPalletRequestRelease_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_9:
+            // No actions in XML
+
+            // Transition to next step: 4
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_S4;
+            END_IF;
+
+        // ===========================================
+        // STEP 4: S4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_S4:
+            // No actions in XML
+
+            // Transition to next step: 180
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 180: CheckMachine Mode_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_8:
+            // No actions in XML
+
+            // Transition to next step: 120
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 120: AriveTimeDelay_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_2:
+            // No actions in XML
+
+            // Transition to next step: 46
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 46: WaitLineMotorReady_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_3:
+            // No actions in XML
+
+            // Transition to next step: 134
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 134: WaitPalletArive_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_2:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.LoadStopRequestPallet_3
+            "AutoProcessControl".Global.K.LoadStopRequestPallet_3;
+
+            // Transition to next step: 125
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 125: AriveTimeDelay_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_3:
+            // No actions in XML
+
+            // Transition to next step: 81
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MiddleNoPallet_;
+            END_IF;
+
+        // ===========================================
+        // STEP 81: MiddleNoPallet?
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MiddleNoPallet_:
+            // No actions in XML
+
+            // Transition to next step: 3
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_S3;
+            END_IF;
+
+        // ===========================================
+        // STEP 3: S3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_S3:
+            // No actions in XML
+
+            // Transition to next step: 201
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 201: UnloadStoper_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_1:
+            // No actions in XML
+
+            // Transition to next step: 68
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 68: CheckPalletExist_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_8:
+            // No actions in XML
+
+            // Transition to next step: 177
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 177: TimeDelay_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_8:
+            // No actions in XML
+
+            // Transition to next step: 23
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 23: MotorCWStart
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorCWStart:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := TRUE;
+
+            // Transition to next step: 116
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset;
+            END_IF;
+
+        // ===========================================
+        // STEP 116: StoperReset
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoHome
+            "ST10Cylinder".Cy[43].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoWork
+            "ST10Cylinder".Cy[43].Inout.AutoGoWork := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoHome
+            "ST10Cylinder".Cy[44].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoWork
+            "ST10Cylinder".Cy[44].Inout.AutoGoWork := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoHome
+            "ST10Cylinder".Cy[45].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoWork
+            "ST10Cylinder".Cy[45].Inout.AutoGoWork := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoHome
+            "ST10Cylinder".Cy[46].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoWork
+            "ST10Cylinder".Cy[46].Inout.AutoGoWork := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[47].Inout.AutoGoHome
+            "ST10Cylinder".Cy[47].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[47].Inout.AutoGoWork
+            "ST10Cylinder".Cy[47].Inout.AutoGoWork := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[48].Inout.AutoGoHome
+            "ST10Cylinder".Cy[48].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[48].Inout.AutoGoWork
+            "ST10Cylinder".Cy[48].Inout.AutoGoWork := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[49].Inout.AutoGoHome
+            "ST10Cylinder".Cy[49].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[49].Inout.AutoGoWork
+            "ST10Cylinder".Cy[49].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 49
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 49: CheckPalletExist_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_4:
+            // No actions in XML
+
+            // Transition to next step: 203
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 203: UnloadStoper_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_UnloadStoper_3:
+            // No actions in XML
+
+            // Transition to next step: 239
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 239: Process Finish_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_3:
+            // No actions in XML
+
+            // Transition to next step: 43
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 43: WaitPalletRequestRelease_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_2:
+            // No actions in XML
+
+            // Transition to next step: 163
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 163: AriveTimeDelay_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_9:
+            // No actions in XML
+
+            // Transition to next step: 58
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 58: WaitLineMotorReady_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_6:
+            // No actions in XML
+
+            // Transition to next step: 156
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 156: CheckMachine Mode_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_3:
+            // No actions in XML
+
+            // Transition to next step: 75
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 75: WaitPalletArrveNextPos_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_9:
+            // No actions in XML
+
+            // Transition to next step: 146
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 146: WaitPalletArive_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_4:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.EmptyStopRequestPallet_2
+            "AutoProcessControl".Global.K.EmptyStopRequestPallet_2;
+
+            // Transition to next step: 52
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 52: WaitPalletArrveNextPos_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_4:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 62
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_12;
+            END_IF;
+
+        // ===========================================
+        // STEP 62: LoadStop_12
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadStop_12:
+            // No actions in XML
+
+            // Transition to next step: 53
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 53: CheckPalletExist_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_5:
+            // No actions in XML
+
+            // Transition to next step: 200
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachineMode;
+            END_IF;
+
+        // ===========================================
+        // STEP 200: CheckMachineMode
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachineMode:
+            // No actions in XML
+
+            // Transition to next step: 100
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_ProcessStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 100: ProcessStart
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_ProcessStart:
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := TRUE;
+            // Action Qualifier=N, Event="S1"
+            // Token: #ioPM_Inface.ProcessResult := 0
+            #ioPM_Inface.ProcessResult := 0;
+
+            // Transition to next step: 47
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 47: WaitPalletRequestRelease_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_3:
+            // No actions in XML
+
+            // Transition to next step: 59
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 59: WaitPalletRequestRelease_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_6:
+            // No actions in XML
+
+            // Transition to next step: 121
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 121: StoperReset_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_2:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoHome
+            "ST10Cylinder".Cy[44].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[44].Inout.AutoGoWork
+            "ST10Cylinder".Cy[44].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 184
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 184: TimeDelay_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_9:
+            // No actions in XML
+
+            // Transition to next step: 117
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 117: StoperReset_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_1:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoHome
+            "ST10Cylinder".Cy[43].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoWork
+            "ST10Cylinder".Cy[43].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 31
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist;
+            END_IF;
+
+        // ===========================================
+        // STEP 31: CheckPalletExist
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 132
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MotorStop;
+            END_IF;
+
+        // ===========================================
+        // STEP 132: MotorStop
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorStop:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := FALSE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := FALSE;
+
+            // Transition to next step: 39
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 39: WaitPalletRequestRelease_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_1:
+            // No actions in XML
+
+            // Transition to next step: 144
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 144: StoperReset_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_6:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[48].Inout.AutoGoHome
+            "ST10Cylinder".Cy[48].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[48].Inout.AutoGoWork
+            "ST10Cylinder".Cy[48].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 45
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 45: CheckPalletExist_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_3:
+            // No actions in XML
+
+            // Transition to next step: 33
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMaterialDoorLock;
+            END_IF;
+
+        // ===========================================
+        // STEP 33: CheckMaterialDoorLock
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMaterialDoorLock:
+            // No actions in XML
+
+            // Transition to next step: 78
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 78: WaitPalletRequestRelease_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_10:
+            // No actions in XML
+
+            // Transition to next step: 183
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 183: WaitPalletArive_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_9:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.LoadStopRequestPallet_2
+            "AutoProcessControl".Global.K.LoadStopRequestPallet_2;
+
+            // Transition to next step: 170
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 170: StoperRelease_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_10:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoHome
+            "ST10Cylinder".Cy[45].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoWork
+            "ST10Cylinder".Cy[45].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 169
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 169: StoperReset_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_10:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoHome
+            "ST10Cylinder".Cy[45].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoWork
+            "ST10Cylinder".Cy[45].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 126
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 126: StoperReset_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_3:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoHome
+            "ST10Cylinder".Cy[45].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[45].Inout.AutoGoWork
+            "ST10Cylinder".Cy[45].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 34
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun;
+            END_IF;
+
+        // ===========================================
+        // STEP 34: MotorRun
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 28
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 28: LoadingStop_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_2:
+            // No actions in XML
+
+            // Transition to next step: 238
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 238: Process Finish_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_2:
+            // No actions in XML
+
+            // Transition to next step: 178
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 178: CheckMachine Mode_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_6:
+            // No actions in XML
+
+            // Transition to next step: 172
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 172: TimeDelay_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_7:
+            // No actions in XML
+
+            // Transition to next step: 35
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady;
+            END_IF;
+
+        // ===========================================
+        // STEP 35: WaitLineMotorReady
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady:
+            // No actions in XML
+
+            // Transition to next step: 152
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 152: TimeDelay_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_5:
+            // No actions in XML
+
+            // Transition to next step: 60
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 60: WaitPalletArrveNextPos_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_6:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 149
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 149: StoperReset_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperReset_7:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[49].Inout.AutoGoHome
+            "ST10Cylinder".Cy[49].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[49].Inout.AutoGoWork
+            "ST10Cylinder".Cy[49].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 73
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 73: WaitLineMotorReady_9
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_9:
+            // No actions in XML
+
+            // Transition to next step: 77
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 77: WaitLineMotorReady_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_10:
+            // No actions in XML
+
+            // Transition to next step: 243
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 243: Process Finish_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_7:
+            // No actions in XML
+
+            // Transition to next step: 80
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 80: MotorRun_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_MotorRun_1:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := TRUE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[16].Auto.Start
+            "MotorControl".Dev[16].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[16].Auto.CCWStart
+            "MotorControl".Dev[16].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 76
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 76: CheckPalletExist_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_10:
+            // No actions in XML
+
+            // Transition to next step: 158
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 158: CheckMachine Mode_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_5:
+            // No actions in XML
+
+            // Transition to next step: 150
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 150: StoperRelease_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_7:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[49].Inout.AutoGoHome
+            "ST10Cylinder".Cy[49].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[49].Inout.AutoGoWork
+            "ST10Cylinder".Cy[49].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 155
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 155: CheckMachine Mode_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_2:
+            // No actions in XML
+
+            // Transition to next step: 157
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 157: CheckMachine Mode_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckMachine_Mode_4:
+            // No actions in XML
+
+            // Transition to next step: 66
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 66: WaitPalletRequestRelease_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletRequestRelease_7:
+            // No actions in XML
+
+            // Transition to next step: 32
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 32: CheckPalletExist_1
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_CheckPalletExist_1:
+            // No actions in XML
+
+            // Transition to next step: 29
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 29: LoadingStop_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_LoadingStop_3:
+            // No actions in XML
+
+            // Transition to next step: 133
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 133: StoperRelease_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_4:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoHome
+            "ST10Cylinder".Cy[46].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[46].Inout.AutoGoWork
+            "ST10Cylinder".Cy[46].Inout.AutoGoWork := TRUE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[3].Auto.Start
+            "MotorControl".Dev[3].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[3].Auto.CCWStart
+            "MotorControl".Dev[3].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 168
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 168: AriveTimeDelay_10
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_10:
+            // No actions in XML
+
+            // Transition to next step: 145
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 145: StoperRelease_6
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_6:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[48].Inout.AutoGoHome
+            "ST10Cylinder".Cy[48].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[48].Inout.AutoGoWork
+            "ST10Cylinder".Cy[48].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 147
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 147: TimeDelay_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay_4:
+            // No actions in XML
+
+            // Transition to next step: 173
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_11;
+            END_IF;
+
+        // ===========================================
+        // STEP 173: AriveTimeDelay_11
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_11:
+            // No actions in XML
+
+            // Transition to next step: 162
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 162: StoperRelease_8
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_StoperRelease_8:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoHome
+            "ST10Cylinder".Cy[43].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[43].Inout.AutoGoWork
+            "ST10Cylinder".Cy[43].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 42
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 42: WaitLineMotorReady_2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_2:
+            // No actions in XML
+
+            // Transition to next step: 48
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 48: WaitPalletArrveNextPos_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArrveNextPos_3:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[15].Auto.Start
+            "MotorControl".Dev[15].Auto.Start := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[15].Auto.CCWStart
+            "MotorControl".Dev[15].Auto.CCWStart := FALSE;
+
+            // Transition to next step: 65
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 65: WaitLineMotorReady_7
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitLineMotorReady_7:
+            // No actions in XML
+
+            // Transition to next step: 130
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 130: AriveTimeDelay_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_AriveTimeDelay_4:
+            // No actions in XML
+
+            // Transition to next step: 124
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay;
+            END_IF;
+
+        // ===========================================
+        // STEP 124: TimeDelay
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_TimeDelay:
+            // No actions in XML
+
+            // Transition to next step: 2
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_S2;
+            END_IF;
+
+        // ===========================================
+        // STEP 2: S2
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_S2:
+            // No actions in XML
+
+            // Transition to next step: 241
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 241: Process Finish_5
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_5:
+            // No actions in XML
+
+            // Transition to next step: 139
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 139: WaitPalletArive_3
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_WaitPalletArive_3:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.K.EmptyStopRequestPallet_1
+            "AutoProcessControl".Global.K.EmptyStopRequestPallet_1;
+
+            // Transition to next step: 240
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 240: Process Finish_4
+        // ===========================================
+        STEP_ST10_Flow27_KReserveLoad_Unload_Process_Finish_4:
+            // No actions in XML
+
+    END_CASE;
+
+    // UPDATE ioPM_Inface
+    #ioPM_Inface.InitialRun := #act_InitialRun;
+    #ioPM_Inface.InitialOK := #act_InitialOK;
+    #ioPM_Inface.WaitRunning := #act_WaitRunning;
+    #ioPM_Inface.Running := #act_Running;
+    #ioPM_Inface.ProcessComplete := #act_ProcessComplete;
+    #ioPM_Inface.ProcessStart := #act_ProcessStart;
+    #ioPM_Inface.UnPause := #act_UnPause;
+
+    // ERROR HANDLING
+    IF #bError THEN
+        #ioStatus := 900;
+        #oAlarmID := INT_TO_WORD(#wErrorID);
+    ELSE
+        #ioStatus := 0;
+        #oAlarmID := 0;
+    END_IF;
+END_FUNCTION_BLOCK
+
+//=============================================================================
+// END OF FILE
+//=============================================================================

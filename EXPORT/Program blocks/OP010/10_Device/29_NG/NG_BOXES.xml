@@ -1,0 +1,1544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="in_Permission_to_Open" Datatype="Bool" />
+  </Section>
+  <Section Name="Output">
+    <Member Name="out_Request_to_open" Datatype="Bool" />
+  </Section>
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="Box_Loading" Datatype="&quot;FB_NG_Box_Control&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Box_Unloading" Datatype="&quot;FB_NG_Box_Control&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="TempSensors" Datatype="Array[1..15] of Bool" />
+  </Section>
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+</Sections></Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>1000</MemoryReserve>
+      <Name>NG_BOXES</Name>
+      <Namespace />
+      <Number>3</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <LineComment UId="21">
+    <Text UId="22"> ==========================================================================</Text>
+  </LineComment>
+  <NewLine UId="23" />
+  <LineComment UId="24">
+    <Text UId="25"> BOX 1: LOADING – MACHINE LOADING SIDE                                   // EN: Loading side of machine (material IN)</Text>
+  </LineComment>
+  <NewLine UId="26" />
+  <LineComment UId="27">
+    <Text UId="28">                                                                          // CN: 机器上料侧（物料进入机器）</Text>
+  </LineComment>
+  <NewLine UId="29" />
+  <LineComment UId="30">
+    <Text UId="31">                                                                          // SK: Nakladacia / vstupná strana stroja</Text>
+  </LineComment>
+  <NewLine UId="32" />
+  <LineComment UId="33">
+    <Text UId="34"> ==========================================================================</Text>
+  </LineComment>
+  <NewLine UId="35" />
+  <Access Scope="LocalVariable" UId="36">
+    <Symbol UId="37">
+      <Component Name="TempSensors" UId="38">
+        <Token Text="[" UId="39" />
+        <Access Scope="LiteralConstant" UId="40">
+          <Constant UId="41">
+            <ConstantValue UId="43">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="44" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="45" />
+  <Token Text=":=" UId="46" />
+  <Blank UId="47" />
+  <Access Scope="GlobalVariable" UId="48">
+    <Symbol UId="49">
+      <Component Name="iE1-UnloadingShaftPressNG_1" UId="50" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="51" />
+  <Blank Num="3" UId="52" />
+  <LineComment UId="53">
+    <Text UId="54"> EN: NG shaft press pos 1   // CN: 轴压装NG位置1   // SK: NG lis hriadeľa poz.1</Text>
+  </LineComment>
+  <NewLine UId="55" />
+  <Access Scope="LocalVariable" UId="56">
+    <Symbol UId="57">
+      <Component Name="TempSensors" UId="58">
+        <Token Text="[" UId="59" />
+        <Access Scope="LiteralConstant" UId="60">
+          <Constant UId="61">
+            <ConstantValue UId="63">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="64" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="65" />
+  <Token Text=":=" UId="66" />
+  <Blank UId="67" />
+  <Access Scope="GlobalVariable" UId="68">
+    <Symbol UId="69">
+      <Component Name="iE1-UnloadingShaftPressNG_2" UId="70" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="71" />
+  <Blank Num="3" UId="72" />
+  <LineComment UId="73">
+    <Text UId="74"> EN: NG shaft press pos 2   // CN: 轴压装NG位置2   // SK: NG lis hriadeľa poz.2</Text>
+  </LineComment>
+  <NewLine UId="75" />
+  <Access Scope="LocalVariable" UId="76">
+    <Symbol UId="77">
+      <Component Name="TempSensors" UId="78">
+        <Token Text="[" UId="79" />
+        <Access Scope="LiteralConstant" UId="80">
+          <Constant UId="81">
+            <ConstantValue UId="83">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="84" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="85" />
+  <Token Text=":=" UId="86" />
+  <Blank UId="87" />
+  <Access Scope="GlobalVariable" UId="88">
+    <Symbol UId="89">
+      <Component Name="iE1-UnloadingShaftPressNG_3" UId="90" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="91" />
+  <Blank Num="3" UId="92" />
+  <LineComment UId="93">
+    <Text UId="94"> EN: NG shaft press pos 3   // CN: 轴压装NG位置3   // SK: NG lis hriadeľa poz.3</Text>
+  </LineComment>
+  <NewLine UId="95" />
+  <Access Scope="LocalVariable" UId="96">
+    <Symbol UId="97">
+      <Component Name="TempSensors" UId="98">
+        <Token Text="[" UId="99" />
+        <Access Scope="LiteralConstant" UId="100">
+          <Constant UId="101">
+            <ConstantValue UId="103">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="104" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="105" />
+  <Token Text=":=" UId="106" />
+  <Blank UId="107" />
+  <Access Scope="GlobalVariable" UId="108">
+    <Symbol UId="109">
+      <Component Name="iE1-UnloadingShaftPressNG_4" UId="110" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="111" />
+  <Blank Num="3" UId="112" />
+  <LineComment UId="113">
+    <Text UId="114"> EN: NG shaft press pos 4   // CN: 轴压装NG位置4   // SK: NG lis hriadeľa poz.4</Text>
+  </LineComment>
+  <NewLine UId="115" />
+  <Access Scope="LocalVariable" UId="116">
+    <Symbol UId="117">
+      <Component Name="TempSensors" UId="118">
+        <Token Text="[" UId="119" />
+        <Access Scope="LiteralConstant" UId="120">
+          <Constant UId="121">
+            <ConstantValue UId="123">5</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="124" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="125" />
+  <Token Text=":=" UId="126" />
+  <Blank UId="127" />
+  <Access Scope="GlobalVariable" UId="128">
+    <Symbol UId="129">
+      <Component Name="iE1-UnloadingShaftPressNG_5" UId="130" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="131" />
+  <Blank Num="3" UId="132" />
+  <LineComment UId="133">
+    <Text UId="134"> EN: NG shaft press pos 5   // CN: 轴压装NG位置5   // SK: NG lis hriadeľa poz.5</Text>
+  </LineComment>
+  <NewLine UId="135" />
+  <Access Scope="LocalVariable" UId="136">
+    <Symbol UId="137">
+      <Component Name="TempSensors" UId="138">
+        <Token Text="[" UId="139" />
+        <Access Scope="LiteralConstant" UId="140">
+          <Constant UId="141">
+            <ConstantValue UId="143">6</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="144" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="145" />
+  <Token Text=":=" UId="146" />
+  <Blank UId="147" />
+  <Access Scope="GlobalVariable" UId="148">
+    <Symbol UId="149">
+      <Component Name="iE1-UnloadingShaftScanNG_1" UId="150" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="151" />
+  <Blank Num="4" UId="152" />
+  <LineComment UId="153">
+    <Text UId="154"> EN: NG shaft scan pos 1    // CN: 轴扫描NG位置1   // SK: NG sken hriadeľa 1</Text>
+  </LineComment>
+  <NewLine UId="155" />
+  <Access Scope="LocalVariable" UId="156">
+    <Symbol UId="157">
+      <Component Name="TempSensors" UId="158">
+        <Token Text="[" UId="159" />
+        <Access Scope="LiteralConstant" UId="160">
+          <Constant UId="161">
+            <ConstantValue UId="163">7</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="164" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="165" />
+  <Token Text=":=" UId="166" />
+  <Blank UId="167" />
+  <Access Scope="GlobalVariable" UId="168">
+    <Symbol UId="169">
+      <Component Name="iE1-UnloadingShaftScanNG_2" UId="170" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="171" />
+  <Blank Num="4" UId="172" />
+  <LineComment UId="173">
+    <Text UId="174"> EN: NG shaft scan pos 2    // CN: 轴扫描NG位置2   // SK: NG sken hriadeľa 2</Text>
+  </LineComment>
+  <NewLine UId="175" />
+  <Access Scope="LocalVariable" UId="176">
+    <Symbol UId="177">
+      <Component Name="TempSensors" UId="178">
+        <Token Text="[" UId="179" />
+        <Access Scope="LiteralConstant" UId="180">
+          <Constant UId="181">
+            <ConstantValue UId="183">8</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="184" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="185" />
+  <Token Text=":=" UId="186" />
+  <Blank UId="187" />
+  <Access Scope="GlobalVariable" UId="188">
+    <Symbol UId="189">
+      <Component Name="iE1-UnloadingShaftScanNG_3" UId="190" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="191" />
+  <Blank Num="4" UId="192" />
+  <LineComment UId="193">
+    <Text UId="194"> EN: NG shaft scan pos 3    // CN: 轴扫描NG位置3   // SK: NG sken hriadeľa 3</Text>
+  </LineComment>
+  <NewLine UId="195" />
+  <Access Scope="LocalVariable" UId="196">
+    <Symbol UId="197">
+      <Component Name="TempSensors" UId="198">
+        <Token Text="[" UId="199" />
+        <Access Scope="LiteralConstant" UId="200">
+          <Constant UId="201">
+            <ConstantValue UId="203">9</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="204" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="205" />
+  <Token Text=":=" UId="206" />
+  <Blank UId="207" />
+  <Access Scope="GlobalVariable" UId="208">
+    <Symbol UId="209">
+      <Component Name="iE1-UnloadingShaftScanNG_4" UId="210" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="211" />
+  <Blank Num="4" UId="212" />
+  <LineComment UId="213">
+    <Text UId="214"> EN: NG shaft scan pos 4    // CN: 轴扫描NG位置4   // SK: NG sken hriadeľa 4</Text>
+  </LineComment>
+  <NewLine UId="215" />
+  <Access Scope="LocalVariable" UId="216">
+    <Symbol UId="217">
+      <Component Name="TempSensors" UId="218">
+        <Token Text="[" UId="219" />
+        <Access Scope="LiteralConstant" UId="220">
+          <Constant UId="221">
+            <ConstantValue UId="223">10</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="224" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="225" />
+  <Token Text=":=" UId="226" />
+  <Blank UId="227" />
+  <Access Scope="GlobalVariable" UId="228">
+    <Symbol UId="229">
+      <Component Name="iE1-UnloadingShaftScanNG_5" UId="230" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="231" />
+  <Blank Num="4" UId="232" />
+  <LineComment UId="233">
+    <Text UId="234"> EN: NG shaft scan pos 5    // CN: 轴扫描NG位置5   // SK: NG sken hriadeľa 5</Text>
+  </LineComment>
+  <NewLine UId="235" />
+  <Access Scope="LocalVariable" UId="236">
+    <Symbol UId="237">
+      <Component Name="TempSensors" UId="238">
+        <Token Text="[" UId="239" />
+        <Access Scope="LiteralConstant" UId="240">
+          <Constant UId="241">
+            <ConstantValue UId="243">11</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="244" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="245" />
+  <Token Text=":=" UId="246" />
+  <Blank UId="247" />
+  <Access Scope="GlobalVariable" UId="248">
+    <Symbol UId="249">
+      <Component Name="iE1-UnloadingRingScanNG_1" UId="250" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="251" />
+  <Blank Num="5" UId="252" />
+  <LineComment UId="253">
+    <Text UId="254"> EN: NG ring scan pos 1     // CN: 环扫描NG位置1   // SK: NG sken krúžku 1</Text>
+  </LineComment>
+  <NewLine UId="255" />
+  <Access Scope="LocalVariable" UId="256">
+    <Symbol UId="257">
+      <Component Name="TempSensors" UId="258">
+        <Token Text="[" UId="259" />
+        <Access Scope="LiteralConstant" UId="260">
+          <Constant UId="261">
+            <ConstantValue UId="263">12</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="264" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="265" />
+  <Token Text=":=" UId="266" />
+  <Blank UId="267" />
+  <Access Scope="GlobalVariable" UId="268">
+    <Symbol UId="269">
+      <Component Name="iE1-UnloadingRingScanNG_2" UId="270" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="271" />
+  <Blank Num="5" UId="272" />
+  <LineComment UId="273">
+    <Text UId="274"> EN: NG ring scan pos 2     // CN: 环扫描NG位置2   // SK: NG sken krúžku 2</Text>
+  </LineComment>
+  <NewLine UId="275" />
+  <Access Scope="LocalVariable" UId="276">
+    <Symbol UId="277">
+      <Component Name="TempSensors" UId="278">
+        <Token Text="[" UId="279" />
+        <Access Scope="LiteralConstant" UId="280">
+          <Constant UId="281">
+            <ConstantValue UId="283">13</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="284" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="285" />
+  <Token Text=":=" UId="286" />
+  <Blank UId="287" />
+  <Access Scope="GlobalVariable" UId="288">
+    <Symbol UId="289">
+      <Component Name="iE1-UnloadingRingScanNG_3" UId="290" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="291" />
+  <Blank Num="5" UId="292" />
+  <LineComment UId="293">
+    <Text UId="294"> EN: NG ring scan pos 3     // CN: 环扫描NG位置3   // SK: NG sken krúžku 3</Text>
+  </LineComment>
+  <NewLine UId="295" />
+  <Access Scope="LocalVariable" UId="296">
+    <Symbol UId="297">
+      <Component Name="TempSensors" UId="298">
+        <Token Text="[" UId="299" />
+        <Access Scope="LiteralConstant" UId="300">
+          <Constant UId="301">
+            <ConstantValue UId="303">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="304" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="305" />
+  <Token Text=":=" UId="306" />
+  <Blank UId="307" />
+  <Access Scope="GlobalVariable" UId="308">
+    <Symbol UId="309">
+      <Component Name="iE1-UnloadingRingScanNG_4" UId="310" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="311" />
+  <Blank Num="5" UId="312" />
+  <LineComment UId="313">
+    <Text UId="314"> EN: NG ring scan pos 4     // CN: 环扫描NG位置4   // SK: NG sken krúžku 4</Text>
+  </LineComment>
+  <NewLine UId="315" />
+  <Access Scope="LocalVariable" UId="316">
+    <Symbol UId="317">
+      <Component Name="TempSensors" UId="318">
+        <Token Text="[" UId="319" />
+        <Access Scope="LiteralConstant" UId="320">
+          <Constant UId="321">
+            <ConstantValue UId="323">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="324" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="325" />
+  <Token Text=":=" UId="326" />
+  <Blank UId="327" />
+  <Access Scope="GlobalVariable" UId="328">
+    <Symbol UId="329">
+      <Component Name="iE1-UnloadingRingScanNG_5" UId="330" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="331" />
+  <Blank Num="5" UId="332" />
+  <LineComment UId="333">
+    <Text UId="334"> EN: NG ring scan pos 5     // CN: 环扫描NG位置5   // SK: NG sken krúžku 5</Text>
+  </LineComment>
+  <NewLine Num="2" UId="335" />
+  <Access Scope="Call" UId="336">
+    <CallInfo UId="337" BlockType="FB" Name="FB_NG_Box_Control">
+      <Instance Scope="LocalVariable" UId="338">
+        <Component Name="Box_Loading" UId="339" />
+      </Instance>
+      <Token Text="(" UId="340" />
+      <NewLine UId="341" />
+      <Blank Num="13" UId="342" />
+      <Parameter Name="Button" UId="343">
+        <Blank Num="8" UId="344" />
+        <Token Text=":=" UId="345" />
+        <Blank UId="346" />
+        <Access Scope="GlobalVariable" UId="347">
+          <Symbol UId="348">
+            <Component Name="iNG_Button1" UId="349">
+              <BooleanAttribute Name="HasQuotes" UId="350">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="351" />
+      <Blank Num="21" UId="352" />
+      <LineComment UId="353">
+        <Text UId="354"> EN: Operator button (loading side)   // CN: 上料侧操作按钮   // SK: Tlačidlo obsluhy – loading</Text>
+      </LineComment>
+      <NewLine UId="355" />
+      <Blank Num="13" UId="356" />
+      <Parameter Name="MagnetSensor" UId="357">
+        <Blank Num="2" UId="358" />
+        <Token Text=":=" UId="359" />
+        <Blank UId="360" />
+        <Access Scope="GlobalVariable" UId="361">
+          <Symbol UId="362">
+            <Component Name="iE-NG-01Detection" UId="363" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="364" />
+      <Blank Num="15" UId="365" />
+      <LineComment UId="366">
+        <Text UId="367"> EN: Door closed sensor                // CN: 门关闭传感器     // SK: Snímač zatvorenia dverí</Text>
+      </LineComment>
+      <NewLine UId="368" />
+      <Blank Num="13" UId="369" />
+      <Parameter Name="LockedFB" UId="370">
+        <Blank Num="6" UId="371" />
+        <Token Text=":=" UId="372" />
+        <Blank UId="373" />
+        <Token Text="NOT" UId="374" />
+        <Blank UId="375" />
+        <Access Scope="GlobalVariable" UId="376">
+          <Symbol UId="377">
+            <Component Name="iE-NG-01 Safety Gate_UnLock" UId="378" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="379" />
+      <Blank UId="380" />
+      <LineComment UId="381">
+        <Text UId="382"> EN: Lock feedback (locked)             // CN: 锁定反馈         // SK: Spätná väzba – zamknuté</Text>
+      </LineComment>
+      <NewLine UId="383" />
+      <Blank Num="13" UId="384" />
+      <Parameter Name="UnlockedFB" UId="385">
+        <Blank Num="4" UId="386" />
+        <Token Text=":=" UId="387" />
+        <Blank UId="388" />
+        <Access Scope="GlobalVariable" UId="389">
+          <Symbol UId="390">
+            <Component Name="iE-NG-01 Safety Gate_UnLock" UId="391" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="392" />
+      <Blank Num="5" UId="393" />
+      <LineComment UId="394">
+        <Text UId="395"> EN: Lock feedback (unlocked)           // CN: 解锁反馈         // SK: Spätná väzba – odomknuté</Text>
+      </LineComment>
+      <NewLine UId="396" />
+      <Blank Num="13" UId="397" />
+      <Parameter Name="AtSafePoint" UId="398">
+        <Blank Num="3" UId="399" />
+        <Token Text=":=" UId="400" />
+        <Blank UId="401" />
+        <Access Scope="LocalVariable" UId="402">
+          <Symbol UId="403">
+            <Component Name="in_Permission_to_Open" UId="404" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="405" />
+      <Blank Num="12" UId="406" />
+      <LineComment UId="407">
+        <Text UId="408"> EN: Sequence at safe point (Step 111)  // CN: 序列在安全步骤   // SK: Sekvencia v bezpečnom kroku</Text>
+      </LineComment>
+      <NewLine UId="409" />
+      <Blank Num="13" UId="410" />
+      <Parameter Name="Sensors" UId="411">
+        <Blank Num="7" UId="412" />
+        <Token Text=":=" UId="413" />
+        <Blank UId="414" />
+        <Access Scope="LocalVariable" UId="415">
+          <Symbol UId="416">
+            <Component Name="TempSensors" UId="417" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="418" />
+      <NewLine UId="419" />
+      <Blank Num="13" UId="420" />
+      <Parameter Name="UnlockCmd" UId="421">
+        <Blank Num="5" UId="422" />
+        <Token Text="=&gt;" UId="423" />
+        <Blank UId="424" />
+        <Access Scope="GlobalVariable" UId="425">
+          <Symbol UId="426">
+            <Component Name="ST10_NGGate1_DB" UId="427">
+              <BooleanAttribute Name="HasQuotes" UId="428">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="429" />
+            <Component Name="sSafetyGate UnlockRequest" UId="430" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="431" />
+      <Blank UId="432" />
+      <LineComment UId="433">
+        <Text UId="434"> EN: Unlock command // CN: 解锁命令 // SK: Príkaz na odomknutie</Text>
+      </LineComment>
+      <NewLine UId="435" />
+      <Blank Num="13" UId="436" />
+      <Parameter Name="LockCmd" UId="437">
+        <Blank Num="7" UId="438" />
+        <Token Text="=&gt;" UId="439" />
+        <Blank UId="440" />
+        <Access Scope="GlobalVariable" UId="441">
+          <Symbol UId="442">
+            <Component Name="ST10_NGGate1_DB" UId="443">
+              <BooleanAttribute Name="HasQuotes" UId="444">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="445" />
+            <Component Name="sSafetyGate LockRequest" UId="446" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="447" />
+      <Blank Num="3" UId="448" />
+      <LineComment UId="449">
+        <Text UId="450"> EN: Lock command   // CN: 上锁命令 // SK: Príkaz na zamknutie</Text>
+      </LineComment>
+      <NewLine UId="451" />
+      <Blank Num="13" UId="452" />
+      <Parameter Name="CylinderOpen" UId="453">
+        <Blank Num="2" UId="454" />
+        <Token Text="=&gt;" UId="455" />
+        <Blank UId="456" />
+        <Access Scope="GlobalVariable" UId="457">
+          <Symbol UId="458">
+            <Component Name="oE-NG-01NGLocationCylinderToHP" UId="459" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="460" />
+      <Blank Num="3" UId="461" />
+      <LineComment UId="462">
+        <Text UId="463"> EN: Cylinder open (home)  // CN: 气缸打开 // SK: Otvoriť valec</Text>
+      </LineComment>
+      <NewLine UId="464" />
+      <Blank Num="13" UId="465" />
+      <Parameter Name="CylinderClose" UId="466">
+        <Blank UId="467" />
+        <Token Text="=&gt;" UId="468" />
+        <Blank UId="469" />
+        <Access Scope="GlobalVariable" UId="470">
+          <Symbol UId="471">
+            <Component Name="oE-NG-01NGLocationCylinderToWP" UId="472" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="473" />
+      <Blank Num="3" UId="474" />
+      <LineComment UId="475">
+        <Text UId="476"> EN: Cylinder close (work) // CN: 气缸关闭 // SK: Zavrieť valec</Text>
+      </LineComment>
+      <NewLine UId="477" />
+      <Blank Num="13" UId="478" />
+      <Parameter Name="ButtonLight" UId="479">
+        <Blank UId="480" />
+        <Token Text="=&gt;" UId="481" />
+        <Blank UId="482" />
+        <Access Scope="GlobalVariable" UId="483">
+          <Symbol UId="484">
+            <Component Name="oNG_Button1" UId="485">
+              <BooleanAttribute Name="HasQuotes" UId="486">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Blank Num="3" UId="487" />
+      <Token Text="," UId="488" />
+      <Blank Num="20" UId="489" />
+      <LineComment UId="490">
+        <Text UId="491"> E,N: Button lamp           // CN: 按钮灯   // SK: Svetlo tlačidla</Text>
+      </LineComment>
+      <NewLine UId="492" />
+      <Blank Num="13" UId="493" />
+      <Parameter Name="Ready_1" UId="494">
+        <Blank UId="495" />
+        <Token Text="=&gt;" UId="496" />
+        <Blank UId="497" />
+        <Access Scope="GlobalVariable" UId="498">
+          <Symbol UId="499">
+            <Component Name="AutoProcessControl" UId="500">
+              <BooleanAttribute Name="HasQuotes" UId="501">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="502" />
+            <Component Name="NG_1" UId="503" />
+            <Token Text="." UId="504" />
+            <Component Name="Robot1PutPrimit_1" UId="505" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Blank Num="3" UId="506" />
+      <Token Text="," UId="507" />
+      <Blank Num="9" UId="508" />
+      <LineComment UId="509">
+        <Text UId="510"> Status pro robota: Řada 1 (1-5) má místo // 机器人状态：第1排（1-5）有空位</Text>
+      </LineComment>
+      <NewLine UId="511" />
+      <Blank Num="13" UId="512" />
+      <Parameter Name="Ready_2" UId="513">
+        <Blank UId="514" />
+        <Token Text="=&gt;" UId="515" />
+        <Blank UId="516" />
+        <Access Scope="GlobalVariable" UId="517">
+          <Symbol UId="518">
+            <Component Name="AutoProcessControl" UId="519">
+              <BooleanAttribute Name="HasQuotes" UId="520">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="521" />
+            <Component Name="NG_1" UId="522" />
+            <Token Text="." UId="523" />
+            <Component Name="Robot1PutPrimit_2" UId="524" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="525" />
+      <NewLine UId="526" />
+      <Blank Num="13" UId="527" />
+      <Parameter Name="Ready_3" UId="528">
+        <Blank UId="529" />
+        <Token Text="=&gt;" UId="530" />
+        <Blank UId="531" />
+        <Access Scope="GlobalVariable" UId="532">
+          <Symbol UId="533">
+            <Component Name="AutoProcessControl" UId="534">
+              <BooleanAttribute Name="HasQuotes" UId="535">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="536" />
+            <Component Name="NG_1" UId="537" />
+            <Token Text="." UId="538" />
+            <Component Name="Robot1PutPrimit_3" UId="539" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <NewLine Num="2" UId="540" />
+      <Token Text=")" UId="543" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="544" />
+  <NewLine Num="2" UId="545" />
+  <LineComment UId="546">
+    <Text UId="547"> ==========================================================================</Text>
+  </LineComment>
+  <NewLine UId="548" />
+  <LineComment UId="549">
+    <Text UId="550"> BOX 2: UNLOADING – MACHINE UNLOADING SIDE                                // EN: Unloading side of machine (material OUT)</Text>
+  </LineComment>
+  <NewLine UId="551" />
+  <LineComment UId="552">
+    <Text UId="553">                                                                          // CN: 机器下料侧（物料离开机器）</Text>
+  </LineComment>
+  <NewLine UId="554" />
+  <LineComment UId="555">
+    <Text UId="556">                                                                          // SK: Vykladacia / výstupná strana stroja</Text>
+  </LineComment>
+  <NewLine UId="557" />
+  <LineComment UId="558">
+    <Text UId="559"> ==========================================================================</Text>
+  </LineComment>
+  <NewLine UId="560" />
+  <Access Scope="LocalVariable" UId="561">
+    <Symbol UId="562">
+      <Component Name="TempSensors" UId="563">
+        <Token Text="[" UId="564" />
+        <Access Scope="LiteralConstant" UId="565">
+          <Constant UId="566">
+            <ConstantValue UId="568">1</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="569" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="570" />
+  <Token Text=":=" UId="571" />
+  <Blank UId="572" />
+  <Access Scope="GlobalVariable" UId="573">
+    <Symbol UId="574">
+      <Component Name="iE2-UnloadingPressNG_1" UId="575" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="576" />
+  <Blank Num="10" UId="577" />
+  <LineComment UId="578">
+    <Text UId="579"> EN: NG press pos 1   // CN: 压装NG位置1   // SK: NG lis poz.1</Text>
+  </LineComment>
+  <NewLine UId="580" />
+  <Access Scope="LocalVariable" UId="581">
+    <Symbol UId="582">
+      <Component Name="TempSensors" UId="583">
+        <Token Text="[" UId="584" />
+        <Access Scope="LiteralConstant" UId="585">
+          <Constant UId="586">
+            <ConstantValue UId="588">2</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="589" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="590" />
+  <Token Text=":=" UId="591" />
+  <Blank UId="592" />
+  <Access Scope="GlobalVariable" UId="593">
+    <Symbol UId="594">
+      <Component Name="iE2-UnloadingPressNG_2" UId="595" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="596" />
+  <Blank Num="10" UId="597" />
+  <LineComment UId="598">
+    <Text UId="599"> EN: NG press pos 2   // CN: 压装NG位置2   // SK: NG lis poz.2</Text>
+  </LineComment>
+  <NewLine UId="600" />
+  <Access Scope="LocalVariable" UId="601">
+    <Symbol UId="602">
+      <Component Name="TempSensors" UId="603">
+        <Token Text="[" UId="604" />
+        <Access Scope="LiteralConstant" UId="605">
+          <Constant UId="606">
+            <ConstantValue UId="608">3</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="609" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="610" />
+  <Token Text=":=" UId="611" />
+  <Blank UId="612" />
+  <Access Scope="GlobalVariable" UId="613">
+    <Symbol UId="614">
+      <Component Name="iE2-UnloadingPressNG_3" UId="615" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="616" />
+  <Blank Num="10" UId="617" />
+  <LineComment UId="618">
+    <Text UId="619"> EN: NG press pos 3   // CN: 压装NG位置3   // SK: NG lis poz.3</Text>
+  </LineComment>
+  <NewLine UId="620" />
+  <Access Scope="LocalVariable" UId="621">
+    <Symbol UId="622">
+      <Component Name="TempSensors" UId="623">
+        <Token Text="[" UId="624" />
+        <Access Scope="LiteralConstant" UId="625">
+          <Constant UId="626">
+            <ConstantValue UId="628">4</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="629" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="630" />
+  <Token Text=":=" UId="631" />
+  <Blank UId="632" />
+  <Access Scope="GlobalVariable" UId="633">
+    <Symbol UId="634">
+      <Component Name="iE2-UnloadingPressNG_4" UId="635" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="636" />
+  <Blank Num="10" UId="637" />
+  <LineComment UId="638">
+    <Text UId="639"> EN: NG press pos 4   // CN: 压装NG位置4   // SK: NG lis poz.4</Text>
+  </LineComment>
+  <NewLine UId="640" />
+  <Access Scope="LocalVariable" UId="641">
+    <Symbol UId="642">
+      <Component Name="TempSensors" UId="643">
+        <Token Text="[" UId="644" />
+        <Access Scope="LiteralConstant" UId="645">
+          <Constant UId="646">
+            <ConstantValue UId="648">5</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="649" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="650" />
+  <Token Text=":=" UId="651" />
+  <Blank UId="652" />
+  <Access Scope="GlobalVariable" UId="653">
+    <Symbol UId="654">
+      <Component Name="iE2-UnloadingPressNG_5" UId="655" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="656" />
+  <Blank Num="10" UId="657" />
+  <LineComment UId="658">
+    <Text UId="659"> EN: NG press pos 5   // CN: 压装NG位置5   // SK: NG lis poz.5</Text>
+  </LineComment>
+  <NewLine UId="660" />
+  <Access Scope="LocalVariable" UId="661">
+    <Symbol UId="662">
+      <Component Name="TempSensors" UId="663">
+        <Token Text="[" UId="664" />
+        <Access Scope="LiteralConstant" UId="665">
+          <Constant UId="666">
+            <ConstantValue UId="668">6</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="669" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="670" />
+  <Token Text=":=" UId="671" />
+  <Blank UId="672" />
+  <Access Scope="GlobalVariable" UId="673">
+    <Symbol UId="674">
+      <Component Name="iE2-UnloadingMagentScanNG_1" UId="675" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="676" />
+  <Blank Num="5" UId="677" />
+  <LineComment UId="678">
+    <Text UId="679"> EN: NG magnet scan 1 // CN: 磁体扫描NG1   // SK: NG magnet sken 1</Text>
+  </LineComment>
+  <NewLine UId="680" />
+  <Access Scope="LocalVariable" UId="681">
+    <Symbol UId="682">
+      <Component Name="TempSensors" UId="683">
+        <Token Text="[" UId="684" />
+        <Access Scope="LiteralConstant" UId="685">
+          <Constant UId="686">
+            <ConstantValue UId="688">7</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="689" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="690" />
+  <Token Text=":=" UId="691" />
+  <Blank UId="692" />
+  <Access Scope="GlobalVariable" UId="693">
+    <Symbol UId="694">
+      <Component Name="iE2-UnloadingMagentScanNG_2" UId="695" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="696" />
+  <Blank Num="5" UId="697" />
+  <LineComment UId="698">
+    <Text UId="699"> EN: NG magnet scan 2 // CN: 磁体扫描NG2   // SK: NG magnet sken 2</Text>
+  </LineComment>
+  <NewLine UId="700" />
+  <Access Scope="LocalVariable" UId="701">
+    <Symbol UId="702">
+      <Component Name="TempSensors" UId="703">
+        <Token Text="[" UId="704" />
+        <Access Scope="LiteralConstant" UId="705">
+          <Constant UId="706">
+            <ConstantValue UId="708">8</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="709" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="710" />
+  <Token Text=":=" UId="711" />
+  <Blank UId="712" />
+  <Access Scope="GlobalVariable" UId="713">
+    <Symbol UId="714">
+      <Component Name="iE2-UnloadingMagentScanNG_3" UId="715" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="716" />
+  <Blank Num="5" UId="717" />
+  <LineComment UId="718">
+    <Text UId="719"> EN: NG magnet scan 3 // CN: 磁体扫描NG3   // SK: NG magnet sken 3</Text>
+  </LineComment>
+  <NewLine UId="720" />
+  <Access Scope="LocalVariable" UId="721">
+    <Symbol UId="722">
+      <Component Name="TempSensors" UId="723">
+        <Token Text="[" UId="724" />
+        <Access Scope="LiteralConstant" UId="725">
+          <Constant UId="726">
+            <ConstantValue UId="728">9</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="729" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="730" />
+  <Token Text=":=" UId="731" />
+  <Blank UId="732" />
+  <Access Scope="GlobalVariable" UId="733">
+    <Symbol UId="734">
+      <Component Name="iE2-UnloadingMagentScanNG_4" UId="735" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="736" />
+  <Blank Num="5" UId="737" />
+  <LineComment UId="738">
+    <Text UId="739"> EN: NG magnet scan 4 // CN: 磁体扫描NG4   // SK: NG magnet sken 4</Text>
+  </LineComment>
+  <NewLine UId="740" />
+  <Access Scope="LocalVariable" UId="741">
+    <Symbol UId="742">
+      <Component Name="TempSensors" UId="743">
+        <Token Text="[" UId="744" />
+        <Access Scope="LiteralConstant" UId="745">
+          <Constant UId="746">
+            <ConstantValue UId="748">10</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="749" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="750" />
+  <Token Text=":=" UId="751" />
+  <Blank UId="752" />
+  <Access Scope="GlobalVariable" UId="753">
+    <Symbol UId="754">
+      <Component Name="iE2-UnloadingMagentScanNG_5" UId="755" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="756" />
+  <Blank Num="5" UId="757" />
+  <LineComment UId="758">
+    <Text UId="759"> EN: NG magnet scan 5 // CN: 磁体扫描NG5   // SK: NG magnet sken 5</Text>
+  </LineComment>
+  <NewLine UId="760" />
+  <Access Scope="LocalVariable" UId="761">
+    <Symbol UId="762">
+      <Component Name="TempSensors" UId="763">
+        <Token Text="[" UId="764" />
+        <Access Scope="LiteralConstant" UId="765">
+          <Constant UId="766">
+            <ConstantValue UId="768">11</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="769" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="770" />
+  <Token Text=":=" UId="771" />
+  <Blank UId="772" />
+  <Access Scope="GlobalVariable" UId="773">
+    <Symbol UId="774">
+      <Component Name="iE2-UnloadingRingScanNG_1" UId="775" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="776" />
+  <Blank Num="7" UId="777" />
+  <LineComment UId="778">
+    <Text UId="779"> EN: NG ring scan 1   // CN: 环扫描NG1     // SK: NG sken krúžku 1</Text>
+  </LineComment>
+  <NewLine UId="780" />
+  <Access Scope="LocalVariable" UId="781">
+    <Symbol UId="782">
+      <Component Name="TempSensors" UId="783">
+        <Token Text="[" UId="784" />
+        <Access Scope="LiteralConstant" UId="785">
+          <Constant UId="786">
+            <ConstantValue UId="788">12</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="789" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="790" />
+  <Token Text=":=" UId="791" />
+  <Blank UId="792" />
+  <Access Scope="GlobalVariable" UId="793">
+    <Symbol UId="794">
+      <Component Name="iE2-UnloadingRingScanNG_2" UId="795" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="796" />
+  <Blank Num="7" UId="797" />
+  <LineComment UId="798">
+    <Text UId="799"> EN: NG ring scan 2   // CN: 环扫描NG2     // SK: NG sken krúžku 2</Text>
+  </LineComment>
+  <NewLine UId="800" />
+  <Access Scope="LocalVariable" UId="801">
+    <Symbol UId="802">
+      <Component Name="TempSensors" UId="803">
+        <Token Text="[" UId="804" />
+        <Access Scope="LiteralConstant" UId="805">
+          <Constant UId="806">
+            <ConstantValue UId="808">13</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="809" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="810" />
+  <Token Text=":=" UId="811" />
+  <Blank UId="812" />
+  <Access Scope="GlobalVariable" UId="813">
+    <Symbol UId="814">
+      <Component Name="iE2-UnloadingRingScanNG_3" UId="815" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="816" />
+  <Blank Num="7" UId="817" />
+  <LineComment UId="818">
+    <Text UId="819"> EN: NG ring scan 3   // CN: 环扫描NG3     // SK: NG sken krúžku 3</Text>
+  </LineComment>
+  <NewLine UId="820" />
+  <Access Scope="LocalVariable" UId="821">
+    <Symbol UId="822">
+      <Component Name="TempSensors" UId="823">
+        <Token Text="[" UId="824" />
+        <Access Scope="LiteralConstant" UId="825">
+          <Constant UId="826">
+            <ConstantValue UId="828">14</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="829" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="830" />
+  <Token Text=":=" UId="831" />
+  <Blank UId="832" />
+  <Access Scope="GlobalVariable" UId="833">
+    <Symbol UId="834">
+      <Component Name="iE2-UnloadingRingScanNG_4" UId="835" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="836" />
+  <Blank Num="7" UId="837" />
+  <LineComment UId="838">
+    <Text UId="839"> EN: NG ring scan 4   // CN: 环扫描NG4     // SK: NG sken krúžku 4</Text>
+  </LineComment>
+  <NewLine UId="840" />
+  <Access Scope="LocalVariable" UId="841">
+    <Symbol UId="842">
+      <Component Name="TempSensors" UId="843">
+        <Token Text="[" UId="844" />
+        <Access Scope="LiteralConstant" UId="845">
+          <Constant UId="846">
+            <ConstantValue UId="848">15</ConstantValue>
+          </Constant>
+        </Access>
+        <Token Text="]" UId="849" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="850" />
+  <Token Text=":=" UId="851" />
+  <Blank UId="852" />
+  <Access Scope="GlobalVariable" UId="853">
+    <Symbol UId="854">
+      <Component Name="iE2-UnloadingRingScanNG_5" UId="855" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="856" />
+  <Blank Num="7" UId="857" />
+  <LineComment UId="858">
+    <Text UId="859"> EN: NG ring scan 5   // CN: 环扫描NG5     // SK: NG sken krúžku 5</Text>
+  </LineComment>
+  <NewLine Num="2" UId="860" />
+  <Access Scope="Call" UId="861">
+    <CallInfo UId="862" BlockType="FB" Name="FB_NG_Box_Control">
+      <Instance Scope="LocalVariable" UId="863">
+        <Component Name="Box_Unloading" UId="864" />
+      </Instance>
+      <Token Text="(" UId="865" />
+      <NewLine UId="866" />
+      <Blank Num="15" UId="867" />
+      <Parameter Name="Button" UId="868">
+        <Blank Num="8" UId="869" />
+        <Token Text=":=" UId="870" />
+        <Blank UId="871" />
+        <Access Scope="GlobalVariable" UId="872">
+          <Symbol UId="873">
+            <Component Name="iNG_Button2" UId="874">
+              <BooleanAttribute Name="HasQuotes" UId="875">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="876" />
+      <Blank Num="21" UId="877" />
+      <LineComment UId="878">
+        <Text UId="879"> EN: Operator button (unloading side) // CN: 下料侧操作按钮 // SK: Tlačidlo obsluhy – unloading</Text>
+      </LineComment>
+      <NewLine UId="880" />
+      <Blank Num="15" UId="881" />
+      <Parameter Name="MagnetSensor" UId="882">
+        <Blank Num="2" UId="883" />
+        <Token Text=":=" UId="884" />
+        <Blank UId="885" />
+        <Access Scope="GlobalVariable" UId="886">
+          <Symbol UId="887">
+            <Component Name="iE-NG-02Detection" UId="888" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="889" />
+      <Blank Num="15" UId="890" />
+      <LineComment UId="891">
+        <Text UId="892"> EN: Door closed sensor               // CN: 门关闭传感器   // SK: Snímač zatvorenia dverí</Text>
+      </LineComment>
+      <NewLine UId="893" />
+      <Blank Num="15" UId="894" />
+      <Parameter Name="LockedFB" UId="895">
+        <Blank Num="6" UId="896" />
+        <Token Text=":=" UId="897" />
+        <Blank UId="898" />
+        <Token Text="NOT" UId="899" />
+        <Blank UId="900" />
+        <Access Scope="GlobalVariable" UId="901">
+          <Symbol UId="902">
+            <Component Name="iE-NG-02 Safety Gate_UnLock" UId="903" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="904" />
+      <Blank UId="905" />
+      <LineComment UId="906">
+        <Text UId="907"> EN: Lock feedback (locked)            // CN: 锁定反馈       // SK: Spätná väzba – zamknuté</Text>
+      </LineComment>
+      <NewLine UId="908" />
+      <Blank Num="15" UId="909" />
+      <Parameter Name="UnlockedFB" UId="910">
+        <Blank Num="4" UId="911" />
+        <Token Text=":=" UId="912" />
+        <Blank UId="913" />
+        <Access Scope="GlobalVariable" UId="914">
+          <Symbol UId="915">
+            <Component Name="iE-NG-02 Safety Gate_UnLock" UId="916" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="917" />
+      <Blank Num="5" UId="918" />
+      <LineComment UId="919">
+        <Text UId="920"> EN: Lock feedback (unlocked)          // CN: 解锁反馈       // SK: Spätná väzba – odomknuté</Text>
+      </LineComment>
+      <NewLine UId="921" />
+      <Blank Num="15" UId="922" />
+      <Parameter Name="AtSafePoint" UId="923">
+        <Blank Num="3" UId="924" />
+        <Token Text=":=" UId="925" />
+        <Blank UId="926" />
+        <Access Scope="LocalVariable" UId="927">
+          <Symbol UId="928">
+            <Component Name="in_Permission_to_Open" UId="929" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="930" />
+      <NewLine UId="931" />
+      <Blank Num="15" UId="932" />
+      <Parameter Name="Sensors" UId="933">
+        <Blank Num="7" UId="934" />
+        <Token Text=":=" UId="935" />
+        <Blank UId="936" />
+        <Access Scope="LocalVariable" UId="937">
+          <Symbol UId="938">
+            <Component Name="TempSensors" UId="939" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="940" />
+      <NewLine UId="941" />
+      <Blank Num="15" UId="942" />
+      <Parameter Name="UnlockCmd" UId="943">
+        <Blank Num="5" UId="944" />
+        <Token Text="=&gt;" UId="945" />
+        <Blank UId="946" />
+        <Access Scope="GlobalVariable" UId="947">
+          <Symbol UId="948">
+            <Component Name="ST10_NGGate2_DB" UId="949">
+              <BooleanAttribute Name="HasQuotes" UId="950">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="951" />
+            <Component Name="sSafetyGate UnlockRequest" UId="952" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="953" />
+      <NewLine UId="954" />
+      <Blank Num="15" UId="955" />
+      <Parameter Name="LockCmd" UId="956">
+        <Blank Num="7" UId="957" />
+        <Token Text="=&gt;" UId="958" />
+        <Blank UId="959" />
+        <Access Scope="GlobalVariable" UId="960">
+          <Symbol UId="961">
+            <Component Name="ST10_NGGate2_DB" UId="962">
+              <BooleanAttribute Name="HasQuotes" UId="963">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="964" />
+            <Component Name="sSafetyGate LockRequest" UId="965" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="966" />
+      <NewLine UId="967" />
+      <Blank Num="15" UId="968" />
+      <Parameter Name="CylinderOpen" UId="969">
+        <Blank Num="2" UId="970" />
+        <Token Text="=&gt;" UId="971" />
+        <Blank UId="972" />
+        <Access Scope="GlobalVariable" UId="973">
+          <Symbol UId="974">
+            <Component Name="oE-NG-02NGLocationCylinderToHP" UId="975" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="976" />
+      <NewLine UId="977" />
+      <Blank Num="15" UId="978" />
+      <Parameter Name="CylinderClose" UId="979">
+        <Blank UId="980" />
+        <Token Text="=&gt;" UId="981" />
+        <Blank UId="982" />
+        <Access Scope="GlobalVariable" UId="983">
+          <Symbol UId="984">
+            <Component Name="oE-NG-02NGLocationCylinderToWP" UId="985" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="986" />
+      <NewLine UId="987" />
+      <Blank Num="15" UId="988" />
+      <Parameter Name="ButtonLight" UId="989">
+        <Blank Num="3" UId="990" />
+        <Token Text="=&gt;" UId="991" />
+        <Blank UId="992" />
+        <Access Scope="GlobalVariable" UId="993">
+          <Symbol UId="994">
+            <Component Name="oNG_Button2" UId="995">
+              <BooleanAttribute Name="HasQuotes" UId="996">true</BooleanAttribute>
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="997" />
+      <NewLine UId="998" />
+      <Blank Num="15" UId="999" />
+      <Parameter Name="Ready_1" UId="1000">
+        <Blank UId="1001" />
+        <Token Text="=&gt;" UId="1002" />
+        <Blank UId="1003" />
+        <Access Scope="GlobalVariable" UId="1004">
+          <Symbol UId="1005">
+            <Component Name="AutoProcessControl" UId="1006">
+              <BooleanAttribute Name="HasQuotes" UId="1007">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1008" />
+            <Component Name="NG_2" UId="1009" />
+            <Token Text="." UId="1010" />
+            <Component Name="Robot3PutPrimit_1" UId="1011" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Blank Num="3" UId="1012" />
+      <Token Text="," UId="1013" />
+      <Blank Num="9" UId="1014" />
+      <LineComment UId="1015">
+        <Text UId="1016"> Status pro robota: Řada 1 (1-5) má místo // 机器人状态：第1排（1-5）有空位</Text>
+      </LineComment>
+      <NewLine UId="1017" />
+      <Blank Num="15" UId="1018" />
+      <Parameter Name="Ready_2" UId="1019">
+        <Blank UId="1020" />
+        <Token Text="=&gt;" UId="1021" />
+        <Blank UId="1022" />
+        <Access Scope="GlobalVariable" UId="1023">
+          <Symbol UId="1024">
+            <Component Name="AutoProcessControl" UId="1025">
+              <BooleanAttribute Name="HasQuotes" UId="1026">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1027" />
+            <Component Name="NG_2" UId="1028" />
+            <Token Text="." UId="1029" />
+            <Component Name="Robot3PutPrimit_2" UId="1030" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="1031" />
+      <NewLine UId="1032" />
+      <Blank Num="15" UId="1033" />
+      <Parameter Name="Ready_3" UId="1034">
+        <Blank UId="1035" />
+        <Token Text="=&gt;" UId="1036" />
+        <Blank UId="1037" />
+        <Access Scope="GlobalVariable" UId="1038">
+          <Symbol UId="1039">
+            <Component Name="AutoProcessControl" UId="1040">
+              <BooleanAttribute Name="HasQuotes" UId="1041">true</BooleanAttribute>
+            </Component>
+            <Token Text="." UId="1042" />
+            <Component Name="NG_2" UId="1043" />
+            <Token Text="." UId="1044" />
+            <Component Name="Robot3PutPrimit_3" UId="1045" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <NewLine UId="1046" />
+      <Token Text=")" UId="1049" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="1050" />
+  <NewLine Num="2" UId="1051" />
+  <LineComment UId="1052">
+    <Text UId="1053"> EN: Request pause of main sequence if any side requests opening</Text>
+  </LineComment>
+  <NewLine UId="1054" />
+  <LineComment UId="1055">
+    <Text UId="1056"> CN: 任一侧请求开门时，请求暂停主序列</Text>
+  </LineComment>
+  <NewLine UId="1057" />
+  <LineComment UId="1058">
+    <Text UId="1059"> SK: Požiadavka na pauzu hlavnej sekvencie, ak ktorákoľvek strana žiada otvorenie</Text>
+  </LineComment>
+  <NewLine UId="1060" />
+  <Access Scope="LocalVariable" UId="1061">
+    <Symbol UId="1062">
+      <Component Name="out_Request_to_open" UId="1063" />
+    </Symbol>
+  </Access>
+  <Blank UId="1064" />
+  <Token Text=":=" UId="1065" />
+  <Blank UId="1066" />
+  <Access Scope="LocalVariable" UId="1067">
+    <Symbol UId="1068">
+      <Component Name="Box_Loading" UId="1069" />
+      <Token Text="." UId="1070" />
+      <Component Name="PauseReq" UId="1071" />
+    </Symbol>
+  </Access>
+  <Blank UId="1072" />
+  <Token Text="OR" UId="1073" />
+  <Blank UId="1074" />
+  <Access Scope="LocalVariable" UId="1075">
+    <Symbol UId="1076">
+      <Component Name="Box_Unloading" UId="1077" />
+      <Token Text="." UId="1078" />
+      <Component Name="PauseReq" UId="1079" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1080" />
+  <NewLine UId="1081" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

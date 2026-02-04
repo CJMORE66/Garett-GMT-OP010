@@ -1,0 +1,1749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="Button" Datatype="Bool" />
+    <Member Name="MagnetSensor" Datatype="Bool" />
+    <Member Name="LockedFB" Datatype="Bool" />
+    <Member Name="UnlockedFB" Datatype="Bool" />
+    <Member Name="AtSafePoint" Datatype="Bool" />
+    <Member Name="Sensors" Datatype="Array[1..15] of Bool" />
+  </Section>
+  <Section Name="Output">
+    <Member Name="PauseReq" Datatype="Bool" />
+    <Member Name="UnlockCmd" Datatype="Bool" />
+    <Member Name="LockCmd" Datatype="Bool" />
+    <Member Name="CylinderOpen" Datatype="Bool" />
+    <Member Name="CylinderClose" Datatype="Bool" />
+    <Member Name="ButtonLight" Datatype="Bool" />
+    <Member Name="Ready_1" Datatype="Bool" />
+    <Member Name="Ready_2" Datatype="Bool" />
+    <Member Name="Ready_3" Datatype="Bool" />
+    <Member Name="OpenFlag" Datatype="Bool" />
+  </Section>
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="State" Datatype="Int">
+      <StartValue>99</StartValue>
+    </Member>
+    <Member Name="BlinkTimer" Datatype="TON_TIME" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="BlinkBit" Datatype="Bool" />
+    <Member Name="i" Datatype="Int" />
+    <Member Name="buttontriggered" Datatype="R_TRIG" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="c" Datatype="Int" />
+  </Section>
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+</Sections></Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>1000</MemoryReserve>
+      <Name>FB_NG_Box_Control</Name>
+      <Namespace />
+      <Number>5</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <LineComment UId="21">
+    <Text UId="22"> 1. POSITION CHECK (Ready_1..3) - TRUE = at least one position in the row is FREE</Text>
+  </LineComment>
+  <NewLine UId="23" />
+  <LineComment UId="24">
+    <Text UId="25"> 1. KONTROLA POZÍCIÍ – TRUE = aspoň jedna pozícia v rade je VOĽNÁ</Text>
+  </LineComment>
+  <NewLine UId="26" />
+  <LineComment UId="27">
+    <Text UId="28"> 1. 位置检测 – TRUE = 该行中至少有一个位置是空的</Text>
+  </LineComment>
+  <NewLine Num="2" UId="29" />
+  <LineComment UId="30">
+    <Text UId="31"> LINE #1  .... 5 POSITIONS</Text>
+  </LineComment>
+  <NewLine UId="32" />
+  <LineComment UId="33">
+    <Text UId="34"> EN: Line 1 checks sensors 1–5 (row 1)</Text>
+  </LineComment>
+  <NewLine UId="35" />
+  <LineComment UId="36">
+    <Text UId="37"> SK: Riadok 1 kontroluje senzory 1–5 (riadok 1)</Text>
+  </LineComment>
+  <NewLine UId="38" />
+  <LineComment UId="39">
+    <Text UId="40"> CN: 第1行检测传感器1–5（第1排）</Text>
+  </LineComment>
+  <NewLine UId="41" />
+  <Access Scope="LocalVariable" UId="42">
+    <Symbol UId="43">
+      <Component Name="Ready_1" UId="44" />
+    </Symbol>
+  </Access>
+  <Blank UId="45" />
+  <Token Text=":=" UId="46" />
+  <Blank UId="47" />
+  <Access Scope="LiteralConstant" UId="48">
+    <Constant UId="49">
+      <ConstantValue UId="51">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="52" />
+  <NewLine UId="53" />
+  <Token Text="FOR" UId="54" />
+  <Blank UId="55" />
+  <Access Scope="LocalVariable" UId="56">
+    <Symbol UId="57">
+      <Component Name="i" UId="58" />
+    </Symbol>
+  </Access>
+  <Blank UId="59" />
+  <Token Text=":=" UId="60" />
+  <Blank UId="61" />
+  <Access Scope="LiteralConstant" UId="62">
+    <Constant UId="63">
+      <ConstantValue UId="65">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="66" />
+  <Token Text="TO" UId="67" />
+  <Blank UId="68" />
+  <Access Scope="LiteralConstant" UId="69">
+    <Constant UId="70">
+      <ConstantValue UId="72">5</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="73" />
+  <Token Text="DO" UId="74" />
+  <NewLine UId="75" />
+  <Blank Num="2" UId="76" />
+  <Token Text="IF" UId="77" />
+  <Blank UId="78" />
+  <Token Text="NOT" UId="79" />
+  <Blank UId="80" />
+  <Access Scope="LocalVariable" UId="81">
+    <Symbol UId="82">
+      <Component Name="Sensors" UId="83">
+        <Token Text="[" UId="84" />
+        <Access Scope="LocalVariable" UId="85">
+          <Symbol UId="86">
+            <Component Name="i" UId="87" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="88" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="89" />
+  <Token Text="THEN" UId="90" />
+  <NewLine UId="91" />
+  <Blank Num="4" UId="92" />
+  <Access Scope="LocalVariable" UId="93">
+    <Symbol UId="94">
+      <Component Name="Ready_1" UId="95" />
+    </Symbol>
+  </Access>
+  <Blank UId="96" />
+  <Token Text=":=" UId="97" />
+  <Blank UId="98" />
+  <Access Scope="LiteralConstant" UId="99">
+    <Constant UId="100">
+      <ConstantValue UId="102">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="103" />
+  <NewLine UId="104" />
+  <Blank Num="2" UId="105" />
+  <Token Text="END_IF" UId="106" />
+  <Token Text=";" UId="107" />
+  <NewLine UId="108" />
+  <Token Text="END_FOR" UId="109" />
+  <Token Text=";" UId="110" />
+  <NewLine Num="2" UId="111" />
+  <LineComment UId="112">
+    <Text UId="113"> LINE #2  .... 5 POSITIONS</Text>
+  </LineComment>
+  <NewLine UId="114" />
+  <LineComment UId="115">
+    <Text UId="116"> EN: Line 2 checks sensors 6–10 (row 2)</Text>
+  </LineComment>
+  <NewLine UId="117" />
+  <LineComment UId="118">
+    <Text UId="119"> SK: Riadok 2 kontroluje senzory 6–10 (riadok 2)</Text>
+  </LineComment>
+  <NewLine UId="120" />
+  <LineComment UId="121">
+    <Text UId="122"> CN: 第2行检测传感器6–10（第2排）</Text>
+  </LineComment>
+  <NewLine UId="123" />
+  <Access Scope="LocalVariable" UId="124">
+    <Symbol UId="125">
+      <Component Name="Ready_2" UId="126" />
+    </Symbol>
+  </Access>
+  <Blank UId="127" />
+  <Token Text=":=" UId="128" />
+  <Blank UId="129" />
+  <Access Scope="LiteralConstant" UId="130">
+    <Constant UId="131">
+      <ConstantValue UId="133">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="134" />
+  <NewLine UId="135" />
+  <Token Text="FOR" UId="136" />
+  <Blank UId="137" />
+  <Access Scope="LocalVariable" UId="138">
+    <Symbol UId="139">
+      <Component Name="i" UId="140" />
+    </Symbol>
+  </Access>
+  <Blank UId="141" />
+  <Token Text=":=" UId="142" />
+  <Blank UId="143" />
+  <Access Scope="LiteralConstant" UId="144">
+    <Constant UId="145">
+      <ConstantValue UId="147">6</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="148" />
+  <Token Text="TO" UId="149" />
+  <Blank UId="150" />
+  <Access Scope="LiteralConstant" UId="151">
+    <Constant UId="152">
+      <ConstantValue UId="154">10</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="155" />
+  <Token Text="DO" UId="156" />
+  <NewLine UId="157" />
+  <Blank Num="2" UId="158" />
+  <Token Text="IF" UId="159" />
+  <Blank UId="160" />
+  <Token Text="NOT" UId="161" />
+  <Blank UId="162" />
+  <Access Scope="LocalVariable" UId="163">
+    <Symbol UId="164">
+      <Component Name="Sensors" UId="165">
+        <Token Text="[" UId="166" />
+        <Access Scope="LocalVariable" UId="167">
+          <Symbol UId="168">
+            <Component Name="i" UId="169" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="170" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="171" />
+  <Token Text="THEN" UId="172" />
+  <NewLine UId="173" />
+  <Blank Num="4" UId="174" />
+  <Access Scope="LocalVariable" UId="175">
+    <Symbol UId="176">
+      <Component Name="Ready_2" UId="177" />
+    </Symbol>
+  </Access>
+  <Blank UId="178" />
+  <Token Text=":=" UId="179" />
+  <Blank UId="180" />
+  <Access Scope="LiteralConstant" UId="181">
+    <Constant UId="182">
+      <ConstantValue UId="184">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="185" />
+  <NewLine UId="186" />
+  <Blank Num="2" UId="187" />
+  <Token Text="END_IF" UId="188" />
+  <Token Text=";" UId="189" />
+  <NewLine UId="190" />
+  <Token Text="END_FOR" UId="191" />
+  <Token Text=";" UId="192" />
+  <NewLine Num="2" UId="193" />
+  <LineComment UId="194">
+    <Text UId="195"> LINE #3  .... 5 POSITIONS</Text>
+  </LineComment>
+  <NewLine UId="196" />
+  <LineComment UId="197">
+    <Text UId="198"> EN: Line 3 checks sensors 11–15 (row 3)</Text>
+  </LineComment>
+  <NewLine UId="199" />
+  <LineComment UId="200">
+    <Text UId="201"> SK: Riadok 3 kontroluje senzory 11–15 (riadok 3)</Text>
+  </LineComment>
+  <NewLine UId="202" />
+  <LineComment UId="203">
+    <Text UId="204"> CN: 第3行检测传感器11–15（第3排）</Text>
+  </LineComment>
+  <NewLine UId="205" />
+  <Access Scope="LocalVariable" UId="206">
+    <Symbol UId="207">
+      <Component Name="Ready_3" UId="208" />
+    </Symbol>
+  </Access>
+  <Blank UId="209" />
+  <Token Text=":=" UId="210" />
+  <Blank UId="211" />
+  <Access Scope="LiteralConstant" UId="212">
+    <Constant UId="213">
+      <ConstantValue UId="215">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="216" />
+  <NewLine UId="217" />
+  <Token Text="FOR" UId="218" />
+  <Blank UId="219" />
+  <Access Scope="LocalVariable" UId="220">
+    <Symbol UId="221">
+      <Component Name="i" UId="222" />
+    </Symbol>
+  </Access>
+  <Blank UId="223" />
+  <Token Text=":=" UId="224" />
+  <Blank UId="225" />
+  <Access Scope="LiteralConstant" UId="226">
+    <Constant UId="227">
+      <ConstantValue UId="229">11</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="230" />
+  <Token Text="TO" UId="231" />
+  <Blank UId="232" />
+  <Access Scope="LiteralConstant" UId="233">
+    <Constant UId="234">
+      <ConstantValue UId="236">15</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="237" />
+  <Token Text="DO" UId="238" />
+  <NewLine UId="239" />
+  <Blank Num="2" UId="240" />
+  <Token Text="IF" UId="241" />
+  <Blank UId="242" />
+  <Token Text="NOT" UId="243" />
+  <Blank UId="244" />
+  <Access Scope="LocalVariable" UId="245">
+    <Symbol UId="246">
+      <Component Name="Sensors" UId="247">
+        <Token Text="[" UId="248" />
+        <Access Scope="LocalVariable" UId="249">
+          <Symbol UId="250">
+            <Component Name="i" UId="251" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="252" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="253" />
+  <Token Text="THEN" UId="254" />
+  <NewLine UId="255" />
+  <Blank Num="4" UId="256" />
+  <Access Scope="LocalVariable" UId="257">
+    <Symbol UId="258">
+      <Component Name="Ready_3" UId="259" />
+    </Symbol>
+  </Access>
+  <Blank UId="260" />
+  <Token Text=":=" UId="261" />
+  <Blank UId="262" />
+  <Access Scope="LiteralConstant" UId="263">
+    <Constant UId="264">
+      <ConstantValue UId="266">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="267" />
+  <NewLine UId="268" />
+  <Blank Num="2" UId="269" />
+  <Token Text="END_IF" UId="270" />
+  <Token Text=";" UId="271" />
+  <NewLine UId="272" />
+  <Token Text="END_FOR" UId="273" />
+  <Token Text=";" UId="274" />
+  <NewLine Num="3" UId="275" />
+  <LineComment UId="276">
+    <Text UId="277"> 2. BLINKING / BUTTON FEEDBACK</Text>
+  </LineComment>
+  <NewLine UId="278" />
+  <LineComment UId="279">
+    <Text UId="280"> EN: Blink signal taken from system clock (0.4s)</Text>
+  </LineComment>
+  <NewLine UId="281" />
+  <LineComment UId="282">
+    <Text UId="283"> SK: Blikanie je odvodené zo systémového hodinového bitu (0,4 s)</Text>
+  </LineComment>
+  <NewLine UId="284" />
+  <LineComment UId="285">
+    <Text UId="286"> CN: 闪烁信号来自系统时钟位（0.4秒）</Text>
+  </LineComment>
+  <NewLine UId="287" />
+  <Access Scope="LocalVariable" UId="288">
+    <Symbol UId="289">
+      <Component Name="BlinkBit" UId="290" />
+    </Symbol>
+  </Access>
+  <Blank UId="291" />
+  <Token Text=":=" UId="292" />
+  <Blank UId="293" />
+  <Access Scope="GlobalVariable" UId="294">
+    <Symbol UId="295">
+      <Component Name="ClockMemory0.4s" UId="296" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="297" />
+  <NewLine Num="2" UId="298" />
+  <LineComment UId="299">
+    <Text UId="300"> EN: Rising-edge detection of the button</Text>
+  </LineComment>
+  <NewLine UId="301" />
+  <LineComment UId="302">
+    <Text UId="303"> SK: Detekcia nábežnej hrany tlačidla</Text>
+  </LineComment>
+  <NewLine UId="304" />
+  <LineComment UId="305">
+    <Text UId="306"> CN: 按钮上升沿检测</Text>
+  </LineComment>
+  <NewLine UId="307" />
+  <Access Scope="LocalVariable" UId="308">
+    <Symbol UId="309">
+      <Component Name="buttontriggered" UId="310" />
+    </Symbol>
+  </Access>
+  <Access Scope="Call" UId="311">
+    <Instruction UId="312">
+      <Token Text="(" UId="313" />
+      <Parameter Name="CLK" UId="314">
+        <Blank UId="315" />
+        <Token Text=":=" UId="316" />
+        <Blank UId="317" />
+        <Access Scope="LocalVariable" UId="318">
+          <Symbol UId="319">
+            <Component Name="Button" UId="320" />
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="321" />
+    </Instruction>
+  </Access>
+  <Token Text=";" UId="322" />
+  <NewLine Num="3" UId="323" />
+  <LineComment UId="324">
+    <Text UId="325"> 3. DOOR STATE MACHINE</Text>
+  </LineComment>
+  <NewLine UId="326" />
+  <LineComment UId="327">
+    <Text UId="328"> EN: Main state machine controlling door, lock and cylinder</Text>
+  </LineComment>
+  <NewLine UId="329" />
+  <LineComment UId="330">
+    <Text UId="331"> SK: Hlavný stavový automat pre dvere, zámok a valec</Text>
+  </LineComment>
+  <NewLine UId="332" />
+  <LineComment UId="333">
+    <Text UId="334"> CN: 门、锁和气缸的主状态机</Text>
+  </LineComment>
+  <NewLine UId="335" />
+  <Token Text="CASE" UId="336" />
+  <Blank UId="337" />
+  <Access Scope="LocalVariable" UId="338">
+    <Symbol UId="339">
+      <Component Name="State" UId="340" />
+    </Symbol>
+  </Access>
+  <Blank UId="341" />
+  <Token Text="OF" UId="342" />
+  <NewLine UId="343" />
+  <Blank Num="4" UId="344" />
+  <NewLine UId="345" />
+  <Blank Num="2" UId="346" />
+  <Access Scope="LiteralConstant" UId="347">
+    <Constant UId="348">
+      <ConstantValue UId="350">99</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=":" UId="351" />
+  <Blank UId="352" />
+  <LineComment UId="353">
+    <Text UId="354"> INITIALIZATION</Text>
+  </LineComment>
+  <NewLine UId="355" />
+  <Blank Num="4" UId="356" />
+  <LineComment UId="357">
+    <Text UId="358"> EN: Decision after PLC start</Text>
+  </LineComment>
+  <NewLine UId="359" />
+  <Blank Num="4" UId="360" />
+  <LineComment UId="361">
+    <Text UId="362"> SK: Rozhodnutie po štarte PLC</Text>
+  </LineComment>
+  <NewLine UId="363" />
+  <Blank Num="4" UId="364" />
+  <LineComment UId="365">
+    <Text UId="366"> CN: PLC 启动后的状态判断</Text>
+  </LineComment>
+  <NewLine UId="367" />
+  <Blank Num="4" UId="368" />
+  <Token Text="IF" UId="369" />
+  <Blank UId="370" />
+  <Access Scope="LocalVariable" UId="371">
+    <Symbol UId="372">
+      <Component Name="MagnetSensor" UId="373" />
+    </Symbol>
+  </Access>
+  <Blank UId="374" />
+  <Token Text="AND" UId="375" />
+  <Blank UId="376" />
+  <Access Scope="LocalVariable" UId="377">
+    <Symbol UId="378">
+      <Component Name="LockedFB" UId="379" />
+    </Symbol>
+  </Access>
+  <Blank UId="380" />
+  <Token Text="THEN" UId="381" />
+  <NewLine UId="382" />
+  <Blank Num="6" UId="383" />
+  <Access Scope="LocalVariable" UId="384">
+    <Symbol UId="385">
+      <Component Name="State" UId="386" />
+    </Symbol>
+  </Access>
+  <Blank UId="387" />
+  <Token Text=":=" UId="388" />
+  <Blank UId="389" />
+  <Access Scope="LiteralConstant" UId="390">
+    <Constant UId="391">
+      <ConstantValue UId="393">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="394" />
+  <Blank Num="3" UId="395" />
+  <LineComment UId="396">
+    <Text UId="397"> EN: Closed &amp; locked → IDLE</Text>
+  </LineComment>
+  <NewLine UId="398" />
+  <Blank Num="6" UId="399" />
+  <LineComment UId="400">
+    <Text UId="401"> SK: Zavreté a zamknuté → IDLE</Text>
+  </LineComment>
+  <NewLine UId="402" />
+  <Blank Num="6" UId="403" />
+  <LineComment UId="404">
+    <Text UId="405"> CN: 已关闭并锁定 → 空闲状态</Text>
+  </LineComment>
+  <NewLine UId="406" />
+  <Blank Num="4" UId="407" />
+  <Token Text="ELSIF" UId="408" />
+  <Blank UId="409" />
+  <Access Scope="LocalVariable" UId="410">
+    <Symbol UId="411">
+      <Component Name="MagnetSensor" UId="412" />
+    </Symbol>
+  </Access>
+  <Blank UId="413" />
+  <Token Text="AND" UId="414" />
+  <Blank UId="415" />
+  <Token Text="NOT" UId="416" />
+  <Blank UId="417" />
+  <Access Scope="LocalVariable" UId="418">
+    <Symbol UId="419">
+      <Component Name="LockedFB" UId="420" />
+    </Symbol>
+  </Access>
+  <Blank UId="421" />
+  <Token Text="THEN" UId="422" />
+  <NewLine UId="423" />
+  <Blank Num="6" UId="424" />
+  <Access Scope="LocalVariable" UId="425">
+    <Symbol UId="426">
+      <Component Name="State" UId="427" />
+    </Symbol>
+  </Access>
+  <Blank UId="428" />
+  <Token Text=":=" UId="429" />
+  <Blank UId="430" />
+  <Access Scope="LiteralConstant" UId="431">
+    <Constant UId="432">
+      <ConstantValue UId="434">40</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="435" />
+  <Blank Num="2" UId="436" />
+  <LineComment UId="437">
+    <Text UId="438"> EN: Closed but unlocked → wait for confirmation</Text>
+  </LineComment>
+  <NewLine UId="439" />
+  <Blank Num="6" UId="440" />
+  <LineComment UId="441">
+    <Text UId="442"> SK: Zavreté, ale odomknuté → čakať na potvrdenie</Text>
+  </LineComment>
+  <NewLine UId="443" />
+  <Blank Num="6" UId="444" />
+  <LineComment UId="445">
+    <Text UId="446"> CN: 门已关但未上锁 → 等待确认</Text>
+  </LineComment>
+  <NewLine UId="447" />
+  <Blank Num="4" UId="448" />
+  <Token Text="ELSE" UId="449" />
+  <NewLine UId="450" />
+  <Blank Num="6" UId="451" />
+  <Access Scope="LocalVariable" UId="452">
+    <Symbol UId="453">
+      <Component Name="State" UId="454" />
+    </Symbol>
+  </Access>
+  <Blank UId="455" />
+  <Token Text=":=" UId="456" />
+  <Blank UId="457" />
+  <Access Scope="LiteralConstant" UId="458">
+    <Constant UId="459">
+      <ConstantValue UId="461">30</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="462" />
+  <Blank Num="2" UId="463" />
+  <LineComment UId="464">
+    <Text UId="465"> EN: Door physically open → OPEN state</Text>
+  </LineComment>
+  <NewLine UId="466" />
+  <Blank Num="6" UId="467" />
+  <LineComment UId="468">
+    <Text UId="469"> SK: Dvere fyzicky otvorené → OPEN stav</Text>
+  </LineComment>
+  <NewLine UId="470" />
+  <Blank Num="6" UId="471" />
+  <LineComment UId="472">
+    <Text UId="473"> CN: 门处于打开状态 → OPEN</Text>
+  </LineComment>
+  <NewLine UId="474" />
+  <Blank Num="4" UId="475" />
+  <Token Text="END_IF" UId="476" />
+  <Token Text=";" UId="477" />
+  <NewLine UId="478" />
+  <Blank Num="4" UId="479" />
+  <NewLine UId="480" />
+  <Blank Num="2" UId="481" />
+  <Access Scope="LiteralConstant" UId="482">
+    <Constant UId="483">
+      <ConstantValue UId="485">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=":" UId="486" />
+  <Blank Num="2" UId="487" />
+  <LineComment UId="488">
+    <Text UId="489"> IDLE</Text>
+  </LineComment>
+  <NewLine UId="490" />
+  <Blank Num="4" UId="491" />
+  <LineComment UId="492">
+    <Text UId="493"> EN: Normal operation, sequence running</Text>
+  </LineComment>
+  <NewLine UId="494" />
+  <Blank Num="4" UId="495" />
+  <LineComment UId="496">
+    <Text UId="497"> SK: Normálna prevádzka, sekvencia beží</Text>
+  </LineComment>
+  <NewLine UId="498" />
+  <Blank Num="4" UId="499" />
+  <LineComment UId="500">
+    <Text UId="501"> CN: 正常运行，工序执行中</Text>
+  </LineComment>
+  <NewLine UId="502" />
+  <Blank Num="4" UId="503" />
+  <Access Scope="LocalVariable" UId="504">
+    <Symbol UId="505">
+      <Component Name="PauseReq" UId="506" />
+    </Symbol>
+  </Access>
+  <Blank UId="507" />
+  <Token Text=":=" UId="508" />
+  <Blank UId="509" />
+  <Access Scope="LiteralConstant" UId="510">
+    <Constant UId="511">
+      <ConstantValue UId="513">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="514" />
+  <NewLine UId="515" />
+  <Blank Num="4" UId="516" />
+  <Access Scope="LocalVariable" UId="517">
+    <Symbol UId="518">
+      <Component Name="UnlockCmd" UId="519" />
+    </Symbol>
+  </Access>
+  <Blank UId="520" />
+  <Token Text=":=" UId="521" />
+  <Blank UId="522" />
+  <Access Scope="LiteralConstant" UId="523">
+    <Constant UId="524">
+      <ConstantValue UId="526">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="527" />
+  <NewLine UId="528" />
+  <Blank Num="4" UId="529" />
+  <Access Scope="LocalVariable" UId="530">
+    <Symbol UId="531">
+      <Component Name="LockCmd" UId="532" />
+    </Symbol>
+  </Access>
+  <Blank UId="533" />
+  <Token Text=":=" UId="534" />
+  <Blank UId="535" />
+  <Access Scope="LiteralConstant" UId="536">
+    <Constant UId="537">
+      <ConstantValue UId="539">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="540" />
+  <NewLine UId="541" />
+  <Blank Num="4" UId="542" />
+  <Access Scope="LocalVariable" UId="543">
+    <Symbol UId="544">
+      <Component Name="CylinderOpen" UId="545" />
+    </Symbol>
+  </Access>
+  <Blank UId="546" />
+  <Token Text=":=" UId="547" />
+  <Blank UId="548" />
+  <Access Scope="LiteralConstant" UId="549">
+    <Constant UId="550">
+      <ConstantValue UId="552">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="553" />
+  <NewLine UId="554" />
+  <Blank Num="4" UId="555" />
+  <Access Scope="LocalVariable" UId="556">
+    <Symbol UId="557">
+      <Component Name="CylinderClose" UId="558" />
+    </Symbol>
+  </Access>
+  <Blank UId="559" />
+  <Token Text=":=" UId="560" />
+  <Blank UId="561" />
+  <Access Scope="LiteralConstant" UId="562">
+    <Constant UId="563">
+      <ConstantValue UId="565">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="566" />
+  <NewLine UId="567" />
+  <Blank Num="4" UId="568" />
+  <Access Scope="LocalVariable" UId="569">
+    <Symbol UId="570">
+      <Component Name="ButtonLight" UId="571" />
+    </Symbol>
+  </Access>
+  <Blank UId="572" />
+  <Token Text=":=" UId="573" />
+  <Blank UId="574" />
+  <Access Scope="LiteralConstant" UId="575">
+    <Constant UId="576">
+      <ConstantValue UId="578">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="579" />
+  <NewLine UId="580" />
+  <Blank Num="4" UId="581" />
+  <Access Scope="LocalVariable" UId="582">
+    <Symbol UId="583">
+      <Component Name="OpenFlag" UId="584" />
+    </Symbol>
+  </Access>
+  <Blank UId="585" />
+  <Token Text=":=" UId="586" />
+  <Blank UId="587" />
+  <Access Scope="LiteralConstant" UId="588">
+    <Constant UId="589">
+      <ConstantValue UId="591">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="592" />
+  <NewLine UId="593" />
+  <Blank Num="4" UId="594" />
+  <Token Text="IF" UId="595" />
+  <Blank UId="596" />
+  <Access Scope="LocalVariable" UId="597">
+    <Symbol UId="598">
+      <Component Name="buttontriggered" UId="599" />
+      <Token Text="." UId="600" />
+      <Component Name="Q" UId="601" />
+    </Symbol>
+  </Access>
+  <Blank UId="602" />
+  <Token Text="THEN" UId="603" />
+  <NewLine UId="604" />
+  <Blank Num="6" UId="605" />
+  <Access Scope="LocalVariable" UId="606">
+    <Symbol UId="607">
+      <Component Name="State" UId="608" />
+    </Symbol>
+  </Access>
+  <Blank UId="609" />
+  <Token Text=":=" UId="610" />
+  <Blank UId="611" />
+  <Access Scope="LiteralConstant" UId="612">
+    <Constant UId="613">
+      <ConstantValue UId="615">10</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="616" />
+  <NewLine UId="617" />
+  <Blank Num="4" UId="618" />
+  <Token Text="END_IF" UId="619" />
+  <Token Text=";" UId="620" />
+  <NewLine UId="621" />
+  <Blank Num="4" UId="622" />
+  <NewLine UId="623" />
+  <Blank Num="2" UId="624" />
+  <Access Scope="LiteralConstant" UId="625">
+    <Constant UId="626">
+      <ConstantValue UId="628">10</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=":" UId="629" />
+  <Blank UId="630" />
+  <LineComment UId="631">
+    <Text UId="632"> REQUEST</Text>
+  </LineComment>
+  <NewLine UId="633" />
+  <Blank Num="4" UId="634" />
+  <LineComment UId="635">
+    <Text UId="636"> EN: Button pressed, waiting for safe point (Step 111)</Text>
+  </LineComment>
+  <NewLine UId="637" />
+  <Blank Num="4" UId="638" />
+  <LineComment UId="639">
+    <Text UId="640"> SK: Tlačidlo stlačené, čaká sa na bezpečný bod (Krok 111)</Text>
+  </LineComment>
+  <NewLine UId="641" />
+  <Blank Num="4" UId="642" />
+  <LineComment UId="643">
+    <Text UId="644"> CN: 按钮按下，等待安全点（步骤111）</Text>
+  </LineComment>
+  <NewLine UId="645" />
+  <Blank Num="4" UId="646" />
+  <Access Scope="LocalVariable" UId="647">
+    <Symbol UId="648">
+      <Component Name="PauseReq" UId="649" />
+    </Symbol>
+  </Access>
+  <Blank UId="650" />
+  <Token Text=":=" UId="651" />
+  <Blank UId="652" />
+  <Access Scope="LiteralConstant" UId="653">
+    <Constant UId="654">
+      <ConstantValue UId="656">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="657" />
+  <NewLine UId="658" />
+  <Blank Num="4" UId="659" />
+  <Access Scope="LocalVariable" UId="660">
+    <Symbol UId="661">
+      <Component Name="ButtonLight" UId="662" />
+    </Symbol>
+  </Access>
+  <Blank UId="663" />
+  <Token Text=":=" UId="664" />
+  <Blank UId="665" />
+  <Access Scope="LocalVariable" UId="666">
+    <Symbol UId="667">
+      <Component Name="BlinkBit" UId="668" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="669" />
+  <NewLine UId="670" />
+  <Blank Num="4" UId="671" />
+  <Token Text="IF" UId="672" />
+  <Blank UId="673" />
+  <Access Scope="LocalVariable" UId="674">
+    <Symbol UId="675">
+      <Component Name="AtSafePoint" UId="676" />
+    </Symbol>
+  </Access>
+  <Blank UId="677" />
+  <Token Text="THEN" UId="678" />
+  <NewLine UId="679" />
+  <Blank Num="6" UId="680" />
+  <Access Scope="LocalVariable" UId="681">
+    <Symbol UId="682">
+      <Component Name="State" UId="683" />
+    </Symbol>
+  </Access>
+  <Blank UId="684" />
+  <Token Text=":=" UId="685" />
+  <Blank UId="686" />
+  <Access Scope="LiteralConstant" UId="687">
+    <Constant UId="688">
+      <ConstantValue UId="690">20</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="691" />
+  <NewLine UId="692" />
+  <Blank Num="4" UId="693" />
+  <Token Text="END_IF" UId="694" />
+  <Token Text=";" UId="695" />
+  <NewLine UId="696" />
+  <Blank Num="4" UId="697" />
+  <NewLine UId="698" />
+  <Blank Num="2" UId="699" />
+  <Access Scope="LiteralConstant" UId="700">
+    <Constant UId="701">
+      <ConstantValue UId="703">20</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=":" UId="704" />
+  <Blank UId="705" />
+  <LineComment UId="706">
+    <Text UId="707"> SAFE</Text>
+  </LineComment>
+  <NewLine UId="708" />
+  <Blank Num="4" UId="709" />
+  <LineComment UId="710">
+    <Text UId="711"> EN: Sequence stopped, unlocking door and opening cylinder</Text>
+  </LineComment>
+  <NewLine UId="712" />
+  <Blank Num="4" UId="713" />
+  <LineComment UId="714">
+    <Text UId="715"> SK: Sekvencia stojí, odomykáme dvere a otvárame valec</Text>
+  </LineComment>
+  <NewLine UId="716" />
+  <Blank Num="4" UId="717" />
+  <LineComment UId="718">
+    <Text UId="719"> CN: 工序停止，解锁门并打开气缸</Text>
+  </LineComment>
+  <NewLine UId="720" />
+  <Blank Num="4" UId="721" />
+  <Access Scope="LocalVariable" UId="722">
+    <Symbol UId="723">
+      <Component Name="PauseReq" UId="724" />
+    </Symbol>
+  </Access>
+  <Blank UId="725" />
+  <Token Text=":=" UId="726" />
+  <Blank UId="727" />
+  <Access Scope="LiteralConstant" UId="728">
+    <Constant UId="729">
+      <ConstantValue UId="731">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="732" />
+  <NewLine UId="733" />
+  <Blank Num="4" UId="734" />
+  <Access Scope="LocalVariable" UId="735">
+    <Symbol UId="736">
+      <Component Name="UnlockCmd" UId="737" />
+    </Symbol>
+  </Access>
+  <Blank UId="738" />
+  <Token Text=":=" UId="739" />
+  <Blank UId="740" />
+  <Access Scope="LiteralConstant" UId="741">
+    <Constant UId="742">
+      <ConstantValue UId="744">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="745" />
+  <NewLine UId="746" />
+  <Blank Num="4" UId="747" />
+  <Access Scope="LocalVariable" UId="748">
+    <Symbol UId="749">
+      <Component Name="LockCmd" UId="750" />
+    </Symbol>
+  </Access>
+  <Blank UId="751" />
+  <Token Text=":=" UId="752" />
+  <Blank UId="753" />
+  <Access Scope="LiteralConstant" UId="754">
+    <Constant UId="755">
+      <ConstantValue UId="757">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="758" />
+  <NewLine UId="759" />
+  <Blank Num="4" UId="760" />
+  <Access Scope="LocalVariable" UId="761">
+    <Symbol UId="762">
+      <Component Name="ButtonLight" UId="763" />
+    </Symbol>
+  </Access>
+  <Blank UId="764" />
+  <Token Text=":=" UId="765" />
+  <Blank UId="766" />
+  <Access Scope="LocalVariable" UId="767">
+    <Symbol UId="768">
+      <Component Name="BlinkBit" UId="769" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="770" />
+  <NewLine UId="771" />
+  <Blank Num="4" UId="772" />
+  <Token Text="IF" UId="773" />
+  <Blank UId="774" />
+  <Access Scope="LocalVariable" UId="775">
+    <Symbol UId="776">
+      <Component Name="UnlockedFB" UId="777" />
+    </Symbol>
+  </Access>
+  <Blank UId="778" />
+  <Token Text="THEN" UId="779" />
+  <NewLine UId="780" />
+  <Blank Num="6" UId="781" />
+  <Access Scope="LocalVariable" UId="782">
+    <Symbol UId="783">
+      <Component Name="CylinderOpen" UId="784" />
+    </Symbol>
+  </Access>
+  <Blank UId="785" />
+  <Token Text=":=" UId="786" />
+  <Blank UId="787" />
+  <Access Scope="LiteralConstant" UId="788">
+    <Constant UId="789">
+      <ConstantValue UId="791">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="792" />
+  <NewLine UId="793" />
+  <Blank Num="6" UId="794" />
+  <Access Scope="LocalVariable" UId="795">
+    <Symbol UId="796">
+      <Component Name="CylinderClose" UId="797" />
+    </Symbol>
+  </Access>
+  <Blank UId="798" />
+  <Token Text=":=" UId="799" />
+  <Blank UId="800" />
+  <Access Scope="LiteralConstant" UId="801">
+    <Constant UId="802">
+      <ConstantValue UId="804">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="805" />
+  <NewLine UId="806" />
+  <Blank Num="6" UId="807" />
+  <Access Scope="LocalVariable" UId="808">
+    <Symbol UId="809">
+      <Component Name="State" UId="810" />
+    </Symbol>
+  </Access>
+  <Blank UId="811" />
+  <Token Text=":=" UId="812" />
+  <Blank UId="813" />
+  <Access Scope="LiteralConstant" UId="814">
+    <Constant UId="815">
+      <ConstantValue UId="817">30</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="818" />
+  <NewLine UId="819" />
+  <Blank Num="4" UId="820" />
+  <Token Text="END_IF" UId="821" />
+  <Token Text=";" UId="822" />
+  <NewLine UId="823" />
+  <Blank Num="4" UId="824" />
+  <NewLine UId="825" />
+  <Blank Num="2" UId="826" />
+  <Access Scope="LiteralConstant" UId="827">
+    <Constant UId="828">
+      <ConstantValue UId="830">30</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=":" UId="831" />
+  <Blank UId="832" />
+  <LineComment UId="833">
+    <Text UId="834"> OPEN</Text>
+  </LineComment>
+  <NewLine UId="835" />
+  <Blank Num="4" UId="836" />
+  <LineComment UId="837">
+    <Text UId="838"> EN: Door open, operator access</Text>
+  </LineComment>
+  <NewLine UId="839" />
+  <Blank Num="4" UId="840" />
+  <LineComment UId="841">
+    <Text UId="842"> SK: Dvere otvorené, obsluha má prístup</Text>
+  </LineComment>
+  <NewLine UId="843" />
+  <Blank Num="4" UId="844" />
+  <LineComment UId="845">
+    <Text UId="846"> CN: 门已打开，操作员可进入</Text>
+  </LineComment>
+  <NewLine UId="847" />
+  <Blank Num="4" UId="848" />
+  <Access Scope="LocalVariable" UId="849">
+    <Symbol UId="850">
+      <Component Name="PauseReq" UId="851" />
+    </Symbol>
+  </Access>
+  <Blank UId="852" />
+  <Token Text=":=" UId="853" />
+  <Blank UId="854" />
+  <Access Scope="LiteralConstant" UId="855">
+    <Constant UId="856">
+      <ConstantValue UId="858">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="859" />
+  <NewLine UId="860" />
+  <Blank Num="4" UId="861" />
+  <Access Scope="LocalVariable" UId="862">
+    <Symbol UId="863">
+      <Component Name="ButtonLight" UId="864" />
+    </Symbol>
+  </Access>
+  <Blank UId="865" />
+  <Token Text=":=" UId="866" />
+  <Blank UId="867" />
+  <Access Scope="LiteralConstant" UId="868">
+    <Constant UId="869">
+      <ConstantValue UId="871">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="872" />
+  <NewLine UId="873" />
+  <Blank Num="4" UId="874" />
+  <Access Scope="LocalVariable" UId="875">
+    <Symbol UId="876">
+      <Component Name="OpenFlag" UId="877" />
+    </Symbol>
+  </Access>
+  <Blank UId="878" />
+  <Token Text=":=" UId="879" />
+  <Blank UId="880" />
+  <Access Scope="LiteralConstant" UId="881">
+    <Constant UId="882">
+      <ConstantValue UId="884">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="885" />
+  <NewLine UId="886" />
+  <Blank Num="4" UId="887" />
+  <Access Scope="LocalVariable" UId="888">
+    <Symbol UId="889">
+      <Component Name="UnlockCmd" UId="890" />
+    </Symbol>
+  </Access>
+  <Blank UId="891" />
+  <Token Text=":=" UId="892" />
+  <Blank UId="893" />
+  <Access Scope="LiteralConstant" UId="894">
+    <Constant UId="895">
+      <ConstantValue UId="897">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="898" />
+  <NewLine UId="899" />
+  <Blank Num="4" UId="900" />
+  <Access Scope="LocalVariable" UId="901">
+    <Symbol UId="902">
+      <Component Name="LockCmd" UId="903" />
+    </Symbol>
+  </Access>
+  <Blank UId="904" />
+  <Token Text=":=" UId="905" />
+  <Blank UId="906" />
+  <Access Scope="LiteralConstant" UId="907">
+    <Constant UId="908">
+      <ConstantValue UId="910">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="911" />
+  <NewLine UId="912" />
+  <Blank Num="4" UId="913" />
+  <Access Scope="LocalVariable" UId="914">
+    <Symbol UId="915">
+      <Component Name="CylinderOpen" UId="916" />
+    </Symbol>
+  </Access>
+  <Blank UId="917" />
+  <Token Text=":=" UId="918" />
+  <Blank UId="919" />
+  <Access Scope="LiteralConstant" UId="920">
+    <Constant UId="921">
+      <ConstantValue UId="923">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="924" />
+  <NewLine UId="925" />
+  <Blank Num="4" UId="926" />
+  <Access Scope="LocalVariable" UId="927">
+    <Symbol UId="928">
+      <Component Name="CylinderClose" UId="929" />
+    </Symbol>
+  </Access>
+  <Blank UId="930" />
+  <Token Text=":=" UId="931" />
+  <Blank UId="932" />
+  <Access Scope="LiteralConstant" UId="933">
+    <Constant UId="934">
+      <ConstantValue UId="936">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="937" />
+  <NewLine UId="938" />
+  <Blank Num="4" UId="939" />
+  <Token Text="IF" UId="940" />
+  <Blank UId="941" />
+  <Access Scope="LocalVariable" UId="942">
+    <Symbol UId="943">
+      <Component Name="MagnetSensor" UId="944" />
+    </Symbol>
+  </Access>
+  <Blank UId="945" />
+  <Token Text="THEN" UId="946" />
+  <NewLine UId="947" />
+  <Blank Num="6" UId="948" />
+  <Access Scope="LocalVariable" UId="949">
+    <Symbol UId="950">
+      <Component Name="State" UId="951" />
+    </Symbol>
+  </Access>
+  <Blank UId="952" />
+  <Token Text=":=" UId="953" />
+  <Blank UId="954" />
+  <Access Scope="LiteralConstant" UId="955">
+    <Constant UId="956">
+      <ConstantValue UId="958">40</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="959" />
+  <NewLine UId="960" />
+  <Blank Num="4" UId="961" />
+  <Token Text="END_IF" UId="962" />
+  <Token Text=";" UId="963" />
+  <NewLine UId="964" />
+  <Blank Num="4" UId="965" />
+  <NewLine UId="966" />
+  <Blank Num="2" UId="967" />
+  <Access Scope="LiteralConstant" UId="968">
+    <Constant UId="969">
+      <ConstantValue UId="971">40</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=":" UId="972" />
+  <Blank UId="973" />
+  <LineComment UId="974">
+    <Text UId="975"> CONFIRM</Text>
+  </LineComment>
+  <NewLine UId="976" />
+  <Blank Num="4" UId="977" />
+  <LineComment UId="978">
+    <Text UId="979"> EN: Door closed, waiting for operator confirmation</Text>
+  </LineComment>
+  <NewLine UId="980" />
+  <Blank Num="4" UId="981" />
+  <LineComment UId="982">
+    <Text UId="983"> SK: Dvere zatvorené, čaká sa na potvrdenie obsluhou</Text>
+  </LineComment>
+  <NewLine UId="984" />
+  <Blank Num="4" UId="985" />
+  <LineComment UId="986">
+    <Text UId="987"> CN: 门已关闭，等待人工确认</Text>
+  </LineComment>
+  <NewLine UId="988" />
+  <Blank Num="4" UId="989" />
+  <Access Scope="LocalVariable" UId="990">
+    <Symbol UId="991">
+      <Component Name="PauseReq" UId="992" />
+    </Symbol>
+  </Access>
+  <Blank UId="993" />
+  <Token Text=":=" UId="994" />
+  <Blank UId="995" />
+  <Access Scope="LiteralConstant" UId="996">
+    <Constant UId="997">
+      <ConstantValue UId="999">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1000" />
+  <NewLine UId="1001" />
+  <Blank Num="4" UId="1002" />
+  <Access Scope="LocalVariable" UId="1003">
+    <Symbol UId="1004">
+      <Component Name="ButtonLight" UId="1005" />
+    </Symbol>
+  </Access>
+  <Blank UId="1006" />
+  <Token Text=":=" UId="1007" />
+  <Blank UId="1008" />
+  <Access Scope="LocalVariable" UId="1009">
+    <Symbol UId="1010">
+      <Component Name="BlinkBit" UId="1011" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1012" />
+  <NewLine UId="1013" />
+  <Blank Num="4" UId="1014" />
+  <Access Scope="LocalVariable" UId="1015">
+    <Symbol UId="1016">
+      <Component Name="OpenFlag" UId="1017" />
+    </Symbol>
+  </Access>
+  <Blank UId="1018" />
+  <Token Text=":=" UId="1019" />
+  <Blank UId="1020" />
+  <Access Scope="LiteralConstant" UId="1021">
+    <Constant UId="1022">
+      <ConstantValue UId="1024">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1025" />
+  <NewLine UId="1026" />
+  <Blank Num="4" UId="1027" />
+  <Access Scope="LocalVariable" UId="1028">
+    <Symbol UId="1029">
+      <Component Name="UnlockCmd" UId="1030" />
+    </Symbol>
+  </Access>
+  <Blank UId="1031" />
+  <Token Text=":=" UId="1032" />
+  <Blank UId="1033" />
+  <Access Scope="LiteralConstant" UId="1034">
+    <Constant UId="1035">
+      <ConstantValue UId="1037">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1038" />
+  <NewLine UId="1039" />
+  <Blank Num="4" UId="1040" />
+  <Access Scope="LocalVariable" UId="1041">
+    <Symbol UId="1042">
+      <Component Name="LockCmd" UId="1043" />
+    </Symbol>
+  </Access>
+  <Blank UId="1044" />
+  <Token Text=":=" UId="1045" />
+  <Blank UId="1046" />
+  <Access Scope="LiteralConstant" UId="1047">
+    <Constant UId="1048">
+      <ConstantValue UId="1050">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1051" />
+  <NewLine UId="1052" />
+  <Blank Num="4" UId="1053" />
+  <Access Scope="LocalVariable" UId="1054">
+    <Symbol UId="1055">
+      <Component Name="CylinderOpen" UId="1056" />
+    </Symbol>
+  </Access>
+  <Blank UId="1057" />
+  <Token Text=":=" UId="1058" />
+  <Blank UId="1059" />
+  <Access Scope="LiteralConstant" UId="1060">
+    <Constant UId="1061">
+      <ConstantValue UId="1063">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1064" />
+  <NewLine UId="1065" />
+  <Blank Num="4" UId="1066" />
+  <Access Scope="LocalVariable" UId="1067">
+    <Symbol UId="1068">
+      <Component Name="CylinderClose" UId="1069" />
+    </Symbol>
+  </Access>
+  <Blank UId="1070" />
+  <Token Text=":=" UId="1071" />
+  <Blank UId="1072" />
+  <Access Scope="LiteralConstant" UId="1073">
+    <Constant UId="1074">
+      <ConstantValue UId="1076">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1077" />
+  <NewLine UId="1078" />
+  <Blank Num="4" UId="1079" />
+  <Token Text="IF" UId="1080" />
+  <Blank UId="1081" />
+  <Token Text="NOT" UId="1082" />
+  <Blank UId="1083" />
+  <Access Scope="LocalVariable" UId="1084">
+    <Symbol UId="1085">
+      <Component Name="MagnetSensor" UId="1086" />
+    </Symbol>
+  </Access>
+  <Blank UId="1087" />
+  <Token Text="THEN" UId="1088" />
+  <NewLine UId="1089" />
+  <Blank Num="6" UId="1090" />
+  <Access Scope="LocalVariable" UId="1091">
+    <Symbol UId="1092">
+      <Component Name="State" UId="1093" />
+    </Symbol>
+  </Access>
+  <Blank UId="1094" />
+  <Token Text=":=" UId="1095" />
+  <Blank UId="1096" />
+  <Access Scope="LiteralConstant" UId="1097">
+    <Constant UId="1098">
+      <ConstantValue UId="1100">30</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1101" />
+  <NewLine UId="1102" />
+  <Blank Num="4" UId="1103" />
+  <Token Text="ELSIF" UId="1104" />
+  <Blank UId="1105" />
+  <Access Scope="LocalVariable" UId="1106">
+    <Symbol UId="1107">
+      <Component Name="buttontriggered" UId="1108" />
+      <Token Text="." UId="1109" />
+      <Component Name="Q" UId="1110" />
+    </Symbol>
+  </Access>
+  <Blank UId="1111" />
+  <Token Text="THEN" UId="1112" />
+  <NewLine UId="1113" />
+  <Blank Num="6" UId="1114" />
+  <Access Scope="LocalVariable" UId="1115">
+    <Symbol UId="1116">
+      <Component Name="State" UId="1117" />
+    </Symbol>
+  </Access>
+  <Blank UId="1118" />
+  <Token Text=":=" UId="1119" />
+  <Blank UId="1120" />
+  <Access Scope="LiteralConstant" UId="1121">
+    <Constant UId="1122">
+      <ConstantValue UId="1124">50</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1125" />
+  <NewLine UId="1126" />
+  <Blank Num="4" UId="1127" />
+  <Token Text="END_IF" UId="1128" />
+  <Token Text=";" UId="1129" />
+  <NewLine UId="1130" />
+  <Blank Num="4" UId="1131" />
+  <NewLine UId="1132" />
+  <Blank Num="2" UId="1133" />
+  <Access Scope="LiteralConstant" UId="1134">
+    <Constant UId="1135">
+      <ConstantValue UId="1137">50</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=":" UId="1138" />
+  <Blank UId="1139" />
+  <LineComment UId="1140">
+    <Text UId="1141"> LOCKING</Text>
+  </LineComment>
+  <NewLine UId="1142" />
+  <Blank Num="4" UId="1143" />
+  <LineComment UId="1144">
+    <Text UId="1145"> EN: Locking door and returning cylinder</Text>
+  </LineComment>
+  <NewLine UId="1146" />
+  <Blank Num="4" UId="1147" />
+  <LineComment UId="1148">
+    <Text UId="1149"> SK: Zamykáme dvere a vraciame valec</Text>
+  </LineComment>
+  <NewLine UId="1150" />
+  <Blank Num="4" UId="1151" />
+  <LineComment UId="1152">
+    <Text UId="1153"> CN: 锁门并回收气缸</Text>
+  </LineComment>
+  <NewLine UId="1154" />
+  <Blank Num="4" UId="1155" />
+  <Access Scope="LocalVariable" UId="1156">
+    <Symbol UId="1157">
+      <Component Name="PauseReq" UId="1158" />
+    </Symbol>
+  </Access>
+  <Blank UId="1159" />
+  <Token Text=":=" UId="1160" />
+  <Blank UId="1161" />
+  <Access Scope="LiteralConstant" UId="1162">
+    <Constant UId="1163">
+      <ConstantValue UId="1165">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1166" />
+  <NewLine UId="1167" />
+  <Blank Num="4" UId="1168" />
+  <Access Scope="LocalVariable" UId="1169">
+    <Symbol UId="1170">
+      <Component Name="CylinderOpen" UId="1171" />
+    </Symbol>
+  </Access>
+  <Blank UId="1172" />
+  <Token Text=":=" UId="1173" />
+  <Blank UId="1174" />
+  <Access Scope="LiteralConstant" UId="1175">
+    <Constant UId="1176">
+      <ConstantValue UId="1178">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1179" />
+  <NewLine UId="1180" />
+  <Blank Num="4" UId="1181" />
+  <Access Scope="LocalVariable" UId="1182">
+    <Symbol UId="1183">
+      <Component Name="CylinderClose" UId="1184" />
+    </Symbol>
+  </Access>
+  <Blank UId="1185" />
+  <Token Text=":=" UId="1186" />
+  <Blank UId="1187" />
+  <Access Scope="LiteralConstant" UId="1188">
+    <Constant UId="1189">
+      <ConstantValue UId="1191">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1192" />
+  <NewLine UId="1193" />
+  <Blank Num="4" UId="1194" />
+  <Access Scope="LocalVariable" UId="1195">
+    <Symbol UId="1196">
+      <Component Name="UnlockCmd" UId="1197" />
+    </Symbol>
+  </Access>
+  <Blank UId="1198" />
+  <Token Text=":=" UId="1199" />
+  <Blank UId="1200" />
+  <Access Scope="LiteralConstant" UId="1201">
+    <Constant UId="1202">
+      <ConstantValue UId="1204">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1205" />
+  <NewLine UId="1206" />
+  <Blank Num="4" UId="1207" />
+  <Access Scope="LocalVariable" UId="1208">
+    <Symbol UId="1209">
+      <Component Name="LockCmd" UId="1210" />
+    </Symbol>
+  </Access>
+  <Blank UId="1211" />
+  <Token Text=":=" UId="1212" />
+  <Blank UId="1213" />
+  <Access Scope="LiteralConstant" UId="1214">
+    <Constant UId="1215">
+      <ConstantValue UId="1217">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1218" />
+  <NewLine UId="1219" />
+  <Blank Num="4" UId="1220" />
+  <Token Text="IF" UId="1221" />
+  <Blank UId="1222" />
+  <Access Scope="LocalVariable" UId="1223">
+    <Symbol UId="1224">
+      <Component Name="LockedFB" UId="1225" />
+    </Symbol>
+  </Access>
+  <Blank UId="1226" />
+  <Token Text="THEN" UId="1227" />
+  <NewLine UId="1228" />
+  <Blank Num="6" UId="1229" />
+  <Access Scope="LocalVariable" UId="1230">
+    <Symbol UId="1231">
+      <Component Name="PauseReq" UId="1232" />
+    </Symbol>
+  </Access>
+  <Blank UId="1233" />
+  <Token Text=":=" UId="1234" />
+  <Blank UId="1235" />
+  <Access Scope="LiteralConstant" UId="1236">
+    <Constant UId="1237">
+      <ConstantValue UId="1239">FALSE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1240" />
+  <Blank UId="1241" />
+  <LineComment UId="1242">
+    <Text UId="1243"> EN: Release Step 111, sequence continues</Text>
+  </LineComment>
+  <NewLine UId="1244" />
+  <Blank Num="6" UId="1245" />
+  <LineComment UId="1246">
+    <Text UId="1247"> SK: Uvoľní sa Krok 111, sekvencia pokračuje</Text>
+  </LineComment>
+  <NewLine UId="1248" />
+  <Blank Num="6" UId="1249" />
+  <LineComment UId="1250">
+    <Text UId="1251"> CN: 释放步骤111，工序继续</Text>
+  </LineComment>
+  <NewLine UId="1252" />
+  <Blank Num="6" UId="1253" />
+  <Access Scope="LocalVariable" UId="1254">
+    <Symbol UId="1255">
+      <Component Name="State" UId="1256" />
+    </Symbol>
+  </Access>
+  <Blank UId="1257" />
+  <Token Text=":=" UId="1258" />
+  <Blank UId="1259" />
+  <Access Scope="LiteralConstant" UId="1260">
+    <Constant UId="1261">
+      <ConstantValue UId="1263">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1264" />
+  <NewLine UId="1265" />
+  <Blank Num="4" UId="1266" />
+  <Token Text="END_IF" UId="1267" />
+  <Token Text=";" UId="1268" />
+  <NewLine UId="1269" />
+  <Blank Num="4" UId="1270" />
+  <NewLine UId="1271" />
+  <Token Text="END_CASE" UId="1272" />
+  <Token Text=";" UId="1273" />
+  <NewLine Num="3" UId="1274" />
+  <LineComment UId="1275">
+    <Text UId="1276"> EN: Test lamp function from system diagnostics</Text>
+  </LineComment>
+  <NewLine UId="1277" />
+  <LineComment UId="1278">
+    <Text UId="1279"> SK: Testovacia funkcia lampy zo systémovej diagnostiky</Text>
+  </LineComment>
+  <NewLine UId="1280" />
+  <LineComment UId="1281">
+    <Text UId="1282"> CN: 系统诊断用的灯测试功能</Text>
+  </LineComment>
+  <NewLine UId="1283" />
+  <Token Text="IF" UId="1284" />
+  <Blank UId="1285" />
+  <Access Scope="GlobalVariable" UId="1286">
+    <Symbol UId="1287">
+      <Component Name="Station_Sys" UId="1288">
+        <BooleanAttribute Name="HasQuotes" UId="1289">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1290" />
+      <Component Name="Cmd" UId="1291" />
+      <Token Text="." UId="1292" />
+      <Component Name="TestLamp" UId="1293" />
+    </Symbol>
+  </Access>
+  <Blank UId="1294" />
+  <Token Text="THEN" UId="1295" />
+  <NewLine UId="1296" />
+  <Blank Num="2" UId="1297" />
+  <Access Scope="LocalVariable" UId="1298">
+    <Symbol UId="1299">
+      <Component Name="ButtonLight" UId="1300" />
+    </Symbol>
+  </Access>
+  <Blank UId="1301" />
+  <Token Text=":=" UId="1302" />
+  <Blank UId="1303" />
+  <Access Scope="LiteralConstant" UId="1304">
+    <Constant UId="1305">
+      <ConstantValue UId="1307">TRUE</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="1308" />
+  <NewLine UId="1309" />
+  <Token Text="END_IF" UId="1310" />
+  <Token Text=";" UId="1311" />
+  <NewLine UId="1312" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-GB</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>sk-SK</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="E" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="F" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="11" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

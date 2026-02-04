@@ -6,25 +6,24 @@
       <AutoNumber>false</AutoNumber>
       <HeaderAuthor>STD</HeaderAuthor>
       <HeaderFamily>RCS</HeaderFamily>
-      <HeaderName />
       <HeaderVersion>18.0</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Input">
-    <Member Name="iCPUType" Datatype="Int" Accessibility="Public">
+    <Member Name="iCPUType" Datatype="Int">
       <Comment>
         <MultiLanguageText Lang="zh-CN">1-DP&amp;PN  2-PN</MultiLanguageText>
       </Comment>
     </Member>
-    <Member Name="iDBNum" Datatype="Word" Accessibility="Public" />
-    <Member Name="iOffset" Datatype="Int" Accessibility="Public">
+    <Member Name="iDBNum" Datatype="Word" />
+    <Member Name="iOffset" Datatype="Int">
       <Comment>
         <MultiLanguageText Lang="zh-CN">Start address</MultiLanguageText>
       </Comment>
     </Member>
-    <Member Name="iHardwareID" Datatype="HW_IOSYSTEM" Accessibility="Public" />
+    <Member Name="iHardwareID" Datatype="HW_IOSYSTEM" />
   </Section>
   <Section Name="Output">
-    <Member Name="oStatus" Datatype="Int" Accessibility="Public" />
+    <Member Name="oStatus" Datatype="Int" />
   </Section>
   <Section Name="InOut" />
   <Section Name="Temp">
@@ -55,18 +54,15 @@
   </Section>
   <Section Name="Constant" />
   <Section Name="Return">
-    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+    <Member Name="Ret_Val" Datatype="Void" />
   </Section>
 </Sections></Interface>
-      <IsIECCheckEnabled>false</IsIECCheckEnabled>
       <MemoryLayout>Standard</MemoryLayout>
       <Name>Diagnostic</Name>
       <Namespace />
       <Number>3001</Number>
       <ProgrammingLanguage>SCL</ProgrammingLanguage>
       <SetENOAutomatically>true</SetENOAutomatically>
-      <UDABlockProperties />
-      <UDAEnableTagReadback>false</UDAEnableTagReadback>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">
@@ -94,8 +90,8 @@
       <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
         <AttributeList>
           <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
-  <NewLine Num="1" UId="21" />
-  <LineComment Inserted="true" NoClosingBracket="false" UId="22">
+  <NewLine UId="21" />
+  <LineComment Inserted="true" UId="22">
     <Text UId="23">############################################################
    RUHLAMAT SUZHOU ELEC.STD.
    Copyright (c) 2017. All rights reserved.    
@@ -128,64 +124,64 @@
    
 ############################################################</Text>
   </LineComment>
-  <NewLine Num="1" UId="24" />
+  <NewLine UId="24" />
   <Token Text="IF" UId="25" />
-  <Blank Num="1" UId="26" />
+  <Blank UId="26" />
   <Access Scope="LocalVariable" UId="27">
     <Symbol UId="28">
       <Component Name="iCPUType" UId="29" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="30" />
+  <Blank UId="30" />
   <Token Text="=" UId="31" />
-  <Blank Num="1" UId="32" />
+  <Blank UId="32" />
   <Access Scope="LiteralConstant" UId="33">
     <Constant UId="34">
       <ConstantValue UId="36">0</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="37" />
+  <Blank UId="37" />
   <Token Text="OR" UId="38" />
-  <Blank Num="1" UId="39" />
+  <Blank UId="39" />
   <Access Scope="LocalVariable" UId="40">
     <Symbol UId="41">
       <Component Name="iDBNum" UId="42" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="43" />
+  <Blank UId="43" />
   <Token Text="=" UId="44" />
-  <Blank Num="1" UId="45" />
+  <Blank UId="45" />
   <Access Scope="LiteralConstant" UId="46">
     <Constant UId="47">
       <ConstantValue UId="49">0</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="50" />
+  <Blank UId="50" />
   <Token Text="THEN" UId="51" />
-  <NewLine Num="1" UId="52" />
+  <NewLine UId="52" />
   <Blank Num="4" UId="53" />
   <Access Scope="PredefinedVariable" UId="54">
     <PredefinedVariable Name="ENO" UId="55" />
   </Access>
-  <Blank Num="1" UId="56" />
+  <Blank UId="56" />
   <Token Text=":=" UId="57" />
-  <Blank Num="1" UId="58" />
+  <Blank UId="58" />
   <Access Scope="LiteralConstant" UId="59">
     <Constant UId="60">
       <ConstantValue UId="62">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="63" />
-  <NewLine Num="1" UId="64" />
+  <NewLine UId="64" />
   <Blank Num="4" UId="65" />
   <Token Text="RETURN" UId="66" />
   <Token Text=";" UId="67" />
-  <NewLine Num="1" UId="68" />
+  <NewLine UId="68" />
   <Token Text="ELSE" UId="69" />
-  <NewLine Num="1" UId="70" />
+  <NewLine UId="70" />
   <Blank Num="4" UId="71" />
   <Token Text="IF" UId="72" />
-  <Blank Num="1" UId="73" />
+  <Blank UId="73" />
   <Access Scope="LocalVariable" UId="74">
     <Symbol UId="75">
       <Component Name="iCPUType" UId="76" />
@@ -197,20 +193,20 @@
       <ConstantValue UId="81">2</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="82" />
+  <Blank UId="82" />
   <Token Text="THEN" UId="83" />
-  <NewLine Num="1" UId="84" />
+  <NewLine UId="84" />
   <Blank Num="8" UId="85" />
   <Token Text="GOTO" UId="86" />
-  <Blank Num="1" UId="87" />
+  <Blank UId="87" />
   <Access Scope="Label" UId="88">
     <Label Name="PN" UId="89" />
   </Access>
   <Token Text=";" UId="90" />
-  <NewLine Num="1" UId="91" />
+  <NewLine UId="91" />
   <Blank Num="4" UId="92" />
   <Token Text="ELSIF" UId="93" />
-  <Blank Num="1" UId="94" />
+  <Blank UId="94" />
   <Access Scope="LocalVariable" UId="95">
     <Symbol UId="96">
       <Component Name="iCPUType" UId="97" />
@@ -222,37 +218,37 @@
       <ConstantValue UId="102">1</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="103" />
+  <Blank UId="103" />
   <Token Text="THEN" UId="104" />
-  <NewLine Num="1" UId="105" />
+  <NewLine UId="105" />
   <Blank Num="8" UId="106" />
   <Token Text=";" UId="107" />
-  <NewLine Num="1" UId="108" />
+  <NewLine UId="108" />
   <Blank Num="4" UId="109" />
   <Token Text="ELSE" UId="110" />
-  <NewLine Num="1" UId="111" />
+  <NewLine UId="111" />
   <Blank Num="8" UId="112" />
   <Access Scope="PredefinedVariable" UId="113">
     <PredefinedVariable Name="ENO" UId="114" />
   </Access>
-  <Blank Num="1" UId="115" />
+  <Blank UId="115" />
   <Token Text=":=" UId="116" />
-  <Blank Num="1" UId="117" />
+  <Blank UId="117" />
   <Access Scope="LiteralConstant" UId="118">
     <Constant UId="119">
       <ConstantValue UId="121">0</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="122" />
-  <NewLine Num="1" UId="123" />
+  <NewLine UId="123" />
   <Blank Num="8" UId="124" />
   <Token Text="RETURN" UId="125" />
   <Token Text=";" UId="126" />
-  <NewLine Num="1" UId="127" />
+  <NewLine UId="127" />
   <Blank Num="4" UId="128" />
   <Token Text="END_IF" UId="129" />
   <Token Text=";" UId="130" />
-  <NewLine Num="1" UId="131" />
+  <NewLine UId="131" />
   <Blank Num="4" UId="132" />
   <Access Scope="LocalVariable" UId="133">
     <Symbol UId="134">
@@ -261,16 +257,16 @@
       <Component Name="SyntaxID" UId="137" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="138" />
+  <Blank UId="138" />
   <Token Text=":=" UId="139" />
-  <Blank Num="1" UId="140" />
+  <Blank UId="140" />
   <Access Scope="LiteralConstant" UId="141">
     <Constant UId="142">
       <ConstantValue UId="144">16#10</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="145" />
-  <NewLine Num="1" UId="146" />
+  <NewLine UId="146" />
   <Blank Num="4" UId="147" />
   <Access Scope="LocalVariable" UId="148">
     <Symbol UId="149">
@@ -279,16 +275,16 @@
       <Component Name="DataType" UId="152" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="153" />
+  <Blank UId="153" />
   <Token Text=":=" UId="154" />
-  <Blank Num="1" UId="155" />
+  <Blank UId="155" />
   <Access Scope="LiteralConstant" UId="156">
     <Constant UId="157">
       <ConstantValue UId="159">16#02</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="160" />
-  <NewLine Num="1" UId="161" />
+  <NewLine UId="161" />
   <Blank Num="4" UId="162" />
   <Access Scope="LocalVariable" UId="163">
     <Symbol UId="164">
@@ -297,16 +293,16 @@
       <Component Name="RepetitionFactor" UId="167" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="168" />
+  <Blank UId="168" />
   <Token Text=":=" UId="169" />
-  <Blank Num="1" UId="170" />
+  <Blank UId="170" />
   <Access Scope="LiteralConstant" UId="171">
     <Constant UId="172">
       <ConstantValue UId="174">128</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="175" />
-  <NewLine Num="1" UId="176" />
+  <NewLine UId="176" />
   <Blank Num="4" UId="177" />
   <Access Scope="LocalVariable" UId="178">
     <Symbol UId="179">
@@ -315,16 +311,16 @@
       <Component Name="DB_Number" UId="182" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="183" />
+  <Blank UId="183" />
   <Token Text=":=" UId="184" />
-  <Blank Num="1" UId="185" />
+  <Blank UId="185" />
   <Access Scope="LocalVariable" UId="186">
     <Symbol UId="187">
       <Component Name="iDBNum" UId="188" />
     </Symbol>
   </Access>
   <Token Text=";" UId="189" />
-  <NewLine Num="1" UId="190" />
+  <NewLine UId="190" />
   <Blank Num="4" UId="191" />
   <Access Scope="LocalVariable" UId="192">
     <Symbol UId="193">
@@ -333,25 +329,25 @@
       <Component Name="MemoryAreaAddress" UId="196" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="197" />
+  <Blank UId="197" />
   <Token Text=":=" UId="198" />
-  <Blank Num="1" UId="199" />
+  <Blank UId="199" />
   <Access Scope="LiteralConstant" UId="200">
     <Constant UId="201">
       <ConstantValue UId="203">16#8400_0000</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="204" />
+  <Blank UId="204" />
   <Token Text="OR" UId="205" />
-  <Blank Num="1" UId="206" />
+  <Blank UId="206" />
   <Token Text="(" UId="207" />
   <Access Scope="Call" UId="208">
     <Instruction Name="SHL" UId="209">
       <Token Text="(" UId="210" />
       <Parameter Name="IN" UId="211">
-        <Blank Num="1" UId="212" />
+        <Blank UId="212" />
         <Token Text=":=" UId="213" />
-        <Blank Num="1" UId="214" />
+        <Blank UId="214" />
         <Access Scope="Call" UId="215">
           <Instruction Name="INT_TO_DWORD" UId="216">
             <Token Text="(" UId="217" />
@@ -367,11 +363,11 @@
         </Access>
       </Parameter>
       <Token Text="," UId="224" />
-      <Blank Num="1" UId="225" />
+      <Blank UId="225" />
       <Parameter Name="N" UId="226">
-        <Blank Num="1" UId="227" />
+        <Blank UId="227" />
         <Token Text=":=" UId="228" />
-        <Blank Num="1" UId="229" />
+        <Blank UId="229" />
         <Access Scope="LiteralConstant" UId="230">
           <Constant UId="231">
             <ConstantValue UId="233">3</ConstantValue>
@@ -383,23 +379,23 @@
   </Access>
   <Token Text=")" UId="236" />
   <Token Text=";" UId="237" />
-  <NewLine Num="1" UId="238" />
+  <NewLine UId="238" />
   <Blank Num="4" UId="239" />
   <Access Scope="LocalVariable" UId="240">
     <Symbol UId="241">
       <Component Name="oStatus" UId="242" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="243" />
+  <Blank UId="243" />
   <Token Text=":=" UId="244" />
-  <Blank Num="1" UId="245" />
+  <Blank UId="245" />
   <Access Scope="Call" UId="246">
     <Instruction Name="DeviceStates" UId="247">
       <Token Text="(" UId="248" />
       <Parameter Name="LADDR" UId="249">
-        <Blank Num="1" UId="250" />
+        <Blank UId="250" />
         <Token Text=":=" UId="251" />
-        <Blank Num="1" UId="252" />
+        <Blank UId="252" />
         <Access Scope="LocalVariable" UId="253">
           <Symbol UId="254">
             <Component Name="iHardwareID" UId="255" />
@@ -407,11 +403,11 @@
         </Access>
       </Parameter>
       <Token Text="," UId="256" />
-      <Blank Num="1" UId="257" />
+      <Blank UId="257" />
       <Parameter Name="MODE" UId="258">
-        <Blank Num="1" UId="259" />
+        <Blank UId="259" />
         <Token Text=":=" UId="260" />
-        <Blank Num="1" UId="261" />
+        <Blank UId="261" />
         <Access Scope="LiteralConstant" UId="262">
           <Constant UId="263">
             <ConstantValue UId="265">2</ConstantValue>
@@ -419,11 +415,11 @@
         </Access>
       </Parameter>
       <Token Text="," UId="266" />
-      <Blank Num="1" UId="267" />
+      <Blank UId="267" />
       <Parameter Name="STATE" UId="268">
-        <Blank Num="1" UId="269" />
+        <Blank UId="269" />
         <Token Text=":=" UId="270" />
-        <Blank Num="1" UId="271" />
+        <Blank UId="271" />
         <Access Scope="LocalVariable" UId="272">
           <Symbol UId="273">
             <Component Name="DR" UId="274" />
@@ -434,13 +430,13 @@
     </Instruction>
   </Access>
   <Token Text=";" UId="277" />
-  <NewLine Num="1" UId="278" />
+  <NewLine UId="278" />
   <Access Scope="Label" UId="279">
     <Label Name="PN" UId="280">
       <Token Text=":" UId="281" />
     </Label>
   </Access>
-  <NewLine Num="1" UId="282" />
+  <NewLine UId="282" />
   <Blank Num="4" UId="283" />
   <Access Scope="LocalVariable" UId="284">
     <Symbol UId="285">
@@ -449,16 +445,16 @@
       <Component Name="SyntaxID" UId="288" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="289" />
+  <Blank UId="289" />
   <Token Text=":=" UId="290" />
-  <Blank Num="1" UId="291" />
+  <Blank UId="291" />
   <Access Scope="LiteralConstant" UId="292">
     <Constant UId="293">
       <ConstantValue UId="295">16#10</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="296" />
-  <NewLine Num="1" UId="297" />
+  <NewLine UId="297" />
   <Blank Num="4" UId="298" />
   <Access Scope="LocalVariable" UId="299">
     <Symbol UId="300">
@@ -467,16 +463,16 @@
       <Component Name="DataType" UId="303" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="304" />
+  <Blank UId="304" />
   <Token Text=":=" UId="305" />
-  <Blank Num="1" UId="306" />
+  <Blank UId="306" />
   <Access Scope="LiteralConstant" UId="307">
     <Constant UId="308">
       <ConstantValue UId="310">16#02</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="311" />
-  <NewLine Num="1" UId="312" />
+  <NewLine UId="312" />
   <Blank Num="4" UId="313" />
   <Access Scope="LocalVariable" UId="314">
     <Symbol UId="315">
@@ -485,16 +481,16 @@
       <Component Name="RepetitionFactor" UId="318" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="319" />
+  <Blank UId="319" />
   <Token Text=":=" UId="320" />
-  <Blank Num="1" UId="321" />
+  <Blank UId="321" />
   <Access Scope="LiteralConstant" UId="322">
     <Constant UId="323">
       <ConstantValue UId="325">128</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="326" />
-  <NewLine Num="1" UId="327" />
+  <NewLine UId="327" />
   <Blank Num="4" UId="328" />
   <Access Scope="LocalVariable" UId="329">
     <Symbol UId="330">
@@ -503,16 +499,16 @@
       <Component Name="DB_Number" UId="333" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="334" />
+  <Blank UId="334" />
   <Token Text=":=" UId="335" />
-  <Blank Num="1" UId="336" />
+  <Blank UId="336" />
   <Access Scope="LocalVariable" UId="337">
     <Symbol UId="338">
       <Component Name="iDBNum" UId="339" />
     </Symbol>
   </Access>
   <Token Text=";" UId="340" />
-  <NewLine Num="1" UId="341" />
+  <NewLine UId="341" />
   <Blank Num="4" UId="342" />
   <Access Scope="LocalVariable" UId="343">
     <Symbol UId="344">
@@ -521,25 +517,25 @@
       <Component Name="MemoryAreaAddress" UId="347" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="348" />
+  <Blank UId="348" />
   <Token Text=":=" UId="349" />
-  <Blank Num="1" UId="350" />
+  <Blank UId="350" />
   <Access Scope="LiteralConstant" UId="351">
     <Constant UId="352">
       <ConstantValue UId="354">16#8400_0000</ConstantValue>
     </Constant>
   </Access>
-  <Blank Num="1" UId="355" />
+  <Blank UId="355" />
   <Token Text="OR" UId="356" />
-  <Blank Num="1" UId="357" />
+  <Blank UId="357" />
   <Token Text="(" UId="358" />
   <Access Scope="Call" UId="359">
     <Instruction Name="SHL" UId="360">
       <Token Text="(" UId="361" />
       <Parameter Name="IN" UId="362">
-        <Blank Num="1" UId="363" />
+        <Blank UId="363" />
         <Token Text=":=" UId="364" />
-        <Blank Num="1" UId="365" />
+        <Blank UId="365" />
         <Access Scope="Call" UId="366">
           <Instruction Name="INT_TO_DWORD" UId="367">
             <Token Text="(" UId="368" />
@@ -555,11 +551,11 @@
         </Access>
       </Parameter>
       <Token Text="," UId="375" />
-      <Blank Num="1" UId="376" />
+      <Blank UId="376" />
       <Parameter Name="N" UId="377">
-        <Blank Num="1" UId="378" />
+        <Blank UId="378" />
         <Token Text=":=" UId="379" />
-        <Blank Num="1" UId="380" />
+        <Blank UId="380" />
         <Access Scope="LiteralConstant" UId="381">
           <Constant UId="382">
             <ConstantValue UId="384">3</ConstantValue>
@@ -571,23 +567,23 @@
   </Access>
   <Token Text=")" UId="387" />
   <Token Text=";" UId="388" />
-  <NewLine Num="1" UId="389" />
+  <NewLine UId="389" />
   <Blank Num="4" UId="390" />
   <Access Scope="LocalVariable" UId="391">
     <Symbol UId="392">
       <Component Name="oStatus" UId="393" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="394" />
+  <Blank UId="394" />
   <Token Text=":=" UId="395" />
-  <Blank Num="1" UId="396" />
+  <Blank UId="396" />
   <Access Scope="Call" UId="397">
     <Instruction Name="DeviceStates" UId="398">
       <Token Text="(" UId="399" />
       <Parameter Name="LADDR" UId="400">
-        <Blank Num="1" UId="401" />
+        <Blank UId="401" />
         <Token Text=":=" UId="402" />
-        <Blank Num="1" UId="403" />
+        <Blank UId="403" />
         <Access Scope="LocalVariable" UId="404">
           <Symbol UId="405">
             <Component Name="iHardwareID" UId="406" />
@@ -595,11 +591,11 @@
         </Access>
       </Parameter>
       <Token Text="," UId="407" />
-      <Blank Num="1" UId="408" />
+      <Blank UId="408" />
       <Parameter Name="MODE" UId="409">
-        <Blank Num="1" UId="410" />
+        <Blank UId="410" />
         <Token Text=":=" UId="411" />
-        <Blank Num="1" UId="412" />
+        <Blank UId="412" />
         <Access Scope="LiteralConstant" UId="413">
           <Constant UId="414">
             <ConstantValue UId="416">2</ConstantValue>
@@ -607,11 +603,11 @@
         </Access>
       </Parameter>
       <Token Text="," UId="417" />
-      <Blank Num="1" UId="418" />
+      <Blank UId="418" />
       <Parameter Name="STATE" UId="419">
-        <Blank Num="1" UId="420" />
+        <Blank UId="420" />
         <Token Text=":=" UId="421" />
-        <Blank Num="1" UId="422" />
+        <Blank UId="422" />
         <Access Scope="LocalVariable" UId="423">
           <Symbol UId="424">
             <Component Name="DR" UId="425" />
@@ -622,30 +618,30 @@
     </Instruction>
   </Access>
   <Token Text=";" UId="428" />
-  <NewLine Num="1" UId="429" />
+  <NewLine UId="429" />
   <Blank Num="4" UId="430" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="431">
+  <LineComment UId="431">
     <Text UId="432"> orginise interface data </Text>
   </LineComment>
-  <NewLine Num="1" UId="433" />
+  <NewLine UId="433" />
   <Blank Num="4" UId="434" />
   <Access Scope="PredefinedVariable" UId="435">
     <PredefinedVariable Name="ENO" UId="436" />
   </Access>
-  <Blank Num="1" UId="437" />
+  <Blank UId="437" />
   <Token Text=":=" UId="438" />
-  <Blank Num="1" UId="439" />
+  <Blank UId="439" />
   <Access Scope="LiteralConstant" UId="440">
     <Constant UId="441">
       <ConstantValue UId="443">1</ConstantValue>
     </Constant>
   </Access>
   <Token Text=";" UId="444" />
-  <NewLine Num="1" UId="445" />
+  <NewLine UId="445" />
   <Blank Num="4" UId="446" />
   <Token Text="RETURN" UId="447" />
   <Token Text=";" UId="448" />
-  <NewLine Num="1" UId="449" />
+  <NewLine UId="449" />
   <Token Text="END_IF" UId="450" />
   <Token Text=";" UId="451" />
   <NewLine Num="4" UId="452" />

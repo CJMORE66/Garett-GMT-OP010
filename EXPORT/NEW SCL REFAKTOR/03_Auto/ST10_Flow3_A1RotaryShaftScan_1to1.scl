@@ -1,0 +1,1330 @@
+﻿//=============================================================================
+// ST10_Flow3_A1RotaryShaftScan.scl
+// 1:1 CONVERSION FROM TIA PORTAL V18 GRAPH XML
+// Generated: 2026-02-02
+//=============================================================================
+
+TYPE
+    E_STEP_ST10_Flow3_A1RotaryShaftScan : (
+        STEP_ST10_Flow3_A1RotaryShaftScan_Prepare_MES_CheckData_1 := 304,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ok := 309,
+        STEP_ST10_Flow3_A1RotaryShaftScan_S2 := 2,
+        STEP_ST10_Flow3_A1RotaryShaftScan_CheckPartExist := 237,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MES_NG := 307,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan8Pos := 230,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_in_safety_area := 133,
+        STEP_ST10_Flow3_A1RotaryShaftScan_F3_Initial := 1,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Step314 := 314,
+        STEP_ST10_Flow3_A1RotaryShaftScan_S10_InitialFinish := 10,
+        STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusError := 127,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_7st_reading := 227,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_3 := 213,
+        STEP_ST10_Flow3_A1RotaryShaftScan_S5_MESInitial := 5,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_8st_reading := 231,
+        STEP_ST10_Flow3_A1RotaryShaftScan_WaitRobotInitialFinish := 8,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_OK := 316,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Read_NG := 234,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos_1 := 11,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Bypass := 310,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MES := 300,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESCheckRequest := 305,
+        STEP_ST10_Flow3_A1RotaryShaftScan_OKStatus := 236,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_put := 112,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete := 203,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_6st_reading := 223,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan4_Pos := 214,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart := 100,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan5_Pos := 218,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Normal_mode := 103,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_5st_reading := 219,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_NG := 317,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_5 := 224,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesCheckRequest := 301,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos := 9,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ResultNG := 312,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan2_Pos := 204,
+        STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusOK := 125,
+        STEP_ST10_Flow3_A1RotaryShaftScan_PartStatus := 238,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime_1 := 311,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_2 := 212,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan3_Pos := 210,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_1st_reading := 201,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_finish_task := 131,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ok_1 := 315,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready := 202,
+        STEP_ST10_Flow3_A1RotaryShaftScan_S3 := 3,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_4 := 217,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_7 := 232,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Determine_product_status := 101,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_pick := 408,
+        STEP_ST10_Flow3_A1RotaryShaftScan_StatusAlarm := 126,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_5 := 221,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Read_OK := 209,
+        STEP_ST10_Flow3_A1RotaryShaftScan_CheckMachineStatus := 102,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_1 := 207,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_8 := 233,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESResultFinish := 313,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart_CTStart := 104,
+        STEP_ST10_Flow3_A1RotaryShaftScan_RobotPick := 600,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesUnloadRequest_1 := 302,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_6 := 228,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_6 := 225,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime := 308,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_7 := 229,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ProcessFinsh := 605,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESSaveRequest_1 := 306,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan6Pos := 222,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Rotary_code_reading := 200,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_4st_reading_1 := 215,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_3 := 216,
+        STEP_ST10_Flow3_A1RotaryShaftScan_NoPart := 129,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait__robot_finish_task := 130,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_4 := 220,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_3st_reading := 211,
+        STEP_ST10_Flow3_A1RotaryShaftScan_ServoReady_ := 4,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_2st_reading := 205,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_1 := 206,
+        STEP_ST10_Flow3_A1RotaryShaftScan_RobotPutPartFinish := 115,
+        STEP_ST10_Flow3_A1RotaryShaftScan_MES_OK := 12,
+        STEP_ST10_Flow3_A1RotaryShaftScan_NG_Status := 235,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Prepare_MES_CheckData := 303,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Step208 := 208,
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan7Pos := 226,
+    ) INT := 1;
+END_TYPE
+
+CONST
+    STEP_ST10_Flow3_A1RotaryShaftScan_Prepare_MES_CheckData_1 := 304;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ok := 309;
+    STEP_ST10_Flow3_A1RotaryShaftScan_S2 := 2;
+    STEP_ST10_Flow3_A1RotaryShaftScan_CheckPartExist := 237;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MES_NG := 307;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan8Pos := 230;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_in_safety_area := 133;
+    STEP_ST10_Flow3_A1RotaryShaftScan_F3_Initial := 1;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Step314 := 314;
+    STEP_ST10_Flow3_A1RotaryShaftScan_S10_InitialFinish := 10;
+    STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusError := 127;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_7st_reading := 227;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_3 := 213;
+    STEP_ST10_Flow3_A1RotaryShaftScan_S5_MESInitial := 5;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_8st_reading := 231;
+    STEP_ST10_Flow3_A1RotaryShaftScan_WaitRobotInitialFinish := 8;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_OK := 316;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Read_NG := 234;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos_1 := 11;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Bypass := 310;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MES := 300;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MESCheckRequest := 305;
+    STEP_ST10_Flow3_A1RotaryShaftScan_OKStatus := 236;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_put := 112;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete := 203;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_6st_reading := 223;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan4_Pos := 214;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart := 100;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan5_Pos := 218;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Normal_mode := 103;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_5st_reading := 219;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_NG := 317;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_5 := 224;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesCheckRequest := 301;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos := 9;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ResultNG := 312;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan2_Pos := 204;
+    STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusOK := 125;
+    STEP_ST10_Flow3_A1RotaryShaftScan_PartStatus := 238;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime_1 := 311;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_2 := 212;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan3_Pos := 210;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_1st_reading := 201;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_finish_task := 131;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ok_1 := 315;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready := 202;
+    STEP_ST10_Flow3_A1RotaryShaftScan_S3 := 3;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_4 := 217;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_7 := 232;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Determine_product_status := 101;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_pick := 408;
+    STEP_ST10_Flow3_A1RotaryShaftScan_StatusAlarm := 126;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_5 := 221;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Read_OK := 209;
+    STEP_ST10_Flow3_A1RotaryShaftScan_CheckMachineStatus := 102;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_1 := 207;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_8 := 233;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MESResultFinish := 313;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart_CTStart := 104;
+    STEP_ST10_Flow3_A1RotaryShaftScan_RobotPick := 600;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesUnloadRequest_1 := 302;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_6 := 228;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_6 := 225;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime := 308;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_7 := 229;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ProcessFinsh := 605;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MESSaveRequest_1 := 306;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan6Pos := 222;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Rotary_code_reading := 200;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_4st_reading_1 := 215;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_3 := 216;
+    STEP_ST10_Flow3_A1RotaryShaftScan_NoPart := 129;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Wait__robot_finish_task := 130;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_4 := 220;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_3st_reading := 211;
+    STEP_ST10_Flow3_A1RotaryShaftScan_ServoReady_ := 4;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Start_2st_reading := 205;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_1 := 206;
+    STEP_ST10_Flow3_A1RotaryShaftScan_RobotPutPartFinish := 115;
+    STEP_ST10_Flow3_A1RotaryShaftScan_MES_OK := 12;
+    STEP_ST10_Flow3_A1RotaryShaftScan_NG_Status := 235;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Prepare_MES_CheckData := 303;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Step208 := 208;
+    STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan7Pos := 226;
+END_CONST
+
+FUNCTION_BLOCK "ST10_Flow3_A1RotaryShaftScan_1to1"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oAlarmID : Int;
+END_VAR
+
+VAR
+    State : INT := 1;
+    act_InitialRun : Bool;
+    act_InitialOK : Bool;
+    act_WaitRunning : Bool;
+    act_Running : Bool;
+    act_ProcessComplete : Bool;
+    act_ProcessStart : Bool;
+    act_UnPause : Bool;
+    bError : Bool;
+    wErrorID : Word;
+END_VAR
+
+BEGIN
+    //======================================================================
+    // STATE MACHINE - Inline Transition Conditions
+    //======================================================================
+
+    CASE #State OF
+
+        // ===========================================
+        // STEP 304: Prepare MES CheckData_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Prepare_MES_CheckData_1:
+            // No actions in XML
+
+            // Transition to next step: 309
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ok;
+            END_IF;
+
+        // ===========================================
+        // STEP 309: ok
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ok:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.PartStatus := 199
+            "AutoProcessData".A_ScanRotate.PartStatus := 199;
+
+            // Transition to next step: 2
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_S2;
+            END_IF;
+
+        // ===========================================
+        // STEP 2: S2
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_S2:
+            // No actions in XML
+
+            // Transition to next step: 237
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_CheckPartExist;
+            END_IF;
+
+        // ===========================================
+        // STEP 237: CheckPartExist
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_CheckPartExist:
+            // No actions in XML
+
+            // Transition to next step: 307
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MES_NG;
+            END_IF;
+
+        // ===========================================
+        // STEP 307: MES NG
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MES_NG:
+            // No actions in XML
+
+            // Transition to next step: 230
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan8Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 230: Servo returns to Scan8Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan8Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[8].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[8].Start;
+
+            // Transition to next step: 133
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_in_safety_area;
+            END_IF;
+
+        // ===========================================
+        // STEP 133: Wait robot in safety area
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_in_safety_area:
+            // No actions in XML
+
+            // Transition to next step: 1
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_F3_Initial;
+            END_IF;
+
+        // ===========================================
+        // STEP 1: F3_Initial
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_F3_Initial:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.Running
+            #ioPM_Inface.Running := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.UnPause
+            #ioPM_Inface.UnPause := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Calibration
+            "Station_Sys".Cmd.Calibration := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.ChangeOver
+            "Station_Sys".Cmd.ChangeOver := FALSE;
+            // Action Qualifier=N
+            // Token: //"ST350_Sys".Cmd.DryRun
+            //"ST350_Sys".Cmd.DryRun;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Reserve
+            "Station_Sys".Cmd.Reserve := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.OneCycle
+            "Station_Sys".Cmd.OneCycle := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+
+            // Transition to next step: 314
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Step314;
+            END_IF;
+
+        // ===========================================
+        // STEP 314: Step314
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Step314:
+            // No actions in XML
+
+            // Transition to next step: 10
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_S10_InitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 10: S10_InitialFinish
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_S10_InitialFinish:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+
+            // Transition to next step: 127
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusError;
+            END_IF;
+
+        // ===========================================
+        // STEP 127: PartStatusError
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusError:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A1RotaryScan.PartMissing
+            "ST10_DeviceError".A.A1RotaryScan.PartMissing := TRUE;
+
+            // Transition to next step: 227
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_7st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 227: Start 7st reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_7st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 213
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 213: Wait reading complete_3
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_3:
+            // No actions in XML
+
+            // Transition to next step: 5
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_S5_MESInitial;
+            END_IF;
+
+        // ===========================================
+        // STEP 5: S5_MESInitial
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_S5_MESInitial:
+            // No actions in XML
+
+            // Transition to next step: 231
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_8st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 231: Start 8st reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_8st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 8
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_WaitRobotInitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 8: WaitRobotInitialFinish
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_WaitRobotInitialFinish:
+            // No actions in XML
+
+            // Transition to next step: 316
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_OK;
+            END_IF;
+
+        // ===========================================
+        // STEP 316: Check OK
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_OK:
+            // No actions in XML
+
+            // Transition to next step: 234
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Read_NG;
+            END_IF;
+
+        // ===========================================
+        // STEP 234: Read NG
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Read_NG:
+            // No actions in XML
+
+            // Transition to next step: 11
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 11: Servo returns to initial Pos_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos_1:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[1].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[1].Start;
+
+            // Transition to next step: 310
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Bypass;
+            END_IF;
+
+        // ===========================================
+        // STEP 310: Bypass
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Bypass:
+            // No actions in XML
+
+            // Transition to next step: 300
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MES;
+            END_IF;
+
+        // ===========================================
+        // STEP 300: MES
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MES:
+            // No actions in XML
+
+            // Transition to next step: 305
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MESCheckRequest;
+            END_IF;
+
+        // ===========================================
+        // STEP 305: MESCheckRequest
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESCheckRequest:
+            // Action Qualifier=N
+            // Token: "PLCtoMES"."PLC.Load_Station1ChickInReq"
+            "PLCtoMES"."PLC.Load_Station1ChickInReq";
+
+            // Transition to next step: 236
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_OKStatus;
+            END_IF;
+
+        // ===========================================
+        // STEP 236: OKStatus
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_OKStatus:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.PartStatus := 180
+            "AutoProcessData".A_ScanRotate.PartStatus := 180;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.ShaftCode := "KeyenceSR1000Ctrl_801A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_ScanRotate.ShaftCode := "KeyenceSR1000Ctrl_801A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 112
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_put;
+            END_IF;
+
+        // ===========================================
+        // STEP 112: Request robot put
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_put:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".A_ScanRotary.Robot1PutPrimit
+            "AutoProcessControl".A_ScanRotary.Robot1PutPrimit;
+
+            // Transition to next step: 203
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete;
+            END_IF;
+
+        // ===========================================
+        // STEP 203: Wait reading complete
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete:
+            // No actions in XML
+
+            // Transition to next step: 223
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_6st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 223: Start 6st reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_6st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 214
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan4_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 214: Servo returns to Scan4 Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan4_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[4].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[4].Start;
+
+            // Transition to next step: 100
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 100: ProcessStart
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart:
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := TRUE;
+            // Action Qualifier=N, Event="S1"
+            // Token: #ioPM_Inface.ProcessResult := 0
+            #ioPM_Inface.ProcessResult := 0;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[3].Start
+            "ST10_GeneralData".FlowControl_Handshake[3].Start := FALSE;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[3].Done
+            "ST10_GeneralData".FlowControl_Handshake[3].Done := FALSE;
+            // Action Qualifier=N
+            // Token: "MES_CHeck_DB".Station_1.CheckStep := 0
+            "MES_CHeck_DB".Station_1.CheckStep := 0;
+            // Action Qualifier=N
+            // Token: "MES_CHeck_DB".Station_1.ResultStep := 0
+            "MES_CHeck_DB".Station_1.ResultStep := 0;
+
+            // Transition to next step: 218
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan5_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 218: Servo returns to Scan5 Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan5_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[5].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[5].Start;
+
+            // Transition to next step: 103
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Normal_mode;
+            END_IF;
+
+        // ===========================================
+        // STEP 103: Normal mode
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Normal_mode:
+            // No actions in XML
+
+            // Transition to next step: 219
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_5st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 219: Start 5st reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_5st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 317
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_NG;
+            END_IF;
+
+        // ===========================================
+        // STEP 317: Check NG
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_NG:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.PartStatus := 151
+            "AutoProcessData".A_ScanRotate.PartStatus := 151;
+
+            // Transition to next step: 224
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 224: Check reader Ready_5
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_5:
+            // No actions in XML
+
+            // Transition to next step: 301
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesCheckRequest;
+            END_IF;
+
+        // ===========================================
+        // STEP 301: ResetMesCheckRequest
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesCheckRequest:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Load_Station1ChickInReq"
+            "PLCtoMES"."PLC.Load_Station1ChickInReq" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_Station1PartOK"
+            "MEStoPLC"."MES.Load_Station1PartOK" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_Station1PartNG"
+            "MEStoPLC"."MES.Load_Station1PartNG" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_Station1ReqMesDone"
+            "MEStoPLC"."MES.Load_Station1ReqMesDone" := FALSE;
+
+            // Transition to next step: 9
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 9: Servo returns to initial Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_initial_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[1].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[1].Start;
+
+            // Transition to next step: 312
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ResultNG;
+            END_IF;
+
+        // ===========================================
+        // STEP 312: ResultNG
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ResultNG:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.PartStatus := 152
+            "AutoProcessData".A_ScanRotate.PartStatus := 152;
+
+            // Transition to next step: 204
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan2_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 204: Servo returns to Scan2 Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan2_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[2].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[2].Start;
+
+            // Transition to next step: 125
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusOK;
+            END_IF;
+
+        // ===========================================
+        // STEP 125: PartStatusOK
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_PartStatusOK:
+            // No actions in XML
+
+            // Transition to next step: 238
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_PartStatus;
+            END_IF;
+
+        // ===========================================
+        // STEP 238: PartStatus
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_PartStatus:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.PartStatus := "PS_100_GRIPPED_OK"
+            "AutoProcessData".A_ScanRotate.PartStatus := "PS_100_GRIPPED_OK";
+
+            // Transition to next step: 311
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 311: MESOverTime_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime_1:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInCompOverTime_1
+            "ST10_DeviceError".MES_Error.CheckInCompOverTime_1 := TRUE;
+
+            // Transition to next step: 212
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 212: Check reader Ready_2
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_2:
+            // No actions in XML
+
+            // Transition to next step: 210
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan3_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 210: Servo returns to Scan3 Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan3_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[3].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[3].Start;
+
+            // Transition to next step: 201
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_1st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 201: Start 1st reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_1st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 131
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_finish_task;
+            END_IF;
+
+        // ===========================================
+        // STEP 131: Wait robot finish task
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_robot_finish_task:
+            // No actions in XML
+
+            // Transition to next step: 315
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ok_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 315: ok_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ok_1:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.PartStatus := 199
+            "AutoProcessData".A_ScanRotate.PartStatus := 199;
+
+            // Transition to next step: 202
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready;
+            END_IF;
+
+        // ===========================================
+        // STEP 202: Check reader Ready
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready:
+            // No actions in XML
+
+            // Transition to next step: 3
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_S3;
+            END_IF;
+
+        // ===========================================
+        // STEP 3: S3
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_S3:
+            // No actions in XML
+
+            // Transition to next step: 217
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 217: Wait reading complete_4
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_4:
+            // No actions in XML
+
+            // Transition to next step: 232
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 232: Check reader Ready_7
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_7:
+            // No actions in XML
+
+            // Transition to next step: 101
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Determine_product_status;
+            END_IF;
+
+        // ===========================================
+        // STEP 101: Determine product status
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Determine_product_status:
+            // No actions in XML
+
+            // Transition to next step: 408
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_pick;
+            END_IF;
+
+        // ===========================================
+        // STEP 408: Request robot pick
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Request_robot_pick:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".A_ScanRotary.Robot1PickPrimit
+            "AutoProcessControl".A_ScanRotary.Robot1PickPrimit;
+
+            // Transition to next step: 126
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_StatusAlarm;
+            END_IF;
+
+        // ===========================================
+        // STEP 126: StatusAlarm
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_StatusAlarm:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A1RotaryScan.ProductAnomaly
+            "ST10_DeviceError".A.A1RotaryScan.ProductAnomaly := TRUE;
+
+            // Transition to next step: 221
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 221: Wait reading complete_5
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_5:
+            // No actions in XML
+
+            // Transition to next step: 209
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Read_OK;
+            END_IF;
+
+        // ===========================================
+        // STEP 209: Read OK
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Read_OK:
+            // No actions in XML
+
+            // Transition to next step: 102
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_CheckMachineStatus;
+            END_IF;
+
+        // ===========================================
+        // STEP 102: CheckMachineStatus
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_CheckMachineStatus:
+            // No actions in XML
+
+            // Transition to next step: 207
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 207: Wait reading complete_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_1:
+            // No actions in XML
+
+            // Transition to next step: 233
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 233: Wait reading complete_8
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_8:
+            // No actions in XML
+
+            // Transition to next step: 313
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MESResultFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 313: MESResultFinish
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESResultFinish:
+            // No actions in XML
+
+            // Transition to next step: 104
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart_CTStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 104: ProcessStart,CTStart
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ProcessStart_CTStart:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+
+            // Transition to next step: 600
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_RobotPick;
+            END_IF;
+
+        // ===========================================
+        // STEP 600: RobotPick
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_RobotPick:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+
+            // Transition to next step: 302
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesUnloadRequest_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 302: ResetMesUnloadRequest_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ResetMesUnloadRequest_1:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Unload_Station1DataSaveReq"
+            "PLCtoMES"."PLC.Unload_Station1DataSaveReq" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Unload_ResultsStored1OK"
+            "MEStoPLC"."MES.Unload_ResultsStored1OK" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Unload_ResultsStored1NG"
+            "MEStoPLC"."MES.Unload_ResultsStored1NG" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Unload_ResultsStored1ReqMesDone"
+            "MEStoPLC"."MES.Unload_ResultsStored1ReqMesDone" := FALSE;
+
+            // Transition to next step: 228
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 228: Check reader Ready_6
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_6:
+            // No actions in XML
+
+            // Transition to next step: 225
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 225: Wait reading complete_6
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_6:
+            // No actions in XML
+
+            // Transition to next step: 308
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime;
+            END_IF;
+
+        // ===========================================
+        // STEP 308: MESOverTime
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESOverTime:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInResultOverTime_1
+            "ST10_DeviceError".MES_Error.CheckInResultOverTime_1 := TRUE;
+
+            // Transition to next step: 229
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 229: Wait reading complete_7
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait_reading_complete_7:
+            // No actions in XML
+
+            // Transition to next step: 605
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ProcessFinsh;
+            END_IF;
+
+        // ===========================================
+        // STEP 605: ProcessFinsh
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ProcessFinsh:
+            // No actions in XML
+
+            // Transition to next step: 306
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MESSaveRequest_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 306: MESSaveRequest_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MESSaveRequest_1:
+            // Action Qualifier=N
+            // Token: "PLCtoMES"."PLC.Unload_Station1DataSaveReq"
+            "PLCtoMES"."PLC.Unload_Station1DataSaveReq";
+
+            // Transition to next step: 222
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan6Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 222: Servo returns to Scan6Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan6Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[6].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[6].Start;
+
+            // Transition to next step: 200
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Rotary_code_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 200: Rotary code reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Rotary_code_reading:
+            // No actions in XML
+
+            // Transition to next step: 215
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_4st_reading_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 215: Start 4st reading_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_4st_reading_1:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 216
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 216: Check reader Ready_3
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_3:
+            // No actions in XML
+
+            // Transition to next step: 129
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_NoPart;
+            END_IF;
+
+        // ===========================================
+        // STEP 129: NoPart
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_NoPart:
+            // No actions in XML
+
+            // Transition to next step: 130
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Wait__robot_finish_task;
+            END_IF;
+
+        // ===========================================
+        // STEP 130: Wait  robot finish task
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Wait__robot_finish_task:
+            // No actions in XML
+
+            // Transition to next step: 220
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 220: Check reader Ready_4
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_4:
+            // No actions in XML
+
+            // Transition to next step: 211
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_3st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 211: Start 3st reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_3st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 4
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_ServoReady_;
+            END_IF;
+
+        // ===========================================
+        // STEP 4: ServoReady?
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_ServoReady_:
+            // No actions in XML
+
+            // Transition to next step: 205
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Start_2st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 205: Start 2st reading
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Start_2st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_801A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 206
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 206: Check reader Ready_1
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Check_reader_Ready_1:
+            // No actions in XML
+
+            // Transition to next step: 115
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_RobotPutPartFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 115: RobotPutPartFinish
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_RobotPutPartFinish:
+            // No actions in XML
+
+            // Transition to next step: 12
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_MES_OK;
+            END_IF;
+
+        // ===========================================
+        // STEP 12: MES OK
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_MES_OK:
+            // No actions in XML
+
+            // Transition to next step: 235
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_NG_Status;
+            END_IF;
+
+        // ===========================================
+        // STEP 235: NG_Status
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_NG_Status:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.PartStatus := 150
+            "AutoProcessData".A_ScanRotate.PartStatus := 150;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_ScanRotate.ShaftCode := ''
+            "AutoProcessData".A_ScanRotate.ShaftCode := '';
+
+            // Transition to next step: 303
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Prepare_MES_CheckData;
+            END_IF;
+
+        // ===========================================
+        // STEP 303: Prepare MES CheckData
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Prepare_MES_CheckData:
+            // No actions in XML
+
+            // Transition to next step: 208
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Step208;
+            END_IF;
+
+        // ===========================================
+        // STEP 208: Step208
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Step208:
+            // No actions in XML
+
+            // Transition to next step: 226
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan7Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 226: Servo returns to Scan7Pos
+        // ===========================================
+        STEP_ST10_Flow3_A1RotaryShaftScan_Servo_returns_to_Scan7Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[2].Point[7].Start
+            "ServoV90_DeviceCtl".V90Servo[2].Point[7].Start;
+
+    END_CASE;
+
+    // UPDATE ioPM_Inface
+    #ioPM_Inface.InitialRun := #act_InitialRun;
+    #ioPM_Inface.InitialOK := #act_InitialOK;
+    #ioPM_Inface.WaitRunning := #act_WaitRunning;
+    #ioPM_Inface.Running := #act_Running;
+    #ioPM_Inface.ProcessComplete := #act_ProcessComplete;
+    #ioPM_Inface.ProcessStart := #act_ProcessStart;
+    #ioPM_Inface.UnPause := #act_UnPause;
+
+    // ERROR HANDLING
+    IF #bError THEN
+        #ioStatus := 900;
+        #oAlarmID := INT_TO_WORD(#wErrorID);
+    ELSE
+        #ioStatus := 0;
+        #oAlarmID := 0;
+    END_IF;
+END_FUNCTION_BLOCK
+
+//=============================================================================
+// END OF FILE
+//=============================================================================

@@ -1,0 +1,1914 @@
+﻿//=============================================================================
+// ST10_Flow11_A2TableScan.scl
+// 1:1 CONVERSION FROM TIA PORTAL V18 GRAPH XML
+// Generated: 2026-02-02
+//=============================================================================
+
+TYPE
+    E_STEP_ST10_Flow11_A2TableScan : (
+        STEP_ST10_Flow11_A2TableScan_S2 := 2,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_10 := 304,
+        STEP_ST10_Flow11_A2TableScan_ReadNG8 := 297,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_9 := 298,
+        STEP_ST10_Flow11_A2TableScan_ReadNG4 := 274,
+        STEP_ST10_Flow11_A2TableScan_process := 237,
+        STEP_ST10_Flow11_A2TableScan_Start_4st_reading := 277,
+        STEP_ST10_Flow11_A2TableScan____100 := 309,
+        STEP_ST10_Flow11_A2TableScan_F11_Initial := 1,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_2 := 20,
+        STEP_ST10_Flow11_A2TableScan_DataMove_4 := 262,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_1 := 19,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to1st_Pos := 16,
+        STEP_ST10_Flow11_A2TableScan_Step128 := 128,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_7 := 290,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_4 := 272,
+        STEP_ST10_Flow11_A2TableScan_S_505__MES____ := 507,
+        STEP_ST10_Flow11_A2TableScan_MES_______1 := 310,
+        STEP_ST10_Flow11_A2TableScan______ := 515,
+        STEP_ST10_Flow11_A2TableScan_S5_MESInitial := 5,
+        STEP_ST10_Flow11_A2TableScan_Start_2st_reading := 258,
+        STEP_ST10_Flow11_A2TableScan_ServoReady_ := 6,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready2 := 264,
+        STEP_ST10_Flow11_A2TableScan_MES_______________ := 319,
+        STEP_ST10_Flow11_A2TableScan_ReadNG6 := 286,
+        STEP_ST10_Flow11_A2TableScan____500 := 514,
+        STEP_ST10_Flow11_A2TableScan_ReadNG5 := 280,
+        STEP_ST10_Flow11_A2TableScan____ := 328,
+        STEP_ST10_Flow11_A2TableScan_Step223 := 323,
+        STEP_ST10_Flow11_A2TableScan_DataMove_5 := 269,
+        STEP_ST10_Flow11_A2TableScan___MES________ := 326,
+        STEP_ST10_Flow11_A2TableScan_MES_______2 := 314,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_5 := 276,
+        STEP_ST10_Flow11_A2TableScan_Process_Finish := 600,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_ := 261,
+        STEP_ST10_Flow11_A2TableScan_FixtureOK := 125,
+        STEP_ST10_Flow11_A2TableScan_ProcessFinish := 403,
+        STEP_ST10_Flow11_A2TableScan_Start_3st_reading := 270,
+        STEP_ST10_Flow11_A2TableScan____ := 300,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to4st_Pos := 18,
+        STEP_ST10_Flow11_A2TableScan_ProcessStart := 100,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to2st_Pos := 15,
+        STEP_ST10_Flow11_A2TableScan_Tablecode_reading := 200,
+        STEP_ST10_Flow11_A2TableScan_Start_5st_reading := 283,
+        STEP_ST10_Flow11_A2TableScan__MES____ := 509,
+        STEP_ST10_Flow11_A2TableScan_S9 := 9,
+        STEP_ST10_Flow11_A2TableScan_DataMove_2 := 296,
+        STEP_ST10_Flow11_A2TableScan__MES____ := 511,
+        STEP_ST10_Flow11_A2TableScan___MES____ := 517,
+        STEP_ST10_Flow11_A2TableScan_______ := 312,
+        STEP_ST10_Flow11_A2TableScan_MES_______MES____ := 305,
+        STEP_ST10_Flow11_A2TableScan__MES_Ready := 302,
+        STEP_ST10_Flow11_A2TableScan_WaitChangeOverFinish := 317,
+        STEP_ST10_Flow11_A2TableScan_A_Loading_02UpDownTakeCylinderToHP := 120,
+        STEP_ST10_Flow11_A2TableScan_MES____ := 512,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_3 := 21,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_7 := 288,
+        STEP_ST10_Flow11_A2TableScan__MES____ := 301,
+        STEP_ST10_Flow11_A2TableScan_MES____ := 503,
+        STEP_ST10_Flow11_A2TableScan_ReadNG2 := 260,
+        STEP_ST10_Flow11_A2TableScan_WaitFixtureScanFinish := 331,
+        STEP_ST10_Flow11_A2TableScan_DataMove_6 := 275,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_5 := 278,
+        STEP_ST10_Flow11_A2TableScan___MES____ := 315,
+        STEP_ST10_Flow11_A2TableScan_MES______ := 318,
+        STEP_ST10_Flow11_A2TableScan__MES_______ := 325,
+        STEP_ST10_Flow11_A2TableScan_S3 := 3,
+        STEP_ST10_Flow11_A2TableScan__MES____ := 505,
+        STEP_ST10_Flow11_A2TableScan__MES___Ready := 506,
+        STEP_ST10_Flow11_A2TableScan_WaitChangeOverStart := 329,
+        STEP_ST10_Flow11_A2TableScan_ReadNG1 := 259,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos := 17,
+        STEP_ST10_Flow11_A2TableScan_DataMove_7 := 281,
+        STEP_ST10_Flow11_A2TableScan_Determine_TableFixtureStatus := 101,
+        STEP_ST10_Flow11_A2TableScan_DataMove_3 := 263,
+        STEP_ST10_Flow11_A2TableScan_S10_InitialFinish := 10,
+        STEP_ST10_Flow11_A2TableScan________ := 501,
+        STEP_ST10_Flow11_A2TableScan_Start_7st_reading := 293,
+        STEP_ST10_Flow11_A2TableScan____Copy__ := 320,
+        STEP_ST10_Flow11_A2TableScan_ProcessFinsh := 605,
+        STEP_ST10_Flow11_A2TableScan__MES_____2 := 313,
+        STEP_ST10_Flow11_A2TableScan_Step222 := 322,
+        STEP_ST10_Flow11_A2TableScan____1 := 502,
+        STEP_ST10_Flow11_A2TableScan_Step617 := 513,
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_4 := 22,
+        STEP_ST10_Flow11_A2TableScan_Step501 := 500,
+        STEP_ST10_Flow11_A2TableScan_Start_6st_reading := 289,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_4 := 271,
+        STEP_ST10_Flow11_A2TableScan_Start_1st_reading := 265,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready := 266,
+        STEP_ST10_Flow11_A2TableScan__MES_____1 := 308,
+        STEP_ST10_Flow11_A2TableScan_FixtureNG := 129,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_6 := 282,
+        STEP_ST10_Flow11_A2TableScan_ReadNG7 := 279,
+        STEP_ST10_Flow11_A2TableScan_Start_8st_reading := 299,
+        STEP_ST10_Flow11_A2TableScan__MES_______1 := 321,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_9 := 294,
+        STEP_ST10_Flow11_A2TableScan_________1 := 504,
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_8 := 292,
+        STEP_ST10_Flow11_A2TableScan_S8 := 8,
+        STEP_ST10_Flow11_A2TableScan_MES_______3 := 327,
+        STEP_ST10_Flow11_A2TableScan__MES____ := 508,
+        STEP_ST10_Flow11_A2TableScan_DataMove_1 := 285,
+        STEP_ST10_Flow11_A2TableScan_WaitReadyScanPrimit := 311,
+        STEP_ST10_Flow11_A2TableScan_Step400 := 400,
+        STEP_ST10_Flow11_A2TableScan_TableCodeReady := 307,
+        STEP_ST10_Flow11_A2TableScan__MES____ := 303,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete := 267,
+        STEP_ST10_Flow11_A2TableScan_A_Loading_01HorizontalCylinderToHP := 119,
+        STEP_ST10_Flow11_A2TableScan_MES____ := 510,
+        STEP_ST10_Flow11_A2TableScan_S4 := 4,
+        STEP_ST10_Flow11_A2TableScan_ReadyReading := 208,
+        STEP_ST10_Flow11_A2TableScan_ReadNG3 := 268,
+        STEP_ST10_Flow11_A2TableScan_Barcode_mismatch := 330,
+        STEP_ST10_Flow11_A2TableScan____NG := 324,
+        STEP_ST10_Flow11_A2TableScan_Step262 := 306,
+        STEP_ST10_Flow11_A2TableScan_MES______ := 516,
+        STEP_ST10_Flow11_A2TableScan_DataMove_8 := 287,
+        STEP_ST10_Flow11_A2TableScan_CodeCompareResult := 316,
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_6 := 284,
+    ) INT := 1;
+END_TYPE
+
+CONST
+    STEP_ST10_Flow11_A2TableScan_S2 := 2;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_10 := 304;
+    STEP_ST10_Flow11_A2TableScan_ReadNG8 := 297;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_9 := 298;
+    STEP_ST10_Flow11_A2TableScan_ReadNG4 := 274;
+    STEP_ST10_Flow11_A2TableScan_process := 237;
+    STEP_ST10_Flow11_A2TableScan_Start_4st_reading := 277;
+    STEP_ST10_Flow11_A2TableScan____100 := 309;
+    STEP_ST10_Flow11_A2TableScan_F11_Initial := 1;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_2 := 20;
+    STEP_ST10_Flow11_A2TableScan_DataMove_4 := 262;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_1 := 19;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to1st_Pos := 16;
+    STEP_ST10_Flow11_A2TableScan_Step128 := 128;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_7 := 290;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_4 := 272;
+    STEP_ST10_Flow11_A2TableScan_S_505__MES____ := 507;
+    STEP_ST10_Flow11_A2TableScan_MES_______1 := 310;
+    STEP_ST10_Flow11_A2TableScan______ := 515;
+    STEP_ST10_Flow11_A2TableScan_S5_MESInitial := 5;
+    STEP_ST10_Flow11_A2TableScan_Start_2st_reading := 258;
+    STEP_ST10_Flow11_A2TableScan_ServoReady_ := 6;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready2 := 264;
+    STEP_ST10_Flow11_A2TableScan_MES_______________ := 319;
+    STEP_ST10_Flow11_A2TableScan_ReadNG6 := 286;
+    STEP_ST10_Flow11_A2TableScan____500 := 514;
+    STEP_ST10_Flow11_A2TableScan_ReadNG5 := 280;
+    STEP_ST10_Flow11_A2TableScan____ := 328;
+    STEP_ST10_Flow11_A2TableScan_Step223 := 323;
+    STEP_ST10_Flow11_A2TableScan_DataMove_5 := 269;
+    STEP_ST10_Flow11_A2TableScan___MES________ := 326;
+    STEP_ST10_Flow11_A2TableScan_MES_______2 := 314;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_5 := 276;
+    STEP_ST10_Flow11_A2TableScan_Process_Finish := 600;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_ := 261;
+    STEP_ST10_Flow11_A2TableScan_FixtureOK := 125;
+    STEP_ST10_Flow11_A2TableScan_ProcessFinish := 403;
+    STEP_ST10_Flow11_A2TableScan_Start_3st_reading := 270;
+    STEP_ST10_Flow11_A2TableScan____ := 300;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to4st_Pos := 18;
+    STEP_ST10_Flow11_A2TableScan_ProcessStart := 100;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to2st_Pos := 15;
+    STEP_ST10_Flow11_A2TableScan_Tablecode_reading := 200;
+    STEP_ST10_Flow11_A2TableScan_Start_5st_reading := 283;
+    STEP_ST10_Flow11_A2TableScan__MES____ := 509;
+    STEP_ST10_Flow11_A2TableScan_S9 := 9;
+    STEP_ST10_Flow11_A2TableScan_DataMove_2 := 296;
+    STEP_ST10_Flow11_A2TableScan__MES____ := 511;
+    STEP_ST10_Flow11_A2TableScan___MES____ := 517;
+    STEP_ST10_Flow11_A2TableScan_______ := 312;
+    STEP_ST10_Flow11_A2TableScan_MES_______MES____ := 305;
+    STEP_ST10_Flow11_A2TableScan__MES_Ready := 302;
+    STEP_ST10_Flow11_A2TableScan_WaitChangeOverFinish := 317;
+    STEP_ST10_Flow11_A2TableScan_A_Loading_02UpDownTakeCylinderToHP := 120;
+    STEP_ST10_Flow11_A2TableScan_MES____ := 512;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_3 := 21;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_7 := 288;
+    STEP_ST10_Flow11_A2TableScan__MES____ := 301;
+    STEP_ST10_Flow11_A2TableScan_MES____ := 503;
+    STEP_ST10_Flow11_A2TableScan_ReadNG2 := 260;
+    STEP_ST10_Flow11_A2TableScan_WaitFixtureScanFinish := 331;
+    STEP_ST10_Flow11_A2TableScan_DataMove_6 := 275;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_5 := 278;
+    STEP_ST10_Flow11_A2TableScan___MES____ := 315;
+    STEP_ST10_Flow11_A2TableScan_MES______ := 318;
+    STEP_ST10_Flow11_A2TableScan__MES_______ := 325;
+    STEP_ST10_Flow11_A2TableScan_S3 := 3;
+    STEP_ST10_Flow11_A2TableScan__MES____ := 505;
+    STEP_ST10_Flow11_A2TableScan__MES___Ready := 506;
+    STEP_ST10_Flow11_A2TableScan_WaitChangeOverStart := 329;
+    STEP_ST10_Flow11_A2TableScan_ReadNG1 := 259;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos := 17;
+    STEP_ST10_Flow11_A2TableScan_DataMove_7 := 281;
+    STEP_ST10_Flow11_A2TableScan_Determine_TableFixtureStatus := 101;
+    STEP_ST10_Flow11_A2TableScan_DataMove_3 := 263;
+    STEP_ST10_Flow11_A2TableScan_S10_InitialFinish := 10;
+    STEP_ST10_Flow11_A2TableScan________ := 501;
+    STEP_ST10_Flow11_A2TableScan_Start_7st_reading := 293;
+    STEP_ST10_Flow11_A2TableScan____Copy__ := 320;
+    STEP_ST10_Flow11_A2TableScan_ProcessFinsh := 605;
+    STEP_ST10_Flow11_A2TableScan__MES_____2 := 313;
+    STEP_ST10_Flow11_A2TableScan_Step222 := 322;
+    STEP_ST10_Flow11_A2TableScan____1 := 502;
+    STEP_ST10_Flow11_A2TableScan_Step617 := 513;
+    STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_4 := 22;
+    STEP_ST10_Flow11_A2TableScan_Step501 := 500;
+    STEP_ST10_Flow11_A2TableScan_Start_6st_reading := 289;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_4 := 271;
+    STEP_ST10_Flow11_A2TableScan_Start_1st_reading := 265;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready := 266;
+    STEP_ST10_Flow11_A2TableScan__MES_____1 := 308;
+    STEP_ST10_Flow11_A2TableScan_FixtureNG := 129;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_6 := 282;
+    STEP_ST10_Flow11_A2TableScan_ReadNG7 := 279;
+    STEP_ST10_Flow11_A2TableScan_Start_8st_reading := 299;
+    STEP_ST10_Flow11_A2TableScan__MES_______1 := 321;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_9 := 294;
+    STEP_ST10_Flow11_A2TableScan_________1 := 504;
+    STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_8 := 292;
+    STEP_ST10_Flow11_A2TableScan_S8 := 8;
+    STEP_ST10_Flow11_A2TableScan_MES_______3 := 327;
+    STEP_ST10_Flow11_A2TableScan__MES____ := 508;
+    STEP_ST10_Flow11_A2TableScan_DataMove_1 := 285;
+    STEP_ST10_Flow11_A2TableScan_WaitReadyScanPrimit := 311;
+    STEP_ST10_Flow11_A2TableScan_Step400 := 400;
+    STEP_ST10_Flow11_A2TableScan_TableCodeReady := 307;
+    STEP_ST10_Flow11_A2TableScan__MES____ := 303;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete := 267;
+    STEP_ST10_Flow11_A2TableScan_A_Loading_01HorizontalCylinderToHP := 119;
+    STEP_ST10_Flow11_A2TableScan_MES____ := 510;
+    STEP_ST10_Flow11_A2TableScan_S4 := 4;
+    STEP_ST10_Flow11_A2TableScan_ReadyReading := 208;
+    STEP_ST10_Flow11_A2TableScan_ReadNG3 := 268;
+    STEP_ST10_Flow11_A2TableScan_Barcode_mismatch := 330;
+    STEP_ST10_Flow11_A2TableScan____NG := 324;
+    STEP_ST10_Flow11_A2TableScan_Step262 := 306;
+    STEP_ST10_Flow11_A2TableScan_MES______ := 516;
+    STEP_ST10_Flow11_A2TableScan_DataMove_8 := 287;
+    STEP_ST10_Flow11_A2TableScan_CodeCompareResult := 316;
+    STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_6 := 284;
+END_CONST
+
+FUNCTION_BLOCK "ST10_Flow11_A2TableScan_1to1"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oAlarmID : Int;
+END_VAR
+
+VAR
+    State : INT := 1;
+    act_InitialRun : Bool;
+    act_InitialOK : Bool;
+    act_WaitRunning : Bool;
+    act_Running : Bool;
+    act_ProcessComplete : Bool;
+    act_ProcessStart : Bool;
+    act_UnPause : Bool;
+    bError : Bool;
+    wErrorID : Word;
+END_VAR
+
+BEGIN
+    //======================================================================
+    // STATE MACHINE - Inline Transition Conditions
+    //======================================================================
+
+    CASE #State OF
+
+        // ===========================================
+        // STEP 2: S2
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S2:
+            // No actions in XML
+
+            // Transition to next step: 304
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_10;
+            END_IF;
+
+        // ===========================================
+        // STEP 304: Wait reading complete_10
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_10:
+            // No actions in XML
+
+            // Transition to next step: 297
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG8;
+            END_IF;
+
+        // ===========================================
+        // STEP 297: ReadNG8
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG8:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 298
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 298: Check reader Ready_9
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_9:
+            // No actions in XML
+
+            // Transition to next step: 274
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG4;
+            END_IF;
+
+        // ===========================================
+        // STEP 274: ReadNG4
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG4:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 237
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_process;
+            END_IF;
+
+        // ===========================================
+        // STEP 237: process
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_process:
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := TRUE;
+
+            // Transition to next step: 277
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_4st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 277: Start 4st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_4st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 309
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan____100;
+            END_IF;
+
+        // ===========================================
+        // STEP 309: 状态刷新100
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan____100:
+            // Action Qualifier=N, Event="S1"
+            // Token: #ioStatus := "MES_CheckIn_OK"
+            #ioStatus := "MES_CheckIn_OK";
+            // Action Qualifier=N
+            // Token: //"ST40_IndexTableData_DB".DataOP[1].PublicDta.PartType:="STA10_RecipeActiveDB".ParameterElement.ProcessParameter."M-PartType"
+            //"ST40_IndexTableData_DB".DataOP[1].PublicDta.PartType:="STA10_RecipeActiveDB".ParameterElement.ProcessParameter."M-PartType";
+            // Action Qualifier=N
+            // Token: //"STA10_ProcessData".Head.PartID:="MEStoPLC_DB".STA10.MainCheckIn."M-PartID"
+            //"STA10_ProcessData".Head.PartID:="MEStoPLC_DB".STA10.MainCheckIn."M-PartID";
+            // Action Qualifier=N
+            // Token: //"ST40_IndexTableData_DB".DataOP[1].PublicDta.RecipeVer:="STA10_RecipeActiveDB".ParameterElement.ProcessParameter."M-RecipeVer"
+            //"ST40_IndexTableData_DB".DataOP[1].PublicDta.RecipeVer:="STA10_RecipeActiveDB".ParameterElement.ProcessParameter."M-RecipeVer";
+
+            // Transition to next step: 1
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_F11_Initial;
+            END_IF;
+
+        // ===========================================
+        // STEP 1: F11_Initial
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_F11_Initial:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.Running
+            #ioPM_Inface.Running := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.UnPause
+            #ioPM_Inface.UnPause := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Calibration
+            "Station_Sys".Cmd.Calibration := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.ChangeOver
+            "Station_Sys".Cmd.ChangeOver := FALSE;
+            // Action Qualifier=N
+            // Token: //"ST350_Sys".Cmd.DryRun
+            //"ST350_Sys".Cmd.DryRun;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Reserve
+            "Station_Sys".Cmd.Reserve := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.OneCycle
+            "Station_Sys".Cmd.OneCycle := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+
+            // Transition to next step: 20
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 20: Servo returns to3st Pos_2
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_2:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[6].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[6].Start;
+
+            // Transition to next step: 262
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 262: DataMove_4
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_4:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[3].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[3].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 19
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 19: Servo returns to3st Pos_1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_1:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[5].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[5].Start;
+
+            // Transition to next step: 16
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to1st_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 16: Servo returns to1st Pos
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to1st_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[1].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[1].Start;
+
+            // Transition to next step: 128
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Step128;
+            END_IF;
+
+        // ===========================================
+        // STEP 128: Step128
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Step128:
+            // No actions in XML
+
+            // Transition to next step: 290
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 290: Wait reading complete_7
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_7:
+            // No actions in XML
+
+            // Transition to next step: 272
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 272: Wait reading complete_4
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_4:
+            // No actions in XML
+
+            // Transition to next step: 507
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_S_505__MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 507: 505准备MES保存数据
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S_505__MES____:
+            // Action Qualifier=N
+            // Token: //"Station1UnLoadData".MEStoPLC_CheckOutStation1ST350.PartTypeID:="Station1LoadData".MEStoPLC_CheckInStation1ST350.PartTypeID
+            //"Station1UnLoadData".MEStoPLC_CheckOutStation1ST350.PartTypeID:="Station1LoadData".MEStoPLC_CheckInStation1ST350.PartTypeID;
+            // Action Qualifier=N
+            // Token: //"PLCtoMES_DB"."STA10"."MainCheckOut"."P-SubPartID"[1]
+            //"PLCtoMES_DB"."STA10"."MainCheckOut"."P-SubPartID"[1];
+            // Action Qualifier=N
+            // Token: //"PLCtoMES_DB".STA10.MainCheckOut."P-PartResult":=1
+            //"PLCtoMES_DB".STA10.MainCheckOut."P-PartResult":=1;
+            // Action Qualifier=N
+            // Token: //"Station1UnLoadData".MEStoPLC_CheckOutStation1ST350.PartTypeSN:="ST350_RecipeActiveDB".ParameterElement.ProcessParameter."M-RecipeVer"
+            //"Station1UnLoadData".MEStoPLC_CheckOutStation1ST350.PartTypeSN:="ST350_RecipeActiveDB".ParameterElement.ProcessParameter."M-RecipeVer";
+            // Action Qualifier=N
+            // Token: //CALL S_CONV S_CONV // (IN := "ST350_Sys".TotalCycleTime.No[0] // OUT => "Station1UnLoadData".MEStoPLC_CheckOutStation1ST350."PLCTransfer time" // )
+            //CALL S_CONV S_CONV // (IN := "ST350_Sys".TotalCycleTime.No[0] // OUT => "Station1UnLoadData".MEStoPLC_CheckOutStation1ST350."PLCTransfer time" // );
+            // Action Qualifier=N
+            // Token: #sUpdMES_Data
+            #sUpdMES_Data;
+
+            // Transition to next step: 310
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES_______1;
+            END_IF;
+
+        // ===========================================
+        // STEP 310: MES查询复位超时_1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES_______1:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInResultOverTime_5
+            "ST10_DeviceError".MES_Error.CheckInResultOverTime_5 := TRUE;
+
+            // Transition to next step: 515
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan______;
+            END_IF;
+
+        // ===========================================
+        // STEP 515: 数据上传完成
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan______:
+            // No actions in XML
+
+            // Transition to next step: 5
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_S5_MESInitial;
+            END_IF;
+
+        // ===========================================
+        // STEP 5: S5_MESInitial
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S5_MESInitial:
+            // No actions in XML
+
+            // Transition to next step: 258
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_2st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 258: Start 2st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_2st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 6
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ServoReady_;
+            END_IF;
+
+        // ===========================================
+        // STEP 6: ServoReady?
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ServoReady_:
+            // No actions in XML
+
+            // Transition to next step: 264
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready2;
+            END_IF;
+
+        // ===========================================
+        // STEP 264: Check reader Ready2
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready2:
+            // No actions in XML
+
+            // Transition to next step: 319
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES_______________;
+            END_IF;
+
+        // ===========================================
+        // STEP 319: MES请求打标数据,获取数据状态判断
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES_______________:
+            // Action Qualifier=N
+            // Token: "PLCtoMES".Spare_2
+            "PLCtoMES".Spare_2;
+
+            // Transition to next step: 286
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG6;
+            END_IF;
+
+        // ===========================================
+        // STEP 286: ReadNG6
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG6:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 514
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan____500;
+            END_IF;
+
+        // ===========================================
+        // STEP 514: 状态刷新500
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan____500:
+            // Action Qualifier=N, Event="S1"
+            // Token: #ioStatus := 500
+            #ioStatus := 500;
+
+            // Transition to next step: 280
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG5;
+            END_IF;
+
+        // ===========================================
+        // STEP 280: ReadNG5
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG5:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 328
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan____;
+            END_IF;
+
+        // ===========================================
+        // STEP 328: 缓存数据
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan____:
+            // No actions in XML
+
+            // Transition to next step: 323
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Step223;
+            END_IF;
+
+        // ===========================================
+        // STEP 323: Step223
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Step223:
+            // No actions in XML
+
+            // Transition to next step: 269
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 269: DataMove_5
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_5:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[4].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[4].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 326
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan___MES________;
+            END_IF;
+
+        // ===========================================
+        // STEP 326: 报警 MES查询激光数据超时
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan___MES________:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInCompOverTime_3
+            "ST10_DeviceError".MES_Error.CheckInCompOverTime_3 := TRUE;
+
+            // Transition to next step: 314
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES_______2;
+            END_IF;
+
+        // ===========================================
+        // STEP 314: MES查询复位超时_2
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES_______2:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInResultOverTime_5
+            "ST10_DeviceError".MES_Error.CheckInResultOverTime_5 := TRUE;
+
+            // Transition to next step: 276
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 276: Check reader Ready_5
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_5:
+            // No actions in XML
+
+            // Transition to next step: 600
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Process_Finish;
+            END_IF;
+
+        // ===========================================
+        // STEP 600: Process Finish
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Process_Finish:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+
+            // Transition to next step: 261
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_;
+            END_IF;
+
+        // ===========================================
+        // STEP 261: Wait reading complete_
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_:
+            // No actions in XML
+
+            // Transition to next step: 125
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_FixtureOK;
+            END_IF;
+
+        // ===========================================
+        // STEP 125: FixtureOK
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_FixtureOK:
+            // No actions in XML
+
+            // Transition to next step: 403
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ProcessFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 403: ProcessFinish
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ProcessFinish:
+            // No actions in XML
+
+            // Transition to next step: 270
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_3st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 270: Start 3st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_3st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 300
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan____;
+            END_IF;
+
+        // ===========================================
+        // STEP 300: 是否在线
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan____:
+            // No actions in XML
+
+            // Transition to next step: 18
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to4st_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 18: Servo returns to4st Pos
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to4st_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[4].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[4].Start;
+
+            // Transition to next step: 100
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ProcessStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 100: ProcessStart
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ProcessStart:
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := TRUE;
+            // Action Qualifier=N, Event="S1"
+            // Token: #ioPM_Inface.ProcessResult := 0
+            #ioPM_Inface.ProcessResult := 0;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[11].Start
+            "ST10_GeneralData".FlowControl_Handshake[11].Start := FALSE;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[11].Done
+            "ST10_GeneralData".FlowControl_Handshake[11].Done := FALSE;
+
+            // Transition to next step: 15
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to2st_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 15: Servo returns to2st Pos
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to2st_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[2].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[2].Start;
+
+            // Transition to next step: 200
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Tablecode_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 200: Tablecode reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Tablecode_reading:
+            // No actions in XML
+
+            // Transition to next step: 283
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_5st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 283: Start 5st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_5st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 509
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 509: 等待MES保存完成
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES____:
+            // Action Qualifier=N
+            // Token: "PLCtoMES".Static_2
+            "PLCtoMES".Static_2;
+
+            // Transition to next step: 9
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_S9;
+            END_IF;
+
+        // ===========================================
+        // STEP 9: S9
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S9:
+            // No actions in XML
+
+            // Transition to next step: 296
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 296: DataMove_2
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_2:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[1].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[1].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 511
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 511: 等待MES上传复位
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES____:
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Static_2
+            "PLCtoMES".Static_2 := FALSE;
+
+            // Transition to next step: 517
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan___MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 517: 报警 MES保存超时
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan___MES____:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInResultOverTime_7
+            "ST10_DeviceError".MES_Error.CheckInResultOverTime_7 := TRUE;
+
+            // Transition to next step: 312
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_______;
+            END_IF;
+
+        // ===========================================
+        // STEP 312: 物料不允许使用
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_______:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInCompOverTime_5
+            "ST10_DeviceError".MES_Error.CheckInCompOverTime_5 := TRUE;
+
+            // Transition to next step: 305
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES_______MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 305: MES查询触发，等待MES查询完成
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES_______MES____:
+            // Action Qualifier=N
+            // Token: "PLCtoMES"."PLC.Load_Station1ChickInReq"
+            "PLCtoMES"."PLC.Load_Station1ChickInReq";
+
+            // Transition to next step: 302
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES_Ready;
+            END_IF;
+
+        // ===========================================
+        // STEP 302: 等待MES Ready
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES_Ready:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Load_Station1ChickInReq"
+            "PLCtoMES"."PLC.Load_Station1ChickInReq" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_Station1PartOK"
+            "MEStoPLC"."MES.Load_Station1PartOK" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_Station1PartNG"
+            "MEStoPLC"."MES.Load_Station1PartNG" := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_Station1ReqMesDone"
+            "MEStoPLC"."MES.Load_Station1ReqMesDone" := FALSE;
+
+            // Transition to next step: 317
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_WaitChangeOverFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 317: WaitChangeOverFinish
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_WaitChangeOverFinish:
+            // No actions in XML
+
+            // Transition to next step: 120
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_A_Loading_02UpDownTakeCylinderToHP;
+            END_IF;
+
+        // ===========================================
+        // STEP 120: A-Loading-02UpDownTakeCylinderToHP
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_A_Loading_02UpDownTakeCylinderToHP:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[4].Inout.AutoGoHome
+            "ST10Cylinder".Cy[4].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[4].Inout.AutoGoWork
+            "ST10Cylinder".Cy[4].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 512
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 512: MES保存结束
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES____:
+            // No actions in XML
+
+            // Transition to next step: 21
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 21: Servo returns to3st Pos_3
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_3:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[7].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[7].Start;
+
+            // Transition to next step: 288
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 288: Check reader Ready_7
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_7:
+            // No actions in XML
+
+            // Transition to next step: 301
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 301: 复位MES查询命令
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES____:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Load_Station1ChickInReq"
+            "PLCtoMES"."PLC.Load_Station1ChickInReq" := FALSE;
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Spare_2
+            "PLCtoMES".Spare_2 := FALSE;
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Spare_3
+            "PLCtoMES".Spare_3 := FALSE;
+
+            // Transition to next step: 503
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 503: MES保存开始
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES____:
+            // No actions in XML
+
+            // Transition to next step: 260
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG2;
+            END_IF;
+
+        // ===========================================
+        // STEP 260: ReadNG2
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG2:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 331
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_WaitFixtureScanFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 331: WaitFixtureScanFinish
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_WaitFixtureScanFinish:
+            // No actions in XML
+
+            // Transition to next step: 275
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 275: DataMove_6
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_6:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[5].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[5].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 278
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_5;
+            END_IF;
+
+        // ===========================================
+        // STEP 278: Wait reading complete_5
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_5:
+            // No actions in XML
+
+            // Transition to next step: 315
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan___MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 315: 报警 MES查询超时
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan___MES____:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInResultOverTime_4
+            "ST10_DeviceError".MES_Error.CheckInResultOverTime_4 := TRUE;
+
+            // Transition to next step: 318
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES______;
+            END_IF;
+
+        // ===========================================
+        // STEP 318: MES请求打标数据
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES______:
+            // No actions in XML
+
+            // Transition to next step: 325
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES_______;
+            END_IF;
+
+        // ===========================================
+        // STEP 325: 等待MES发数据请求复位
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES_______:
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Spare_2
+            "PLCtoMES".Spare_2 := FALSE;
+
+            // Transition to next step: 3
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_S3;
+            END_IF;
+
+        // ===========================================
+        // STEP 3: S3
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S3:
+            // No actions in XML
+
+            // Transition to next step: 505
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 505: 复位MES保存命令
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES____:
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Static_2
+            "PLCtoMES".Static_2 := FALSE;
+
+            // Transition to next step: 506
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES___Ready;
+            END_IF;
+
+        // ===========================================
+        // STEP 506: 等待MES 保存Ready
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES___Ready:
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Static_2
+            "PLCtoMES".Static_2 := FALSE;
+
+            // Transition to next step: 329
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_WaitChangeOverStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 329: WaitChangeOverStart
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_WaitChangeOverStart:
+            // No actions in XML
+
+            // Transition to next step: 259
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG1;
+            END_IF;
+
+        // ===========================================
+        // STEP 259: ReadNG1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG1:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 17
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos;
+            END_IF;
+
+        // ===========================================
+        // STEP 17: Servo returns to3st Pos
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[3].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[3].Start;
+
+            // Transition to next step: 281
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_7;
+            END_IF;
+
+        // ===========================================
+        // STEP 281: DataMove_7
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_7:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[6].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[6].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 101
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Determine_TableFixtureStatus;
+            END_IF;
+
+        // ===========================================
+        // STEP 101: Determine TableFixtureStatus
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Determine_TableFixtureStatus:
+            // No actions in XML
+
+            // Transition to next step: 263
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 263: DataMove_3
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_3:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[2].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[2].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 10
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_S10_InitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 10: S10_InitialFinish
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S10_InitialFinish:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+
+            // Transition to next step: 501
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan________;
+            END_IF;
+
+        // ===========================================
+        // STEP 501: 准备产品结果数据
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan________:
+            // No actions in XML
+
+            // Transition to next step: 293
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_7st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 293: Start 7st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_7st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 320
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan____Copy__;
+            END_IF;
+
+        // ===========================================
+        // STEP 320: 数据成功Copy数据
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan____Copy__:
+            // No actions in XML
+
+            // Transition to next step: 605
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ProcessFinsh;
+            END_IF;
+
+        // ===========================================
+        // STEP 605: ProcessFinsh
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ProcessFinsh:
+            // No actions in XML
+
+            // Transition to next step: 313
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES_____2;
+            END_IF;
+
+        // ===========================================
+        // STEP 313: 等待MES查询复位_2
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES_____2:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Load_Station1ChickInReq"
+            "PLCtoMES"."PLC.Load_Station1ChickInReq" := FALSE;
+
+            // Transition to next step: 322
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Step222;
+            END_IF;
+
+        // ===========================================
+        // STEP 322: Step222
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Step222:
+            // No actions in XML
+
+            // Transition to next step: 502
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan____1;
+            END_IF;
+
+        // ===========================================
+        // STEP 502: 是否在线1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan____1:
+            // No actions in XML
+
+            // Transition to next step: 513
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Step617;
+            END_IF;
+
+        // ===========================================
+        // STEP 513: Step617
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Step617:
+            // No actions in XML
+
+            // Transition to next step: 22
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 22: Servo returns to3st Pos_4
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Servo_returns_to3st_Pos_4:
+            // Action Qualifier=N
+            // Token: "ServoV90_DeviceCtl".V90Servo[4].Point[8].Start
+            "ServoV90_DeviceCtl".V90Servo[4].Point[8].Start;
+
+            // Transition to next step: 500
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Step501;
+            END_IF;
+
+        // ===========================================
+        // STEP 500: Step501
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Step501:
+            // No actions in XML
+
+            // Transition to next step: 289
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_6st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 289: Start 6st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_6st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 271
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 271: Check reader Ready_4
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_4:
+            // No actions in XML
+
+            // Transition to next step: 265
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_1st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 265: Start 1st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_1st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 266
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready;
+            END_IF;
+
+        // ===========================================
+        // STEP 266: Check reader Ready
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready:
+            // No actions in XML
+
+            // Transition to next step: 308
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES_____1;
+            END_IF;
+
+        // ===========================================
+        // STEP 308: 等待MES查询复位_1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES_____1:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Load_Station1ChickInReq"
+            "PLCtoMES"."PLC.Load_Station1ChickInReq" := FALSE;
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Spare_2
+            "PLCtoMES".Spare_2 := FALSE;
+
+            // Transition to next step: 129
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_FixtureNG;
+            END_IF;
+
+        // ===========================================
+        // STEP 129: FixtureNG
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_FixtureNG:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[1].PartStatus := 0
+            "AutoProcessData".A_Table_2[1].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[2].PartStatus := 0
+            "AutoProcessData".A_Table_2[2].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[3].PartStatus := 0
+            "AutoProcessData".A_Table_2[3].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[4].PartStatus := 0
+            "AutoProcessData".A_Table_2[4].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[5].PartStatus := 0
+            "AutoProcessData".A_Table_2[5].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[6].PartStatus := 0
+            "AutoProcessData".A_Table_2[6].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[7].PartStatus := 0
+            "AutoProcessData".A_Table_2[7].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[8].PartStatus := 0
+            "AutoProcessData".A_Table_2[8].PartStatus := 0;
+            // Action Qualifier=N
+            // Token: "KukaRobot3_CtrlDB".iSpeedValue := 20
+            "KukaRobot3_CtrlDB".iSpeedValue := 20;
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[1].Code := ''
+            "AutoProcessData".A_Table_2[1].Code := '';
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[2].Code := ''
+            "AutoProcessData".A_Table_2[2].Code := '';
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[3].Code := ''
+            "AutoProcessData".A_Table_2[3].Code := '';
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[4].Code := ''
+            "AutoProcessData".A_Table_2[4].Code := '';
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[5].Code := ''
+            "AutoProcessData".A_Table_2[5].Code := '';
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[6].Code := ''
+            "AutoProcessData".A_Table_2[6].Code := '';
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[7].Code := ''
+            "AutoProcessData".A_Table_2[7].Code := '';
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[8].Code := ''
+            "AutoProcessData".A_Table_2[8].Code := '';
+
+            // Transition to next step: 282
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 282: Check reader Ready_6
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_6:
+            // No actions in XML
+
+            // Transition to next step: 279
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG7;
+            END_IF;
+
+        // ===========================================
+        // STEP 279: ReadNG7
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG7:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 299
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Start_8st_reading;
+            END_IF;
+
+        // ===========================================
+        // STEP 299: Start 8st reading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Start_8st_reading:
+            // Action Qualifier=S
+            // Token: "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger
+            "KeyenceSR1000Ctrl_802A1DB".ioAutoTrigger := TRUE;
+
+            // Transition to next step: 321
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES_______1;
+            END_IF;
+
+        // ===========================================
+        // STEP 321: 等待MES发数据请求复位1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES_______1:
+            // Action Qualifier=R
+            // Token: "PLCtoMES".Spare_2
+            "PLCtoMES".Spare_2 := FALSE;
+
+            // Transition to next step: 294
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_9;
+            END_IF;
+
+        // ===========================================
+        // STEP 294: Wait reading complete_9
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_9:
+            // No actions in XML
+
+            // Transition to next step: 504
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_________1;
+            END_IF;
+
+        // ===========================================
+        // STEP 504: 准备产品结果数据_1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_________1:
+            // No actions in XML
+
+            // Transition to next step: 292
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 292: Check reader Ready_8
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Check_reader_Ready_8:
+            // No actions in XML
+
+            // Transition to next step: 8
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_S8;
+            END_IF;
+
+        // ===========================================
+        // STEP 8: S8
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S8:
+            // No actions in XML
+
+            // Transition to next step: 327
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES_______3;
+            END_IF;
+
+        // ===========================================
+        // STEP 327: MES查询复位超时_3
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES_______3:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInResultOverTime_5
+            "ST10_DeviceError".MES_Error.CheckInResultOverTime_5 := TRUE;
+
+            // Transition to next step: 508
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 508: 置位MES保存命令
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES____:
+            // No actions in XML
+
+            // Transition to next step: 285
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 285: DataMove_1
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_1:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[8].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[8].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 311
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_WaitReadyScanPrimit;
+            END_IF;
+
+        // ===========================================
+        // STEP 311: WaitReadyScanPrimit
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_WaitReadyScanPrimit:
+            // No actions in XML
+
+            // Transition to next step: 400
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Step400;
+            END_IF;
+
+        // ===========================================
+        // STEP 400: Step400
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Step400:
+            // No actions in XML
+
+            // Transition to next step: 307
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_TableCodeReady;
+            END_IF;
+
+        // ===========================================
+        // STEP 307: TableCodeReady
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_TableCodeReady:
+            // No actions in XML
+
+            // Transition to next step: 303
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan__MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 303: 准备MES查询数据
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan__MES____:
+            // No actions in XML
+
+            // Transition to next step: 267
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete;
+            END_IF;
+
+        // ===========================================
+        // STEP 267: Wait reading complete
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete:
+            // No actions in XML
+
+            // Transition to next step: 119
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_A_Loading_01HorizontalCylinderToHP;
+            END_IF;
+
+        // ===========================================
+        // STEP 119: A-Loading-01HorizontalCylinderToHP
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_A_Loading_01HorizontalCylinderToHP:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[3].Inout.AutoGoHome
+            "ST10Cylinder".Cy[3].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[3].Inout.AutoGoWork
+            "ST10Cylinder".Cy[3].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 510
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES____;
+            END_IF;
+
+        // ===========================================
+        // STEP 510: MES保存完成
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES____:
+            // No actions in XML
+
+            // Transition to next step: 4
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_S4;
+            END_IF;
+
+        // ===========================================
+        // STEP 4: S4
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_S4:
+            // No actions in XML
+
+            // Transition to next step: 208
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadyReading;
+            END_IF;
+
+        // ===========================================
+        // STEP 208: ReadyReading
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadyReading:
+            // No actions in XML
+
+            // Transition to next step: 268
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_ReadNG3;
+            END_IF;
+
+        // ===========================================
+        // STEP 268: ReadNG3
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_ReadNG3:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".A.A2TableScan.ScanCodeNG
+            "ST10_DeviceError".A.A2TableScan.ScanCodeNG := TRUE;
+
+            // Transition to next step: 330
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Barcode_mismatch;
+            END_IF;
+
+        // ===========================================
+        // STEP 330: Barcode mismatch
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Barcode_mismatch:
+            // No actions in XML
+
+            // Transition to next step: 324
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan____NG;
+            END_IF;
+
+        // ===========================================
+        // STEP 324: 数据获取NG
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan____NG:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckInResultOverTime_2
+            "ST10_DeviceError".MES_Error.CheckInResultOverTime_2 := TRUE;
+
+            // Transition to next step: 306
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Step262;
+            END_IF;
+
+        // ===========================================
+        // STEP 306: Step262
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Step262:
+            // No actions in XML
+
+            // Transition to next step: 516
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_MES______;
+            END_IF;
+
+        // ===========================================
+        // STEP 516: MES上传复位超时
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_MES______:
+            // Action Qualifier=S
+            // Token: "ST10_DeviceError".MES_Error.CheckoutCompRstOverTime
+            "ST10_DeviceError".MES_Error.CheckoutCompRstOverTime := TRUE;
+
+            // Transition to next step: 287
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_DataMove_8;
+            END_IF;
+
+        // ===========================================
+        // STEP 287: DataMove_8
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_DataMove_8:
+            // Action Qualifier=N
+            // Token: "AutoProcessData".A_Table_2[7].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode
+            "AutoProcessData".A_Table_2[7].Code := "KeyenceSR1000Ctrl_802A1DB".sHMI.Status.CurrentCode;
+
+            // Transition to next step: 316
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_CodeCompareResult;
+            END_IF;
+
+        // ===========================================
+        // STEP 316: CodeCompareResult
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_CodeCompareResult:
+            // No actions in XML
+
+            // Transition to next step: 284
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_6;
+            END_IF;
+
+        // ===========================================
+        // STEP 284: Wait reading complete_6
+        // ===========================================
+        STEP_ST10_Flow11_A2TableScan_Wait_reading_complete_6:
+            // No actions in XML
+
+    END_CASE;
+
+    // UPDATE ioPM_Inface
+    #ioPM_Inface.InitialRun := #act_InitialRun;
+    #ioPM_Inface.InitialOK := #act_InitialOK;
+    #ioPM_Inface.WaitRunning := #act_WaitRunning;
+    #ioPM_Inface.Running := #act_Running;
+    #ioPM_Inface.ProcessComplete := #act_ProcessComplete;
+    #ioPM_Inface.ProcessStart := #act_ProcessStart;
+    #ioPM_Inface.UnPause := #act_UnPause;
+
+    // ERROR HANDLING
+    IF #bError THEN
+        #ioStatus := 900;
+        #oAlarmID := INT_TO_WORD(#wErrorID);
+    ELSE
+        #ioStatus := 0;
+        #oAlarmID := 0;
+    END_IF;
+END_FUNCTION_BLOCK
+
+//=============================================================================
+// END OF FILE
+//=============================================================================

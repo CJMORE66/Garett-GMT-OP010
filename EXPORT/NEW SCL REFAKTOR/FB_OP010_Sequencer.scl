@@ -1,0 +1,152 @@
+FUNCTION_BLOCK "FB_OP010_Sequencer"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.2
+   VAR_INPUT 
+      iEStopOK : Bool;
+      iInterlockOK : Bool;
+      iGateClosedOK : Bool;
+      iServoNotMoving : Bool;
+      iModeAuto : Bool;
+      iModeStep : Bool;
+      iCmdNext : Bool;
+      iCmdPrev : Bool;
+      iCmdGoto : Bool;
+      iGotoStepID : Int;
+      iSeqPausedByNG : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      oStep : Int;
+      oSafeBaselineActive : Bool;
+      oInPosition_111 : Bool;
+      oError : Bool;
+   END_VAR
+
+   VAR 
+      Step : Int := 0;
+      TargetStep : Int := 0;
+      SafeBaselineActive : Bool := TRUE;
+      ReverseMap : Array[0..999] of Int;
+      FirstCycle : Bool := TRUE;
+      
+      // -- SUB-SEQUENCE INSTANCES --
+      Seq_A1_Table : "FB_Seq_A1_Table";
+      Seq_B_Press  : "FB_Seq_B_Press";
+      Seq_C_Glue   : "FB_Seq_C_Glue";
+      Seq_Robots   : "FB_Seq_Robots_Main";
+      Seq_Logistics: "FB_Seq_Logistics";
+      
+      // Trigger Helpers
+      R_Trig_Next {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      R_Trig_Prev {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      R_Trig_Goto {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+   END_VAR
+
+BEGIN
+	// =============================================================
+	// INIT
+	// =============================================================
+	IF #FirstCycle THEN
+	    // Map definitions (Simplified for brevity)
+	    #ReverseMap[10] := 0;
+	    #ReverseMap[60] := 10;
+	    #ReverseMap[100] := 60;
+	    #ReverseMap[130] := 100;
+	    #FirstCycle := FALSE;
+	END_IF;
+	
+	// Input Triggers
+	#R_Trig_Next(CLK := #iCmdNext);
+	#R_Trig_Prev(CLK := #iCmdPrev);
+	#R_Trig_Goto(CLK := #iCmdGoto);
+	
+	// Safety Stop
+	IF NOT #iEStopOK THEN #Step := 900; #SafeBaselineActive := TRUE; END_IF;
+	
+	// Step Control Logic (Next/Prev/Goto) -> Same as V0.1
+	IF #iModeStep AND NOT #SafeBaselineActive THEN
+	    IF #R_Trig_Prev.Q THEN
+	        #TargetStep := #ReverseMap[#Step];
+	        #SafeBaselineActive := TRUE;
+	    ELSIF #R_Trig_Goto.Q THEN
+	        #TargetStep := #iGotoStepID;
+	        #SafeBaselineActive := TRUE;
+	    END_IF;
+	END_IF;
+	
+	// Safe Baseline Logic
+	IF #SafeBaselineActive THEN
+	    #Step := 0;
+	    // IMPORTANT: Reset all Sub-Sequences here!
+	    #Seq_A1_Table(iEnable := FALSE, iReset := TRUE);
+	    #Seq_B_Press(iEnable := FALSE);
+	    #Seq_C_Glue(iEnable := FALSE);
+	    
+	    IF #iInterlockOK AND #iGateClosedOK AND #iServoNotMoving THEN
+	        IF #TargetStep <> 0 THEN
+	            #Step := #TargetStep;
+	            #TargetStep := 0;
+	            #SafeBaselineActive := FALSE;
+	        END_IF;
+	    END_IF;
+	    #oStep := 0;
+	    #oSafeBaselineActive := TRUE;
+	    RETURN;
+	END_IF;
+	#oSafeBaselineActive := FALSE;
+	
+	// =============================================================
+	// MAIN SEQUENCE ORCHESTRATION
+	// =============================================================
+	
+	CASE #Step OF
+	    10..59: // A1 TABLE PHASE
+	        #Seq_A1_Table(iEnable := TRUE, iReset := FALSE);
+	        
+	        // Transition Condition
+	        IF #Seq_A1_Table.oDone AND (#iModeAuto OR (#iModeStep AND #R_Trig_Next.Q)) THEN
+	            #Step := 60;
+	            #Seq_A1_Table(iEnable := FALSE, iReset := TRUE); // Reset block for next cycle
+	        END_IF;
+	        
+	    60..99: // PRESS PHASE
+	        #Seq_B_Press(iEnable := TRUE);
+	        
+	        IF #Seq_B_Press.oDone AND (#iModeAuto OR (#iModeStep AND #R_Trig_Next.Q)) THEN
+	            #Step := 100;
+	            #Seq_B_Press(iEnable := FALSE);
+	        END_IF;
+	        
+	    100..129: // GLUE PHASE
+	        #Seq_C_Glue(iEnable := TRUE);
+	        
+	        // NG BOX PAUSE CHECK
+	        IF #Seq_C_Glue.oDone THEN
+	            #oInPosition_111 := TRUE;
+	            IF NOT #iSeqPausedByNG AND (#iModeAuto OR (#iModeStep AND #R_Trig_Next.Q)) THEN
+	                #Step := 130;
+	                #oInPosition_111 := FALSE;
+	                #Seq_C_Glue(iEnable := FALSE);
+	            END_IF;
+	        END_IF;
+	        
+	    130..159: // A2 TABLE PHASE
+	        // (Call Seq_A2_Table here...)
+	        IF #iModeAuto OR (#iModeStep AND #R_Trig_Next.Q) THEN #Step := 160; END_IF;
+	        
+	    160..189: // ROBOT OPERATIONS
+	        #Seq_Robots(iEnable := TRUE);
+	        IF #iModeAuto OR (#iModeStep AND #R_Trig_Next.Q) THEN #Step := 190; END_IF;
+	        
+	    190..209: // LOGISTICS / UNLOAD
+	        #Seq_Logistics(iEnable := TRUE);
+	        IF #iModeAuto OR (#iModeStep AND #R_Trig_Next.Q) THEN #Step := 10; END_IF; // Loop
+	        
+	    900: // ERROR
+	        // Wait for Reset
+	        
+	END_CASE;
+	
+	#oStep := #Step;
+
+END_FUNCTION_BLOCK

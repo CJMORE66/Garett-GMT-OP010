@@ -1,0 +1,412 @@
+FUNCTION_BLOCK FB_V90_PositionMigration
+{ S7_Optimized_Access := 'TRUE' }
+(*
+    V90 Position Migration from Legacy to New Structure
+    ===================================================
+    Runs in Manual/Hand mode to migrate taught positions:
+    1. Switch to LEGACY mode
+    2. Move servo to position using legacy call
+    3. Wait for position reached
+    4. Switch to NEW mode  
+    5. Read actual position from servo feedback
+    6. Save to new structure (UDT_V90_Axis_Positions)
+    
+    Usage: Run in Manual mode, execute step-by-step for each position
+*)
+
+VAR_INPUT
+    // Control
+    Enable          : Bool;          // FB enable (Manual mode only!)
+    StartMigration  : Bool;          // Start/Next position
+    AxisNum         : Int;           // 1=A1, 2=A2, 3=A3, 4=A4
+    PosIndex        : Int;           // Position index 1-20
+    
+    // Mode switching
+    UseLegacyMode   : Bool;          // TRUE=Legacy, FALSE=New (for verification)
+    
+    // Legacy position data (source)
+    LegacyPos       : DInt;          // Legacy target position
+    LegacyVel       : Int;           // Legacy velocity
+END_VAR
+
+VAR_OUTPUT
+    // Status
+    Busy            : Bool;
+    Done            : Bool;
+    Error           : Bool;
+    ErrorID         : Int;
+    StateOut        : Int;
+    
+    // Results
+    ActualPosition  : DInt;          // Read from servo
+    NewPosSaved     : Bool;          // Saved to new structure
+END_VAR
+
+VAR_IN_OUT
+    // New structure (target) - Array[1..20] of UDT_Motion_Point_V90
+    NewPositions    : Array[1..20] of "UDT_Motion_Point_V90";
+END_VAR
+
+VAR
+    State           : Int;           // 0=IDLE, 10=SWITCH_LEGACY, 20=MOVE_LEGACY, 30=WAIT_POS, 40=SWITCH_NEW, 50=READ_POS, 60=SAVE, 70=DONE
+    LastStart       : Bool;
+    StartEdge       : Bool;
+    PosReached      : Bool;
+    WaitTimer       : TON;
+    
+    // Internal copies for switching
+    CurrentMode     : Bool;          // TRUE=Legacy, FALSE=New
+END_VAR
+
+BEGIN
+    // Edge detection
+    StartEdge := StartMigration AND NOT LastStart;
+    LastStart := StartMigration;
+    
+    // Reset outputs
+    Done := FALSE;
+    NewPosSaved := FALSE;
+    
+    // State machine
+    CASE State OF
+        0: // IDLE
+            Busy := FALSE;
+            Error := FALSE;
+            ErrorID := 0;
+            WaitTimer(IN := FALSE);
+            
+            IF Enable AND StartEdge THEN
+                State := 10;
+            END_IF;
+            
+        10: // SWITCH TO LEGACY MODE
+            Busy := TRUE;
+            CurrentMode := TRUE;  // Legacy
+            // Set debug flag for legacy mode
+            "Debug".SERVO_LEGACY_MODE := TRUE;
+            WaitTimer(IN := TRUE, PT := T#200ms);  // Wait for mode switch
+            
+            IF WaitTimer.Q THEN
+                WaitTimer(IN := FALSE);
+                State := 20;
+            END_IF;
+            
+        20: // MOVE WITH LEGACY CALL
+            Busy := TRUE;
+            // Call legacy positioning via ServoV90_Ax
+            CASE AxisNum OF
+                1:
+                    "ServoV90_A1".In.iMode := 1;  // Relative
+                    "ServoV90_A1".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A1".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A1".In.iAutoStart := TRUE;
+                2:
+                    "ServoV90_A2".In.iMode := 1;
+                    "ServoV90_A2".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A2".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A2".In.iAutoStart := TRUE;
+                3:
+                    "ServoV90_A3".In.iMode := 1;
+                    "ServoV90_A3".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A3".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A3".In.iAutoStart := TRUE;
+                4:
+                    "ServoV90_A4".In.iMode := 1;
+                    "ServoV90_A4".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A4".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A4".In.iAutoStart := TRUE;
+            END_CASE;
+            State := 30;
+            
+        30: // WAIT FOR POSITION REACHED
+            Busy := TRUE;
+            // Reset start pulse
+            CASE AxisNum OF
+                1: "ServoV90_A1".In.iAutoStart := FALSE;
+                2: "ServoV90_A2".In.iAutoStart := FALSE;
+                3: "ServoV90_A3".In.iAutoStart := FALSE;
+                4: "ServoV90_A4".In.iAutoStart := FALSE;
+            END_CASE;
+            
+            // Check position reached
+            CASE AxisNum OF
+                1: PosReached := "ServoV90_A1".Out.oServoPosOK;
+                2: PosReached := "ServoV90_A2".Out.oServoPosOK;
+                3: PosReached := "ServoV90_A3".Out.oServoPosOK;
+                4: PosReached := "ServoV90_A4".Out.oServoPosOK;
+            END_CASE;
+            
+            IF PosReached THEN
+                State := 40;
+            END_IF;
+            
+        40: // SWITCH TO NEW MODE
+            Busy := TRUE;
+            CurrentMode := FALSE;  // New
+            // Clear debug flag for new mode
+            "Debug".SERVO_LEGACY_MODE := FALSE;
+            WaitTimer(IN := TRUE, PT := T#200ms);
+            
+            IF WaitTimer.Q THEN
+                WaitTimer(IN := FALSE);
+                State := 50;
+            END_IF;
+            
+        50: // READ ACTUAL POSITION
+            Busy := TRUE;
+            // Read actual position from servo feedback
+            CASE AxisNum OF
+                1: ActualPosition := "ServoV90_A1".Out.oActPosition;
+                2: ActualPosition := "ServoV90_A2".Out.oActPosition;
+                3: ActualPosition := "ServoV90_A3".Out.oActPosition;
+                4: ActualPosition := "ServoV90_A4".Out.oActPosition;
+            END_CASE;
+            State := 60;
+            
+        60: // SAVE TO NEW STRUCTURE
+            Busy := TRUE;
+            IF PosIndex >= 1 AND PosIndex <= 20 THEN
+                NewPositions[PosIndex].Pos := ActualPosition;
+                NewPositions[PosIndex].Vel := LegacyVel;  // Keep same velocity
+                NewPosSaved := TRUE;
+                State := 70;
+            ELSE
+                Error := TRUE;
+                ErrorID := 1;  // Invalid index
+                State := 0;
+            END_IF;
+            
+        70: // DONE
+            Busy := FALSE;
+            Done := TRUE;
+            IF NOT StartMigration THEN
+                Done := FALSE;
+                State := 0;  // Ready for next
+            END_IF;
+            
+        ELSE
+            State := 0;
+    END_CASE;
+    
+    StateOut := State;
+    
+    // Error handling
+    IF Error OR NOT Enable THEN
+        // Reset outputs
+        CASE AxisNum OF
+            1: "ServoV90_A1".In.iAutoStart := FALSE;
+            2: "ServoV90_A2".In.iAutoStart := FALSE;
+            3: "ServoV90_A3".In.iAutoStart := FALSE;
+            4: "ServoV90_A4".In.iAutoStart := FALSE;
+        END_CASE;
+        IF NOT Enable THEN
+            State := 0;
+        END_IF;
+    END_IF;
+END_FUNCTION_BLOCK
+{ S7_Optimized_Access := 'TRUE' }
+(*
+    V90 Position Migration from Legacy to New Structure
+    ===================================================
+    Runs in Manual/Hand mode to migrate taught positions:
+    1. Switch to LEGACY mode
+    2. Move servo to position using legacy call
+    3. Wait for position reached
+    4. Switch to NEW mode  
+    5. Read actual position from servo feedback
+    6. Save to new structure (UDT_V90_Axis_Positions)
+    
+    Usage: Run in Manual mode, execute step-by-step for each position
+*)
+
+VAR_INPUT
+    // Control
+    Enable          : Bool;          // FB enable (Manual mode only!)
+    StartMigration  : Bool;          // Start/Next position
+    AxisNum         : Int;           // 1=A1, 2=A2, 3=A3, 4=A4
+    PosIndex        : Int;           // Position index 1-20
+    
+    // Mode switching
+    UseLegacyMode   : Bool;          // TRUE=Legacy, FALSE=New (for verification)
+    
+    // Legacy position data (source)
+    LegacyPos       : DInt;          // Legacy target position
+    LegacyVel       : Int;           // Legacy velocity
+END_VAR
+
+VAR_OUTPUT
+    // Status
+    Busy            : Bool;
+    Done            : Bool;
+    Error           : Bool;
+    ErrorID         : Int;
+    StateOut        : Int;
+    
+    // Results
+    ActualPosition  : DInt;          // Read from servo
+    NewPosSaved     : Bool;          // Saved to new structure
+END_VAR
+
+VAR_IN_OUT
+    // New structure (target) - Array[1..20] of UDT_Motion_Point_V90
+    NewPositions    : Array[1..20] of "UDT_Motion_Point_V90";
+END_VAR
+
+VAR
+    State           : Int;           // 0=IDLE, 10=SWITCH_LEGACY, 20=MOVE_LEGACY, 30=WAIT_POS, 40=SWITCH_NEW, 50=READ_POS, 60=SAVE, 70=DONE
+    LastStart       : Bool;
+    StartEdge       : Bool;
+    PosReached      : Bool;
+    WaitTimer       : TON;
+    
+    // Internal copies for switching
+    CurrentMode     : Bool;          // TRUE=Legacy, FALSE=New
+END_VAR
+
+BEGIN
+    // Edge detection
+    StartEdge := StartMigration AND NOT LastStart;
+    LastStart := StartMigration;
+    
+    // Reset outputs
+    Done := FALSE;
+    NewPosSaved := FALSE;
+    
+    // State machine
+    CASE State OF
+        0: // IDLE
+            Busy := FALSE;
+            Error := FALSE;
+            ErrorID := 0;
+            WaitTimer(IN := FALSE);
+            
+            IF Enable AND StartEdge THEN
+                State := 10;
+            END_IF;
+            
+        10: // SWITCH TO LEGACY MODE
+            Busy := TRUE;
+            CurrentMode := TRUE;  // Legacy
+            // Set debug flag for legacy mode
+            "Debug".SERVO_LEGACY_MODE := TRUE;
+            WaitTimer(IN := TRUE, PT := T#200ms);  // Wait for mode switch
+            
+            IF WaitTimer.Q THEN
+                WaitTimer(IN := FALSE);
+                State := 20;
+            END_IF;
+            
+        20: // MOVE WITH LEGACY CALL
+            Busy := TRUE;
+            // Call legacy positioning via ServoV90_Ax
+            CASE AxisNum OF
+                1:
+                    "ServoV90_A1".In.iMode := 1;  // Relative
+                    "ServoV90_A1".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A1".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A1".In.iAutoStart := TRUE;
+                2:
+                    "ServoV90_A2".In.iMode := 1;
+                    "ServoV90_A2".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A2".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A2".In.iAutoStart := TRUE;
+                3:
+                    "ServoV90_A3".In.iMode := 1;
+                    "ServoV90_A3".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A3".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A3".In.iAutoStart := TRUE;
+                4:
+                    "ServoV90_A4".In.iMode := 1;
+                    "ServoV90_A4".In.iAutoPosition := LegacyPos;
+                    "ServoV90_A4".In.iAutoVelocity := LegacyVel;
+                    "ServoV90_A4".In.iAutoStart := TRUE;
+            END_CASE;
+            State := 30;
+            
+        30: // WAIT FOR POSITION REACHED
+            Busy := TRUE;
+            // Reset start pulse
+            CASE AxisNum OF
+                1: "ServoV90_A1".In.iAutoStart := FALSE;
+                2: "ServoV90_A2".In.iAutoStart := FALSE;
+                3: "ServoV90_A3".In.iAutoStart := FALSE;
+                4: "ServoV90_A4".In.iAutoStart := FALSE;
+            END_CASE;
+            
+            // Check position reached
+            CASE AxisNum OF
+                1: PosReached := "ServoV90_A1".Out.oServoPosOK;
+                2: PosReached := "ServoV90_A2".Out.oServoPosOK;
+                3: PosReached := "ServoV90_A3".Out.oServoPosOK;
+                4: PosReached := "ServoV90_A4".Out.oServoPosOK;
+            END_CASE;
+            
+            IF PosReached THEN
+                State := 40;
+            END_IF;
+            
+        40: // SWITCH TO NEW MODE
+            Busy := TRUE;
+            CurrentMode := FALSE;  // New
+            // Clear debug flag for new mode
+            "Debug".SERVO_LEGACY_MODE := FALSE;
+            WaitTimer(IN := TRUE, PT := T#200ms);
+            
+            IF WaitTimer.Q THEN
+                WaitTimer(IN := FALSE);
+                State := 50;
+            END_IF;
+            
+        50: // READ ACTUAL POSITION
+            Busy := TRUE;
+            // Read actual position from servo feedback
+            CASE AxisNum OF
+                1: ActualPosition := "ServoV90_A1".Out.oActPosition;
+                2: ActualPosition := "ServoV90_A2".Out.oActPosition;
+                3: ActualPosition := "ServoV90_A3".Out.oActPosition;
+                4: ActualPosition := "ServoV90_A4".Out.oActPosition;
+            END_CASE;
+            State := 60;
+            
+        60: // SAVE TO NEW STRUCTURE
+            Busy := TRUE;
+            IF PosIndex >= 1 AND PosIndex <= 20 THEN
+                NewPositions[PosIndex].Pos := ActualPosition;
+                NewPositions[PosIndex].Vel := LegacyVel;  // Keep same velocity
+                NewPosSaved := TRUE;
+                State := 70;
+            ELSE
+                Error := TRUE;
+                ErrorID := 1;  // Invalid index
+                State := 0;
+            END_IF;
+            
+        70: // DONE
+            Busy := FALSE;
+            Done := TRUE;
+            IF NOT StartMigration THEN
+                Done := FALSE;
+                State := 0;  // Ready for next
+            END_IF;
+            
+        ELSE
+            State := 0;
+    END_CASE;
+    
+    StateOut := State;
+    
+    // Error handling
+    IF Error OR NOT Enable THEN
+        // Reset outputs
+        CASE AxisNum OF
+            1: "ServoV90_A1".In.iAutoStart := FALSE;
+            2: "ServoV90_A2".In.iAutoStart := FALSE;
+            3: "ServoV90_A3".In.iAutoStart := FALSE;
+            4: "ServoV90_A4".In.iAutoStart := FALSE;
+        END_CASE;
+        IF NOT Enable THEN
+            State := 0;
+        END_IF;
+    END_IF;
+END_FUNCTION_BLOCK
+

@@ -1,0 +1,29 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB_OP10
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    database: telemetry
+    user: admin
+    secureJsonData:
+      password: iotadmin2024
+    jsonData:
+      httpMode: POST
+      organization: op10
+      defaultBucket: telemetry
+      tlsSkipVerify: true
+    editable: false
+  - name: PostgreSQL_Products
+    type: postgres
+    access: proxy
+    url: postgres:5432
+    user: iot_user
+    secureJsonData:
+      password: iotpass2024
+    jsonData:
+      database: product_history
+      sslmode: disable
+      connectionLimit: 10
+    editable: false

@@ -1,0 +1,632 @@
+// =============================================================
+// ST10_Flow4_B1Press.scl
+// SCL Conversion of GRAPH Block
+// Original: ST10_Flow4_B1Press.xml (GraphVersion 6.0)
+// Generated: 2026-02-02
+// =============================================================
+
+// =============================================================
+// CONSTANTS - Step Numbers
+// =============================================================
+
+CONST
+    // Initialization and Control
+    STEP_Flow4_Init                  := 0;
+    STEP_Flow4_Ready                 := 10;
+    STEP_Flow4_Reset                 := 20;
+
+    // Press Detection
+    STEP_Flow4_PressCheck            := 30;
+    STEP_Flow4_PressPosition         := 40;
+    STEP_Flow4_PressReady            := 50;
+
+    // Press Down Sequence
+    STEP_Flow4_PressDownStart        := 60;
+    STEP_Flow4_PressDownActive       := 70;
+    STEP_Flow4_PressDownWait         := 80;
+    STEP_Flow4_PressDownComplete     := 90;
+    STEP_Flow4_PressDownRetract      := 100;
+
+    // Press Up Sequence
+    STEP_Flow4_PressUpStart          := 110;
+    STEP_Flow4_PressUpActive         := 120;
+    STEP_Flow4_PressUpComplete       := 130;
+
+    // Hold and Dwell
+    STEP_Flow4_PressHold             := 140;
+    STEP_Flow4_PressDwell            := 150;
+
+    // Force/Pressure Monitoring
+    STEP_Flow4_ForceCheck            := 160;
+    STEP_Flow4_ForceMeasure          := 170;
+    STEP_Flow4_ForceOK               := 180;
+    STEP_Flow4_ForceNG               := 190;
+    STEP_Flow4_ForceRetry            := 200;
+
+    // Position Verification
+    STEP_Flow4_PositionCheck         := 210;
+    STEP_Flow4_PositionOK            := 220;
+    STEP_Flow4_PositionNG            := 230;
+
+    // Stroke Monitoring
+    STEP_Flow4_StrokeCheck           := 240;
+    STEP_Flow4_StrokeOK              := 250;
+    STEP_Flow4_StrokeNG              := 260;
+
+    // Speed Control
+    STEP_Flow4_SpeedCheck            := 270;
+    STEP_Flow4_SpeedAdjust           := 280;
+
+    // Data Collection
+    STEP_Flow4_DataStart             := 290;
+    STEP_Flow4_DataCollect           := 300;
+    STEP_Flow4_DataStore             := 310;
+    STEP_Flow4_DataValidate          := 320;
+    STEP_Flow4_DataSendMES           := 330;
+    STEP_Flow4_DataComplete          := 340;
+
+    // Output Transfer
+    STEP_Flow4_TransferReady         := 350;
+    STEP_Flow4_TransferStart         := 360;
+    STEP_Flow4_TransferActive        := 370;
+    STEP_Flow4_TransferComplete      := 380;
+    STEP_Flow4_TransferWait          := 390;
+
+    // Error Handling
+    STEP_Flow4_PressError            := 800;
+    STEP_Flow4_ForceError            := 810;
+    STEP_Flow4_PositionError         := 820;
+    STEP_Flow4_StrokeError           := 830;
+    STEP_Flow4_ErrorHandler          := 900;
+    STEP_Flow4_ErrorReset            := 910;
+
+    // Completion
+    STEP_Flow4_CycleDone             := 920;
+    STEP_Flow4_WaitNext              := 930;
+    STEP_Flow4_FinalReset            := 999;
+END_CONST
+
+// =============================================================
+// FUNCTION BLOCK
+// =============================================================
+
+FUNCTION_BLOCK "FB_ST10_Flow4_B1Press"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+    iPressHomeSensor : Bool;
+    iPressWorkSensor : Bool;
+    iPressTopSensor : Bool;
+    iPressBottomSensor : Bool;
+    iPartPresentSensor : Bool;
+    iForceSensor : Real;
+    iStrokeSensor : Real;
+    iSpeedSensor : Real;
+    iSafetyGateOK : Bool;
+    iEStopOK : Bool;
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oPressCommand : Bool;
+    oPressUp : Bool;
+    oPressDown : Bool;
+    oPressSpeed : Real;
+    oAlarmID : Int;
+    oForceValue : Real;
+    oStrokeValue : Real;
+END_VAR
+
+VAR
+    // State Machine
+    State : INT := STEP_Flow4_Init;
+    PrevState : INT;
+
+    // Control Mode
+    bAutoMode : Bool := TRUE;
+    bLockMode : Bool := TRUE;
+    bSupervision : Bool := TRUE;
+    bInitMode : Bool := FALSE;
+
+    // Timers
+    TON_PressDown {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_PressUp {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Hold {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Dwell {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_ForceMeasure {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Stroke {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Error {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Retry {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+
+    // Internal Flags
+    bPressCycleComplete : Bool;
+    bForceInRange : Bool;
+    bStrokeInRange : Bool;
+    bSpeedInRange : Bool;
+    bPartPositionOK : Bool;
+    bError : Bool;
+    wErrorID : Word;
+    iRetryCount : Int;
+END_VAR
+
+BEGIN
+    // =============================================================
+    // CONTROL MODE HANDLING
+    // =============================================================
+
+    #bAutoMode := #iSysInface.Cmd.Auto;
+    #bLockMode := #iSysInface.Cmd.Lock;
+    #bSupervision := #iSysInface.Cmd.Sup;
+    #bInitMode := #iSysInface.Cmd.Init;
+
+    // =============================================================
+    // SAFETY CHECKS (Always Active)
+    // =============================================================
+
+    IF NOT #iEStopOK THEN
+        #oPressCommand := FALSE;
+        #oPressUp := FALSE;
+        #oPressDown := FALSE;
+        #State := STEP_Flow4_ErrorHandler;
+        #wErrorID := 16#9002;
+        RETURN;
+    END_IF;
+
+    IF NOT #iSafetyGateOK THEN
+        #oPressCommand := FALSE;
+        #oPressUp := FALSE;
+        #oPressDown := FALSE;
+        #State := STEP_Flow4_ErrorHandler;
+        #wErrorID := 16#9001;
+        RETURN;
+    END_IF;
+
+    // =============================================================
+    // STATE MACHINE
+    // =============================================================
+
+    CASE #State OF
+        // =========================================================
+        // STEP 0: INIT
+        // =========================================================
+        STEP_Flow4_Init:
+            #bError := FALSE;
+            #wErrorID := 0;
+            #bPressCycleComplete := FALSE;
+            #bForceInRange := FALSE;
+            #bStrokeInRange := FALSE;
+            #bSpeedInRange := FALSE;
+            #iRetryCount := 0;
+
+            // Reset outputs
+            #oPressCommand := FALSE;
+            #oPressUp := FALSE;
+            #oPressDown := FALSE;
+            #oPressSpeed := 0.0;
+
+            // Reset timers
+            #TON_PressDown(IN := FALSE, PT := T#0ms);
+            #TON_PressUp(IN := FALSE, PT := T#0ms);
+            #TON_Hold(IN := FALSE, PT := T#0ms);
+            #TON_Dwell(IN := FALSE, PT := T#0ms);
+            #TON_ForceMeasure(IN := FALSE, PT := T#0ms);
+            #TON_Stroke(IN := FALSE, PT := T#0ms);
+            #TON_Error(IN := FALSE, PT := T#0ms);
+            #TON_Retry(IN := FALSE, PT := T#0ms);
+
+            IF #bInitMode THEN
+                #State := STEP_Flow4_Reset;
+            ELSIF #bAutoMode AND #iSysInface.Cmd.Enable THEN
+                #State := STEP_Flow4_Ready;
+            END_IF;
+
+        // =========================================================
+        // STEP 10: READY
+        // =========================================================
+        STEP_Flow4_Ready:
+            // Wait for start command
+            IF #iSysInface.Cmd.StartAuto THEN
+                #State := STEP_Flow4_PressCheck;
+            END_IF;
+
+            IF #iSysInface.Cmd.ResetError THEN
+                #bError := FALSE;
+            END_IF;
+
+        // =========================================================
+        // STEP 20: RESET
+        // =========================================================
+        STEP_Flow4_Reset:
+            #bInitMode := FALSE;
+            #State := STEP_Flow4_Init;
+
+        // =========================================================
+        // STEP 30-50: Press Detection
+        // =========================================================
+        STEP_Flow4_PressCheck:
+            // Check if press is in home position
+            #bPartPositionOK := #iPartPresentSensor;
+
+            IF #iPressHomeSensor AND #bPartPositionOK THEN
+                #State := STEP_Flow4_PressPosition;
+            ELSIF NOT #iPressHomeSensor THEN
+                #State := STEP_Flow4_PressReady;
+            END_IF;
+
+        STEP_Flow4_PressPosition:
+            // Ensure press is at start position
+            #oPressUp := TRUE;
+
+            #TON_PressUp(IN := NOT #iPressHomeSensor, PT := T#10s);
+
+            IF #iPressHomeSensor AND NOT #TON_PressUp.Q THEN
+                #oPressUp := FALSE;
+                #TON_PressUp(IN := FALSE);
+                #State := STEP_Flow4_PressReady;
+            ELSIF #TON_PressUp.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#4001;
+                #State := STEP_Flow4_ErrorHandler;
+            END_IF;
+
+        STEP_Flow4_PressReady:
+            // Press is ready to start cycle
+            #State := STEP_Flow4_PressDownStart;
+
+        // =========================================================
+        // STEP 60-100: Press Down Sequence
+        // =========================================================
+        STEP_Flow4_PressDownStart:
+            // Start press down motion
+            #oPressCommand := TRUE;
+            #oPressDown := TRUE;
+            #oPressSpeed := 50.0;  // Initial speed
+
+            #State := STEP_Flow4_PressDownActive;
+
+        STEP_Flow4_PressDownActive:
+            #TON_PressDown(IN := TRUE, PT := T#15s);
+
+            // Monitor position during down stroke
+            IF #iPressWorkSensor AND NOT #TON_PressDown.Q THEN
+                #oPressSpeed := 25.0;  // Slow down for precision
+            END_IF;
+
+            // Check if reached bottom
+            IF #iPressBottomSensor THEN
+                #oPressDown := FALSE;
+                #oPressSpeed := 0.0;
+                #TON_PressDown(IN := FALSE);
+                #State := STEP_Flow4_PressDownComplete;
+            ELSIF #TON_PressDown.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#4002;
+                #State := STEP_Flow4_PressError;
+            END_IF;
+
+        STEP_Flow4_PressDownWait:
+            #TON_Dwell(IN := TRUE, PT := T#500ms);
+
+            IF #TON_Dwell.Q THEN
+                #TON_Dwell(IN := FALSE);
+                #State := STEP_Flow4_PressDownRetract;
+            END_IF;
+
+        STEP_Flow4_PressDownRetract:
+            #oPressUp := TRUE;
+            #oPressSpeed := 75.0;
+
+            #TON_PressUp(IN := NOT #iPressWorkSensor, PT := T#10s);
+
+            IF #iPressWorkSensor AND NOT #TON_PressUp.Q THEN
+                #State := STEP_Flow4_PressUpStart;
+            ELSIF #TON_PressUp.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#4003;
+                #State := STEP_Flow4_PressError;
+            END_IF;
+
+        STEP_Flow4_PressDownComplete:
+            #State := STEP_Flow4_PressUpStart;
+
+        // =========================================================
+        // STEP 110-130: Press Up Sequence
+        // =========================================================
+        STEP_Flow4_PressUpStart:
+            #oPressUp := TRUE;
+            #oPressSpeed := 100.0;
+
+            #State := STEP_Flow4_PressUpActive;
+
+        STEP_Flow4_PressUpActive:
+            #TON_PressUp(IN := NOT #iPressHomeSensor, PT := T#10s);
+
+            IF #iPressHomeSensor AND NOT #TON_PressUp.Q THEN
+                #oPressUp := FALSE;
+                #oPressSpeed := 0.0;
+                #TON_PressUp(IN := FALSE);
+                #State := STEP_Flow4_PressHold;
+            ELSIF #TON_PressUp.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#4004;
+                #State := STEP_Flow4_PressError;
+            END_IF;
+
+        STEP_Flow4_PressUpComplete:
+            #State := STEP_Flow4_ForceCheck;
+
+        // =========================================================
+        // STEP 140-150: Hold and Dwell
+        // =========================================================
+        STEP_Flow4_PressHold:
+            #TON_Hold(IN := TRUE, PT := T#1s);
+
+            IF #TON_Hold.Q THEN
+                #TON_Hold(IN := FALSE);
+                #State := STEP_Flow4_ForceCheck;
+            END_IF;
+
+        STEP_Flow4_PressDwell:
+            #TON_Dwell(IN := TRUE, PT := T#500ms);
+
+            IF #TON_Dwell.Q THEN
+                #TON_Dwell(IN := FALSE);
+                #State := STEP_Flow4_StrokeCheck;
+            END_IF;
+
+        // =========================================================
+        // STEP 160-200: Force/Pressure Monitoring
+        // =========================================================
+        STEP_Flow4_ForceCheck:
+            #State := STEP_Flow4_ForceMeasure;
+
+        STEP_Flow4_ForceMeasure:
+            #TON_ForceMeasure(IN := TRUE, PT := T#2s);
+
+            // Read force sensor
+            #oForceValue := #iForceSensor;
+
+            // Check if force is within acceptable range (e.g., 1000-5000 N)
+            #bForceInRange := (#oForceValue >= 1000.0) AND (#oForceValue <= 5000.0);
+
+            IF #TON_ForceMeasure.Q OR #bForceInRange THEN
+                #TON_ForceMeasure(IN := FALSE);
+
+                IF #bForceInRange THEN
+                    #State := STEP_Flow4_ForceOK;
+                ELSE
+                    #State := STEP_Flow4_ForceNG;
+                END_IF;
+            END_IF;
+
+        STEP_Flow4_ForceOK:
+            #State := STEP_Flow4_StrokeCheck;
+
+        STEP_Flow4_ForceNG:
+            #iRetryCount := #iRetryCount + 1;
+
+            IF #iRetryCount < 3 THEN
+                #State := STEP_Flow4_ForceRetry;
+            ELSE
+                #bError := TRUE;
+                #wErrorID := 16#4005;
+                #State := STEP_Flow4_ForceError;
+            END_IF;
+
+        STEP_Flow4_ForceRetry:
+            #TON_Retry(IN := TRUE, PT := T#2s);
+
+            IF #TON_Retry.Q THEN
+                #TON_Retry(IN := FALSE);
+                #State := STEP_Flow4_PressDownStart;
+            END_IF;
+
+        // =========================================================
+        // STEP 210-260: Position and Stroke Verification
+        // =========================================================
+        STEP_Flow4_PositionCheck:
+            // Verify press position accuracy
+            #bPositionOK := #iPressWorkSensor AND #iPressHomeSensor;
+
+            IF #bPositionOK THEN
+                #State := STEP_Flow4_PositionOK;
+            ELSE
+                #State := STEP_Flow4_PositionNG;
+            END_IF;
+
+        STEP_Flow4_PositionOK:
+            #State := STEP_Flow4_StrokeCheck;
+
+        STEP_Flow4_PositionNG:
+            #bError := TRUE;
+            #wErrorID := 16#4006;
+            #State := STEP_Flow4_PositionError;
+
+        STEP_Flow4_StrokeCheck:
+            #oStrokeValue := #iStrokeSensor;
+
+            #TON_Stroke(IN := TRUE, PT := T#1s);
+
+            #bStrokeInRange := (#oStrokeValue >= 45.0) AND (#oStrokeValue <= 55.0);
+
+            IF #TON_Stroke.Q OR #bStrokeInRange THEN
+                #TON_Stroke(IN := FALSE);
+
+                IF #bStrokeInRange THEN
+                    #State := STEP_Flow4_StrokeOK;
+                ELSE
+                    #State := STEP_Flow4_StrokeNG;
+                END_IF;
+            END_IF;
+
+        STEP_Flow4_StrokeOK:
+            #State := STEP_Flow4_SpeedCheck;
+
+        STEP_Flow4_StrokeNG:
+            #bError := TRUE;
+            #wErrorID := 16#4007;
+            #State := STEP_Flow4_StrokeError;
+
+        // =========================================================
+        // STEP 270-280: Speed Control
+        // =========================================================
+        STEP_Flow4_SpeedCheck:
+            #bSpeedInRange := (#iSpeedSensor >= 90.0);
+
+            IF #bSpeedInRange THEN
+                #State := STEP_Flow4_DataStart;
+            ELSE
+                #State := STEP_Flow4_SpeedAdjust;
+            END_IF;
+
+        STEP_Flow4_SpeedAdjust:
+            #oPressSpeed := 100.0;
+            #State := STEP_Flow4_DataStart;
+
+        // =========================================================
+        // STEP 290-340: Data Collection
+        // =========================================================
+        STEP_Flow4_DataStart:
+            #State := STEP_Flow4_DataCollect;
+
+        STEP_Flow4_DataCollect:
+            // Collect process data
+            #State := STEP_Flow4_DataStore;
+
+        STEP_Flow4_DataStore:
+            // Store data in process image
+            #ioPM_Inface.ProcessData[1] := REAL_TO_INT(#oForceValue);
+            #ioPM_Inface.ProcessData[2] := REAL_TO_INT(#oStrokeValue);
+            #State := STEP_Flow4_DataValidate;
+
+        STEP_Flow4_DataValidate:
+            // Validate collected data
+            IF #bForceInRange AND #bStrokeInRange THEN
+                #State := STEP_Flow4_DataSendMES;
+            ELSE
+                #bError := TRUE;
+                #wErrorID := 16#4008;
+                #State := STEP_Flow4_ErrorHandler;
+            END_IF;
+
+        STEP_Flow4_DataSendMES:
+            // Send data to MES
+            "oE1-MESDataValid" := TRUE;
+
+            IF #iSysInface.Cmd.MES_Ack THEN
+                "oE1-MESDataValid" := FALSE;
+                #State := STEP_Flow4_DataComplete;
+            END_IF;
+
+        STEP_Flow4_DataComplete:
+            #bPressCycleComplete := TRUE;
+            #State := STEP_Flow4_TransferReady;
+
+        // =========================================================
+        // STEP 350-390: Output Transfer
+        // =========================================================
+        STEP_Flow4_TransferReady:
+            #State := STEP_Flow4_TransferStart;
+
+        STEP_Flow4_TransferStart:
+            "oE1-TransferStart" := TRUE;
+            #State := STEP_Flow4_TransferActive;
+
+        STEP_Flow4_TransferActive:
+            #TON_Transfer(IN := NOT "iE1-TransferComplete", PT := T#10s);
+
+            IF "iE1-TransferComplete" AND NOT #TON_Transfer.Q THEN
+                #TON_Transfer(IN := FALSE);
+                #State := STEP_Flow4_TransferComplete;
+            ELSIF #TON_Transfer.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#4009;
+                #State := STEP_Flow4_ErrorHandler;
+            END_IF;
+
+        STEP_Flow4_TransferComplete:
+            "oE1-TransferStart" := FALSE;
+            #State := STEP_Flow4_TransferWait;
+
+        STEP_Flow4_TransferWait:
+            #State := STEP_Flow4_CycleDone;
+
+        // =========================================================
+        // STEP 800-830: Specific Errors
+        // =========================================================
+        STEP_Flow4_PressError:
+            #State := STEP_Flow4_ErrorHandler;
+
+        STEP_Flow4_ForceError:
+            #State := STEP_Flow4_ErrorHandler;
+
+        STEP_Flow4_PositionError:
+            #State := STEP_Flow4_ErrorHandler;
+
+        STEP_Flow4_StrokeError:
+            #State := STEP_Flow4_ErrorHandler;
+
+        // =========================================================
+        // STEP 900-910: Error Handling
+        // =========================================================
+        STEP_Flow4_ErrorHandler:
+            #bError := TRUE;
+            "oE1-PressErrorSignal" := TRUE;
+            #oAlarmID := INT_TO_WORD(#wErrorID);
+            #ioStatus := 900;
+
+            IF #iSysInface.Cmd.ResetError THEN
+                "oE1-PressErrorSignal" := FALSE;
+                #bError := FALSE;
+                #State := STEP_Flow4_ErrorReset;
+            END_IF;
+
+        STEP_Flow4_ErrorReset:
+            #oPressCommand := FALSE;
+            #oPressUp := FALSE;
+            #oPressDown := FALSE;
+            #oPressSpeed := 0.0;
+            #State := STEP_Flow4_FinalReset;
+
+        // =========================================================
+        // STEP 920-999: Completion
+        // =========================================================
+        STEP_Flow4_CycleDone:
+            #ioStatus := 0;
+            #State := STEP_Flow4_WaitNext;
+
+        STEP_Flow4_WaitNext:
+            IF #iSysInface.Cmd.NextCycle THEN
+                #State := STEP_Flow4_FinalReset;
+            END_IF;
+
+        STEP_Flow4_FinalReset:
+            // Reset for next cycle
+            "oE1-PressErrorSignal" := FALSE;
+            "oE1-TransferStart" := FALSE;
+            #iRetryCount := 0;
+            #State := STEP_Flow4_Init;
+
+    END_CASE;
+
+    // =============================================================
+    // OUTPUT MAPPING TO ioPM_Inface
+    // =============================================================
+
+    #ioPM_Inface.Cmd.Active := (#State > 0) AND (#State < 900);
+    #ioPM_Inface.Cmd.Error := #bError;
+    #ioPM_Inface.Cmd.Done := #bPressCycleComplete;
+
+    IF #bError THEN
+        #ioPM_Inface.ErrorID := #wErrorID;
+    ELSE
+        #ioPM_Inface.ErrorID := 0;
+    END_IF;
+
+END_FUNCTION_BLOCK

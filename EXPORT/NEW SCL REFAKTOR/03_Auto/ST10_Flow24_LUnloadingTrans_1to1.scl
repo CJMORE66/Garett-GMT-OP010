@@ -1,0 +1,807 @@
+﻿//=============================================================================
+// ST10_Flow24_LUnloadingTrans.scl
+// 1:1 CONVERSION FROM TIA PORTAL V18 GRAPH XML
+// Generated: 2026-02-02
+//=============================================================================
+
+TYPE
+    E_STEP_ST10_Flow24_LUnloadingTrans : (
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCWStart_2 := 26,
+        STEP_ST10_Flow24_LUnloadingTrans_S4 := 4,
+        STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading := 135,
+        STEP_ST10_Flow24_LUnloadingTrans_TimeDelay := 22,
+        STEP_ST10_Flow24_LUnloadingTrans_WaitRobotTaskFinish := 143,
+        STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_2 := 147,
+        STEP_ST10_Flow24_LUnloadingTrans_F24_Initial := 1,
+        STEP_ST10_Flow24_LUnloadingTrans_Process_Finish := 237,
+        STEP_ST10_Flow24_LUnloadingTrans_JudgmentEmptyPallet := 151,
+        STEP_ST10_Flow24_LUnloadingTrans_PalletRequest := 136,
+        STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading_1 := 148,
+        STEP_ST10_Flow24_LUnloadingTrans_WaitRobotInitialFinish := 8,
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCWStart := 24,
+        STEP_ST10_Flow24_LUnloadingTrans_S2 := 2,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP_3 := 139,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderHP_2 := 118,
+        STEP_ST10_Flow24_LUnloadingTrans_StatusError := 20,
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_1 := 25,
+        STEP_ST10_Flow24_LUnloadingTrans_RequestRobotPickPallet := 134,
+        STEP_ST10_Flow24_LUnloadingTrans_Time__Delay := 144,
+        STEP_ST10_Flow24_LUnloadingTrans_CheckStopPalletExist := 21,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP_1 := 150,
+        STEP_ST10_Flow24_LUnloadingTrans_CheckPalletStatus := 145,
+        STEP_ST10_Flow24_LUnloadingTrans_CheckPalletExist := 133,
+        STEP_ST10_Flow24_LUnloadingTrans_S10_InitialFinish := 10,
+        STEP_ST10_Flow24_LUnloadingTrans_RobotCountClear0 := 137,
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCCWRun := 140,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP := 138,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylinderToHP := 116,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinder_ToWP := 130,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP2 := 129,
+        STEP_ST10_Flow24_LUnloadingTrans_S3 := 3,
+        STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop_1 := 149,
+        STEP_ST10_Flow24_LUnloadingTrans_CheckUnloadingTransCylinderPos := 117,
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoHP_4 := 142,
+        STEP_ST10_Flow24_LUnloadingTrans_Time___Delay := 131,
+        STEP_ST10_Flow24_LUnloadingTrans_Motor_CWStart := 23,
+        STEP_ST10_Flow24_LUnloadingTrans_ProcessStart := 100,
+        STEP_ST10_Flow24_LUnloadingTrans_MotorStop := 132,
+        STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop := 141,
+        STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_1 := 146,
+        STEP_ST10_Flow24_LUnloadingTrans_S5_MESInitial := 5,
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_2 := 27,
+    ) INT := 1;
+END_TYPE
+
+CONST
+    STEP_ST10_Flow24_LUnloadingTrans_MotorCWStart_2 := 26;
+    STEP_ST10_Flow24_LUnloadingTrans_S4 := 4;
+    STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading := 135;
+    STEP_ST10_Flow24_LUnloadingTrans_TimeDelay := 22;
+    STEP_ST10_Flow24_LUnloadingTrans_WaitRobotTaskFinish := 143;
+    STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_2 := 147;
+    STEP_ST10_Flow24_LUnloadingTrans_F24_Initial := 1;
+    STEP_ST10_Flow24_LUnloadingTrans_Process_Finish := 237;
+    STEP_ST10_Flow24_LUnloadingTrans_JudgmentEmptyPallet := 151;
+    STEP_ST10_Flow24_LUnloadingTrans_PalletRequest := 136;
+    STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading_1 := 148;
+    STEP_ST10_Flow24_LUnloadingTrans_WaitRobotInitialFinish := 8;
+    STEP_ST10_Flow24_LUnloadingTrans_MotorCWStart := 24;
+    STEP_ST10_Flow24_LUnloadingTrans_S2 := 2;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP_3 := 139;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderHP_2 := 118;
+    STEP_ST10_Flow24_LUnloadingTrans_StatusError := 20;
+    STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_1 := 25;
+    STEP_ST10_Flow24_LUnloadingTrans_RequestRobotPickPallet := 134;
+    STEP_ST10_Flow24_LUnloadingTrans_Time__Delay := 144;
+    STEP_ST10_Flow24_LUnloadingTrans_CheckStopPalletExist := 21;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP_1 := 150;
+    STEP_ST10_Flow24_LUnloadingTrans_CheckPalletStatus := 145;
+    STEP_ST10_Flow24_LUnloadingTrans_CheckPalletExist := 133;
+    STEP_ST10_Flow24_LUnloadingTrans_S10_InitialFinish := 10;
+    STEP_ST10_Flow24_LUnloadingTrans_RobotCountClear0 := 137;
+    STEP_ST10_Flow24_LUnloadingTrans_MotorCCWRun := 140;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP := 138;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylinderToHP := 116;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinder_ToWP := 130;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP2 := 129;
+    STEP_ST10_Flow24_LUnloadingTrans_S3 := 3;
+    STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop_1 := 149;
+    STEP_ST10_Flow24_LUnloadingTrans_CheckUnloadingTransCylinderPos := 117;
+    STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoHP_4 := 142;
+    STEP_ST10_Flow24_LUnloadingTrans_Time___Delay := 131;
+    STEP_ST10_Flow24_LUnloadingTrans_Motor_CWStart := 23;
+    STEP_ST10_Flow24_LUnloadingTrans_ProcessStart := 100;
+    STEP_ST10_Flow24_LUnloadingTrans_MotorStop := 132;
+    STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop := 141;
+    STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_1 := 146;
+    STEP_ST10_Flow24_LUnloadingTrans_S5_MESInitial := 5;
+    STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_2 := 27;
+END_CONST
+
+FUNCTION_BLOCK "ST10_Flow24_LUnloadingTrans_1to1"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oAlarmID : Int;
+END_VAR
+
+VAR
+    State : INT := 1;
+    act_InitialRun : Bool;
+    act_InitialOK : Bool;
+    act_WaitRunning : Bool;
+    act_Running : Bool;
+    act_ProcessComplete : Bool;
+    act_ProcessStart : Bool;
+    act_UnPause : Bool;
+    bError : Bool;
+    wErrorID : Word;
+END_VAR
+
+BEGIN
+    //======================================================================
+    // STATE MACHINE - Inline Transition Conditions
+    //======================================================================
+
+    CASE #State OF
+
+        // ===========================================
+        // STEP 26: MotorCWStart_2
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCWStart_2:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := TRUE;
+
+            // Transition to next step: 4
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_S4;
+            END_IF;
+
+        // ===========================================
+        // STEP 4: S4
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_S4:
+            // No actions in XML
+
+            // Transition to next step: 135
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading;
+            END_IF;
+
+        // ===========================================
+        // STEP 135: WaitingPalletUnloading
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Load_StoveCheckIn"
+            "PLCtoMES"."PLC.Load_StoveCheckIn" := FALSE;
+
+            // Transition to next step: 22
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_TimeDelay;
+            END_IF;
+
+        // ===========================================
+        // STEP 22: TimeDelay
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_TimeDelay:
+            // No actions in XML
+
+            // Transition to next step: 143
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_WaitRobotTaskFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 143: WaitRobotTaskFinish
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_WaitRobotTaskFinish:
+            // No actions in XML
+
+            // Transition to next step: 147
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 147: Time  Delay_2
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_2:
+            // No actions in XML
+
+            // Transition to next step: 1
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_F24_Initial;
+            END_IF;
+
+        // ===========================================
+        // STEP 1: F24_Initial
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_F24_Initial:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := TRUE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.Running
+            #ioPM_Inface.Running := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.UnPause
+            #ioPM_Inface.UnPause := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Calibration
+            "Station_Sys".Cmd.Calibration := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.ChangeOver
+            "Station_Sys".Cmd.ChangeOver := FALSE;
+            // Action Qualifier=N
+            // Token: //"ST350_Sys".Cmd.DryRun
+            //"ST350_Sys".Cmd.DryRun;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.Reserve
+            "Station_Sys".Cmd.Reserve := FALSE;
+            // Action Qualifier=R
+            // Token: "Station_Sys".Cmd.OneCycle
+            "Station_Sys".Cmd.OneCycle := FALSE;
+
+            // Transition to next step: 237
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Process_Finish;
+            END_IF;
+
+        // ===========================================
+        // STEP 237: Process Finish
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Process_Finish:
+            // No actions in XML
+
+            // Transition to next step: 151
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_JudgmentEmptyPallet;
+            END_IF;
+
+        // ===========================================
+        // STEP 151: JudgmentEmptyPallet
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_JudgmentEmptyPallet:
+            // No actions in XML
+
+            // Transition to next step: 136
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_PalletRequest;
+            END_IF;
+
+        // ===========================================
+        // STEP 136: PalletRequest
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_PalletRequest:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".Global.L.LoadStopRequestPallet_3
+            "AutoProcessControl".Global.L.LoadStopRequestPallet_3;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := FALSE;
+            // Action Qualifier=R
+            // Token: "AutoProcessControl".Robot_3.PalletFull
+            "AutoProcessControl".Robot_3.PalletFull := FALSE;
+
+            // Transition to next step: 148
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 148: WaitingPalletUnloading_1
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_WaitingPalletUnloading_1:
+            // Action Qualifier=R
+            // Token: "PLCtoMES"."PLC.Load_StoveCheckIn"
+            "PLCtoMES"."PLC.Load_StoveCheckIn" := FALSE;
+
+            // Transition to next step: 8
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_WaitRobotInitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 8: WaitRobotInitialFinish
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_WaitRobotInitialFinish:
+            // No actions in XML
+
+            // Transition to next step: 24
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_MotorCWStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 24: MotorCWStart
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCWStart:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := TRUE;
+
+            // Transition to next step: 2
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_S2;
+            END_IF;
+
+        // ===========================================
+        // STEP 2: S2
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_S2:
+            // No actions in XML
+
+            // Transition to next step: 139
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP_3;
+            END_IF;
+
+        // ===========================================
+        // STEP 139: L-UnloadingTransCylindertoWP_3
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP_3:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoHome
+            "ST10Cylinder".Cy[51].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoWork
+            "ST10Cylinder".Cy[51].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 118
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderHP_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 118: L-UnloadingTransPalletLocationCylinderHP_2
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderHP_2:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoHome
+            "ST10Cylinder".Cy[52].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoWork
+            "ST10Cylinder".Cy[52].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 20
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_StatusError;
+            END_IF;
+
+        // ===========================================
+        // STEP 20: StatusError
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_StatusError:
+            // Action Qualifier=N
+            // Token: "ST10_DeviceError".L.UnloadingLine.UnloadingTransCylinderError
+            "ST10_DeviceError".L.UnloadingLine.UnloadingTransCylinderError;
+
+            // Transition to next step: 25
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 25: MotorCCWStart_1
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_1:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := FALSE;
+
+            // Transition to next step: 134
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_RequestRobotPickPallet;
+            END_IF;
+
+        // ===========================================
+        // STEP 134: RequestRobotPickPallet
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_RequestRobotPickPallet:
+            // Action Qualifier=N
+            // Token: "AutoProcessControl".L_ShafeLine.Robot3PutPrimit
+            "AutoProcessControl".L_ShafeLine.Robot3PutPrimit;
+
+            // Transition to next step: 144
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Time__Delay;
+            END_IF;
+
+        // ===========================================
+        // STEP 144: Time  Delay
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Time__Delay:
+            // No actions in XML
+
+            // Transition to next step: 21
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_CheckStopPalletExist;
+            END_IF;
+
+        // ===========================================
+        // STEP 21: CheckStopPalletExist
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_CheckStopPalletExist:
+            // No actions in XML
+
+            // Transition to next step: 150
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 150: L-UnloadingTransPalletLocationCylinderTo HP_1
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP_1:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoHome
+            "ST10Cylinder".Cy[52].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoWork
+            "ST10Cylinder".Cy[52].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 145
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_CheckPalletStatus;
+            END_IF;
+
+        // ===========================================
+        // STEP 145: CheckPalletStatus
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_CheckPalletStatus:
+            // No actions in XML
+
+            // Transition to next step: 133
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_CheckPalletExist;
+            END_IF;
+
+        // ===========================================
+        // STEP 133: CheckPalletExist
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_CheckPalletExist:
+            // No actions in XML
+
+            // Transition to next step: 10
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_S10_InitialFinish;
+            END_IF;
+
+        // ===========================================
+        // STEP 10: S10_InitialFinish
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_S10_InitialFinish:
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+
+            // Transition to next step: 137
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_RobotCountClear0;
+            END_IF;
+
+        // ===========================================
+        // STEP 137: RobotCountClear0
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_RobotCountClear0:
+            // Action Qualifier=N
+            // Token: "KukaRobot3_CtrlDB".sPLCtoROB.User.Cycle.DI290_UnloadingNewPallet
+            "KukaRobot3_CtrlDB".sPLCtoROB.User.Cycle.DI290_UnloadingNewPallet;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := FALSE;
+
+            // Transition to next step: 140
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_MotorCCWRun;
+            END_IF;
+
+        // ===========================================
+        // STEP 140: MotorCCWRun
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCCWRun:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := FALSE;
+            // Action Qualifier=N
+            // Token: "ST10_PLC_PutDB".OutData.Control.PalletOut
+            "ST10_PLC_PutDB".OutData.Control.PalletOut;
+            // Action Qualifier=S
+            // Token: "PLCtoMES"."PLC.Load_StoveCheckIn"
+            "PLCtoMES"."PLC.Load_StoveCheckIn" := TRUE;
+
+            // Transition to next step: 138
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP;
+            END_IF;
+
+        // ===========================================
+        // STEP 138: L-UnloadingTransPalletLocationCylinderTo HP
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinderTo_HP:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoHome
+            "ST10Cylinder".Cy[52].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoWork
+            "ST10Cylinder".Cy[52].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 116
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylinderToHP;
+            END_IF;
+
+        // ===========================================
+        // STEP 116: L-UnloadingTransCylinderToHP
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylinderToHP:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoHome
+            "ST10Cylinder".Cy[51].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoWork
+            "ST10Cylinder".Cy[51].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 130
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinder_ToWP;
+            END_IF;
+
+        // ===========================================
+        // STEP 130: L-UnloadingTransPalletLocationCylinder ToWP
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransPalletLocationCylinder_ToWP:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoHome
+            "ST10Cylinder".Cy[52].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[52].Inout.AutoGoWork
+            "ST10Cylinder".Cy[52].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 129
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP2;
+            END_IF;
+
+        // ===========================================
+        // STEP 129: L-UnloadingTransCylindertoWP2
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoWP2:
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoHome
+            "ST10Cylinder".Cy[51].Inout.AutoGoHome := FALSE;
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoWork
+            "ST10Cylinder".Cy[51].Inout.AutoGoWork := TRUE;
+
+            // Transition to next step: 3
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_S3;
+            END_IF;
+
+        // ===========================================
+        // STEP 3: S3
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_S3:
+            // No actions in XML
+
+            // Transition to next step: 149
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 149: Motor Stop_1
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop_1:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := FALSE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_StoveCheckInOk"
+            "MEStoPLC"."MES.Load_StoveCheckInOk" := FALSE;
+
+            // Transition to next step: 117
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_CheckUnloadingTransCylinderPos;
+            END_IF;
+
+        // ===========================================
+        // STEP 117: CheckUnloadingTransCylinderPos
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_CheckUnloadingTransCylinderPos:
+            // No actions in XML
+
+            // Transition to next step: 142
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoHP_4;
+            END_IF;
+
+        // ===========================================
+        // STEP 142: L-UnloadingTransCylindertoHP_4
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_L_UnloadingTransCylindertoHP_4:
+            // Action Qualifier=S
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoHome
+            "ST10Cylinder".Cy[51].Inout.AutoGoHome := TRUE;
+            // Action Qualifier=R
+            // Token: "ST10Cylinder".Cy[51].Inout.AutoGoWork
+            "ST10Cylinder".Cy[51].Inout.AutoGoWork := FALSE;
+
+            // Transition to next step: 131
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Time___Delay;
+            END_IF;
+
+        // ===========================================
+        // STEP 131: Time   Delay
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Time___Delay:
+            // No actions in XML
+
+            // Transition to next step: 23
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Motor_CWStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 23: Motor CWStart
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Motor_CWStart:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := FALSE;
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := TRUE;
+
+            // Transition to next step: 100
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_ProcessStart;
+            END_IF;
+
+        // ===========================================
+        // STEP 100: ProcessStart
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_ProcessStart:
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.InitialRun
+            #ioPM_Inface.InitialRun := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessComplete
+            #ioPM_Inface.ProcessComplete := FALSE;
+            // Action Qualifier=R
+            // Token: #ioPM_Inface.ProcessStart
+            #ioPM_Inface.ProcessStart := FALSE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.InitialOK
+            #ioPM_Inface.InitialOK := TRUE;
+            // Action Qualifier=S
+            // Token: #ioPM_Inface.WaitRunning
+            #ioPM_Inface.WaitRunning := TRUE;
+            // Action Qualifier=N, Event="S1"
+            // Token: #ioPM_Inface.ProcessResult := 0
+            #ioPM_Inface.ProcessResult := 0;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[24].Start
+            "ST10_GeneralData".FlowControl_Handshake[24].Start := FALSE;
+            // Action Qualifier=R
+            // Token: "ST10_GeneralData".FlowControl_Handshake[24].Done
+            "ST10_GeneralData".FlowControl_Handshake[24].Done := FALSE;
+
+            // Transition to next step: 132
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_MotorStop;
+            END_IF;
+
+        // ===========================================
+        // STEP 132: MotorStop
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_MotorStop:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := FALSE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := FALSE;
+
+            // Transition to next step: 141
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop;
+            END_IF;
+
+        // ===========================================
+        // STEP 141: Motor Stop
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Motor_Stop:
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := FALSE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := FALSE;
+            // Action Qualifier=R
+            // Token: "MEStoPLC"."MES.Load_StoveCheckInOk"
+            "MEStoPLC"."MES.Load_StoveCheckInOk" := FALSE;
+
+            // Transition to next step: 146
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_1;
+            END_IF;
+
+        // ===========================================
+        // STEP 146: Time  Delay_1
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_Time__Delay_1:
+            // No actions in XML
+
+            // Transition to next step: 5
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_S5_MESInitial;
+            END_IF;
+
+        // ===========================================
+        // STEP 5: S5_MESInitial
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_S5_MESInitial:
+            // No actions in XML
+
+            // Transition to next step: 27
+            IF TRUE THEN  // Sequential transition - review XML for actual condition
+                #State := STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_2;
+            END_IF;
+
+        // ===========================================
+        // STEP 27: MotorCCWStart_2
+        // ===========================================
+        STEP_ST10_Flow24_LUnloadingTrans_MotorCCWStart_2:
+            // Action Qualifier=S
+            // Token: "MotorControl".Dev[4].Auto.CCWStart
+            "MotorControl".Dev[4].Auto.CCWStart := TRUE;
+            // Action Qualifier=R
+            // Token: "MotorControl".Dev[4].Auto.Start
+            "MotorControl".Dev[4].Auto.Start := FALSE;
+            // Action Qualifier=S
+            // Token: "PLCtoMES"."PLC.Load_StoveCheckIn"
+            "PLCtoMES"."PLC.Load_StoveCheckIn" := TRUE;
+
+    END_CASE;
+
+    // UPDATE ioPM_Inface
+    #ioPM_Inface.InitialRun := #act_InitialRun;
+    #ioPM_Inface.InitialOK := #act_InitialOK;
+    #ioPM_Inface.WaitRunning := #act_WaitRunning;
+    #ioPM_Inface.Running := #act_Running;
+    #ioPM_Inface.ProcessComplete := #act_ProcessComplete;
+    #ioPM_Inface.ProcessStart := #act_ProcessStart;
+    #ioPM_Inface.UnPause := #act_UnPause;
+
+    // ERROR HANDLING
+    IF #bError THEN
+        #ioStatus := 900;
+        #oAlarmID := INT_TO_WORD(#wErrorID);
+    ELSE
+        #ioStatus := 0;
+        #oAlarmID := 0;
+    END_IF;
+END_FUNCTION_BLOCK
+
+//=============================================================================
+// END OF FILE
+//=============================================================================

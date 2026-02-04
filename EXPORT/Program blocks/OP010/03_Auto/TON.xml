@@ -4,63 +4,21 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="TON" Datatype="Array[0..100] of TON_TIME" Version="1.0" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="TON" Datatype="Array[0..100] of TON_TIME" Version="1.0" />
+    <Member Name="CTU" Datatype="Array[0..20] of IEC_DCOUNTER" Version="1.0">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
-      </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="PT" Datatype="Time" />
-          <Member Name="ET" Datatype="Time" />
-          <Member Name="IN" Datatype="Bool" />
-          <Member Name="Q" Datatype="Bool" />
-        </Section>
-      </Sections>
-    </Member>
-    <Member Name="CTU" Datatype="Array[0..20] of IEC_DCOUNTER" Version="1.0" Remanence="NonRetain" Accessibility="Public">
-      <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="None">
-          <Member Name="CU" Datatype="Bool" />
-          <Member Name="CD" Datatype="Bool" />
-          <Member Name="R" Datatype="Bool" />
-          <Member Name="LD" Datatype="Bool" />
-          <Member Name="QU" Datatype="Bool" />
-          <Member Name="QD" Datatype="Bool" />
-          <Member Name="PV" Datatype="DInt" />
-          <Member Name="CV" Datatype="DInt" />
-        </Section>
-      </Sections>
     </Member>
-    <Member Name="P" Datatype="Array[0..20] of Bool" Remanence="Retain" Accessibility="Public">
+    <Member Name="P" Datatype="Array[0..20] of Bool" Remanence="Retain">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
     </Member>
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Optimized</MemoryLayout>
       <MemoryReserve>100</MemoryReserve>
       <Name>TON</Name>

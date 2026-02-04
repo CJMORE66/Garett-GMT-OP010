@@ -1,0 +1,761 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Header" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Information about recipe</MultiLanguageText>
+      </Comment>
+      <Member Name="RecipeName" Datatype="Bool" />
+      <Member Name="RecipeID" Datatype="Bool" />
+      <Member Name="Version" Datatype="Bool" />
+      <Member Name="LastModified" Datatype="Bool" />
+      <Member Name="PartType" Datatype="Bool" />
+      <Member Name="PartTypeRecordNr" Datatype="Bool" />
+    </Member>
+    <Member Name="Process" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Important process parameters how should machine act</MultiLanguageText>
+      </Comment>
+      <Member Name="Timers" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> Definition of times for processess</MultiLanguageText>
+        </Comment>
+        <Member Name="Delay_Short" Datatype="Bool" />
+        <Member Name="Delay_Medium" Datatype="Bool" />
+        <Member Name="Delay_Long" Datatype="Bool" />
+        <Member Name="Cylinder_ActTime" Datatype="Bool" />
+      </Member>
+      <Member Name="Limits" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> limitations of the values</MultiLanguageText>
+        </Comment>
+        <Member Name="RetryLimit" Datatype="Bool" />
+      </Member>
+      <Member Name="Press" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> parameters for the kistler press devices</MultiLanguageText>
+        </Comment>
+        <Member Name="B1_Program" Datatype="Bool" />
+        <Member Name="B2_Program" Datatype="Bool" />
+        <Member Name="Curve" Datatype="Struct">
+          <Member Name="StartPos_UL" Datatype="Bool" />
+          <Member Name="StartPos_LL" Datatype="Bool" />
+          <Member Name="StartForce_UL" Datatype="Bool" />
+          <Member Name="StartForce_LL" Datatype="Bool" />
+          <Member Name="MiddlePos_UL" Datatype="Bool" />
+          <Member Name="MiddlePos_LL" Datatype="Bool" />
+          <Member Name="MiddleForce_UL" Datatype="Bool" />
+          <Member Name="MiddleForce_LL" Datatype="Bool" />
+          <Member Name="FinalPos_UL" Datatype="Bool" />
+          <Member Name="FinalPos_LL" Datatype="Bool" />
+          <Member Name="FinalForce_UL" Datatype="Bool" />
+          <Member Name="FinalForce_LL" Datatype="Bool" />
+          <Member Name="ProgramNum" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="Vision" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB"> camera system programs numbers</MultiLanguageText>
+        </Comment>
+        <Member Name="CGlueShaftIV3_Progs" Datatype="Array[1..4] of Bool" />
+        <Member Name="CGlueMagnetIV3_Prog" Datatype="Bool" />
+        <Member Name="CGlueProgram" Datatype="Bool" />
+      </Member>
+    </Member>
+    <Member Name="Tooling Code" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> QR CODES OF THE TOOLING FOR THE RECIPE</MultiLanguageText>
+      </Comment>
+      <Member Name="A1_Table" Datatype="Array[0..10] of Bool" />
+      <Member Name="A2_Table" Datatype="Array[0..10] of Bool" />
+      <Member Name="ROB1_Shaft_Handling_Robot" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  R1</MultiLanguageText>
+        </Comment>
+        <Member Name="Gripper" Datatype="Struct">
+          <Member Name="JAW TOOLING LEFT" Datatype="Bool" />
+          <Member Name="JAW TOOLING RIGHT" Datatype="Bool" />
+          <Member Name="SHAFT CLAMPING LEFT" Datatype="Bool" />
+          <Member Name="SHAFT CLAMPING RIGHT" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="ROB2_Main_Assembly_Robot" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  R2</MultiLanguageText>
+        </Comment>
+        <Member Name="Gripper" Datatype="Struct">
+          <Member Name="JAW TOOLING LEFT" Datatype="Bool" />
+          <Member Name="JAW TOOLING RIGHT" Datatype="Bool" />
+          <Member Name="SHAFT CLAMPING LEFT" Datatype="Bool" />
+          <Member Name="SHAFT CLAMPING RIGHT" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="ROB3_Unloading_Robot" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  R3</MultiLanguageText>
+        </Comment>
+        <Member Name="Gripper" Datatype="Struct">
+          <Member Name="JAW TOOLING LEFT" Datatype="Bool" />
+          <Member Name="JAW TOOLING RIGHT" Datatype="Bool" />
+          <Member Name="SHAFT CLAMPING LEFT" Datatype="Bool" />
+          <Member Name="SHAFT CLAMPING RIGHT" Datatype="Bool" />
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="Motion" Datatype="Struct">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> ALL SERVO DRIVES PARAMETERS</MultiLanguageText>
+      </Comment>
+      <Member Name="Gluing_Nozzle_Z" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: IAI_A1</MultiLanguageText>
+        </Comment>
+        <Member Name="Position_01" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_02" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_03" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_04" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_05" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_06" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_07" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_08" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_09" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_10" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_11" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_12" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_13" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_14" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_15" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_16" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_17" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_18" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_19" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_20" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="Gluing_Nozzle_X" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: IAI_A2</MultiLanguageText>
+        </Comment>
+        <Member Name="Position_01" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_02" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_03" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_04" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_05" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_06" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_07" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_08" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_09" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_10" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_11" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_12" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_13" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_14" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_15" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_16" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_17" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_18" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_19" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_20" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="Gluing_Nozzle_Y" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: IAI_A3</MultiLanguageText>
+        </Comment>
+        <Member Name="Position_01" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_02" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_03" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_04" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_05" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_06" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_07" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_08" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_09" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_10" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_11" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_12" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_13" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_14" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_15" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_16" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_17" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_18" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_19" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_20" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="Ring_Turntable_Axis_1" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A1</MultiLanguageText>
+        </Comment>
+        <Member Name="Position_01" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_02" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_03" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_04" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_05" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_06" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_07" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_08" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_09" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_10" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_11" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_12" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_13" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_14" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_15" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_16" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_17" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_18" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_19" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_20" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="Shaft_Scan_Turntable_Axis" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A2</MultiLanguageText>
+        </Comment>
+        <Member Name="Position_01" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_02" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_03" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_04" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_05" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_06" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_07" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_08" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_09" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_10" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_11" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_12" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_13" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_14" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_15" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_16" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_17" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_18" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_19" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_20" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="Gluing_Rotary_Jig_Axis" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A3</MultiLanguageText>
+        </Comment>
+        <Member Name="Position_01" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_02" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_03" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_04" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_05" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_06" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_07" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_08" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_09" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_10" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_11" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_12" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_13" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_14" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_15" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_16" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_17" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_18" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_19" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_20" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+      </Member>
+      <Member Name="Ring_Turntable_Axis_2" Datatype="Struct">
+        <Comment>
+          <MultiLanguageText Lang="en-GB">  Physical Axis: V90_A4</MultiLanguageText>
+        </Comment>
+        <Member Name="Position_01" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_02" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_03" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_04" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_05" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_06" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_07" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_08" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_09" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_10" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_11" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_12" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_13" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_14" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_15" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_16" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_17" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_18" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_19" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+        <Member Name="Position_20" Datatype="Struct">
+          <Member Name="Pos" Datatype="Bool" />
+          <Member Name="Vel" Datatype="Bool" />
+        </Member>
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>UDT_OP10_Recipe_diff</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

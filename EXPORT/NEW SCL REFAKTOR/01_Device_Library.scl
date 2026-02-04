@@ -1,0 +1,126 @@
+// =============================================================
+// DEVICE LIBRARY - STANDARD BLOCKS
+// =============================================================
+
+// 1. GENERIC CYLINDER CONTROL
+FUNCTION_BLOCK "FB_Dev_Cylinder"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+VAR_INPUT
+    iCmd_WorkPos : Bool;      // Command to go to Work Position
+    iCmd_HomePos : Bool;      // Command to go to Home Position
+    iSensor_WorkPos : Bool;   // Sensor: Cylinder is at Work Position
+    iSensor_HomePos : Bool;   // Sensor: Cylinder is at Home Position
+    iSafetyOK : Bool;         // Interlock/Safety OK
+    iResetError : Bool;
+    tTimeoutConfig : Time := T#5s;
+END_VAR
+VAR_OUTPUT
+    oValve_WorkPos : Bool;
+    oValve_HomePos : Bool;
+    oAtWorkPos : Bool;
+    oAtHomePos : Bool;
+    oError : Bool;
+    oStatus : String[20];
+END_VAR
+VAR
+    State : Int;
+    Timer_Timeout {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+END_VAR
+BEGIN
+    // Logic for bi-stable or mono-stable valve control
+    // Simplified State Machine
+    
+    // Outputs mapping
+    #oAtWorkPos := #iSensor_WorkPos;
+    #oAtHomePos := #iSensor_HomePos;
+    
+    // Timer
+    #Timer_Timeout(IN := (#oValve_WorkPos AND NOT #iSensor_WorkPos) OR (#oValve_HomePos AND NOT #iSensor_HomePos),
+                   PT := #tTimeoutConfig);
+                   
+    IF #Timer_Timeout.Q THEN
+        #oError := TRUE;
+        #oStatus := 'TIMEOUT';
+    END_IF;
+    
+    IF #iResetError THEN #oError := FALSE; END_IF;
+    
+    IF NOT #iSafetyOK THEN
+        #oValve_WorkPos := FALSE;
+        #oValve_HomePos := FALSE;
+        #oStatus := 'SAFETY_STOP';
+        RETURN;
+    END_IF;
+
+    // Control
+    IF #iCmd_WorkPos AND NOT #iCmd_HomePos THEN
+        #oValve_WorkPos := TRUE;
+        #oValve_HomePos := FALSE;
+        #oStatus := 'MOVING_WORK';
+    ELSIF #iCmd_HomePos AND NOT #iCmd_WorkPos THEN
+        #oValve_WorkPos := FALSE;
+        #oValve_HomePos := TRUE;
+        #oStatus := 'MOVING_HOME';
+    END_IF;
+END_FUNCTION_BLOCK
+
+// 2. GENERIC MOTOR / SERVO INTERFACE (Simple)
+FUNCTION_BLOCK "FB_Dev_Motor"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+VAR_INPUT
+    iCmd_Run : Bool;
+    iCmd_Reset : Bool;
+    iSafetyOK : Bool;
+    iFeedback_Running : Bool;
+    iFeedback_Error : Bool;
+END_VAR
+VAR_OUTPUT
+    oCmd_Run : Bool;
+    oCmd_Reset : Bool;
+    oReady : Bool;
+    oError : Bool;
+END_VAR
+BEGIN
+    IF NOT #iSafetyOK THEN
+        #oCmd_Run := FALSE;
+        RETURN;
+    END_IF;
+    
+    #oCmd_Run := #iCmd_Run;
+    #oCmd_Reset := #iCmd_Reset;
+    #oError := #iFeedback_Error;
+    #oReady := NOT #iFeedback_Error AND #iFeedback_Running;
+END_FUNCTION_BLOCK
+
+// 3. GENERIC ROBOT INTERFACE (Handshake)
+FUNCTION_BLOCK "FB_Dev_Robot_Interface"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+VAR_INPUT
+    iRobot_Ready : Bool;
+    iRobot_Busy : Bool;
+    iRobot_Done : Bool;
+    iRobot_Error : Bool;
+    iCmd_StartTask : Int; // Task ID to send
+END_VAR
+VAR_OUTPUT
+    oPLC_Start : Bool;
+    oPLC_TaskID : Int;
+    oTaskComplete : Bool;
+END_VAR
+VAR
+    State : Int;
+END_VAR
+BEGIN
+    #oPLC_TaskID := #iCmd_StartTask;
+    #oTaskComplete := #iRobot_Done AND (#iCmd_StartTask > 0);
+    
+    // Simple handshake logic
+    IF #iCmd_StartTask > 0 AND #iRobot_Ready AND NOT #iRobot_Busy THEN
+        #oPLC_Start := TRUE;
+    ELSE
+        #oPLC_Start := FALSE;
+    END_IF;
+END_FUNCTION_BLOCK

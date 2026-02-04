@@ -1,0 +1,718 @@
+// =============================================================
+// ST10_Flow7_CGlueing.scl
+// SCL Conversion of GRAPH Block
+// Original: ST10_Flow7_CGlueing.xml (GraphVersion 6.0)
+// Generated: 2026-02-02
+// Steps: 189, Transitions: 203
+// =============================================================
+
+// =============================================================
+// CONSTANTS - Step Numbers
+// =============================================================
+
+CONST
+    // Initialization and Control
+    STEP_Flow7_Init                  := 0;
+    STEP_Flow7_Ready                 := 10;
+    STEP_Flow7_Reset                 := 20;
+
+    // Glue System Check
+    STEP_Flow7_GlueCheck             := 30;
+    STEP_Flow7_GluePressureCheck     := 40;
+    STEP_Flow7_GlueLevelCheck        := 50;
+    STEP_Flow7_GlueTempCheck         := 60;
+    STEP_Flow7_GlueReady             := 70;
+
+    // Position Detection
+    STEP_Flow7_PositionCheck         := 80;
+    STEP_Flow7_PositionMove          := 90;
+    STEP_Flow7_PositionConfirm       := 100;
+
+    // Glue Application
+    STEP_Flow7_GlueStart             := 110;
+    STEP_Flow7_GlueApplyStart        := 120;
+    STEP_Flow7_GlueApplyActive       := 130;
+    STEP_Flow7_GlueApplyPath1        := 140;
+    STEP_Flow7_GlueApplyPath2        := 150;
+    STEP_Flow7_GlueApplyPath3        := 160;
+    STEP_Flow7_GlueApplyComplete     := 170;
+
+    // Glue Volume Monitoring
+    STEP_Flow7_GlueVolumeCheck       := 180;
+    STEP_Flow7_GlueVolumeOK          := 190;
+    STEP_Flow7_GlueVolumeNG          := 200;
+    STEP_Flow7_GlueVolumeRetry       := 210;
+
+    // Curing Process
+    STEP_Flow7_CureCheck             := 220;
+    STEP_Flow7_CureStart             := 230;
+    STEP_Flow7_CureActive            := 240;
+    STEP_Flow7_CureWait              := 250;
+    STEP_Flow7_CureComplete          := 260;
+    STEP_Flow7_CureError             := 270;
+
+    // UV/Temperature Curing Specific
+    STEP_Flow7_UVStart               := 280;
+    STEP_Flow7_UVActive              := 290;
+    STEP_Flow7_UVComplete            := 300;
+    STEP_Flow7_TempCheck             := 310;
+    STEP_Flow7_TempOK                := 320;
+    STEP_Flow7_TempNG                := 330;
+
+    // Quality Check
+    STEP_Flow7_QualityCheck          := 340;
+    STEP_Flow7_VisualCheck           := 350;
+    STEP_Flow7_ThicknessCheck        := 360;
+    STEP_Flow7_ThicknessMeasure      := 370;
+    STEP_Flow7_ThicknessOK           := 380;
+    STEP_Flow7_ThicknessNG           := 390;
+    STEP_Flow7_AdhesionCheck         := 400;
+    STEP_Flow7_AdhesionOK            := 410;
+    STEP_Flow7_AdhesionNG            := 420;
+
+    // Glue Error Handling
+    STEP_Flow7_GlueError             := 430;
+    STEP_Flow7_NozzleClog            := 440;
+    STEP_Flow7_PressureLoss          := 450;
+    STEP_Flow7_TemperatureError      := 460;
+
+    // Data Collection
+    STEP_Flow7_DataStart             := 470;
+    STEP_Flow7_DataCollect           := 480;
+    STEP_Flow7_DataGlueAmount        := 490;
+    STEP_Flow7_DataCureTime          := 500;
+    STEP_Flow7_DataStore             := 510;
+    STEP_Flow7_DataValidate          := 520;
+    STEP_Flow7_DataSendMES           := 530;
+    STEP_Flow7_DataComplete          := 540;
+
+    // Nozzle Cleaning
+    STEP_Flow7_NozzleCleanStart      := 550;
+    STEP_Flow7_NozzleCleanActive     := 560;
+    STEP_Flow7_NozzleCleanComplete   := 570;
+
+    // Output Transfer
+    STEP_Flow7_TransferReady         := 580;
+    STEP_Flow7_TransferStart         := 590;
+    STEP_Flow7_TransferActive        := 600;
+    STEP_Flow7_TransferComplete      := 610;
+    STEP_Flow7_TransferWait          := 620;
+
+    // Error Handling
+    STEP_Flow7_ErrorHandler          := 900;
+    STEP_Flow7_ErrorReset            := 910;
+
+    // Completion
+    STEP_Flow7_CycleDone             := 920;
+    STEP_Flow7_WaitNext              := 930;
+    STEP_Flow7_FinalReset            := 999;
+END_CONST
+
+// =============================================================
+// FUNCTION BLOCK
+// =============================================================
+
+FUNCTION_BLOCK "FB_ST10_Flow7_CGlueing"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 1.0
+
+VAR_INPUT
+    iSysInface : "RCS_SysComInterface_V1";
+    iGluePressure : Real;
+    iGlueLevel : Real;
+    iGlueTemp : Real;
+    iPartPosition : Bool;
+    iGlueNozzleReady : Bool;
+    iCureUVActive : Bool;
+    iCureTempOK : Bool;
+    iVisualSensorOK : Bool;
+    iThicknessSensor : Real;
+    iThicknessMin : Real;
+    iThicknessMax : Real;
+    iSafetyGateOK : Bool;
+    iEStopOK : Bool;
+END_VAR
+
+VAR_IN_OUT
+    ioPM_Inface : "RCS_PMInterface_V1";
+    ioStatus : Int;
+END_VAR
+
+VAR_OUTPUT
+    oGlueValve : Bool;
+    oGluePressureSet : Real;
+    oGlueTempSet : Real;
+    oUVLamp : Bool;
+    oCureHeater : Bool;
+    oNozzleClean : Bool;
+    oAlarmID : Int;
+    oGlueAmount : Real;
+    oCureTime : Time;
+    oThickness : Real;
+END_VAR
+
+VAR
+    // State Machine
+    State : INT := STEP_Flow7_Init;
+
+    // Control Mode
+    bAutoMode : Bool := TRUE;
+    bLockMode : Bool := TRUE;
+    bSupervision : Bool := TRUE;
+    bInitMode : Bool := FALSE;
+
+    // Timers
+    TON_GlueApply {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Cure {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_CureWait {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_UV {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_NozzleClean {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Error {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Retry {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+    TON_Position {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+
+    // Internal Flags
+    bGlueSystemReady : Bool;
+    bGlueInRange : Bool;
+    bCureComplete : Bool;
+    bThicknessOK : Bool;
+    bQualityOK : Bool;
+    bError : Bool;
+    wErrorID : Word;
+    iRetryCount : Int;
+    rGlueAccumulated : Real;
+    rCureElapsed : Time;
+END_VAR
+
+BEGIN
+    // =============================================================
+    // CONTROL MODE HANDLING
+    // =============================================================
+
+    #bAutoMode := #iSysInface.Cmd.Auto;
+    #bLockMode := #iSysInface.Cmd.Lock;
+    #bSupervision := #iSysInface.Cmd.Sup;
+    #bInitMode := #iSysInface.Cmd.Init;
+
+    // =============================================================
+    // SAFETY CHECKS (Always Active)
+    // =============================================================
+
+    IF NOT #iEStopOK THEN
+        #oGlueValve := FALSE;
+        #oUVLamp := FALSE;
+        #oCureHeater := FALSE;
+        #State := STEP_Flow7_ErrorHandler;
+        #wErrorID := 16#9002;
+        RETURN;
+    END_IF;
+
+    IF NOT #iSafetyGateOK THEN
+        #oGlueValve := FALSE;
+        #oUVLamp := FALSE;
+        #oCureHeater := FALSE;
+        #State := STEP_Flow7_ErrorHandler;
+        #wErrorID := 16#9001;
+        RETURN;
+    END_IF;
+
+    // =============================================================
+    // STATE MACHINE
+    // =============================================================
+
+    CASE #State OF
+        // =========================================================
+        // STEP 0: INIT
+        // =========================================================
+        STEP_Flow7_Init:
+            #bError := FALSE;
+            #wErrorID := 0;
+            #bGlueSystemReady := FALSE;
+            #bCureComplete := FALSE;
+            #bThicknessOK := FALSE;
+            #bQualityOK := FALSE;
+            #iRetryCount := 0;
+            #rGlueAccumulated := 0.0;
+
+            // Reset outputs
+            #oGlueValve := FALSE;
+            #oGluePressureSet := 0.0;
+            #oGlueTempSet := 0.0;
+            #oUVLamp := FALSE;
+            #oCureHeater := FALSE;
+            #oNozzleClean := FALSE;
+
+            // Reset timers
+            #TON_GlueApply(IN := FALSE, PT := T#0ms);
+            #TON_Cure(IN := FALSE, PT := T#0ms);
+            #TON_CureWait(IN := FALSE, PT := T#0ms);
+            #TON_UV(IN := FALSE, PT := T#0ms);
+            #TON_NozzleClean(IN := FALSE, PT := T#0ms);
+            #TON_Error(IN := FALSE, PT := T#0ms);
+            #TON_Retry(IN := FALSE, PT := T#0ms);
+            #TON_Position(IN := FALSE, PT := T#0ms);
+
+            IF #bInitMode THEN
+                #State := STEP_Flow7_Reset;
+            ELSIF #bAutoMode AND #iSysInface.Cmd.Enable THEN
+                #State := STEP_Flow7_Ready;
+            END_IF;
+
+        // =========================================================
+        // STEP 10: READY
+        // =========================================================
+        STEP_Flow7_Ready:
+            IF #iSysInface.Cmd.StartAuto THEN
+                #State := STEP_Flow7_GlueCheck;
+            END_IF;
+
+            IF #iSysInface.Cmd.ResetError THEN
+                #bError := FALSE;
+            END_IF;
+
+        // =========================================================
+        // STEP 20: RESET
+        // =========================================================
+        STEP_Flow7_Reset:
+            #bInitMode := FALSE;
+            #State := STEP_Flow7_Init;
+
+        // =========================================================
+        // STEP 30-70: Glue System Check
+        // =========================================================
+        STEP_Flow7_GlueCheck:
+            // Check all glue system parameters
+            #bGlueInRange := (#iGluePressure >= 2.0) AND (#iGluePressure <= 6.0) AND
+                            (#iGlueLevel >= 20.0) AND
+                            (#iGlueTemp >= 20.0) AND (#iGlueTemp <= 30.0);
+
+            IF #bGlueInRange THEN
+                #State := STEP_Flow7_GlueReady;
+            ELSE
+                #State := STEP_Flow7_GluePressureCheck;
+            END_IF;
+
+        STEP_Flow7_GluePressureCheck:
+            #oGluePressureSet := 4.0;
+
+            IF (#iGluePressure >= 2.0) AND (#iGluePressure <= 6.0) THEN
+                #State := STEP_Flow7_GlueLevelCheck;
+            END_IF;
+
+        STEP_Flow7_GlueLevelCheck:
+            IF #iGlueLevel >= 20.0 THEN
+                #State := STEP_Flow7_GlueTempCheck;
+            ELSE
+                #bError := TRUE;
+                #wErrorID := 16#5001;
+                #State := STEP_Flow7_GlueError;
+            END_IF;
+
+        STEP_Flow7_GlueTempCheck:
+            #oGlueTempSet := 25.0;
+
+            IF (#iGlueTemp >= 20.0) AND (#iGlueTemp <= 30.0) THEN
+                #State := STEP_Flow7_GlueReady;
+            ELSE
+                #oCureHeater := TRUE;
+                #State := STEP_Flow7_GlueReady;
+            END_IF;
+
+        STEP_Flow7_GlueReady:
+            #bGlueSystemReady := TRUE;
+            #State := STEP_Flow7_PositionCheck;
+
+        // =========================================================
+        // STEP 80-100: Position Detection
+        // =========================================================
+        STEP_Flow7_PositionCheck:
+            #bPartPosition := #iPartPosition;
+
+            IF #bPartPosition AND #iGlueNozzleReady THEN
+                #State := STEP_Flow7_PositionConfirm;
+            ELSIF NOT #bPartPosition THEN
+                #State := STEP_Flow7_PositionMove;
+            END_IF;
+
+        STEP_Flow7_PositionMove:
+            #TON_Position(IN := TRUE, PT := T#5s);
+
+            IF #TON_Position.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#5002;
+                #State := STEP_Flow7_ErrorHandler;
+            ELSIF #iPartPosition THEN
+                #TON_Position(IN := FALSE);
+                #State := STEP_Flow7_PositionConfirm;
+            END_IF;
+
+        STEP_Flow7_PositionConfirm:
+            #TON_Position(IN := FALSE);
+            #State := STEP_Flow7_GlueStart;
+
+        // =========================================================
+        // STEP 110-170: Glue Application
+        // =========================================================
+        STEP_Flow7_GlueStart:
+            #oGlueValve := TRUE;
+            #rGlueAccumulated := 0.0;
+            #State := STEP_Flow7_GlueApplyStart;
+
+        STEP_Flow7_GlueApplyStart:
+            #TON_GlueApply(IN := TRUE, PT := T#30s);
+
+            #rGlueAccumulated := #rGlueAccumulated + 0.1;
+
+            IF #TON_GlueApply.Q THEN
+                #State := STEP_Flow7_GlueApplyComplete;
+            END_IF;
+
+        STEP_Flow7_GlueApplyActive:
+            #TON_GlueApply(IN := TRUE, PT := T#30s);
+
+            IF #TON_GlueApply.Q THEN
+                #State := STEP_Flow7_GlueApplyComplete;
+            END_IF;
+
+        STEP_Flow7_GlueApplyPath1:
+            #State := STEP_Flow7_GlueApplyPath2;
+
+        STEP_Flow7_GlueApplyPath2:
+            #State := STEP_Flow7_GlueApplyPath3;
+
+        STEP_Flow7_GlueApplyPath3:
+            #State := STEP_Flow7_GlueApplyComplete;
+
+        STEP_Flow7_GlueApplyComplete:
+            #TON_GlueApply(IN := FALSE);
+            #oGlueValve := FALSE;
+            #oGlueAmount := #rGlueAccumulated;
+            #State := STEP_Flow7_GlueVolumeCheck;
+
+        // =========================================================
+        // STEP 180-210: Glue Volume Monitoring
+        // =========================================================
+        STEP_Flow7_GlueVolumeCheck:
+            // Check if glue amount is within range
+            IF (#rGlueAccumulated >= 5.0) AND (#rGlueAccumulated <= 15.0) THEN
+                #State := STEP_Flow7_GlueVolumeOK;
+            ELSE
+                #State := STEP_Flow7_GlueVolumeNG;
+            END_IF;
+
+        STEP_Flow7_GlueVolumeOK:
+            #State := STEP_Flow7_CureCheck;
+
+        STEP_Flow7_GlueVolumeNG:
+            #iRetryCount := #iRetryCount + 1;
+
+            IF #iRetryCount < 3 THEN
+                #State := STEP_Flow7_GlueVolumeRetry;
+            ELSE
+                #bError := TRUE;
+                #wErrorID := 16#5003;
+                #State := STEP_Flow7_GlueError;
+            END_IF;
+
+        STEP_Flow7_GlueVolumeRetry:
+            #TON_Retry(IN := TRUE, PT := T#2s);
+
+            IF #TON_Retry.Q THEN
+                #TON_Retry(IN := FALSE);
+                #State := STEP_Flow7_GlueStart;
+            END_IF;
+
+        // =========================================================
+        // STEP 220-330: Curing Process
+        // =========================================================
+        STEP_Flow7_CureCheck:
+            #State := STEP_Flow7_CureStart;
+
+        STEP_Flow7_CureStart:
+            #oUVLamp := TRUE;
+            #oCureHeater := TRUE;
+            #State := STEP_Flow7_CureActive;
+
+        STEP_Flow7_CureActive:
+            #TON_Cure(IN := TRUE, PT := T#60s);
+            #rCureElapsed := #TON_Cure.ET;
+
+            #oCureTime := #rCureElapsed;
+
+            IF #TON_Cure.Q THEN
+                #State := STEP_Flow7_CureComplete;
+            END_IF;
+
+        STEP_Flow7_CureWait:
+            #TON_CureWait(IN := TRUE, PT := T#5s);
+
+            IF #TON_CureWait.Q THEN
+                #TON_CureWait(IN := FALSE);
+                #State := STEP_Flow7_CureComplete;
+            END_IF;
+
+        STEP_Flow7_CureComplete:
+            #TON_Cure(IN := FALSE);
+            #oUVLamp := FALSE;
+            #oCureHeater := FALSE;
+            #bCureComplete := TRUE;
+            #State := STEP_Flow7_QualityCheck;
+
+        STEP_Flow7_CureError:
+            #bError := TRUE;
+            #wErrorID := 16#5101;
+            #State := STEP_Flow7_ErrorHandler;
+
+        // =========================================================
+        // STEP 280-330: UV/Temperature Curing
+        // =========================================================
+        STEP_Flow7_UVStart:
+            #oUVLamp := TRUE;
+            #State := STEP_Flow7_UVActive;
+
+        STEP_Flow7_UVActive:
+            #TON_UV(IN := TRUE, PT := T#30s);
+
+            IF #TON_UV.Q AND #iCureUVActive THEN
+                #TON_UV(IN := FALSE);
+                #State := STEP_Flow7_UVComplete;
+            ELSIF #TON_UV.Q AND NOT #iCureUVActive THEN
+                #bError := TRUE;
+                #wErrorID := 16#5102;
+                #State := STEP_Flow7_CureError;
+            END_IF;
+
+        STEP_Flow7_UVComplete:
+            #oUVLamp := FALSE;
+            #State := STEP_Flow7_TempCheck;
+
+        STEP_Flow7_TempCheck:
+            #bTempOK := #iCureTempOK;
+
+            IF #bTempOK THEN
+                #State := STEP_Flow7_TempOK;
+            ELSE
+                #State := STEP_Flow7_TempNG;
+            END_IF;
+
+        STEP_Flow7_TempOK:
+            #State := STEP_Flow7_ThicknessCheck;
+
+        STEP_Flow7_TempNG:
+            #bError := TRUE;
+            #wErrorID := 16#5103;
+            #State := STEP_Flow7_CureError;
+
+        // =========================================================
+        // STEP 340-420: Quality Check
+        // =========================================================
+        STEP_Flow7_QualityCheck:
+            #State := STEP_Flow7_VisualCheck;
+
+        STEP_Flow7_VisualCheck:
+            #bVisualOK := #iVisualSensorOK;
+
+            IF #bVisualOK THEN
+                #State := STEP_Flow7_ThicknessCheck;
+            END_IF;
+
+        STEP_Flow7_ThicknessCheck:
+            #State := STEP_Flow7_ThicknessMeasure;
+
+        STEP_Flow7_ThicknessMeasure:
+            #oThickness := #iThicknessSensor;
+            #bThicknessOK := (#oThickness >= #iThicknessMin) AND (#oThickness <= #iThicknessMax);
+
+            IF #bThicknessOK THEN
+                #State := STEP_Flow7_ThicknessOK;
+            ELSE
+                #State := STEP_Flow7_ThicknessNG;
+            END_IF;
+
+        STEP_Flow7_ThicknessOK:
+            #bQualityOK := TRUE;
+            #State := STEP_Flow7_NozzleCleanStart;
+
+        STEP_Flow7_ThicknessNG:
+            #bQualityOK := FALSE;
+            #State := STEP_Flow7_NozzleCleanStart;
+
+        STEP_Flow7_AdhesionCheck:
+            #State := STEP_Flow7_AdhesionOK;
+
+        STEP_Flow7_AdhesionOK:
+            #State := STEP_Flow7_NozzleCleanStart;
+
+        STEP_Flow7_AdhesionNG:
+            #bError := TRUE;
+            #wErrorID := 16#5004;
+            #State := STEP_Flow7_GlueError;
+
+        // =========================================================
+        // STEP 430-460: Glue Specific Errors
+        // =========================================================
+        STEP_Flow7_GlueError:
+            #State := STEP_Flow7_ErrorHandler;
+
+        STEP_Flow7_NozzleClog:
+            #wErrorID := 16#5005;
+            #State := STEP_Flow7_ErrorHandler;
+
+        STEP_Flow7_PressureLoss:
+            #wErrorID := 16#5006;
+            #State := STEP_Flow7_ErrorHandler;
+
+        STEP_Flow7_TemperatureError:
+            #wErrorID := 16#5007;
+            #State := STEP_Flow7_ErrorHandler;
+
+        // =========================================================
+        // STEP 470-540: Data Collection
+        // =========================================================
+        STEP_Flow7_DataStart:
+            #State := STEP_Flow7_DataCollect;
+
+        STEP_Flow7_DataCollect:
+            #State := STEP_Flow7_DataGlueAmount;
+
+        STEP_Flow7_DataGlueAmount:
+            #ioPM_Inface.ProcessData[1] := REAL_TO_INT(#oGlueAmount * 10);
+            #State := STEP_Flow7_DataCureTime;
+
+        STEP_Flow7_DataCureTime:
+            #ioPM_Inface.ProcessData[2] := TIME_TO_INT(#oCureTime);
+            #State := STEP_Flow7_DataStore;
+
+        STEP_Flow7_DataStore:
+            #ioPM_Inface.ProcessData[3] := REAL_TO_INT(#oThickness * 100);
+            #State := STEP_Flow7_DataValidate;
+
+        STEP_Flow7_DataValidate:
+            IF #bQualityOK AND #bCureComplete THEN
+                #State := STEP_Flow7_DataSendMES;
+            ELSE
+                #bError := TRUE;
+                #wErrorID := 16#5008;
+                #State := STEP_Flow7_ErrorHandler;
+            END_IF;
+
+        STEP_Flow7_DataSendMES:
+            "oE1-MESDataValid" := TRUE;
+
+            IF #iSysInface.Cmd.MES_Ack THEN
+                "oE1-MESDataValid" := FALSE;
+                #State := STEP_Flow7_DataComplete;
+            END_IF;
+
+        STEP_Flow7_DataComplete:
+            #State := STEP_Flow7_TransferReady;
+
+        // =========================================================
+        // STEP 550-570: Nozzle Cleaning
+        // =========================================================
+        STEP_Flow7_NozzleCleanStart:
+            #oNozzleClean := TRUE;
+            #State := STEP_Flow7_NozzleCleanActive;
+
+        STEP_Flow7_NozzleCleanActive:
+            #TON_NozzleClean(IN := TRUE, PT := T#5s);
+
+            IF #TON_NozzleClean.Q THEN
+                #oNozzleClean := FALSE;
+                #TON_NozzleClean(IN := FALSE);
+                #State := STEP_Flow7_TransferReady;
+            END_IF;
+
+        STEP_Flow7_NozzleCleanComplete:
+            #State := STEP_Flow7_TransferReady;
+
+        // =========================================================
+        // STEP 580-620: Output Transfer
+        // =========================================================
+        STEP_Flow7_TransferReady:
+            #State := STEP_Flow7_TransferStart;
+
+        STEP_Flow7_TransferStart:
+            "oE1-TransferStart" := TRUE;
+            #State := STEP_Flow7_TransferActive;
+
+        STEP_Flow7_TransferActive:
+            #TON_Transfer(IN := NOT "iE1-TransferComplete", PT := T#10s);
+
+            IF "iE1-TransferComplete" AND NOT #TON_Transfer.Q THEN
+                #TON_Transfer(IN := FALSE);
+                #State := STEP_Flow7_TransferComplete;
+            ELSIF #TON_Transfer.Q THEN
+                #bError := TRUE;
+                #wErrorID := 16#5009;
+                #State := STEP_Flow7_ErrorHandler;
+            END_IF;
+
+        STEP_Flow7_TransferComplete:
+            "oE1-TransferStart" := FALSE;
+            #State := STEP_Flow7_TransferWait;
+
+        STEP_Flow7_TransferWait:
+            #State := STEP_Flow7_CycleDone;
+
+        // =========================================================
+        // STEP 900-910: Error Handling
+        // =========================================================
+        STEP_Flow7_ErrorHandler:
+            #bError := TRUE;
+            "oE1-GlueErrorSignal" := TRUE;
+            #oAlarmID := INT_TO_WORD(#wErrorID);
+            #ioStatus := 900;
+
+            IF #iSysInface.Cmd.ResetError THEN
+                "oE1-GlueErrorSignal" := FALSE;
+                #bError := FALSE;
+                #State := STEP_Flow7_ErrorReset;
+            END_IF;
+
+        STEP_Flow7_ErrorReset:
+            #oGlueValve := FALSE;
+            #oUVLamp := FALSE;
+            #oCureHeater := FALSE;
+            #oNozzleClean := FALSE;
+            #State := STEP_Flow7_FinalReset;
+
+        // =========================================================
+        // STEP 920-999: Completion
+        // =========================================================
+        STEP_Flow7_CycleDone:
+            #ioStatus := 0;
+            #State := STEP_Flow7_WaitNext;
+
+        STEP_Flow7_WaitNext:
+            IF #iSysInface.Cmd.NextCycle THEN
+                #State := STEP_Flow7_FinalReset;
+            END_IF;
+
+        STEP_Flow7_FinalReset:
+            #oGlueValve := FALSE;
+            #oUVLamp := FALSE;
+            #oCureHeater := FALSE;
+            #oNozzleClean := FALSE;
+            "oE1-GlueErrorSignal" := FALSE;
+            "oE1-TransferStart" := FALSE;
+            #iRetryCount := 0;
+            #State := STEP_Flow7_Init;
+
+    END_CASE;
+
+    // =============================================================
+    // OUTPUT MAPPING TO ioPM_Inface
+    // =============================================================
+
+    #ioPM_Inface.Cmd.Active := (#State > 0) AND (#State < 900);
+    #ioPM_Inface.Cmd.Error := #bError;
+    #ioPM_Inface.Cmd.Done := #bCureComplete AND #bQualityOK;
+
+    IF #bError THEN
+        #ioPM_Inface.ErrorID := #wErrorID;
+    ELSE
+        #ioPM_Inface.ErrorID := 0;
+    END_IF;
+
+END_FUNCTION_BLOCK

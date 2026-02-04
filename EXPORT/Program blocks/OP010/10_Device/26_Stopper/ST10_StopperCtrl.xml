@@ -4,124 +4,26 @@
   <SW.Blocks.FB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Input" />
   <Section Name="Output" />
   <Section Name="InOut" />
   <Section Name="Static">
-    <Member Name="Stopper" Datatype="Array[1..100] of &quot;StopperCtrl&quot;" Accessibility="Public">
+    <Member Name="Stopper" Datatype="Array[1..100] of &quot;StopperCtrl&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
-      <Sections>
-        <Section Name="Input">
-          <Member Name="i_SysRun" Datatype="Bool" />
-          <Member Name="i_AutoMode" Datatype="Bool" />
-          <Member Name="i_AutoRunnig" Datatype="Bool" />
-          <Member Name="i_Reset" Datatype="Bool" />
-          <Member Name="i_LineRunning" Datatype="Bool" />
-          <Member Name="i_PalletArrivedNextStation" Datatype="Bool" />
-          <Member Name="i_StopperSensor" Datatype="Bool" />
-          <Member Name="i_Cyl-Home" Datatype="Bool" />
-          <Member Name="i_NextStationReady" Datatype="Bool" />
-          <Member Name="i_PresentDelayTime" Datatype="Time" />
-          <Member Name="i_ReleaseDelayTime" Datatype="Time" />
-        </Section>
-        <Section Name="Output">
-          <Member Name="o_StopperClyWP" Datatype="Bool" />
-          <Member Name="o_StopperClyHP" Datatype="Bool" />
-        </Section>
-        <Section Name="InOut">
-          <Member Name="io_NextyStopperStatus" Datatype="Int" />
-          <Member Name="io_Interface" Datatype="&quot;UDT_StopperInterface&quot;">
-            <Sections>
-              <Section Name="None" />
-            </Sections>
-          </Member>
-          <Member Name="io_MotorCWRun" Datatype="Bool" />
-          <Member Name="io_MotorCCWRun" Datatype="Bool" />
-        </Section>
-        <Section Name="Static">
-          <Member Name="s_Sequence" Datatype="Int" />
-          <Member Name="s_SequenceEnable" Datatype="Bool" />
-          <Member Name="s_SequenceFirstEnable" Datatype="Bool" />
-          <Member Name="s_StopperSensorOnDelay" Datatype="TON_TIME" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="PT" Datatype="Time" />
-                <Member Name="ET" Datatype="Time" />
-                <Member Name="IN" Datatype="Bool" />
-                <Member Name="Q" Datatype="Bool" />
-              </Section>
-            </Sections>
-          </Member>
-          <Member Name="s_StopperSensorOffDelay" Datatype="TON_TIME" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="PT" Datatype="Time" />
-                <Member Name="ET" Datatype="Time" />
-                <Member Name="IN" Datatype="Bool" />
-                <Member Name="Q" Datatype="Bool" />
-              </Section>
-            </Sections>
-          </Member>
-          <Member Name="s_PalletMissingConfirmDelay" Datatype="TON_TIME" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="PT" Datatype="Time" />
-                <Member Name="ET" Datatype="Time" />
-                <Member Name="IN" Datatype="Bool" />
-                <Member Name="Q" Datatype="Bool" />
-              </Section>
-            </Sections>
-          </Member>
-          <Member Name="s_PalletToNextStationDelay" Datatype="TON_TIME" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="PT" Datatype="Time" />
-                <Member Name="ET" Datatype="Time" />
-                <Member Name="IN" Datatype="Bool" />
-                <Member Name="Q" Datatype="Bool" />
-              </Section>
-            </Sections>
-          </Member>
-          <Member Name="s_SequenceFirstAutoDelay" Datatype="TON_TIME" Version="1.0">
-            <Sections>
-              <Section Name="None">
-                <Member Name="PT" Datatype="Time" />
-                <Member Name="ET" Datatype="Time" />
-                <Member Name="IN" Datatype="Bool" />
-                <Member Name="Q" Datatype="Bool" />
-              </Section>
-            </Sections>
-          </Member>
-          <Member Name="s_SequenceFirstAuto" Datatype="Int" />
-          <Member Name="s_StopperSensor" Datatype="Bool" />
-          <Member Name="s_PalletArrivedNextStation" Datatype="Bool" />
-          <Member Name="P" Datatype="Array[0..10] of Bool" />
-        </Section>
-      </Sections>
     </Member>
   </Section>
   <Section Name="Temp" />
   <Section Name="Constant" />
 </Sections></Interface>
-      <IsIECCheckEnabled>false</IsIECCheckEnabled>
       <MemoryLayout>Standard</MemoryLayout>
       <Name>ST10_StopperCtrl</Name>
       <Namespace />
       <Number>2601</Number>
       <ProgrammingLanguage>LAD</ProgrammingLanguage>
       <SetENOAutomatically>false</SetENOAutomatically>
-      <UDABlockProperties />
-      <UDAEnableTagReadback>false</UDAEnableTagReadback>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">

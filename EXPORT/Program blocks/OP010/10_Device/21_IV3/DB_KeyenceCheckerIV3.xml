@@ -4,163 +4,14 @@
   <SW.Blocks.GlobalDB ID="0">
     <AttributeList>
       <AutoNumber>false</AutoNumber>
-      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
-      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
-      <HeaderAuthor />
-      <HeaderFamily />
-      <HeaderName />
-      <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
   <Section Name="Static">
-    <Member Name="aDev" Datatype="Array[1..4] of &quot;ST_KeyenceCheckerIV3&quot;" Remanence="NonRetain" Accessibility="Public">
+    <Member Name="aDev" Datatype="Array[1..4] of &quot;ST_KeyenceCheckerIV3&quot;">
       <AttributeList>
-        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
-        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
         <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
       </AttributeList>
       <Sections>
         <Section Name="None">
-          <Member Name="Common" Datatype="Struct">
-            <Member Name="nID" Datatype="Int" />
-            <Member Name="nMode" Datatype="Int" />
-            <Member Name="bEnable" Datatype="Bool" />
-            <Member Name="bError" Datatype="Bool" />
-            <Member Name="bWarning" Datatype="Bool" />
-            <Member Name="bReset" Datatype="Bool" />
-            <Member Name="bDone" Datatype="Bool" />
-            <Member Name="bScreenActive" Datatype="Bool" />
-            <Member Name="nModeSwitch" Datatype="Int" />
-            <Member Name="nErrorNo" Datatype="Int" />
-            <Member Name="nWarningNo" Datatype="Int" />
-            <Member Name="nLastStep" Datatype="Int" />
-            <Member Name="nCurrentStep" Datatype="Int" />
-            <Member Name="nNextStep" Datatype="Int" />
-            <Member Name="tMaxProcessTime" Datatype="Time" />
-            <Member Name="tActProcessTime" Datatype="Time" />
-          </Member>
-          <Member Name="In" Datatype="Struct">
-            <Member Name="CommandStatus" Datatype="Struct">
-              <Member Name="bTriggerResponse" Datatype="Bool" />
-              <Member Name="bMasterImageRegistration" Datatype="Bool" />
-              <Member Name="bProgramSwitchingResponse" Datatype="Bool" />
-              <Member Name="bWarningClearResponse" Datatype="Bool" />
-              <Member Name="bStatisticsResetResponse" Datatype="Bool" />
-              <Member Name="bBufferClearResponse" Datatype="Bool" />
-              <Member Name="bSDCardStopSaveResponse" Datatype="Bool" />
-              <Member Name="bChangeParameterResponse" Datatype="Bool" />
-              <Member Name="bTriggerFailed" Datatype="Bool" />
-              <Member Name="bMasterImageRegistrationFailed" Datatype="Bool" />
-              <Member Name="bProgramSwitchingFailed" Datatype="Bool" />
-              <Member Name="bReserved1" Datatype="Bool" />
-              <Member Name="bReserved2" Datatype="Bool" />
-              <Member Name="bReserved3" Datatype="Bool" />
-              <Member Name="bSDCardStopSaveFailed" Datatype="Bool" />
-              <Member Name="bChangeParameterFailed" Datatype="Bool" />
-              <Member Name="bResultAvailable" Datatype="Bool" />
-              <Member Name="bResultUpdateComplete" Datatype="Bool" />
-              <Member Name="bBusy" Datatype="Bool" />
-              <Member Name="bImaging" Datatype="Bool" />
-              <Member Name="bRun" Datatype="Bool" />
-              <Member Name="bReady" Datatype="Bool" />
-              <Member Name="bReserved4" Datatype="Bool" />
-              <Member Name="bSDCardStatus" Datatype="Bool" />
-              <Member Name="bClassificationModeInformation" Datatype="Bool" />
-              <Member Name="bReserved5" Datatype="Bool" />
-              <Member Name="bReserved6" Datatype="Bool" />
-              <Member Name="bReserved7" Datatype="Bool" />
-              <Member Name="bSDCardStorageShortage" Datatype="Bool" />
-              <Member Name="bBufferOverrun" Datatype="Bool" />
-              <Member Name="bWarning" Datatype="Bool" />
-              <Member Name="bError" Datatype="Bool" />
-            </Member>
-            <Member Name="DeviceResults" Datatype="Struct">
-              <Member Name="bOverallJudgmentOK" Datatype="Bool" />
-              <Member Name="bPositionCorrection" Datatype="Bool" />
-              <Member Name="bLogic1" Datatype="Bool" />
-              <Member Name="bLogic2" Datatype="Bool" />
-              <Member Name="bLogic3" Datatype="Bool" />
-              <Member Name="bLogic4" Datatype="Bool" />
-              <Member Name="bOverallJudgmentNG" Datatype="Bool" />
-              <Member Name="bReserved1" Datatype="Bool" />
-              <Member Name="nReserved2" Datatype="Byte" />
-              <Member Name="aToolResult" Datatype="Array[1..16] of Bool" />
-            </Member>
-            <Member Name="DeviceStatus" Datatype="Struct">
-              <Member Name="nErrorNo" Datatype="Word" />
-              <Member Name="nWarningNo" Datatype="Word" />
-              <Member Name="nNumberOfRemainingBuffers" Datatype="Word" />
-              <Member Name="nChecksum" Datatype="Word" />
-              <Member Name="nCurrentProgramNo" Datatype="Word" />
-              <Member Name="nProgramNoDuringJudgment" Datatype="Word" />
-              <Member Name="nResultNo" Datatype="Word" />
-              <Member Name="nProcessingtime" Datatype="Word" />
-            </Member>
-            <Member Name="DeviceStatistics" Datatype="Struct">
-              <Member Name="nProcessingTimeMAX" Datatype="Word" />
-              <Member Name="nProcessingTimeMIN" Datatype="Word" />
-              <Member Name="nProcessingTimeAVE" Datatype="Word" />
-              <Member Name="nReserved1" Datatype="Word" />
-              <Member Name="nNumberOfTriggers" Datatype="DWord" />
-              <Member Name="nNumberOfOKs" Datatype="DWord" />
-              <Member Name="nNumberOfNGs" Datatype="DWord" />
-              <Member Name="nNumberOfTriggerErrors" Datatype="DWord" />
-              <Member Name="nReserved2" Datatype="DWord" />
-            </Member>
-            <Member Name="PositionAdjustResult" Datatype="Struct">
-              <Member Name="nPositionCorrectionToolMatchingRate" Datatype="Word" />
-              <Member Name="nPositionCorrectionToolMatchingRateMAX" Datatype="Word" />
-              <Member Name="nPositionCorrectionToolMatchingRateMIN" Datatype="Word" />
-              <Member Name="nPositionCorrectionToolThreshold" Datatype="Word" />
-              <Member Name="nReserved1" Datatype="Word" />
-              <Member Name="nReserved2" Datatype="Word" />
-              <Member Name="nReserved3" Datatype="Word" />
-              <Member Name="nReserved4" Datatype="Word" />
-              <Member Name="nReserved5" Datatype="Word" />
-              <Member Name="nReserved6" Datatype="Word" />
-            </Member>
-            <Member Name="ToolResult" Datatype="Array[1..64] of Struct">
-              <Member Name="nToolMatchingRate" Datatype="Word" />
-              <Member Name="nToolMatchingRateMAX" Datatype="Word" />
-              <Member Name="nToolMatchingRateMIN" Datatype="Word" />
-              <Member Name="nToolLowerLimitValue" Datatype="Word" />
-              <Member Name="nToolUpperLimitValue" Datatype="Word" />
-              <Member Name="nDecimalPosition" Datatype="Word" />
-              <Member Name="nPitchPresentValueMAX/ColorAverageH (hue)" Datatype="Word" />
-              <Member Name="nPitchPresentValueMIN/ColorAverageS(saturation)" Datatype="Word" />
-              <Member Name="nNumberOfPitches/ColorAverageV(brightness)/BrightnessAverage" Datatype="Word" />
-              <Member Name="nReserved1" Datatype="Word" />
-            </Member>
-            <Member Name="ExtendedDeviceResult" Datatype="Struct">
-              <Member Name="nMasterNumber" Datatype="Word" />
-              <Member Name="aToolResult" Datatype="Array[17..64] of Bool" />
-            </Member>
-          </Member>
-          <Member Name="Out" Datatype="Struct">
-            <Member Name="CommandControl" Datatype="Struct">
-              <Member Name="bTriggerRequest" Datatype="Bool" />
-              <Member Name="bMasterRegistrationRequest" Datatype="Bool" />
-              <Member Name="bProgramSwitchingRequest" Datatype="Bool" />
-              <Member Name="bWarningClearRequest" Datatype="Bool" />
-              <Member Name="bStatisticsResetRequest" Datatype="Bool" />
-              <Member Name="bBufferClearRequest" Datatype="Bool" />
-              <Member Name="bSDCardSaveStopRequest" Datatype="Bool" />
-              <Member Name="bParameterChangeRequest" Datatype="Bool" />
-              <Member Name="nReserved1" Datatype="Byte" />
-              <Member Name="bResultAcquisitionCompleteNotification" Datatype="Bool" />
-              <Member Name="bReserved2" Datatype="Bool" />
-              <Member Name="bReserved3" Datatype="Bool" />
-              <Member Name="bReserved4" Datatype="Bool" />
-              <Member Name="bReserved5" Datatype="Bool" />
-              <Member Name="bReserved6" Datatype="Bool" />
-              <Member Name="bReserved7" Datatype="Bool" />
-              <Member Name="bReserved8" Datatype="Bool" />
-              <Member Name="nReserved9" Datatype="Byte" />
-              <Member Name="nProgramNo" Datatype="Word" />
-              <Member Name="nSetNumber" Datatype="Word" />
-              <Member Name="nSetParameter" Datatype="DWord" />
-            </Member>
-          </Member>
           <Member Name="Para" Datatype="Struct">
             <Member Name="nInAdr1" Datatype="HW_IO">
               <Subelement Path="1">
@@ -730,32 +581,12 @@
                 <StartValue>436</StartValue>
               </Subelement>
             </Member>
-            <Member Name="aToolResult" Datatype="Array[1..64] of Bool" />
-            <Member Name="aToolResultHMI" Datatype="Array[1..16] of Byte" />
-            <Member Name="ToolResult" Datatype="Array[1..64] of Struct">
-              <Member Name="nToolMatchingRate" Datatype="Word" />
-              <Member Name="nToolMatchingRateMAX" Datatype="Word" />
-              <Member Name="nToolMatchingRateMIN" Datatype="Word" />
-              <Member Name="nToolLowerLimitValue" Datatype="Word" />
-              <Member Name="nToolUpperLimitValue" Datatype="Word" />
-              <Member Name="nDecimalPosition" Datatype="Word" />
-              <Member Name="nPitchPresentValueMAX/ColorAverageH (hue)" Datatype="Word" />
-              <Member Name="nPitchPresentValueMIN/ColorAverageS(saturation)" Datatype="Word" />
-              <Member Name="nNumberOfPitches/ColorAverageV(brightness)/BrightnessAverage" Datatype="Word" />
-              <Member Name="nReserved1" Datatype="Word" />
-            </Member>
-            <Member Name="nProgramNo" Datatype="Word" />
-            <Member Name="bProductOverallOK" Datatype="Bool" />
-            <Member Name="bProductOverallNG" Datatype="Bool" />
           </Member>
         </Section>
       </Sections>
     </Member>
   </Section>
 </Sections></Interface>
-      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
-      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
-      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
       <MemoryLayout>Optimized</MemoryLayout>
       <MemoryReserve>100</MemoryReserve>
       <Name>DB_KeyenceCheckerIV3</Name>

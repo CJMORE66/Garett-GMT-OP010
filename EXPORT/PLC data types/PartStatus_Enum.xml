@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="PS_0_NO_PART" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Empty / No part (Reset state)</MultiLanguageText>
+      </Comment>
+      <StartValue>0</StartValue>
+    </Member>
+    <Member Name="PS_100_GRIPPED_OK" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Part ready for process / Gripped by robot (Grip OK)</MultiLanguageText>
+      </Comment>
+      <StartValue>100</StartValue>
+    </Member>
+    <Member Name="PS_110_OK_PART" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> OK part (Standard confirmation after scan or operation)</MultiLanguageText>
+      </Comment>
+      <StartValue>110</StartValue>
+    </Member>
+    <Member Name="PS_150_NG_GENERAL_ERROR" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> NG part (General scan or presence error)</MultiLanguageText>
+      </Comment>
+      <StartValue>150</StartValue>
+    </Member>
+    <Member Name="PS_151_NG_BARCODE_MISMATCH" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> NG â€“ Barcode Error (Mismatch)</MultiLanguageText>
+      </Comment>
+      <StartValue>151</StartValue>
+    </Member>
+    <Member Name="PS_152_NG_CODE_NO_READ" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> NG â€“ Code reading unsuccessful (No Read)</MultiLanguageText>
+      </Comment>
+      <StartValue>152</StartValue>
+    </Member>
+    <Member Name="PS_155_NG_ROBOT_SPECIFIC_ERROR" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> NG â€“ Specific error from Robot 2</MultiLanguageText>
+      </Comment>
+      <StartValue>155</StartValue>
+    </Member>
+    <Member Name="PS_180_ROTARY_SCAN_SPECIAL" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Specific state for Rotary Shaft Scan (A1)</MultiLanguageText>
+      </Comment>
+      <StartValue>180</StartValue>
+    </Member>
+    <Member Name="PS_199_OPERATION_COMPLETED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Operation completed (Waiting for release/transfer)</MultiLanguageText>
+      </Comment>
+      <StartValue>199</StartValue>
+    </Member>
+    <Member Name="PS_220_PRESS1_INSERTED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Part inserted into press B1</MultiLanguageText>
+      </Comment>
+      <StartValue>220</StartValue>
+    </Member>
+    <Member Name="PS_250_PRESS1_IN_PROGRESS" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B1 â€“ Start / In progress</MultiLanguageText>
+      </Comment>
+      <StartValue>250</StartValue>
+    </Member>
+    <Member Name="PS_251_PRESS1_NG_ERROR" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B1 â€“ NG (Force/stroke error)</MultiLanguageText>
+      </Comment>
+      <StartValue>251</StartValue>
+    </Member>
+    <Member Name="PS_252_PRESS1_INTERRUPTED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B1 â€“ Interrupted</MultiLanguageText>
+      </Comment>
+      <StartValue>252</StartValue>
+    </Member>
+    <Member Name="PS_255_PRESS1_OK" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B1 â€“ OK (Not yet finally released)</MultiLanguageText>
+      </Comment>
+      <StartValue>255</StartValue>
+    </Member>
+    <Member Name="PS_280_PRESS1_WAIT_REMOVE" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B1 â€“ Waiting for removal</MultiLanguageText>
+      </Comment>
+      <StartValue>280</StartValue>
+    </Member>
+    <Member Name="PS_299_PRESS1_COMPLETED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B1 â€“ Completely finished</MultiLanguageText>
+      </Comment>
+      <StartValue>299</StartValue>
+    </Member>
+    <Member Name="PS_300_GLUING_START" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Gluing â€“ Start / Preparation</MultiLanguageText>
+      </Comment>
+      <StartValue>300</StartValue>
+    </Member>
+    <Member Name="PS_310_GLUING_IN_PROGRESS" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Glue application â€“ In progress</MultiLanguageText>
+      </Comment>
+      <StartValue>310</StartValue>
+    </Member>
+    <Member Name="PS_320_GLUE_INSP_IN_PROGRESS" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Glue inspection (Vision) â€“ In progress</MultiLanguageText>
+      </Comment>
+      <StartValue>320</StartValue>
+    </Member>
+    <Member Name="PS_330_GLUE_INSP_NG" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Glue inspection â€“ NG</MultiLanguageText>
+      </Comment>
+      <StartValue>330</StartValue>
+    </Member>
+    <Member Name="PS_351_GLUING_INTERM_POS1" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Gluing â€“ Intermediate state (Position 1)</MultiLanguageText>
+      </Comment>
+      <StartValue>351</StartValue>
+    </Member>
+    <Member Name="PS_352_GLUING_INTERM_POS2" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Gluing â€“ Intermediate state (Position 2)</MultiLanguageText>
+      </Comment>
+      <StartValue>352</StartValue>
+    </Member>
+    <Member Name="PS_358_GLUING_WAIT_ROBOT_HS" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Gluing â€“ Waiting for robot handshake</MultiLanguageText>
+      </Comment>
+      <StartValue>358</StartValue>
+    </Member>
+    <Member Name="PS_359_GLUING_WAIT_ROBOT_HS2" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Gluing â€“ Waiting for robot handshake</MultiLanguageText>
+      </Comment>
+      <StartValue>359</StartValue>
+    </Member>
+    <Member Name="PS_380_GLUING_CRITICAL_ERROR" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Gluing â€“ Critical device error</MultiLanguageText>
+      </Comment>
+      <StartValue>380</StartValue>
+    </Member>
+    <Member Name="PS_399_GLUING_COMPLETED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Gluing â€“ Completely finished (OK)</MultiLanguageText>
+      </Comment>
+      <StartValue>399</StartValue>
+    </Member>
+    <Member Name="PS_420_PRESS2_INSERTED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Part inserted into press B2</MultiLanguageText>
+      </Comment>
+      <StartValue>420</StartValue>
+    </Member>
+    <Member Name="PS_450_PRESS2_IN_PROGRESS" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B2 â€“ Start / In progress</MultiLanguageText>
+      </Comment>
+      <StartValue>450</StartValue>
+    </Member>
+    <Member Name="PS_451_PRESS2_NG_ERROR" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B2 â€“ NG (Force/stroke error)</MultiLanguageText>
+      </Comment>
+      <StartValue>451</StartValue>
+    </Member>
+    <Member Name="PS_452_PRESS2_INTERRUPTED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B2 â€“ Interrupted</MultiLanguageText>
+      </Comment>
+      <StartValue>452</StartValue>
+    </Member>
+    <Member Name="PS_455_PRESS2_OK" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B2 â€“ OK</MultiLanguageText>
+      </Comment>
+      <StartValue>455</StartValue>
+    </Member>
+    <Member Name="PS_480_PRESS2_WAIT_REMOVE" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B2 â€“ Waiting for removal</MultiLanguageText>
+      </Comment>
+      <StartValue>480</StartValue>
+    </Member>
+    <Member Name="PS_499_PRESS2_COMPLETED" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-GB"> Pressing B2 â€“ Completely finished</MultiLanguageText>
+      </Comment>
+      <StartValue>499</StartValue>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>PartStatus_Enum</Name>
+      <Namespace />
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>sk-SK</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

@@ -1,0 +1,271 @@
+// =============================================================
+// Shared_Types.scl
+// Shared Type Definitions for All Flow Blocks
+// Contains step enumerations and common constants
+// Generated: 2026-02-02
+// =============================================================
+
+// =============================================================
+// ENUMERATIONS FOR STEP NUMBERS
+// Each flow block has its own enumeration
+// =============================================================
+
+// Flow 1: A1TableScan
+TYPE
+    E_STEP_Flow1 : (
+        STEP_Flow1_Init                := 0,
+        STEP_Flow1_Ready               := 10,
+        STEP_Flow1_Reset               := 20,
+        STEP_Flow1_PalletInCheck       := 30,
+        STEP_Flow1_PalletWait          := 40,
+        STEP_Flow1_PalletPresent       := 50,
+        STEP_Flow1_PalletPosition      := 60,
+        STEP_Flow1_ScanInit            := 70,
+        STEP_Flow1_ScanTrigger         := 80,
+        STEP_Flow1_Scanning            := 90,
+        STEP_Flow1_ScanWait            := 100,
+        STEP_Flow1_ScanComplete        := 110,
+        STEP_Flow1_ScanError           := 120,
+        STEP_Flow1_ScanRetry           := 130,
+        STEP_Flow1_RFIDInit            := 140,
+        STEP_Flow1_RFIDRead            := 150,
+        STEP_Flow1_RFIDWait            := 160,
+        STEP_Flow1_RFIDComplete        := 170,
+        STEP_Flow1_RFIDError           := 180,
+        STEP_Flow1_RFIDRetry           := 190,
+        STEP_Flow1_ProductCheck        := 200,
+        STEP_Flow1_ProductPresent      := 210,
+        STEP_Flow1_ProductAbsent       := 220,
+        STEP_Flow1_ProductNG           := 230,
+        STEP_Flow1_ProductOK           := 240,
+        STEP_Flow1_FixtureCheck        := 250,
+        STEP_Flow1_FixtureOK           := 260,
+        STEP_Flow1_FixtureNG           := 270,
+        STEP_Flow1_Adjust1             := 280,
+        STEP_Flow1_Adjust2             := 290,
+        STEP_Flow1_Adjust3             := 300,
+        STEP_Flow1_DataProcess         := 310,
+        STEP_Flow1_DataValidate        := 320,
+        STEP_Flow1_DataStore           := 330,
+        STEP_Flow1_DataSendMES         := 340,
+        STEP_Flow1_DataComplete        := 350,
+        STEP_Flow1_GateOpen            := 360,
+        STEP_Flow1_GateClose           := 370,
+        STEP_Flow1_GateConfirm         := 380,
+        STEP_Flow1_TransferInit        := 390,
+        STEP_Flow1_TransferStart       := 400,
+        STEP_Flow1_TransferActive      := 410,
+        STEP_Flow1_TransferComplete    := 420,
+        STEP_Flow1_TransferWait        := 430,
+        STEP_Flow1_ErrorHandler        := 900,
+        STEP_Flow1_ErrorReset          := 910,
+        STEP_Flow1_CycleDone           := 920,
+        STEP_Flow1_WaitNext            := 930,
+        STEP_Flow1_FinalReset          := 999
+    ) INT := 0;
+END_TYPE
+
+// Flow 2: A1TableUnloading
+TYPE
+    E_STEP_Flow2 : (
+        STEP_Flow2_Init                := 0,
+        STEP_Flow2_Ready               := 10,
+        STEP_Flow2_Reset               := 20,
+        STEP_Flow2_UnloadCheck         := 30,
+        STEP_Flow2_UnloadPosition      := 40,
+        STEP_Flow2_UnloadStart         := 50,
+        STEP_Flow2_UnloadActive        := 60,
+        STEP_Flow2_UnloadComplete      := 70,
+        STEP_Flow2_UnloadError         := 80,
+        STEP_Flow2_VerifyEmpty         := 90,
+        STEP_Flow2_VerifyFail          := 100,
+        STEP_Flow2_GateOpen            := 110,
+        STEP_Flow2_GateClose           := 120,
+        STEP_Flow2_TransferReady       := 130,
+        STEP_Flow2_TransferStart       := 140,
+        STEP_Flow2_TransferWait        := 150,
+        STEP_Flow2_ErrorHandler        := 900,
+        STEP_Flow2_CycleDone           := 910,
+        STEP_Flow2_FinalReset          := 999
+    ) INT := 0;
+END_TYPE
+
+// Flow 4: B1Press
+TYPE
+    E_STEP_Flow4 : (
+        STEP_Flow4_Init                := 0,
+        STEP_Flow4_Ready               := 10,
+        STEP_Flow4_Reset               := 20,
+        STEP_Flow4_PressCheck          := 30,
+        STEP_Flow4_PressPosition       := 40,
+        STEP_Flow4_PressDownStart      := 50,
+        STEP_Flow4_PressDownActive     := 60,
+        STEP_Flow4_PressDownWait       := 70,
+        STEP_Flow4_PressDownComplete   := 80,
+        STEP_Flow4_PressUpStart        := 90,
+        STEP_Flow4_PressUpActive       := 100,
+        STEP_Flow4_PressUpComplete     := 110,
+        STEP_Flow4_PressHold           := 120,
+        STEP_Flow4_PressError          := 130,
+        STEP_Flow4_ForceCheck          := 140,
+        STEP_Flow4_ForceOK             := 150,
+        STEP_Flow4_ForceNG             := 160,
+        STEP_Flow4_PositionCheck       := 170,
+        STEP_Flow4_DataStore           := 180,
+        STEP_Flow4_DataSendMES         := 190,
+        STEP_Flow4_TransferReady       := 200,
+        STEP_Flow4_ErrorHandler        := 900,
+        STEP_Flow4_CycleDone           := 910,
+        STEP_Flow4_FinalReset          := 999
+    ) INT := 0;
+END_TYPE
+
+// Flow 7: CGlueing
+TYPE
+    E_STEP_Flow7 : (
+        STEP_Flow7_Init                := 0,
+        STEP_Flow7_Ready               := 10,
+        STEP_Flow7_Reset               := 20,
+        STEP_Flow7_GlueCheck           := 30,
+        STEP_Flow7_GluePosition        := 40,
+        STEP_Flow7_GlueStart           := 50,
+        STEP_Flow7_GlueApply           := 60,
+        STEP_Flow7_GlueWait            := 70,
+        STEP_Flow7_GlueComplete        := 80,
+        STEP_Flow7_CureCheck           := 90,
+        STEP_Flow7_CureStart           := 100,
+        STEP_Flow7_CureActive          := 110,
+        STEP_Flow7_CureComplete        := 120,
+        STEP_Flow7_CureError           := 130,
+        STEP_Flow7_GlueError           := 140,
+        STEP_Flow7_ThicknessCheck      := 150,
+        STEP_Flow7_ThicknessOK         := 160,
+        STEP_Flow7_ThicknessNG         := 170,
+        STEP_Flow7_DataStore           := 180,
+        STEP_Flow7_DataSendMES         := 190,
+        STEP_Flow7_TransferReady       := 200,
+        STEP_Flow7_ErrorHandler        := 900,
+        STEP_Flow7_CycleDone           := 910,
+        STEP_Flow7_FinalReset          := 999
+    ) INT := 0;
+END_TYPE
+
+// =============================================================
+// COMMON ERROR CODES
+// =============================================================
+
+TYPE
+    E_ErrorCode : (
+        ERR_NoError                    := 0,
+        ERR_PalletTimeout              := 16#3001,
+        ERR_PalletPosition             := 16#3002,
+        ERR_ScanTimeout                := 16#3101,
+        ERR_ScanFailed                 := 16#3102,
+        ERR_RFIDTimeout                := 16#3201,
+        ERR_RFIDFailed                 := 16#3202,
+        ERR_ProductMissing             := 16#3301,
+        ERR_ProductNG                  := 16#3302,
+        ERR_FixtureNG                  := 16#3401,
+        ERR_DataValidation             := 16#3501,
+        ERR_TransferTimeout            := 16#3601,
+        ERR_PressTimeout               := 16#4001,
+        ERR_PressForceNG               := 16#4002,
+        ERR_GlueTimeout                := 16#5001,
+        ERR_GlueNG                     := 16#5002,
+        ERR_CureTimeout                := 16#5101,
+        ERR_SafetyGate                 := 16#9001,
+        ERR_EStop                      := 16#9002,
+        ERR_General                    := 16#FFFF
+    ) WORD := 0;
+END_TYPE
+
+// =============================================================
+// COMMON CONSTANTS
+// =============================================================
+
+CONST
+    // Timeout defaults
+    TIMEOUT_SHORT                    := T#2s;
+    TIMEOUT_MEDIUM                   := T#5s;
+    TIMEOUT_LONG                     := T#10s;
+    TIMEOUT_EXTENDED                 := T#30s;
+
+    // Common step ranges
+    STEP_INIT_RANGE                  := 0..29;
+    STEP_READY_RANGE                 := 30..99;
+    STEP_PROCESS_RANGE               := 100..899;
+    STEP_ERROR_RANGE                 := 900..949;
+    STEP_DONE_RANGE                  := 950..999;
+
+    // System flags
+    FALSE_VALUE                      := 0;
+    TRUE_VALUE                       := 1;
+END_CONST
+
+// =============================================================
+// TRANSITION FUNCTIONS
+// Common transition logic reusable across flow blocks
+// =============================================================
+
+FUNCTION "Trans_PalletPresent" : Bool
+VAR_INPUT
+    Sensor : Bool;
+    Timeout : Time;
+END_VAR
+VAR_IN_OUT
+    Timer : TON_TIME;
+END_VAR
+BEGIN
+    // Transition: Pallet is present within timeout
+    "Trans_PalletPresent" := Sensor AND NOT Timer.Q;
+    Timer(IN := NOT Sensor, PT := Timeout);
+END_FUNCTION
+
+FUNCTION "Trans_ScanComplete" : Bool
+VAR_INPUT
+    BusySignal : Bool;
+    ResultOK : Bool;
+    Timeout : Time;
+END_VAR
+VAR_IN_OUT
+    Timer : TON_TIME;
+END_VAR
+BEGIN
+    // Transition: Scan complete with OK result
+    "Trans_ScanComplete" := (NOT BusySignal) AND ResultOK AND NOT Timer.Q;
+    Timer(IN := BusySignal, PT := Timeout);
+END_FUNCTION
+
+FUNCTION "Trans_TransferComplete" : Bool
+VAR_INPUT
+    CompleteSignal : Bool;
+    Timeout : Time;
+END_VAR
+VAR_IN_OUT
+    Timer : TON_TIME;
+END_VAR
+BEGIN
+    // Transition: Transfer operation complete
+    "Trans_TransferComplete" := CompleteSignal AND NOT Timer.Q;
+    Timer(IN := NOT CompleteSignal, PT := Timeout);
+END_FUNCTION
+
+FUNCTION "Trans_ErrorReset" : Bool
+VAR_INPUT
+    ErrorFlag : Bool;
+    ResetCmd : Bool;
+END_VAR
+BEGIN
+    // Transition: Error can be reset
+    "Trans_ErrorReset" := ErrorFlag AND ResetCmd;
+END_FUNCTION
+
+FUNCTION "Trans_NextCycle" : Bool
+VAR_INPUT
+    CycleDone : Bool;
+    NextCmd : Bool;
+END_VAR
+BEGIN
+    // Transition: Ready for next cycle
+    "Trans_NextCycle" := CycleDone AND NextCmd;
+END_FUNCTION
